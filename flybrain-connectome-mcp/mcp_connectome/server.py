@@ -199,17 +199,27 @@ TOOLS = [
             "properties": {
                 "spec_list": {
                     "type": "array",
+                    "maxItems": 10,
                     "items": {
                         "type": "object",
                         "properties": {
-                            "blueprint": {"type": "string"},
-                            "modules": {"type": "array", "items": {"type": "string"}},
+                            "blueprint": {"type": "string",
+                                          "description": "蓝图名，如 predictive_coding_v2"},
+                            "n_modules": {"type": "integer", "default": 6,
+                                          "description": "模块数（与 modules 二选一）"},
+                            "modules": {
+                                "type": "array", "items": {"type": "string"},
+                                "description": "模块 profile 列表；给定则用其长度作为 n_modules",
+                            },
+                            "agents_per_module": {"type": "integer", "default": 6},
                         },
                     },
-                    "description": "多个拓扑的 (blueprint, modules) 组合",
+                    "description": "多个拓扑的生成规格，最多 10 个",
                 },
-                "seed": {"type": "integer", "description": "随机种子基线，默认 42，每个 spec seed=base+i"},
-                "max_nodes": {"type": "integer", "description": "每个拓扑最大节点数，默认 32"},
+                "seed": {"type": "integer", "default": 42,
+                         "description": "随机种子基线，每个 spec 用 seed+i"},
+                "max_nodes": {"type": "integer", "default": 32,
+                              "description": "节点数上限；超出会在结果里标 exceeds_max_nodes=true"},
             },
             "required": ["spec_list"],
         },
@@ -333,11 +343,17 @@ def _format(name, result):
 # Phase 6 developer helpers (2026-09-19)
 # --------------------------------------------------------------------------- #
 def _load_topology_module():
-    """Load synthetic_bio_topology.py (path may vary by layout)."""
+    """Load synthetic_bio_topology.py (path may vary by layout).
+
+    NOTE: this used to reference an undefined ``HERE``, which made every
+    generator-surface tool raise NameError. The module-level constant is
+    ``_MOTIFS_DIR`` (== the directory holding this file).
+    """
     import os as _os
+    here = _os.path.dirname(_os.path.abspath(__file__))
     candidates = [
-        _os.path.normpath(_os.path.join(HERE.parent.parent, "synthetic_bio_topology.py")),
-        _os.path.normpath(_os.path.join(HERE.parent, "synthetic_bio_topology.py")),
+        _os.path.normpath(_os.path.join(here, "..", "synthetic_bio_topology.py")),
+        _os.path.normpath(_os.path.join(here, "..", "..", "synthetic_bio_topology.py")),
     ]
     for p in candidates:
         if _os.path.exists(p):
@@ -349,18 +365,42 @@ def _load_topology_module():
     raise RuntimeError("synthetic_bio_topology.py not found in %s" % candidates)
 
 
+def _motif_name(entry) -> str:
+    """Normalize a BLUEPRINT_SOURCE_MOTIF value to a plain motif name.
+
+    Values are dicts of the shape {"motif": ..., "note": ..., "stability_target": ...}
+    (older/other entries may be bare strings). Treating them as hashable strings
+    silently made every blueprint look bio-prior, so normalize in one place.
+    """
+    if isinstance(entry, dict):
+        return str(entry.get("motif") or "none")
+    return str(entry or "none")
+
+
+def _motif_note(entry) -> str:
+    return entry.get("note", "") if isinstance(entry, dict) else ""
+
+
+def _motif_stability(entry):
+    return entry.get("stability_target") if isinstance(entry, dict) else None
+
+
 def _list_blueprints():
     mod = _load_topology_module()
     motif_map = getattr(mod, "BLUEPRINT_SOURCE_MOTIF", {})
     out = []
     for name, entry in mod.BLUEPRINTS.items():
+        raw = motif_map.get(name, "none")
+        motif = _motif_name(raw)
         out.append({
             "name": name,
             "category": entry.get("category", ""),
             "description": entry.get("description", ""),
             "use_cases": entry.get("use_cases", []),
-            "source_motif": motif_map.get(name, "none"),
-            "is_bio_prior": motif_map.get(name, "none") != "none",
+            "source_motif": motif,
+            "source_motif_note": _motif_note(raw),
+            "stability_target": _motif_stability(raw),
+            "is_bio_prior": motif != "none",
         })
     return {"blueprint_count": len(out), "blueprints": out}
 
@@ -386,12 +426,15 @@ def _list_modules():
 def _list_bio_motifs():
     mod = _load_topology_module()
     motif_map = getattr(mod, "BLUEPRINT_SOURCE_MOTIF", {})
-    # Deduplicate by motif name (skip "none")
-    motif_names = sorted(set(v for v in motif_map.values() if v and v != "none"))
+    # Deduplicate by normalized motif name (skip "none" == no bio-prior)
+    motif_names = sorted({_motif_name(v) for v in motif_map.values()} - {"none"})
     out = []
     for mname in motif_names:
-        rep_bp = next((b for b, m in motif_map.items() if m == mname), None)
-        entry = {"motif": mname, "representative_blueprint": rep_bp}
+        rep_bp = next((b for b, m in motif_map.items()
+                       if _motif_name(m) == mname), None)
+        entry = {"motif": mname, "representative_blueprint": rep_bp,
+                 "note": _motif_note(motif_map.get(rep_bp)),
+                 "stability_target": _motif_stability(motif_map.get(rep_bp))}
         if rep_bp:
             try:
                 entry["stats"] = mod._motif_synapse_stats(mname) if hasattr(mod, "_motif_synapse_stats") else None
@@ -403,12 +446,34 @@ def _list_bio_motifs():
             "dataset": "MaleCNS v1.0 / 124,177,617 synapses / 166,700 neurons / CC-BY"}
 
 
-def _batch_generate(spec_list, seed=42, max_nodes=32):
+def _batch_generate(args, seed=42, max_nodes=32):
+    """Batch-generate topologies from a spec_list.
+
+    Accepts the documented shape ``{"spec_list": [{"blueprint": ..., "n_modules":
+    ...}, ...]}`` (max 10). A single spec dict is also accepted for convenience.
+    """
+    if isinstance(args, dict) and "spec_list" in args:
+        spec_list = args.get("spec_list") or []
+        seed = int(args.get("seed", seed) or seed)
+        max_nodes = int(args.get("max_nodes", max_nodes) or max_nodes)
+    elif isinstance(args, list):
+        spec_list = args
+    elif isinstance(args, dict) and args:
+        spec_list = [args]          # single spec passed directly
+        seed = int(spec_list[0].get("seed", seed) or seed)
+    else:
+        spec_list = []
+
     mod = _load_topology_module()
     results = []
-    for i, spec in enumerate(spec_list[:10]):
+    for i, spec in enumerate(list(spec_list)[:10]):
+        spec = spec if isinstance(spec, dict) else {}
         bp = spec.get("blueprint", "sequential")
-        n_mod = int(spec.get("n_modules", 6))
+        n_mod = spec.get("n_modules")
+        if n_mod is None:
+            mods = spec.get("modules")
+            n_mod = len(mods) if isinstance(mods, list) else 6
+        n_mod = int(n_mod)
         agents_per = int(spec.get("agents_per_module", 6))
         try:
             design_spec = {
@@ -422,18 +487,23 @@ def _batch_generate(spec_list, seed=42, max_nodes=32):
                 provenance=org.get("motif_provenance"))
             swarm = cfg.get("swarm", {})
             val = swarm.get("validation", {})
+            agents = swarm.get("agents", [])
+            metrics = org.get("metrics", {})
             results.append({
                 "index": i,
                 "blueprint": bp,
-                "agents": swarm.get("agents", len(swarm.get("agents", []))),
+                "n_modules": n_mod,
+                "agents": len(agents) if isinstance(agents, list) else agents,
                 "n_edges": val.get("n_edges"),
                 "ok": val.get("ok"),
                 "schema_version": cfg.get("schema_version"),
                 "prov_bundle_keys": list(cfg.get("prov_json", {}).keys())[:5],
+                "exceeds_max_nodes": bool(metrics.get("n_nodes", 0) > max_nodes),
             })
         except Exception as e:  # noqa: BLE001
             results.append({"index": i, "blueprint": bp, "error": str(e)[:200]})
-    return {"total": len(spec_list), "generated": len(results), "results": results}
+    return {"total": len(spec_list), "generated": len(results),
+            "max_nodes": max_nodes, "results": results}
 
 
 def _get_prov_bundle(blueprint):
