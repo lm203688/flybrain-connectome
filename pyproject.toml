@@ -15,6 +15,16 @@ keywords = [
     "swarm", "neuroscience", "complex-systems", "W3C-PROV",
 ]
 dependencies = []  # standard library only — zero third-party requirements
+
+[project.optional-dependencies]
+# The W3C PROV-JSON provenance bundle (schema v1.2.1) is serialized by
+# `dataprov`. The generator degrades gracefully when it is absent (prov_json
+# becomes null and `motif_provenance` still carries the structural record), so
+# provenance is never *required* to run — but it IS one of the four claims this
+# project makes, so install the extra when you intend to consume provenance:
+#     pip install "flybrain-connectome[prov]"
+# Both arms are covered by scripts/check_degraded_mode.py.
+prov = ["dataprov>=3.0.0"]
 classifiers = [
     "License :: OSI Approved :: MIT License",
     "Programming Language :: Python :: 3",
