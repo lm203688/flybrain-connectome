@@ -1,0 +1,560 @@
+{
+  "dataset": "MaleCNS v1.0 (male Drosophila brain connectome), CC-BY",
+  "generated_utc": "2026-09-16T22:42:43.608869+00:00",
+  "base": "C:\\Users\\xing\\Desktop\\flybrain-connectome",
+  "root": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\male_cns",
+  "file_count": 18,
+  "total_bytes": 5627908161,
+  "files": [
+    {
+      "rel": "connectivity_facts.json",
+      "bytes": 40366,
+      "sha256": "d8abe14eac75c86cb836153c7bbda4179968bae996deb5e5802734c96f843e86"
+    },
+    {
+      "rel": "connectivity_stats.json",
+      "bytes": 4231,
+      "sha256": "f9ebd0d95411d4328c98828a8030aa192652555989f995afdcb0dca1ca6f123b"
+    },
+    {
+      "rel": "connectome_cache\\annotations.json",
+      "bytes": 51776446,
+      "sha256": "e66c6ec1d30e81e3760326108bf83c8497ea30e4ca87356901d444c2dad4ad68"
+    },
+    {
+      "rel": "connectome_cache\\nt.json",
+      "bytes": 44401477,
+      "sha256": "833443f8ff99a1b7c1bea21108e93d93c9e52e1230fe04c553fed6db8d46c4ac"
+    },
+    {
+      "rel": "connectome_cache\\post_s.npy",
+      "bytes": 607426864,
+      "sha256": "2bad150d3a454b6360181ba499649c0d50d7669e10c7f623857efe71b25e9e79"
+    },
+    {
+      "rel": "connectome_cache\\post_s2.npy",
+      "bytes": 607426864,
+      "sha256": "51569e0974b743cb0402a93cfe590a7acf605cc6d620bf717a711974e6d47f0a"
+    },
+    {
+      "rel": "connectome_cache\\pre_s.npy",
+      "bytes": 607426864,
+      "sha256": "22414c73fc4daa8fe9ab33b32ec7bf20838e451db759c902dab2fb404212691d"
+    },
+    {
+      "rel": "connectome_cache\\pre_s2.npy",
+      "bytes": 607426864,
+      "sha256": "fd2f0462a2f54e751b73e998a5620ae8f61fa79c958cbe8c971299a46a60ba26"
+    },
+    {
+      "rel": "connectome_cache\\w_s.npy",
+      "bytes": 607426864,
+      "sha256": "1ce211b49f93b6b28727715e1274fc62e697981acdf42812a34718c93e978950"
+    },
+    {
+      "rel": "connectome_cache\\w_s2.npy",
+      "bytes": 607426864,
+      "sha256": "39c3f9bf5455990f59a3c2763705e788940cca56239cfa5989bf66035f71bdee"
+    },
+    {
+      "rel": "flat-connectome\\body-annotations-male-cns-v1.0-minconf-0.5.feather",
+      "bytes": 14483314,
+      "sha256": "2177e246113e4cfbf1e7772ec37c6da1955ff22e8063d0b1f833101f99a9a3b2"
+    },
+    {
+      "rel": "flat-connectome\\body-neurotransmitters-male-cns-v1.0.feather",
+      "bytes": 43282834,
+      "sha256": "95c9289220663abeb3409f3ad9e5a7f8a53f8093f5139d15502cd08da8879621"
+    },
+    {
+      "rel": "flat-connectome\\body-neurotransmitters-male-cns-v1.0.feather.progress.json",
+      "bytes": 28,
+      "sha256": "5879dc8b561d912d61976621ee8798cb10af4c286af33c69b185bb90d84a1a29"
+    },
+    {
+      "rel": "flat-connectome\\body-stats-male-cns-v1.0-minconf-0.5.feather",
+      "bytes": 778062826,
+      "sha256": "ca5dc83a26382ae70c8d8f42fc09ce2dbc1af7c03f3a001a1936b5e142540647"
+    },
+    {
+      "rel": "flat-connectome\\body-stats-male-cns-v1.0-minconf-0.5.feather.progress.json",
+      "bytes": 372,
+      "sha256": "7ec5a721532d7cbdc43f494c45f39bcbf6e091ea6d89c19409f03b2a82a73e76"
+    },
+    {
+      "rel": "flat-connectome\\connectome-weights-male-cns-v1.0-minconf-0.5.feather",
+      "bytes": 1051241946,
+      "sha256": "e35da783d1c686b2b58b3b87cd6a403ae43bfcfba8bff28e08ef752c1a56afc1"
+    },
+    {
+      "rel": "flat-connectome\\connectome-weights-male-cns-v1.0-minconf-0.5.feather.progress.json",
+      "bytes": 530,
+      "sha256": "06dcd417b7dc35b9eb0153de3face73c75d479a962ffab02a1bb84ae4d51baec"
+    },
+    {
+      "rel": "stats.json",
+      "bytes": 52607,
+      "sha256": "c201e117ea6fd28b1927b3809e5c4a94e7a550da8ca8ca5a44c423ac19cfa79d"
+    }
+  ],
+  "verify_hint": "逐文件比 sha256；缺失则从 gs://flyem-male-cns 重新下载（见 drosophila_connectome/scripts/fetch_fast.py）",
+  "repo_file_count": 91,
+  "repo_total_bytes": 97118298,
+  "repo_files": [
+    {
+      "rel": "CONSOLIDATION_REPORT.md",
+      "bytes": 7942,
+      "sha256": "a767bb50a507c1613bf29f0a9e50d2d8ee1b7ebbc6b2a37fd66cc5a87d695afa"
+    },
+    {
+      "rel": "drosophila_connectome\\analyze.log",
+      "bytes": 8768,
+      "sha256": "69c9024e493152935e90bc26eda7fbdbfc973787bbb4539c6c796fc4f6989fdb"
+    },
+    {
+      "rel": "drosophila_connectome\\assets_list.txt",
+      "bytes": 2310,
+      "sha256": "8730c8e945ac834179885cab7cb90260dd3a3ac8576f442ef65dbca78e683904"
+    },
+    {
+      "rel": "drosophila_connectome\\connectivity.log",
+      "bytes": 2733,
+      "sha256": "25e6a2246b0363607167927b88f4e44276f10adaa21560dc102bd1666b4b9560"
+    },
+    {
+      "rel": "drosophila_connectome\\data\\male_cns\\connectivity_facts.json",
+      "bytes": 40366,
+      "sha256": "d8abe14eac75c86cb836153c7bbda4179968bae996deb5e5802734c96f843e86"
+    },
+    {
+      "rel": "drosophila_connectome\\data\\male_cns\\connectivity_stats.json",
+      "bytes": 4231,
+      "sha256": "f9ebd0d95411d4328c98828a8030aa192652555989f995afdcb0dca1ca6f123b"
+    },
+    {
+      "rel": "drosophila_connectome\\data\\male_cns\\connectome_cache\\annotations.json",
+      "bytes": 51776446,
+      "sha256": "e66c6ec1d30e81e3760326108bf83c8497ea30e4ca87356901d444c2dad4ad68"
+    },
+    {
+      "rel": "drosophila_connectome\\data\\male_cns\\connectome_cache\\nt.json",
+      "bytes": 44401477,
+      "sha256": "833443f8ff99a1b7c1bea21108e93d93c9e52e1230fe04c553fed6db8d46c4ac"
+    },
+    {
+      "rel": "drosophila_connectome\\data\\male_cns\\flat-connectome\\body-neurotransmitters-male-cns-v1.0.feather.progress.json",
+      "bytes": 28,
+      "sha256": "5879dc8b561d912d61976621ee8798cb10af4c286af33c69b185bb90d84a1a29"
+    },
+    {
+      "rel": "drosophila_connectome\\data\\male_cns\\flat-connectome\\body-stats-male-cns-v1.0-minconf-0.5.feather.progress.json",
+      "bytes": 372,
+      "sha256": "7ec5a721532d7cbdc43f494c45f39bcbf6e091ea6d89c19409f03b2a82a73e76"
+    },
+    {
+      "rel": "drosophila_connectome\\data\\male_cns\\flat-connectome\\connectome-weights-male-cns-v1.0-minconf-0.5.feather.progress.json",
+      "bytes": 530,
+      "sha256": "06dcd417b7dc35b9eb0153de3face73c75d479a962ffab02a1bb84ae4d51baec"
+    },
+    {
+      "rel": "drosophila_connectome\\data\\male_cns\\stats.json",
+      "bytes": 52607,
+      "sha256": "c201e117ea6fd28b1927b3809e5c4a94e7a550da8ca8ca5a44c423ac19cfa79d"
+    },
+    {
+      "rel": "drosophila_connectome\\dataset\\flybrain_facts.md",
+      "bytes": 102281,
+      "sha256": "d9c7c499390447a83dd3003c0a50f6abb6bae2f2210e37bb92383e17ad7a7acc"
+    },
+    {
+      "rel": "drosophila_connectome\\dataset\\flybrain_sft_generated.jsonl",
+      "bytes": 267824,
+      "sha256": "dde90d8bb5a59305f5006cc581abba677d5ee0d78ac8a93ce8bfdd2f0cf95e56"
+    },
+    {
+      "rel": "drosophila_connectome\\dataset\\flybrain_sft_seed.jsonl",
+      "bytes": 22742,
+      "sha256": "6ae5802f9cccd987807d3f102925dd0a2a84dee24fb5199e34c0201e225708f6"
+    },
+    {
+      "rel": "drosophila_connectome\\download_linux.sh",
+      "bytes": 2096,
+      "sha256": "014782973f55d5eda8f9a8a6a16c5d3e894bdcc7da3c16dcbb3133f812ea8358"
+    },
+    {
+      "rel": "drosophila_connectome\\download_windows.bat",
+      "bytes": 1933,
+      "sha256": "632ee41a04b26def01915c68978b3f953e25e77f7de965fa815ea3fc564326a2"
+    },
+    {
+      "rel": "drosophila_connectome\\DROSOPHILA_PLAN.md",
+      "bytes": 10422,
+      "sha256": "f74790e4c186f861df657812ab6782db1c06e20aa4174842adeda2cd73ed8d19"
+    },
+    {
+      "rel": "drosophila_connectome\\README.md",
+      "bytes": 11173,
+      "sha256": "b510702f6b91a3a550f3db402775e75ab9f225400521af0d92631b29fad125d9"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\analyze_connectivity.py",
+      "bytes": 7250,
+      "sha256": "5c703a66e151b8a83cba24ef93d7315bd8a57047bd54a8aebb9f16722c433189"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\analyze_connectome.py",
+      "bytes": 8661,
+      "sha256": "fb15da37a822fdaffc05b9ab25c924fe9f2731671d850ceed6287618da513c77"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\build_connectivity_facts.py",
+      "bytes": 8848,
+      "sha256": "71b54eed0f85fdf98427baf36358f04323eec5902cfd68eb7290de9ab708e4c5"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\build_corpus_v2.py",
+      "bytes": 30216,
+      "sha256": "7612b6c66feeb1cd0e1222a117e628d107d32413adfc917e0b1403599bd165be"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\build_flybrain_corpus.py",
+      "bytes": 17212,
+      "sha256": "fb4ba150361204b3a11c2ba6a70b6ded746741cb8e813ec06ab1fb8f098fdc9d"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\fetch_connectome.py",
+      "bytes": 4515,
+      "sha256": "99953fa05ca955e727bef8a4582a40649223ad9fdbe3a52272bcf829b7b48a40"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\fetch_fast.py",
+      "bytes": 12274,
+      "sha256": "7e469e71a7e56e69df67b6866c18dc1cb198d005aa3b5bfc485122e1939a1a5b"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\fetch_malecns.py",
+      "bytes": 7853,
+      "sha256": "310b3beef72ef899addb658c968fb810b041cb20ba1e1d89c0418b9012ab4665"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\list_assets.py",
+      "bytes": 2122,
+      "sha256": "9998f3e1cbf2ee62870de6237ea2bf7e6e56eccc247a452016c95785ae961c73"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\probe_connectivity.py",
+      "bytes": 3538,
+      "sha256": "d122f80e31cdd774eaf2e7974804f6eff9d7a1b005ea3d6898ea5692457a0bd3"
+    },
+    {
+      "rel": "drosophila_connectome\\scripts\\probe_nt.py",
+      "bytes": 2876,
+      "sha256": "db1ca30798e797776309253129ace529abd7f38327773ffcb1c69e813d43725c"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\_verify.py",
+      "bytes": 5816,
+      "sha256": "e123208d205b65e687615dcb8ceca66cb33fb5f66cab9ba41cbdd1e30db9f9bb"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\api_runtime.log",
+      "bytes": 204,
+      "sha256": "ebb8996e9b144f8f426171d0e5a56caa963f41da6374cd0352f0547d39c927ed"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\extract_motifs.py",
+      "bytes": 9121,
+      "sha256": "7502a49659c8152bf1e20a74adde118131c846a60a1946f3cefdd4f5d82903a6"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\generated_organisms\\evolved_target40.html",
+      "bytes": 12192,
+      "sha256": "03e341046000c4bdcee98a906bac4b28acd1b5313974a24fccb0f02464f65029"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\generated_organisms\\evolved_target40.json",
+      "bytes": 7580,
+      "sha256": "7d73214fa946e2b745e4e67e982f318604727860a103af1366138a709d3cb17d"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\generated_organisms\\sample_organism.html",
+      "bytes": 11805,
+      "sha256": "2969723455965230f1c0a4420e40fd330f7d9baef743a3de8ed4442226150600"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\generated_organisms\\sample_organism.json",
+      "bytes": 6793,
+      "sha256": "cffc0bb51737ad00eff96fdb65af5525a2d0358a10513e912cea920d0bac2bb0"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\generated_organisms\\swarmlabs\\evolved_target40.swarm.json",
+      "bytes": 11601,
+      "sha256": "fab6179a530c9cf634ef7bbbc2f1b9b3927054152a5cc4092c11826e7cb5cb72"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\generated_organisms\\swarmlabs\\evolved_target40.swarm.yaml",
+      "bytes": 9160,
+      "sha256": "a258a427cbb3a857737da882a9fd7c5bc2a39fe4f5e67b7611ae4a2e28d5b5b2"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\generated_organisms\\swarmlabs\\sample_organism.swarm.json",
+      "bytes": 10475,
+      "sha256": "68605c192911d31125f6b070b083ba00bf306733900ac4361c94895ffeaf57db"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\generated_organisms\\swarmlabs\\sample_organism.swarm.yaml",
+      "bytes": 8306,
+      "sha256": "57019cd1ad08acec085a70e9c375de629c4443e0d31b46182d99c0ee5d04f4e0"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\make_manifest.py",
+      "bytes": 4761,
+      "sha256": "324f4ab7f32f2ccdeab551cc2c05c9d8320baafa87aa50e8b3fa153d2b180cf5"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\mcp_connectome\\__init__.py",
+      "bytes": 446,
+      "sha256": "f8f8dc28db1908e6aee4f1ae79d837c36173b02b284f0688b69af4def47ec773"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\mcp_connectome\\api_server.py",
+      "bytes": 6802,
+      "sha256": "92eb54b784ad5109603e5f4cca9e5fc8b787bf428d5445279e1c8855a0b1c819"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\mcp_connectome\\config.json",
+      "bytes": 200,
+      "sha256": "b0bfbadb955d57e87bccfe3683fc7e2bbf97ef0fbdd95b092630da569a063aca"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\mcp_connectome\\core.py",
+      "bytes": 15451,
+      "sha256": "a2e0573194c227f3c3276bad25c19a58f397c1ad480094627da7f79182319efb"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\mcp_connectome\\demo.py",
+      "bytes": 3502,
+      "sha256": "fd1e75f4b2d396faf71dc3c1a72f04c229ca3df8073caa0dd8899f5a245cc880"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\mcp_connectome\\pyproject.toml",
+      "bytes": 525,
+      "sha256": "11f76067fcfd280aa530e3ff62dec50f05d1a14c6aa5dd15b31bc042482095e5"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\mcp_connectome\\README.md",
+      "bytes": 3853,
+      "sha256": "c9cf36aba8fc8b7f633bf6071a075029b4f8901cc4ffa536eb3fe9cf3e8010b4"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\mcp_connectome\\server.py",
+      "bytes": 17002,
+      "sha256": "3091d8d6cce220348e8a06ed136387f237d5c168f1574f93df26de7789c341ad"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\motifs\\.motif_api_cache.json",
+      "bytes": 7363,
+      "sha256": "89c0790eb8d66fdb7eda569b82caf35aa46aa98c1ae2672cecb09885c5e828ed"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\motifs\\flybrain_connectome_client.py",
+      "bytes": 14055,
+      "sha256": "0dc474849d7c175884813bebc7843c8c796b3ad7470efba23f8f1d0e37213e68"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+      "bytes": 7363,
+      "sha256": "89c0790eb8d66fdb7eda569b82caf35aa46aa98c1ae2672cecb09885c5e828ed"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\motifs\\SWARMLABS_INTEGRATION.md",
+      "bytes": 9126,
+      "sha256": "7731c37de5557d168624cf22de800dae99a555019262e8c258ec8a435bae1340"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\README.md",
+      "bytes": 5253,
+      "sha256": "82e745c11797037ca118e4a07305ec972a53db9ba70b986c14fb353a765fe31e"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\run_api.py",
+      "bytes": 1025,
+      "sha256": "fe86bdc1a292b233515c8a1277134ee598d1899d506b7fd7661034ec4111b46e"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\start_api.bat",
+      "bytes": 470,
+      "sha256": "c02b2630414e1b620e3605c6f1fc9d4b149f252f55f744a1526039002e396ff6"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\start_api_autostart.bat",
+      "bytes": 411,
+      "sha256": "6d1cc22a914d8fea1b835c8eacffbc9fb47f5722e27a3a5774328dd7a57b904e"
+    },
+    {
+      "rel": "flybrain-connectome-mcp\\synthetic_bio_topology.py",
+      "bytes": 41746,
+      "sha256": "9bffa45dcd8f505fcb2b305504232bb89fe23af714d4e0b37db3c4297cc380dd"
+    },
+    {
+      "rel": "HISTORY.md",
+      "bytes": 13152,
+      "sha256": "804b7a08354e9ea5cc4aa8eb996d81119030a65aef3de59b9294266db85025c0"
+    },
+    {
+      "rel": "integrations\\swarmlabs\\check_swarmlabs_sync.py",
+      "bytes": 6320,
+      "sha256": "19a52eee2655bd5e486baa4caa12eccbd55a9bfa132e738a23fe479ed27ac3c5"
+    },
+    {
+      "rel": "integrations\\swarmlabs\\README.md",
+      "bytes": 2240,
+      "sha256": "9d72dffd1ee414350c3806e84cfe65551a27b79907aa992c70f0b0b56f8d85ee"
+    },
+    {
+      "rel": "motif_extract.log",
+      "bytes": 421,
+      "sha256": "bb10a19d94ee9531e8e9bc755b33f255d28b6dd6ff5408943cba2c056671c769"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\_verify_data.txt",
+      "bytes": 277,
+      "sha256": "60cdd2907712d00382a3818b0632a7d6086becdd4831995c4aa81f3f14c2ad89"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\_verify_done.txt",
+      "bytes": 6,
+      "sha256": "12e5cb1d6521d6a9f0369978cca6ec93c52582896608bf12882764ae21a0c6e4"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\_verify_err.txt",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\_verify_err_done.txt",
+      "bytes": 5,
+      "sha256": "b15592b5a04480ab8f51b10942f96a526bd3406437665c6760cbf5e39f74fa13"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\_verify_err_utf8.txt",
+      "bytes": 1163,
+      "sha256": "9e4088431216f6e5a57cdb03d26ed5747c07d5d05ce955cc19add999b8d111dd"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\c1_check.txt",
+      "bytes": 204,
+      "sha256": "1404dba3a4aa0e20133ad9fc59ca5fb4029a44d8b12455de8a5f0dcb72a364d5"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\c1_run.txt",
+      "bytes": 454,
+      "sha256": "23053eb70fc1281e80e9fe8dd6fa9100074eb497e4421ea72c826fd7f52501f4"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\c1_run_done.txt",
+      "bytes": 5,
+      "sha256": "b15592b5a04480ab8f51b10942f96a526bd3406437665c6760cbf5e39f74fa13"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\cleanup_tmp.txt",
+      "bytes": 12,
+      "sha256": "84f6cbf4bee5efdd5c210b38f6c693dd8a5454a561c8028bcf21867b49743e11"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\client_selftest.txt",
+      "bytes": 6,
+      "sha256": "12e5cb1d6521d6a9f0369978cca6ec93c52582896608bf12882764ae21a0c6e4"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\client_selftest_out.txt",
+      "bytes": 2428,
+      "sha256": "bafacf9a165c219bd0942a68655a5af2749ade8c80d1f6b0afd1ce54070f51df"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\list_assets.py",
+      "bytes": 1471,
+      "sha256": "78ea6205428c185fb7ca18a2f9d5f5359470e25cae8c51bd19334081ae8f8a85"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\manifest_done.txt",
+      "bytes": 4,
+      "sha256": "9f2a59a60e65fbcd5a3e1b7248adf92890ce3a32b19e43fb4751c2657196de13"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\memory-archive\\2026-09-15.md",
+      "bytes": 17398,
+      "sha256": "abe6c6dbe2d51b57408c76e2a97148b120e9b7d9e3beaad01e79dc497f221e96"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\memory-archive\\2026-09-16.md",
+      "bytes": 7006,
+      "sha256": "034299c1e1e774daaa58f03bf40d5184fa4c9ce91d54c55816582b8160b990c9"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\motif_extract.log",
+      "bytes": 423,
+      "sha256": "76114b8967bec0d3a9eccd2a818032c6539a8a0d16e507f9ba6ddcde2acb3dc5"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\ps_test.txt",
+      "bytes": 39,
+      "sha256": "45769f07791a32a08973643769dc701ec9de7c5d2cc04efd050e9509d954a73b"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\robocopy_done.txt",
+      "bytes": 18,
+      "sha256": "ff6556b18c335e0f650077b32f8727e21042e5235d459f2e241861274ebb6368"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\robocopy_done2.txt",
+      "bytes": 17,
+      "sha256": "7d343a62669732b907159b9f2691c8f122560a593d1b701c85e7ba587f1f69e8"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\robocopy_log.txt",
+      "bytes": 1081,
+      "sha256": "f066c8c8dac252b4c5cba7cc40a239100925024456282668504de2609edf6c3e"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\robocopy_log2.txt",
+      "bytes": 1213,
+      "sha256": "fe968c93e521a02bf4a22c1ac1b489f631e39ebeb5b46182c46e7ca30eee3308"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\verify_done.txt",
+      "bytes": 10,
+      "sha256": "b1b2d1cda97295664187a0a10a8a96b89e726c312f9bcade8090403c04ee3f45"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\verify_err.txt",
+      "bytes": 1584,
+      "sha256": "8c5f7e768b24c3a33524fe8f19f444ee0149b9851e53649ac097d4181716a7f9"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\verify_err_done.txt",
+      "bytes": 810,
+      "sha256": "5f0f468eb2c61996e2bacb38ad3477f4df9f19ba7338b4180f531ad62081a16a"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\verify_summary.txt",
+      "bytes": 169,
+      "sha256": "fbc110a49ca62f01d2429cb46fdd7a1cbbbeb95beb94f1f74e789b1886d61deb"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\verify_summary_done.txt",
+      "bytes": 6,
+      "sha256": "12e5cb1d6521d6a9f0369978cca6ec93c52582896608bf12882764ae21a0c6e4"
+    },
+    {
+      "rel": "ops\\2026-08-31-workspace\\verify_summary_utf8.txt",
+      "bytes": 5,
+      "sha256": "f01a374e9c81e3db89b3a42940c4d6a5447684986a1296e42bf13f196eed6295"
+    },
+    {
+      "rel": "README.md",
+      "bytes": 6298,
+      "sha256": "8e202af16937ac08f1b7553d2cf5aa4fd59737e4493c456c8c834fbd7e2e4d83"
+    }
+  ]
+}
