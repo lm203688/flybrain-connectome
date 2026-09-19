@@ -1,0 +1,1240 @@
+{
+  "schema_version": "1.1.1",
+  "kind": "swarmlabs_agent_swarm",
+  "blueprint": [
+    "working_memory_buffer",
+    "competitive_selection",
+    "hierarchical_deep"
+  ],
+  "blueprint_info": {
+    "label": "working_memory_buffer+competitive_selection+hierarchical_deep",
+    "is_composed": true,
+    "n_components": 3,
+    "components": [
+      {
+        "name": "working_memory_buffer",
+        "category": "biological",
+        "description": "工作记忆缓冲：memory → working_memory（活跃操作）→ integration（综合）",
+        "use_cases": [
+          "短期记忆",
+          "活跃操作",
+          "状态更新",
+          "多步推理"
+        ]
+      },
+      {
+        "name": "competitive_selection",
+        "category": "biological",
+        "description": "竞争选择：多 motor 候选并行，integration 抑制输者（winner-take-all）",
+        "use_cases": [
+          "候选排名",
+          "A/B 决策",
+          "假设淘汰",
+          "强化学习"
+        ]
+      },
+      {
+        "name": "hierarchical_deep",
+        "category": "biological",
+        "description": "深层皮质层级：sensory→memory→integration→metacognition→motor（模拟 V1→V2→V4→IT→运动）",
+        "use_cases": [
+          "多层抽象",
+          "深度特征提取",
+          "跨层认知命令"
+        ]
+      }
+    ]
+  },
+  "motif_provenance": {
+    "dataset": {
+      "name": "MaleCNS v1.0",
+      "license": "CC-BY",
+      "total_synapses": 124177617,
+      "annotated_neurons": 166700
+    },
+    "blueprints_used": [
+      "working_memory_buffer",
+      "competitive_selection",
+      "hierarchical_deep"
+    ],
+    "blueprint_to_motif": {
+      "working_memory_buffer": {
+        "source_motif": "recurrent_feedback",
+        "motif_body": null,
+        "motif_type": null,
+        "motif_fanout": null,
+        "note": "工作记忆缓冲对应 recurrent_feedback motif（高 recurrent 活跃操作）",
+        "anchor": "MaleCNS v1.0 recurrent_feedback motif",
+        "is_bio_prior": true
+      },
+      "competitive_selection": {
+        "source_motif": "inhibitory_hub",
+        "motif_body": 10540,
+        "motif_type": "APL",
+        "motif_fanout": 102263,
+        "note": "winner-take-all 抑制，直接对应 APL body 10540（10万+ fan-out 广播抑制）",
+        "anchor": "MaleCNS v1.0 APL body 10540 (inhibitory_hub)",
+        "is_bio_prior": true
+      },
+      "hierarchical_deep": {
+        "source_motif": "reservoir_smallworld",
+        "motif_body": null,
+        "motif_type": null,
+        "motif_fanout": null,
+        "note": "深层皮质层级（V1→V2→V4→IT→运动），对应小世界储备库的分层处理原则",
+        "anchor": "MaleCNS v1.0 reservoir_smallworld motif",
+        "is_bio_prior": true
+      }
+    },
+    "is_bio_prior": true,
+    "bio_prior_count": 3,
+    "total_blueprint_count": 3,
+    "generated_utc": "2026-09-18T06:02:33.184289+00:00"
+  },
+  "generated_utc": "2026-09-18T06:02:33.184404+00:00",
+  "name": "ga_probe",
+  "swarm": {
+    "name": "ga_probe",
+    "topology": "guardrail-hub + module-cells + recurrent + reservoir",
+    "runtime": "local",
+    "source": {
+      "project": "flybrain-connectome",
+      "kind": "virtual_organism",
+      "generated_utc": "2026-09-18T06:02:33.184275+00:00",
+      "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
+      "motif_provenance": {
+        "requested_source": "local",
+        "mode": "local_snapshot",
+        "transport": "file",
+        "api_url": "http://127.0.0.1:8799",
+        "api_tool": "export_swarm_motifs",
+        "api_refresh_requested": false,
+        "api_key_source": "local_config",
+        "resolved_utc": "2026-09-18T06:02:27.914330+00:00",
+        "motif_generated_utc": "2026-09-16T22:29:57.040787+00:00",
+        "motifs": [
+          "inhibitory_hub",
+          "recurrent_feedback",
+          "reservoir_smallworld"
+        ],
+        "doc_sha256": "b9755a4519bee13a4782199302e254a3298919d2a66f902aa668e94109e70514",
+        "served_from": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+        "fallback_reason": null,
+        "snapshot_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+        "snapshot_sha256": "89c0790eb8d66fdb7eda569b82caf35aa46aa98c1ae2672cecb09885c5e828ed",
+        "api_cache_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\.motif_api_cache.json",
+        "snapshot_refreshed": false
+      }
+    },
+    "agentteams": {
+      "team_file": "agentteams/config/team.yaml",
+      "leader": "m0_rep",
+      "role_map": {
+        "guardrail": "verifier",
+        "tissue_rep": "planner",
+        "cell": "executor",
+        "reservoir": "executor",
+        "module": "planner",
+        "worker": "executor"
+      },
+      "thresholds": {
+        "rel_converged": 0.05,
+        "cov_min": 0.8,
+        "cal_max": 0.08,
+        "cov_bad": 0.7,
+        "rel_bad": 0.2
+      }
+    },
+    "agents": [
+      {
+        "id": "m0_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "data_ingest",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "signal_preprocess",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "stream_buffer",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "sensor_noise_filter",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "data_ingest",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "signal_preprocess",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a6",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "stream_buffer",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a7",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "sensor_noise_filter",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 0,
+        "task_hint": "input_triage",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m1_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "gp_surrogate_fit",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "prior_recall",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "state_carry",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "history_replay",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "gp_surrogate_fit",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "prior_recall",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a6",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "state_carry",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a7",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "history_replay",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 1,
+        "task_hint": "memory_synthesis",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m2_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "experiment_run",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "numeric_integration",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "output_check",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "actuation_dispatch",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "experiment_run",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "numeric_integration",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a6",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "output_check",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a7",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "actuation_dispatch",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 2,
+        "task_hint": "output_coordination",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m3_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "candidate_rank",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "cross_domain_bridge",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "elo_scoring",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "arbitrate_conflict",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "candidate_rank",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "cross_domain_bridge",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a6",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "elo_scoring",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a7",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "arbitrate_conflict",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 3,
+        "task_hint": "cross_module_arbitration",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m4_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "attention_focus",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "salience_detection",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "filter_irrelevant",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "prioritize_signal",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "attention_focus",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "salience_detection",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a6",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "filter_irrelevant",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a7",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "prioritize_signal",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 4,
+        "task_hint": "attention_allocation",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m5_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "working_hold",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "active_manipulation",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "state_update",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "short_term_recall",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "working_hold",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "active_manipulation",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a6",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "state_update",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a7",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "short_term_recall",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 5,
+        "task_hint": "working_memory_update",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m6_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "reward_prediction",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "value_estimate",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "positive_reinforce",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "goal_weighting",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "reward_prediction",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "value_estimate",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a6",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "positive_reinforce",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a7",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "goal_weighting",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 6,
+        "task_hint": "reward_allocation",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m7_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "penalty_estimate",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "avoidance_gate",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "negative_reinforce",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "risk_downweight",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "penalty_estimate",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "avoidance_gate",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a6",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "negative_reinforce",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a7",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "risk_downweight",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 7,
+        "task_hint": "punishment_allocation",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m8_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "skill_chunk",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "procedural_consolidate",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "automatize_step",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "habit_encode",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "skill_chunk",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "procedural_consolidate",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a6",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "automatize_step",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a7",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "habit_encode",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 8,
+        "task_hint": "habit_consolidation",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m9_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "confidence_estimate",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "uncertainty_flag",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "meta_monitor",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "calibration_check",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "confidence_estimate",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "uncertainty_flag",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a6",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "meta_monitor",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a7",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "calibration_check",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 9,
+        "task_hint": "metacognitive_monitor",
+        "profile_name": "metacognition"
+      }
+    ],
+    "modules": [
+      {
+        "index": 0,
+        "lead": "m0_rep",
+        "members": [
+          "m0_a0",
+          "m0_a1",
+          "m0_a2",
+          "m0_a3",
+          "m0_a4",
+          "m0_a5",
+          "m0_a6",
+          "m0_a7"
+        ],
+        "recurrent_weight": null,
+        "profile_name": "sensory",
+        "capability": [
+          "perceive",
+          "ingest",
+          "buffer"
+        ]
+      },
+      {
+        "index": 1,
+        "lead": "m1_rep",
+        "members": [
+          "m1_a0",
+          "m1_a1",
+          "m1_a2",
+          "m1_a3",
+          "m1_a4",
+          "m1_a5",
+          "m1_a6",
+          "m1_a7"
+        ],
+        "recurrent_weight": null,
+        "profile_name": "memory",
+        "capability": [
+          "gp_surrogate",
+          "remember",
+          "replay",
+          "state_carry"
+        ]
+      },
+      {
+        "index": 2,
+        "lead": "m2_rep",
+        "members": [
+          "m2_a0",
+          "m2_a1",
+          "m2_a2",
+          "m2_a3",
+          "m2_a4",
+          "m2_a5",
+          "m2_a6",
+          "m2_a7"
+        ],
+        "recurrent_weight": null,
+        "profile_name": "motor",
+        "capability": [
+          "execute",
+          "actuate",
+          "numeric_integration",
+          "verify_output"
+        ]
+      },
+      {
+        "index": 3,
+        "lead": "m3_rep",
+        "members": [
+          "m3_a0",
+          "m3_a1",
+          "m3_a2",
+          "m3_a3",
+          "m3_a4",
+          "m3_a5",
+          "m3_a6",
+          "m3_a7"
+        ],
+        "recurrent_weight": null,
+        "profile_name": "integration",
+        "capability": [
+          "rank",
+          "synthesize",
+          "arbitrate",
+          "elo_score"
+        ]
+      },
+      {
+        "index": 4,
+        "lead": "m4_rep",
+        "members": [
+          "m4_a0",
+          "m4_a1",
+          "m4_a2",
+          "m4_a3",
+          "m4_a4",
+          "m4_a5",
+          "m4_a6",
+          "m4_a7"
+        ],
+        "recurrent_weight": null,
+        "profile_name": "attention",
+        "capability": [
+          "focus",
+          "filter",
+          "prioritize",
+          "salience_detection"
+        ]
+      },
+      {
+        "index": 5,
+        "lead": "m5_rep",
+        "members": [
+          "m5_a0",
+          "m5_a1",
+          "m5_a2",
+          "m5_a3",
+          "m5_a4",
+          "m5_a5",
+          "m5_a6",
+          "m5_a7"
+        ],
+        "recurrent_weight": null,
+        "profile_name": "working_memory",
+        "capability": [
+          "hold",
+          "manipulate",
+          "update",
+          "active_recall"
+        ]
+      },
+      {
+        "index": 6,
+        "lead": "m6_rep",
+        "members": [
+          "m6_a0",
+          "m6_a1",
+          "m6_a2",
+          "m6_a3",
+          "m6_a4",
+          "m6_a5",
+          "m6_a6",
+          "m6_a7"
+        ],
+        "recurrent_weight": null,
+        "profile_name": "reward",
+        "capability": [
+          "reward_signal",
+          "value_estimate",
+          "reinforce",
+          "motivation_gating"
+        ]
+      },
+      {
+        "index": 7,
+        "lead": "m7_rep",
+        "members": [
+          "m7_a0",
+          "m7_a1",
+          "m7_a2",
+          "m7_a3",
+          "m7_a4",
+          "m7_a5",
+          "m7_a6",
+          "m7_a7"
+        ],
+        "recurrent_weight": null,
+        "profile_name": "punishment",
+        "capability": [
+          "punish_signal",
+          "penalty_estimate",
+          "avoidance_gate",
+          "negative_reinforce"
+        ]
+      },
+      {
+        "index": 8,
+        "lead": "m8_rep",
+        "members": [
+          "m8_a0",
+          "m8_a1",
+          "m8_a2",
+          "m8_a3",
+          "m8_a4",
+          "m8_a5",
+          "m8_a6",
+          "m8_a7"
+        ],
+        "recurrent_weight": null,
+        "profile_name": "habit",
+        "capability": [
+          "automatize",
+          "chunk",
+          "procedural_consolidate",
+          "skill_encode"
+        ]
+      },
+      {
+        "index": 9,
+        "lead": "m9_rep",
+        "members": [
+          "m9_a0",
+          "m9_a1",
+          "m9_a2",
+          "m9_a3",
+          "m9_a4",
+          "m9_a5",
+          "m9_a6",
+          "m9_a7"
+        ],
+        "recurrent_weight": null,
+        "profile_name": "metacognition",
+        "capability": [
+          "confidence_estimate",
+          "uncertainty_detect",
+          "meta_monitor",
+          "calibration"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "m1_rep",
+        "to": "m5_rep",
+        "weight": 0.4,
+        "kind": "reservoir",
+        "semantic": "recall_to_working",
+        "blueprint": "working_memory_buffer+competitive_selection+hierarchical_deep"
+      },
+      {
+        "from": "m5_rep",
+        "to": "m3_rep",
+        "weight": 0.35,
+        "kind": "reservoir",
+        "semantic": "working_synthesis",
+        "blueprint": "working_memory_buffer+competitive_selection+hierarchical_deep"
+      },
+      {
+        "from": "m2_rep",
+        "to": "m3_rep",
+        "weight": 0.35,
+        "kind": "reservoir",
+        "semantic": "candidate_vote",
+        "blueprint": "working_memory_buffer+competitive_selection+hierarchical_deep"
+      },
+      {
+        "from": "m3_rep",
+        "to": "m2_rep",
+        "weight": -0.4,
+        "kind": "inhibitory",
+        "semantic": "suppress_loser",
+        "blueprint": "working_memory_buffer+competitive_selection+hierarchical_deep"
+      },
+      {
+        "from": "m0_rep",
+        "to": "m2_rep",
+        "weight": 0.2,
+        "kind": "reservoir",
+        "semantic": "shared_stimulus",
+        "blueprint": "working_memory_buffer+competitive_selection+hierarchical_deep"
+      },
+      {
+        "from": "m0_rep",
+        "to": "m1_rep",
+        "weight": 0.4,
+        "kind": "reservoir",
+        "semantic": "low_level_feedforward",
+        "blueprint": "working_memory_buffer+competitive_selection+hierarchical_deep"
+      },
+      {
+        "from": "m1_rep",
+        "to": "m3_rep",
+        "weight": 0.35,
+        "kind": "reservoir",
+        "semantic": "mid_level_abstract",
+        "blueprint": "working_memory_buffer+competitive_selection+hierarchical_deep"
+      },
+      {
+        "from": "m3_rep",
+        "to": "m9_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "high_level_abstract",
+        "blueprint": "working_memory_buffer+competitive_selection+hierarchical_deep"
+      },
+      {
+        "from": "m9_rep",
+        "to": "m2_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "cognitive_command",
+        "blueprint": "working_memory_buffer+competitive_selection+hierarchical_deep"
+      }
+    ],
+    "guardrails": [
+      "leader(guardrail) 不得同时是任何 module 的成员（抑制枢纽必须外部于被抑制者）",
+      "weight < 0 的边是硬刹车：执行器不得用正向权重抵消或删除该边",
+      "recurrent 边只允许模块内自环，禁止跨模块复用",
+      "任何 agent 的入/出边端点必须存在于 agents 列表中（无悬空边）",
+      "边权一律落在 [-1, 1]；本文件是唯一真值，运行时不接受就地改权"
+    ],
+    "metrics": {
+      "n_nodes": 90,
+      "n_edges": 9,
+      "avg_degree": 0.2,
+      "inhibition_ratio": 0.111,
+      "n_modules": 10,
+      "intra_module_edges": 0,
+      "inter_module_edges": 9,
+      "modularity_est": 0.0,
+      "profile_breakdown": {
+        "sensory": {
+          "nodes": 9,
+          "edges": 2
+        },
+        "memory": {
+          "nodes": 9,
+          "edges": 2
+        },
+        "motor": {
+          "nodes": 9,
+          "edges": 1
+        },
+        "integration": {
+          "nodes": 9,
+          "edges": 2
+        },
+        "attention": {
+          "nodes": 9,
+          "edges": 0
+        },
+        "working_memory": {
+          "nodes": 9,
+          "edges": 1
+        },
+        "reward": {
+          "nodes": 9,
+          "edges": 0
+        },
+        "punishment": {
+          "nodes": 9,
+          "edges": 0
+        },
+        "habit": {
+          "nodes": 9,
+          "edges": 0
+        },
+        "metacognition": {
+          "nodes": 9,
+          "edges": 1
+        }
+      }
+    },
+    "validation": {
+      "n_agents": 90,
+      "n_edges": 9,
+      "n_modules": 10,
+      "leader_resolved": "m0_rep",
+      "leader_is_module_member": false,
+      "dangling_edges": 0,
+      "weight_min": -0.4,
+      "weight_max": 0.4,
+      "weights_in_range": true,
+      "inhibitory_edges": 1,
+      "recurrent_edges": 0,
+      "reservoir_edges": 8,
+      "ok": true
+    }
+  }
+}
