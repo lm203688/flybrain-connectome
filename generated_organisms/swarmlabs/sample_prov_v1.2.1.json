@@ -1,0 +1,194 @@
+{
+  "prefix": {
+    "dataprov": "https://ri-se.github.io/dataprov/ontology/dataprov.ttl#",
+    "prov": "http://www.w3.org/ns/prov#",
+    "xsd": "http://www.w3.org/2001/XMLSchema#"
+  },
+  "dataprov:metadata": {
+    "version": "3.0",
+    "created": "2026-09-19T01:46:21.127864Z",
+    "lastModified": "2026-09-19T01:46:21.128137Z",
+    "rootEntityId": "flybrain_organism",
+    "description": "Virtual organism synthesized from MaleCNS v1.0 motifs; blueprints: modular_isolation, robust_redundant, decoupled_hierarchical",
+    "initialSource": "https://flycellatlas.org/male_cns",
+    "tags": []
+  },
+  "entity": {
+    "flybrain_organism": {
+      "prov:type": "dataprov:RootEntity",
+      "prov:atLocation": "https://flycellatlas.org/male_cns"
+    },
+    "entity:MaleCNS_v1.0.tsv": {
+      "prov:type": "dataprov:DataFile",
+      "dataprov:format": "TSV"
+    },
+    "entity:motif:modular_isolation": {
+      "prov:type": "dataprov:DataFile",
+      "dataprov:format": "JSON"
+    },
+    "entity:motif:robust_redundant": {
+      "prov:type": "dataprov:DataFile",
+      "dataprov:format": "JSON"
+    },
+    "entity:motif:decoupled_hierarchical": {
+      "prov:type": "dataprov:DataFile",
+      "dataprov:format": "JSON"
+    },
+    "entity:flybrain_organism": {
+      "prov:type": "dataprov:DataFile",
+      "dataprov:format": "JSON"
+    }
+  },
+  "activity": {
+    "activity:step_1": {
+      "prov:startedAtTime": "2026-09-19T01:46:21.127873+00:00",
+      "dataprov:operation": "blueprint_motif_extraction",
+      "prov:endedAtTime": "2026-09-19T01:46:22.127878+00:00",
+      "dataprov:arguments": "--blueprint=modular_isolation --motif=inhibitory_hub --motif-body=10540 --is-bio-prior=True",
+      "dataprov:drl": 4
+    },
+    "activity:step_2": {
+      "prov:startedAtTime": "2026-09-19T01:46:22.128023+00:00",
+      "dataprov:operation": "blueprint_motif_extraction",
+      "prov:endedAtTime": "2026-09-19T01:46:23.128026+00:00",
+      "dataprov:arguments": "--blueprint=robust_redundant --motif=reservoir_smallworld --motif-body=None --is-bio-prior=True",
+      "dataprov:drl": 4
+    },
+    "activity:step_3": {
+      "prov:startedAtTime": "2026-09-19T01:46:23.128062+00:00",
+      "dataprov:operation": "blueprint_motif_extraction",
+      "prov:endedAtTime": "2026-09-19T01:46:24.128063+00:00",
+      "dataprov:arguments": "--blueprint=decoupled_hierarchical --motif=recurrent_feedback --motif-body=None --is-bio-prior=True",
+      "dataprov:drl": 4
+    },
+    "activity:step_4": {
+      "prov:startedAtTime": "2026-09-19T01:46:24.128097+00:00",
+      "dataprov:operation": "virtual_organism_synthesis",
+      "prov:endedAtTime": "2026-09-19T01:46:26.128099+00:00",
+      "dataprov:arguments": "--n-modules=6 --blueprint=modular_isolation,robust_redundant,decoupled_hierarchical",
+      "dataprov:drl": 6
+    }
+  },
+  "agent": {
+    "agent:tool_flybrain-connectome_1.2.0": {
+      "prov:type": "prov:SoftwareAgent",
+      "dataprov:toolName": "flybrain-connectome",
+      "dataprov:toolVersion": "1.2.0"
+    },
+    "agent:FlyCellAtlas": {
+      "prov:type": "prov:Organization",
+      "dataprov:name": "FlyCellAtlas"
+    }
+  },
+  "used": {
+    "_:u_1_0": {
+      "prov:activity": "activity:step_1",
+      "prov:entity": "entity:MaleCNS_v1.0.tsv"
+    },
+    "_:u_2_0": {
+      "prov:activity": "activity:step_2",
+      "prov:entity": "entity:MaleCNS_v1.0.tsv"
+    },
+    "_:u_3_0": {
+      "prov:activity": "activity:step_3",
+      "prov:entity": "entity:MaleCNS_v1.0.tsv"
+    },
+    "_:u_4_0": {
+      "prov:activity": "activity:step_4",
+      "prov:entity": "entity:motif:modular_isolation"
+    },
+    "_:u_4_1": {
+      "prov:activity": "activity:step_4",
+      "prov:entity": "entity:motif:robust_redundant"
+    },
+    "_:u_4_2": {
+      "prov:activity": "activity:step_4",
+      "prov:entity": "entity:motif:decoupled_hierarchical"
+    }
+  },
+  "wasGeneratedBy": {
+    "_:g_1_0": {
+      "prov:entity": "entity:motif:modular_isolation",
+      "prov:activity": "activity:step_1"
+    },
+    "_:g_2_0": {
+      "prov:entity": "entity:motif:robust_redundant",
+      "prov:activity": "activity:step_2"
+    },
+    "_:g_3_0": {
+      "prov:entity": "entity:motif:decoupled_hierarchical",
+      "prov:activity": "activity:step_3"
+    },
+    "_:g_4_0": {
+      "prov:entity": "entity:flybrain_organism",
+      "prov:activity": "activity:step_4"
+    }
+  },
+  "wasDerivedFrom": {
+    "_:d_1_0_0": {
+      "prov:generatedEntity": "entity:motif:modular_isolation",
+      "prov:usedEntity": "entity:MaleCNS_v1.0.tsv",
+      "prov:activity": "activity:step_1"
+    },
+    "_:d_2_0_0": {
+      "prov:generatedEntity": "entity:motif:robust_redundant",
+      "prov:usedEntity": "entity:MaleCNS_v1.0.tsv",
+      "prov:activity": "activity:step_2"
+    },
+    "_:d_3_0_0": {
+      "prov:generatedEntity": "entity:motif:decoupled_hierarchical",
+      "prov:usedEntity": "entity:MaleCNS_v1.0.tsv",
+      "prov:activity": "activity:step_3"
+    },
+    "_:d_4_0_0": {
+      "prov:generatedEntity": "entity:flybrain_organism",
+      "prov:usedEntity": "entity:motif:modular_isolation",
+      "prov:activity": "activity:step_4"
+    },
+    "_:d_4_0_1": {
+      "prov:generatedEntity": "entity:flybrain_organism",
+      "prov:usedEntity": "entity:motif:robust_redundant",
+      "prov:activity": "activity:step_4"
+    },
+    "_:d_4_0_2": {
+      "prov:generatedEntity": "entity:flybrain_organism",
+      "prov:usedEntity": "entity:motif:decoupled_hierarchical",
+      "prov:activity": "activity:step_4"
+    }
+  },
+  "wasAssociatedWith": {
+    "_:assoc_1": {
+      "prov:activity": "activity:step_1",
+      "prov:agent": "agent:tool_flybrain-connectome_1.2.0"
+    },
+    "_:assoc_2": {
+      "prov:activity": "activity:step_2",
+      "prov:agent": "agent:tool_flybrain-connectome_1.2.0"
+    },
+    "_:assoc_3": {
+      "prov:activity": "activity:step_3",
+      "prov:agent": "agent:tool_flybrain-connectome_1.2.0"
+    },
+    "_:assoc_4": {
+      "prov:activity": "activity:step_4",
+      "prov:agent": "agent:tool_flybrain-connectome_1.2.0"
+    }
+  },
+  "wasAttributedTo": {
+    "_:attr_0": {
+      "prov:entity": "entity:MaleCNS_v1.0.tsv",
+      "prov:agent": "agent:FlyCellAtlas",
+      "prov:role": "dataset_provider"
+    }
+  },
+  "flybrain:dataset_anchor": {
+    "name": "MaleCNS v1.0",
+    "license": "CC-BY",
+    "total_synapses": 124177617,
+    "annotated_neurons": 166700,
+    "dataset_url": "https://flycellatlas.org/male_cns",
+    "annotation_version": "v1.0",
+    "bio_prior_count": 3,
+    "total_blueprint_count": 3
+  }
+}
