@@ -138,7 +138,11 @@ def check(root: Path, name: str | None) -> list[str]:
 
     prov_span = json.dumps(sw.get("prov_json") or {}, ensure_ascii=False)
     if not prov_span or prov_span == "{}":
-        raise Failure("swarm config carries no prov_json bundle")
+        raise Failure(
+            "swarm config carries no prov_json bundle. The W3C PROV-JSON "
+            "serializer is the optional 'dataprov' package — install it with "
+            "`pip install dataprov` (or `pip install \"flybrain-connectome[prov]\"`) "
+            "if this environment is supposed to emit provenance.")
     for token in ("wasAssociatedWith", "FlyCellAtlas"):
         if token not in prov_span:
             raise Failure("prov_json lost %r — the provenance chain is broken" % token)
