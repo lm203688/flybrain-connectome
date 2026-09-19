@@ -1,0 +1,2791 @@
+schema_version: "1.1"
+kind: "swarmlabs_agent_swarm"
+generated_utc: "2026-09-17T05:43:42.296259+00:00"
+name: "large_organism257"
+swarm:
+  name: "large_organism257"
+  topology: "guardrail-hub + module-cells + recurrent + reservoir"
+  runtime: "local"
+  source:
+    project: "flybrain-connectome"
+    kind: "virtual_organism"
+    generated_utc: "2026-09-17T05:43:42.295860+00:00"
+    source_motifs: "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)"
+    motif_provenance:
+      requested_source: "local"
+      mode: "local_snapshot"
+      transport: "file"
+      api_url: "http://127.0.0.1:8799"
+      api_tool: "export_swarm_motifs"
+      api_refresh_requested: false
+      api_key_source: "local_config"
+      resolved_utc: "2026-09-17T05:43:42.004088+00:00"
+      motif_generated_utc: "2026-09-16T22:29:57.040787+00:00"
+      motifs:
+        - "inhibitory_hub"
+        - "recurrent_feedback"
+        - "reservoir_smallworld"
+      doc_sha256: "b9755a4519bee13a4782199302e254a3298919d2a66f902aa668e94109e70514"
+      served_from: "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json"
+      fallback_reason: null
+      snapshot_path: "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json"
+      snapshot_sha256: "89c0790eb8d66fdb7eda569b82caf35aa46aa98c1ae2672cecb09885c5e828ed"
+      api_cache_path: "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\.motif_api_cache.json"
+      snapshot_refreshed: false
+  agentteams:
+    team_file: "agentteams/config/team.yaml"
+    leader: "coordinator"
+    role_map:
+      guardrail: "verifier"
+      tissue_rep: "planner"
+      cell: "executor"
+      reservoir: "executor"
+      module: "planner"
+      worker: "executor"
+    thresholds:
+      rel_converged: 0.05
+      cov_min: 0.8
+      cal_max: 0.08
+      cov_bad: 0.7
+      rel_bad: 0.2
+  agents:
+    - id: "m0_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m0_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m0_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m0_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m0_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m0_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m0_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m0_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m0_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m0_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m0_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m0_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m0_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m0_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m0_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 0
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m0_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 0
+      task_hint: "input_triage"
+      profile_name: "sensory"
+    - id: "m1_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m1_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m1_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m1_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m1_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m1_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m1_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m1_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m1_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m1_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m1_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m1_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m1_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m1_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m1_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 1
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m1_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 1
+      task_hint: "memory_synthesis"
+      profile_name: "memory"
+    - id: "m2_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m2_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m2_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m2_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m2_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m2_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m2_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m2_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m2_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m2_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m2_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m2_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m2_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m2_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m2_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 2
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m2_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 2
+      task_hint: "output_coordination"
+      profile_name: "motor"
+    - id: "m3_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m3_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m3_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m3_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m3_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m3_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m3_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m3_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m3_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m3_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m3_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m3_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m3_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m3_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m3_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 3
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m3_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 3
+      task_hint: "cross_module_arbitration"
+      profile_name: "integration"
+    - id: "m4_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m4_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m4_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m4_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m4_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m4_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m4_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m4_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m4_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m4_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m4_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m4_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m4_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m4_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m4_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 4
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m4_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 4
+      task_hint: "input_triage"
+      profile_name: "sensory"
+    - id: "m5_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m5_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m5_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m5_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m5_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m5_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m5_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m5_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m5_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m5_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m5_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m5_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m5_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m5_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m5_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 5
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m5_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 5
+      task_hint: "memory_synthesis"
+      profile_name: "memory"
+    - id: "m6_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m6_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m6_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m6_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m6_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m6_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m6_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m6_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m6_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m6_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m6_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m6_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m6_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m6_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m6_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 6
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m6_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 6
+      task_hint: "output_coordination"
+      profile_name: "motor"
+    - id: "m7_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m7_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m7_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m7_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m7_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m7_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m7_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m7_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m7_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m7_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m7_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m7_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m7_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m7_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m7_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 7
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m7_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 7
+      task_hint: "cross_module_arbitration"
+      profile_name: "integration"
+    - id: "m8_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m8_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m8_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m8_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m8_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m8_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m8_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m8_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m8_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m8_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m8_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m8_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m8_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m8_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m8_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 8
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m8_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 8
+      task_hint: "input_triage"
+      profile_name: "sensory"
+    - id: "m9_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m9_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m9_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m9_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m9_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m9_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m9_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m9_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m9_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m9_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m9_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m9_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m9_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m9_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m9_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 9
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m9_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 9
+      task_hint: "memory_synthesis"
+      profile_name: "memory"
+    - id: "m10_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m10_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m10_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m10_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m10_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m10_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m10_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m10_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m10_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m10_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m10_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m10_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m10_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m10_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m10_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 10
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m10_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 10
+      task_hint: "output_coordination"
+      profile_name: "motor"
+    - id: "m11_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m11_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m11_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m11_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m11_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m11_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m11_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m11_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m11_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m11_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m11_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m11_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m11_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m11_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m11_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 11
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m11_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 11
+      task_hint: "cross_module_arbitration"
+      profile_name: "integration"
+    - id: "m12_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m12_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m12_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m12_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m12_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m12_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m12_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m12_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m12_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m12_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m12_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m12_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "sensor_noise_filter"
+      profile_name: "sensory"
+    - id: "m12_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "data_ingest"
+      profile_name: "sensory"
+    - id: "m12_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "signal_preprocess"
+      profile_name: "sensory"
+    - id: "m12_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 12
+      task_hint: "stream_buffer"
+      profile_name: "sensory"
+    - id: "m12_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 12
+      task_hint: "input_triage"
+      profile_name: "sensory"
+    - id: "m13_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m13_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m13_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m13_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m13_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m13_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m13_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m13_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m13_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m13_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m13_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m13_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "history_replay"
+      profile_name: "memory"
+    - id: "m13_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "gp_surrogate_fit"
+      profile_name: "memory"
+    - id: "m13_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "prior_recall"
+      profile_name: "memory"
+    - id: "m13_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 13
+      task_hint: "state_carry"
+      profile_name: "memory"
+    - id: "m13_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 13
+      task_hint: "memory_synthesis"
+      profile_name: "memory"
+    - id: "m14_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m14_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m14_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m14_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m14_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m14_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m14_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m14_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m14_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m14_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m14_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m14_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "actuation_dispatch"
+      profile_name: "motor"
+    - id: "m14_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "experiment_run"
+      profile_name: "motor"
+    - id: "m14_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "numeric_integration"
+      profile_name: "motor"
+    - id: "m14_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 14
+      task_hint: "output_check"
+      profile_name: "motor"
+    - id: "m14_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 14
+      task_hint: "output_coordination"
+      profile_name: "motor"
+    - id: "m15_a0"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m15_a1"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m15_a2"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m15_a3"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m15_a4"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m15_a5"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m15_a6"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m15_a7"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m15_a8"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m15_a9"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m15_a10"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m15_a11"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "arbitrate_conflict"
+      profile_name: "integration"
+    - id: "m15_a12"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "candidate_rank"
+      profile_name: "integration"
+    - id: "m15_a13"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "cross_domain_bridge"
+      profile_name: "integration"
+    - id: "m15_a14"
+      role: "cell"
+      swarm_role: "executor"
+      module: 15
+      task_hint: "elo_scoring"
+      profile_name: "integration"
+    - id: "m15_rep"
+      role: "tissue_rep"
+      swarm_role: "planner"
+      module: 15
+      task_hint: "cross_module_arbitration"
+      profile_name: "integration"
+    - id: "coordinator"
+      role: "guardrail"
+      swarm_role: "verifier"
+      task_hint: "global_guardrail"
+      source: "APL(body 10540)"
+  modules:
+    - index: 0
+      lead: "m0_rep"
+      members:
+        - "m0_a0"
+        - "m0_a1"
+        - "m0_a2"
+        - "m0_a3"
+        - "m0_a4"
+        - "m0_a5"
+        - "m0_a6"
+        - "m0_a7"
+        - "m0_a8"
+        - "m0_a9"
+        - "m0_a10"
+        - "m0_a11"
+        - "m0_a12"
+        - "m0_a13"
+        - "m0_a14"
+      recurrent_weight: 0.1
+      profile_name: "sensory"
+      capability:
+        - "perceive"
+        - "ingest"
+        - "buffer"
+    - index: 1
+      lead: "m1_rep"
+      members:
+        - "m1_a0"
+        - "m1_a1"
+        - "m1_a2"
+        - "m1_a3"
+        - "m1_a4"
+        - "m1_a5"
+        - "m1_a6"
+        - "m1_a7"
+        - "m1_a8"
+        - "m1_a9"
+        - "m1_a10"
+        - "m1_a11"
+        - "m1_a12"
+        - "m1_a13"
+        - "m1_a14"
+      recurrent_weight: 0.4
+      profile_name: "memory"
+      capability:
+        - "gp_surrogate"
+        - "remember"
+        - "replay"
+        - "state_carry"
+    - index: 2
+      lead: "m2_rep"
+      members:
+        - "m2_a0"
+        - "m2_a1"
+        - "m2_a2"
+        - "m2_a3"
+        - "m2_a4"
+        - "m2_a5"
+        - "m2_a6"
+        - "m2_a7"
+        - "m2_a8"
+        - "m2_a9"
+        - "m2_a10"
+        - "m2_a11"
+        - "m2_a12"
+        - "m2_a13"
+        - "m2_a14"
+      recurrent_weight: 0.1
+      profile_name: "motor"
+      capability:
+        - "execute"
+        - "actuate"
+        - "numeric_integration"
+        - "verify_output"
+    - index: 3
+      lead: "m3_rep"
+      members:
+        - "m3_a0"
+        - "m3_a1"
+        - "m3_a2"
+        - "m3_a3"
+        - "m3_a4"
+        - "m3_a5"
+        - "m3_a6"
+        - "m3_a7"
+        - "m3_a8"
+        - "m3_a9"
+        - "m3_a10"
+        - "m3_a11"
+        - "m3_a12"
+        - "m3_a13"
+        - "m3_a14"
+      recurrent_weight: 0.25
+      profile_name: "integration"
+      capability:
+        - "rank"
+        - "synthesize"
+        - "arbitrate"
+        - "elo_score"
+    - index: 4
+      lead: "m4_rep"
+      members:
+        - "m4_a0"
+        - "m4_a1"
+        - "m4_a2"
+        - "m4_a3"
+        - "m4_a4"
+        - "m4_a5"
+        - "m4_a6"
+        - "m4_a7"
+        - "m4_a8"
+        - "m4_a9"
+        - "m4_a10"
+        - "m4_a11"
+        - "m4_a12"
+        - "m4_a13"
+        - "m4_a14"
+      recurrent_weight: 0.1
+      profile_name: "sensory"
+      capability:
+        - "perceive"
+        - "ingest"
+        - "buffer"
+    - index: 5
+      lead: "m5_rep"
+      members:
+        - "m5_a0"
+        - "m5_a1"
+        - "m5_a2"
+        - "m5_a3"
+        - "m5_a4"
+        - "m5_a5"
+        - "m5_a6"
+        - "m5_a7"
+        - "m5_a8"
+        - "m5_a9"
+        - "m5_a10"
+        - "m5_a11"
+        - "m5_a12"
+        - "m5_a13"
+        - "m5_a14"
+      recurrent_weight: 0.4
+      profile_name: "memory"
+      capability:
+        - "gp_surrogate"
+        - "remember"
+        - "replay"
+        - "state_carry"
+    - index: 6
+      lead: "m6_rep"
+      members:
+        - "m6_a0"
+        - "m6_a1"
+        - "m6_a2"
+        - "m6_a3"
+        - "m6_a4"
+        - "m6_a5"
+        - "m6_a6"
+        - "m6_a7"
+        - "m6_a8"
+        - "m6_a9"
+        - "m6_a10"
+        - "m6_a11"
+        - "m6_a12"
+        - "m6_a13"
+        - "m6_a14"
+      recurrent_weight: 0.1
+      profile_name: "motor"
+      capability:
+        - "execute"
+        - "actuate"
+        - "numeric_integration"
+        - "verify_output"
+    - index: 7
+      lead: "m7_rep"
+      members:
+        - "m7_a0"
+        - "m7_a1"
+        - "m7_a2"
+        - "m7_a3"
+        - "m7_a4"
+        - "m7_a5"
+        - "m7_a6"
+        - "m7_a7"
+        - "m7_a8"
+        - "m7_a9"
+        - "m7_a10"
+        - "m7_a11"
+        - "m7_a12"
+        - "m7_a13"
+        - "m7_a14"
+      recurrent_weight: 0.25
+      profile_name: "integration"
+      capability:
+        - "rank"
+        - "synthesize"
+        - "arbitrate"
+        - "elo_score"
+    - index: 8
+      lead: "m8_rep"
+      members:
+        - "m8_a0"
+        - "m8_a1"
+        - "m8_a2"
+        - "m8_a3"
+        - "m8_a4"
+        - "m8_a5"
+        - "m8_a6"
+        - "m8_a7"
+        - "m8_a8"
+        - "m8_a9"
+        - "m8_a10"
+        - "m8_a11"
+        - "m8_a12"
+        - "m8_a13"
+        - "m8_a14"
+      recurrent_weight: 0.1
+      profile_name: "sensory"
+      capability:
+        - "perceive"
+        - "ingest"
+        - "buffer"
+    - index: 9
+      lead: "m9_rep"
+      members:
+        - "m9_a0"
+        - "m9_a1"
+        - "m9_a2"
+        - "m9_a3"
+        - "m9_a4"
+        - "m9_a5"
+        - "m9_a6"
+        - "m9_a7"
+        - "m9_a8"
+        - "m9_a9"
+        - "m9_a10"
+        - "m9_a11"
+        - "m9_a12"
+        - "m9_a13"
+        - "m9_a14"
+      recurrent_weight: 0.4
+      profile_name: "memory"
+      capability:
+        - "gp_surrogate"
+        - "remember"
+        - "replay"
+        - "state_carry"
+    - index: 10
+      lead: "m10_rep"
+      members:
+        - "m10_a0"
+        - "m10_a1"
+        - "m10_a2"
+        - "m10_a3"
+        - "m10_a4"
+        - "m10_a5"
+        - "m10_a6"
+        - "m10_a7"
+        - "m10_a8"
+        - "m10_a9"
+        - "m10_a10"
+        - "m10_a11"
+        - "m10_a12"
+        - "m10_a13"
+        - "m10_a14"
+      recurrent_weight: 0.1
+      profile_name: "motor"
+      capability:
+        - "execute"
+        - "actuate"
+        - "numeric_integration"
+        - "verify_output"
+    - index: 11
+      lead: "m11_rep"
+      members:
+        - "m11_a0"
+        - "m11_a1"
+        - "m11_a2"
+        - "m11_a3"
+        - "m11_a4"
+        - "m11_a5"
+        - "m11_a6"
+        - "m11_a7"
+        - "m11_a8"
+        - "m11_a9"
+        - "m11_a10"
+        - "m11_a11"
+        - "m11_a12"
+        - "m11_a13"
+        - "m11_a14"
+      recurrent_weight: 0.25
+      profile_name: "integration"
+      capability:
+        - "rank"
+        - "synthesize"
+        - "arbitrate"
+        - "elo_score"
+    - index: 12
+      lead: "m12_rep"
+      members:
+        - "m12_a0"
+        - "m12_a1"
+        - "m12_a2"
+        - "m12_a3"
+        - "m12_a4"
+        - "m12_a5"
+        - "m12_a6"
+        - "m12_a7"
+        - "m12_a8"
+        - "m12_a9"
+        - "m12_a10"
+        - "m12_a11"
+        - "m12_a12"
+        - "m12_a13"
+        - "m12_a14"
+      recurrent_weight: 0.1
+      profile_name: "sensory"
+      capability:
+        - "perceive"
+        - "ingest"
+        - "buffer"
+    - index: 13
+      lead: "m13_rep"
+      members:
+        - "m13_a0"
+        - "m13_a1"
+        - "m13_a2"
+        - "m13_a3"
+        - "m13_a4"
+        - "m13_a5"
+        - "m13_a6"
+        - "m13_a7"
+        - "m13_a8"
+        - "m13_a9"
+        - "m13_a10"
+        - "m13_a11"
+        - "m13_a12"
+        - "m13_a13"
+        - "m13_a14"
+      recurrent_weight: 0.4
+      profile_name: "memory"
+      capability:
+        - "gp_surrogate"
+        - "remember"
+        - "replay"
+        - "state_carry"
+    - index: 14
+      lead: "m14_rep"
+      members:
+        - "m14_a0"
+        - "m14_a1"
+        - "m14_a2"
+        - "m14_a3"
+        - "m14_a4"
+        - "m14_a5"
+        - "m14_a6"
+        - "m14_a7"
+        - "m14_a8"
+        - "m14_a9"
+        - "m14_a10"
+        - "m14_a11"
+        - "m14_a12"
+        - "m14_a13"
+        - "m14_a14"
+      recurrent_weight: 0.1
+      profile_name: "motor"
+      capability:
+        - "execute"
+        - "actuate"
+        - "numeric_integration"
+        - "verify_output"
+    - index: 15
+      lead: "m15_rep"
+      members:
+        - "m15_a0"
+        - "m15_a1"
+        - "m15_a2"
+        - "m15_a3"
+        - "m15_a4"
+        - "m15_a5"
+        - "m15_a6"
+        - "m15_a7"
+        - "m15_a8"
+        - "m15_a9"
+        - "m15_a10"
+        - "m15_a11"
+        - "m15_a12"
+        - "m15_a13"
+        - "m15_a14"
+      recurrent_weight: 0.25
+      profile_name: "integration"
+      capability:
+        - "rank"
+        - "synthesize"
+        - "arbitrate"
+        - "elo_score"
+  edges:
+    - from: "m0_rep"
+      to: "m0_rep"
+      weight: 0.1
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 0
+    - from: "m1_rep"
+      to: "m1_rep"
+      weight: 0.4
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 1
+    - from: "m2_rep"
+      to: "m2_rep"
+      weight: 0.1
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 2
+    - from: "m3_rep"
+      to: "m3_rep"
+      weight: 0.25
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 3
+    - from: "m4_rep"
+      to: "m4_rep"
+      weight: 0.1
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 4
+    - from: "m5_rep"
+      to: "m5_rep"
+      weight: 0.4
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 5
+    - from: "m6_rep"
+      to: "m6_rep"
+      weight: 0.1
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 6
+    - from: "m7_rep"
+      to: "m7_rep"
+      weight: 0.25
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 7
+    - from: "m8_rep"
+      to: "m8_rep"
+      weight: 0.1
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 8
+    - from: "m9_rep"
+      to: "m9_rep"
+      weight: 0.4
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 9
+    - from: "m10_rep"
+      to: "m10_rep"
+      weight: 0.1
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 10
+    - from: "m11_rep"
+      to: "m11_rep"
+      weight: 0.25
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 11
+    - from: "m12_rep"
+      to: "m12_rep"
+      weight: 0.1
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 12
+    - from: "m13_rep"
+      to: "m13_rep"
+      weight: 0.4
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 13
+    - from: "m14_rep"
+      to: "m14_rep"
+      weight: 0.1
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 14
+    - from: "m15_rep"
+      to: "m15_rep"
+      weight: 0.25
+      kind: "recurrent"
+      semantic: "state_feedback"
+      module: 15
+    - from: "m0_a0"
+      to: "m0_a11"
+      weight: 0.048
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 0
+    - from: "m0_a2"
+      to: "m0_rep"
+      weight: 0.507
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 0
+    - from: "m0_a3"
+      to: "m0_a1"
+      weight: 0.241
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 0
+    - from: "m0_a5"
+      to: "m0_a3"
+      weight: 0.631
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 0
+    - from: "m0_a7"
+      to: "m0_a0"
+      weight: 0.976
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 0
+    - from: "m0_a8"
+      to: "m4_a11"
+      weight: 0.419
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 0
+    - from: "m0_a13"
+      to: "m0_a3"
+      weight: 0.372
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 0
+    - from: "m0_rep"
+      to: "m0_a3"
+      weight: 0.496
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 0
+    - from: "m1_a6"
+      to: "m1_a4"
+      weight: 0.574
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 1
+    - from: "m1_a12"
+      to: "m1_a13"
+      weight: 0.342
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 1
+    - from: "m2_a0"
+      to: "m2_a13"
+      weight: 0.875
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 2
+    - from: "m2_a10"
+      to: "m10_a6"
+      weight: 0.578
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 2
+    - from: "m3_a4"
+      to: "m3_a12"
+      weight: 0.248
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 3
+    - from: "m3_a7"
+      to: "m3_a9"
+      weight: 0.278
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 3
+    - from: "m3_a8"
+      to: "m3_a9"
+      weight: 0.278
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 3
+    - from: "m3_a13"
+      to: "m3_a3"
+      weight: 0.659
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 3
+    - from: "m3_a14"
+      to: "m2_a14"
+      weight: 0.263
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 3
+    - from: "m3_rep"
+      to: "m3_a5"
+      weight: 0.61
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 3
+    - from: "m4_a0"
+      to: "m4_a14"
+      weight: 0.515
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_a3"
+      to: "m12_a8"
+      weight: 0.952
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_a6"
+      to: "m4_a8"
+      weight: 0.634
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_a7"
+      to: "m4_a3"
+      weight: 0.441
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_a8"
+      to: "m4_a1"
+      weight: 0.0
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_a9"
+      to: "m4_a5"
+      weight: 0.614
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_a10"
+      to: "m4_a6"
+      weight: 0.149
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_a11"
+      to: "m4_a5"
+      weight: 0.474
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_a12"
+      to: "m4_a7"
+      weight: 0.48
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_a13"
+      to: "m4_a11"
+      weight: 0.343
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_a14"
+      to: "m2_a9"
+      weight: 0.516
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m4_rep"
+      to: "m5_a13"
+      weight: 0.147
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 4
+    - from: "m5_a1"
+      to: "m5_a11"
+      weight: 0.863
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 5
+    - from: "m5_a5"
+      to: "m8_a9"
+      weight: 0.542
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 5
+    - from: "m5_a11"
+      to: "m5_a6"
+      weight: 0.74
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 5
+    - from: "m5_rep"
+      to: "m5_a4"
+      weight: 0.472
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 5
+    - from: "m6_a7"
+      to: "m6_a8"
+      weight: 0.197
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 6
+    - from: "m6_rep"
+      to: "m6_a14"
+      weight: 0.389
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 6
+    - from: "m7_a1"
+      to: "m6_rep"
+      weight: 0.789
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 7
+    - from: "m7_a9"
+      to: "m7_a2"
+      weight: 0.591
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 7
+    - from: "m8_a0"
+      to: "m8_a1"
+      weight: 0.014
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 8
+    - from: "m8_a5"
+      to: "m13_a4"
+      weight: 0.874
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 8
+    - from: "m8_a6"
+      to: "m8_a9"
+      weight: 0.241
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 8
+    - from: "m8_a8"
+      to: "m8_a2"
+      weight: 0.061
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 8
+    - from: "m9_a0"
+      to: "m9_a9"
+      weight: 0.019
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 9
+    - from: "m9_a2"
+      to: "m9_a13"
+      weight: 0.15
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 9
+    - from: "m9_a3"
+      to: "m9_a1"
+      weight: 0.556
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 9
+    - from: "m9_a8"
+      to: "m9_a3"
+      weight: 0.191
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 9
+    - from: "m9_a9"
+      to: "m9_a7"
+      weight: 0.562
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 9
+    - from: "m10_rep"
+      to: "m10_a1"
+      weight: 0.213
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 10
+    - from: "m11_a1"
+      to: "m15_a1"
+      weight: 0.716
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 11
+    - from: "m11_a3"
+      to: "m15_a8"
+      weight: 0.468
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 11
+    - from: "m11_a5"
+      to: "m2_a9"
+      weight: 0.99
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 11
+    - from: "m11_a7"
+      to: "m11_a9"
+      weight: 0.404
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 11
+    - from: "m11_a10"
+      to: "m11_a5"
+      weight: 0.554
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 11
+    - from: "m11_a12"
+      to: "m11_a9"
+      weight: 0.295
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 11
+    - from: "m11_a14"
+      to: "m3_a10"
+      weight: 0.972
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 11
+    - from: "m11_rep"
+      to: "m11_a0"
+      weight: 0.906
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 11
+    - from: "m12_a0"
+      to: "m13_a2"
+      weight: 0.422
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 12
+    - from: "m12_a3"
+      to: "m12_rep"
+      weight: 0.515
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 12
+    - from: "m12_a4"
+      to: "m12_a5"
+      weight: 0.058
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 12
+    - from: "m12_a6"
+      to: "m12_a0"
+      weight: 0.634
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 12
+    - from: "m12_a8"
+      to: "m1_a1"
+      weight: 0.264
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 12
+    - from: "m12_a9"
+      to: "m12_a8"
+      weight: 0.418
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 12
+    - from: "m12_a12"
+      to: "m15_a1"
+      weight: 0.109
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 12
+    - from: "m12_a13"
+      to: "m12_a3"
+      weight: 0.932
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 12
+    - from: "m13_a6"
+      to: "m13_a9"
+      weight: 0.551
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 13
+    - from: "m13_a7"
+      to: "m13_rep"
+      weight: 0.447
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 13
+    - from: "m14_a8"
+      to: "m14_rep"
+      weight: 0.256
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 14
+    - from: "m14_a10"
+      to: "m13_a14"
+      weight: 0.506
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 14
+    - from: "m14_a14"
+      to: "m14_a4"
+      weight: 0.446
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 14
+    - from: "m15_a3"
+      to: "m4_rep"
+      weight: 0.218
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 15
+    - from: "m15_a4"
+      to: "m15_a1"
+      weight: 0.475
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 15
+    - from: "m15_a6"
+      to: "m15_a0"
+      weight: 0.091
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 15
+    - from: "m15_a8"
+      to: "m15_a6"
+      weight: 0.022
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 15
+    - from: "m15_a10"
+      to: "m15_a8"
+      weight: 0.853
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 15
+    - from: "m15_a11"
+      to: "m12_a8"
+      weight: 0.879
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 15
+    - from: "m15_rep"
+      to: "m10_a4"
+      weight: 0.145
+      kind: "reservoir"
+      semantic: "data_share"
+      module: 15
+    - from: "m2_rep"
+      to: "m2_a11"
+      weight: -0.402
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 2
+    - from: "m2_rep"
+      to: "m2_a14"
+      weight: -0.564
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 2
+    - from: "m2_rep"
+      to: "m2_a12"
+      weight: -0.501
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 2
+    - from: "m3_rep"
+      to: "m3_a13"
+      weight: -0.434
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 3
+    - from: "m3_rep"
+      to: "m3_a10"
+      weight: -0.557
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 3
+    - from: "m6_rep"
+      to: "m6_a1"
+      weight: -0.217
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 6
+    - from: "m6_rep"
+      to: "m6_a0"
+      weight: -0.455
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 6
+    - from: "m7_rep"
+      to: "m7_a6"
+      weight: -0.381
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 7
+    - from: "m7_rep"
+      to: "m7_a13"
+      weight: -0.22
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 7
+    - from: "m10_rep"
+      to: "m10_a10"
+      weight: -0.472
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 10
+    - from: "m10_rep"
+      to: "m10_a8"
+      weight: -0.396
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 10
+    - from: "m11_rep"
+      to: "m11_a7"
+      weight: -0.228
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 11
+    - from: "m11_rep"
+      to: "m11_a12"
+      weight: -0.573
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 11
+    - from: "m14_rep"
+      to: "m14_a10"
+      weight: -0.226
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 14
+    - from: "m14_rep"
+      to: "m14_a8"
+      weight: -0.495
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 14
+    - from: "m15_rep"
+      to: "m15_a12"
+      weight: -0.294
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 15
+    - from: "m15_rep"
+      to: "m15_a1"
+      weight: -0.503
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 15
+    - from: "m15_rep"
+      to: "m15_a4"
+      weight: -0.292
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 15
+    - from: "coordinator"
+      to: "m0_rep"
+      weight: -1.0
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 0
+    - from: "coordinator"
+      to: "m1_rep"
+      weight: -0.938
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 1
+    - from: "coordinator"
+      to: "m2_rep"
+      weight: -0.875
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 2
+    - from: "coordinator"
+      to: "m3_rep"
+      weight: -0.812
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 3
+    - from: "coordinator"
+      to: "m4_rep"
+      weight: -0.75
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 4
+    - from: "coordinator"
+      to: "m5_rep"
+      weight: -0.688
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 5
+    - from: "coordinator"
+      to: "m6_rep"
+      weight: -0.625
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 6
+    - from: "coordinator"
+      to: "m7_rep"
+      weight: -0.562
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 7
+    - from: "coordinator"
+      to: "m8_rep"
+      weight: -0.5
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 8
+    - from: "coordinator"
+      to: "m9_rep"
+      weight: -0.438
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 9
+    - from: "coordinator"
+      to: "m10_rep"
+      weight: -0.375
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 10
+    - from: "coordinator"
+      to: "m11_rep"
+      weight: -0.312
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 11
+    - from: "coordinator"
+      to: "m12_rep"
+      weight: -0.25
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 12
+    - from: "coordinator"
+      to: "m13_rep"
+      weight: -0.188
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 13
+    - from: "coordinator"
+      to: "m14_rep"
+      weight: -0.125
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 14
+    - from: "coordinator"
+      to: "m15_rep"
+      weight: -0.062
+      kind: "inhibitory"
+      semantic: "halt"
+      module: 15
+  guardrails:
+    - "leader(guardrail) 不得同时是任何 module 的成员（抑制枢纽必须外部于被抑制者）"
+    - "weight < 0 的边是硬刹车：执行器不得用正向权重抵消或删除该边"
+    - "recurrent 边只允许模块内自环，禁止跨模块复用"
+    - "任何 agent 的入/出边端点必须存在于 agents 列表中（无悬空边）"
+    - "边权一律落在 [-1, 1]；本文件是唯一真值，运行时不接受就地改权"
+  metrics:
+    n_nodes: 257
+    n_edges: 126
+    avg_degree: 0.981
+    inhibition_ratio: 0.27
+    n_modules: 16
+    intra_module_edges: 90
+    inter_module_edges: 36
+    modularity_est: 0.714
+    profile_breakdown:
+      sensory:
+        nodes: 64
+        edges: 36
+      memory:
+        nodes: 64
+        edges: 17
+      motor:
+        nodes: 64
+        edges: 21
+      integration:
+        nodes: 64
+        edges: 36
+      uniform:
+        nodes: 1
+        edges: 16
+  validation:
+    n_agents: 257
+    n_edges: 126
+    n_modules: 16
+    leader_resolved: "coordinator"
+    leader_is_module_member: false
+    dangling_edges: 0
+    weight_min: -1.0
+    weight_max: 0.99
+    weights_in_range: true
+    inhibitory_edges: 34
+    recurrent_edges: 16
+    reservoir_edges: 76
+    ok: true
