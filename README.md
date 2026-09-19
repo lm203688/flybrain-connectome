@@ -20,7 +20,7 @@ before you quote it.
 
 | ✅ This project | ❌ Not this project |
 |---|---|
-| A connectome **query service** (12 tools over HTTP + MCP) | A spiking-neuron simulator |
+| A connectome **query service** (17 tools over HTTP + MCP) | A spiking-neuron simulator |
 | A **motif-extraction** pipeline (real fly → derived motif doc) | A repository of the raw 5.63 GB data |
 | A **synthetic topology generator** (bio-motifs → agent graphs) | A trained / fine-tuned model with weights |
 | **W3C PROV** provenance on every generated artifact | A claim that the "virtual organism" is alive |
@@ -58,28 +58,69 @@ Honesty is a feature. The reproducible experiment scripts live in
 
 ## Install
 
-Two ways — both dependency-free (standard library only).
+The toolkit is **standard-library only** — no `requirements.txt`, nothing to
+build. Pick either setup:
+
+### A. Clone and run (recommended, verified end-to-end)
 
 ```bash
-# 1) Clone and run in place (recommended; also gives you the data path + scripts)
 git clone https://github.com/lm203688/flybrain-connectome.git
 cd flybrain-connectome
-
-# 2) Or install the console script
-pip install .
-flybrain --help
+python flybrain_cli.py --help
 ```
 
-To **query the real connectome** you also need a local copy of MaleCNS v1.0
-(CC-BY, ~5.63 GB). Point the service at it:
+### B. Editable install (puts `flybrain` on your PATH)
+
+```bash
+git clone https://github.com/lm203688/flybrain-connectome.git
+cd flybrain-connectome
+pip install -e .
+flybrain info
+```
+
+`pip install -e .` is *editable*: the `flybrain` entry point maps back to the
+checkout, which is precisely what lets it find the toolkit. A plain
+`pip install .` ships only the launcher, so point it at a checkout explicitly:
+
+```bash
+pip install .
+export FLYBRAIN_HOME=/path/to/flybrain-connectome
+flybrain info
+```
+
+### Always check what you got
+
+```bash
+flybrain info
+```
+
+reports the resolved toolkit root, the motif snapshot, the data dir, API-key
+status, and how many tools are exposed. Run it first whenever something looks
+wrong — it turns "ImportError" into a named, fixable problem.
+
+### To query the real connectome you also need the data
+
+MaleCNS v1.0 is CC-BY, ~5.63 GB, and deliberately **not** in this repo:
 
 ```bash
 export FLYBRAIN_DATA_DIR=/path/to/your/male_cns
 ```
 
+`generate` and the bundled motif snapshot need **no** data at all.
+
 ---
 
 ## Quickstart
+
+> Every `flybrain <cmd>` below also works as `python flybrain_cli.py <cmd>`
+> (setup A), so you can try the project without installing anything.
+
+### 0. Sanity-check the install
+
+```bash
+flybrain info
+# -> toolkit root [ok] · motif snapshot [ok, 7363 bytes] · tools exposed: 17
+```
 
 ### 1. Serve the connectome (optional — only for querying real data)
 
@@ -126,17 +167,18 @@ flybrain verify        # needs FLYBRAIN_DATA_DIR set to your data
 
 ```
 flybrain-connectome/
-├── flybrain_cli.py                 ★ unified developer CLI (serve/query/motifs/generate/verify)
-├── pyproject.toml                  MIT, zero deps, `flybrain` console script
-├── LICENSE                         MIT
+├── flybrain_cli.py                 ★ developer CLI (serve/query/motifs/generate/verify/info)
+├── pyproject.toml                  zero deps, `flybrain` console script
+├── LICENSE · CITATION.cff · CHANGELOG.md
 ├── flybrain-connectome-mcp/
-│   ├── mcp_connectome/             connectome query engine (core) + 12-tool MCP + HTTP API(:8799)
+│   ├── mcp_connectome/             query engine (core) + 17-tool MCP + HTTP API (:8799)
 │   ├── motifs/                     drop-in client + derived motif snapshot
-│   ├── synthetic_bio_topology.py   ★ C1 generator (motif → agent graph + SwarmLabs config + PROV)
+│   ├── synthetic_bio_topology.py   ★ C1 generator (motif → agent graph + config + PROV)
 │   ├── _verify.py                  end-to-end smoke test (70/70)
 │   └── generated_organisms/        example artifacts (json/html + swarm configs)
 ├── integrations/swarmlabs/         consistency checkers + diagnostics (reproducible experiments)
-└── docs/arxiv_paper.md             the science write-up
+├── scripts/                        gh_publish.py (Contents-API push) · check_docs_consistency.py
+└── docs/                           arxiv_paper.md · mcp_setup.md
 ```
 
 ---
@@ -148,7 +190,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 | Endpoint | Auth | Purpose |
 |---|---|---|
 | `GET  /health` | none | liveness + version |
-| `GET  /tools`  | key  | list the 12 tools + descriptions |
+| `GET  /tools`  | key  | list the 17 tools + descriptions |
 | `POST /query`  | key  | `{"tool": <name>, "args": {...}}` → `{"ok": true, "result": ...}` |
 
 **Auth:** `Authorization: Bearer <key>` or `X-API-Key: <key>`. Keys come from
@@ -156,11 +198,20 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 server generates a temporary per-boot key and warns loudly — it never falls
 back to a key committed to source.
 
-**The 12 tools** (real names, do not invent):
+**The 17 tools** (real names, do not invent — verified against `GET /tools`
+by `scripts/check_docs_consistency.py`):
 
-`connectome_overview` · `neuron_info` · `pair_synapses` · `neuron_outputs` ·
-`neuron_inputs` · `degree` · `search_neurons` · `superclass_projection` ·
-`hub_targets` · `list_superclasses` · `pathway` · `export_swarm_motifs`
+*Real-connectome queries — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`:*
+
+`connectome_overview` ⚠ · `neuron_info` ⚠ · `pair_synapses` ⚠ ·
+`neuron_outputs` ⚠ · `neuron_inputs` ⚠ · `degree` ⚠ · `search_neurons` ⚠ ·
+`superclass_projection` ⚠ · `hub_targets` ⚠ · `list_superclasses` ⚠ ·
+`pathway` ⚠ · `export_swarm_motifs`
+
+*Generator surface — offline-capable, served from the motif snapshot:*
+
+`list_blueprints` · `list_modules` · `list_bio_motifs` ·
+`batch_generate_topologies` · `get_provenance_bundle`
 
 ---
 
@@ -201,11 +252,14 @@ MLflow2PROV, and MIT Sloan provenance tooling.
 
 ---
 
-## Blueprint library
+## Blueprint & module library
 
-25 presets across three categories. Every blueprint traces to a real motif
+**25 blueprints** across three categories, composed from a **10 modules**
+(sensory / memory / motor / integration / attention / working_memory / reward /
+punishment / habit / metacognition). Every blueprint traces to a real motif
 (`inhibitory_hub` / `reservoir_smallworld` / `recurrent_feedback`) or is
-honestly marked `motif: none` (synthetic orchestration, no bio-prior):
+honestly marked `motif: none` (synthetic orchestration, no bio-prior) — 16
+bio-prior, 9 not:
 
 - **5 basic** — flat / hub / ring / layered / random reference topologies
 - **16 biological** — e.g. `predictive_coding_v2` (recurrent_feedback+reward),
@@ -221,6 +275,9 @@ from flybrain_connectome_mcp.synthetic_bio_topology import BLUEPRINTS  # (in-rep
 # or after pip install: import synthetic_bio_topology as c1; c1.BLUEPRINTS
 ```
 
+Machine-readable equivalents (same data, over HTTP/MCP): `list_blueprints`,
+`list_modules`, `list_bio_motifs`.
+
 ---
 
 ## Science & paper
@@ -230,18 +287,36 @@ in **[`docs/arxiv_paper.md`](docs/arxiv_paper.md)** (preprint-ready). Key
 references:
 
 - MaleCNS v1.0 — *Cell*, 2026-09-03 (CC-BY). The 166,700-neuron male-brain
-  connectome this project is grounded in.
+  connectome this project is grounded in. Obtainable from
+  `male-cns.janelia.org/download` / `gs://flyem-male-cns/v1.0/`; queryable as
+  neuPrint dataset `male-cns:v1.0`.
 - Friston (2008) *Neuropsychologia* vs Fodor (1983) *The Modularity of Mind* —
   the massive-modularity debate our fault-isolation claim sits within.
 - Double dissociation as the cognitive-neuroscience gold standard
   (Geddes 2014; Glenberg 2014; Campanella 2022; Vaidya *PNAS* 2010).
 - `dataprov` (RI-SE, W3C PROV) — the provenance serialization we adopt.
 
+**Citing this work:** see [`CITATION.cff`](CITATION.cff) (GitHub renders a
+"Cite this repository" button from it). Release-by-release changes, including
+which claims were retracted, are in [`CHANGELOG.md`](CHANGELOG.md).
+
+**Using it from an MCP client:** see [`docs/mcp_setup.md`](docs/mcp_setup.md)
+for client configs, the 17-tool reference, and troubleshooting.
+
 ---
 
 ## Development & testing
 
 ```bash
+# credential gate — MUST pass before any push (see CHANGELOG 1.0.0)
+python scripts/check_no_secrets.py
+
+# docs-vs-code drift gate: tool count/names, versions, schema, blueprint count
+python scripts/check_docs_consistency.py
+
+# every advertised MCP tool must actually respond (needs FLYBRAIN_DATA_DIR)
+python scripts/check_mcp_tools.py
+
 # end-to-end smoke test (needs FLYBRAIN_DATA_DIR -> your data)
 flybrain verify
 
