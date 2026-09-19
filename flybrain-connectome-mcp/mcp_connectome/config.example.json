@@ -1,5 +1,6 @@
 {
-  "data_dir": "C:/Users/xing/Desktop/flybrain-connectome/male_cns",
+  "_comment": "Copy this to config.json and edit. config.json is gitignored — never commit a real key.",
+  "data_dir": "/path/to/your/male_cns",
   "host": "127.0.0.1",
   "port": 8799,
   "api_keys": ["REPLACE_WITH_YOUR_OWN_RANDOM_KEY"],
