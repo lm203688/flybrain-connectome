@@ -16,8 +16,11 @@ The **schema version** is versioned separately from the **package version**:
 
 ## [1.0.0] — 2026-09-19
 
-First public release. MIT licensed, standard-library only, zero third-party
-dependencies.
+First public release. MIT licensed, standard-library only, zero **required**
+third-party dependencies. (`dataprov`, which serializes the W3C PROV-JSON
+bundle, is an optional extra — `pip install "flybrain-connectome[prov]"`. Without
+it the toolkit runs and still records structural provenance; see the defects
+found by the first CI run below.)
 
 ### Added
 
@@ -117,6 +120,56 @@ had passed the pre-existing gates:
   and no edge metric changed** (still 90 agents / 9 edges); only the wrong
   metadata was corrected, and the file records the repair inline. Found by
   `integrations/swarmlabs/check_swarmlabs_sync.py`, which no other gate runs.
+
+### Fixed after the first CI run
+
+The gates above all ran on a developer machine, where `dataprov` is installed.
+CI is a bare interpreter, and that difference exposed two more defects — both
+of the same shape: a `dict.get(key, default)` that looks safe and is not.
+
+- **Two advertised tools crashed without the optional dependency.** The
+  generator returns `prov_json: None` — not a missing key — when `dataprov` is
+  absent. `cfg.get("prov_json", {})` does not help: a default applies only to
+  an *absent* key, so the value stayed `None` and
+  `get_provenance_bundle` answered
+  `ERROR: 'NoneType' object has no attribute 'keys'`. It now reports
+  `prov_available: false`, keeps the structural `motif_provenance`, and names
+  the missing package in `prov_unavailable`.
+- **`batch_generate_topologies` reported failures as successes.** The same
+  `None` was read as a dict inside its per-spec `try`, so a crash became a
+  per-item `error` while the envelope still said `isError: false` with
+  `generated: 1` and no agents or edges. The envelope now separates
+  `attempted` / `succeeded` / `failed`, so partial failure is impossible to
+  mistake for success. (`generated` is gone — attempts were never successes.)
+- **New regression guard: `scripts/check_degraded_mode.py`.** A crash on a
+  missing *optional* dependency is invisible to local testing by construction,
+  so it needs its own probe. The checker runs the server twice — once with
+  `dataprov` shadowed by a module that raises `ImportError`, once normally — and
+  asserts that the absent arm degrades honestly *and* that the present arm
+  actually produces the bundle. Without the second arm, a build that silently
+  stopped emitting provenance would also pass.
+- **New `scripts/check_generated_artifact.py`.** `generate` exiting 0 proves
+  nothing about its output. This asserts the artifact's real invariants:
+  `metrics` agree with the payload, `dangling_edges == 0`,
+  `leader_is_module_member is False`, `weights_in_range is True`, and the PROV
+  chain still contains `wasAssociatedWith` + `FlyCellAtlas`. Self-tested by
+  injecting six mutations — all six caught, control green.
+
+### Continuous integration
+
+`.github/workflows/ci.yml` runs on every push and PR, in two job families:
+
+- `gates` (Python 3.10 / 3.12 / 3.13) — `compileall`, credential gate,
+  docs-drift gate, MCP tool gate (`--offline`), degraded-mode gate, CLI
+  self-check, generator smoke test, artifact-invariant gate.
+- `package` — `pip install ".[prov]"`, then runs the installed `flybrain`
+  console script via `FLYBRAIN_HOME` and asserts the artifact it produces. This
+  is the README install claim, executed rather than asserted; it also validates
+  that the `prov` extra actually resolves.
+
+`workflow_dispatch` is enabled for on-demand re-runs. GitHub's free runners
+never download the 5.63 GB dataset, so the 11 data-backed tools are covered by
+`flybrain verify` (70/70) on a machine that has the connectome, not in CI.
 
 ### Documentation
 
