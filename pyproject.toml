@@ -1,0 +1,34 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "flybrain-connectome"
+version = "1.0.0"
+description = "Traceable synthetic bio-topology generator grounded in the real Drosophila male-brain connectome (MaleCNS v1.0, 166,700 neurons / 124,177,617 synapses)."
+readme = "README.md"
+requires-python = ">=3.10"
+license = { text = "MIT" }
+authors = [{ name = "Lexing (厉兴)" }]
+keywords = [
+    "connectome", "multi-agent", "topology", "provenance", "drosophila",
+    "swarm", "neuroscience", "complex-systems", "W3C-PROV",
+]
+dependencies = []  # standard library only — zero third-party requirements
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Programming Language :: Python :: 3",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Intended Audience :: Science/Research",
+]
+
+[project.urls]
+Homepage = "https://github.com/lm203688/flybrain-connectome"
+Repository = "https://github.com/lm203688/flybrain-connectome"
+Documentation = "https://github.com/lm203688/flybrain-connectome/blob/main/docs/arxiv_paper.md"
+
+[project.scripts]
+flybrain = "flybrain_cli:main"
+
+[tool.setuptools]
+py-modules = ["flybrain_cli"]
