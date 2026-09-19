@@ -128,7 +128,7 @@
     },
     "agentteams": {
       "team_file": "agentteams/config/team.yaml",
-      "leader": "m0_rep",
+      "leader": null,
       "role_map": {
         "guardrail": "verifier",
         "tissue_rep": "planner",
@@ -1225,7 +1225,7 @@
       "n_agents": 90,
       "n_edges": 9,
       "n_modules": 10,
-      "leader_resolved": "m0_rep",
+      "leader_resolved": null,
       "leader_is_module_member": false,
       "dangling_edges": 0,
       "weight_min": -0.4,
@@ -1234,7 +1234,8 @@
       "inhibitory_edges": 1,
       "recurrent_edges": 0,
       "reservoir_edges": 8,
-      "ok": true
+      "ok": true,
+      "_repair": "Phase-3 free GA result has no detached coordinator by construction; leader previously mis-declared as m0_rep (a module-0 member). Topology and all edge metrics unchanged."
     }
   }
 }
