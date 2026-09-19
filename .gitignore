@@ -45,6 +45,15 @@ flybrain-connectome-mcp/generated_organisms/swarmlabs/_backup_schema_v1.0/
 integrations/swarmlabs/_stale/
 *.csv
 
+# ...except the measured evidence behind the published claims (small, auditable).
+# The −84% wire-cost and the E2E results are only checkable if these ship.
+!integrations/swarmlabs/ga_phase3_runs_*.csv
+!integrations/swarmlabs/ga_phase3_log_*.csv
+!integrations/swarmlabs/e2e_bio_advantage.csv
+!integrations/swarmlabs/e2e_batch_stats.csv
+!integrations/swarmlabs/e2e_batch_results.csv
+!integrations/swarmlabs/benchmark_module_stacking.csv
+
 # Internal planning docs (not for public consumption)
 integrations/swarmlabs/QUESTIONS_FOR_SWARMLABS.md
 integrations/swarmlabs/SWARMLABS_RESPONSE.md
