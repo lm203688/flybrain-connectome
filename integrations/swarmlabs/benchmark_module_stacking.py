@@ -33,6 +33,8 @@ import sys
 import time
 from pathlib import Path
 
+from _local_key import local_api_key  # same-directory helper; keeps keys out of the repo
+
 # ====================================================================== #
 # 路径配置
 # ====================================================================== #
@@ -43,7 +45,7 @@ FLYBRAIN_BP = (
 )
 PYTHON = r"C:\Users\xing\.workbuddy\binaries\python\envs\minimind\Scripts\python.exe"
 FLYBRAIN_DATA_DIR = r"C:\Users\xing\Desktop\flybrain-connectome\male_cns"
-FLYBRAIN_API_KEY = "flybrain_dfacd1184a8d21ba263d282a54b425d0d06b67fd50b2438c90e219edfff73cb5"
+FLYBRAIN_API_KEY = local_api_key()   # resolved from env or local config.json — never hardcode
 RESULTS_DIR = Path(r"C:\Users\xing\Desktop\flybrain-connectome\integrations\swarmlabs")
 CSV_PATH = RESULTS_DIR / "benchmark_module_stacking.csv"
 REPORT_PATH = RESULTS_DIR / "MODULE_STACKING_REPORT.md"
