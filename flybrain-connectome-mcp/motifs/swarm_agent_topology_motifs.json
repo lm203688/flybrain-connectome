@@ -1,0 +1,233 @@
+{
+  "schema_version": "1.0",
+  "source": "MaleCNS v1.0 (male Drosophila brain connectome), license CC-BY",
+  "generated_utc": "2026-09-16T22:29:57.040787+00:00",
+  "caveat": "Motifs are TOPOLOGY PATTERNS derived from real wiring; they are descriptions, not the raw neuron data. The authoritative 166,700 neurons live in flybrain-connectome-mcp (queried via MCP/HTTP API).",
+  "dataset_stats": {
+    "total_synapses": 124177617,
+    "annotated_neurons": 211577,
+    "mean_fanout": 744.9,
+    "mean_fanin": 744.9,
+    "top_hubs": [
+      {
+        "hub_type": "CT1",
+        "hub_body": 10009,
+        "total_synapses": 222215
+      },
+      {
+        "hub_type": "APL",
+        "hub_body": 10540,
+        "total_synapses": 222198
+      },
+      {
+        "hub_type": "APL",
+        "hub_body": 10977,
+        "total_synapses": 221739
+      },
+      {
+        "hub_type": "CT1",
+        "hub_body": 10157,
+        "total_synapses": 186106
+      },
+      {
+        "hub_type": "LPi21",
+        "hub_body": 10066,
+        "total_synapses": 126299
+      }
+    ]
+  },
+  "motifs": {
+    "inhibitory_hub": {
+      "pattern": "inhibitory_hub",
+      "biological_role": "Single GABAergic hub broadcasts inhibition to many targets; acts as a global 'brake'/coordinator.",
+      "hub_body": 10540,
+      "hub_type": "APL",
+      "hub_superclass": "cb_intrinsic",
+      "neurotransmitter": "",
+      "fan_out_synapses": 102263,
+      "fan_in_synapses": 119935,
+      "broadcast_targets": [
+        {
+          "body": 12569,
+          "type": "DPM",
+          "superclass": "cb_intrinsic",
+          "synapses": 711
+        },
+        {
+          "body": 519371,
+          "type": "MBON05",
+          "superclass": "cb_intrinsic",
+          "synapses": 594
+        },
+        {
+          "body": 10013,
+          "type": "MBON01",
+          "superclass": "cb_intrinsic",
+          "synapses": 439
+        },
+        {
+          "body": 12690,
+          "type": "MBON06",
+          "superclass": "cb_intrinsic",
+          "synapses": 274
+        },
+        {
+          "body": 11402,
+          "type": "MBON11",
+          "superclass": "cb_intrinsic",
+          "synapses": 261
+        },
+        {
+          "body": 18540,
+          "type": "KCg-s1",
+          "superclass": "cb_intrinsic",
+          "synapses": 206
+        },
+        {
+          "body": 11001,
+          "type": "LHMB1",
+          "superclass": "cb_intrinsic",
+          "synapses": 143
+        },
+        {
+          "body": 10176,
+          "type": "DM1_lPN",
+          "superclass": "cb_intrinsic",
+          "synapses": 131
+        },
+        {
+          "body": 36723,
+          "type": "KCg-d",
+          "superclass": "cb_intrinsic",
+          "synapses": 96
+        },
+        {
+          "body": 520206,
+          "type": "KCg-d",
+          "superclass": "cb_intrinsic",
+          "synapses": 95
+        },
+        {
+          "body": 14182,
+          "type": "PPL103",
+          "superclass": "cb_intrinsic",
+          "synapses": 93
+        },
+        {
+          "body": 519373,
+          "type": "MBON03",
+          "superclass": "cb_intrinsic",
+          "synapses": 87
+        },
+        {
+          "body": 24959,
+          "type": "KCg-m",
+          "superclass": "cb_intrinsic",
+          "synapses": 86
+        },
+        {
+          "body": 96065,
+          "type": "KCa'b'-m",
+          "superclass": "cb_intrinsic",
+          "synapses": 83
+        },
+        {
+          "body": 45016,
+          "type": "KCg-m",
+          "superclass": "cb_intrinsic",
+          "synapses": 82
+        }
+      ],
+      "canonical_target": {
+        "body": 12569,
+        "type": "DPM",
+        "synapses": 711
+      },
+      "agent_mapping": {
+        "role": "coordinator / guardrail agent",
+        "rule": "One coordinator agent sends inhibitory (negative-weight) edges to its top-K workers, weighted by synapses/normalized. Prevents runaway/over-commit in the swarm.",
+        "edge_weight_hint": "normalize each target's synapses by max target synapses -> inhibition strength in [0,1]."
+      }
+    },
+    "reservoir_smallworld": {
+      "pattern": "reservoir_smallworld",
+      "biological_role": "Loosely-connected, small-world wiring gives a useful memory spectrum and built-in regularization (thebuzz finding: intact fly wiring > shuffled wiring as a reservoir).",
+      "mean_fanout": 744.9,
+      "mean_fanin": 744.9,
+      "fanout_distribution_neurons": {
+        "1-10": 1314,
+        "11-100": 2232,
+        "101-1000": 82290,
+        "1001-10000": 75858,
+        "10000+": 3971
+      },
+      "fanout_distribution_pct": {
+        "1-10": 0.79,
+        "11-100": 1.34,
+        "101-1000": 49.36,
+        "1001-10000": 45.51,
+        "10000+": 2.38
+      },
+      "dominant_bucket": "101-1000",
+      "agent_mapping": {
+        "role": "collective short-term memory / context buffer",
+        "rule": "Instantiate a reservoir of K loosely-connected 'reservoir agents' whose sparse connections are drawn from the observed fanout distribution. A readout agent observes the reservoir state to encode recent task context (echo-state / reservoir computing).",
+        "build": "Sample each reservoir agent's out-degree from fanout_distribution; wire targets uniformly at random among the K agents."
+      }
+    },
+    "recurrent_feedback": {
+      "pattern": "recurrent_feedback",
+      "biological_role": "Subsystems feed a fraction of their output back as input (working-memory / stabilization loop).",
+      "self_recurrence_top": [
+        {
+          "superclass": "ol_intrinsic",
+          "synapses": 35691182,
+          "pct_of_total": 28.74
+        },
+        {
+          "superclass": "cb_intrinsic",
+          "synapses": 34365451,
+          "pct_of_total": 27.67
+        },
+        {
+          "superclass": "vnc_intrinsic",
+          "synapses": 11042345,
+          "pct_of_total": 8.89
+        },
+        {
+          "superclass": "visual_projection",
+          "synapses": 1613964,
+          "pct_of_total": 1.3
+        },
+        {
+          "superclass": "ascending_neuron",
+          "synapses": 656576,
+          "pct_of_total": 0.53
+        },
+        {
+          "superclass": "descending_neuron",
+          "synapses": 598721,
+          "pct_of_total": 0.48
+        },
+        {
+          "superclass": "vnc_sensory",
+          "synapses": 439451,
+          "pct_of_total": 0.35
+        },
+        {
+          "superclass": "cb_sensory",
+          "synapses": 252504,
+          "pct_of_total": 0.2
+        }
+      ],
+      "agent_mapping": {
+        "role": "module internal memory / stabilization",
+        "rule": "For any functional module, connect its output back to its input with recurrent weight = self_recurrence pct (normalized). Keeps the module's prior state alive across steps without external storage."
+      }
+    }
+  },
+  "how_to_consume": {
+    "keep_independence": "SwarmLabs stores ONLY this JSON; the 166,700 neurons stay in flybrain-connectome-mcp. To refresh, call the MCP tool hub_targets / neuron_outputs or re-run this script.",
+    "refresh_command": "FLYBRAIN_DATA_DIR=<male_cns> python extract_motifs.py"
+  }
+}
