@@ -1,0 +1,1802 @@
+{
+  "schema_version": "1.1",
+  "kind": "virtual_organism",
+  "generated_utc": "2026-09-17T05:46:32.404053+00:00",
+  "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
+  "spec": {
+    "n_modules": 8,
+    "agents_per_module": 20,
+    "use_inhibitory_coordinator": true,
+    "use_reservoir_buffer": true,
+    "use_recurrent_memory": true,
+    "recurrent_pct": 0.218
+  },
+  "module_profiles": {
+    "0": {
+      "name": "sensory",
+      "description": "High-density input buffer (ol_intrinsic analog)"
+    },
+    "1": {
+      "name": "memory",
+      "description": "Recurrent working memory (cb_intrinsic analog)"
+    },
+    "2": {
+      "name": "motor",
+      "description": "Motor output with local inhibition (vnc_intrinsic)"
+    },
+    "3": {
+      "name": "integration",
+      "description": "Cross-module integration with inhibition"
+    },
+    "4": {
+      "name": "sensory",
+      "description": "High-density input buffer (ol_intrinsic analog)"
+    },
+    "5": {
+      "name": "memory",
+      "description": "Recurrent working memory (cb_intrinsic analog)"
+    },
+    "6": {
+      "name": "motor",
+      "description": "Motor output with local inhibition (vnc_intrinsic)"
+    },
+    "7": {
+      "name": "integration",
+      "description": "Cross-module integration with inhibition"
+    }
+  },
+  "organism": {
+    "nodes": [
+      {
+        "id": "m0_a0",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m0_a1",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m0_a2",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m0_a3",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m0_a4",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m0_a5",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m0_a6",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m0_a7",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m0_a8",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m0_a9",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m0_a10",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m0_a11",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m0_a12",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m0_a13",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m0_a14",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m0_a15",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m0_a16",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m0_a17",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m0_a18",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m0_a19",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m0_rep",
+        "role": "tissue_rep",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "input_triage"
+      },
+      {
+        "id": "m1_a0",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m1_a1",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m1_a2",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m1_a3",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m1_a4",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m1_a5",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m1_a6",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m1_a7",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m1_a8",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m1_a9",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m1_a10",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m1_a11",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m1_a12",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m1_a13",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m1_a14",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m1_a15",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m1_a16",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m1_a17",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m1_a18",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m1_a19",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m1_rep",
+        "role": "tissue_rep",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "memory_synthesis"
+      },
+      {
+        "id": "m2_a0",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m2_a1",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m2_a2",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m2_a3",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m2_a4",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m2_a5",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m2_a6",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m2_a7",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m2_a8",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m2_a9",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m2_a10",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m2_a11",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m2_a12",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m2_a13",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m2_a14",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m2_a15",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m2_a16",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m2_a17",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m2_a18",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m2_a19",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m2_rep",
+        "role": "tissue_rep",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "output_coordination"
+      },
+      {
+        "id": "m3_a0",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m3_a1",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m3_a2",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m3_a3",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m3_a4",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m3_a5",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m3_a6",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m3_a7",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m3_a8",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m3_a9",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m3_a10",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m3_a11",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m3_a12",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m3_a13",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m3_a14",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m3_a15",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m3_a16",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m3_a17",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m3_a18",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m3_a19",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m3_rep",
+        "role": "tissue_rep",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "cross_module_arbitration"
+      },
+      {
+        "id": "m4_a0",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m4_a1",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m4_a2",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m4_a3",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m4_a4",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m4_a5",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m4_a6",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m4_a7",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m4_a8",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m4_a9",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m4_a10",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m4_a11",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m4_a12",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m4_a13",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m4_a14",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m4_a15",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m4_a16",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m4_a17",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m4_a18",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m4_a19",
+        "role": "cell",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m4_rep",
+        "role": "tissue_rep",
+        "module": 4,
+        "profile": "sensory",
+        "task_hint": "input_triage"
+      },
+      {
+        "id": "m5_a0",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m5_a1",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m5_a2",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m5_a3",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m5_a4",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m5_a5",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m5_a6",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m5_a7",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m5_a8",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m5_a9",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m5_a10",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m5_a11",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m5_a12",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m5_a13",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m5_a14",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m5_a15",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m5_a16",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m5_a17",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m5_a18",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m5_a19",
+        "role": "cell",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m5_rep",
+        "role": "tissue_rep",
+        "module": 5,
+        "profile": "memory",
+        "task_hint": "memory_synthesis"
+      },
+      {
+        "id": "m6_a0",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m6_a1",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m6_a2",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m6_a3",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m6_a4",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m6_a5",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m6_a6",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m6_a7",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m6_a8",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m6_a9",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m6_a10",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m6_a11",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m6_a12",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m6_a13",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m6_a14",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m6_a15",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m6_a16",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m6_a17",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m6_a18",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m6_a19",
+        "role": "cell",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m6_rep",
+        "role": "tissue_rep",
+        "module": 6,
+        "profile": "motor",
+        "task_hint": "output_coordination"
+      },
+      {
+        "id": "m7_a0",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m7_a1",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m7_a2",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m7_a3",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m7_a4",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m7_a5",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m7_a6",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m7_a7",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m7_a8",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m7_a9",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m7_a10",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m7_a11",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m7_a12",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m7_a13",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m7_a14",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m7_a15",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m7_a16",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m7_a17",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m7_a18",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m7_a19",
+        "role": "cell",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m7_rep",
+        "role": "tissue_rep",
+        "module": 7,
+        "profile": "integration",
+        "task_hint": "cross_module_arbitration"
+      },
+      {
+        "id": "coordinator",
+        "role": "guardrail",
+        "source": "APL(body 10540)",
+        "task_hint": "global_guardrail"
+      }
+    ],
+    "edges": [
+      {
+        "from": "m0_rep",
+        "to": "m0_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "module": 0
+      },
+      {
+        "from": "m1_rep",
+        "to": "m1_rep",
+        "weight": 0.4,
+        "kind": "recurrent",
+        "module": 1
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "module": 2
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_rep",
+        "weight": 0.25,
+        "kind": "recurrent",
+        "module": 3
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "module": 4
+      },
+      {
+        "from": "m5_rep",
+        "to": "m5_rep",
+        "weight": 0.4,
+        "kind": "recurrent",
+        "module": 5
+      },
+      {
+        "from": "m6_rep",
+        "to": "m6_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "module": 6
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_rep",
+        "weight": 0.25,
+        "kind": "recurrent",
+        "module": 7
+      },
+      {
+        "from": "m0_a0",
+        "to": "m0_a4",
+        "weight": 0.323,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a5",
+        "to": "m0_a1",
+        "weight": 0.63,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a10",
+        "to": "m0_a4",
+        "weight": 0.096,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a12",
+        "to": "m0_a13",
+        "weight": 0.962,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a14",
+        "to": "m0_a18",
+        "weight": 0.91,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a15",
+        "to": "m0_a17",
+        "weight": 0.563,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a18",
+        "to": "m4_a0",
+        "weight": 0.255,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a19",
+        "to": "m0_a15",
+        "weight": 0.764,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_rep",
+        "to": "m6_a15",
+        "weight": 0.022,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m1_a1",
+        "to": "m3_a15",
+        "weight": 0.063,
+        "kind": "reservoir",
+        "module": 1
+      },
+      {
+        "from": "m1_a7",
+        "to": "m1_a14",
+        "weight": 0.298,
+        "kind": "reservoir",
+        "module": 1
+      },
+      {
+        "from": "m1_a11",
+        "to": "m6_a1",
+        "weight": 0.855,
+        "kind": "reservoir",
+        "module": 1
+      },
+      {
+        "from": "m3_a0",
+        "to": "m3_a11",
+        "weight": 0.6,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m3_a8",
+        "to": "m3_a11",
+        "weight": 0.078,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m3_a16",
+        "to": "m3_a7",
+        "weight": 0.849,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m3_a17",
+        "to": "m3_a4",
+        "weight": 0.261,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m3_a18",
+        "to": "m2_a15",
+        "weight": 0.762,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m4_a0",
+        "to": "m4_a7",
+        "weight": 0.046,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a1",
+        "to": "m1_a1",
+        "weight": 0.917,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a5",
+        "to": "m4_a16",
+        "weight": 0.439,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a7",
+        "to": "m3_a14",
+        "weight": 0.672,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a8",
+        "to": "m4_a11",
+        "weight": 0.228,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a9",
+        "to": "m4_a2",
+        "weight": 0.097,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a12",
+        "to": "m4_a7",
+        "weight": 0.357,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a13",
+        "to": "m1_a12",
+        "weight": 0.678,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a15",
+        "to": "m4_a3",
+        "weight": 0.069,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a16",
+        "to": "m4_a10",
+        "weight": 0.498,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a17",
+        "to": "m3_a16",
+        "weight": 0.555,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a18",
+        "to": "m4_a2",
+        "weight": 0.796,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_rep",
+        "to": "m1_a13",
+        "weight": 0.016,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m5_a1",
+        "to": "m5_a10",
+        "weight": 0.712,
+        "kind": "reservoir",
+        "module": 5
+      },
+      {
+        "from": "m5_a2",
+        "to": "m5_a19",
+        "weight": 0.186,
+        "kind": "reservoir",
+        "module": 5
+      },
+      {
+        "from": "m5_a3",
+        "to": "m5_a0",
+        "weight": 0.375,
+        "kind": "reservoir",
+        "module": 5
+      },
+      {
+        "from": "m5_a10",
+        "to": "m5_a0",
+        "weight": 0.484,
+        "kind": "reservoir",
+        "module": 5
+      },
+      {
+        "from": "m5_a13",
+        "to": "m0_a12",
+        "weight": 0.194,
+        "kind": "reservoir",
+        "module": 5
+      },
+      {
+        "from": "m5_a15",
+        "to": "m5_rep",
+        "weight": 0.181,
+        "kind": "reservoir",
+        "module": 5
+      },
+      {
+        "from": "m5_a17",
+        "to": "m5_a2",
+        "weight": 0.309,
+        "kind": "reservoir",
+        "module": 5
+      },
+      {
+        "from": "m5_a19",
+        "to": "m5_rep",
+        "weight": 0.514,
+        "kind": "reservoir",
+        "module": 5
+      },
+      {
+        "from": "m6_a0",
+        "to": "m6_a18",
+        "weight": 0.969,
+        "kind": "reservoir",
+        "module": 6
+      },
+      {
+        "from": "m6_a2",
+        "to": "m6_a14",
+        "weight": 0.469,
+        "kind": "reservoir",
+        "module": 6
+      },
+      {
+        "from": "m6_a9",
+        "to": "m7_a6",
+        "weight": 0.405,
+        "kind": "reservoir",
+        "module": 6
+      },
+      {
+        "from": "m6_a13",
+        "to": "m6_a9",
+        "weight": 0.372,
+        "kind": "reservoir",
+        "module": 6
+      },
+      {
+        "from": "m6_a14",
+        "to": "m6_a12",
+        "weight": 0.735,
+        "kind": "reservoir",
+        "module": 6
+      },
+      {
+        "from": "m7_a4",
+        "to": "m7_rep",
+        "weight": 0.157,
+        "kind": "reservoir",
+        "module": 7
+      },
+      {
+        "from": "m7_a5",
+        "to": "m7_a9",
+        "weight": 0.803,
+        "kind": "reservoir",
+        "module": 7
+      },
+      {
+        "from": "m7_a13",
+        "to": "m6_a11",
+        "weight": 0.27,
+        "kind": "reservoir",
+        "module": 7
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_a7",
+        "weight": -0.38,
+        "kind": "inhibitory",
+        "module": 2
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_a9",
+        "weight": -0.208,
+        "kind": "inhibitory",
+        "module": 2
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_a10",
+        "weight": -0.446,
+        "kind": "inhibitory",
+        "module": 2
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a9",
+        "weight": -0.285,
+        "kind": "inhibitory",
+        "module": 3
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a18",
+        "weight": -0.36,
+        "kind": "inhibitory",
+        "module": 3
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a19",
+        "weight": -0.235,
+        "kind": "inhibitory",
+        "module": 3
+      },
+      {
+        "from": "m6_rep",
+        "to": "m6_a10",
+        "weight": -0.376,
+        "kind": "inhibitory",
+        "module": 6
+      },
+      {
+        "from": "m6_rep",
+        "to": "m6_a19",
+        "weight": -0.412,
+        "kind": "inhibitory",
+        "module": 6
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_a15",
+        "weight": -0.351,
+        "kind": "inhibitory",
+        "module": 7
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_a1",
+        "weight": -0.373,
+        "kind": "inhibitory",
+        "module": 7
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_a3",
+        "weight": -0.348,
+        "kind": "inhibitory",
+        "module": 7
+      },
+      {
+        "from": "coordinator",
+        "to": "m0_rep",
+        "weight": -1.0,
+        "kind": "inhibitory",
+        "module": 0
+      },
+      {
+        "from": "coordinator",
+        "to": "m1_rep",
+        "weight": -0.875,
+        "kind": "inhibitory",
+        "module": 1
+      },
+      {
+        "from": "coordinator",
+        "to": "m2_rep",
+        "weight": -0.75,
+        "kind": "inhibitory",
+        "module": 2
+      },
+      {
+        "from": "coordinator",
+        "to": "m3_rep",
+        "weight": -0.625,
+        "kind": "inhibitory",
+        "module": 3
+      },
+      {
+        "from": "coordinator",
+        "to": "m4_rep",
+        "weight": -0.5,
+        "kind": "inhibitory",
+        "module": 4
+      },
+      {
+        "from": "coordinator",
+        "to": "m5_rep",
+        "weight": -0.375,
+        "kind": "inhibitory",
+        "module": 5
+      },
+      {
+        "from": "coordinator",
+        "to": "m6_rep",
+        "weight": -0.25,
+        "kind": "inhibitory",
+        "module": 6
+      },
+      {
+        "from": "coordinator",
+        "to": "m7_rep",
+        "weight": -0.125,
+        "kind": "inhibitory",
+        "module": 7
+      }
+    ]
+  },
+  "metrics": {
+    "n_nodes": 169,
+    "n_edges": 73,
+    "avg_degree": 0.864,
+    "inhibition_ratio": 0.26,
+    "n_modules": 8,
+    "intra_module_edges": 52,
+    "inter_module_edges": 21,
+    "modularity_est": 0.712,
+    "profile_breakdown": {
+      "sensory": {
+        "nodes": 42,
+        "edges": 24
+      },
+      "memory": {
+        "nodes": 42,
+        "edges": 13
+      },
+      "motor": {
+        "nodes": 42,
+        "edges": 12
+      },
+      "integration": {
+        "nodes": 42,
+        "edges": 16
+      },
+      "uniform": {
+        "nodes": 1,
+        "edges": 8
+      }
+    }
+  },
+  "motif_provenance": {
+    "requested_source": "local",
+    "mode": "local_snapshot",
+    "transport": "file",
+    "api_url": "http://127.0.0.1:8799",
+    "api_tool": "export_swarm_motifs",
+    "api_refresh_requested": false,
+    "api_key_source": "local_config",
+    "resolved_utc": "2026-09-17T05:46:32.319836+00:00",
+    "motif_generated_utc": "2026-09-16T22:29:57.040787+00:00",
+    "motifs": [
+      "inhibitory_hub",
+      "recurrent_feedback",
+      "reservoir_smallworld"
+    ],
+    "doc_sha256": "b9755a4519bee13a4782199302e254a3298919d2a66f902aa668e94109e70514",
+    "served_from": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+    "fallback_reason": null,
+    "snapshot_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+    "snapshot_sha256": "89c0790eb8d66fdb7eda569b82caf35aa46aa98c1ae2672cecb09885c5e828ed",
+    "api_cache_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\.motif_api_cache.json",
+    "snapshot_refreshed": false
+  }
+}

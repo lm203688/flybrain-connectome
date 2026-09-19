@@ -1,0 +1,54 @@
+[
+  {
+    "label": "bp_hierarchical",
+    "delay": 3,
+    "K": 48,
+    "n_mod": 4,
+    "central_r2": 0.035,
+    "module_r2": {
+      "0": 0.0203,
+      "1": 0.0129,
+      "2": 0.0095,
+      "3": 0.0095
+    },
+    "best_local_r2": 0.0203,
+    "local_vs_central_ratio": 0.5788,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.12
+  },
+  {
+    "label": "bp_predictive_coding",
+    "delay": 3,
+    "K": 48,
+    "n_mod": 4,
+    "central_r2": 0.0486,
+    "module_r2": {
+      "0": 0.0113,
+      "1": 0.0089,
+      "2": 0.0025,
+      "3": 0.0245
+    },
+    "best_local_r2": 0.0245,
+    "local_vs_central_ratio": 0.5033,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.1
+  },
+  {
+    "label": "modular_isolation",
+    "delay": 3,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.1179,
+    "module_r2": {
+      "0": 0.0128,
+      "1": 0.0112,
+      "2": 0.03,
+      "3": 0.0,
+      "4": 0.0265
+    },
+    "best_local_r2": 0.03,
+    "local_vs_central_ratio": 0.2547,
+    "verdict": "H2 中央依赖",
+    "elapsed_s": 0.1
+  }
+]

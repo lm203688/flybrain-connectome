@@ -1,0 +1,775 @@
+{
+  "schema_version": "1.1",
+  "kind": "virtual_organism",
+  "generated_utc": "2026-09-17T05:43:42.475142+00:00",
+  "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
+  "spec": {
+    "n_modules": 6,
+    "agents_per_module": 10,
+    "recurrent_pct": 0.287,
+    "module_profiles": "uniform"
+  },
+  "module_profiles": {
+    "0": {
+      "name": "uniform",
+      "description": "Cross-module integration with inhibition"
+    },
+    "1": {
+      "name": "uniform",
+      "description": "Cross-module integration with inhibition"
+    },
+    "2": {
+      "name": "uniform",
+      "description": "Cross-module integration with inhibition"
+    },
+    "3": {
+      "name": "uniform",
+      "description": "Cross-module integration with inhibition"
+    },
+    "4": {
+      "name": "uniform",
+      "description": "Cross-module integration with inhibition"
+    },
+    "5": {
+      "name": "uniform",
+      "description": "Cross-module integration with inhibition"
+    }
+  },
+  "organism": {
+    "nodes": [
+      {
+        "id": "m0_a0",
+        "role": "cell",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m0_a1",
+        "role": "cell",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m0_a2",
+        "role": "cell",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m0_a3",
+        "role": "cell",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m0_a4",
+        "role": "cell",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m0_a5",
+        "role": "cell",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m0_a6",
+        "role": "cell",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m0_a7",
+        "role": "cell",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m0_a8",
+        "role": "cell",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m0_a9",
+        "role": "cell",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m0_rep",
+        "role": "tissue_rep",
+        "module": 0,
+        "profile": "uniform",
+        "task_hint": "cross_module_arbitration"
+      },
+      {
+        "id": "m1_a0",
+        "role": "cell",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m1_a1",
+        "role": "cell",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m1_a2",
+        "role": "cell",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m1_a3",
+        "role": "cell",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m1_a4",
+        "role": "cell",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m1_a5",
+        "role": "cell",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m1_a6",
+        "role": "cell",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m1_a7",
+        "role": "cell",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m1_a8",
+        "role": "cell",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m1_a9",
+        "role": "cell",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m1_rep",
+        "role": "tissue_rep",
+        "module": 1,
+        "profile": "uniform",
+        "task_hint": "cross_module_arbitration"
+      },
+      {
+        "id": "m2_a0",
+        "role": "cell",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m2_a1",
+        "role": "cell",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m2_a2",
+        "role": "cell",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m2_a3",
+        "role": "cell",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m2_a4",
+        "role": "cell",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m2_a5",
+        "role": "cell",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m2_a6",
+        "role": "cell",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m2_a7",
+        "role": "cell",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m2_a8",
+        "role": "cell",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m2_a9",
+        "role": "cell",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m2_rep",
+        "role": "tissue_rep",
+        "module": 2,
+        "profile": "uniform",
+        "task_hint": "cross_module_arbitration"
+      },
+      {
+        "id": "m3_a0",
+        "role": "cell",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m3_a1",
+        "role": "cell",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m3_a2",
+        "role": "cell",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m3_a3",
+        "role": "cell",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m3_a4",
+        "role": "cell",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m3_a5",
+        "role": "cell",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m3_a6",
+        "role": "cell",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m3_a7",
+        "role": "cell",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m3_a8",
+        "role": "cell",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m3_a9",
+        "role": "cell",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m3_rep",
+        "role": "tissue_rep",
+        "module": 3,
+        "profile": "uniform",
+        "task_hint": "cross_module_arbitration"
+      },
+      {
+        "id": "m4_a0",
+        "role": "cell",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m4_a1",
+        "role": "cell",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m4_a2",
+        "role": "cell",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m4_a3",
+        "role": "cell",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m4_a4",
+        "role": "cell",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m4_a5",
+        "role": "cell",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m4_a6",
+        "role": "cell",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m4_a7",
+        "role": "cell",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m4_a8",
+        "role": "cell",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m4_a9",
+        "role": "cell",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m4_rep",
+        "role": "tissue_rep",
+        "module": 4,
+        "profile": "uniform",
+        "task_hint": "cross_module_arbitration"
+      },
+      {
+        "id": "m5_a0",
+        "role": "cell",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m5_a1",
+        "role": "cell",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m5_a2",
+        "role": "cell",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m5_a3",
+        "role": "cell",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m5_a4",
+        "role": "cell",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m5_a5",
+        "role": "cell",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m5_a6",
+        "role": "cell",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m5_a7",
+        "role": "cell",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m5_a8",
+        "role": "cell",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m5_a9",
+        "role": "cell",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m5_rep",
+        "role": "tissue_rep",
+        "module": 5,
+        "profile": "uniform",
+        "task_hint": "cross_module_arbitration"
+      },
+      {
+        "id": "coordinator",
+        "role": "guardrail",
+        "source": "APL(body 10540)",
+        "task_hint": "global_guardrail"
+      }
+    ],
+    "edges": [
+      {
+        "from": "m0_rep",
+        "to": "m0_rep",
+        "weight": 0.287,
+        "kind": "recurrent",
+        "module": 0
+      },
+      {
+        "from": "m1_rep",
+        "to": "m1_rep",
+        "weight": 0.287,
+        "kind": "recurrent",
+        "module": 1
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_rep",
+        "weight": 0.287,
+        "kind": "recurrent",
+        "module": 2
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_rep",
+        "weight": 0.287,
+        "kind": "recurrent",
+        "module": 3
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_rep",
+        "weight": 0.287,
+        "kind": "recurrent",
+        "module": 4
+      },
+      {
+        "from": "m5_rep",
+        "to": "m5_rep",
+        "weight": 0.287,
+        "kind": "recurrent",
+        "module": 5
+      },
+      {
+        "from": "m0_a1",
+        "to": "m0_a2",
+        "weight": 0.821,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a2",
+        "to": "m0_a9",
+        "weight": 0.215,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a3",
+        "to": "m0_a4",
+        "weight": 0.091,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a6",
+        "to": "m0_rep",
+        "weight": 0.948,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_rep",
+        "to": "m3_a5",
+        "weight": 0.419,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m1_a4",
+        "to": "m1_a3",
+        "weight": 0.372,
+        "kind": "reservoir",
+        "module": 1
+      },
+      {
+        "from": "m1_a6",
+        "to": "m1_a3",
+        "weight": 0.496,
+        "kind": "reservoir",
+        "module": 1
+      },
+      {
+        "from": "m2_a1",
+        "to": "m2_a4",
+        "weight": 0.082,
+        "kind": "reservoir",
+        "module": 2
+      },
+      {
+        "from": "m2_a7",
+        "to": "m2_a2",
+        "weight": 0.757,
+        "kind": "reservoir",
+        "module": 2
+      },
+      {
+        "from": "m2_a8",
+        "to": "m2_a0",
+        "weight": 0.962,
+        "kind": "reservoir",
+        "module": 2
+      },
+      {
+        "from": "m2_a9",
+        "to": "m2_a5",
+        "weight": 0.34,
+        "kind": "reservoir",
+        "module": 2
+      },
+      {
+        "from": "m3_a2",
+        "to": "m3_a5",
+        "weight": 0.474,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m3_a4",
+        "to": "m5_a3",
+        "weight": 0.285,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m3_a7",
+        "to": "m3_a2",
+        "weight": 0.611,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m3_a9",
+        "to": "m3_a3",
+        "weight": 0.398,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m4_a1",
+        "to": "m4_a5",
+        "weight": 0.883,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_a9",
+        "to": "m4_a3",
+        "weight": 0.659,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m4_rep",
+        "to": "m2_a1",
+        "weight": 0.263,
+        "kind": "reservoir",
+        "module": 4
+      },
+      {
+        "from": "m5_a0",
+        "to": "m5_a6",
+        "weight": 0.61,
+        "kind": "reservoir",
+        "module": 5
+      },
+      {
+        "from": "m5_a2",
+        "to": "m0_a6",
+        "weight": 0.457,
+        "kind": "reservoir",
+        "module": 5
+      },
+      {
+        "from": "coordinator",
+        "to": "m0_rep",
+        "weight": -1.0,
+        "kind": "inhibitory",
+        "module": 0
+      },
+      {
+        "from": "coordinator",
+        "to": "m1_rep",
+        "weight": -0.833,
+        "kind": "inhibitory",
+        "module": 1
+      },
+      {
+        "from": "coordinator",
+        "to": "m2_rep",
+        "weight": -0.667,
+        "kind": "inhibitory",
+        "module": 2
+      },
+      {
+        "from": "coordinator",
+        "to": "m3_rep",
+        "weight": -0.5,
+        "kind": "inhibitory",
+        "module": 3
+      },
+      {
+        "from": "coordinator",
+        "to": "m4_rep",
+        "weight": -0.333,
+        "kind": "inhibitory",
+        "module": 4
+      },
+      {
+        "from": "coordinator",
+        "to": "m5_rep",
+        "weight": -0.167,
+        "kind": "inhibitory",
+        "module": 5
+      }
+    ]
+  },
+  "metrics": {
+    "n_nodes": 67,
+    "n_edges": 32,
+    "avg_degree": 0.955,
+    "inhibition_ratio": 0.188,
+    "n_modules": 6,
+    "intra_module_edges": 22,
+    "inter_module_edges": 10,
+    "modularity_est": 0.688,
+    "profile_breakdown": {
+      "uniform": {
+        "nodes": 67,
+        "edges": 32
+      }
+    }
+  },
+  "motif_provenance": {
+    "requested_source": "local",
+    "mode": "local_snapshot",
+    "transport": "file",
+    "api_url": "http://127.0.0.1:8799",
+    "api_tool": "export_swarm_motifs",
+    "api_refresh_requested": false,
+    "api_key_source": "local_config",
+    "resolved_utc": "2026-09-17T05:43:42.004088+00:00",
+    "motif_generated_utc": "2026-09-16T22:29:57.040787+00:00",
+    "motifs": [
+      "inhibitory_hub",
+      "recurrent_feedback",
+      "reservoir_smallworld"
+    ],
+    "doc_sha256": "b9755a4519bee13a4782199302e254a3298919d2a66f902aa668e94109e70514",
+    "served_from": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+    "fallback_reason": null,
+    "snapshot_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+    "snapshot_sha256": "89c0790eb8d66fdb7eda569b82caf35aa46aa98c1ae2672cecb09885c5e828ed",
+    "api_cache_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\.motif_api_cache.json",
+    "snapshot_refreshed": false
+  }
+}

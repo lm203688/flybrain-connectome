@@ -1,0 +1,50 @@
+[
+  {
+    "label": "bp_hierarchical",
+    "delay": 3,
+    "N": 20,
+    "K": 48,
+    "avg_spikes_topo": 420.4,
+    "avg_spikes_rand": 364.4,
+    "avg_energy_topo": 0.0,
+    "avg_energy_rand": 0.0,
+    "energy_ratio": 1.1531,
+    "avg_r2_topo": 0.0465,
+    "avg_r2_rand": 0.0675,
+    "r2_diff": -0.0209,
+    "verdict": "H3 无显著差异",
+    "elapsed_s": 0.15
+  },
+  {
+    "label": "bp_predictive_coding",
+    "delay": 3,
+    "N": 20,
+    "K": 48,
+    "avg_spikes_topo": 408.1,
+    "avg_spikes_rand": 364.4,
+    "avg_energy_topo": 0.0,
+    "avg_energy_rand": 0.0,
+    "energy_ratio": 1.1191,
+    "avg_r2_topo": 0.0352,
+    "avg_r2_rand": 0.0675,
+    "r2_diff": -0.0323,
+    "verdict": "H3 无显著差异",
+    "elapsed_s": 0.12
+  },
+  {
+    "label": "modular_isolation",
+    "delay": 3,
+    "N": 30,
+    "K": 100,
+    "avg_spikes_topo": 610.7,
+    "avg_spikes_rand": 603.0,
+    "avg_energy_topo": 1e-06,
+    "avg_energy_rand": 1e-06,
+    "energy_ratio": 1.0118,
+    "avg_r2_topo": 0.068,
+    "avg_r2_rand": 0.092,
+    "r2_diff": -0.024,
+    "verdict": "H3 无显著差异",
+    "elapsed_s": 0.13
+  }
+]

@@ -1,0 +1,90 @@
+# ---------------------------------------------------------------------------
+# Data — the 5.63 GB connectome is NEVER committed.
+# Obtain your own copy of MaleCNS v1.0 (CC-BY) and point FLYBRAIN_DATA_DIR at it.
+# ---------------------------------------------------------------------------
+male_cns/
+drosophila_connectome/data/
+drosophila_connectome/dataset/
+.backups/
+archive/
+ops/
+tmp/
+
+# ---------------------------------------------------------------------------
+# Secrets — the live service config carries a real API key. Never commit it.
+# Ship config.example.json instead; copy to config.json and set your own key.
+# ---------------------------------------------------------------------------
+flybrain-connectome-mcp/mcp_connectome/config.json
+config.local.json
+*.local.json
+
+# ---------------------------------------------------------------------------
+# Python
+# ---------------------------------------------------------------------------
+__pycache__/
+*.pyc
+*.pyo
+*.egg-info/
+build/
+dist/
+.venv/
+venv/
+
+# ---------------------------------------------------------------------------
+# Runtime / caches / logs
+# ---------------------------------------------------------------------------
+*.log
+api_runtime.log
+.motif_api_cache.json
+
+# Generated HTML previews (regenerate with `flybrain generate`)
+*.html
+
+# Backups / stale / logs
+flybrain-connectome-mcp/generated_organisms/swarmlabs/_backup_schema_v1.0/
+integrations/swarmlabs/_stale/
+*.csv
+
+# ...except the measured evidence behind the published claims (small, auditable).
+# The −84% wire-cost and the E2E results are only checkable if these ship.
+!integrations/swarmlabs/ga_phase3_runs_*.csv
+!integrations/swarmlabs/ga_phase3_log_*.csv
+!integrations/swarmlabs/e2e_bio_advantage.csv
+!integrations/swarmlabs/e2e_batch_stats.csv
+!integrations/swarmlabs/e2e_batch_results.csv
+!integrations/swarmlabs/benchmark_module_stacking.csv
+
+# Internal planning docs (not for public consumption)
+integrations/swarmlabs/QUESTIONS_FOR_SWARMLABS.md
+integrations/swarmlabs/SWARMLABS_RESPONSE.md
+integrations/swarmlabs/API_EXPOSURE_STRATEGY.md
+integrations/swarmlabs/DATA_VERSIONING_STRATEGY.md
+integrations/swarmlabs/REQUIREMENTS_FOR_SWARMLABS.md
+integrations/swarmlabs/E2E_REPORT.md
+integrations/swarmlabs/CROSS_DOMAIN_REPORT.md
+integrations/swarmlabs/BATCH_REPORT.md
+integrations/swarmlabs/PROFILE_REPORT.md
+integrations/swarmlabs/MODULE_STACKING_REPORT.md
+integrations/swarmlabs/BIO_ADVANTAGE_REPORT.md
+
+# ---------------------------------------------------------------------------
+# Stray internal artifacts (not for public consumption)
+# ---------------------------------------------------------------------------
+CONSOLIDATION_REPORT.md
+HANDOFF.md
+PROJECT_CONTEXT.md
+DATA_MANIFEST.json.done
+test_prov.json
+flybrain-connectome-mcp/ops/
+
+# ---------------------------------------------------------------------------
+# WorkBuddy internal state (memory, secrets, session artifacts)
+# ---------------------------------------------------------------------------
+.workbuddy/
+
+# ---------------------------------------------------------------------------
+# OS / editor
+# ---------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+*.swp

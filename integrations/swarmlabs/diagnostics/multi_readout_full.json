@@ -1,0 +1,518 @@
+[
+  {
+    "label": "bp_hierarchical",
+    "delay": 1,
+    "K": 48,
+    "n_mod": 4,
+    "central_r2": 0.2981,
+    "module_r2": {
+      "0": 0.3886,
+      "1": 0.3337,
+      "2": 0.3799,
+      "3": 0.3592
+    },
+    "best_local_r2": 0.3886,
+    "local_vs_central_ratio": 1.3034,
+    "verdict": "H1 模块化（局部可独立决策）",
+    "elapsed_s": 0.07
+  },
+  {
+    "label": "bp_hierarchical",
+    "delay": 2,
+    "K": 48,
+    "n_mod": 4,
+    "central_r2": 0.2518,
+    "module_r2": {
+      "0": 0.0798,
+      "1": 0.2132,
+      "2": 0.1749,
+      "3": 0.0755
+    },
+    "best_local_r2": 0.2132,
+    "local_vs_central_ratio": 0.8467,
+    "verdict": "H1 模块化（局部可独立决策）",
+    "elapsed_s": 0.12
+  },
+  {
+    "label": "bp_hierarchical",
+    "delay": 3,
+    "K": 48,
+    "n_mod": 4,
+    "central_r2": 0.0327,
+    "module_r2": {
+      "0": 0.0161,
+      "1": 0.0215,
+      "2": 0.0158,
+      "3": 0.0058
+    },
+    "best_local_r2": 0.0215,
+    "local_vs_central_ratio": 0.6597,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.17
+  },
+  {
+    "label": "bp_hierarchical",
+    "delay": 5,
+    "K": 48,
+    "n_mod": 4,
+    "central_r2": 0.0,
+    "module_r2": {
+      "0": 0.0012,
+      "1": 0.0,
+      "2": 0.0012,
+      "3": 0.0005
+    },
+    "best_local_r2": 0.0012,
+    "local_vs_central_ratio": 0.0,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.21
+  },
+  {
+    "label": "bp_predictive_coding",
+    "delay": 1,
+    "K": 48,
+    "n_mod": 4,
+    "central_r2": 0.3367,
+    "module_r2": {
+      "0": 0.3944,
+      "1": 0.2667,
+      "2": 0.3172,
+      "3": 0.4259
+    },
+    "best_local_r2": 0.4259,
+    "local_vs_central_ratio": 1.2647,
+    "verdict": "H1 模块化（局部可独立决策）",
+    "elapsed_s": 0.05
+  },
+  {
+    "label": "bp_predictive_coding",
+    "delay": 2,
+    "K": 48,
+    "n_mod": 4,
+    "central_r2": 0.1121,
+    "module_r2": {
+      "0": 0.0806,
+      "1": 0.178,
+      "2": 0.0994,
+      "3": 0.0412
+    },
+    "best_local_r2": 0.178,
+    "local_vs_central_ratio": 1.5872,
+    "verdict": "H1 模块化（局部可独立决策）",
+    "elapsed_s": 0.1
+  },
+  {
+    "label": "bp_predictive_coding",
+    "delay": 3,
+    "K": 48,
+    "n_mod": 4,
+    "central_r2": 0.0237,
+    "module_r2": {
+      "0": 0.0189,
+      "1": 0.0099,
+      "2": 0.0041,
+      "3": 0.0217
+    },
+    "best_local_r2": 0.0217,
+    "local_vs_central_ratio": 0.9141,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.15
+  },
+  {
+    "label": "bp_predictive_coding",
+    "delay": 5,
+    "K": 48,
+    "n_mod": 4,
+    "central_r2": 0.0,
+    "module_r2": {
+      "0": 0.0001,
+      "1": 0.0012,
+      "2": 0.001,
+      "3": 0.0025
+    },
+    "best_local_r2": 0.0025,
+    "local_vs_central_ratio": 0.0,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.2
+  },
+  {
+    "label": "modular_isolation",
+    "delay": 1,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.5604,
+    "module_r2": {
+      "0": 0.2067,
+      "1": 0.1746,
+      "2": 0.254,
+      "3": 0.2168,
+      "4": 0.2241
+    },
+    "best_local_r2": 0.254,
+    "local_vs_central_ratio": 0.4533,
+    "verdict": "H2 中央依赖",
+    "elapsed_s": 0.06
+  },
+  {
+    "label": "modular_isolation",
+    "delay": 2,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.143,
+    "module_r2": {
+      "0": 0.069,
+      "1": 0.0523,
+      "2": 0.0725,
+      "3": 0.1077,
+      "4": 0.08
+    },
+    "best_local_r2": 0.1077,
+    "local_vs_central_ratio": 0.7529,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.12
+  },
+  {
+    "label": "modular_isolation",
+    "delay": 3,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.0881,
+    "module_r2": {
+      "0": 0.004,
+      "1": 0.0,
+      "2": 0.0248,
+      "3": 0.0,
+      "4": 0.0442
+    },
+    "best_local_r2": 0.0442,
+    "local_vs_central_ratio": 0.5021,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.17
+  },
+  {
+    "label": "modular_isolation",
+    "delay": 5,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.0004,
+    "module_r2": {
+      "0": 0.0013,
+      "1": 0.0,
+      "2": 0.0002,
+      "3": 0.0,
+      "4": 0.0013
+    },
+    "best_local_r2": 0.0013,
+    "local_vs_central_ratio": 3.5673,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.23
+  },
+  {
+    "label": "robust_redundant",
+    "delay": 1,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.5078,
+    "module_r2": {
+      "0": 0.2739,
+      "1": 0.2241,
+      "2": 0.2711,
+      "3": 0.2424,
+      "4": 0.2568
+    },
+    "best_local_r2": 0.2739,
+    "local_vs_central_ratio": 0.5393,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.06
+  },
+  {
+    "label": "robust_redundant",
+    "delay": 2,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.1226,
+    "module_r2": {
+      "0": 0.0737,
+      "1": 0.0,
+      "2": 0.1423,
+      "3": 0.0626,
+      "4": 0.1097
+    },
+    "best_local_r2": 0.1423,
+    "local_vs_central_ratio": 1.1607,
+    "verdict": "H1 模块化（局部可独立决策）",
+    "elapsed_s": 0.12
+  },
+  {
+    "label": "robust_redundant",
+    "delay": 3,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.0709,
+    "module_r2": {
+      "0": 0.0,
+      "1": 0.0,
+      "2": 0.0004,
+      "3": 0.0403,
+      "4": 0.056
+    },
+    "best_local_r2": 0.056,
+    "local_vs_central_ratio": 0.7904,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.17
+  },
+  {
+    "label": "robust_redundant",
+    "delay": 5,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.0,
+    "module_r2": {
+      "0": 0.0001,
+      "1": 0.0,
+      "2": 0.0018,
+      "3": 0.0,
+      "4": 0.0013
+    },
+    "best_local_r2": 0.0018,
+    "local_vs_central_ratio": 0.0,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.23
+  },
+  {
+    "label": "decoupled_hierarchical",
+    "delay": 1,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.5046,
+    "module_r2": {
+      "0": 0.2477,
+      "1": 0.3221,
+      "2": 0.3027,
+      "3": 0.2835,
+      "4": 0.2568
+    },
+    "best_local_r2": 0.3221,
+    "local_vs_central_ratio": 0.6383,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.06
+  },
+  {
+    "label": "decoupled_hierarchical",
+    "delay": 2,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.1776,
+    "module_r2": {
+      "0": 0.024,
+      "1": 0.0572,
+      "2": 0.1402,
+      "3": 0.0283,
+      "4": 0.1097
+    },
+    "best_local_r2": 0.1402,
+    "local_vs_central_ratio": 0.7893,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.12
+  },
+  {
+    "label": "decoupled_hierarchical",
+    "delay": 3,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.02,
+    "module_r2": {
+      "0": 0.0225,
+      "1": 0.0343,
+      "2": 0.0,
+      "3": 0.0442,
+      "4": 0.056
+    },
+    "best_local_r2": 0.056,
+    "local_vs_central_ratio": 2.8023,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.17
+  },
+  {
+    "label": "decoupled_hierarchical",
+    "delay": 5,
+    "K": 100,
+    "n_mod": 5,
+    "central_r2": 0.0,
+    "module_r2": {
+      "0": 0.0,
+      "1": 0.0001,
+      "2": 0.0016,
+      "3": 0.0,
+      "4": 0.0013
+    },
+    "best_local_r2": 0.0016,
+    "local_vs_central_ratio": 0.0,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.23
+  },
+  {
+    "label": "bench_attention_working_combo",
+    "delay": 1,
+    "K": 72,
+    "n_mod": 6,
+    "central_r2": 0.5588,
+    "module_r2": {
+      "0": 0.4183,
+      "1": 0.2494,
+      "2": 0.3632,
+      "3": 0.412,
+      "4": 0.3666,
+      "5": 0.1324
+    },
+    "best_local_r2": 0.4183,
+    "local_vs_central_ratio": 0.7485,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.06
+  },
+  {
+    "label": "bench_attention_working_combo",
+    "delay": 2,
+    "K": 72,
+    "n_mod": 6,
+    "central_r2": 0.2056,
+    "module_r2": {
+      "0": 0.062,
+      "1": 0.0966,
+      "2": 0.0454,
+      "3": 0.1333,
+      "4": 0.1348,
+      "5": 0.004
+    },
+    "best_local_r2": 0.1348,
+    "local_vs_central_ratio": 0.6556,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.12
+  },
+  {
+    "label": "bench_attention_working_combo",
+    "delay": 3,
+    "K": 72,
+    "n_mod": 6,
+    "central_r2": 0.0953,
+    "module_r2": {
+      "0": 0.0022,
+      "1": 0.0122,
+      "2": 0.0379,
+      "3": 0.0553,
+      "4": 0.0088,
+      "5": 0.0381
+    },
+    "best_local_r2": 0.0553,
+    "local_vs_central_ratio": 0.5805,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.18
+  },
+  {
+    "label": "bench_attention_working_combo",
+    "delay": 5,
+    "K": 72,
+    "n_mod": 6,
+    "central_r2": 0.0083,
+    "module_r2": {
+      "0": 0.0004,
+      "1": 0.0001,
+      "2": 0.0,
+      "3": 0.0002,
+      "4": 0.0012,
+      "5": 0.0
+    },
+    "best_local_r2": 0.0012,
+    "local_vs_central_ratio": 0.1466,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.23
+  },
+  {
+    "label": "sample_10module",
+    "delay": 1,
+    "K": 270,
+    "n_mod": 9,
+    "central_r2": 0.9032,
+    "module_r2": {
+      "0": 0.2475,
+      "1": 0.233,
+      "2": 0.2737,
+      "3": 0.2029,
+      "4": 0.2243,
+      "5": 0.0874,
+      "6": 0.2571,
+      "7": 0.2364,
+      "8": 0.3435
+    },
+    "best_local_r2": 0.3435,
+    "local_vs_central_ratio": 0.3804,
+    "verdict": "H2 中央依赖",
+    "elapsed_s": 0.06
+  },
+  {
+    "label": "sample_10module",
+    "delay": 2,
+    "K": 270,
+    "n_mod": 9,
+    "central_r2": 0.2945,
+    "module_r2": {
+      "0": 0.0674,
+      "1": 0.0698,
+      "2": 0.0397,
+      "3": 0.0325,
+      "4": 0.0605,
+      "5": 0.0585,
+      "6": 0.0501,
+      "7": 0.0595,
+      "8": 0.0371
+    },
+    "best_local_r2": 0.0698,
+    "local_vs_central_ratio": 0.237,
+    "verdict": "H2 中央依赖",
+    "elapsed_s": 0.13
+  },
+  {
+    "label": "sample_10module",
+    "delay": 3,
+    "K": 270,
+    "n_mod": 9,
+    "central_r2": 0.0675,
+    "module_r2": {
+      "0": 0.0035,
+      "1": 0.0009,
+      "2": 0.0045,
+      "3": 0.0,
+      "4": 0.019,
+      "5": 0.009,
+      "6": 0.0106,
+      "7": 0.0204,
+      "8": 0.0036
+    },
+    "best_local_r2": 0.0204,
+    "local_vs_central_ratio": 0.3019,
+    "verdict": "H2 中央依赖",
+    "elapsed_s": 0.19
+  },
+  {
+    "label": "sample_10module",
+    "delay": 5,
+    "K": 270,
+    "n_mod": 9,
+    "central_r2": 0.0058,
+    "module_r2": {
+      "0": 0.0,
+      "1": 0.0001,
+      "2": 0.0,
+      "3": 0.0,
+      "4": 0.0,
+      "5": 0.0,
+      "6": 0.0,
+      "7": 0.0,
+      "8": 0.0
+    },
+    "best_local_r2": 0.0001,
+    "local_vs_central_ratio": 0.0188,
+    "verdict": "H3 混合/弱模块化",
+    "elapsed_s": 0.25
+  }
+]

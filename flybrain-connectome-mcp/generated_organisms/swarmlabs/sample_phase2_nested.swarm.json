@@ -1,0 +1,1537 @@
+{
+  "schema_version": "1.1.1",
+  "kind": "swarmlabs_agent_swarm",
+  "blueprint": "hierarchical_deep+(predictive_coding_v2+reward_gated_selection)",
+  "blueprint_info": {
+    "label": "hierarchical_deep+(predictive_coding_v2+reward_gated_selection)",
+    "is_composed": true,
+    "n_components": 3,
+    "components": [
+      {
+        "name": "hierarchical_deep",
+        "category": "biological",
+        "description": "深层皮质层级：sensory→memory→integration→metacognition→motor（模拟 V1→V2→V4→IT→运动）",
+        "use_cases": [
+          "多层抽象",
+          "深度特征提取",
+          "跨层认知命令"
+        ]
+      },
+      {
+        "name": "predictive_coding_v2",
+        "category": "biological",
+        "description": "预测编码 v2：在 recurrent_feedback 基础上引入 reward 价值偏置（主动推断 + 强化学习）",
+        "use_cases": [
+          "主动推断",
+          "假设-检验+价值调制",
+          "生成模型+学习"
+        ]
+      },
+      {
+        "name": "reward_gated_selection",
+        "category": "biological",
+        "description": "奖赏门控选择：winner-take-all 中 reward 强化胜者（PPL/PAM 多巴胺偏置）",
+        "use_cases": [
+          "强化学习决策",
+          "A/B 候选强化",
+          "多巴胺偏置选择"
+        ]
+      }
+    ]
+  },
+  "motif_provenance": {
+    "dataset": {
+      "name": "MaleCNS v1.0",
+      "license": "CC-BY",
+      "total_synapses": 124177617,
+      "annotated_neurons": 166700
+    },
+    "blueprints_used": [
+      "hierarchical_deep",
+      "predictive_coding_v2",
+      "reward_gated_selection"
+    ],
+    "blueprint_to_motif": {
+      "hierarchical_deep": {
+        "source_motif": "reservoir_smallworld",
+        "motif_body": null,
+        "motif_type": null,
+        "motif_fanout": null,
+        "note": "深层皮质层级（V1→V2→V4→IT→运动），对应小世界储备库的分层处理原则",
+        "anchor": "MaleCNS v1.0 reservoir_smallworld motif",
+        "is_bio_prior": true
+      },
+      "predictive_coding_v2": {
+        "source_motif": "recurrent_feedback",
+        "motif_body": null,
+        "motif_type": null,
+        "motif_fanout": null,
+        "note": "预测-误差双向递归 + reward 偏置，对应 recurrent_feedback motif（如 ol_intrinsic 自循环 28.74%）",
+        "anchor": "MaleCNS v1.0 recurrent_feedback motif",
+        "is_bio_prior": true
+      },
+      "reward_gated_selection": {
+        "source_motif": "inhibitory_hub",
+        "motif_body": 10540,
+        "motif_type": "APL",
+        "motif_fanout": 102263,
+        "note": "winner-take-all 抑制 + reward 强化，直接对应 APL body 10540（10万+ fan-out 广播抑制）",
+        "anchor": "MaleCNS v1.0 APL body 10540 (inhibitory_hub)",
+        "is_bio_prior": true
+      }
+    },
+    "is_bio_prior": true,
+    "bio_prior_count": 3,
+    "total_blueprint_count": 3,
+    "generated_utc": "2026-09-18T05:17:33.275525+00:00"
+  },
+  "generated_utc": "2026-09-18T05:17:33.275636+00:00",
+  "name": "sample_phase2_nested",
+  "swarm": {
+    "name": "sample_phase2_nested",
+    "topology": "guardrail-hub + module-cells + recurrent + reservoir",
+    "runtime": "local",
+    "source": {
+      "project": "flybrain-connectome",
+      "kind": "virtual_organism",
+      "generated_utc": "2026-09-18T05:17:33.275512+00:00",
+      "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
+      "motif_provenance": {
+        "requested_source": "local",
+        "mode": "local_snapshot",
+        "transport": "file",
+        "api_url": "http://127.0.0.1:8799",
+        "api_tool": "export_swarm_motifs",
+        "api_refresh_requested": false,
+        "api_key_source": "local_config",
+        "resolved_utc": "2026-09-18T05:17:33.273207+00:00",
+        "motif_generated_utc": "2026-09-16T22:29:57.040787+00:00",
+        "motifs": [
+          "inhibitory_hub",
+          "recurrent_feedback",
+          "reservoir_smallworld"
+        ],
+        "doc_sha256": "b9755a4519bee13a4782199302e254a3298919d2a66f902aa668e94109e70514",
+        "served_from": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+        "fallback_reason": null,
+        "snapshot_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+        "snapshot_sha256": "89c0790eb8d66fdb7eda569b82caf35aa46aa98c1ae2672cecb09885c5e828ed",
+        "api_cache_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\.motif_api_cache.json",
+        "snapshot_refreshed": false
+      }
+    },
+    "agentteams": {
+      "team_file": "agentteams/config/team.yaml",
+      "leader": "coordinator",
+      "role_map": {
+        "guardrail": "verifier",
+        "tissue_rep": "planner",
+        "cell": "executor",
+        "reservoir": "executor",
+        "module": "planner",
+        "worker": "executor"
+      },
+      "thresholds": {
+        "rel_converged": 0.05,
+        "cov_min": 0.8,
+        "cal_max": 0.08,
+        "cov_bad": 0.7,
+        "rel_bad": 0.2
+      }
+    },
+    "agents": [
+      {
+        "id": "m0_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "data_ingest",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "signal_preprocess",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "stream_buffer",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "sensor_noise_filter",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "data_ingest",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "signal_preprocess",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 0,
+        "task_hint": "input_triage",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m1_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "gp_surrogate_fit",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "prior_recall",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "state_carry",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "history_replay",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "gp_surrogate_fit",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "prior_recall",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 1,
+        "task_hint": "memory_synthesis",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m2_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "experiment_run",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "numeric_integration",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "output_check",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "actuation_dispatch",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "experiment_run",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "numeric_integration",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 2,
+        "task_hint": "output_coordination",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m3_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "candidate_rank",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "cross_domain_bridge",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "elo_scoring",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "arbitrate_conflict",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "candidate_rank",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "cross_domain_bridge",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 3,
+        "task_hint": "cross_module_arbitration",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m4_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "attention_focus",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "salience_detection",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "filter_irrelevant",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "prioritize_signal",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "attention_focus",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "salience_detection",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 4,
+        "task_hint": "attention_allocation",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m5_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "working_hold",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "active_manipulation",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "state_update",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "short_term_recall",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "working_hold",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "active_manipulation",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 5,
+        "task_hint": "working_memory_update",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m6_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "reward_prediction",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "value_estimate",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "positive_reinforce",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "goal_weighting",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "reward_prediction",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "value_estimate",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 6,
+        "task_hint": "reward_allocation",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m7_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "penalty_estimate",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "avoidance_gate",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "negative_reinforce",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "risk_downweight",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "penalty_estimate",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "avoidance_gate",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 7,
+        "task_hint": "punishment_allocation",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m8_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "skill_chunk",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "procedural_consolidate",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "automatize_step",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "habit_encode",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "skill_chunk",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "procedural_consolidate",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 8,
+        "task_hint": "habit_consolidation",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m9_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "confidence_estimate",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "uncertainty_flag",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a2",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "meta_monitor",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a3",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "calibration_check",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a4",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "confidence_estimate",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a5",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "uncertainty_flag",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 9,
+        "task_hint": "metacognitive_monitor",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "coordinator",
+        "role": "guardrail",
+        "swarm_role": "verifier",
+        "task_hint": "global_guardrail",
+        "source": "APL(body 10540)"
+      }
+    ],
+    "modules": [
+      {
+        "index": 0,
+        "lead": "m0_rep",
+        "members": [
+          "m0_a0",
+          "m0_a1",
+          "m0_a2",
+          "m0_a3",
+          "m0_a4",
+          "m0_a5"
+        ],
+        "recurrent_weight": 0.1,
+        "profile_name": "sensory",
+        "capability": [
+          "perceive",
+          "ingest",
+          "buffer"
+        ]
+      },
+      {
+        "index": 1,
+        "lead": "m1_rep",
+        "members": [
+          "m1_a0",
+          "m1_a1",
+          "m1_a2",
+          "m1_a3",
+          "m1_a4",
+          "m1_a5"
+        ],
+        "recurrent_weight": 0.4,
+        "profile_name": "memory",
+        "capability": [
+          "gp_surrogate",
+          "remember",
+          "replay",
+          "state_carry"
+        ]
+      },
+      {
+        "index": 2,
+        "lead": "m2_rep",
+        "members": [
+          "m2_a0",
+          "m2_a1",
+          "m2_a2",
+          "m2_a3",
+          "m2_a4",
+          "m2_a5"
+        ],
+        "recurrent_weight": 0.1,
+        "profile_name": "motor",
+        "capability": [
+          "execute",
+          "actuate",
+          "numeric_integration",
+          "verify_output"
+        ]
+      },
+      {
+        "index": 3,
+        "lead": "m3_rep",
+        "members": [
+          "m3_a0",
+          "m3_a1",
+          "m3_a2",
+          "m3_a3",
+          "m3_a4",
+          "m3_a5"
+        ],
+        "recurrent_weight": 0.25,
+        "profile_name": "integration",
+        "capability": [
+          "rank",
+          "synthesize",
+          "arbitrate",
+          "elo_score"
+        ]
+      },
+      {
+        "index": 4,
+        "lead": "m4_rep",
+        "members": [
+          "m4_a0",
+          "m4_a1",
+          "m4_a2",
+          "m4_a3",
+          "m4_a4",
+          "m4_a5"
+        ],
+        "recurrent_weight": 0.2,
+        "profile_name": "attention",
+        "capability": [
+          "focus",
+          "filter",
+          "prioritize",
+          "salience_detection"
+        ]
+      },
+      {
+        "index": 5,
+        "lead": "m5_rep",
+        "members": [
+          "m5_a0",
+          "m5_a1",
+          "m5_a2",
+          "m5_a3",
+          "m5_a4",
+          "m5_a5"
+        ],
+        "recurrent_weight": 0.45,
+        "profile_name": "working_memory",
+        "capability": [
+          "hold",
+          "manipulate",
+          "update",
+          "active_recall"
+        ]
+      },
+      {
+        "index": 6,
+        "lead": "m6_rep",
+        "members": [
+          "m6_a0",
+          "m6_a1",
+          "m6_a2",
+          "m6_a3",
+          "m6_a4",
+          "m6_a5"
+        ],
+        "recurrent_weight": 0.3,
+        "profile_name": "reward",
+        "capability": [
+          "reward_signal",
+          "value_estimate",
+          "reinforce",
+          "motivation_gating"
+        ]
+      },
+      {
+        "index": 7,
+        "lead": "m7_rep",
+        "members": [
+          "m7_a0",
+          "m7_a1",
+          "m7_a2",
+          "m7_a3",
+          "m7_a4",
+          "m7_a5"
+        ],
+        "recurrent_weight": 0.3,
+        "profile_name": "punishment",
+        "capability": [
+          "punish_signal",
+          "penalty_estimate",
+          "avoidance_gate",
+          "negative_reinforce"
+        ]
+      },
+      {
+        "index": 8,
+        "lead": "m8_rep",
+        "members": [
+          "m8_a0",
+          "m8_a1",
+          "m8_a2",
+          "m8_a3",
+          "m8_a4",
+          "m8_a5"
+        ],
+        "recurrent_weight": 0.5,
+        "profile_name": "habit",
+        "capability": [
+          "automatize",
+          "chunk",
+          "procedural_consolidate",
+          "skill_encode"
+        ]
+      },
+      {
+        "index": 9,
+        "lead": "m9_rep",
+        "members": [
+          "m9_a0",
+          "m9_a1",
+          "m9_a2",
+          "m9_a3",
+          "m9_a4",
+          "m9_a5"
+        ],
+        "recurrent_weight": 0.35,
+        "profile_name": "metacognition",
+        "capability": [
+          "confidence_estimate",
+          "uncertainty_detect",
+          "meta_monitor",
+          "calibration"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "m0_rep",
+        "to": "m0_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 0
+      },
+      {
+        "from": "m1_rep",
+        "to": "m1_rep",
+        "weight": 0.4,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 1
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 2
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_rep",
+        "weight": 0.25,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 3
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_rep",
+        "weight": 0.2,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 4
+      },
+      {
+        "from": "m5_rep",
+        "to": "m5_rep",
+        "weight": 0.45,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 5
+      },
+      {
+        "from": "m6_rep",
+        "to": "m6_rep",
+        "weight": 0.3,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 6
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_rep",
+        "weight": 0.3,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 7
+      },
+      {
+        "from": "m8_rep",
+        "to": "m8_rep",
+        "weight": 0.5,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 8
+      },
+      {
+        "from": "m9_rep",
+        "to": "m9_rep",
+        "weight": 0.35,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 9
+      },
+      {
+        "from": "m0_a0",
+        "to": "m0_rep",
+        "weight": 0.048,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 0
+      },
+      {
+        "from": "m0_a2",
+        "to": "m0_a5",
+        "weight": 0.215,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 0
+      },
+      {
+        "from": "m0_a3",
+        "to": "m0_a1",
+        "weight": 0.091,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 0
+      },
+      {
+        "from": "m0_a4",
+        "to": "m2_a2",
+        "weight": 0.947,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 0
+      },
+      {
+        "from": "m1_a0",
+        "to": "m1_a1",
+        "weight": 0.976,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 1
+      },
+      {
+        "from": "m1_a1",
+        "to": "m5_a3",
+        "weight": 0.419,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 1
+      },
+      {
+        "from": "m1_rep",
+        "to": "m1_a1",
+        "weight": 0.372,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 1
+      },
+      {
+        "from": "m2_a1",
+        "to": "m2_a2",
+        "weight": 0.496,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 2
+      },
+      {
+        "from": "m3_a0",
+        "to": "m3_a2",
+        "weight": 0.082,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 3
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a1",
+        "weight": 0.757,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 3
+      },
+      {
+        "from": "m4_a2",
+        "to": "m4_a5",
+        "weight": 0.573,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 4
+      },
+      {
+        "from": "m5_rep",
+        "to": "m8_a2",
+        "weight": 0.285,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 5
+      },
+      {
+        "from": "m6_a2",
+        "to": "m6_a1",
+        "weight": 0.611,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 6
+      },
+      {
+        "from": "m6_a4",
+        "to": "m6_rep",
+        "weight": 0.248,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 6
+      },
+      {
+        "from": "m7_a0",
+        "to": "m7_a5",
+        "weight": 0.278,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 7
+      },
+      {
+        "from": "m7_a1",
+        "to": "m7_a5",
+        "weight": 0.278,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 7
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_a1",
+        "weight": 0.659,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 7
+      },
+      {
+        "from": "m8_a0",
+        "to": "m3_a2",
+        "weight": 0.263,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 8
+      },
+      {
+        "from": "m8_a1",
+        "to": "m8_a3",
+        "weight": 0.61,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 8
+      },
+      {
+        "from": "m8_a3",
+        "to": "m0_rep",
+        "weight": 0.457,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 8
+      },
+      {
+        "from": "m9_a5",
+        "to": "m8_a0",
+        "weight": 0.162,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 9
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_a0",
+        "weight": -0.427,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 2
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_a5",
+        "weight": -0.415,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 2
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a4",
+        "weight": -0.55,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 3
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a0",
+        "weight": -0.446,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 3
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a5",
+        "weight": -0.259,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 3
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_a2",
+        "weight": -0.39,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 4
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_a4",
+        "weight": -0.246,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 4
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_a5",
+        "weight": -0.395,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 4
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_a3",
+        "weight": -0.234,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 7
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_a5",
+        "weight": -0.241,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 7
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_a2",
+        "weight": -0.337,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 7
+      },
+      {
+        "from": "m9_rep",
+        "to": "m9_a3",
+        "weight": -0.282,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 9
+      },
+      {
+        "from": "m9_rep",
+        "to": "m9_a1",
+        "weight": -0.581,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 9
+      },
+      {
+        "from": "m9_rep",
+        "to": "m9_a0",
+        "weight": -0.345,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 9
+      },
+      {
+        "from": "coordinator",
+        "to": "m0_rep",
+        "weight": -1.0,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 0
+      },
+      {
+        "from": "coordinator",
+        "to": "m1_rep",
+        "weight": -0.9,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 1
+      },
+      {
+        "from": "coordinator",
+        "to": "m2_rep",
+        "weight": -0.8,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 2
+      },
+      {
+        "from": "coordinator",
+        "to": "m3_rep",
+        "weight": -0.7,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 3
+      },
+      {
+        "from": "coordinator",
+        "to": "m4_rep",
+        "weight": -0.6,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 4
+      },
+      {
+        "from": "coordinator",
+        "to": "m5_rep",
+        "weight": -0.5,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 5
+      },
+      {
+        "from": "coordinator",
+        "to": "m6_rep",
+        "weight": -0.4,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 6
+      },
+      {
+        "from": "coordinator",
+        "to": "m7_rep",
+        "weight": -0.3,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 7
+      },
+      {
+        "from": "coordinator",
+        "to": "m8_rep",
+        "weight": -0.2,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 8
+      },
+      {
+        "from": "coordinator",
+        "to": "m9_rep",
+        "weight": -0.1,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 9
+      },
+      {
+        "from": "m0_rep",
+        "to": "m1_rep",
+        "weight": 0.4,
+        "kind": "reservoir",
+        "semantic": "low_level_feedforward",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m1_rep",
+        "to": "m3_rep",
+        "weight": 0.35,
+        "kind": "reservoir",
+        "semantic": "mid_level_abstract",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m3_rep",
+        "to": "m9_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "high_level_abstract",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m9_rep",
+        "to": "m2_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "cognitive_command",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m3_rep",
+        "to": "m1_rep",
+        "weight": 0.35,
+        "kind": "reservoir",
+        "semantic": "prediction_down",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m1_rep",
+        "to": "m3_rep",
+        "weight": 0.4,
+        "kind": "reservoir",
+        "semantic": "error_up",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m6_rep",
+        "to": "m3_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "value_bias",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m3_rep",
+        "to": "m2_rep",
+        "weight": 0.25,
+        "kind": "reservoir",
+        "semantic": "predicted_action",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m2_rep",
+        "to": "m3_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "action_error",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m2_rep",
+        "to": "m3_rep",
+        "weight": 0.35,
+        "kind": "reservoir",
+        "semantic": "candidate_vote",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m3_rep",
+        "to": "m2_rep",
+        "weight": -0.4,
+        "kind": "inhibitory",
+        "semantic": "suppress_loser",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m6_rep",
+        "to": "m2_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "reinforce_winner",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      },
+      {
+        "from": "m0_rep",
+        "to": "m2_rep",
+        "weight": 0.2,
+        "kind": "reservoir",
+        "semantic": "shared_stimulus",
+        "blueprint": "hierarchical_deep+predictive_coding_v2+reward_gated_selection"
+      }
+    ],
+    "guardrails": [
+      "leader(guardrail) 不得同时是任何 module 的成员（抑制枢纽必须外部于被抑制者）",
+      "weight < 0 的边是硬刹车：执行器不得用正向权重抵消或删除该边",
+      "recurrent 边只允许模块内自环，禁止跨模块复用",
+      "任何 agent 的入/出边端点必须存在于 agents 列表中（无悬空边）",
+      "边权一律落在 [-1, 1]；本文件是唯一真值，运行时不接受就地改权"
+    ],
+    "metrics": {
+      "n_nodes": 71,
+      "n_edges": 68,
+      "avg_degree": 1.915,
+      "inhibition_ratio": 0.368,
+      "n_modules": 10,
+      "intra_module_edges": 39,
+      "inter_module_edges": 29,
+      "modularity_est": 0.574,
+      "profile_breakdown": {
+        "sensory": {
+          "nodes": 7,
+          "edges": 7
+        },
+        "memory": {
+          "nodes": 7,
+          "edges": 6
+        },
+        "motor": {
+          "nodes": 7,
+          "edges": 6
+        },
+        "integration": {
+          "nodes": 7,
+          "edges": 10
+        },
+        "attention": {
+          "nodes": 7,
+          "edges": 5
+        },
+        "working_memory": {
+          "nodes": 7,
+          "edges": 2
+        },
+        "reward": {
+          "nodes": 7,
+          "edges": 5
+        },
+        "punishment": {
+          "nodes": 7,
+          "edges": 7
+        },
+        "habit": {
+          "nodes": 7,
+          "edges": 4
+        },
+        "metacognition": {
+          "nodes": 7,
+          "edges": 6
+        },
+        "uniform": {
+          "nodes": 1,
+          "edges": 10
+        }
+      }
+    },
+    "validation": {
+      "n_agents": 71,
+      "n_edges": 68,
+      "n_modules": 10,
+      "leader_resolved": "coordinator",
+      "leader_is_module_member": false,
+      "dangling_edges": 0,
+      "weight_min": -1.0,
+      "weight_max": 0.976,
+      "weights_in_range": true,
+      "inhibitory_edges": 25,
+      "recurrent_edges": 10,
+      "reservoir_edges": 33,
+      "ok": true
+    }
+  }
+}
