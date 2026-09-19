@@ -1,0 +1,74 @@
+cff-version: 1.2.0
+message: "If you use this software or the derived motif catalogue in academic work, please cite it as below."
+title: "flybrain-connectome: traceable synthetic bio-topology generation from a real brain connectome"
+type: software
+version: 1.0.0
+date-released: "2026-09-19"
+license: MIT
+abstract: >-
+  A zero-dependency toolkit that converts the real male Drosophila brain
+  connectome (MaleCNS v1.0: 166,700 neurons, 124,177,617 synapses, CC-BY) into
+  task-tailored multi-agent topologies while retaining per-edge provenance back
+  to the source neurons and synapse classes, serialized as W3C PROV-JSON. Three
+  measured advantages (traceability, structural parsimony, structural
+  stability) are reported alongside two negative results (no compute advantage,
+  no energy advantage) under matched controls.
+authors:
+  - family-names: "Lexing"
+    given-names: "厉兴"
+    alias: "lm203688"
+repository-code: "https://github.com/lm203688/flybrain-connectome"
+url: "https://github.com/lm203688/flybrain-connectome"
+keywords:
+  - connectome
+  - drosophila
+  - multi-agent
+  - network-topology
+  - provenance
+  - W3C-PROV
+  - complex-systems
+  - neuroscience
+
+preferred-citation:
+  type: article
+  title: "Traceable Synthetic Bio-Topology Generation from a Real Brain Connectome"
+  authors:
+    - family-names: "Lexing"
+      given-names: "厉兴"
+      alias: "lm203688"
+  year: 2026
+  month: 9
+  url: "https://github.com/lm203688/flybrain-connectome/blob/main/docs/arxiv_paper.md"
+  notes: >-
+    Preprint-ready manuscript maintained in-repo at docs/arxiv_paper.md.
+
+references:
+  - type: dataset
+    title: "MaleCNS v1.0 — male Drosophila brain connectome (full adult central nervous system)"
+    year: 2026
+    month: 9
+    publisher:
+      name: "Janelia Research Campus / FlyEM"
+    license: "CC-BY"
+    url: "https://male-cns.janelia.org/download"
+    notes: >-
+      Obtained from the public object store gs://flyem-male-cns/v1.0/ and
+      queryable via neuPrint dataset male-cns:v1.0. Published in Cell,
+      2026-09-03. 166,700 neurons / 124,177,617 synapses / 11,691 cell types.
+      The 5.63 GB dataset is NOT redistributed in this repository.
+  - type: software
+    title: "dataprov — W3C PROV document generation (zero-dependency)"
+    authors:
+      - name: "RI-SE"
+    url: "https://github.com/RI-SE/dataprov"
+    notes: "Used to serialize motif provenance as W3C PROV-JSON (schema v1.2.1)."
+  - type: article
+    title: "The free-energy principle: a rough guide to the brain?"
+    authors:
+      - family-names: "Friston"
+        given-names: "Karl"
+    year: 2008
+    journal: "Neuropsychologia"
+    notes: >-
+      Together with Fodor (1983) The Modularity of Mind, frames the
+      massive-modularity debate the fault-isolation claim sits within.
