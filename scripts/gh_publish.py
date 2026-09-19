@@ -141,16 +141,26 @@ def _staged_files():
 
 
 def _files_in_commit(ref):
-    """Files touched by a commit (or range).
+    """Files touched by a commit.
 
     `--staged` is only useful *before* committing: once the commit exists the
     index equals HEAD and `git diff --cached` is empty. The normal workflow is
     commit-then-push, so read the commit instead.
+
+    NOTE: with a range like ``A..B`` this is a *cumulative* diff A→B, not the
+    union of individual commits — use ``--tracked`` for a full-tree sync.
     """
     out = subprocess.check_output(
         ["git", "-C", ROOT, "diff-tree", "--no-commit-id", "--name-only",
          "-r", "--diff-filter=ACMR", ref], text=True)
     return [l.strip() for l in out.splitlines() if l.strip()]
+
+
+def _tracked_files():
+    """Every file git tracks — i.e. everything .gitignore allows to be published."""
+    out = subprocess.check_output(["git", "-C", ROOT, "ls-files", "-z"],
+                                  text=True)
+    return [l for l in out.split("\0") if l]
 
 
 def main():
@@ -160,7 +170,10 @@ def main():
     ap.add_argument("--staged", action="store_true",
                     help="push everything already `git add`-ed (pre-commit only)")
     ap.add_argument("--commit", default=None, metavar="REF",
-                    help="push every file changed by REF (e.g. HEAD, HEAD~1..HEAD)")
+                    help="push every file changed by REF (HEAD, or a commit hash)")
+    ap.add_argument("--tracked", action="store_true",
+                    help="push every git-tracked file (full-tree sync; use for the "
+                         "first push or to guarantee the remote matches HEAD)")
     ap.add_argument("--branch", default="main")
     ap.add_argument("--dry-run", action="store_true")
     args = ap.parse_args()
@@ -173,7 +186,9 @@ def main():
     if not _create_repo(token):
         return 1
 
-    if args.commit:
+    if args.tracked:
+        files = _tracked_files()
+    elif args.commit:
         files = _files_in_commit(args.commit)
     elif args.staged:
         files = _staged_files()
