@@ -84,6 +84,17 @@ SWARM_DIR = OUT_DIR / "swarmlabs"
 REQUIRED_MOTIFS = ("inhibitory_hub", "reservoir_smallworld", "recurrent_feedback")
 MOTIF_SOURCES = ("auto", "api", "local")
 
+# ---------------------------------------------------------------------- #
+# Document versions — two distinct things, never conflate them:
+#   SCHEMA_VERSION                  the top-level organism / swarm-config schema
+#                                   (v1.2.1 added the `prov_json` W3C field)
+#   MOTIF_PROVENANCE_SCHEMA_VERSION the `motif_provenance` sub-document, which
+#                                   has been stable since v1.2.0 (it is also
+#                                   what the PROV bundle records as tool_version).
+# ---------------------------------------------------------------------- #
+SCHEMA_VERSION = "1.2.1"
+MOTIF_PROVENANCE_SCHEMA_VERSION = "1.2.0"
+
 # ====================================================================== #
 # Module functional profiles — each module type gets a different motif mix
 # Derived from real fly connectome superclass recurrence rates (motif doc).
@@ -958,7 +969,7 @@ def _motif_provenance(org: dict) -> dict | None:
                      "Set by design intent; verified by _verify.py stability check."),
         },
         "generated_utc": datetime.now(timezone.utc).isoformat(),
-        "schema_version": "1.2.0",
+        "schema_version": MOTIF_PROVENANCE_SCHEMA_VERSION,
     }
 
 
@@ -1019,7 +1030,7 @@ def _prov_json(provenance: dict | None, organism_name: str | None = None,
             started_at=started,
             ended_at=ended,
             tool_name="flybrain-connectome",
-            tool_version=provenance.get("schema_version", "1.2.0"),
+            tool_version=provenance.get("schema_version", MOTIF_PROVENANCE_SCHEMA_VERSION),
             operation="blueprint_motif_extraction",
             inputs=["MaleCNS_v1.0.tsv"],
             input_formats=["TSV"],
@@ -1037,7 +1048,7 @@ def _prov_json(provenance: dict | None, organism_name: str | None = None,
         started_at=(datetime.now(timezone.utc) + timedelta(seconds=step_start_offset)).isoformat(),
         ended_at=(datetime.now(timezone.utc) + timedelta(seconds=step_start_offset + 2)).isoformat(),
         tool_name="flybrain-connectome",
-        tool_version=provenance.get("schema_version", "1.2.0"),
+        tool_version=provenance.get("schema_version", MOTIF_PROVENANCE_SCHEMA_VERSION),
         operation="virtual_organism_synthesis",
         inputs=[f"motif:{bp}" for bp in provenance.get("blueprints_used", [])] or ["MaleCNS_v1.0.tsv"],
         input_formats=["JSON"] * (len(provenance.get("blueprints_used", [])) or 1),
@@ -1638,7 +1649,7 @@ def design_organism(spec: dict, motifs: dict | None = None,
     organism = {"nodes": nodes, "edges": edges}
     metrics = _metrics(organism, n_modules, module_profile_map)
     _org_for_prov = {
-        "schema_version": "1.2.1",
+        "schema_version": SCHEMA_VERSION,
         "kind": "virtual_organism",
         "generated_utc": datetime.now(timezone.utc).isoformat(),
         "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / "
@@ -1907,7 +1918,7 @@ def build_swarmlabs_config(org: dict, name: str | None = None,
         # provenance bundle ingestible by any W3C PROV-aware tool (yProv4ML,
         # MLflow2PROV, MIT Sloan Data Provenance Explorer, PROV-O SPARQL).
         # EU AI Act compliance hard gate: provenance must be W3C-standard.
-        "schema_version": "1.2.1",
+        "schema_version": SCHEMA_VERSION,
         "kind": "swarmlabs_agent_swarm",
         "blueprint": org.get("blueprint"),
         "blueprint_info": _blueprint_info(org.get("blueprint")),
