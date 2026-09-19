@@ -1,0 +1,140 @@
+name: ci
+
+# The gates in this repo are all *offline*: they never download the 5.63 GB
+# MaleCNS dataset. Two job families:
+#
+#   gates   - the repo's own quality gates (secrets / docs drift / MCP tools),
+#             run on every supported Python version
+#   package - proves the README install path actually works, which cannot be
+#             verified in a sandbox where `pip install` is silently blocked
+#
+# `workflow_dispatch` is deliberate: it lets the maintainer re-run the suite
+# on demand without pushing an empty commit.
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  gates:
+    name: offline gates / py${{ matrix.python }}
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        # requires-python is >=3.10 in pyproject.toml — test the floor,
+        # the middle, and the newest we claim to support.
+        python: ["3.10", "3.12", "3.13"]
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python }}
+
+      # core.py imports numpy at module level, so anything that talks to the
+      # connectome engine needs it. pyarrow is imported lazily and is only
+      # needed by the real-data tools, which --offline skips.
+      - name: Install runtime dependency
+        run: python -m pip install --upgrade pip numpy
+
+      - name: Every Python file compiles
+        run: |
+          python -m compileall -q \
+            flybrain_cli.py \
+            flybrain-connectome-mcp \
+            integrations \
+            scripts
+          echo "compileall: OK"
+
+      - name: "Gate 1 - no hardcoded credentials"
+        run: python scripts/check_no_secrets.py
+
+      - name: "Gate 2 - docs match code"
+        run: python scripts/check_docs_consistency.py
+
+      - name: "Gate 3 - every advertised MCP tool responds"
+        run: python scripts/check_mcp_tools.py --offline
+
+      - name: CLI self-check
+        run: python flybrain_cli.py info
+
+      - name: Generator smoke test (no dataset needed)
+        run: |
+          python flybrain_cli.py generate \
+            --motif-source local \
+            --blueprint predictive_coding_v2 \
+            --modules 3 \
+            --agents-per-module 4 \
+            --name ci_smoke \
+            --out /tmp/ci_out \
+            --no-html
+
+      # Assert the artifact's *content*, not just that the command exited 0 —
+      # "the process returned success" is exactly how dead outputs hide.
+      # The checker asserts real invariants (no dangling edges, leader outside
+      # every module, weights in range, provenance chain intact) and was itself
+      # self-tested: 6 mutations injected, 6 caught.
+      - name: "Gate 4 - the generated artifact is real"
+        run: python scripts/check_generated_artifact.py --dir /tmp/ci_out --name ci_smoke
+
+  package:
+    name: packaged CLI / pip install .
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      # This is the claim the README makes. It is testable here and nowhere
+      # else we have access to, so it runs on every push.
+      - name: pip install .
+        run: python -m pip install --upgrade pip && python -m pip install .
+
+      - name: The console script is on PATH and runs
+        run: flybrain --help
+
+      - name: Installed CLI resolves the toolkit via FLYBRAIN_HOME
+        run: FLYBRAIN_HOME="$PWD" flybrain info
+
+      - name: Installed CLI can generate without the dataset
+        run: |
+          FLYBRAIN_HOME="$PWD" flybrain generate \
+            --motif-source local \
+            --modules 2 \
+            --agents-per-module 3 \
+            --name pkg_smoke \
+            --out /tmp/pkg_out \
+            --no-html
+
+      - name: Assert the packaged CLI produced a real artifact
+        run: |
+          python - <<'PY'
+          import json, pathlib, sys
+          hits = sorted(pathlib.Path("/tmp/pkg_out").rglob("*.json"))
+          if not hits:
+              sys.exit("FAIL: installed CLI generated nothing")
+          for p in hits:
+              json.loads(p.read_text(encoding="utf-8"))
+          print("packaged CLI artifact: PASS (%d json file(s))" % len(hits))
+          PY
+
+  # A single required check is far easier to gate a branch on than a matrix.
+  ci:
+    name: ci
+    if: always()
+    needs: [gates, package]
+    runs-on: ubuntu-latest
+    steps:
+      - name: Fail if any upstream job did not succeed
+        run: |
+          echo "gates=${{ needs.gates.result }} package=${{ needs.package.result }}"
+          test "${{ needs.gates.result }}" = "success"
+          test "${{ needs.package.result }}" = "success"
