@@ -33,6 +33,8 @@ import sys
 import time
 from pathlib import Path
 
+from _local_key import local_api_key  # same-directory helper; keeps keys out of the repo
+
 # ====================================================================== #
 # 路径配置
 # ====================================================================== #
@@ -157,7 +159,7 @@ def run_once(scenario: str, blueprint_name: str | None, config_name: str | None 
     # Run
     env = os.environ.copy()
     env["FLYBRAIN_DATA_DIR"] = r"C:\Users\xing\Desktop\flybrain-connectome\male_cns"
-    env["FLYBRAIN_API_KEY"] = "flybrain_dfacd1184a8d21ba263d282a54b425d0d06b67fd50b2438c90e219edfff73cb5"
+    env["FLYBRAIN_API_KEY"] = local_api_key()
     # Bypass sandbox proxy
     for k in ("http_proxy", "https_proxy", "HTTP_PROXY", "HTTPS_PROXY"):
         env.pop(k, None)
