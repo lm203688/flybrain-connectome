@@ -1,0 +1,45 @@
+========================================================================
+A. flat-connectome 目录（连接表 / 注释所在，体积已汇总）
+========================================================================
+    13061.5 MB   syn-points-male-cns-v1.0-minconf-0.5.feather
+     6777.2 MB   syn-partners-male-cns-v1.0-minconf-0.5.feather
+     2965.7 MB   syn-partners-male-cns-v1.0-minconf-0.5-significant-only.feather
+     2965.4 MB   syn-partners-male-cns-v1.0-minconf-0.5-traced-only.feather
+     2651.7 MB   tbar-neurotransmitters-male-cns-v1.0.feather
+     1051.2 MB   connectome-weights-male-cns-v1.0-minconf-0.5.feather
+      778.1 MB   body-stats-male-cns-v1.0-minconf-0.5.feather
+      508.0 MB   connectome-weights-male-cns-v1.0-minconf-0.5-traced-only.feather
+      502.2 MB   connectome-weights-male-cns-v1.0-minconf-0.5-significant-only.feather
+       43.3 MB   body-neurotransmitters-male-cns-v1.0.feather
+       14.5 MB   body-annotations-male-cns-v1.0-minconf-0.5.feather
+  ---- 小计: 31318.7 MB / 11 个文件
+
+========================================================================
+B. connectome-data 下的全部子目录   <- v1.0/connectome-data/
+========================================================================
+  DIR  v1.0/connectome-data/flat-connectome/
+
+========================================================================
+C. database（neuPrint 数据库快照）   <- v1.0/database/
+========================================================================
+  DIR  v1.0/database/dvid-exports/
+  DIR  v1.0/database/neo4j/
+  DIR  v1.0/database/neuprint-inputs/
+
+========================================================================
+D. v1.0 顶层文件   <- v1.0/
+========================================================================
+  DIR  v1.0/connectome-data/
+  DIR  v1.0/database/
+  DIR  v1.0/male-cns-meshes-transformed-to-fafb-flywire/
+  DIR  v1.0/male-cns-v1.0-synapses-precomputed/
+  DIR  v1.0/malecns-v1.0-nuclei-seg-16nm/
+  DIR  v1.0/malecns-v1.0-optic-lobe-column-pins/
+  DIR  v1.0/malecns-v1.0-soma-points/
+  DIR  v1.0/nblasts/
+  DIR  v1.0/segmentation/
+  DIR  v1.0/supervoxels/
+  DIR  v1.0/synapse-ground-truth/
+        0.1 MB   v1.0/male-cns-v1.0-clio.json
+        0.1 MB   v1.0/male-cns-v1.0.json
+
