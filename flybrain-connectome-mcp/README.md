@@ -89,12 +89,12 @@ FLYBRAIN_DATA_DIR=.../drosophila_connectome/data/male_cns \
 curl http://127.0.0.1:8799/health
 
 # 列出工具（需密钥）
-curl -H "Authorization: Bearer flybrain_dfacd1184a8d21ba263d282a54b425d0d06b67fd50b2438c90e219edfff73cb5" \
+curl -H "Authorization: Bearer $FLYBRAIN_API_KEY" \
      http://127.0.0.1:8799/tools
 
 # 查询：APL(10540) 到 DPM(12569) 有多少突触
 curl -X POST http://127.0.0.1:8799/query \
-     -H "Authorization: Bearer flybrain_dfacd1184a8d21ba263d282a54b425d0d06b67fd50b2438c90e219edfff73cb5" \
+     -H "Authorization: Bearer $FLYBRAIN_API_KEY" \
      -H "Content-Type: application/json" \
      -d '{"tool":"pair_synapses","args":{"pre":10540,"post":12569}}'
 # -> {"ok":true,"tool":"pair_synapses","result":711}
@@ -107,15 +107,18 @@ curl -X POST http://127.0.0.1:8799/query -H "Authorization: Bearer wrong" \
 
 Python 客户端：
 ```python
+import os
 import requests
 r = requests.post("http://127.0.0.1:8799/query",
-    headers={"Authorization": "Bearer flybrain_dfacd1184a8d21ba263d282a54b425d0d06b67fd50b2438c90e219edfff73cb5"},
+    headers={"Authorization": "Bearer " + os.environ["FLYBRAIN_API_KEY"]},
     json={"tool": "superclass_projection", "args": {"superclass": "olfactory"}})
 print(r.json()["result"])
 ```
 
-> **轮换密钥**：编辑 `config.json` 的 `api_keys`，或部署时注入 `FLYBRAIN_API_KEY` 环境变量。
-> 默认 dev key 仅本地调试用，对外暴露前必须更换。
+> **密钥策略**：本项目**不附带任何默认 key**。`config.json` 被 gitignore，你必须自己生成
+> 一个（`python -c "import secrets;print('flybrain_'+secrets.token_hex(32))"`）写进 `api_keys`，
+> 或部署时注入 `FLYBRAIN_API_KEY`。两者都没有时，服务每次启动会随机生成临时 key 并告警。
+> `scripts/check_no_secrets.py` 会在推送前拦截任何写死的 key。
 
 ---
 
