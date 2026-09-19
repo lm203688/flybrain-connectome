@@ -489,6 +489,10 @@ def _batch_generate(args, seed=42, max_nodes=32):
             val = swarm.get("validation", {})
             agents = swarm.get("agents", [])
             metrics = org.get("metrics", {})
+            # Same None-vs-missing trap as in _get_prov_bundle: `prov_json` is
+            # an explicit None when the optional dataprov package is absent.
+            prov = cfg.get("prov_json")
+            bundle = prov if isinstance(prov, dict) else {}
             results.append({
                 "index": i,
                 "blueprint": bp,
@@ -497,13 +501,23 @@ def _batch_generate(args, seed=42, max_nodes=32):
                 "n_edges": val.get("n_edges"),
                 "ok": val.get("ok"),
                 "schema_version": cfg.get("schema_version"),
-                "prov_bundle_keys": list(cfg.get("prov_json", {}).keys())[:5],
+                "prov_available": bool(bundle),
+                "prov_bundle_keys": sorted(bundle.keys())[:5],
                 "exceeds_max_nodes": bool(metrics.get("n_nodes", 0) > max_nodes),
             })
         except Exception as e:  # noqa: BLE001
             results.append({"index": i, "blueprint": bp, "error": str(e)[:200]})
-    return {"total": len(spec_list), "generated": len(results),
-            "max_nodes": max_nodes, "results": results}
+    # Report successes and failures separately. A bare `generated` count of
+    # attempts is a lie by omission: a batch where every spec raised still
+    # returned generated=1 with isError=false, and a caller checking only that
+    # field would treat a total failure as a success.
+    succeeded = sum(1 for r in results if "error" not in r)
+    return {"total": len(spec_list),
+            "attempted": len(results),
+            "succeeded": succeeded,
+            "failed": len(results) - succeeded,
+            "max_nodes": max_nodes,
+            "results": results}
 
 
 def _get_prov_bundle(blueprint):
@@ -515,13 +529,32 @@ def _get_prov_bundle(blueprint):
         return {"error": "design failed: %s" % str(e)[:200]}
     cfg = mod.build_swarmlabs_config(org, name=blueprint,
                                      provenance=org.get("motif_provenance"))
-    prov = cfg.get("prov_json", {})
-    return {
+    # `prov_json` is None -- not absent -- when the optional `dataprov` package
+    # is not importable, because `_prov_json()` degrades gracefully by design.
+    # `cfg.get("prov_json", {})` does NOT cover that case: a default only
+    # applies to a missing key, not to a key whose value is None. Reading it
+    # as a dict unconditionally crashed this tool on any interpreter without
+    # dataprov (found by CI, which installs no optional extras).
+    prov = cfg.get("prov_json")
+    bundle = prov if isinstance(prov, dict) else {}
+    out = {
         "blueprint": blueprint,
         "schema_version": cfg.get("schema_version"),
-        "prov_bundle_keys": list(prov.keys()),
-        "prov_json": prov,
+        "prov_available": bool(bundle),
+        "prov_bundle_keys": sorted(bundle.keys()),
+        "prov_json": prov if bundle else None,
+        # Structural provenance must survive even without the W3C serializer.
+        "motif_provenance": (cfg.get("motif_provenance")
+                             or org.get("motif_provenance")),
     }
+    if not bundle:
+        out["prov_unavailable"] = (
+            "W3C PROV-JSON bundle not produced: the optional 'dataprov' package "
+            "is not importable in this interpreter. Structural provenance is "
+            "still present under 'motif_provenance'. Enable the standardized "
+            "bundle with: pip install dataprov  (or pip install \"flybrain-connectome[prov]\")"
+        )
+    return out
 
 
 # --------------------------------------------------------------------------- #
