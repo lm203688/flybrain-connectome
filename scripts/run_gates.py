@@ -10,11 +10,12 @@ Gates, in order of cheapness:
   1  secrets      scripts/check_no_secrets.py        no deps, ~0.2 s
   2  docs drift   scripts/check_docs_consistency.py  no deps, ~0.2 s
   3  MCP tools    scripts/check_mcp_tools.py         needs numpy; spawns the server
-  4  artifact     generated output is structurally real (see the checker's docstring)
+  4  degraded     scripts/check_degraded_mode.py     optional dep absent must not crash
+  5  artifact     generated output is structurally real (see the checker's docstring)
 
-Gate 4 generates a throwaway organism into a temp dir, so it needs no dataset.
-The data-backed smoke test (`flybrain verify`, 70 assertions) is *not* run
-unless you pass --with-data, because it needs a local MaleCNS v1.0 copy
+Gates 4 and 5 generate a throwaway organism into a temp dir, so they need no
+dataset. The data-backed smoke test (`flybrain verify`, 70 assertions) is *not*
+run unless you pass --with-data, because it needs a local MaleCNS v1.0 copy
 (~5.63 GB) pointed at by FLYBRAIN_DATA_DIR.
 
 Usage:
@@ -65,23 +66,27 @@ def main() -> int:
     py = sys.executable
     results: list[tuple[str, bool]] = []
 
-    results.append(("1/4 secrets", run(
-        "GATE 1/4 — no hardcoded credentials",
+    results.append(("1/5 secrets", run(
+        "GATE 1/5 — no hardcoded credentials",
         [py, str(SCRIPTS / "check_no_secrets.py")])[0]))
 
-    results.append(("2/4 docs drift", run(
-        "GATE 2/4 — docs match code",
+    results.append(("2/5 docs drift", run(
+        "GATE 2/5 — docs match code",
         [py, str(SCRIPTS / "check_docs_consistency.py")])[0]))
 
     if not args.quick:
-        results.append(("3/4 MCP tools", run(
-            "GATE 3/4 — every advertised MCP tool responds (offline subset)",
+        results.append(("3/5 MCP tools", run(
+            "GATE 3/5 — every advertised MCP tool responds (offline subset)",
             [py, str(SCRIPTS / "check_mcp_tools.py"), "--offline", "--python", py])[0]))
+
+        results.append(("4/5 degraded mode", run(
+            "GATE 4/5 — a missing optional dependency degrades, it does not crash",
+            [py, str(SCRIPTS / "check_degraded_mode.py"), "--python", py])[0]))
 
         tmp = Path(tempfile.mkdtemp(prefix="flybrain_gates_"))
         try:
             gen_ok, _ = run(
-                "GATE 4/4a — generator smoke test",
+                "GATE 5/5a — generator smoke test",
                 [py, str(ROOT / "flybrain_cli.py"), "generate",
                  "--motif-source", "local", "--blueprint", "predictive_coding_v2",
                  "--modules", "3", "--agents-per-module", "4",
@@ -89,13 +94,13 @@ def main() -> int:
             artifact_ok = False
             if gen_ok:
                 artifact_ok, _ = run(
-                    "GATE 4/4b — the generated artifact is real",
+                    "GATE 5/5b — the generated artifact is real",
                     [py, str(SCRIPTS / "check_generated_artifact.py"),
                      "--dir", str(tmp), "--name", "gates_smoke"])
             else:
                 print("-" * 72)
-                print("    (skipping 4/4b — generation already failed)")
-            results.append(("4/4 artifact", gen_ok and artifact_ok))
+                print("    (skipping 5/5b — generation already failed)")
+            results.append(("5/5 artifact", gen_ok and artifact_ok))
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -103,10 +108,10 @@ def main() -> int:
         if not os.environ.get("FLYBRAIN_DATA_DIR"):
             print("-" * 72)
             print("    (--with-data requested but FLYBRAIN_DATA_DIR is unset — skipping)")
-            results.append(("5/5 flybrain verify", True))
+            results.append(("6/6 flybrain verify", True))
         else:
-            results.append(("5/5 flybrain verify", run(
-                "GATE 5/5 — end-to-end smoke test against the real connectome",
+            results.append(("6/6 flybrain verify", run(
+                "GATE 6/6 — end-to-end smoke test against the real connectome",
                 [py, str(ROOT / "flybrain_cli.py"), "verify"])[0]))
 
     print("=" * 72)

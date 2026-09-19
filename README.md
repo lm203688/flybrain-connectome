@@ -1,5 +1,8 @@
 # flybrain-connectome
 
+[![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
+[![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
 > 124,177,617 synapses, CC-BY).
@@ -87,6 +90,28 @@ pip install .
 export FLYBRAIN_HOME=/path/to/flybrain-connectome
 flybrain info
 ```
+
+> **This path is verified in CI, not just documented.** The `package` job in
+> `.github/workflows/ci.yml` runs `pip install ".[prov]"`, invokes the console
+> script, resolves the toolkit via `FLYBRAIN_HOME`, generates an organism, and
+> asserts the artifact's invariants — so the install instructions cannot
+> silently rot.
+
+### C. Optional: the standardized provenance bundle
+
+Structural provenance (`motif_provenance`, with the snapshot sha256) is always
+recorded. The *standardized* W3C PROV-JSON bundle (`prov_json`) is serialized
+by the optional [`dataprov`](https://github.com/RI-SE/dataprov) package:
+
+```bash
+pip install "flybrain-connectome[prov]"   # or simply: pip install dataprov
+```
+
+Without it the toolkit still runs: `prov_json` becomes `null` and
+`get_provenance_bundle` answers with `prov_available: false` plus the reason,
+rather than crashing. Both arms are asserted by
+`scripts/check_degraded_mode.py` — absent must degrade, present must actually
+produce the bundle.
 
 ### Always check what you got
 
@@ -177,7 +202,10 @@ flybrain-connectome/
 │   ├── _verify.py                  end-to-end smoke test (70/70)
 │   └── generated_organisms/        example artifacts (json/html + swarm configs)
 ├── integrations/swarmlabs/         consistency checkers + diagnostics (reproducible experiments)
-├── scripts/                        gh_publish.py (Contents-API push) · check_docs_consistency.py
+├── scripts/                        run_gates.py · check_no_secrets.py · check_docs_consistency.py
+│                                   check_mcp_tools.py · check_degraded_mode.py
+│                                   check_generated_artifact.py · gh_publish.py
+├── .github/workflows/ci.yml        the same gates, on py3.10/3.12/3.13 + packaged-CLI job
 └── docs/                           arxiv_paper.md · mcp_setup.md
 ```
 
@@ -307,6 +335,16 @@ for client configs, the 17-tool reference, and troubleshooting.
 
 ## Development & testing
 
+**One command runs every offline gate** — the same set CI runs, so "green
+locally" and "green in CI" cannot diverge:
+
+```bash
+python scripts/run_gates.py              # 5 gates, no dataset needed
+python scripts/run_gates.py --with-data  # + `flybrain verify` (70 assertions)
+```
+
+Individually:
+
 ```bash
 # credential gate — MUST pass before any push (see CHANGELOG 1.0.0)
 python scripts/check_no_secrets.py
@@ -316,6 +354,13 @@ python scripts/check_docs_consistency.py
 
 # every advertised MCP tool must actually respond (needs FLYBRAIN_DATA_DIR)
 python scripts/check_mcp_tools.py
+
+# a missing OPTIONAL dependency must degrade, not crash — and must not
+# silently skip producing provenance when the dependency IS installed
+python scripts/check_degraded_mode.py
+
+# the generated artifact is structurally real (not just "exit code 0")
+python scripts/check_generated_artifact.py --dir <out-dir> --name <organism>
 
 # end-to-end smoke test (needs FLYBRAIN_DATA_DIR -> your data)
 flybrain verify
@@ -328,6 +373,11 @@ python integrations/swarmlabs/diagnostics/fault_isolation_experiment.py --quick
 python integrations/swarmlabs/diagnostics/snn_energy_experiment.py
 python integrations/swarmlabs/diagnostics/multi_readout_experiment.py
 ```
+
+`scripts/check_mcp_tools.py --offline` skips the 11 data-backed tools, which is
+what CI does (the dataset is never downloaded in CI). So CI proves the
+generator surface and the packaging, while the data path is proved by
+`flybrain verify` on a machine that has the connectome.
 
 ---
 

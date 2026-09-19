@@ -40,8 +40,13 @@ jobs:
       # core.py imports numpy at module level, so anything that talks to the
       # connectome engine needs it. pyarrow is imported lazily and is only
       # needed by the real-data tools, which --offline skips.
-      - name: Install runtime dependency
-        run: python -m pip install --upgrade pip numpy
+      #
+      # dataprov is what serializes the W3C PROV-JSON bundle. It is OPTIONAL
+      # at runtime, but installing it here is deliberate: CI is the only place
+      # that exercises the provenance claim, and a build that silently stops
+      # emitting provenance must not look green.
+      - name: Install runtime + provenance dependencies
+        run: python -m pip install --upgrade pip numpy dataprov
 
       - name: Every Python file compiles
         run: |
@@ -60,6 +65,14 @@ jobs:
 
       - name: "Gate 3 - every advertised MCP tool responds"
         run: python scripts/check_mcp_tools.py --offline
+
+      # A missing *optional* dependency must degrade, not crash. This ran red
+      # on the first CI attempt: get_provenance_bundle died with
+      # "'NoneType' object has no attribute 'keys'" because prov_json is an
+      # explicit None without dataprov. Every dev machine had dataprov, so no
+      # local run could ever have caught it.
+      - name: "Gate 4 - optional dependency absent degrades honestly"
+        run: python scripts/check_degraded_mode.py
 
       - name: CLI self-check
         run: python flybrain_cli.py info
@@ -80,7 +93,7 @@ jobs:
       # The checker asserts real invariants (no dangling edges, leader outside
       # every module, weights in range, provenance chain intact) and was itself
       # self-tested: 6 mutations injected, 6 caught.
-      - name: "Gate 4 - the generated artifact is real"
+      - name: "Gate 5 - the generated artifact is real"
         run: python scripts/check_generated_artifact.py --dir /tmp/ci_out --name ci_smoke
 
   package:
@@ -95,8 +108,14 @@ jobs:
 
       # This is the claim the README makes. It is testable here and nowhere
       # else we have access to, so it runs on every push.
-      - name: pip install .
-        run: python -m pip install --upgrade pip && python -m pip install .
+      #
+      # Installing the [prov] extra does double duty: it proves the optional
+      # extra declared in pyproject.toml actually resolves, and it gives the
+      # artifact gate below a real PROV bundle to assert on.
+      - name: pip install ".[prov]"
+        run: |
+          python -m pip install --upgrade pip
+          python -m pip install ".[prov]"
 
       - name: The console script is on PATH and runs
         run: flybrain --help
@@ -114,17 +133,8 @@ jobs:
             --out /tmp/pkg_out \
             --no-html
 
-      - name: Assert the packaged CLI produced a real artifact
-        run: |
-          python - <<'PY'
-          import json, pathlib, sys
-          hits = sorted(pathlib.Path("/tmp/pkg_out").rglob("*.json"))
-          if not hits:
-              sys.exit("FAIL: installed CLI generated nothing")
-          for p in hits:
-              json.loads(p.read_text(encoding="utf-8"))
-          print("packaged CLI artifact: PASS (%d json file(s))" % len(hits))
-          PY
+      - name: "Gate 5 - the installed CLI produced a real artifact"
+        run: python scripts/check_generated_artifact.py --dir /tmp/pkg_out --name pkg_smoke
 
   # A single required check is far easier to gate a branch on than a matrix.
   ci:
