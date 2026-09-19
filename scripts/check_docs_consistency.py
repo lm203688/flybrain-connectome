@@ -87,6 +87,61 @@ def _mcp_tool_names() -> list[str]:
     return []
 
 
+def _toml_balanced(buf: str) -> bool:
+    return buf.count("[") == buf.count("]") and buf.count("{") == buf.count("}")
+
+
+def _toml_coerce(buf: str):
+    s = buf.strip().rstrip(",").strip()
+    if s in ("[]", "{}"):
+        return [] if s == "[]" else {}
+    if s.startswith(("[", "{", '"', "'")):
+        try:
+            return ast.literal_eval(s)
+        except Exception:  # noqa: BLE001
+            return s  # TOML inline table / exotic literal — raw is fine here
+    if s in ("true", "false"):
+        return s == "true"
+    return s
+
+
+def _toml_tables(src: str) -> dict:
+    """Map "table" -> {key: value} using only the stdlib available on 3.10.
+
+    ``tomllib`` is 3.11+ and this gate also runs on 3.10 in CI, so the file is
+    read line-by-line — which is exactly what the check needs, because the
+    defect being guarded is *table membership*, not value semantics. Multi-line
+    arrays are accumulated until their brackets balance, then ``literal_eval``'d
+    so that an empty list is an empty list.
+    """
+    tables: dict = {}
+    current = ""
+    pending = None  # (table, key, accumulated value)
+    for raw in src.splitlines():
+        if pending is None:
+            line = raw.split("#", 1)[0].strip()
+            if not line:
+                continue
+            if line.startswith("[") and line.endswith("]"):
+                current = line.strip("[]").strip()
+                tables.setdefault(current, {})
+                continue
+            if "=" in line and current:
+                key, _, value = line.partition("=")
+                pending = (current, key.strip(), value.strip())
+            else:
+                continue
+        else:
+            pending = (pending[0], pending[1],
+                       pending[2] + " " + raw.split("#", 1)[0].strip())
+        table, key, buf = pending
+        if _toml_balanced(buf):
+            tables.setdefault(table, {})
+            tables[table][key] = _toml_coerce(buf)
+            pending = None
+    return tables
+
+
 def main() -> int:
     readme = read(README)
     print("docs/code consistency gate")
@@ -224,6 +279,61 @@ def main() -> int:
             bad("code anchor %s" % anchor, "README cites it but code has no such literal")
         else:
             ok("anchor %s consistent" % pretty, "in README and code")
+
+    # ------------------------------------------------------ packaging metadata
+    # A mis-placed TOML table header is invisible to the eye and to every other
+    # gate, and it cannot be checked with pip in an environment where
+    # `pip install` is blocked. One shipped: `[project.optional-dependencies]`
+    # was inserted ABOVE `classifiers`, so `classifiers` became an extra whose
+    # value is a list of classifier strings — an invalid requirement that made
+    # `pip install ".[prov]"` fail in CI while the file still looked fine.
+    print("[5] packaging metadata  (pyproject.toml table placement)")
+    placement = _toml_tables(read(PYPROJECT))
+    PROJECT_KEYS = {"name", "version", "description", "readme", "requires-python",
+                    "license", "authors", "keywords", "dependencies", "classifiers",
+                    "urls", "scripts", "optional-dependencies"}
+    project_tbl = placement.get("project", {})
+    missing = sorted(k for k in ("name", "version", "requires-python", "dependencies",
+                                 "classifiers") if k not in project_tbl)
+    if missing:
+        bad("[project] fields", "missing %s — a later [table] header swallowed them"
+            % missing)
+    else:
+        ok("[project] fields", "complete (%d keys)" % len(project_tbl))
+
+    extras = placement.get("project.optional-dependencies", {})
+    bogus = sorted(k for k in extras if k in PROJECT_KEYS)
+    if bogus:
+        bad("extras are real extras",
+            "%s is a [project] field sitting under [project.optional-dependencies] "
+            "— that defines a bogus extra and breaks `pip install \".[extras]\"`"
+            % bogus)
+    else:
+        ok("extras are real extras", "%s" % (sorted(extras) or "none declared"))
+
+    REQ = re.compile(r"^[A-Za-z0-9][A-Za-z0-9._-]*"
+                     r"(\[[A-Za-z0-9,._-]+\])?"
+                     r"(\s*[<>=!~]=?[^;]*)?"
+                     r"(\s*;.*)?$")
+    for name, value in sorted(extras.items()):
+        if not isinstance(value, list) or not value:
+            bad("extra %r requirements" % name, "not a non-empty list: %r" % (value,))
+            continue
+        offenders = [v for v in value
+                     if not (isinstance(v, str) and REQ.match(v.strip()))]
+        if offenders:
+            bad("extra %r requirements" % name,
+                "not PEP 508 requirement syntax: %s" % offenders[:2])
+        else:
+            ok("extra %r requirements" % name, "%s" % value)
+
+    # "standard-library only" is a headline README promise; assert it is still true
+    if "standard-library only" in readme:
+        if project_tbl.get("dependencies") == []:
+            ok("README zero-dep claim honest", "required deps [], optional extra used")
+        else:
+            bad("README zero-dep claim", "README says standard-library only but "
+                "[project].dependencies = %r" % (project_tbl.get("dependencies"),))
 
     print("=" * 68)
     for n in notes:
