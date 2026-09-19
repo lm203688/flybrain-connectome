@@ -1,0 +1,93 @@
+# ==============================================================================
+# SwarmLabs Phase 4 验证 CI
+# ==============================================================================
+# 用途：在 SwarmLabs 仓库中运行 flybrain-connectome 的 Phase 4 验证脚本集
+# 放置：复制到 SwarmLabs 仓库的 .github/workflows/flybrain-phase4.yml
+#
+# 依赖：
+#   1. flybrain-connectome 侧的 run_phase4_checks.py 需可访问
+#   2. SwarmLabs 仓库需安装 scipy (Phase 4 新增依赖)
+#
+# 触发条件（三选一）：
+#   - 手动触发：gh workflow dispatch --workflow flybrain-phase4.yml
+#   - 推送触发：PR 合入 main 后自动跑（可选，见下方注释）
+#   - 定时触发：每周一上午 9 点（可选，见下方注释）
+#
+# 注意：本 workflow 需要 Workflows:write 权限才能编辑/触发。
+#       如果 SwarmLabs 仓库的 PAT 缺此权限，需要用户手动触发或加权限。
+# ==============================================================================
+
+name: Flybrain Phase 4 验证
+
+on:
+  # 手动触发（推荐，CI 权限要求最低）
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: '验证模式'
+        type: choice
+        options:
+          - quick
+          - ci
+          - full
+        default: quick
+      blueprint:
+        description: '使用的蓝图（仅 batch 验证用）'
+        type: string
+        default: deep_reasoning
+
+  # 推送触发（可选，取消注释启用）
+  # push:
+  #   branches: [main]
+  #   paths:
+  #     - 'agentteams/**'
+  #     - 'agent_topology/**'
+
+  # 定时触发（可选，取消注释启用）
+  # schedule:
+  #   - cron: '0 1 * * 1'  # 每周一 09:00 UTC (17:00 CST)
+
+jobs:
+  phase4-verify:
+    name: Phase 4 验证（${{ inputs.mode || 'quick' }}）
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+
+    steps:
+      - name: 检出 SwarmLabs 仓库
+        uses: actions/checkout@v4
+
+      - name: 设置 Python 环境
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.13'
+
+      - name: 安装依赖
+        run: |
+          pip install scipy numpy pyyaml
+          # 安装 SwarmLabs（editable 模式）
+          pip install -e .
+
+      - name: 克隆 flybrain-connectome（验证脚本）
+        run: |
+          # 注意：flybrain-connectome 是闭源项目，这里用 artifact 方式
+          # SwarmLabs 侧应预先配置 flybrain-connectome 的路径
+          echo "FLYBRAIN_PATH=${{ github.workspace }}/.flybrain-connectome" >> $GITHUB_ENV
+          # 实际部署时，需要配置 secret 或 submodule 来访问 flybrain-connectome
+
+      - name: 运行 Phase 4 验证
+        run: |
+          python "$FLYBRAIN_PATH/integrations/swarmlabs/run_phase4_checks.py" \
+            --mode ${{ inputs.mode || 'quick' }} \
+            --blueprint ${{ inputs.blueprint || 'deep_reasoning' }}
+
+      - name: 上传验证结果
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: phase4-results
+          path: |
+            $FLYBRAIN_PATH/integrations/swarmlabs/*.csv
+            $FLYBRAIN_PATH/integrations/swarmlabs/*.md
+            $FLYBRAIN_PATH/integrations/swarmlabs/*.json
+          if-no-files-found: ignore
