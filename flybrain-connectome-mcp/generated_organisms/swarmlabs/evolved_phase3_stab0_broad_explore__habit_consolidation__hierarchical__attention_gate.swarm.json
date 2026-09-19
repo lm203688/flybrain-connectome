@@ -1,0 +1,1200 @@
+{
+  "schema_version": "1.2.0",
+  "kind": "swarmlabs_agent_swarm",
+  "blueprint": [
+    "broad_explore",
+    "habit_consolidation",
+    "hierarchical",
+    "attention_gate"
+  ],
+  "blueprint_info": {
+    "label": "broad_explore+habit_consolidation+hierarchical+attention_gate",
+    "is_composed": true,
+    "n_components": 4,
+    "components": [
+      {
+        "name": "broad_explore",
+        "category": "basic",
+        "description": "广度探索：sensory 扇出到多 memory，汇聚到 integration",
+        "use_cases": [
+          "多假设并行",
+          "候选排名",
+          "广谱搜索"
+        ]
+      },
+      {
+        "name": "habit_consolidation",
+        "category": "biological",
+        "description": "习惯固化：memory→habit（高 recurrent）→motor（MBON 习惯回路）",
+        "use_cases": [
+          "技能自动化",
+          "习惯形成",
+          "程序性记忆"
+        ]
+      },
+      {
+        "name": "hierarchical",
+        "category": "biological",
+        "description": "皮质层级：sensory → 低层整合 → 高层整合 → motor（模拟 V1→V2→IT）",
+        "use_cases": [
+          "分层特征提取",
+          "抽象推理",
+          "跨层级抽象"
+        ]
+      },
+      {
+        "name": "attention_gate",
+        "category": "biological",
+        "description": "注意力门控：sensory → attention → 选择性过滤后传递给 memory/motor/integration",
+        "use_cases": [
+          "信号过滤",
+          "选择性注意",
+          "噪声抑制",
+          "优先级分配"
+        ]
+      }
+    ]
+  },
+  "motif_provenance": {
+    "dataset": {
+      "name": "MaleCNS v1.0",
+      "license": "CC-BY",
+      "total_synapses": 124177617,
+      "annotated_neurons": 166700,
+      "dataset_url": "https://flycellatlas.org/male_cns",
+      "annotation_version": "v1.0"
+    },
+    "blueprints_used": [
+      "broad_explore",
+      "habit_consolidation",
+      "hierarchical",
+      "attention_gate"
+    ],
+    "blueprint_to_motif": {
+      "broad_explore": {
+        "source_motif": "none",
+        "motif_body": null,
+        "motif_type": null,
+        "motif_fanout": null,
+        "motif_synapse_stats": null,
+        "motif_query": null,
+        "stability_target": 0.25,
+        "note": "人工设计的广度探索扇出，非生物先验",
+        "anchor": null,
+        "is_bio_prior": false
+      },
+      "habit_consolidation": {
+        "source_motif": "recurrent_feedback",
+        "motif_body": null,
+        "motif_type": null,
+        "motif_fanout": null,
+        "motif_synapse_stats": {
+          "class_superclass": null,
+          "self_loop_share": 0.2874,
+          "estimated_self_loops": 40707,
+          "percent_of_dataset_synapses": 0.2874,
+          "note": "ol_intrinsic self-loop fraction of 28.74% (MaleCNS v1.0 verified). Encodes predictive/feedback recursion motif."
+        },
+        "motif_query": "SELECT source_neuron_id FROM male_cns.synapses WHERE source_neuron_id = target_neuron_id AND superclass = 'ol_intrinsic' LIMIT 5",
+        "stability_target": 0.25,
+        "note": "习惯固化高 recurrent 回路，对应 recurrent_feedback motif（MBON 习惯回路）",
+        "anchor": "MaleCNS v1.0 recurrent_feedback motif",
+        "is_bio_prior": true
+      },
+      "hierarchical": {
+        "source_motif": "reservoir_smallworld",
+        "motif_body": null,
+        "motif_type": null,
+        "motif_fanout": null,
+        "motif_synapse_stats": {
+          "class_share": 0.4936,
+          "total_in_class": 82190,
+          "fanout_range": [
+            101,
+            1000
+          ],
+          "percent_of_annotated_neurons": 0.4936,
+          "note": "Fanout-101-to-1000 neurons represent 49.36% of annotated neurons. Small-world reservoir = layered cortical hierarchy."
+        },
+        "motif_query": "SELECT neuron_id FROM male_cns.neurons WHERE fanout BETWEEN 101 AND 1000 LIMIT 5",
+        "stability_target": 0.25,
+        "note": "皮质层级分层（V1→V2→IT），对应小世界储备库的分层处理原则",
+        "anchor": "MaleCNS v1.0 reservoir_smallworld motif",
+        "is_bio_prior": true
+      },
+      "attention_gate": {
+        "source_motif": "inhibitory_hub",
+        "motif_body": 10540,
+        "motif_type": "APL",
+        "motif_fanout": 102263,
+        "motif_synapse_stats": {
+          "source_neuron_id": 10540,
+          "source_superclass": "APL",
+          "fanout": 102263,
+          "percent_of_dataset_synapses": 0.082352,
+          "note": "Single-neuron fan-out broadcast pattern; represents the APL body 10540 as a canonical inhibitory hub."
+        },
+        "motif_query": "SELECT target_neuron_id FROM male_cns.synapses WHERE source_neuron_id = 10540 LIMIT 5",
+        "stability_target": 0.15,
+        "note": "注意力门控是 inhibitory_hub 的选择性变体（选择性抑制非注意项）",
+        "anchor": "MaleCNS v1.0 APL body 10540 (inhibitory_hub)",
+        "is_bio_prior": true
+      }
+    },
+    "is_bio_prior": true,
+    "bio_prior_count": 3,
+    "total_blueprint_count": 4,
+    "stability_summary": {
+      "worst_case_target": 0.15,
+      "targets_seen": [
+        0.25,
+        0.25,
+        0.25,
+        0.15
+      ],
+      "note": "Cross-module edge ratio upper bound. Lower = more isolated. Set by design intent; verified by _verify.py stability check."
+    },
+    "generated_utc": "2026-09-18T15:26:20.832762+00:00",
+    "schema_version": "1.2.0"
+  },
+  "generated_utc": "2026-09-18T15:26:20.832840+00:00",
+  "name": "ga_probe",
+  "swarm": {
+    "name": "ga_probe",
+    "topology": "guardrail-hub + module-cells + recurrent + reservoir",
+    "runtime": "local",
+    "source": {
+      "project": "flybrain-connectome",
+      "kind": "virtual_organism",
+      "generated_utc": "2026-09-18T15:26:20.832741+00:00",
+      "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
+      "motif_provenance": {
+        "requested_source": "local",
+        "mode": "local_snapshot",
+        "transport": "file",
+        "api_url": "http://127.0.0.1:8799",
+        "api_tool": "export_swarm_motifs",
+        "api_refresh_requested": false,
+        "api_key_source": "local_config",
+        "resolved_utc": "2026-09-18T15:26:16.294504+00:00",
+        "motif_generated_utc": "2026-09-16T22:29:57.040787+00:00",
+        "motifs": [
+          "inhibitory_hub",
+          "recurrent_feedback",
+          "reservoir_smallworld"
+        ],
+        "doc_sha256": "b9755a4519bee13a4782199302e254a3298919d2a66f902aa668e94109e70514",
+        "served_from": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+        "fallback_reason": null,
+        "snapshot_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+        "snapshot_sha256": "89c0790eb8d66fdb7eda569b82caf35aa46aa98c1ae2672cecb09885c5e828ed",
+        "api_cache_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\.motif_api_cache.json",
+        "snapshot_refreshed": false
+      }
+    },
+    "agentteams": {
+      "team_file": "agentteams/config/team.yaml",
+      "leader": "coordinator",
+      "role_map": {
+        "guardrail": "verifier",
+        "tissue_rep": "planner",
+        "cell": "executor",
+        "reservoir": "executor",
+        "module": "planner",
+        "worker": "executor"
+      },
+      "thresholds": {
+        "rel_converged": 0.05,
+        "cov_min": 0.8,
+        "cal_max": 0.08,
+        "cov_bad": 0.7,
+        "rel_bad": 0.2
+      }
+    },
+    "agents": [
+      {
+        "id": "m0_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "data_ingest",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 0,
+        "task_hint": "signal_preprocess",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m0_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 0,
+        "task_hint": "input_triage",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m1_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "gp_surrogate_fit",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 1,
+        "task_hint": "prior_recall",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m1_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 1,
+        "task_hint": "memory_synthesis",
+        "profile_name": "memory"
+      },
+      {
+        "id": "m2_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "experiment_run",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 2,
+        "task_hint": "numeric_integration",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m2_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 2,
+        "task_hint": "output_coordination",
+        "profile_name": "motor"
+      },
+      {
+        "id": "m3_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "candidate_rank",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 3,
+        "task_hint": "cross_domain_bridge",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m3_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 3,
+        "task_hint": "cross_module_arbitration",
+        "profile_name": "integration"
+      },
+      {
+        "id": "m4_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "attention_focus",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 4,
+        "task_hint": "salience_detection",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m4_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 4,
+        "task_hint": "attention_allocation",
+        "profile_name": "attention"
+      },
+      {
+        "id": "m5_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "working_hold",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 5,
+        "task_hint": "active_manipulation",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m5_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 5,
+        "task_hint": "working_memory_update",
+        "profile_name": "working_memory"
+      },
+      {
+        "id": "m6_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "reward_prediction",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 6,
+        "task_hint": "value_estimate",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m6_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 6,
+        "task_hint": "reward_allocation",
+        "profile_name": "reward"
+      },
+      {
+        "id": "m7_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "penalty_estimate",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 7,
+        "task_hint": "avoidance_gate",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m7_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 7,
+        "task_hint": "punishment_allocation",
+        "profile_name": "punishment"
+      },
+      {
+        "id": "m8_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "skill_chunk",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 8,
+        "task_hint": "procedural_consolidate",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m8_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 8,
+        "task_hint": "habit_consolidation",
+        "profile_name": "habit"
+      },
+      {
+        "id": "m9_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "confidence_estimate",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 9,
+        "task_hint": "uncertainty_flag",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m9_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 9,
+        "task_hint": "metacognitive_monitor",
+        "profile_name": "metacognition"
+      },
+      {
+        "id": "m10_a0",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 10,
+        "task_hint": "data_ingest",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m10_a1",
+        "role": "cell",
+        "swarm_role": "executor",
+        "module": 10,
+        "task_hint": "signal_preprocess",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "m10_rep",
+        "role": "tissue_rep",
+        "swarm_role": "planner",
+        "module": 10,
+        "task_hint": "input_triage",
+        "profile_name": "sensory"
+      },
+      {
+        "id": "coordinator",
+        "role": "guardrail",
+        "swarm_role": "verifier",
+        "task_hint": "global_guardrail",
+        "source": "APL(body 10540)"
+      }
+    ],
+    "modules": [
+      {
+        "index": 0,
+        "lead": "m0_rep",
+        "members": [
+          "m0_a0",
+          "m0_a1"
+        ],
+        "recurrent_weight": 0.1,
+        "profile_name": "sensory",
+        "capability": [
+          "perceive",
+          "ingest",
+          "buffer"
+        ]
+      },
+      {
+        "index": 1,
+        "lead": "m1_rep",
+        "members": [
+          "m1_a0",
+          "m1_a1"
+        ],
+        "recurrent_weight": 0.4,
+        "profile_name": "memory",
+        "capability": [
+          "gp_surrogate",
+          "remember",
+          "replay",
+          "state_carry"
+        ]
+      },
+      {
+        "index": 2,
+        "lead": "m2_rep",
+        "members": [
+          "m2_a0",
+          "m2_a1"
+        ],
+        "recurrent_weight": 0.1,
+        "profile_name": "motor",
+        "capability": [
+          "execute",
+          "actuate",
+          "numeric_integration",
+          "verify_output"
+        ]
+      },
+      {
+        "index": 3,
+        "lead": "m3_rep",
+        "members": [
+          "m3_a0",
+          "m3_a1"
+        ],
+        "recurrent_weight": 0.25,
+        "profile_name": "integration",
+        "capability": [
+          "rank",
+          "synthesize",
+          "arbitrate",
+          "elo_score"
+        ]
+      },
+      {
+        "index": 4,
+        "lead": "m4_rep",
+        "members": [
+          "m4_a0",
+          "m4_a1"
+        ],
+        "recurrent_weight": 0.2,
+        "profile_name": "attention",
+        "capability": [
+          "focus",
+          "filter",
+          "prioritize",
+          "salience_detection"
+        ]
+      },
+      {
+        "index": 5,
+        "lead": "m5_rep",
+        "members": [
+          "m5_a0",
+          "m5_a1"
+        ],
+        "recurrent_weight": 0.45,
+        "profile_name": "working_memory",
+        "capability": [
+          "hold",
+          "manipulate",
+          "update",
+          "active_recall"
+        ]
+      },
+      {
+        "index": 6,
+        "lead": "m6_rep",
+        "members": [
+          "m6_a0",
+          "m6_a1"
+        ],
+        "recurrent_weight": 0.3,
+        "profile_name": "reward",
+        "capability": [
+          "reward_signal",
+          "value_estimate",
+          "reinforce",
+          "motivation_gating"
+        ]
+      },
+      {
+        "index": 7,
+        "lead": "m7_rep",
+        "members": [
+          "m7_a0",
+          "m7_a1"
+        ],
+        "recurrent_weight": 0.3,
+        "profile_name": "punishment",
+        "capability": [
+          "punish_signal",
+          "penalty_estimate",
+          "avoidance_gate",
+          "negative_reinforce"
+        ]
+      },
+      {
+        "index": 8,
+        "lead": "m8_rep",
+        "members": [
+          "m8_a0",
+          "m8_a1"
+        ],
+        "recurrent_weight": 0.5,
+        "profile_name": "habit",
+        "capability": [
+          "automatize",
+          "chunk",
+          "procedural_consolidate",
+          "skill_encode"
+        ]
+      },
+      {
+        "index": 9,
+        "lead": "m9_rep",
+        "members": [
+          "m9_a0",
+          "m9_a1"
+        ],
+        "recurrent_weight": 0.35,
+        "profile_name": "metacognition",
+        "capability": [
+          "confidence_estimate",
+          "uncertainty_detect",
+          "meta_monitor",
+          "calibration"
+        ]
+      },
+      {
+        "index": 10,
+        "lead": "m10_rep",
+        "members": [
+          "m10_a0",
+          "m10_a1"
+        ],
+        "recurrent_weight": 0.1,
+        "profile_name": "sensory",
+        "capability": [
+          "perceive",
+          "ingest",
+          "buffer"
+        ]
+      }
+    ],
+    "edges": [
+      {
+        "from": "m0_rep",
+        "to": "m0_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 0
+      },
+      {
+        "from": "m1_rep",
+        "to": "m1_rep",
+        "weight": 0.4,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 1
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 2
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_rep",
+        "weight": 0.25,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 3
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_rep",
+        "weight": 0.2,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 4
+      },
+      {
+        "from": "m5_rep",
+        "to": "m5_rep",
+        "weight": 0.45,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 5
+      },
+      {
+        "from": "m6_rep",
+        "to": "m6_rep",
+        "weight": 0.3,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 6
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_rep",
+        "weight": 0.3,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 7
+      },
+      {
+        "from": "m8_rep",
+        "to": "m8_rep",
+        "weight": 0.5,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 8
+      },
+      {
+        "from": "m9_rep",
+        "to": "m9_rep",
+        "weight": 0.35,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 9
+      },
+      {
+        "from": "m10_rep",
+        "to": "m10_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "semantic": "state_feedback",
+        "module": 10
+      },
+      {
+        "from": "m0_a0",
+        "to": "m0_a1",
+        "weight": 0.072,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 0
+      },
+      {
+        "from": "m0_rep",
+        "to": "m0_a0",
+        "weight": 0.037,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 0
+      },
+      {
+        "from": "m1_a1",
+        "to": "m1_rep",
+        "weight": 0.059,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 1
+      },
+      {
+        "from": "m3_a0",
+        "to": "m3_a1",
+        "weight": 0.976,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 3
+      },
+      {
+        "from": "m3_a1",
+        "to": "m6_a1",
+        "weight": 0.419,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 3
+      },
+      {
+        "from": "m5_a0",
+        "to": "m5_a1",
+        "weight": 0.372,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 5
+      },
+      {
+        "from": "m5_rep",
+        "to": "m5_a0",
+        "weight": 0.496,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 5
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_a0",
+        "weight": 0.082,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 7
+      },
+      {
+        "from": "m9_rep",
+        "to": "m9_a0",
+        "weight": 0.757,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 9
+      },
+      {
+        "from": "m10_a0",
+        "to": "m10_a1",
+        "weight": 0.962,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 10
+      },
+      {
+        "from": "m10_a1",
+        "to": "m10_rep",
+        "weight": 0.34,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 10
+      },
+      {
+        "from": "m10_rep",
+        "to": "m10_a1",
+        "weight": 0.069,
+        "kind": "reservoir",
+        "semantic": "data_share",
+        "module": 10
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_a1",
+        "weight": -0.479,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 2
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_a0",
+        "weight": -0.226,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 2
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a1",
+        "weight": -0.487,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 3
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a0",
+        "weight": -0.555,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 3
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_a0",
+        "weight": -0.342,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 4
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_a1",
+        "weight": -0.444,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 4
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_a0",
+        "weight": -0.507,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 7
+      },
+      {
+        "from": "m7_rep",
+        "to": "m7_a1",
+        "weight": -0.252,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 7
+      },
+      {
+        "from": "m9_rep",
+        "to": "m9_a1",
+        "weight": -0.567,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 9
+      },
+      {
+        "from": "m9_rep",
+        "to": "m9_a0",
+        "weight": -0.399,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 9
+      },
+      {
+        "from": "coordinator",
+        "to": "m0_rep",
+        "weight": -1.0,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 0
+      },
+      {
+        "from": "coordinator",
+        "to": "m1_rep",
+        "weight": -0.909,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 1
+      },
+      {
+        "from": "coordinator",
+        "to": "m2_rep",
+        "weight": -0.818,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 2
+      },
+      {
+        "from": "coordinator",
+        "to": "m3_rep",
+        "weight": -0.727,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 3
+      },
+      {
+        "from": "coordinator",
+        "to": "m4_rep",
+        "weight": -0.636,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 4
+      },
+      {
+        "from": "coordinator",
+        "to": "m5_rep",
+        "weight": -0.545,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 5
+      },
+      {
+        "from": "coordinator",
+        "to": "m6_rep",
+        "weight": -0.455,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 6
+      },
+      {
+        "from": "coordinator",
+        "to": "m7_rep",
+        "weight": -0.364,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 7
+      },
+      {
+        "from": "coordinator",
+        "to": "m8_rep",
+        "weight": -0.273,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 8
+      },
+      {
+        "from": "coordinator",
+        "to": "m9_rep",
+        "weight": -0.182,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 9
+      },
+      {
+        "from": "coordinator",
+        "to": "m10_rep",
+        "weight": -0.091,
+        "kind": "inhibitory",
+        "semantic": "halt",
+        "module": 10
+      },
+      {
+        "from": "m0_rep",
+        "to": "m1_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "fanout_hypothesis",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m10_rep",
+        "to": "m1_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "fanout_hypothesis",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m1_rep",
+        "to": "m3_rep",
+        "weight": 0.35,
+        "kind": "reservoir",
+        "semantic": "converge",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m1_rep",
+        "to": "m8_rep",
+        "weight": 0.4,
+        "kind": "reservoir",
+        "semantic": "recall_to_habit",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m8_rep",
+        "to": "m2_rep",
+        "weight": 0.35,
+        "kind": "reservoir",
+        "semantic": "habitual_action",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m0_rep",
+        "to": "m8_rep",
+        "weight": 0.25,
+        "kind": "reservoir",
+        "semantic": "cue_acquire",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m0_rep",
+        "to": "m1_rep",
+        "weight": 0.4,
+        "kind": "reservoir",
+        "semantic": "low_level_feedforward",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m1_rep",
+        "to": "m3_rep",
+        "weight": 0.35,
+        "kind": "reservoir",
+        "semantic": "high_level_abstract",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m3_rep",
+        "to": "m2_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "cognitive_command",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m0_rep",
+        "to": "m4_rep",
+        "weight": 0.4,
+        "kind": "reservoir",
+        "semantic": "input_to_attention",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m4_rep",
+        "to": "m1_rep",
+        "weight": 0.35,
+        "kind": "reservoir",
+        "semantic": "attended_signal",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m4_rep",
+        "to": "m2_rep",
+        "weight": 0.3,
+        "kind": "reservoir",
+        "semantic": "attended_action",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      },
+      {
+        "from": "m4_rep",
+        "to": "m3_rep",
+        "weight": 0.25,
+        "kind": "reservoir",
+        "semantic": "attention_state",
+        "blueprint": "broad_explore+habit_consolidation+hierarchical+attention_gate"
+      }
+    ],
+    "guardrails": [
+      "leader(guardrail) 不得同时是任何 module 的成员（抑制枢纽必须外部于被抑制者）",
+      "weight < 0 的边是硬刹车：执行器不得用正向权重抵消或删除该边",
+      "recurrent 边只允许模块内自环，禁止跨模块复用",
+      "任何 agent 的入/出边端点必须存在于 agents 列表中（无悬空边）",
+      "边权一律落在 [-1, 1]；本文件是唯一真值，运行时不接受就地改权"
+    ],
+    "metrics": {
+      "n_nodes": 34,
+      "n_edges": 57,
+      "avg_degree": 3.353,
+      "inhibition_ratio": 0.368,
+      "n_modules": 11,
+      "intra_module_edges": 32,
+      "inter_module_edges": 25,
+      "modularity_est": 0.561,
+      "profile_breakdown": {
+        "sensory": {
+          "nodes": 6,
+          "edges": 12
+        },
+        "memory": {
+          "nodes": 3,
+          "edges": 5
+        },
+        "motor": {
+          "nodes": 3,
+          "edges": 3
+        },
+        "integration": {
+          "nodes": 3,
+          "edges": 6
+        },
+        "attention": {
+          "nodes": 3,
+          "edges": 6
+        },
+        "working_memory": {
+          "nodes": 3,
+          "edges": 3
+        },
+        "reward": {
+          "nodes": 3,
+          "edges": 1
+        },
+        "punishment": {
+          "nodes": 3,
+          "edges": 4
+        },
+        "habit": {
+          "nodes": 3,
+          "edges": 2
+        },
+        "metacognition": {
+          "nodes": 3,
+          "edges": 4
+        },
+        "uniform": {
+          "nodes": 1,
+          "edges": 11
+        }
+      }
+    },
+    "validation": {
+      "n_agents": 34,
+      "n_edges": 57,
+      "n_modules": 11,
+      "leader_resolved": "coordinator",
+      "leader_is_module_member": false,
+      "dangling_edges": 0,
+      "weight_min": -1.0,
+      "weight_max": 0.976,
+      "weights_in_range": true,
+      "inhibitory_edges": 21,
+      "recurrent_edges": 11,
+      "reservoir_edges": 25,
+      "ok": true
+    }
+  }
+}
