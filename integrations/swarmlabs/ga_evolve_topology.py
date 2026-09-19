@@ -41,6 +41,8 @@ import sys
 import time
 from pathlib import Path
 
+from _local_key import local_api_key  # same-directory helper; keeps keys out of the repo
+
 import numpy as np
 
 HERE = Path(__file__).resolve().parent          # .../integrations/swarmlabs
@@ -697,9 +699,7 @@ def main(argv=None) -> int:
                             encoding="utf-8")
         env = os.environ.copy()
         env["FLYBRAIN_DATA_DIR"] = str(ROOT / "male_cns")
-        env["FLYBRAIN_API_KEY"] = os.environ.get(
-            "FLYBRAIN_API_KEY",
-            "flybrain_dfacd1184a8d21ba263d282a54b425d0d06b67fd50b2438c90e219edfff73cb5")
+        env["FLYBRAIN_API_KEY"] = os.environ.get("FLYBRAIN_API_KEY") or local_api_key()
         for k in ("http_proxy", "https_proxy", "HTTP_PROXY", "HTTPS_PROXY"):
             env.pop(k, None)
         env["NO_PROXY"] = "127.0.0.1,localhost"
