@@ -16,9 +16,12 @@ Run:
 import os
 import sys
 import json
+import time
 
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
+sys.path.insert(0, os.path.normpath(os.path.join(os.path.dirname(os.path.abspath(__file__)), "..")))
 import core
+from module_registry import ModuleFactory
 
 PROTOCOL_VERSION = "2024-11-05"
 
@@ -276,6 +279,55 @@ TOOLS = [
             },
             "required": ["name"],
         },
+    },
+    # ---- Phase 7 模块化工厂工具 (2026-09-20) ----
+    {
+        "name": "get_module",
+        "description": "获取单个模块的完整规格定义，包括连接模式、拓扑参数、capabilities 等。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string",
+                         "description": "模块名，如 'sensory' / 'memory' / 'attention'"},
+            },
+            "required": ["name"],
+        },
+    },
+    {
+        "name": "check_module_compatibility",
+        "description": "检查多个模块组合的兼容性。检测循环依赖、motif 资源竞争、总节点数范围。返回 compatible=true/false + 冲突详情。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "modules": {"type": "array",
+                            "items": {"type": "string"},
+                            "description": "模块名列表，如 ['sensory', 'memory', 'motor']"},
+            },
+            "required": ["modules"],
+        },
+    },
+    {
+        "name": "compose_virtual_organism",
+        "description": "根据模块规格组合生成虚拟生物拓扑。支持同模块多副本（counts 参数）。产出 organism 结构含 modules 列表、stats 统计、兼容性报告。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "modules": {"type": "array",
+                            "items": {"type": "string"},
+                            "description": "模块名列表"},
+                "counts": {"type": "object",
+                           "additionalProperties": {"type": "integer"},
+                           "description": "每个模块的副本数，如 {'sensory': 2}"},
+                "seed": {"type": "integer",
+                         "description": "随机种子，控制节点数分布，默认 42"},
+            },
+            "required": ["modules"],
+        },
+    },
+    {
+        "name": "list_virtual_organisms",
+        "description": "列出已生成的虚拟生物标本（保存在 male_cns/virtual_organisms/）。每个标本对应一次 compose_virtual_organism 调用。",
+        "inputSchema": {"type": "object", "properties": {}},
     },
 ]
 
@@ -718,6 +770,62 @@ def _get_neuropil_detail(name):
 
 
 # --------------------------------------------------------------------------- #
+# Phase 7: Module Factory tools
+# --------------------------------------------------------------------------- #
+_MODULE_DIR = os.path.normpath(os.path.join(_MOTIFS_DIR, "..", "..", "male_cns", "virtual_organisms"))
+
+
+def _list_modules(category=None):
+    modules = ModuleFactory.list_modules(category=category)
+    return {"module_count": len(modules), "modules": modules}
+
+
+def _get_module(name):
+    return ModuleFactory.get_module(name)
+
+
+def _check_compatibility(modules):
+    return ModuleFactory.check_compatibility(modules)
+
+
+def _compose_organism(args):
+    spec = {
+        "modules": args.get("modules", []),
+        "counts": args.get("counts", {}),
+        "seed": int(args.get("seed", 42)),
+    }
+    result = ModuleFactory.compose_organism(spec)
+    # Save artifact
+    if result.get("status") == "success":
+        os.makedirs(_MODULE_DIR, exist_ok=True)
+        org_name = args.get("name", "organism_%d" % int(time.time()))
+        path = os.path.join(_MODULE_DIR, f"{org_name}.json")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+        result["saved_path"] = path
+    return result
+
+
+def _list_virtual_organisms():
+    if not os.path.exists(_MODULE_DIR):
+        return {"organisms": [], "count": 0}
+    files = [f for f in os.listdir(_MODULE_DIR) if f.endswith(".json")]
+    items = []
+    for f in files:
+        path = os.path.join(_MODULE_DIR, f)
+        with open(path, encoding="utf-8") as fh:
+            data = json.load(fh)
+        items.append({
+            "filename": f,
+            "path": path,
+            "status": data.get("status"),
+            "stats": data.get("organism", {}).get("stats", {}),
+            "generated_at": os.path.getmtime(path),
+        })
+    return {"organism_count": len(items), "organisms": items}
+
+
+# --------------------------------------------------------------------------- #
 # Dispatch
 # --------------------------------------------------------------------------- #
 def handle_call(name, args):
@@ -773,6 +881,15 @@ def handle_call(name, args):
         return json.dumps(_list_neuropils(top), ensure_ascii=False)
     if name == "get_neuropil_detail":
         return json.dumps(_get_neuropil_detail(str(args["name"])), ensure_ascii=False)
+    # ---- Phase 7: Module factory tools ----
+    if name == "get_module":
+        return json.dumps(_get_module(str(args["name"])), ensure_ascii=False)
+    if name == "check_module_compatibility":
+        return json.dumps(_check_compatibility(args.get("modules", [])), ensure_ascii=False)
+    if name == "compose_virtual_organism":
+        return json.dumps(_compose_organism(args), ensure_ascii=False)
+    if name == "list_virtual_organisms":
+        return json.dumps(_list_virtual_organisms(), ensure_ascii=False)
     raise ValueError("unknown tool: %s" % name)
 
 
