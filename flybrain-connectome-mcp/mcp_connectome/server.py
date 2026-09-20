@@ -329,6 +329,39 @@ TOOLS = [
         "description": "列出已生成的虚拟生物标本（保存在 male_cns/virtual_organisms/）。每个标本对应一次 compose_virtual_organism 调用。",
         "inputSchema": {"type": "object", "properties": {}},
     },
+    # ---- Phase 2 预设组合工具 (2026-09-20) ----
+    {
+        "name": "list_presets",
+        "description": "列出所有虚拟生物预设组合（10 个），包括 minimal_reflex / cognitive_animal / multi_sensory_perceptor / deep_thinker / reward_learner / planning_agent / fast_reflexor / swarm_controller / self_adaptive_organism / conscious_being。每个预设定义了一组模块、副本数、跨模块连接蓝图。",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "get_preset",
+        "description": "获取单个预设组合的完整定义，包括模块列表、副本数、跨模块连接蓝图、每模块节点数、seed。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string",
+                         "description": "预设名，如 'cognitive_animal' / 'deep_thinker' / 'conscious_being'"},
+            },
+            "required": ["name"],
+        },
+    },
+    {
+        "name": "apply_preset",
+        "description": "应用预设组合并生成虚拟生物拓扑（真调用 design_organism 生成 nodes/edges/weights）。支持通过 overrides 覆盖任意参数（modules/counts/variants/blueprint/agents_per_module/seed）。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string",
+                         "description": "预设名"},
+                "overrides": {"type": "object",
+                              "additionalProperties": True,
+                              "description": "覆盖参数，如 {\"seed\": 100, \"agents_per_module\": 8}"},
+            },
+            "required": ["name"],
+        },
+    },
 ]
 
 
@@ -806,6 +839,34 @@ def _compose_organism(args):
     return result
 
 
+def _list_presets():
+    presets = ModuleFactory.list_presets()
+    return {"preset_count": len(presets), "presets": presets}
+
+
+def _get_preset(name):
+    return ModuleFactory.get_preset(name)
+
+
+def _apply_preset(args):
+    """Apply a preset combination and generate virtual organism topology.
+
+    Preset args:
+      name: preset name (required)
+      overrides: optional dict to override any preset field (modules/counts/variants/blueprint/agents_per_module/seed)
+    """
+    result = ModuleFactory.apply_preset(str(args["name"]), args.get("overrides"))
+    # Save artifact
+    if result.get("status") == "success":
+        os.makedirs(_MODULE_DIR, exist_ok=True)
+        preset_name = args.get("name", "preset_%d" % int(time.time()))
+        path = os.path.join(_MODULE_DIR, f"preset_{preset_name}.json")
+        with open(path, "w", encoding="utf-8") as f:
+            json.dump(result, f, ensure_ascii=False, indent=2)
+        result["saved_path"] = path
+    return result
+
+
 def _list_virtual_organisms():
     if not os.path.exists(_MODULE_DIR):
         return {"organisms": [], "count": 0}
@@ -890,6 +951,12 @@ def handle_call(name, args):
         return json.dumps(_compose_organism(args), ensure_ascii=False)
     if name == "list_virtual_organisms":
         return json.dumps(_list_virtual_organisms(), ensure_ascii=False)
+    if name == "list_presets":
+        return json.dumps(_list_presets(), ensure_ascii=False)
+    if name == "get_preset":
+        return json.dumps(_get_preset(str(args["name"])), ensure_ascii=False)
+    if name == "apply_preset":
+        return json.dumps(_apply_preset(args), ensure_ascii=False)
     raise ValueError("unknown tool: %s" % name)
 
 

@@ -1,0 +1,377 @@
+{
+  "status": "success",
+  "organism": {
+    "schema_version": "1.2.1",
+    "kind": "virtual_organism",
+    "generated_utc": "2026-09-20T06:40:22.854433+00:00",
+    "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
+    "spec": {
+      "n_modules": 3,
+      "agents_per_module": 6,
+      "module_profiles": {
+        "custom": {
+          "0": "sensory",
+          "1": "memory",
+          "2": "motor"
+        }
+      }
+    },
+    "blueprint": null,
+    "blueprint_edges_added": 0,
+    "motif_provenance": null,
+    "module_profiles": {
+      "0": {
+        "name": "sensory",
+        "description": "High-density input buffer (ol_intrinsic analog)"
+      },
+      "1": {
+        "name": "memory",
+        "description": "Recurrent working memory (cb_intrinsic analog)"
+      },
+      "2": {
+        "name": "motor",
+        "description": "Motor output with local inhibition (vnc_intrinsic)"
+      }
+    },
+    "organism": {
+      "nodes": [
+        {
+          "id": "m0_a0",
+          "role": "cell",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "data_ingest"
+        },
+        {
+          "id": "m0_a1",
+          "role": "cell",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "signal_preprocess"
+        },
+        {
+          "id": "m0_a2",
+          "role": "cell",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "stream_buffer"
+        },
+        {
+          "id": "m0_a3",
+          "role": "cell",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "sensor_noise_filter"
+        },
+        {
+          "id": "m0_a4",
+          "role": "cell",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "data_ingest"
+        },
+        {
+          "id": "m0_a5",
+          "role": "cell",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "signal_preprocess"
+        },
+        {
+          "id": "m0_rep",
+          "role": "tissue_rep",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "input_triage"
+        },
+        {
+          "id": "m1_a0",
+          "role": "cell",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "gp_surrogate_fit"
+        },
+        {
+          "id": "m1_a1",
+          "role": "cell",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "prior_recall"
+        },
+        {
+          "id": "m1_a2",
+          "role": "cell",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "state_carry"
+        },
+        {
+          "id": "m1_a3",
+          "role": "cell",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "history_replay"
+        },
+        {
+          "id": "m1_a4",
+          "role": "cell",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "gp_surrogate_fit"
+        },
+        {
+          "id": "m1_a5",
+          "role": "cell",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "prior_recall"
+        },
+        {
+          "id": "m1_rep",
+          "role": "tissue_rep",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "memory_synthesis"
+        },
+        {
+          "id": "m2_a0",
+          "role": "cell",
+          "module": 2,
+          "profile": "motor",
+          "task_hint": "experiment_run"
+        },
+        {
+          "id": "m2_a1",
+          "role": "cell",
+          "module": 2,
+          "profile": "motor",
+          "task_hint": "numeric_integration"
+        },
+        {
+          "id": "m2_a2",
+          "role": "cell",
+          "module": 2,
+          "profile": "motor",
+          "task_hint": "output_check"
+        },
+        {
+          "id": "m2_a3",
+          "role": "cell",
+          "module": 2,
+          "profile": "motor",
+          "task_hint": "actuation_dispatch"
+        },
+        {
+          "id": "m2_a4",
+          "role": "cell",
+          "module": 2,
+          "profile": "motor",
+          "task_hint": "experiment_run"
+        },
+        {
+          "id": "m2_a5",
+          "role": "cell",
+          "module": 2,
+          "profile": "motor",
+          "task_hint": "numeric_integration"
+        },
+        {
+          "id": "m2_rep",
+          "role": "tissue_rep",
+          "module": 2,
+          "profile": "motor",
+          "task_hint": "output_coordination"
+        },
+        {
+          "id": "coordinator",
+          "role": "guardrail",
+          "source": "APL(body 10540)",
+          "task_hint": "global_guardrail"
+        }
+      ],
+      "edges": [
+        {
+          "from": "m0_rep",
+          "to": "m0_rep",
+          "weight": 0.1,
+          "kind": "recurrent",
+          "module": 0
+        },
+        {
+          "from": "m1_rep",
+          "to": "m1_rep",
+          "weight": 0.4,
+          "kind": "recurrent",
+          "module": 1
+        },
+        {
+          "from": "m2_rep",
+          "to": "m2_rep",
+          "weight": 0.1,
+          "kind": "recurrent",
+          "module": 2
+        },
+        {
+          "from": "m0_a1",
+          "to": "m0_a2",
+          "weight": 0.14,
+          "kind": "reservoir",
+          "module": 0
+        },
+        {
+          "from": "m0_a2",
+          "to": "m2_a4",
+          "weight": 0.087,
+          "kind": "reservoir",
+          "module": 0
+        },
+        {
+          "from": "m0_a3",
+          "to": "m0_a1",
+          "weight": 0.233,
+          "kind": "reservoir",
+          "module": 0
+        },
+        {
+          "from": "m1_rep",
+          "to": "m1_a2",
+          "weight": 0.155,
+          "kind": "reservoir",
+          "module": 1
+        },
+        {
+          "from": "m2_a2",
+          "to": "m2_a3",
+          "weight": 0.604,
+          "kind": "reservoir",
+          "module": 2
+        },
+        {
+          "from": "m2_rep",
+          "to": "m2_a0",
+          "weight": -0.532,
+          "kind": "inhibitory",
+          "module": 2
+        },
+        {
+          "from": "m2_rep",
+          "to": "m2_a4",
+          "weight": -0.447,
+          "kind": "inhibitory",
+          "module": 2
+        },
+        {
+          "from": "m2_rep",
+          "to": "m2_a2",
+          "weight": -0.545,
+          "kind": "inhibitory",
+          "module": 2
+        },
+        {
+          "from": "coordinator",
+          "to": "m0_rep",
+          "weight": -1.0,
+          "kind": "inhibitory",
+          "module": 0
+        },
+        {
+          "from": "coordinator",
+          "to": "m1_rep",
+          "weight": -0.667,
+          "kind": "inhibitory",
+          "module": 1
+        },
+        {
+          "from": "coordinator",
+          "to": "m2_rep",
+          "weight": -0.333,
+          "kind": "inhibitory",
+          "module": 2
+        }
+      ]
+    },
+    "metrics": {
+      "n_nodes": 22,
+      "n_edges": 14,
+      "avg_degree": 1.273,
+      "inhibition_ratio": 0.429,
+      "n_modules": 3,
+      "intra_module_edges": 10,
+      "inter_module_edges": 4,
+      "modularity_est": 0.714,
+      "profile_breakdown": {
+        "sensory": {
+          "nodes": 7,
+          "edges": 4
+        },
+        "memory": {
+          "nodes": 7,
+          "edges": 2
+        },
+        "motor": {
+          "nodes": 7,
+          "edges": 5
+        },
+        "uniform": {
+          "nodes": 1,
+          "edges": 3
+        }
+      }
+    },
+    "prov_json": null
+  },
+  "stats": {
+    "total_nodes": 22,
+    "total_edges": 14,
+    "n_modules": 3,
+    "n_unique_modules": 3,
+    "motif_sources": [
+      "recurrent_feedback"
+    ],
+    "blueprint": null,
+    "blueprint_edges_added": 0
+  },
+  "compatibility": {
+    "compatible": true,
+    "modules": [
+      "sensory",
+      "memory",
+      "motor"
+    ],
+    "n_modules": 3,
+    "conflicts": [],
+    "cycle_paths": [],
+    "motif_sources": [
+      "recurrent_feedback"
+    ],
+    "total_size_range": [
+      20,
+      96
+    ]
+  },
+  "module_spec": {
+    "modules": [
+      "sensory",
+      "memory",
+      "motor"
+    ],
+    "counts": {},
+    "seed": 42
+  },
+  "variants": {},
+  "module_inventory": {
+    "modules": [
+      "sensory",
+      "memory",
+      "motor"
+    ],
+    "counts": {},
+    "expanded": [
+      "sensory",
+      "memory",
+      "motor"
+    ],
+    "blueprint": null,
+    "agents_per_module": 6
+  }
+}
