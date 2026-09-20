@@ -1,8 +1,13 @@
 # ---------------------------------------------------------------------------
 # Data — the 5.63 GB connectome is NEVER committed.
 # Obtain your own copy of MaleCNS v1.0 (CC-BY) and point FLYBRAIN_DATA_DIR at it.
+# Small derived JSON summaries (stats, connectivity_facts, neuropil_stats) ARE
+# committed as auditable evidence; the raw feather / npy payloads stay local.
 # ---------------------------------------------------------------------------
-male_cns/
+male_cns/*.feather
+male_cns/*.progress.json
+male_cns/connectome_cache/
+male_cns/flat-connectome/
 drosophila_connectome/data/
 drosophila_connectome/dataset/
 .backups/
