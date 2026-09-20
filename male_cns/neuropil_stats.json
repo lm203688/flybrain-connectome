@@ -1,886 +1,2495 @@
 {
-  "source_file": "syn-partners-male-cns-v1.0-minconf-0.5.feather",
-  "source_size_bytes": 6777179098,
+  "source_file_syn_partners": "syn-partners-male-cns-v1.0-minconf-0.5.feather",
+  "source_size_bytes_syn_partners": 6777179098,
+  "source_file_tbar_nt": "tbar-neurotransmitters-male-cns-v1.0.feather",
+  "source_size_bytes_tbar_nt": 2651680218,
   "total_synapse_pairs": 311833243,
+  "total_tbar_synapses": 45656140,
   "n_neuropil_categories": 146,
   "neuropils": {
     "ME(L)": {
       "synapses": 28398255,
       "distinct_pre_neurons": 168555,
       "distinct_post_neurons": 7376307,
-      "mean_synapses_per_pre": 168.48
+      "mean_synapses_per_pre": 168.48,
+      "neurotransmitters": {
+        "acetylcholine": 0.510727,
+        "dopamine": 0.000233,
+        "gaba": 0.206777,
+        "glutamate": 0.244905,
+        "histamine": 0.018441,
+        "octopamine": 0.015387,
+        "serotonin": 0.003529
+      },
+      "tbar_synapses": 4268320,
+      "distinct_bodies_tbar": 168039
     },
     "ME(R)": {
       "synapses": 27365057,
       "distinct_pre_neurons": 118062,
       "distinct_post_neurons": 5653713,
-      "mean_synapses_per_pre": 231.79
+      "mean_synapses_per_pre": 231.79,
+      "neurotransmitters": {
+        "acetylcholine": 0.519549,
+        "dopamine": 0.000289,
+        "gaba": 0.209007,
+        "glutamate": 0.23531,
+        "histamine": 0.016305,
+        "octopamine": 0.014937,
+        "serotonin": 0.004604
+      },
+      "tbar_synapses": 4141576,
+      "distinct_bodies_tbar": 117863
     },
     "LO(L)": {
       "synapses": 14970636,
       "distinct_pre_neurons": 77123,
       "distinct_post_neurons": 3886310,
-      "mean_synapses_per_pre": 194.11
+      "mean_synapses_per_pre": 194.11,
+      "neurotransmitters": {
+        "acetylcholine": 0.637072,
+        "dopamine": 0.005048,
+        "gaba": 0.181162,
+        "glutamate": 0.154262,
+        "histamine": 0.002245,
+        "octopamine": 0.011398,
+        "serotonin": 0.008813
+      },
+      "tbar_synapses": 2002472,
+      "distinct_bodies_tbar": 76865
     },
     "GNG": {
       "synapses": 14620320,
       "distinct_pre_neurons": 122491,
       "distinct_post_neurons": 4590552,
-      "mean_synapses_per_pre": 119.36
+      "mean_synapses_per_pre": 119.36,
+      "neurotransmitters": {
+        "acetylcholine": 0.533371,
+        "dopamine": 0.013628,
+        "gaba": 0.245435,
+        "glutamate": 0.097723,
+        "histamine": 0.010724,
+        "octopamine": 0.028985,
+        "serotonin": 0.070135
+      },
+      "tbar_synapses": 2068906,
+      "distinct_bodies_tbar": 121355
     },
     "LO(R)": {
       "synapses": 14427068,
       "distinct_pre_neurons": 58049,
       "distinct_post_neurons": 3000005,
-      "mean_synapses_per_pre": 248.53
+      "mean_synapses_per_pre": 248.53,
+      "neurotransmitters": {
+        "acetylcholine": 0.647618,
+        "dopamine": 0.007084,
+        "gaba": 0.169661,
+        "glutamate": 0.14782,
+        "histamine": 0.002476,
+        "octopamine": 0.011816,
+        "serotonin": 0.013524
+      },
+      "tbar_synapses": 1942110,
+      "distinct_bodies_tbar": 57946
     },
     "LegNp(T3)(R)": {
       "synapses": 7897069,
       "distinct_pre_neurons": 76869,
       "distinct_post_neurons": 2409729,
-      "mean_synapses_per_pre": 102.73
+      "mean_synapses_per_pre": 102.73,
+      "neurotransmitters": {
+        "acetylcholine": 0.560693,
+        "dopamine": 0.002685,
+        "gaba": 0.284338,
+        "glutamate": 0.101136,
+        "histamine": 0.010897,
+        "octopamine": 0.013365,
+        "serotonin": 0.026886
+      },
+      "tbar_synapses": 1192842,
+      "distinct_bodies_tbar": 76619
     },
     "AVLP(L)": {
       "synapses": 7790490,
       "distinct_pre_neurons": 23035,
       "distinct_post_neurons": 2227193,
-      "mean_synapses_per_pre": 338.2
+      "mean_synapses_per_pre": 338.2,
+      "neurotransmitters": {
+        "acetylcholine": 0.610253,
+        "dopamine": 0.023362,
+        "gaba": 0.186388,
+        "glutamate": 0.107763,
+        "histamine": 0.004523,
+        "octopamine": 0.017123,
+        "serotonin": 0.050587
+      },
+      "tbar_synapses": 1002602,
+      "distinct_bodies_tbar": 22742
     },
     "ANm": {
       "synapses": 7755078,
       "distinct_pre_neurons": 33190,
       "distinct_post_neurons": 1830508,
-      "mean_synapses_per_pre": 233.66
+      "mean_synapses_per_pre": 233.66,
+      "neurotransmitters": {
+        "acetylcholine": 0.567741,
+        "dopamine": 0.002102,
+        "gaba": 0.274869,
+        "glutamate": 0.082231,
+        "histamine": 0.009238,
+        "octopamine": 0.022559,
+        "serotonin": 0.041261
+      },
+      "tbar_synapses": 1227300,
+      "distinct_bodies_tbar": 32989
     },
     "LegNp(T3)(L)": {
       "synapses": 7752288,
       "distinct_pre_neurons": 85408,
       "distinct_post_neurons": 2450670,
-      "mean_synapses_per_pre": 90.77
+      "mean_synapses_per_pre": 90.77,
+      "neurotransmitters": {
+        "acetylcholine": 0.56069,
+        "dopamine": 0.00289,
+        "gaba": 0.281644,
+        "glutamate": 0.099864,
+        "histamine": 0.011992,
+        "octopamine": 0.014813,
+        "serotonin": 0.028107
+      },
+      "tbar_synapses": 1167969,
+      "distinct_bodies_tbar": 85057
     },
     "AVLP(R)": {
       "synapses": 7186034,
       "distinct_pre_neurons": 15212,
       "distinct_post_neurons": 1635158,
-      "mean_synapses_per_pre": 472.39
+      "mean_synapses_per_pre": 472.39,
+      "neurotransmitters": {
+        "acetylcholine": 0.614577,
+        "dopamine": 0.026387,
+        "gaba": 0.183407,
+        "glutamate": 0.107101,
+        "histamine": 0.003859,
+        "octopamine": 0.016819,
+        "serotonin": 0.047849
+      },
+      "tbar_synapses": 934567,
+      "distinct_bodies_tbar": 14984
     },
     "LegNp(T1)(L)": {
       "synapses": 6430939,
       "distinct_pre_neurons": 74859,
       "distinct_post_neurons": 2526485,
-      "mean_synapses_per_pre": 85.91
+      "mean_synapses_per_pre": 85.91,
+      "neurotransmitters": {
+        "acetylcholine": 0.527597,
+        "dopamine": 6.7e-05,
+        "gaba": 0.294911,
+        "glutamate": 0.126016,
+        "histamine": 0.024275,
+        "octopamine": 0.020019,
+        "serotonin": 0.007114
+      },
+      "tbar_synapses": 1003932,
+      "distinct_bodies_tbar": 74428
     },
     "LegNp(T2)(L)": {
       "synapses": 6420731,
       "distinct_pre_neurons": 54891,
       "distinct_post_neurons": 1826973,
-      "mean_synapses_per_pre": 116.97
+      "mean_synapses_per_pre": 116.97,
+      "neurotransmitters": {
+        "acetylcholine": 0.55006,
+        "dopamine": 0.00047,
+        "gaba": 0.290502,
+        "glutamate": 0.12136,
+        "histamine": 0.013602,
+        "octopamine": 0.012588,
+        "serotonin": 0.011418
+      },
+      "tbar_synapses": 987103,
+      "distinct_bodies_tbar": 54645
     },
     "LOP(R)": {
       "synapses": 6144193,
       "distinct_pre_neurons": 27246,
       "distinct_post_neurons": 971777,
-      "mean_synapses_per_pre": 225.51
+      "mean_synapses_per_pre": 225.51,
+      "neurotransmitters": {
+        "acetylcholine": 0.673323,
+        "dopamine": 0.001658,
+        "gaba": 0.131228,
+        "glutamate": 0.185278,
+        "histamine": 0.00166,
+        "octopamine": 0.004547,
+        "serotonin": 0.002307
+      },
+      "tbar_synapses": 879665,
+      "distinct_bodies_tbar": 27098
     },
     "CentralBrain-unspecified": {
       "synapses": 6050191,
       "distinct_pre_neurons": 156049,
       "distinct_post_neurons": 2252871,
-      "mean_synapses_per_pre": 38.77
+      "mean_synapses_per_pre": 38.77,
+      "neurotransmitters": {
+        "acetylcholine": 0.427084,
+        "dopamine": 0.083064,
+        "gaba": 0.175811,
+        "glutamate": 0.12877,
+        "histamine": 0.025176,
+        "octopamine": 0.055577,
+        "serotonin": 0.104518
+      },
+      "tbar_synapses": 929363,
+      "distinct_bodies_tbar": 149906
     },
     "LOP(L)": {
       "synapses": 6027458,
       "distinct_pre_neurons": 34262,
       "distinct_post_neurons": 1268495,
-      "mean_synapses_per_pre": 175.92
+      "mean_synapses_per_pre": 175.92,
+      "neurotransmitters": {
+        "acetylcholine": 0.666101,
+        "dopamine": 0.001063,
+        "gaba": 0.131925,
+        "glutamate": 0.192679,
+        "histamine": 0.002391,
+        "octopamine": 0.004001,
+        "serotonin": 0.001839
+      },
+      "tbar_synapses": 863019,
+      "distinct_bodies_tbar": 34022
     },
     "LegNp(T2)(R)": {
       "synapses": 5834664,
       "distinct_pre_neurons": 44026,
       "distinct_post_neurons": 1819522,
-      "mean_synapses_per_pre": 132.53
+      "mean_synapses_per_pre": 132.53,
+      "neurotransmitters": {
+        "acetylcholine": 0.55459,
+        "dopamine": 0.000215,
+        "gaba": 0.294115,
+        "glutamate": 0.120014,
+        "histamine": 0.011786,
+        "octopamine": 0.009558,
+        "serotonin": 0.009722
+      },
+      "tbar_synapses": 918240,
+      "distinct_bodies_tbar": 43750
     },
     "SLP(L)": {
       "synapses": 5535740,
       "distinct_pre_neurons": 25696,
       "distinct_post_neurons": 2014187,
-      "mean_synapses_per_pre": 215.43
+      "mean_synapses_per_pre": 215.43,
+      "neurotransmitters": {
+        "acetylcholine": 0.447733,
+        "dopamine": 0.040019,
+        "gaba": 0.099765,
+        "glutamate": 0.296838,
+        "histamine": 0.000661,
+        "octopamine": 0.015652,
+        "serotonin": 0.099332
+      },
+      "tbar_synapses": 690626,
+      "distinct_bodies_tbar": 25319
     },
     "LegNp(T1)(R)": {
       "synapses": 5500030,
       "distinct_pre_neurons": 69761,
       "distinct_post_neurons": 2541403,
-      "mean_synapses_per_pre": 78.84
+      "mean_synapses_per_pre": 78.84,
+      "neurotransmitters": {
+        "acetylcholine": 0.52104,
+        "dopamine": 6.6e-05,
+        "gaba": 0.302434,
+        "glutamate": 0.12903,
+        "histamine": 0.025965,
+        "octopamine": 0.012852,
+        "serotonin": 0.008613
+      },
+      "tbar_synapses": 900060,
+      "distinct_bodies_tbar": 69426
     },
     "SLP(R)": {
       "synapses": 5297255,
       "distinct_pre_neurons": 25989,
       "distinct_post_neurons": 1770062,
-      "mean_synapses_per_pre": 203.83
+      "mean_synapses_per_pre": 203.83,
+      "neurotransmitters": {
+        "acetylcholine": 0.455288,
+        "dopamine": 0.039114,
+        "gaba": 0.090547,
+        "glutamate": 0.298504,
+        "histamine": 0.000708,
+        "octopamine": 0.017649,
+        "serotonin": 0.09819
+      },
+      "tbar_synapses": 678713,
+      "distinct_bodies_tbar": 25629
     },
     "SMP(R)": {
       "synapses": 4929999,
       "distinct_pre_neurons": 21825,
       "distinct_post_neurons": 1703793,
-      "mean_synapses_per_pre": 225.89
+      "mean_synapses_per_pre": 225.89,
+      "neurotransmitters": {
+        "acetylcholine": 0.422791,
+        "dopamine": 0.052747,
+        "gaba": 0.091658,
+        "glutamate": 0.294075,
+        "histamine": 0.000909,
+        "octopamine": 0.019903,
+        "serotonin": 0.117917
+      },
+      "tbar_synapses": 631061,
+      "distinct_bodies_tbar": 21454
     },
     "SMP(L)": {
       "synapses": 4776045,
       "distinct_pre_neurons": 20158,
       "distinct_post_neurons": 1571057,
-      "mean_synapses_per_pre": 236.93
+      "mean_synapses_per_pre": 236.93,
+      "neurotransmitters": {
+        "acetylcholine": 0.440531,
+        "dopamine": 0.048002,
+        "gaba": 0.085878,
+        "glutamate": 0.305258,
+        "histamine": 0.000815,
+        "octopamine": 0.018248,
+        "serotonin": 0.101268
+      },
+      "tbar_synapses": 614783,
+      "distinct_bodies_tbar": 19778
     },
     "PVLP(L)": {
       "synapses": 4692949,
       "distinct_pre_neurons": 18154,
       "distinct_post_neurons": 1237980,
-      "mean_synapses_per_pre": 258.51
+      "mean_synapses_per_pre": 258.51,
+      "neurotransmitters": {
+        "acetylcholine": 0.696354,
+        "dopamine": 0.018977,
+        "gaba": 0.165352,
+        "glutamate": 0.076794,
+        "histamine": 0.003922,
+        "octopamine": 0.016019,
+        "serotonin": 0.022582
+      },
+      "tbar_synapses": 652275,
+      "distinct_bodies_tbar": 17957
     },
     "SAD": {
       "synapses": 4386118,
       "distinct_pre_neurons": 51911,
       "distinct_post_neurons": 1410471,
-      "mean_synapses_per_pre": 84.49
+      "mean_synapses_per_pre": 84.49,
+      "neurotransmitters": {
+        "acetylcholine": 0.496145,
+        "dopamine": 0.012687,
+        "gaba": 0.320752,
+        "glutamate": 0.067608,
+        "histamine": 0.010724,
+        "octopamine": 0.044423,
+        "serotonin": 0.04766
+      },
+      "tbar_synapses": 660149,
+      "distinct_bodies_tbar": 51202
     },
     "PVLP(R)": {
       "synapses": 4194393,
       "distinct_pre_neurons": 13839,
       "distinct_post_neurons": 937936,
-      "mean_synapses_per_pre": 303.08
+      "mean_synapses_per_pre": 303.08,
+      "neurotransmitters": {
+        "acetylcholine": 0.705623,
+        "dopamine": 0.021982,
+        "gaba": 0.159227,
+        "glutamate": 0.07234,
+        "histamine": 0.003816,
+        "octopamine": 0.01615,
+        "serotonin": 0.020861
+      },
+      "tbar_synapses": 585840,
+      "distinct_bodies_tbar": 13662
     },
     "PLP(R)": {
       "synapses": 4144808,
       "distinct_pre_neurons": 21534,
       "distinct_post_neurons": 1332664,
-      "mean_synapses_per_pre": 192.48
+      "mean_synapses_per_pre": 192.48,
+      "neurotransmitters": {
+        "acetylcholine": 0.58358,
+        "dopamine": 0.024436,
+        "gaba": 0.14753,
+        "glutamate": 0.156563,
+        "histamine": 0.003493,
+        "octopamine": 0.02343,
+        "serotonin": 0.060967
+      },
+      "tbar_synapses": 537370,
+      "distinct_bodies_tbar": 21239
     },
     "PLP(L)": {
       "synapses": 3949981,
       "distinct_pre_neurons": 19803,
       "distinct_post_neurons": 1351336,
-      "mean_synapses_per_pre": 199.46
+      "mean_synapses_per_pre": 199.46,
+      "neurotransmitters": {
+        "acetylcholine": 0.581689,
+        "dopamine": 0.02394,
+        "gaba": 0.150234,
+        "glutamate": 0.164656,
+        "histamine": 0.003354,
+        "octopamine": 0.020877,
+        "serotonin": 0.05525
+      },
+      "tbar_synapses": 505437,
+      "distinct_bodies_tbar": 19545
     },
     "AL(R)": {
       "synapses": 3438694,
       "distinct_pre_neurons": 26951,
       "distinct_post_neurons": 621998,
-      "mean_synapses_per_pre": 127.59
+      "mean_synapses_per_pre": 127.59,
+      "neurotransmitters": {
+        "acetylcholine": 0.672907,
+        "dopamine": 0.022386,
+        "gaba": 0.197689,
+        "glutamate": 0.036096,
+        "histamine": 0.002653,
+        "octopamine": 0.025071,
+        "serotonin": 0.043198
+      },
+      "tbar_synapses": 656660,
+      "distinct_bodies_tbar": 26826
     },
     "AL(L)": {
       "synapses": 3310043,
       "distinct_pre_neurons": 44664,
       "distinct_post_neurons": 753455,
-      "mean_synapses_per_pre": 74.11
+      "mean_synapses_per_pre": 74.11,
+      "neurotransmitters": {
+        "acetylcholine": 0.685863,
+        "dopamine": 0.019012,
+        "gaba": 0.17658,
+        "glutamate": 0.042262,
+        "histamine": 0.006681,
+        "octopamine": 0.025618,
+        "serotonin": 0.043985
+      },
+      "tbar_synapses": 626980,
+      "distinct_bodies_tbar": 44421
     },
     "FB": {
       "synapses": 2917059,
       "distinct_pre_neurons": 11592,
       "distinct_post_neurons": 533989,
-      "mean_synapses_per_pre": 251.64
+      "mean_synapses_per_pre": 251.64,
+      "neurotransmitters": {
+        "acetylcholine": 0.308068,
+        "dopamine": 0.081925,
+        "gaba": 0.031058,
+        "glutamate": 0.449809,
+        "histamine": 0.001459,
+        "octopamine": 0.017469,
+        "serotonin": 0.110211
+      },
+      "tbar_synapses": 460038,
+      "distinct_bodies_tbar": 11450
     },
     "LH(L)": {
       "synapses": 2857054,
       "distinct_pre_neurons": 12156,
       "distinct_post_neurons": 1153217,
-      "mean_synapses_per_pre": 235.03
+      "mean_synapses_per_pre": 235.03,
+      "neurotransmitters": {
+        "acetylcholine": 0.48433,
+        "dopamine": 0.030224,
+        "gaba": 0.202004,
+        "glutamate": 0.203898,
+        "histamine": 0.000739,
+        "octopamine": 0.019545,
+        "serotonin": 0.05926
+      },
+      "tbar_synapses": 328438,
+      "distinct_bodies_tbar": 11965
     },
     "LH(R)": {
       "synapses": 2764553,
       "distinct_pre_neurons": 10226,
       "distinct_post_neurons": 984911,
-      "mean_synapses_per_pre": 270.35
+      "mean_synapses_per_pre": 270.35,
+      "neurotransmitters": {
+        "acetylcholine": 0.495079,
+        "dopamine": 0.032501,
+        "gaba": 0.193476,
+        "glutamate": 0.200765,
+        "histamine": 0.000634,
+        "octopamine": 0.019148,
+        "serotonin": 0.058396
+      },
+      "tbar_synapses": 325009,
+      "distinct_bodies_tbar": 10031
     },
     "LTct": {
       "synapses": 2716905,
       "distinct_pre_neurons": 18992,
       "distinct_post_neurons": 868389,
-      "mean_synapses_per_pre": 143.06
+      "mean_synapses_per_pre": 143.06,
+      "neurotransmitters": {
+        "acetylcholine": 0.571316,
+        "dopamine": 0.000637,
+        "gaba": 0.303498,
+        "glutamate": 0.096625,
+        "histamine": 0.007449,
+        "octopamine": 0.009886,
+        "serotonin": 0.010589
+      },
+      "tbar_synapses": 453094,
+      "distinct_bodies_tbar": 18742
     },
     "SPS(L)": {
       "synapses": 2627002,
       "distinct_pre_neurons": 12739,
       "distinct_post_neurons": 879093,
-      "mean_synapses_per_pre": 206.22
+      "mean_synapses_per_pre": 206.22,
+      "neurotransmitters": {
+        "acetylcholine": 0.541017,
+        "dopamine": 0.017596,
+        "gaba": 0.18059,
+        "glutamate": 0.210634,
+        "histamine": 0.002978,
+        "octopamine": 0.01945,
+        "serotonin": 0.027734
+      },
+      "tbar_synapses": 339702,
+      "distinct_bodies_tbar": 12528
     },
     "SPS(R)": {
       "synapses": 2613290,
       "distinct_pre_neurons": 12389,
       "distinct_post_neurons": 897625,
-      "mean_synapses_per_pre": 210.94
+      "mean_synapses_per_pre": 210.94,
+      "neurotransmitters": {
+        "acetylcholine": 0.523083,
+        "dopamine": 0.019844,
+        "gaba": 0.180532,
+        "glutamate": 0.215986,
+        "histamine": 0.003171,
+        "octopamine": 0.021866,
+        "serotonin": 0.035519
+      },
+      "tbar_synapses": 341261,
+      "distinct_bodies_tbar": 12189
     },
     "LAL(L)": {
       "synapses": 2562333,
       "distinct_pre_neurons": 8429,
       "distinct_post_neurons": 750513,
-      "mean_synapses_per_pre": 303.99
+      "mean_synapses_per_pre": 303.99,
+      "neurotransmitters": {
+        "acetylcholine": 0.529819,
+        "dopamine": 0.032898,
+        "gaba": 0.176036,
+        "glutamate": 0.196239,
+        "histamine": 0.001861,
+        "octopamine": 0.02598,
+        "serotonin": 0.037167
+      },
+      "tbar_synapses": 341006,
+      "distinct_bodies_tbar": 8219
     },
     "IntTct": {
       "synapses": 2435726,
       "distinct_pre_neurons": 17022,
       "distinct_post_neurons": 853478,
-      "mean_synapses_per_pre": 143.09
+      "mean_synapses_per_pre": 143.09,
+      "neurotransmitters": {
+        "acetylcholine": 0.573288,
+        "dopamine": 0.000808,
+        "gaba": 0.296993,
+        "glutamate": 0.096595,
+        "histamine": 0.006173,
+        "octopamine": 0.008536,
+        "serotonin": 0.017608
+      },
+      "tbar_synapses": 416926,
+      "distinct_bodies_tbar": 16813
     },
     "WED(L)": {
       "synapses": 2326783,
       "distinct_pre_neurons": 10455,
       "distinct_post_neurons": 792705,
-      "mean_synapses_per_pre": 222.55
+      "mean_synapses_per_pre": 222.55,
+      "neurotransmitters": {
+        "acetylcholine": 0.559158,
+        "dopamine": 0.014581,
+        "gaba": 0.247007,
+        "glutamate": 0.124514,
+        "histamine": 0.003897,
+        "octopamine": 0.018201,
+        "serotonin": 0.03264
+      },
+      "tbar_synapses": 303984,
+      "distinct_bodies_tbar": 10295
     },
     "LAL(R)": {
       "synapses": 2302001,
       "distinct_pre_neurons": 8076,
       "distinct_post_neurons": 703011,
-      "mean_synapses_per_pre": 285.04
+      "mean_synapses_per_pre": 285.04,
+      "neurotransmitters": {
+        "acetylcholine": 0.510839,
+        "dopamine": 0.037201,
+        "gaba": 0.192094,
+        "glutamate": 0.185158,
+        "histamine": 0.001804,
+        "octopamine": 0.02804,
+        "serotonin": 0.044864
+      },
+      "tbar_synapses": 304191,
+      "distinct_bodies_tbar": 7864
     },
     "ICL(L)": {
       "synapses": 2235900,
       "distinct_pre_neurons": 10343,
       "distinct_post_neurons": 725179,
-      "mean_synapses_per_pre": 216.18
+      "mean_synapses_per_pre": 216.18,
+      "neurotransmitters": {
+        "acetylcholine": 0.559723,
+        "dopamine": 0.026202,
+        "gaba": 0.142994,
+        "glutamate": 0.213295,
+        "histamine": 0.001826,
+        "octopamine": 0.019845,
+        "serotonin": 0.036115
+      },
+      "tbar_synapses": 284153,
+      "distinct_bodies_tbar": 10149
     },
     "SCL(L)": {
       "synapses": 2224227,
       "distinct_pre_neurons": 13344,
       "distinct_post_neurons": 842283,
-      "mean_synapses_per_pre": 166.68
+      "mean_synapses_per_pre": 166.68,
+      "neurotransmitters": {
+        "acetylcholine": 0.493028,
+        "dopamine": 0.035762,
+        "gaba": 0.127451,
+        "glutamate": 0.249339,
+        "histamine": 0.001231,
+        "octopamine": 0.021946,
+        "serotonin": 0.071242
+      },
+      "tbar_synapses": 273275,
+      "distinct_bodies_tbar": 13109
     },
     "SIP(R)": {
       "synapses": 2220596,
       "distinct_pre_neurons": 15398,
       "distinct_post_neurons": 795639,
-      "mean_synapses_per_pre": 144.21
+      "mean_synapses_per_pre": 144.21,
+      "neurotransmitters": {
+        "acetylcholine": 0.4708,
+        "dopamine": 0.050508,
+        "gaba": 0.119097,
+        "glutamate": 0.262543,
+        "histamine": 0.001092,
+        "octopamine": 0.020242,
+        "serotonin": 0.075719
+      },
+      "tbar_synapses": 288643,
+      "distinct_bodies_tbar": 15100
     },
     "SIP(L)": {
       "synapses": 2189324,
       "distinct_pre_neurons": 12437,
       "distinct_post_neurons": 763307,
-      "mean_synapses_per_pre": 176.03
+      "mean_synapses_per_pre": 176.03,
+      "neurotransmitters": {
+        "acetylcholine": 0.472398,
+        "dopamine": 0.049124,
+        "gaba": 0.115259,
+        "glutamate": 0.269977,
+        "histamine": 0.00135,
+        "octopamine": 0.01944,
+        "serotonin": 0.072452
+      },
+      "tbar_synapses": 285190,
+      "distinct_bodies_tbar": 12187
     },
     "WED(R)": {
       "synapses": 2184159,
       "distinct_pre_neurons": 8242,
       "distinct_post_neurons": 678426,
-      "mean_synapses_per_pre": 265.0
+      "mean_synapses_per_pre": 265.0,
+      "neurotransmitters": {
+        "acetylcholine": 0.553271,
+        "dopamine": 0.018201,
+        "gaba": 0.245571,
+        "glutamate": 0.127332,
+        "histamine": 0.002623,
+        "octopamine": 0.017953,
+        "serotonin": 0.035049
+      },
+      "tbar_synapses": 289169,
+      "distinct_bodies_tbar": 8113
     },
     "IB": {
       "synapses": 2132615,
       "distinct_pre_neurons": 10164,
       "distinct_post_neurons": 736916,
-      "mean_synapses_per_pre": 209.82
+      "mean_synapses_per_pre": 209.82,
+      "neurotransmitters": {
+        "acetylcholine": 0.514919,
+        "dopamine": 0.024874,
+        "gaba": 0.144748,
+        "glutamate": 0.257757,
+        "histamine": 0.002489,
+        "octopamine": 0.020075,
+        "serotonin": 0.035139
+      },
+      "tbar_synapses": 262094,
+      "distinct_bodies_tbar": 9958
     },
     "ICL(R)": {
       "synapses": 2109288,
       "distinct_pre_neurons": 10892,
       "distinct_post_neurons": 755441,
-      "mean_synapses_per_pre": 193.65
+      "mean_synapses_per_pre": 193.65,
+      "neurotransmitters": {
+        "acetylcholine": 0.534981,
+        "dopamine": 0.028703,
+        "gaba": 0.155887,
+        "glutamate": 0.211162,
+        "histamine": 0.001844,
+        "octopamine": 0.019926,
+        "serotonin": 0.047497
+      },
+      "tbar_synapses": 267657,
+      "distinct_bodies_tbar": 10685
     },
     "SCL(R)": {
       "synapses": 2103310,
       "distinct_pre_neurons": 13450,
       "distinct_post_neurons": 774494,
-      "mean_synapses_per_pre": 156.38
+      "mean_synapses_per_pre": 156.38,
+      "neurotransmitters": {
+        "acetylcholine": 0.499914,
+        "dopamine": 0.036189,
+        "gaba": 0.127295,
+        "glutamate": 0.243118,
+        "histamine": 0.001169,
+        "octopamine": 0.023629,
+        "serotonin": 0.068686
+      },
+      "tbar_synapses": 260767,
+      "distinct_bodies_tbar": 13238
     },
     "VES(R)": {
       "synapses": 2070020,
       "distinct_pre_neurons": 8692,
       "distinct_post_neurons": 656765,
-      "mean_synapses_per_pre": 238.15
+      "mean_synapses_per_pre": 238.15,
+      "neurotransmitters": {
+        "acetylcholine": 0.541321,
+        "dopamine": 0.024234,
+        "gaba": 0.207107,
+        "glutamate": 0.156511,
+        "histamine": 0.002566,
+        "octopamine": 0.031264,
+        "serotonin": 0.036996
+      },
+      "tbar_synapses": 273946,
+      "distinct_bodies_tbar": 8561
     },
     "VES(L)": {
       "synapses": 2042735,
       "distinct_pre_neurons": 8405,
       "distinct_post_neurons": 636979,
-      "mean_synapses_per_pre": 243.04
+      "mean_synapses_per_pre": 243.04,
+      "neurotransmitters": {
+        "acetylcholine": 0.556975,
+        "dopamine": 0.019416,
+        "gaba": 0.212945,
+        "glutamate": 0.14914,
+        "histamine": 0.00265,
+        "octopamine": 0.029764,
+        "serotonin": 0.02911
+      },
+      "tbar_synapses": 268071,
+      "distinct_bodies_tbar": 8259
     },
     "VNC-unspecified": {
       "synapses": 1891883,
       "distinct_pre_neurons": 34981,
       "distinct_post_neurons": 654619,
-      "mean_synapses_per_pre": 54.08
+      "mean_synapses_per_pre": 54.08,
+      "neurotransmitters": {
+        "acetylcholine": 0.551205,
+        "dopamine": 0.00355,
+        "gaba": 0.278895,
+        "glutamate": 0.06979,
+        "histamine": 0.038081,
+        "octopamine": 0.018896,
+        "serotonin": 0.039583
+      },
+      "tbar_synapses": 324104,
+      "distinct_bodies_tbar": 32718
     },
     "WTct(UTct-T2)(R)": {
       "synapses": 1733545,
       "distinct_pre_neurons": 11088,
       "distinct_post_neurons": 503453,
-      "mean_synapses_per_pre": 156.34
+      "mean_synapses_per_pre": 156.34,
+      "neurotransmitters": {
+        "acetylcholine": 0.574577,
+        "dopamine": 0.000386,
+        "gaba": 0.32227,
+        "glutamate": 0.077101,
+        "histamine": 0.008095,
+        "octopamine": 0.004902,
+        "serotonin": 0.012668
+      },
+      "tbar_synapses": 327755,
+      "distinct_bodies_tbar": 10972
     },
     "WTct(UTct-T2)(L)": {
       "synapses": 1712468,
       "distinct_pre_neurons": 8758,
       "distinct_post_neurons": 439096,
-      "mean_synapses_per_pre": 195.53
+      "mean_synapses_per_pre": 195.53,
+      "neurotransmitters": {
+        "acetylcholine": 0.574271,
+        "dopamine": 0.00041,
+        "gaba": 0.319973,
+        "glutamate": 0.07728,
+        "histamine": 0.007438,
+        "octopamine": 0.006244,
+        "serotonin": 0.014383
+      },
+      "tbar_synapses": 322195,
+      "distinct_bodies_tbar": 8649
     },
     "CRE(L)": {
       "synapses": 1676981,
       "distinct_pre_neurons": 8216,
       "distinct_post_neurons": 531638,
-      "mean_synapses_per_pre": 204.11
+      "mean_synapses_per_pre": 204.11,
+      "neurotransmitters": {
+        "acetylcholine": 0.483765,
+        "dopamine": 0.064897,
+        "gaba": 0.122822,
+        "glutamate": 0.225924,
+        "histamine": 0.001655,
+        "octopamine": 0.023249,
+        "serotonin": 0.077688
+      },
+      "tbar_synapses": 218229,
+      "distinct_bodies_tbar": 7913
     },
     "CRE(R)": {
       "synapses": 1609159,
       "distinct_pre_neurons": 10094,
       "distinct_post_neurons": 553118,
-      "mean_synapses_per_pre": 159.42
+      "mean_synapses_per_pre": 159.42,
+      "neurotransmitters": {
+        "acetylcholine": 0.425657,
+        "dopamine": 0.125349,
+        "gaba": 0.131266,
+        "glutamate": 0.19839,
+        "histamine": 0.001729,
+        "octopamine": 0.024897,
+        "serotonin": 0.092714
+      },
+      "tbar_synapses": 213791,
+      "distinct_bodies_tbar": 9804
     },
     "PRW": {
       "synapses": 1513368,
       "distinct_pre_neurons": 10574,
       "distinct_post_neurons": 503421,
-      "mean_synapses_per_pre": 143.12
+      "mean_synapses_per_pre": 143.12,
+      "neurotransmitters": {
+        "acetylcholine": 0.430395,
+        "dopamine": 0.022925,
+        "gaba": 0.173178,
+        "glutamate": 0.157242,
+        "histamine": 0.004832,
+        "octopamine": 0.04498,
+        "serotonin": 0.166448
+      },
+      "tbar_synapses": 205610,
+      "distinct_bodies_tbar": 10285
     },
     "Ov(L)": {
       "synapses": 1440379,
       "distinct_pre_neurons": 6781,
       "distinct_post_neurons": 265396,
-      "mean_synapses_per_pre": 212.41
+      "mean_synapses_per_pre": 212.41,
+      "neurotransmitters": {
+        "acetylcholine": 0.636344,
+        "dopamine": 0.000337,
+        "gaba": 0.270403,
+        "glutamate": 0.064994,
+        "histamine": 0.00561,
+        "octopamine": 0.010577,
+        "serotonin": 0.011735
+      },
+      "tbar_synapses": 248070,
+      "distinct_bodies_tbar": 6665
     },
     "IPS(R)": {
       "synapses": 1357899,
       "distinct_pre_neurons": 7529,
       "distinct_post_neurons": 433378,
-      "mean_synapses_per_pre": 180.36
+      "mean_synapses_per_pre": 180.36,
+      "neurotransmitters": {
+        "acetylcholine": 0.552922,
+        "dopamine": 0.014956,
+        "gaba": 0.211898,
+        "glutamate": 0.162034,
+        "histamine": 0.005081,
+        "octopamine": 0.022572,
+        "serotonin": 0.030538
+      },
+      "tbar_synapses": 192493,
+      "distinct_bodies_tbar": 7404
     },
     "IPS(L)": {
       "synapses": 1321813,
       "distinct_pre_neurons": 6808,
       "distinct_post_neurons": 422071,
-      "mean_synapses_per_pre": 194.16
+      "mean_synapses_per_pre": 194.16,
+      "neurotransmitters": {
+        "acetylcholine": 0.56836,
+        "dopamine": 0.010059,
+        "gaba": 0.210865,
+        "glutamate": 0.163558,
+        "histamine": 0.004943,
+        "octopamine": 0.02221,
+        "serotonin": 0.020005
+      },
+      "tbar_synapses": 183045,
+      "distinct_bodies_tbar": 6699
     },
     "Ov(R)": {
       "synapses": 1286435,
       "distinct_pre_neurons": 6958,
       "distinct_post_neurons": 287656,
-      "mean_synapses_per_pre": 184.89
+      "mean_synapses_per_pre": 184.89,
+      "neurotransmitters": {
+        "acetylcholine": 0.633807,
+        "dopamine": 0.000215,
+        "gaba": 0.275458,
+        "glutamate": 0.06162,
+        "histamine": 0.005893,
+        "octopamine": 0.011313,
+        "serotonin": 0.011694
+      },
+      "tbar_synapses": 222531,
+      "distinct_bodies_tbar": 6843
     },
     "Optic-unspecified(L)": {
       "synapses": 1171801,
       "distinct_pre_neurons": 42115,
       "distinct_post_neurons": 396384,
-      "mean_synapses_per_pre": 27.82
+      "mean_synapses_per_pre": 27.82,
+      "neurotransmitters": {
+        "acetylcholine": 0.460525,
+        "dopamine": 0.015162,
+        "gaba": 0.162495,
+        "glutamate": 0.185819,
+        "histamine": 0.115832,
+        "octopamine": 0.031435,
+        "serotonin": 0.028731
+      },
+      "tbar_synapses": 197816,
+      "distinct_bodies_tbar": 39517
     },
     "LA(R)": {
       "synapses": 1037059,
       "distinct_pre_neurons": 58119,
       "distinct_post_neurons": 407168,
-      "mean_synapses_per_pre": 17.84
+      "mean_synapses_per_pre": 17.84,
+      "neurotransmitters": {
+        "acetylcholine": 0.162553,
+        "dopamine": 0.000355,
+        "gaba": 0.062863,
+        "glutamate": 0.075146,
+        "histamine": 0.67826,
+        "octopamine": 0.018999,
+        "serotonin": 0.001824
+      },
+      "tbar_synapses": 288703,
+      "distinct_bodies_tbar": 58022
     },
     "AOTU(L)": {
       "synapses": 965896,
       "distinct_pre_neurons": 4246,
       "distinct_post_neurons": 178041,
-      "mean_synapses_per_pre": 227.48
+      "mean_synapses_per_pre": 227.48,
+      "neurotransmitters": {
+        "acetylcholine": 0.67084,
+        "dopamine": 0.023432,
+        "gaba": 0.127727,
+        "glutamate": 0.118295,
+        "histamine": 0.003451,
+        "octopamine": 0.012655,
+        "serotonin": 0.0436
+      },
+      "tbar_synapses": 147089,
+      "distinct_bodies_tbar": 4143
     },
     "AOTU(R)": {
       "synapses": 941900,
       "distinct_pre_neurons": 3223,
       "distinct_post_neurons": 141807,
-      "mean_synapses_per_pre": 292.24
+      "mean_synapses_per_pre": 292.24,
+      "neurotransmitters": {
+        "acetylcholine": 0.691511,
+        "dopamine": 0.02331,
+        "gaba": 0.118941,
+        "glutamate": 0.106117,
+        "histamine": 0.002659,
+        "octopamine": 0.013941,
+        "serotonin": 0.043521
+      },
+      "tbar_synapses": 144791,
+      "distinct_bodies_tbar": 3164
     },
     "EB": {
       "synapses": 921449,
       "distinct_pre_neurons": 4280,
       "distinct_post_neurons": 77303,
-      "mean_synapses_per_pre": 215.29
+      "mean_synapses_per_pre": 215.29,
+      "neurotransmitters": {
+        "acetylcholine": 0.191959,
+        "dopamine": 0.059093,
+        "gaba": 0.58388,
+        "glutamate": 0.058592,
+        "histamine": 0.000862,
+        "octopamine": 0.055092,
+        "serotonin": 0.050523
+      },
+      "tbar_synapses": 186469,
+      "distinct_bodies_tbar": 4193
     },
     "gL(L)": {
       "synapses": 878358,
       "distinct_pre_neurons": 6592,
       "distinct_post_neurons": 104766,
-      "mean_synapses_per_pre": 133.25
+      "mean_synapses_per_pre": 133.25,
+      "neurotransmitters": {
+        "acetylcholine": 0.139557,
+        "dopamine": 0.724669,
+        "gaba": 0.059415,
+        "glutamate": 0.032782,
+        "histamine": 0.000448,
+        "octopamine": 0.012706,
+        "serotonin": 0.030423
+      },
+      "tbar_synapses": 184946,
+      "distinct_bodies_tbar": 6402
     },
     "LA(L)": {
       "synapses": 811749,
       "distinct_pre_neurons": 55472,
       "distinct_post_neurons": 307214,
-      "mean_synapses_per_pre": 14.63
+      "mean_synapses_per_pre": 14.63,
+      "neurotransmitters": {
+        "acetylcholine": 0.164079,
+        "dopamine": 0.000501,
+        "gaba": 0.056593,
+        "glutamate": 0.084044,
+        "histamine": 0.674138,
+        "octopamine": 0.018461,
+        "serotonin": 0.002183
+      },
+      "tbar_synapses": 237067,
+      "distinct_bodies_tbar": 55451
     },
     "gL(R)": {
       "synapses": 807815,
       "distinct_pre_neurons": 7768,
       "distinct_post_neurons": 96284,
-      "mean_synapses_per_pre": 103.99
+      "mean_synapses_per_pre": 103.99,
+      "neurotransmitters": {
+        "acetylcholine": 0.132198,
+        "dopamine": 0.728748,
+        "gaba": 0.063386,
+        "glutamate": 0.024133,
+        "histamine": 0.000525,
+        "octopamine": 0.01422,
+        "serotonin": 0.03679
+      },
+      "tbar_synapses": 173166,
+      "distinct_bodies_tbar": 7586
     },
     "FLA(L)": {
       "synapses": 787132,
       "distinct_pre_neurons": 7642,
       "distinct_post_neurons": 269677,
-      "mean_synapses_per_pre": 103.0
+      "mean_synapses_per_pre": 103.0,
+      "neurotransmitters": {
+        "acetylcholine": 0.521612,
+        "dopamine": 0.020638,
+        "gaba": 0.174147,
+        "glutamate": 0.129694,
+        "histamine": 0.005726,
+        "octopamine": 0.034048,
+        "serotonin": 0.114133
+      },
+      "tbar_synapses": 105587,
+      "distinct_bodies_tbar": 7455
     },
     "FLA(R)": {
       "synapses": 759837,
       "distinct_pre_neurons": 6528,
       "distinct_post_neurons": 254157,
-      "mean_synapses_per_pre": 116.4
+      "mean_synapses_per_pre": 116.4,
+      "neurotransmitters": {
+        "acetylcholine": 0.500319,
+        "dopamine": 0.022637,
+        "gaba": 0.165824,
+        "glutamate": 0.14752,
+        "histamine": 0.00518,
+        "octopamine": 0.036105,
+        "serotonin": 0.122415
+      },
+      "tbar_synapses": 102839,
+      "distinct_bodies_tbar": 6364
     },
     "HTct(UTct-T3)(R)": {
       "synapses": 742632,
       "distinct_pre_neurons": 4208,
       "distinct_post_neurons": 241546,
-      "mean_synapses_per_pre": 176.48
+      "mean_synapses_per_pre": 176.48,
+      "neurotransmitters": {
+        "acetylcholine": 0.572342,
+        "dopamine": 0.000715,
+        "gaba": 0.318514,
+        "glutamate": 0.09029,
+        "histamine": 0.004796,
+        "octopamine": 0.005571,
+        "serotonin": 0.007772
+      },
+      "tbar_synapses": 122664,
+      "distinct_bodies_tbar": 4147
     },
     "HTct(UTct-T3)(L)": {
       "synapses": 733295,
       "distinct_pre_neurons": 3709,
       "distinct_post_neurons": 219889,
-      "mean_synapses_per_pre": 197.71
+      "mean_synapses_per_pre": 197.71,
+      "neurotransmitters": {
+        "acetylcholine": 0.566564,
+        "dopamine": 0.001013,
+        "gaba": 0.319279,
+        "glutamate": 0.092218,
+        "histamine": 0.004486,
+        "octopamine": 0.00683,
+        "serotonin": 0.00961
+      },
+      "tbar_synapses": 119375,
+      "distinct_bodies_tbar": 3657
     },
     "CA(R)": {
       "synapses": 532379,
       "distinct_pre_neurons": 4827,
       "distinct_post_neurons": 119268,
-      "mean_synapses_per_pre": 110.29
+      "mean_synapses_per_pre": 110.29,
+      "neurotransmitters": {
+        "acetylcholine": 0.617455,
+        "dopamine": 0.081872,
+        "gaba": 0.114591,
+        "glutamate": 0.03951,
+        "histamine": 0.002094,
+        "octopamine": 0.029886,
+        "serotonin": 0.114593
+      },
+      "tbar_synapses": 71181,
+      "distinct_bodies_tbar": 4745
     },
     "CA(L)": {
       "synapses": 495052,
       "distinct_pre_neurons": 4529,
       "distinct_post_neurons": 129505,
-      "mean_synapses_per_pre": 109.31
+      "mean_synapses_per_pre": 109.31,
+      "neurotransmitters": {
+        "acetylcholine": 0.641402,
+        "dopamine": 0.08354,
+        "gaba": 0.111198,
+        "glutamate": 0.040356,
+        "histamine": 0.002237,
+        "octopamine": 0.027682,
+        "serotonin": 0.093586
+      },
+      "tbar_synapses": 63065,
+      "distinct_bodies_tbar": 4455
     },
     "PB": {
       "synapses": 398413,
       "distinct_pre_neurons": 1434,
       "distinct_post_neurons": 127731,
-      "mean_synapses_per_pre": 277.83
+      "mean_synapses_per_pre": 277.83,
+      "neurotransmitters": {
+        "acetylcholine": 0.538883,
+        "dopamine": 0.010713,
+        "gaba": 0.037857,
+        "glutamate": 0.356344,
+        "histamine": 0.011201,
+        "octopamine": 0.015491,
+        "serotonin": 0.02951
+      },
+      "tbar_synapses": 51265,
+      "distinct_bodies_tbar": 1337
     },
     "Optic-unspecified(R)": {
       "synapses": 374658,
       "distinct_pre_neurons": 29450,
       "distinct_post_neurons": 151155,
-      "mean_synapses_per_pre": 12.72
+      "mean_synapses_per_pre": 12.72,
+      "neurotransmitters": {
+        "acetylcholine": 0.366098,
+        "dopamine": 0.029749,
+        "gaba": 0.137517,
+        "glutamate": 0.135202,
+        "histamine": 0.240245,
+        "octopamine": 0.040199,
+        "serotonin": 0.05099
+      },
+      "tbar_synapses": 81659,
+      "distinct_bodies_tbar": 27069
     },
     "NTct(UTct-T1)(L)": {
       "synapses": 370818,
       "distinct_pre_neurons": 2795,
       "distinct_post_neurons": 143576,
-      "mean_synapses_per_pre": 132.67
+      "mean_synapses_per_pre": 132.67,
+      "neurotransmitters": {
+        "acetylcholine": 0.548093,
+        "dopamine": 0.000231,
+        "gaba": 0.300892,
+        "glutamate": 0.130081,
+        "histamine": 0.005807,
+        "octopamine": 0.005619,
+        "serotonin": 0.009278
+      },
+      "tbar_synapses": 62926,
+      "distinct_bodies_tbar": 2740
     },
     "GOR(R)": {
       "synapses": 365715,
       "distinct_pre_neurons": 3127,
       "distinct_post_neurons": 122153,
-      "mean_synapses_per_pre": 116.95
+      "mean_synapses_per_pre": 116.95,
+      "neurotransmitters": {
+        "acetylcholine": 0.534796,
+        "dopamine": 0.027023,
+        "gaba": 0.229462,
+        "glutamate": 0.152415,
+        "histamine": 0.00376,
+        "octopamine": 0.020177,
+        "serotonin": 0.032367
+      },
+      "tbar_synapses": 49375,
+      "distinct_bodies_tbar": 3022
     },
     "GOR(L)": {
       "synapses": 351957,
       "distinct_pre_neurons": 3415,
       "distinct_post_neurons": 119177,
-      "mean_synapses_per_pre": 103.06
+      "mean_synapses_per_pre": 103.06,
+      "neurotransmitters": {
+        "acetylcholine": 0.554768,
+        "dopamine": 0.025376,
+        "gaba": 0.218998,
+        "glutamate": 0.145373,
+        "histamine": 0.003842,
+        "octopamine": 0.023417,
+        "serotonin": 0.028225
+      },
+      "tbar_synapses": 47826,
+      "distinct_bodies_tbar": 3317
     },
     "EPA(L)": {
       "synapses": 336261,
       "distinct_pre_neurons": 2726,
       "distinct_post_neurons": 116296,
-      "mean_synapses_per_pre": 123.35
+      "mean_synapses_per_pre": 123.35,
+      "neurotransmitters": {
+        "acetylcholine": 0.565021,
+        "dopamine": 0.021061,
+        "gaba": 0.209272,
+        "glutamate": 0.160208,
+        "histamine": 0.002109,
+        "octopamine": 0.022752,
+        "serotonin": 0.019576
+      },
+      "tbar_synapses": 45268,
+      "distinct_bodies_tbar": 2662
     },
     "NTct(UTct-T1)(R)": {
       "synapses": 335446,
       "distinct_pre_neurons": 2675,
       "distinct_post_neurons": 137801,
-      "mean_synapses_per_pre": 125.4
+      "mean_synapses_per_pre": 125.4,
+      "neurotransmitters": {
+        "acetylcholine": 0.54843,
+        "dopamine": 0.000138,
+        "gaba": 0.312278,
+        "glutamate": 0.121479,
+        "histamine": 0.005455,
+        "octopamine": 0.004968,
+        "serotonin": 0.007252
+      },
+      "tbar_synapses": 57521,
+      "distinct_bodies_tbar": 2633
     },
     "aL(R)": {
       "synapses": 295084,
       "distinct_pre_neurons": 4117,
       "distinct_post_neurons": 37251,
-      "mean_synapses_per_pre": 71.67
+      "mean_synapses_per_pre": 71.67,
+      "neurotransmitters": {
+        "acetylcholine": 0.090431,
+        "dopamine": 0.744095,
+        "gaba": 0.056028,
+        "glutamate": 0.040979,
+        "histamine": 0.000381,
+        "octopamine": 0.014611,
+        "serotonin": 0.053475
+      },
+      "tbar_synapses": 70007,
+      "distinct_bodies_tbar": 3982
     },
     "b'L(L)": {
       "synapses": 285643,
       "distinct_pre_neurons": 2549,
       "distinct_post_neurons": 28425,
-      "mean_synapses_per_pre": 112.06
+      "mean_synapses_per_pre": 112.06,
+      "neurotransmitters": {
+        "acetylcholine": 0.116416,
+        "dopamine": 0.767021,
+        "gaba": 0.0654,
+        "glutamate": 0.014319,
+        "histamine": 0.000436,
+        "octopamine": 0.009517,
+        "serotonin": 0.02689
+      },
+      "tbar_synapses": 61986,
+      "distinct_bodies_tbar": 2440
     },
     "mVAC(T2)(L)": {
       "synapses": 282950,
       "distinct_pre_neurons": 5386,
       "distinct_post_neurons": 85679,
-      "mean_synapses_per_pre": 52.53
+      "mean_synapses_per_pre": 52.53,
+      "neurotransmitters": {
+        "acetylcholine": 0.472395,
+        "dopamine": 0.00097,
+        "gaba": 0.444666,
+        "glutamate": 0.047114,
+        "histamine": 0.016959,
+        "octopamine": 0.009352,
+        "serotonin": 0.008545
+      },
+      "tbar_synapses": 52213,
+      "distinct_bodies_tbar": 5242
     },
     "EPA(R)": {
       "synapses": 276828,
       "distinct_pre_neurons": 2428,
       "distinct_post_neurons": 105344,
-      "mean_synapses_per_pre": 114.01
+      "mean_synapses_per_pre": 114.01,
+      "neurotransmitters": {
+        "acetylcholine": 0.540459,
+        "dopamine": 0.0271,
+        "gaba": 0.210848,
+        "glutamate": 0.164869,
+        "histamine": 0.001648,
+        "octopamine": 0.024108,
+        "serotonin": 0.030968
+      },
+      "tbar_synapses": 36722,
+      "distinct_bodies_tbar": 2382
     },
     "mVAC(T2)(R)": {
       "synapses": 259004,
       "distinct_pre_neurons": 4823,
       "distinct_post_neurons": 76939,
-      "mean_synapses_per_pre": 53.7
+      "mean_synapses_per_pre": 53.7,
+      "neurotransmitters": {
+        "acetylcholine": 0.485073,
+        "dopamine": 0.000798,
+        "gaba": 0.447546,
+        "glutamate": 0.035196,
+        "histamine": 0.017095,
+        "octopamine": 0.00716,
+        "serotonin": 0.007133
+      },
+      "tbar_synapses": 49571,
+      "distinct_bodies_tbar": 4702
     },
     "aL(L)": {
       "synapses": 254760,
       "distinct_pre_neurons": 3024,
       "distinct_post_neurons": 29812,
-      "mean_synapses_per_pre": 84.25
+      "mean_synapses_per_pre": 84.25,
+      "neurotransmitters": {
+        "acetylcholine": 0.09811,
+        "dopamine": 0.751653,
+        "gaba": 0.053498,
+        "glutamate": 0.04271,
+        "histamine": 0.000373,
+        "octopamine": 0.011423,
+        "serotonin": 0.042233
+      },
+      "tbar_synapses": 59886,
+      "distinct_bodies_tbar": 2903
     },
     "b'L(R)": {
       "synapses": 254569,
       "distinct_pre_neurons": 4310,
       "distinct_post_neurons": 42093,
-      "mean_synapses_per_pre": 59.06
+      "mean_synapses_per_pre": 59.06,
+      "neurotransmitters": {
+        "acetylcholine": 0.116299,
+        "dopamine": 0.727214,
+        "gaba": 0.084424,
+        "glutamate": 0.023501,
+        "histamine": 0.000435,
+        "octopamine": 0.012991,
+        "serotonin": 0.035135
+      },
+      "tbar_synapses": 52256,
+      "distinct_bodies_tbar": 4170
     },
     "NO": {
       "synapses": 241539,
       "distinct_pre_neurons": 1496,
       "distinct_post_neurons": 21061,
-      "mean_synapses_per_pre": 161.46
+      "mean_synapses_per_pre": 161.46,
+      "neurotransmitters": {
+        "acetylcholine": 0.350887,
+        "dopamine": 0.160618,
+        "gaba": 0.074874,
+        "glutamate": 0.252565,
+        "histamine": 0.002564,
+        "octopamine": 0.017625,
+        "serotonin": 0.140867
+      },
+      "tbar_synapses": 42043,
+      "distinct_bodies_tbar": 1466
     },
     "bL(L)": {
       "synapses": 238885,
       "distinct_pre_neurons": 2444,
       "distinct_post_neurons": 22376,
-      "mean_synapses_per_pre": 97.74
+      "mean_synapses_per_pre": 97.74,
+      "neurotransmitters": {
+        "acetylcholine": 0.08985,
+        "dopamine": 0.791969,
+        "gaba": 0.047042,
+        "glutamate": 0.028013,
+        "histamine": 0.000231,
+        "octopamine": 0.006818,
+        "serotonin": 0.036078
+      },
+      "tbar_synapses": 56287,
+      "distinct_bodies_tbar": 2335
     },
     "bL(R)": {
       "synapses": 229527,
       "distinct_pre_neurons": 3422,
       "distinct_post_neurons": 34598,
-      "mean_synapses_per_pre": 67.07
+      "mean_synapses_per_pre": 67.07,
+      "neurotransmitters": {
+        "acetylcholine": 0.115961,
+        "dopamine": 0.719233,
+        "gaba": 0.063691,
+        "glutamate": 0.041438,
+        "histamine": 0.000409,
+        "octopamine": 0.010898,
+        "serotonin": 0.04837
+      },
+      "tbar_synapses": 49337,
+      "distinct_bodies_tbar": 3313
     },
     "mVAC(T1)(L)": {
       "synapses": 210000,
       "distinct_pre_neurons": 5328,
       "distinct_post_neurons": 78624,
-      "mean_synapses_per_pre": 39.41
+      "mean_synapses_per_pre": 39.41,
+      "neurotransmitters": {
+        "acetylcholine": 0.398287,
+        "dopamine": 0.000463,
+        "gaba": 0.514187,
+        "glutamate": 0.04181,
+        "histamine": 0.029012,
+        "octopamine": 0.010719,
+        "serotonin": 0.005521
+      },
+      "tbar_synapses": 39025,
+      "distinct_bodies_tbar": 5153
     },
     "ATL(L)": {
       "synapses": 199360,
       "distinct_pre_neurons": 1738,
       "distinct_post_neurons": 69349,
-      "mean_synapses_per_pre": 114.71
+      "mean_synapses_per_pre": 114.71,
+      "neurotransmitters": {
+        "acetylcholine": 0.478746,
+        "dopamine": 0.055385,
+        "gaba": 0.061243,
+        "glutamate": 0.300822,
+        "histamine": 0.002849,
+        "octopamine": 0.024544,
+        "serotonin": 0.076411
+      },
+      "tbar_synapses": 25938,
+      "distinct_bodies_tbar": 1680
     },
     "mVAC(T1)(R)": {
       "synapses": 181811,
       "distinct_pre_neurons": 6464,
       "distinct_post_neurons": 79769,
-      "mean_synapses_per_pre": 28.13
+      "mean_synapses_per_pre": 28.13,
+      "neurotransmitters": {
+        "acetylcholine": 0.371961,
+        "dopamine": 0.000818,
+        "gaba": 0.530168,
+        "glutamate": 0.042998,
+        "histamine": 0.03739,
+        "octopamine": 0.009887,
+        "serotonin": 0.006778
+      },
+      "tbar_synapses": 34951,
+      "distinct_bodies_tbar": 6250
     },
     "a'L(R)": {
       "synapses": 179812,
       "distinct_pre_neurons": 2725,
       "distinct_post_neurons": 37945,
-      "mean_synapses_per_pre": 65.99
+      "mean_synapses_per_pre": 65.99,
+      "neurotransmitters": {
+        "acetylcholine": 0.224488,
+        "dopamine": 0.521795,
+        "gaba": 0.096986,
+        "glutamate": 0.079306,
+        "histamine": 0.000812,
+        "octopamine": 0.019521,
+        "serotonin": 0.057092
+      },
+      "tbar_synapses": 33771,
+      "distinct_bodies_tbar": 2605
     },
     "ATL(R)": {
       "synapses": 177856,
       "distinct_pre_neurons": 1850,
       "distinct_post_neurons": 68781,
-      "mean_synapses_per_pre": 96.14
+      "mean_synapses_per_pre": 96.14,
+      "neurotransmitters": {
+        "acetylcholine": 0.483418,
+        "dopamine": 0.05157,
+        "gaba": 0.063483,
+        "glutamate": 0.289376,
+        "histamine": 0.002727,
+        "octopamine": 0.021929,
+        "serotonin": 0.087498
+      },
+      "tbar_synapses": 22856,
+      "distinct_bodies_tbar": 1759
     },
     "mVAC(T3)(R)": {
       "synapses": 157746,
       "distinct_pre_neurons": 1585,
       "distinct_post_neurons": 32644,
-      "mean_synapses_per_pre": 99.52
+      "mean_synapses_per_pre": 99.52,
+      "neurotransmitters": {
+        "acetylcholine": 0.506164,
+        "dopamine": 0.003449,
+        "gaba": 0.438302,
+        "glutamate": 0.019429,
+        "histamine": 0.007413,
+        "octopamine": 0.010347,
+        "serotonin": 0.014897
+      },
+      "tbar_synapses": 28360,
+      "distinct_bodies_tbar": 1521
     },
     "<unspecified>": {
       "synapses": 151875,
       "distinct_pre_neurons": 25147,
       "distinct_post_neurons": 119375,
-      "mean_synapses_per_pre": 6.04
+      "mean_synapses_per_pre": 6.04,
+      "neurotransmitters": {
+        "acetylcholine": 0.231672,
+        "dopamine": 0.071115,
+        "gaba": 0.156273,
+        "glutamate": 0.027125,
+        "histamine": 0.273152,
+        "octopamine": 0.118884,
+        "serotonin": 0.12178
+      },
+      "tbar_synapses": 31647,
+      "distinct_bodies_tbar": 23121
     },
     "mVAC(T3)(L)": {
       "synapses": 136218,
       "distinct_pre_neurons": 1894,
       "distinct_post_neurons": 28588,
-      "mean_synapses_per_pre": 71.92
+      "mean_synapses_per_pre": 71.92,
+      "neurotransmitters": {
+        "acetylcholine": 0.49675,
+        "dopamine": 0.005126,
+        "gaba": 0.422576,
+        "glutamate": 0.020508,
+        "histamine": 0.010043,
+        "octopamine": 0.022149,
+        "serotonin": 0.022848
+      },
+      "tbar_synapses": 25018,
+      "distinct_bodies_tbar": 1816
     },
     "a'L(L)": {
       "synapses": 133684,
       "distinct_pre_neurons": 1641,
       "distinct_post_neurons": 22172,
-      "mean_synapses_per_pre": 81.46
+      "mean_synapses_per_pre": 81.46,
+      "neurotransmitters": {
+        "acetylcholine": 0.216711,
+        "dopamine": 0.576788,
+        "gaba": 0.087923,
+        "glutamate": 0.050668,
+        "histamine": 0.000852,
+        "octopamine": 0.016919,
+        "serotonin": 0.050139
+      },
+      "tbar_synapses": 27181,
+      "distinct_bodies_tbar": 1538
     },
     "PED(R)": {
       "synapses": 128963,
       "distinct_pre_neurons": 3056,
       "distinct_post_neurons": 19947,
-      "mean_synapses_per_pre": 42.2
+      "mean_synapses_per_pre": 42.2,
+      "neurotransmitters": {
+        "acetylcholine": 0.186263,
+        "dopamine": 0.632751,
+        "gaba": 0.059321,
+        "glutamate": 0.04715,
+        "histamine": 0.000966,
+        "octopamine": 0.017629,
+        "serotonin": 0.055921
+      },
+      "tbar_synapses": 29934,
+      "distinct_bodies_tbar": 2988
     },
     "CAN(L)": {
       "synapses": 122423,
       "distinct_pre_neurons": 1265,
       "distinct_post_neurons": 36569,
-      "mean_synapses_per_pre": 96.78
+      "mean_synapses_per_pre": 96.78,
+      "neurotransmitters": {
+        "acetylcholine": 0.519098,
+        "dopamine": 0.016524,
+        "gaba": 0.260432,
+        "glutamate": 0.120468,
+        "histamine": 0.006261,
+        "octopamine": 0.03232,
+        "serotonin": 0.044898
+      },
+      "tbar_synapses": 16332,
+      "distinct_bodies_tbar": 1234
     },
     "CAN(R)": {
       "synapses": 121896,
       "distinct_pre_neurons": 1239,
       "distinct_post_neurons": 37851,
-      "mean_synapses_per_pre": 98.38
+      "mean_synapses_per_pre": 98.38,
+      "neurotransmitters": {
+        "acetylcholine": 0.520329,
+        "dopamine": 0.021091,
+        "gaba": 0.229444,
+        "glutamate": 0.123047,
+        "histamine": 0.006992,
+        "octopamine": 0.044631,
+        "serotonin": 0.054466
+      },
+      "tbar_synapses": 16331,
+      "distinct_bodies_tbar": 1191
     },
     "CV-unspecified": {
       "synapses": 121624,
       "distinct_pre_neurons": 12870,
       "distinct_post_neurons": 62881,
-      "mean_synapses_per_pre": 9.45
+      "mean_synapses_per_pre": 9.45,
+      "neurotransmitters": {
+        "acetylcholine": 0.26139,
+        "dopamine": 0.011102,
+        "gaba": 0.156169,
+        "glutamate": 0.059749,
+        "histamine": 0.434801,
+        "octopamine": 0.036865,
+        "serotonin": 0.039924
+      },
+      "tbar_synapses": 28176,
+      "distinct_bodies_tbar": 12824
     },
     "PED(L)": {
       "synapses": 117772,
       "distinct_pre_neurons": 2893,
       "distinct_post_neurons": 16641,
-      "mean_synapses_per_pre": 40.71
+      "mean_synapses_per_pre": 40.71,
+      "neurotransmitters": {
+        "acetylcholine": 0.129622,
+        "dopamine": 0.698004,
+        "gaba": 0.065841,
+        "glutamate": 0.03809,
+        "histamine": 0.000686,
+        "octopamine": 0.015292,
+        "serotonin": 0.052465
+      },
+      "tbar_synapses": 27912,
+      "distinct_bodies_tbar": 2814
     },
     "BU(R)": {
       "synapses": 58898,
       "distinct_pre_neurons": 481,
       "distinct_post_neurons": 19568,
-      "mean_synapses_per_pre": 122.45
+      "mean_synapses_per_pre": 122.45,
+      "neurotransmitters": {
+        "acetylcholine": 0.596275,
+        "dopamine": 0.066971,
+        "gaba": 0.095088,
+        "glutamate": 0.088892,
+        "histamine": 0.003053,
+        "octopamine": 0.015319,
+        "serotonin": 0.134404
+      },
+      "tbar_synapses": 9905,
+      "distinct_bodies_tbar": 442
     },
     "BU(L)": {
       "synapses": 57066,
       "distinct_pre_neurons": 517,
       "distinct_post_neurons": 17726,
-      "mean_synapses_per_pre": 110.38
+      "mean_synapses_per_pre": 110.38,
+      "neurotransmitters": {
+        "acetylcholine": 0.621993,
+        "dopamine": 0.066139,
+        "gaba": 0.06599,
+        "glutamate": 0.102753,
+        "histamine": 0.004108,
+        "octopamine": 0.013663,
+        "serotonin": 0.125354
+      },
+      "tbar_synapses": 10112,
+      "distinct_bodies_tbar": 494
     },
     "DMetaN(L)": {
       "synapses": 56996,
       "distinct_pre_neurons": 1878,
       "distinct_post_neurons": 24450,
-      "mean_synapses_per_pre": 30.35
+      "mean_synapses_per_pre": 30.35,
+      "neurotransmitters": {
+        "acetylcholine": 0.513682,
+        "dopamine": 0.001556,
+        "gaba": 0.261562,
+        "glutamate": 0.077314,
+        "histamine": 0.133202,
+        "octopamine": 0.006039,
+        "serotonin": 0.006646
+      },
+      "tbar_synapses": 12510,
+      "distinct_bodies_tbar": 1830
     },
     "MesoLN(R)": {
       "synapses": 52838,
       "distinct_pre_neurons": 2771,
       "distinct_post_neurons": 27258,
-      "mean_synapses_per_pre": 19.07
+      "mean_synapses_per_pre": 19.07,
+      "neurotransmitters": {
+        "acetylcholine": 0.412913,
+        "dopamine": 0.000722,
+        "gaba": 0.39538,
+        "glutamate": 0.100489,
+        "histamine": 0.072767,
+        "octopamine": 0.006436,
+        "serotonin": 0.011294
+      },
+      "tbar_synapses": 9923,
+      "distinct_bodies_tbar": 2665
     },
     "DMetaN(R)": {
       "synapses": 51204,
       "distinct_pre_neurons": 1521,
       "distinct_post_neurons": 23765,
-      "mean_synapses_per_pre": 33.66
+      "mean_synapses_per_pre": 33.66,
+      "neurotransmitters": {
+        "acetylcholine": 0.589881,
+        "dopamine": 0.000884,
+        "gaba": 0.286667,
+        "glutamate": 0.07457,
+        "histamine": 0.036429,
+        "octopamine": 0.005802,
+        "serotonin": 0.005767
+      },
+      "tbar_synapses": 10925,
+      "distinct_bodies_tbar": 1484
     },
     "AME(R)": {
       "synapses": 47711,
       "distinct_pre_neurons": 543,
       "distinct_post_neurons": 9665,
-      "mean_synapses_per_pre": 87.87
+      "mean_synapses_per_pre": 87.87,
+      "neurotransmitters": {
+        "acetylcholine": 0.451245,
+        "dopamine": 0.00786,
+        "gaba": 0.128999,
+        "glutamate": 0.264728,
+        "histamine": 0.042099,
+        "octopamine": 0.05615,
+        "serotonin": 0.048919
+      },
+      "tbar_synapses": 8041,
+      "distinct_bodies_tbar": 528
     },
     "MetaLN(R)": {
       "synapses": 35616,
       "distinct_pre_neurons": 2838,
       "distinct_post_neurons": 22094,
-      "mean_synapses_per_pre": 12.55
+      "mean_synapses_per_pre": 12.55,
+      "neurotransmitters": {
+        "acetylcholine": 0.34524,
+        "dopamine": 0.009328,
+        "gaba": 0.364375,
+        "glutamate": 0.08707,
+        "histamine": 0.135977,
+        "octopamine": 0.017624,
+        "serotonin": 0.040386
+      },
+      "tbar_synapses": 7047,
+      "distinct_bodies_tbar": 2734
     },
     "AB(R)": {
       "synapses": 26429,
       "distinct_pre_neurons": 309,
       "distinct_post_neurons": 8121,
-      "mean_synapses_per_pre": 85.53
+      "mean_synapses_per_pre": 85.53,
+      "neurotransmitters": {
+        "acetylcholine": 0.168601,
+        "dopamine": 0.074286,
+        "gaba": 0.020126,
+        "glutamate": 0.584159,
+        "histamine": 0.001197,
+        "octopamine": 0.018915,
+        "serotonin": 0.132716
+      },
+      "tbar_synapses": 3401,
+      "distinct_bodies_tbar": 292
     },
     "AbNT(L)": {
       "synapses": 20093,
       "distinct_pre_neurons": 517,
       "distinct_post_neurons": 8716,
-      "mean_synapses_per_pre": 38.86
+      "mean_synapses_per_pre": 38.86,
+      "neurotransmitters": {
+        "acetylcholine": 0.736562,
+        "dopamine": 0.000752,
+        "gaba": 0.15208,
+        "glutamate": 0.03085,
+        "histamine": 0.05828,
+        "octopamine": 0.010678,
+        "serotonin": 0.0108
+      },
+      "tbar_synapses": 3305,
+      "distinct_bodies_tbar": 466
     },
     "AbNT(R)": {
       "synapses": 19446,
       "distinct_pre_neurons": 476,
       "distinct_post_neurons": 8226,
-      "mean_synapses_per_pre": 40.85
+      "mean_synapses_per_pre": 40.85,
+      "neurotransmitters": {
+        "acetylcholine": 0.720212,
+        "dopamine": 0.000157,
+        "gaba": 0.168635,
+        "glutamate": 0.038657,
+        "histamine": 0.051671,
+        "octopamine": 0.006187,
+        "serotonin": 0.01448
+      },
+      "tbar_synapses": 3144,
+      "distinct_bodies_tbar": 460
     },
     "ADMN(R)": {
       "synapses": 16286,
       "distinct_pre_neurons": 1318,
       "distinct_post_neurons": 7772,
-      "mean_synapses_per_pre": 12.36
+      "mean_synapses_per_pre": 12.36,
+      "neurotransmitters": {
+        "acetylcholine": 0.419079,
+        "dopamine": 0.001904,
+        "gaba": 0.242763,
+        "glutamate": 0.086037,
+        "histamine": 0.212516,
+        "octopamine": 0.014824,
+        "serotonin": 0.022878
+      },
+      "tbar_synapses": 3899,
+      "distinct_bodies_tbar": 1272
     },
     "AME(L)": {
       "synapses": 16073,
       "distinct_pre_neurons": 261,
       "distinct_post_neurons": 4458,
-      "mean_synapses_per_pre": 61.58
+      "mean_synapses_per_pre": 61.58,
+      "neurotransmitters": {
+        "acetylcholine": 0.43153,
+        "dopamine": 0.002326,
+        "gaba": 0.129052,
+        "glutamate": 0.300358,
+        "histamine": 0.046432,
+        "octopamine": 0.066693,
+        "serotonin": 0.023608
+      },
+      "tbar_synapses": 2659,
+      "distinct_bodies_tbar": 239
     },
     "ADMN(L)": {
       "synapses": 14835,
       "distinct_pre_neurons": 1327,
       "distinct_post_neurons": 6119,
-      "mean_synapses_per_pre": 11.18
+      "mean_synapses_per_pre": 11.18,
+      "neurotransmitters": {
+        "acetylcholine": 0.428989,
+        "dopamine": 0.002518,
+        "gaba": 0.238031,
+        "glutamate": 0.081611,
+        "histamine": 0.210754,
+        "octopamine": 0.012668,
+        "serotonin": 0.025429
+      },
+      "tbar_synapses": 3549,
+      "distinct_bodies_tbar": 1269
     },
     "AbN4(R)": {
       "synapses": 11823,
       "distinct_pre_neurons": 517,
       "distinct_post_neurons": 4011,
-      "mean_synapses_per_pre": 22.87
+      "mean_synapses_per_pre": 22.87,
+      "neurotransmitters": {
+        "acetylcholine": 0.746131,
+        "dopamine": 0.000775,
+        "gaba": 0.136027,
+        "glutamate": 0.046553,
+        "histamine": 0.039075,
+        "octopamine": 0.01076,
+        "serotonin": 0.02068
+      },
+      "tbar_synapses": 2238,
+      "distinct_bodies_tbar": 452
     },
     "PDMN(R)": {
       "synapses": 10822,
       "distinct_pre_neurons": 631,
       "distinct_post_neurons": 4562,
-      "mean_synapses_per_pre": 17.15
+      "mean_synapses_per_pre": 17.15,
+      "neurotransmitters": {
+        "acetylcholine": 0.445632,
+        "dopamine": 0.001561,
+        "gaba": 0.149793,
+        "glutamate": 0.123654,
+        "histamine": 0.210607,
+        "octopamine": 0.012423,
+        "serotonin": 0.056329
+      },
+      "tbar_synapses": 2499,
+      "distinct_bodies_tbar": 604
     },
     "MetaLN(L)": {
       "synapses": 10328,
       "distinct_pre_neurons": 1137,
       "distinct_post_neurons": 7387,
-      "mean_synapses_per_pre": 9.08
+      "mean_synapses_per_pre": 9.08,
+      "neurotransmitters": {
+        "acetylcholine": 0.388757,
+        "dopamine": 0.014593,
+        "gaba": 0.197152,
+        "glutamate": 0.067448,
+        "histamine": 0.231851,
+        "octopamine": 0.033615,
+        "serotonin": 0.066584
+      },
+      "tbar_synapses": 1910,
+      "distinct_bodies_tbar": 1081
     },
     "PDMN(L)": {
       "synapses": 8421,
       "distinct_pre_neurons": 494,
       "distinct_post_neurons": 3622,
-      "mean_synapses_per_pre": 17.05
+      "mean_synapses_per_pre": 17.05,
+      "neurotransmitters": {
+        "acetylcholine": 0.437352,
+        "dopamine": 0.005446,
+        "gaba": 0.160921,
+        "glutamate": 0.092743,
+        "histamine": 0.208447,
+        "octopamine": 0.02331,
+        "serotonin": 0.07178
+      },
+      "tbar_synapses": 2069,
+      "distinct_bodies_tbar": 479
     },
     "AB(L)": {
       "synapses": 6291,
       "distinct_pre_neurons": 137,
       "distinct_post_neurons": 2181,
-      "mean_synapses_per_pre": 45.92
+      "mean_synapses_per_pre": 45.92,
+      "neurotransmitters": {
+        "acetylcholine": 0.27421,
+        "dopamine": 0.068232,
+        "gaba": 0.018829,
+        "glutamate": 0.449006,
+        "histamine": 0.000717,
+        "octopamine": 0.019109,
+        "serotonin": 0.169898
+      },
+      "tbar_synapses": 798,
+      "distinct_bodies_tbar": 132
     },
     "MesoLN(L)": {
       "synapses": 5248,
       "distinct_pre_neurons": 705,
       "distinct_post_neurons": 3983,
-      "mean_synapses_per_pre": 7.44
+      "mean_synapses_per_pre": 7.44,
+      "neurotransmitters": {
+        "acetylcholine": 0.252472,
+        "dopamine": 0.00432,
+        "gaba": 0.252922,
+        "glutamate": 0.065019,
+        "histamine": 0.368267,
+        "octopamine": 0.017778,
+        "serotonin": 0.039222
+      },
+      "tbar_synapses": 987,
+      "distinct_bodies_tbar": 662
     },
     "ProLN(L)": {
       "synapses": 5234,
       "distinct_pre_neurons": 464,
       "distinct_post_neurons": 3068,
-      "mean_synapses_per_pre": 11.28
+      "mean_synapses_per_pre": 11.28,
+      "neurotransmitters": {
+        "acetylcholine": 0.384335,
+        "dopamine": 0.00071,
+        "gaba": 0.206813,
+        "glutamate": 0.125407,
+        "histamine": 0.236851,
+        "octopamine": 0.00979,
+        "serotonin": 0.036094
+      },
+      "tbar_synapses": 909,
+      "distinct_bodies_tbar": 428
     },
     "MesoAN(R)": {
       "synapses": 4631,
       "distinct_pre_neurons": 356,
       "distinct_post_neurons": 2579,
-      "mean_synapses_per_pre": 13.01
+      "mean_synapses_per_pre": 13.01,
+      "neurotransmitters": {
+        "acetylcholine": 0.476372,
+        "dopamine": 0.005102,
+        "gaba": 0.248958,
+        "glutamate": 0.082128,
+        "histamine": 0.13851,
+        "octopamine": 0.019532,
+        "serotonin": 0.029398
+      },
+      "tbar_synapses": 859,
+      "distinct_bodies_tbar": 331
     },
     "MesoAN(L)": {
       "synapses": 2416,
       "distinct_pre_neurons": 326,
       "distinct_post_neurons": 1780,
-      "mean_synapses_per_pre": 7.41
+      "mean_synapses_per_pre": 7.41,
+      "neurotransmitters": {
+        "acetylcholine": 0.273904,
+        "dopamine": 0.009772,
+        "gaba": 0.193985,
+        "glutamate": 0.063717,
+        "histamine": 0.350846,
+        "octopamine": 0.052399,
+        "serotonin": 0.055378
+      },
+      "tbar_synapses": 508,
+      "distinct_bodies_tbar": 310
     },
     "AbN4(L)": {
       "synapses": 1864,
       "distinct_pre_neurons": 156,
       "distinct_post_neurons": 711,
-      "mean_synapses_per_pre": 11.95
+      "mean_synapses_per_pre": 11.95,
+      "neurotransmitters": {
+        "acetylcholine": 0.659585,
+        "dopamine": 0.00157,
+        "gaba": 0.13786,
+        "glutamate": 0.046622,
+        "histamine": 0.114281,
+        "octopamine": 0.007575,
+        "serotonin": 0.032506
+      },
+      "tbar_synapses": 385,
+      "distinct_bodies_tbar": 146
     },
     "ProLN(R)": {
       "synapses": 1612,
       "distinct_pre_neurons": 232,
       "distinct_post_neurons": 1277,
-      "mean_synapses_per_pre": 6.95
+      "mean_synapses_per_pre": 6.95,
+      "neurotransmitters": {
+        "acetylcholine": 0.356534,
+        "dopamine": 0.009952,
+        "gaba": 0.144586,
+        "glutamate": 0.055806,
+        "histamine": 0.351624,
+        "octopamine": 0.032383,
+        "serotonin": 0.049114
+      },
+      "tbar_synapses": 312,
+      "distinct_bodies_tbar": 215
     },
     "CRN": {
       "synapses": 983,
       "distinct_pre_neurons": 228,
       "distinct_post_neurons": 768,
-      "mean_synapses_per_pre": 4.31
+      "mean_synapses_per_pre": 4.31,
+      "neurotransmitters": {
+        "acetylcholine": 0.111663,
+        "dopamine": 0.008131,
+        "gaba": 0.102726,
+        "glutamate": 0.059791,
+        "histamine": 0.511925,
+        "octopamine": 0.105386,
+        "serotonin": 0.100377
+      },
+      "tbar_synapses": 267,
+      "distinct_bodies_tbar": 215
     },
     "VProN(L)": {
       "synapses": 542,
       "distinct_pre_neurons": 63,
       "distinct_post_neurons": 349,
-      "mean_synapses_per_pre": 8.6
+      "mean_synapses_per_pre": 8.6,
+      "neurotransmitters": {
+        "acetylcholine": 0.167258,
+        "dopamine": 0.005278,
+        "gaba": 0.335624,
+        "glutamate": 0.241201,
+        "histamine": 0.22018,
+        "octopamine": 0.018016,
+        "serotonin": 0.012443
+      },
+      "tbar_synapses": 100,
+      "distinct_bodies_tbar": 56
     },
     "CvN(R)": {
       "synapses": 518,
       "distinct_pre_neurons": 51,
       "distinct_post_neurons": 250,
-      "mean_synapses_per_pre": 10.16
+      "mean_synapses_per_pre": 10.16,
+      "neurotransmitters": {
+        "acetylcholine": 0.284216,
+        "dopamine": 0.002035,
+        "gaba": 0.195057,
+        "glutamate": 0.123747,
+        "histamine": 0.373055,
+        "octopamine": 0.004617,
+        "serotonin": 0.017273
+      },
+      "tbar_synapses": 117,
+      "distinct_bodies_tbar": 47
     },
     "AbN1(R)": {
       "synapses": 469,
       "distinct_pre_neurons": 47,
       "distinct_post_neurons": 388,
-      "mean_synapses_per_pre": 9.98
+      "mean_synapses_per_pre": 9.98,
+      "neurotransmitters": {
+        "acetylcholine": 0.164962,
+        "dopamine": 0.006211,
+        "gaba": 0.150658,
+        "glutamate": 0.083067,
+        "histamine": 0.43551,
+        "octopamine": 0.057131,
+        "serotonin": 0.102461
+      },
+      "tbar_synapses": 107,
+      "distinct_bodies_tbar": 47
     },
     "AbN1(L)": {
       "synapses": 454,
       "distinct_pre_neurons": 72,
       "distinct_post_neurons": 378,
-      "mean_synapses_per_pre": 6.31
+      "mean_synapses_per_pre": 6.31,
+      "neurotransmitters": {
+        "acetylcholine": 0.153778,
+        "dopamine": 0.007455,
+        "gaba": 0.209049,
+        "glutamate": 0.105502,
+        "histamine": 0.400732,
+        "octopamine": 0.062657,
+        "serotonin": 0.060827
+      },
+      "tbar_synapses": 93,
+      "distinct_bodies_tbar": 68
     },
     "CvN(L)": {
       "synapses": 427,
       "distinct_pre_neurons": 75,
       "distinct_post_neurons": 294,
-      "mean_synapses_per_pre": 5.69
+      "mean_synapses_per_pre": 5.69,
+      "neurotransmitters": {
+        "acetylcholine": 0.250767,
+        "dopamine": 0.009954,
+        "gaba": 0.169791,
+        "glutamate": 0.067964,
+        "histamine": 0.427357,
+        "octopamine": 0.033972,
+        "serotonin": 0.040194
+      },
+      "tbar_synapses": 121,
+      "distinct_bodies_tbar": 74
     },
     "ProAN(R)": {
       "synapses": 413,
       "distinct_pre_neurons": 88,
       "distinct_post_neurons": 385,
-      "mean_synapses_per_pre": 4.69
+      "mean_synapses_per_pre": 4.69,
+      "neurotransmitters": {
+        "acetylcholine": 0.226685,
+        "dopamine": 0.003727,
+        "gaba": 0.099911,
+        "glutamate": 0.094294,
+        "histamine": 0.521761,
+        "octopamine": 0.0234,
+        "serotonin": 0.030222
+      },
+      "tbar_synapses": 94,
+      "distinct_bodies_tbar": 83
     },
     "AbN2(L)": {
       "synapses": 392,
       "distinct_pre_neurons": 49,
       "distinct_post_neurons": 323,
-      "mean_synapses_per_pre": 8.0
+      "mean_synapses_per_pre": 8.0,
+      "neurotransmitters": {
+        "acetylcholine": 0.149794,
+        "dopamine": 0.009388,
+        "gaba": 0.093094,
+        "glutamate": 0.107406,
+        "histamine": 0.452256,
+        "octopamine": 0.079462,
+        "serotonin": 0.1086
+      },
+      "tbar_synapses": 86,
+      "distinct_bodies_tbar": 46
     },
     "DProN(R)": {
       "synapses": 341,
       "distinct_pre_neurons": 60,
       "distinct_post_neurons": 288,
-      "mean_synapses_per_pre": 5.68
+      "mean_synapses_per_pre": 5.68,
+      "neurotransmitters": {
+        "acetylcholine": 0.375998,
+        "dopamine": 0.007583,
+        "gaba": 0.130358,
+        "glutamate": 0.066199,
+        "histamine": 0.350296,
+        "octopamine": 0.017981,
+        "serotonin": 0.051584
+      },
+      "tbar_synapses": 75,
+      "distinct_bodies_tbar": 53
     },
     "DProN(L)": {
       "synapses": 307,
       "distinct_pre_neurons": 64,
       "distinct_post_neurons": 286,
-      "mean_synapses_per_pre": 4.8
+      "mean_synapses_per_pre": 4.8,
+      "neurotransmitters": {
+        "acetylcholine": 0.290889,
+        "dopamine": 0.013308,
+        "gaba": 0.102083,
+        "glutamate": 0.100315,
+        "histamine": 0.438706,
+        "octopamine": 0.015625,
+        "serotonin": 0.039075
+      },
+      "tbar_synapses": 71,
+      "distinct_bodies_tbar": 57
     },
     "AbN3(L)": {
       "synapses": 293,
       "distinct_pre_neurons": 73,
       "distinct_post_neurons": 211,
-      "mean_synapses_per_pre": 4.01
+      "mean_synapses_per_pre": 4.01,
+      "neurotransmitters": {
+        "acetylcholine": 0.238935,
+        "dopamine": 0.005436,
+        "gaba": 0.116279,
+        "glutamate": 0.147652,
+        "histamine": 0.396771,
+        "octopamine": 0.013027,
+        "serotonin": 0.0819
+      },
+      "tbar_synapses": 97,
+      "distinct_bodies_tbar": 71
     },
     "AbN3(R)": {
       "synapses": 263,
       "distinct_pre_neurons": 46,
       "distinct_post_neurons": 158,
-      "mean_synapses_per_pre": 5.72
+      "mean_synapses_per_pre": 5.72,
+      "neurotransmitters": {
+        "acetylcholine": 0.228753,
+        "dopamine": 0.008391,
+        "gaba": 0.110307,
+        "glutamate": 0.163772,
+        "histamine": 0.374591,
+        "octopamine": 0.045504,
+        "serotonin": 0.068682
+      },
+      "tbar_synapses": 82,
+      "distinct_bodies_tbar": 47
     },
     "ProAN(L)": {
       "synapses": 241,
       "distinct_pre_neurons": 54,
       "distinct_post_neurons": 218,
-      "mean_synapses_per_pre": 4.46
+      "mean_synapses_per_pre": 4.46,
+      "neurotransmitters": {
+        "acetylcholine": 0.179127,
+        "dopamine": 0.003909,
+        "gaba": 0.099912,
+        "glutamate": 0.075471,
+        "histamine": 0.620818,
+        "octopamine": 0.00855,
+        "serotonin": 0.012214
+      },
+      "tbar_synapses": 57,
+      "distinct_bodies_tbar": 53
     },
     "AbN2(R)": {
       "synapses": 234,
       "distinct_pre_neurons": 46,
       "distinct_post_neurons": 175,
-      "mean_synapses_per_pre": 5.09
+      "mean_synapses_per_pre": 5.09,
+      "neurotransmitters": {
+        "acetylcholine": 0.139891,
+        "dopamine": 0.004688,
+        "gaba": 0.127257,
+        "glutamate": 0.092942,
+        "histamine": 0.564928,
+        "octopamine": 0.012433,
+        "serotonin": 0.05786
+      },
+      "tbar_synapses": 68,
+      "distinct_bodies_tbar": 45
     },
     "ProCN(L)": {
       "synapses": 153,
       "distinct_pre_neurons": 32,
       "distinct_post_neurons": 112,
-      "mean_synapses_per_pre": 4.78
+      "mean_synapses_per_pre": 4.78,
+      "neurotransmitters": {
+        "acetylcholine": 0.294934,
+        "dopamine": 0.000554,
+        "gaba": 0.102684,
+        "glutamate": 0.069596,
+        "histamine": 0.518212,
+        "octopamine": 0.003683,
+        "serotonin": 0.010338
+      },
+      "tbar_synapses": 33,
+      "distinct_bodies_tbar": 28
     },
     "VProN(R)": {
       "synapses": 126,
       "distinct_pre_neurons": 30,
       "distinct_post_neurons": 107,
-      "mean_synapses_per_pre": 4.2
+      "mean_synapses_per_pre": 4.2,
+      "neurotransmitters": {
+        "acetylcholine": 0.274597,
+        "dopamine": 0.008278,
+        "gaba": 0.132605,
+        "glutamate": 0.124541,
+        "histamine": 0.393792,
+        "octopamine": 0.04285,
+        "serotonin": 0.023337
+      },
+      "tbar_synapses": 30,
+      "distinct_bodies_tbar": 29
     },
     "PrN(L)": {
       "synapses": 93,
       "distinct_pre_neurons": 20,
       "distinct_post_neurons": 82,
-      "mean_synapses_per_pre": 4.65
+      "mean_synapses_per_pre": 4.65,
+      "neurotransmitters": {
+        "acetylcholine": 0.411153,
+        "dopamine": 0.009125,
+        "gaba": 0.144657,
+        "glutamate": 0.090567,
+        "histamine": 0.277793,
+        "octopamine": 0.019903,
+        "serotonin": 0.046803
+      },
+      "tbar_synapses": 24,
+      "distinct_bodies_tbar": 19
     },
     "ProCN(R)": {
       "synapses": 14,
       "distinct_pre_neurons": 5,
       "distinct_post_neurons": 14,
-      "mean_synapses_per_pre": 2.8
+      "mean_synapses_per_pre": 2.8,
+      "neurotransmitters": {
+        "acetylcholine": 0.158005,
+        "dopamine": 0.012211,
+        "gaba": 0.097922,
+        "glutamate": 0.121346,
+        "histamine": 0.528307,
+        "octopamine": 0.025763,
+        "serotonin": 0.056446
+      },
+      "tbar_synapses": 4,
+      "distinct_bodies_tbar": 4
     },
     "PrN(R)": {
       "synapses": 12,
       "distinct_pre_neurons": 5,
       "distinct_post_neurons": 12,
-      "mean_synapses_per_pre": 2.4
+      "mean_synapses_per_pre": 2.4,
+      "neurotransmitters": {
+        "acetylcholine": 0.396567,
+        "dopamine": 0.005278,
+        "gaba": 0.063713,
+        "glutamate": 0.118836,
+        "histamine": 0.375299,
+        "octopamine": 0.017002,
+        "serotonin": 0.023306
+      },
+      "tbar_synapses": 5,
+      "distinct_bodies_tbar": 5
     }
   },
-  "generated_at": "2026-09-20T08:40:31+08:00",
-  "notes": "基于 syn-partners 全量（minconf=0.5）聚合。primary_post 是 post 侧的脑区归属；<unspecified> 表示坐标不在任何已标 ROI 内。body_pre/body_post 为 body id（对应 annotations.json 里的 body）。"
+  "generated_at": "2026-09-20T09:40:17+08:00",
+  "notes": "syn-partners 全量（minconf=0.5）聚合：突触对数 + 涉及神经元数。tbar-nt 全量聚合：每个 neuropil 的神经递质概率均值（7 种递质）。primary_post/primary 是脑区归属；<unspecified> 表示坐标不在任何已标 ROI 内。"
 }
