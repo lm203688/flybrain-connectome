@@ -525,13 +525,18 @@ class ModuleFactory:
                 dfs(spec.name, [spec.name])
 
         # 循环依赖是"软警告"而非硬冲突：生物学里回环反馈很常见
-        # 只有当 cycle 涉及 3 个以上模块才标记为冲突
+        # （recurrent_feedback / predictive_coding / reward loops 都含 cycle）
+        # 所以这里只记录为警告，绝不作为 hard conflict 阻塞组合。
+        cycle_warnings = []
         for cp in cycle_paths:
-            if len(set(cp)) >= 3:
-                conflicts.append({
+            unique_mods = set(cp)
+            if len(unique_mods) >= 3:
+                cycle_warnings.append({
                     "type": "long_cycle",
                     "path": " → ".join(cp),
-                    "note": f"检测到长循环依赖 ({len(set(cp))} 模块)，可能影响信号传播",
+                    "n_unique_modules": len(unique_mods),
+                    "note": f"检测到循环反馈 ({len(unique_mods)} 模块)，"
+                            f"在生物学里很常见（recurrent/predictive/reward 回路），仅作提示",
                 })
 
         # 检查 motif 冲突：多个模块使用同一 motif 且功能相反
@@ -561,6 +566,7 @@ class ModuleFactory:
             "modules": modules,
             "n_modules": len(modules),
             "conflicts": conflicts,
+            "cycle_warnings": cycle_warnings,
             "cycle_paths": cycle_paths[:5],  # 限制输出
             "motif_sources": motif_sources,
             "total_size_range": total_size,
@@ -616,12 +622,59 @@ class ModuleFactory:
 
         # 构建 design_organism 的 spec
         n_modules = len(expanded)
-        profile_map = {str(i): m for i, m in enumerate(expanded)}
+        
+        # Phase 4: 变体真差异化 — 动态注入变体 profile 到 MODULE_PROFILES
+        # 原理：design_organism 只支持 profile 名称映射，不支持参数覆盖。
+        # 解法：为每个变体创建一个临时 profile（如 sensory_vision），参数覆盖后注入。
+        # 变体 profile 名称格式：{base_module}_{variant_name}
+        from synthetic_bio_topology import MODULE_PROFILES as _MODULE_PROFILES
+        
+        profile_map = {}
+        variant_map = {}
+        idx = 0
+        for m in modules:
+            n = counts.get(m, 1)
+            v_list = variants.get(m, [])
+            base_spec = MODULE_REGISTRY[m]
+            for i in range(n):
+                vname = v_list[i] if i < len(v_list) else f"{m}_v{i}" if n > 1 else None
+                
+                if vname and vname in base_spec.variants:
+                    # 变体存在：动态注入参数覆盖的 profile
+                    variant_profile_name = f"{m}_{vname}"
+                    # 基于基础参数 + 变体覆盖创建新 profile
+                    base_params = base_spec.parameters.copy()
+                    base_params.update(base_spec.variants[vname])
+                    new_profile = {
+                        "description": f"{base_spec.description} ({vname} variant)",
+                        "capability": list(base_spec.capabilities),
+                        "task_hint_pool": list(base_spec.task_hints),
+                        "lead_task_hint": base_spec.lead_task_hint,
+                        "reservoir_density": base_params.get("reservoir_density", 0.25),
+                        "recurrent_pct": base_params.get("recurrent_pct", 0.28),
+                        "has_inhibition": base_params.get("has_inhibition", False),
+                    }
+                    _MODULE_PROFILES[variant_profile_name] = new_profile
 
+                    profile_map[str(idx)] = variant_profile_name
+                    variant_map[str(idx)] = {
+                        "module": m,
+                        "variant": vname,
+                        "variant_profile": variant_profile_name,
+                        "overrides": base_spec.variants[vname],
+                    }
+                else:
+                    # 无变体或变体不存在：使用基础 profile
+                    profile_map[str(idx)] = m
+                    if vname:
+                        variant_map[str(idx)] = {"module": m, "variant": vname}
+                
+                idx += 1
+        
         spec = {
             "n_modules": n_modules,
             "agents_per_module": agents_per_module,
-            "module_profiles": {"custom": profile_map},
+            "module_profiles": profile_map,  # {module_index_str: profile_name}，直接映射
         }
 
         # 如果指定了 blueprint，添加到 spec
@@ -638,18 +691,6 @@ class ModuleFactory:
                 "module_spec": module_spec,
             }
 
-        # 构建变体映射（同模块多副本的标签）
-        variant_map = {}
-        idx = 0
-        for m in modules:
-            n = counts.get(m, 1)
-            v_list = variants.get(m, [])
-            for i in range(n):
-                vname = v_list[i] if i < len(v_list) else f"{m}_v{i}" if n > 1 else None
-                if vname:
-                    variant_map[str(idx)] = {"module": m, "variant": vname}
-                idx += 1
-
         # 提取关键统计
         organism_data = organism_full.get("organism", {})
         stats = {
@@ -657,6 +698,7 @@ class ModuleFactory:
             "total_edges": len(organism_data.get("edges", [])),
             "n_modules": n_modules,
             "n_unique_modules": len(modules),
+            "n_variants_applied": sum(1 for v in variant_map.values() if v.get("variant_profile")),
             "motif_sources": compat["motif_sources"],
             "blueprint": blueprint,
             "blueprint_edges_added": organism_full.get("blueprint_edges_added", 0),
@@ -711,6 +753,386 @@ class ModuleFactory:
         result = cls.compose_organism(p)
         result["preset_name"] = preset_name
         return result
+
+    # ================================================================== #
+    # Phase 5: SwarmLabs 集成（模块 → Agent 角色映射）
+    # ================================================================== #
+    @classmethod
+    def to_swarmlabs(cls, organism_result: dict, name: str | None = None) -> dict:
+        """把 compose_organism 的结果转为 SwarmLabs 多 Agent 团队 spec。
+
+        调用 build_swarmlabs_config 完成 topology → agentteams 转换，
+        并把每个模块的 role / capability / task_hint 映射到 SwarmLabs
+        agent 字段，让下游 agent 直接按 profile_name 认领任务。
+
+        返回：swarmlabs_agent_swarm schema（含 agents / modules / edges /
+        guardrails / validation / motif_provenance / prov_json）。
+        """
+        from synthetic_bio_topology import build_swarmlabs_config
+
+        org = organism_result.get("organism")
+        if not org:
+            return {"status": "error", "error": "organism_result has no 'organism' key"}
+
+        # 用 spec.module_inventory 里的 blueprint 作为 name 兜底
+        if not name:
+            preset_name = organism_result.get("preset_name")
+            if preset_name:
+                name = f"{preset_name}_swarm"
+            else:
+                name = f"flybrain_organism_{org.get('generated_utc', 'anon')[:10]}"
+
+        swarm_spec = build_swarmlabs_config(org, name=name)
+
+        # 附加模块→Agent 映射摘要（方便用户直接看到每个模块的 Agent 角色）
+        modules = swarm_spec["swarm"]["modules"]
+        agents = swarm_spec["swarm"]["agents"]
+        module_index = {nd["id"]: nd.get("module") for nd in org.get("organism", {}).get("nodes", [])
+                        if nd.get("module") is not None}
+        role_summary = []
+        for mod in modules:
+            lead = mod.get("lead")
+            members = mod.get("members", [])
+            lead_agent = next((a for a in agents if a["id"] == lead), None)
+            role_summary.append({
+                "module_index": mod["index"],
+                "profile_name": mod.get("profile_name"),
+                "lead_id": lead,
+                "lead_role": lead_agent.get("swarm_role") if lead_agent else None,
+                "lead_task_hint": lead_agent.get("task_hint") if lead_agent else None,
+                "capability": mod.get("capability", []),
+                "n_members": len(members),
+                "recurrent_weight": mod.get("recurrent_weight"),
+            })
+
+        return {
+            "status": "success",
+            "swarm_spec": swarm_spec,
+            "module_role_summary": role_summary,
+            "n_agents": len(agents),
+            "n_modules": len(modules),
+            "n_edges": len(swarm_spec["swarm"]["edges"]),
+            "validation_ok": swarm_spec["swarm"]["validation"]["ok"],
+            "provenance_chain": {
+                "motif_provenance": bool(swarm_spec.get("motif_provenance")),
+                "prov_json": bool(swarm_spec.get("prov_json")),
+                "blueprint": swarm_spec.get("blueprint"),
+            },
+        }
+
+    @classmethod
+    def get_module_agent_roles(cls) -> list[dict]:
+        """列出所有模块到 SwarmLabs Agent 角色的映射表。
+
+        让 SwarmLabs 用户一眼看到：选了哪些模块 = 会得到哪些 Agent 角色，
+        每个角色的 task_hint / capability 是什么。
+        """
+        role_map = {
+            "perceive": "sensor",
+            "remember": "memory_agent",
+            "manipulate": "working_memory_agent",
+            "automatize": "habit_agent",
+            "value_estimate": "reward_agent",
+            "avoidance": "avoidance_agent",
+            "monitor": "metacognition_agent",
+            "execute": "executor",
+            "synthesize": "integrator",
+            "forecast": "predictor_agent",
+            "assess": "evaluator_agent",
+            "plan": "planner_agent",
+            "motive": "motivation_agent",
+            "guard": "guardrail_agent",
+            "adapt": "evolution_agent",
+            "integrate": "consciousness_agent",
+            "maintain": "maintenance_agent",
+            "broadcast": "communication_agent",
+            "focus": "attention_agent",
+        }
+        out = []
+        for name, spec in MODULE_REGISTRY.items():
+            out.append({
+                "module": name,
+                "function": spec.function,
+                "swarm_role": role_map.get(spec.function, "executor"),
+                "lead_task_hint": spec.lead_task_hint,
+                "task_hints": spec.task_hints,
+                "capability": spec.capabilities,
+                "category": spec.category,
+                "motif_source": spec.motif_source,
+            })
+        return out
+
+    # ================================================================== #
+    # Phase 6: 虚拟生物市场（用户分享自定义组合）
+    # ================================================================== #
+    @classmethod
+    def _market_dir(cls) -> Path:
+        """市场目录（JSON 持久化）"""
+        d = _HERE / ".." / "male_cns" / "virtual_organisms" / "market"
+        d = d.resolve()
+        d.mkdir(parents=True, exist_ok=True)
+        return d
+
+    @classmethod
+    def _market_index_path(cls) -> Path:
+        return cls._market_dir() / "index.json"
+
+    @classmethod
+    def _load_market_index(cls) -> dict:
+        p = cls._market_index_path()
+        if not p.exists():
+            return {"organisms": [], "updated_utc": None}
+        try:
+            return json.loads(p.read_text(encoding="utf-8"))
+        except Exception:
+            return {"organisms": [], "updated_utc": None}
+
+    @classmethod
+    def _save_market_index(cls, index: dict) -> None:
+        index["updated_utc"] = __import__("datetime").datetime.now(
+            __import__("datetime").timezone.utc
+        ).isoformat()
+        cls._market_index_path().write_text(
+            json.dumps(index, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+    @classmethod
+    def save_market_organism(
+        cls,
+        name: str,
+        module_spec: dict,
+        description: str = "",
+        tags: list[str] | None = None,
+        author: str = "anonymous",
+    ) -> dict:
+        """保存自定义模块组合到市场。
+
+        module_spec 与 compose_organism 入参相同（modules/counts/variants/
+        blueprint/agents_per_module/seed）。保存时会先 compose 一次拿到
+        stats 作为市场展示信息。
+        """
+        if not name or not isinstance(name, str):
+            return {"status": "error", "error": "name is required"}
+        if not module_spec or "modules" not in module_spec:
+            return {"status": "error", "error": "module_spec.modules is required"}
+
+        # 先 compose 验证组合可生成
+        compose_result = cls.compose_organism(module_spec)
+        if compose_result.get("status") != "success":
+            return {
+                "status": "error",
+                "error": "cannot compose organism",
+                "compose_error": compose_result.get("error"),
+            }
+
+        stats = compose_result.get("stats", {})
+        entry = {
+            "name": name,
+            "description": description,
+            "tags": tags or [],
+            "author": author,
+            "created_utc": __import__("datetime").datetime.now(
+                __import__("datetime").timezone.utc
+            ).isoformat(),
+            "module_spec": module_spec,
+            "stats": {
+                "total_nodes": stats.get("total_nodes"),
+                "total_edges": stats.get("total_edges"),
+                "n_modules": stats.get("n_modules"),
+                "n_unique_modules": stats.get("n_unique_modules"),
+                "n_variants_applied": stats.get("n_variants_applied", 0),
+                "blueprint": stats.get("blueprint"),
+            },
+            "rating": {"score": 0.0, "n_ratings": 0, "comments": []},
+        }
+
+        # 写入 index.json（覆盖同名）
+        index = cls._load_market_index()
+        organisms = [o for o in index.get("organisms", []) if o.get("name") != name]
+        organisms.append(entry)
+        index["organisms"] = organisms
+        cls._save_market_index(index)
+
+        # 同时把完整拓扑 JSON 落盘，便于直接加载
+        organism_path = cls._market_dir() / f"{name}.json"
+        organism_path.write_text(
+            json.dumps(compose_result, ensure_ascii=False, indent=2),
+            encoding="utf-8",
+        )
+
+        return {
+            "status": "success",
+            "name": name,
+            "path": str(organism_path),
+            "stats": entry["stats"],
+        }
+
+    @classmethod
+    def load_market_organism(cls, name: str) -> dict:
+        """从市场加载指定组合（返回 module_spec + 已 compose 的拓扑）。"""
+        p = cls._market_dir() / f"{name}.json"
+        if not p.exists():
+            return {"status": "error", "error": f"organism '{name}' not in market"}
+        try:
+            return json.loads(p.read_text(encoding="utf-8"))
+        except Exception as e:
+            return {"status": "error", "error": f"failed to load: {e}"}
+
+    @classmethod
+    def list_market_organisms(
+        cls,
+        tag: str | None = None,
+        sort_by: str = "name",
+        limit: int = 50,
+    ) -> dict:
+        """列出市场所有组合，支持按 tag 过滤和按 rating/name 排序。"""
+        index = cls._load_market_index()
+        organisms = index.get("organisms", [])
+
+        if tag:
+            organisms = [o for o in organisms if tag in o.get("tags", [])]
+
+        if sort_by == "rating":
+            organisms.sort(
+                key=lambda o: o.get("rating", {}).get("score", 0.0),
+                reverse=True,
+            )
+        elif sort_by == "nodes":
+            organisms.sort(
+                key=lambda o: o.get("stats", {}).get("total_nodes", 0),
+                reverse=True,
+            )
+        elif sort_by == "created":
+            organisms.sort(
+                key=lambda o: o.get("created_utc", ""),
+                reverse=True,
+            )
+        else:
+            organisms.sort(key=lambda o: o.get("name", ""))
+
+        organisms = organisms[:limit]
+
+        return {
+            "status": "success",
+            "n_total": len(index.get("organisms", [])),
+            "n_returned": len(organisms),
+            "sort_by": sort_by,
+            "tag_filter": tag,
+            "organisms": [
+                {
+                    "name": o.get("name"),
+                    "description": o.get("description", ""),
+                    "tags": o.get("tags", []),
+                    "author": o.get("author"),
+                    "created_utc": o.get("created_utc"),
+                    "stats": o.get("stats", {}),
+                    "rating": {
+                        "score": o.get("rating", {}).get("score", 0.0),
+                        "n_ratings": o.get("rating", {}).get("n_ratings", 0),
+                    },
+                }
+                for o in organisms
+            ],
+        }
+
+    @classmethod
+    def rate_market_organism(
+        cls,
+        name: str,
+        score: float,
+        comment: str = "",
+        rater: str = "anonymous",
+    ) -> dict:
+        """给市场组合评分（1-5 分）。重复评分会追加到 comments。"""
+        if not (1.0 <= score <= 5.0):
+            return {"status": "error", "error": "score must be 1.0-5.0"}
+
+        index = cls._load_market_index()
+        organisms = index.get("organisms", [])
+        target = next((o for o in organisms if o.get("name") == name), None)
+        if target is None:
+            return {"status": "error", "error": f"organism '{name}' not in market"}
+
+        rating = target.setdefault("rating", {"score": 0.0, "n_ratings": 0, "comments": []})
+        scores = [c.get("score", score) for c in rating.get("comments", [])]
+        scores.append(score)
+        rating["score"] = round(sum(scores) / len(scores), 2)
+        rating["n_ratings"] = len(scores)
+        rating.setdefault("comments", []).append({
+            "score": score,
+            "comment": comment,
+            "rater": rater,
+            "ts": __import__("datetime").datetime.now(
+                __import__("datetime").timezone.utc
+            ).isoformat(),
+        })
+        cls._save_market_index(index)
+
+        return {
+            "status": "success",
+            "name": name,
+            "score": rating["score"],
+            "n_ratings": rating["n_ratings"],
+        }
+
+    @classmethod
+    def search_market_organisms(cls, query: str, limit: int = 20) -> dict:
+        """按关键词搜索市场组合（匹配 name/description/tags/modules）。"""
+        if not query or not query.strip():
+            return {"status": "error", "error": "query is required"}
+        q = query.strip().lower()
+
+        index = cls._load_market_index()
+        matches = []
+        for o in index.get("organisms", []):
+            haystack = " ".join([
+                o.get("name", ""),
+                o.get("description", ""),
+                " ".join(o.get("tags", [])),
+                " ".join(o.get("module_spec", {}).get("modules", [])),
+                o.get("module_spec", {}).get("blueprint", ""),
+            ]).lower()
+            if q in haystack:
+                matches.append({
+                    "name": o.get("name"),
+                    "description": o.get("description", ""),
+                    "tags": o.get("tags", []),
+                    "stats": o.get("stats", {}),
+                    "rating": {
+                        "score": o.get("rating", {}).get("score", 0.0),
+                        "n_ratings": o.get("rating", {}).get("n_ratings", 0),
+                    },
+                    "modules": o.get("module_spec", {}).get("modules", []),
+                    "blueprint": o.get("module_spec", {}).get("blueprint"),
+                })
+
+        matches = matches[:limit]
+        return {
+            "status": "success",
+            "query": query,
+            "n_matches": len(matches),
+            "organisms": matches,
+        }
+
+    @classmethod
+    def delete_market_organism(cls, name: str) -> dict:
+        """从市场删除组合（含 JSON 文件）。"""
+        index = cls._load_market_index()
+        before = len(index.get("organisms", []))
+        index["organisms"] = [o for o in index.get("organisms", []) if o.get("name") != name]
+        if len(index["organisms"]) == before:
+            return {"status": "error", "error": f"organism '{name}' not in market"}
+        cls._save_market_index(index)
+
+        p = cls._market_dir() / f"{name}.json"
+        if p.exists():
+            try:
+                p.unlink()
+            except Exception as e:
+                return {"status": "error", "error": f"index removed but file unlink failed: {e}"}
+
+        return {"status": "success", "name": name}
 
 
 # ====================================================================== #
