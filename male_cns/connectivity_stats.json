@@ -1,0 +1,198 @@
+{
+  "rows": 151856684,
+  "columns": [
+    "body_pre",
+    "body_post",
+    "weight"
+  ],
+  "pre_col": "body_pre",
+  "post_col": "body_post",
+  "weight_col": "weight",
+  "full_table": {
+    "rows": 151856684,
+    "synapses": 311833243,
+    "distinct_pre": 1834661,
+    "distinct_post": 87576984
+  },
+  "neuron_subgraph": {
+    "neurons": 166700,
+    "edges": 25582938,
+    "synapses": 124177617,
+    "distinct_pre": 165480,
+    "distinct_post": 166330
+  },
+  "synapses": 124177617,
+  "edges": 25582938,
+  "mean_fanout": 750.41,
+  "mean_fanin": 746.57,
+  "neurons_with_output": 165480,
+  "neurons_with_input": 166330,
+  "weight_quantiles": {
+    "p50": 2.0,
+    "p90": 10.0,
+    "p99": 46.0,
+    "p999": 139.0
+  },
+  "top_hubs": [
+    {
+      "body": "10009",
+      "synapses": 140897,
+      "fanout": 140897,
+      "fanin": 81318,
+      "type": "CT1",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10157",
+      "synapses": 112796,
+      "fanout": 112796,
+      "fanin": 73310,
+      "type": "CT1",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10977",
+      "synapses": 107649,
+      "fanout": 107649,
+      "fanin": 114090,
+      "type": "APL",
+      "superclass": "cb_intrinsic"
+    },
+    {
+      "body": "10540",
+      "synapses": 102263,
+      "fanout": 102263,
+      "fanin": 119935,
+      "type": "APL",
+      "superclass": "cb_intrinsic"
+    },
+    {
+      "body": "10051",
+      "synapses": 53934,
+      "fanout": 53934,
+      "fanin": 57220,
+      "type": "Li39",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10066",
+      "synapses": 50226,
+      "fanout": 50226,
+      "fanin": 76073,
+      "type": "LPi21",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10611",
+      "synapses": 49925,
+      "fanout": 49925,
+      "fanin": 53285,
+      "type": "Li39",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10093",
+      "synapses": 49864,
+      "fanout": 49864,
+      "fanin": 65895,
+      "type": "Am1",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10503",
+      "synapses": 47667,
+      "fanout": 47667,
+      "fanin": 45870,
+      "type": "LPi4b",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10046",
+      "synapses": 46425,
+      "fanout": 46425,
+      "fanin": 10870,
+      "type": "MeVC11",
+      "superclass": "visual_centrifugal"
+    },
+    {
+      "body": "10085",
+      "synapses": 42446,
+      "fanout": 42446,
+      "fanin": 60112,
+      "type": "Am1",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10352",
+      "synapses": 41574,
+      "fanout": 41574,
+      "fanin": 37896,
+      "type": "Li32",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "13612",
+      "synapses": 40826,
+      "fanout": 40826,
+      "fanin": 36753,
+      "type": "Li32",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "11041",
+      "synapses": 39283,
+      "fanout": 39283,
+      "fanin": 68272,
+      "type": "LPi21",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10452",
+      "synapses": 37690,
+      "fanout": 37690,
+      "fanin": 44039,
+      "type": "LPi4b",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10260",
+      "synapses": 37423,
+      "fanout": 37423,
+      "fanin": 11191,
+      "type": "MeVC11",
+      "superclass": "visual_centrifugal"
+    },
+    {
+      "body": "10351",
+      "synapses": 35134,
+      "fanout": 35134,
+      "fanin": 44534,
+      "type": "Li33",
+      "superclass": "ol_intrinsic"
+    },
+    {
+      "body": "10671",
+      "synapses": 34615,
+      "fanout": 34615,
+      "fanin": 5703,
+      "type": "AN02A002",
+      "superclass": "ascending_neuron"
+    },
+    {
+      "body": "10180",
+      "synapses": 34345,
+      "fanout": 34345,
+      "fanin": 5465,
+      "type": "AN02A002",
+      "superclass": "ascending_neuron"
+    },
+    {
+      "body": "10169",
+      "synapses": 34036,
+      "fanout": 34036,
+      "fanin": 38199,
+      "type": "lLN2F_b",
+      "superclass": "cb_intrinsic"
+    }
+  ]
+}
