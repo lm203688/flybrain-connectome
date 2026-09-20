@@ -53,6 +53,11 @@ ARGS = {
     "get_stacked_feasibility": {"name": "stack_visual_cognition"},
     "list_neuropils": {"top": 5},
     "get_neuropil_detail": {"name": "ME(L)"},
+    # Phase 7: Module factory tools
+    "get_module": {"name": "sensory"},
+    "check_module_compatibility": {"modules": ["sensory", "memory", "motor"]},
+    "compose_virtual_organism": {"modules": ["sensory", "memory", "motor"], "seed": 42},
+    "list_virtual_organisms": {},
 }
 
 DATA_TOOLS = {
@@ -64,7 +69,8 @@ DATA_TOOLS = {
 # Tools whose payload must additionally be valid JSON (machine consumers rely on it).
 JSON_TOOLS = {"export_swarm_motifs", "list_blueprints", "list_modules",
               "list_bio_motifs", "batch_generate_topologies",
-              "get_provenance_bundle"}
+              "get_provenance_bundle", "check_module_compatibility",
+              "compose_virtual_organism", "list_virtual_organisms"}
 
 
 def _speak(python: str, env: dict, reqs: list[dict], timeout: int):
