@@ -1,0 +1,2847 @@
+{
+  "annotation": {
+    "rows": 211577,
+    "columns": [
+      "assignedOlHex1",
+      "assignedOlHex2",
+      "bodyId",
+      "flywireType",
+      "group",
+      "instance",
+      "somaSide",
+      "statusLabel",
+      "superclass",
+      "type",
+      "vfbId",
+      "hemibrainType",
+      "itoleeHl",
+      "supertype",
+      "birthtime",
+      "mancBodyid",
+      "mancGroup",
+      "mancType",
+      "subclass",
+      "synonyms",
+      "class",
+      "rootSide",
+      "somaNeuromere",
+      "trumanHl",
+      "dimorphism",
+      "matchingNotes",
+      "entryNerve",
+      "mancSerial",
+      "mcnsSerial",
+      "serialMotif",
+      "fruDsx",
+      "exitNerve",
+      "receptorType",
+      "somaLocation",
+      "tosomaLocation",
+      "status"
+    ]
+  },
+  "distributions": {
+    "flywire_type": {
+      "column": "flywireType",
+      "non_null": 143156,
+      "unique": 8199,
+      "top": [
+        {
+          "value": "R1-6",
+          "count": 3377
+        },
+        {
+          "value": "Tm3",
+          "count": 2054
+        },
+        {
+          "value": "T3",
+          "count": 1940
+        },
+        {
+          "value": "T2a",
+          "count": 1872
+        },
+        {
+          "value": "L5",
+          "count": 1788
+        },
+        {
+          "value": "L2",
+          "count": 1779
+        },
+        {
+          "value": "C3",
+          "count": 1779
+        },
+        {
+          "value": "T4c",
+          "count": 1778
+        },
+        {
+          "value": "T1",
+          "count": 1777
+        },
+        {
+          "value": "Tm1",
+          "count": 1777
+        },
+        {
+          "value": "L1",
+          "count": 1776
+        },
+        {
+          "value": "Mi9",
+          "count": 1775
+        },
+        {
+          "value": "Mi1",
+          "count": 1773
+        },
+        {
+          "value": "L3",
+          "count": 1772
+        },
+        {
+          "value": "Mi4",
+          "count": 1772
+        },
+        {
+          "value": "Tm9",
+          "count": 1771
+        },
+        {
+          "value": "L4",
+          "count": 1770
+        },
+        {
+          "value": "Tm2",
+          "count": 1766
+        },
+        {
+          "value": "Tm20",
+          "count": 1762
+        },
+        {
+          "value": "C2",
+          "count": 1745
+        },
+        {
+          "value": "T5c",
+          "count": 1720
+        },
+        {
+          "value": "T5b",
+          "count": 1715
+        },
+        {
+          "value": "T4d",
+          "count": 1710
+        },
+        {
+          "value": "T4b",
+          "count": 1690
+        },
+        {
+          "value": "T4a",
+          "count": 1684
+        },
+        {
+          "value": "KCab",
+          "count": 1681
+        },
+        {
+          "value": "Tm4",
+          "count": 1670
+        },
+        {
+          "value": "T5a",
+          "count": 1664
+        },
+        {
+          "value": "T2",
+          "count": 1630
+        },
+        {
+          "value": "T5d",
+          "count": 1620
+        }
+      ]
+    },
+    "type": {
+      "column": "type",
+      "non_null": 164506,
+      "unique": 11751,
+      "top": [
+        {
+          "value": "R1-R6",
+          "count": 3377
+        },
+        {
+          "value": "Tm3",
+          "count": 2054
+        },
+        {
+          "value": "T3",
+          "count": 1940
+        },
+        {
+          "value": "T2a",
+          "count": 1872
+        },
+        {
+          "value": "L5",
+          "count": 1787
+        },
+        {
+          "value": "L2",
+          "count": 1779
+        },
+        {
+          "value": "C3",
+          "count": 1779
+        },
+        {
+          "value": "T4c",
+          "count": 1778
+        },
+        {
+          "value": "T1",
+          "count": 1777
+        },
+        {
+          "value": "Tm1",
+          "count": 1777
+        },
+        {
+          "value": "L1",
+          "count": 1776
+        },
+        {
+          "value": "Mi9",
+          "count": 1775
+        },
+        {
+          "value": "Mi1",
+          "count": 1773
+        },
+        {
+          "value": "L3",
+          "count": 1772
+        },
+        {
+          "value": "Mi4",
+          "count": 1772
+        },
+        {
+          "value": "Tm9",
+          "count": 1771
+        },
+        {
+          "value": "L4",
+          "count": 1770
+        },
+        {
+          "value": "Tm2",
+          "count": 1766
+        },
+        {
+          "value": "Tm20",
+          "count": 1762
+        },
+        {
+          "value": "C2",
+          "count": 1745
+        },
+        {
+          "value": "T5c",
+          "count": 1720
+        },
+        {
+          "value": "T5b",
+          "count": 1715
+        },
+        {
+          "value": "T4d",
+          "count": 1709
+        },
+        {
+          "value": "T4b",
+          "count": 1690
+        },
+        {
+          "value": "T4a",
+          "count": 1684
+        },
+        {
+          "value": "Tm4",
+          "count": 1670
+        },
+        {
+          "value": "T5a",
+          "count": 1664
+        },
+        {
+          "value": "T2",
+          "count": 1630
+        },
+        {
+          "value": "T5d",
+          "count": 1620
+        },
+        {
+          "value": "Tm6",
+          "count": 1526
+        }
+      ]
+    },
+    "supertype": {
+      "column": "supertype",
+      "non_null": 34096,
+      "unique": 1925,
+      "top": [
+        {
+          "value": "11862",
+          "count": 1810
+        },
+        {
+          "value": "14292",
+          "count": 1346
+        },
+        {
+          "value": "17488",
+          "count": 695
+        },
+        {
+          "value": "12783",
+          "count": 674
+        },
+        {
+          "value": "11512",
+          "count": 619
+        },
+        {
+          "value": "13253",
+          "count": 353
+        },
+        {
+          "value": "14631",
+          "count": 338
+        },
+        {
+          "value": "11119",
+          "count": 303
+        },
+        {
+          "value": "10573",
+          "count": 275
+        },
+        {
+          "value": "11372",
+          "count": 261
+        },
+        {
+          "value": "15260",
+          "count": 208
+        },
+        {
+          "value": "19102",
+          "count": 206
+        },
+        {
+          "value": "11498",
+          "count": 185
+        },
+        {
+          "value": "20297",
+          "count": 182
+        },
+        {
+          "value": "16916",
+          "count": 180
+        },
+        {
+          "value": "12156",
+          "count": 177
+        },
+        {
+          "value": "13195",
+          "count": 174
+        },
+        {
+          "value": "15054",
+          "count": 172
+        },
+        {
+          "value": "16115",
+          "count": 153
+        },
+        {
+          "value": "20345",
+          "count": 149
+        },
+        {
+          "value": "41385",
+          "count": 147
+        },
+        {
+          "value": "23643",
+          "count": 144
+        },
+        {
+          "value": "11747",
+          "count": 143
+        },
+        {
+          "value": "12911",
+          "count": 135
+        },
+        {
+          "value": "12052",
+          "count": 134
+        },
+        {
+          "value": "18681",
+          "count": 134
+        },
+        {
+          "value": "27502",
+          "count": 130
+        },
+        {
+          "value": "18842",
+          "count": 124
+        },
+        {
+          "value": "14828",
+          "count": 119
+        },
+        {
+          "value": "23155",
+          "count": 115
+        }
+      ]
+    },
+    "subclass": {
+      "column": "subclass",
+      "non_null": 21930,
+      "unique": 49,
+      "top": [
+        {
+          "value": "BI",
+          "count": 3336
+        },
+        {
+          "value": "IR",
+          "count": 3048
+        },
+        {
+          "value": "mechanosensory bristle",
+          "count": 2206
+        },
+        {
+          "value": "BR",
+          "count": 1883
+        },
+        {
+          "value": "BA",
+          "count": 1336
+        },
+        {
+          "value": "abdomen",
+          "count": 1145
+        },
+        {
+          "value": "CR",
+          "count": 1039
+        },
+        {
+          "value": "leg",
+          "count": 873
+        },
+        {
+          "value": "II",
+          "count": 838
+        },
+        {
+          "value": "leg bristle",
+          "count": 768
+        },
+        {
+          "value": "wind_gravity",
+          "count": 475
+        },
+        {
+          "value": "xn",
+          "count": 441
+        },
+        {
+          "value": "campaniform sensilla",
+          "count": 426
+        },
+        {
+          "value": "chordotonal organ",
+          "count": 425
+        },
+        {
+          "value": "wing bristle",
+          "count": 385
+        },
+        {
+          "value": "ut",
+          "count": 276
+        },
+        {
+          "value": "xl",
+          "count": 275
+        },
+        {
+          "value": "fl",
+          "count": 250
+        },
+        {
+          "value": "ad",
+          "count": 241
+        },
+        {
+          "value": "notum",
+          "count": 230
+        },
+        {
+          "value": "haltere",
+          "count": 205
+        },
+        {
+          "value": "labellar bristle",
+          "count": 163
+        },
+        {
+          "value": "CA",
+          "count": 160
+        },
+        {
+          "value": "CI",
+          "count": 134
+        },
+        {
+          "value": "hl",
+          "count": 132
+        },
+        {
+          "value": "IA",
+          "count": 129
+        },
+        {
+          "value": "ml",
+          "count": 118
+        },
+        {
+          "value": "auditory",
+          "count": 115
+        },
+        {
+          "value": "hair plate",
+          "count": 113
+        },
+        {
+          "value": "nt",
+          "count": 108
+        }
+      ]
+    },
+    "superclass": {
+      "column": "superclass",
+      "non_null": 166700,
+      "unique": 27,
+      "top": [
+        {
+          "value": "ol_intrinsic",
+          "count": 89403
+        },
+        {
+          "value": "cb_intrinsic",
+          "count": 32164
+        },
+        {
+          "value": "vnc_intrinsic",
+          "count": 13161
+        },
+        {
+          "value": "visual_projection",
+          "count": 9201
+        },
+        {
+          "value": "vnc_sensory",
+          "count": 6370
+        },
+        {
+          "value": "ol_sensory",
+          "count": 6098
+        },
+        {
+          "value": "cb_sensory",
+          "count": 4868
+        },
+        {
+          "value": "ascending_neuron",
+          "count": 1846
+        },
+        {
+          "value": "descending_neuron",
+          "count": 1314
+        },
+        {
+          "value": "vnc_motor",
+          "count": 708
+        },
+        {
+          "value": "visual_centrifugal",
+          "count": 563
+        },
+        {
+          "value": "sensory_ascending",
+          "count": 537
+        },
+        {
+          "value": "cb_motor",
+          "count": 107
+        },
+        {
+          "value": "vnc_efferent",
+          "count": 94
+        },
+        {
+          "value": "cb_endocrine",
+          "count": 72
+        },
+        {
+          "value": "ENS",
+          "count": 50
+        },
+        {
+          "value": "vnc_tbc",
+          "count": 38
+        },
+        {
+          "value": "vnc_sensory_tbc",
+          "count": 36
+        },
+        {
+          "value": "vnc_endocrine",
+          "count": 22
+        },
+        {
+          "value": "cb_sensory_tbc",
+          "count": 14
+        },
+        {
+          "value": "sensory_descending",
+          "count": 12
+        },
+        {
+          "value": "efferent_ascending",
+          "count": 8
+        },
+        {
+          "value": "efferent_descending",
+          "count": 4
+        },
+        {
+          "value": "cb_efferent",
+          "count": 4
+        },
+        {
+          "value": "visual_projection_tbc",
+          "count": 2
+        },
+        {
+          "value": "sensory_ascending_tbc",
+          "count": 2
+        },
+        {
+          "value": "descending_neuron_tbc",
+          "count": 2
+        }
+      ]
+    },
+    "hemibrain_type": {
+      "column": "hemibrainType",
+      "non_null": 32919,
+      "unique": 4495,
+      "top": [
+        {
+          "value": "KCab-m,KCab-c,KCab-s",
+          "count": 1676
+        },
+        {
+          "value": "KCg-m",
+          "count": 1346
+        },
+        {
+          "value": "MC61,MC64",
+          "count": 900
+        },
+        {
+          "value": "LC12",
+          "count": 498
+        },
+        {
+          "value": "LC17",
+          "count": 353
+        },
+        {
+          "value": "KCa'b'-ap2",
+          "count": 291
+        },
+        {
+          "value": "LC9",
+          "count": 261
+        },
+        {
+          "value": "LLPC2a,LLPC2b,LLPC2c,LLPC2d",
+          "count": 250
+        },
+        {
+          "value": "MC62",
+          "count": 248
+        },
+        {
+          "value": "LLPC1",
+          "count": 246
+        },
+        {
+          "value": "LPC1",
+          "count": 221
+        },
+        {
+          "value": "LLPC3",
+          "count": 215
+        },
+        {
+          "value": "LC18",
+          "count": 208
+        },
+        {
+          "value": "KCg-d",
+          "count": 206
+        },
+        {
+          "value": "KCa'b'-m",
+          "count": 205
+        },
+        {
+          "value": "ORN_DA1",
+          "count": 204
+        },
+        {
+          "value": "KCa'b'-ap1",
+          "count": 199
+        },
+        {
+          "value": "LPLC2",
+          "count": 182
+        },
+        {
+          "value": "LC16",
+          "count": 181
+        },
+        {
+          "value": "LC13",
+          "count": 177
+        },
+        {
+          "value": "Li13",
+          "count": 177
+        },
+        {
+          "value": "LC21",
+          "count": 153
+        },
+        {
+          "value": "LPC2",
+          "count": 152
+        },
+        {
+          "value": "MC66",
+          "count": 150
+        },
+        {
+          "value": "LC11",
+          "count": 143
+        },
+        {
+          "value": "PFNp_b",
+          "count": 136
+        },
+        {
+          "value": "LPLC1",
+          "count": 134
+        },
+        {
+          "value": "ORN_VA1d",
+          "count": 132
+        },
+        {
+          "value": "ORN_VA1v",
+          "count": 130
+        },
+        {
+          "value": "KCab-p",
+          "count": 129
+        }
+      ]
+    },
+    "manc_type": {
+      "column": "mancType",
+      "non_null": 22744,
+      "unique": 3893,
+      "top": [
+        {
+          "value": "SNch05",
+          "count": 289
+        },
+        {
+          "value": "SNta29",
+          "count": 261
+        },
+        {
+          "value": "SNta02,SNta09",
+          "count": 241
+        },
+        {
+          "value": "SNta37",
+          "count": 228
+        },
+        {
+          "value": "SNxx03",
+          "count": 186
+        },
+        {
+          "value": "SNta20",
+          "count": 155
+        },
+        {
+          "value": "SNxx04",
+          "count": 130
+        },
+        {
+          "value": "SNta38",
+          "count": 122
+        },
+        {
+          "value": "SNta21",
+          "count": 117
+        },
+        {
+          "value": "SNxxxx",
+          "count": 109
+        },
+        {
+          "value": "SNch06",
+          "count": 99
+        },
+        {
+          "value": "SNch12",
+          "count": 97
+        },
+        {
+          "value": "SNch02",
+          "count": 96
+        },
+        {
+          "value": "SNch03",
+          "count": 96
+        },
+        {
+          "value": "SNta04",
+          "count": 83
+        },
+        {
+          "value": "SNch10",
+          "count": 81
+        },
+        {
+          "value": "SNppxx",
+          "count": 80
+        },
+        {
+          "value": "SNta42",
+          "count": 77
+        },
+        {
+          "value": "SNta31",
+          "count": 77
+        },
+        {
+          "value": "SApp09,SApp22",
+          "count": 74
+        },
+        {
+          "value": "SNta28",
+          "count": 74
+        },
+        {
+          "value": "SNta43",
+          "count": 73
+        },
+        {
+          "value": "SNxx33",
+          "count": 72
+        },
+        {
+          "value": "SNch09",
+          "count": 69
+        },
+        {
+          "value": "SNta11",
+          "count": 67
+        },
+        {
+          "value": "SNxx14",
+          "count": 66
+        },
+        {
+          "value": "SNta30",
+          "count": 65
+        },
+        {
+          "value": "SNta25",
+          "count": 63
+        },
+        {
+          "value": "SNpp50",
+          "count": 62
+        },
+        {
+          "value": "SNch07",
+          "count": 62
+        }
+      ]
+    },
+    "side": {
+      "column": "somaSide",
+      "non_null": 150726,
+      "unique": 3,
+      "top": [
+        {
+          "value": "L",
+          "count": 75215
+        },
+        {
+          "value": "R",
+          "count": 75119
+        },
+        {
+          "value": "M",
+          "count": 392
+        }
+      ]
+    },
+    "status_label": {
+      "column": "statusLabel",
+      "non_null": 210690,
+      "unique": 19,
+      "top": [
+        {
+          "value": "Roughly traced",
+          "count": 71979
+        },
+        {
+          "value": "Reviewed",
+          "count": 54066
+        },
+        {
+          "value": "Prelim Roughly traced",
+          "count": 36387
+        },
+        {
+          "value": "Orphan",
+          "count": 12075
+        },
+        {
+          "value": "Glia",
+          "count": 11864
+        },
+        {
+          "value": "Unimportant",
+          "count": 10751
+        },
+        {
+          "value": "Out of scope",
+          "count": 4585
+        },
+        {
+          "value": "Orphan-artifact",
+          "count": 2318
+        },
+        {
+          "value": "RT Hard to trace",
+          "count": 2019
+        },
+        {
+          "value": "0.5assign",
+          "count": 1832
+        },
+        {
+          "value": "Orphan hotknife",
+          "count": 1428
+        },
+        {
+          "value": "Leaves",
+          "count": 528
+        },
+        {
+          "value": "Anchor",
+          "count": 283
+        },
+        {
+          "value": "Soma Anchor",
+          "count": 201
+        },
+        {
+          "value": "PRT Orphan",
+          "count": 140
+        },
+        {
+          "value": "Hard to trace",
+          "count": 104
+        },
+        {
+          "value": "Sensory Anchor",
+          "count": 101
+        },
+        {
+          "value": "Partially traced",
+          "count": 26
+        },
+        {
+          "value": "RT Orphan",
+          "count": 3
+        }
+      ]
+    },
+    "neuromere": {
+      "column": "somaNeuromere",
+      "non_null": 21820,
+      "unique": 21,
+      "top": [
+        {
+          "value": "T2",
+          "count": 5076
+        },
+        {
+          "value": "T1",
+          "count": 4296
+        },
+        {
+          "value": "T3",
+          "count": 3976
+        },
+        {
+          "value": "CG",
+          "count": 2401
+        },
+        {
+          "value": "LB",
+          "count": 1313
+        },
+        {
+          "value": "A1",
+          "count": 933
+        },
+        {
+          "value": "TC",
+          "count": 729
+        },
+        {
+          "value": "DC",
+          "count": 568
+        },
+        {
+          "value": "MX",
+          "count": 500
+        },
+        {
+          "value": "MD",
+          "count": 372
+        },
+        {
+          "value": "A2",
+          "count": 273
+        },
+        {
+          "value": "A3",
+          "count": 241
+        },
+        {
+          "value": "A4",
+          "count": 212
+        },
+        {
+          "value": "A8",
+          "count": 198
+        },
+        {
+          "value": "A5",
+          "count": 179
+        },
+        {
+          "value": "A6",
+          "count": 164
+        },
+        {
+          "value": "A9",
+          "count": 143
+        },
+        {
+          "value": "A7",
+          "count": 116
+        },
+        {
+          "value": "GNG",
+          "count": 89
+        },
+        {
+          "value": "A10",
+          "count": 39
+        },
+        {
+          "value": "NA",
+          "count": 2
+        }
+      ]
+    },
+    "entry_nerve": {
+      "column": "entryNerve",
+      "non_null": 11835,
+      "unique": 21,
+      "top": [
+        {
+          "value": "AN",
+          "count": 3332
+        },
+        {
+          "value": "MetaLN",
+          "count": 1522
+        },
+        {
+          "value": "MxLbN",
+          "count": 1410
+        },
+        {
+          "value": "MesoLN",
+          "count": 1403
+        },
+        {
+          "value": "ADMN",
+          "count": 1000
+        },
+        {
+          "value": "ProLN",
+          "count": 992
+        },
+        {
+          "value": "AbN4",
+          "count": 617
+        },
+        {
+          "value": "DMetaN",
+          "count": 439
+        },
+        {
+          "value": "PDMN",
+          "count": 282
+        },
+        {
+          "value": "AbN3",
+          "count": 234
+        },
+        {
+          "value": "AbNT",
+          "count": 213
+        },
+        {
+          "value": "AbN2",
+          "count": 88
+        },
+        {
+          "value": "aPhN",
+          "count": 80
+        },
+        {
+          "value": "PhN",
+          "count": 47
+        },
+        {
+          "value": "ON",
+          "count": 39
+        },
+        {
+          "value": "PrN",
+          "count": 37
+        },
+        {
+          "value": "ProCN",
+          "count": 37
+        },
+        {
+          "value": "DProN",
+          "count": 32
+        },
+        {
+          "value": "VProN",
+          "count": 19
+        },
+        {
+          "value": "ProAN",
+          "count": 10
+        },
+        {
+          "value": "AbN1",
+          "count": 2
+        }
+      ]
+    },
+    "exit_nerve": {
+      "column": "exitNerve",
+      "non_null": 1005,
+      "unique": 28,
+      "top": [
+        {
+          "value": "MetaLN",
+          "count": 123
+        },
+        {
+          "value": "MesoLN",
+          "count": 117
+        },
+        {
+          "value": "AbNT",
+          "count": 102
+        },
+        {
+          "value": "AbN4",
+          "count": 98
+        },
+        {
+          "value": "ProLN",
+          "count": 82
+        },
+        {
+          "value": "NCC",
+          "count": 71
+        },
+        {
+          "value": "AbN2",
+          "count": 53
+        },
+        {
+          "value": "PhN",
+          "count": 42
+        },
+        {
+          "value": "AbN3",
+          "count": 35
+        },
+        {
+          "value": "DProN",
+          "count": 33
+        },
+        {
+          "value": "ADMN",
+          "count": 32
+        },
+        {
+          "value": "AbN1",
+          "count": 31
+        },
+        {
+          "value": "MxLbN",
+          "count": 26
+        },
+        {
+          "value": "CvN",
+          "count": 25
+        },
+        {
+          "value": "ProAN",
+          "count": 24
+        },
+        {
+          "value": "VProN",
+          "count": 22
+        },
+        {
+          "value": "MesoAN",
+          "count": 19
+        },
+        {
+          "value": "PDMNa",
+          "count": 18
+        },
+        {
+          "value": "AN",
+          "count": 15
+        },
+        {
+          "value": "ON",
+          "count": 9
+        },
+        {
+          "value": "PDMNp",
+          "count": 6
+        },
+        {
+          "value": "DMetaN",
+          "count": 6
+        },
+        {
+          "value": "TBD",
+          "count": 6
+        },
+        {
+          "value": "PDMN",
+          "count": 3
+        },
+        {
+          "value": "ADMN,MesoAN",
+          "count": 3
+        },
+        {
+          "value": "ADMN,DMetaN",
+          "count": 2
+        },
+        {
+          "value": "AbNT_L,AbNT",
+          "count": 1
+        },
+        {
+          "value": "AbNT,AbN4",
+          "count": 1
+        }
+      ]
+    },
+    "receptor_type": {
+      "column": "receptorType",
+      "non_null": 752,
+      "unique": 3,
+      "top": [
+        {
+          "value": "putative_ppk23",
+          "count": 269
+        },
+        {
+          "value": "putative_ppk25",
+          "count": 257
+        },
+        {
+          "value": "putative_IR52b",
+          "count": 226
+        }
+      ]
+    }
+  },
+  "neurotransmitter": {
+    "rows": 1835518,
+    "columns": [
+      "body",
+      "cell_type",
+      "total_nt_predictions",
+      "predicted_nt_confidence",
+      "predicted_nt",
+      "ground_truth",
+      "celltype_total_nt_predictions",
+      "celltype_predicted_nt",
+      "celltype_predicted_nt_confidence",
+      "consensus_nt"
+    ],
+    "column": "consensus_nt",
+    "total": 1835518,
+    "top": [
+      {
+        "value": "unclear",
+        "count": 1671117
+      },
+      {
+        "value": "acetylcholine",
+        "count": 104193
+      },
+      {
+        "value": "glutamate",
+        "count": 29443
+      },
+      {
+        "value": "gaba",
+        "count": 22196
+      },
+      {
+        "value": "histamine",
+        "count": 8024
+      },
+      {
+        "value": "dopamine",
+        "count": 396
+      },
+      {
+        "value": "octopamine",
+        "count": 101
+      },
+      {
+        "value": "serotonin",
+        "count": 48
+      }
+    ]
+  },
+  "neurotransmitter_per_neuron": {
+    "neurons": 1835518,
+    "total_classified": 1835518,
+    "top": [
+      {
+        "value": "unclear",
+        "count": 1671117
+      },
+      {
+        "value": "acetylcholine",
+        "count": 104193
+      },
+      {
+        "value": "glutamate",
+        "count": 29443
+      },
+      {
+        "value": "gaba",
+        "count": 22196
+      },
+      {
+        "value": "histamine",
+        "count": 8024
+      },
+      {
+        "value": "dopamine",
+        "count": 396
+      },
+      {
+        "value": "octopamine",
+        "count": 101
+      },
+      {
+        "value": "serotonin",
+        "count": 48
+      }
+    ]
+  },
+  "id_columns": [
+    "bodyId",
+    "somaSide",
+    "vfbId",
+    "mancBodyid",
+    "rootSide"
+  ],
+  "cross": {
+    "matched": 187016,
+    "superclass_x_nt_top": [
+      {
+        "superclass": "ol_intrinsic",
+        "nt": "acetylcholine",
+        "n": 57718
+      },
+      {
+        "superclass": "cb_intrinsic",
+        "nt": "acetylcholine",
+        "n": 19256
+      },
+      {
+        "superclass": "ol_intrinsic",
+        "nt": "glutamate",
+        "n": 19040
+      },
+      {
+        "superclass": "ol_intrinsic",
+        "nt": "gaba",
+        "n": 10784
+      },
+      {
+        "superclass": "visual_projection",
+        "nt": "acetylcholine",
+        "n": 7889
+      },
+      {
+        "superclass": "cb_intrinsic",
+        "nt": "glutamate",
+        "n": 6705
+      },
+      {
+        "superclass": "ol_sensory",
+        "nt": "histamine",
+        "n": 6098
+      },
+      {
+        "superclass": "vnc_sensory",
+        "nt": "acetylcholine",
+        "n": 5757
+      },
+      {
+        "superclass": "vnc_intrinsic",
+        "nt": "acetylcholine",
+        "n": 5544
+      },
+      {
+        "superclass": "vnc_intrinsic",
+        "nt": "gaba",
+        "n": 5318
+      },
+      {
+        "superclass": "cb_intrinsic",
+        "nt": "gaba",
+        "n": 4961
+      },
+      {
+        "superclass": "cb_sensory",
+        "nt": "acetylcholine",
+        "n": 4680
+      },
+      {
+        "superclass": "vnc_intrinsic",
+        "nt": "glutamate",
+        "n": 2104
+      },
+      {
+        "superclass": "ol_intrinsic",
+        "nt": "histamine",
+        "n": 1785
+      },
+      {
+        "superclass": "ascending_neuron",
+        "nt": "acetylcholine",
+        "n": 1271
+      },
+      {
+        "superclass": "descending_neuron",
+        "nt": "acetylcholine",
+        "n": 931
+      },
+      {
+        "superclass": "cb_intrinsic",
+        "nt": "unclear",
+        "n": 798
+      },
+      {
+        "superclass": "visual_projection",
+        "nt": "glutamate",
+        "n": 794
+      },
+      {
+        "superclass": "vnc_sensory",
+        "nt": "unclear",
+        "n": 550
+      },
+      {
+        "superclass": "sensory_ascending",
+        "nt": "acetylcholine",
+        "n": 502
+      },
+      {
+        "superclass": "visual_projection",
+        "nt": "unclear",
+        "n": 481
+      },
+      {
+        "superclass": "ascending_neuron",
+        "nt": "gaba",
+        "n": 407
+      },
+      {
+        "superclass": "vnc_motor",
+        "nt": "unclear",
+        "n": 389
+      },
+      {
+        "superclass": "cb_intrinsic",
+        "nt": "dopamine",
+        "n": 384
+      },
+      {
+        "superclass": "visual_centrifugal",
+        "nt": "gaba",
+        "n": 303
+      },
+      {
+        "superclass": "vnc_motor",
+        "nt": "glutamate",
+        "n": 302
+      },
+      {
+        "superclass": "descending_neuron",
+        "nt": "gaba",
+        "n": 241
+      },
+      {
+        "superclass": "vnc_intrinsic",
+        "nt": "unclear",
+        "n": 188
+      },
+      {
+        "superclass": "ascending_neuron",
+        "nt": "glutamate",
+        "n": 127
+      },
+      {
+        "superclass": "descending_neuron",
+        "nt": "glutamate",
+        "n": 104
+      },
+      {
+        "superclass": "cb_sensory",
+        "nt": "unclear",
+        "n": 100
+      },
+      {
+        "superclass": "visual_centrifugal",
+        "nt": "acetylcholine",
+        "n": 97
+      },
+      {
+        "superclass": "visual_centrifugal",
+        "nt": "glutamate",
+        "n": 87
+      },
+      {
+        "superclass": "cb_motor",
+        "nt": "unclear",
+        "n": 80
+      },
+      {
+        "superclass": "ol_intrinsic",
+        "nt": "unclear",
+        "n": 73
+      },
+      {
+        "superclass": "cb_endocrine",
+        "nt": "unclear",
+        "n": 71
+      },
+      {
+        "superclass": "visual_centrifugal",
+        "nt": "unclear",
+        "n": 50
+      },
+      {
+        "superclass": "vnc_efferent",
+        "nt": "octopamine",
+        "n": 49
+      },
+      {
+        "superclass": "vnc_efferent",
+        "nt": "unclear",
+        "n": 45
+      },
+      {
+        "superclass": "ascending_neuron",
+        "nt": "unclear",
+        "n": 37
+      },
+      {
+        "superclass": "visual_projection",
+        "nt": "gaba",
+        "n": 36
+      },
+      {
+        "superclass": "descending_neuron",
+        "nt": "unclear",
+        "n": 36
+      },
+      {
+        "superclass": "cb_intrinsic",
+        "nt": "octopamine",
+        "n": 35
+      },
+      {
+        "superclass": "cb_motor",
+        "nt": "acetylcholine",
+        "n": 23
+      },
+      {
+        "superclass": "vnc_endocrine",
+        "nt": "unclear",
+        "n": 22
+      },
+      {
+        "superclass": "cb_intrinsic",
+        "nt": "serotonin",
+        "n": 22
+      },
+      {
+        "superclass": "sensory_ascending",
+        "nt": "unclear",
+        "n": 20
+      },
+      {
+        "superclass": "vnc_sensory",
+        "nt": "serotonin",
+        "n": 17
+      },
+      {
+        "superclass": "vnc_sensory_tbc",
+        "nt": "unclear",
+        "n": 17
+      },
+      {
+        "superclass": "vnc_sensory",
+        "nt": "glutamate",
+        "n": 16
+      },
+      {
+        "superclass": "visual_centrifugal",
+        "nt": "octopamine",
+        "n": 16
+      },
+      {
+        "superclass": "vnc_tbc",
+        "nt": "gaba",
+        "n": 15
+      },
+      {
+        "superclass": "vnc_motor",
+        "nt": "acetylcholine",
+        "n": 14
+      },
+      {
+        "superclass": "ENS",
+        "nt": "unclear",
+        "n": 13
+      },
+      {
+        "superclass": "sensory_ascending",
+        "nt": "glutamate",
+        "n": 13
+      },
+      {
+        "superclass": "vnc_sensory_tbc",
+        "nt": "acetylcholine",
+        "n": 11
+      },
+      {
+        "superclass": "vnc_tbc",
+        "nt": "acetylcholine",
+        "n": 10
+      },
+      {
+        "superclass": "vnc_tbc",
+        "nt": "unclear",
+        "n": 10
+      },
+      {
+        "superclass": "visual_centrifugal",
+        "nt": "dopamine",
+        "n": 8
+      },
+      {
+        "superclass": "sensory_descending",
+        "nt": "acetylcholine",
+        "n": 8
+      },
+      {
+        "superclass": "cb_sensory_tbc",
+        "nt": "acetylcholine",
+        "n": 5
+      },
+      {
+        "superclass": "efferent_ascending",
+        "nt": "unclear",
+        "n": 5
+      },
+      {
+        "superclass": "ascending_neuron",
+        "nt": "histamine",
+        "n": 4
+      },
+      {
+        "superclass": "cb_sensory_tbc",
+        "nt": "unclear",
+        "n": 4
+      },
+      {
+        "superclass": "sensory_descending",
+        "nt": "unclear",
+        "n": 4
+      },
+      {
+        "superclass": "cb_motor",
+        "nt": "glutamate",
+        "n": 4
+      },
+      {
+        "superclass": "cb_efferent",
+        "nt": "unclear",
+        "n": 4
+      },
+      {
+        "superclass": "efferent_descending",
+        "nt": "serotonin",
+        "n": 4
+      },
+      {
+        "superclass": "cb_intrinsic",
+        "nt": "histamine",
+        "n": 2
+      },
+      {
+        "superclass": "descending_neuron",
+        "nt": "serotonin",
+        "n": 2
+      },
+      {
+        "superclass": "efferent_ascending",
+        "nt": "glutamate",
+        "n": 2
+      },
+      {
+        "superclass": "vnc_tbc",
+        "nt": "glutamate",
+        "n": 2
+      },
+      {
+        "superclass": "vnc_motor",
+        "nt": "gaba",
+        "n": 2
+      },
+      {
+        "superclass": "visual_centrifugal",
+        "nt": "serotonin",
+        "n": 2
+      },
+      {
+        "superclass": "vnc_intrinsic",
+        "nt": "histamine",
+        "n": 2
+      },
+      {
+        "superclass": "cb_endocrine",
+        "nt": "acetylcholine",
+        "n": 1
+      },
+      {
+        "superclass": "efferent_ascending",
+        "nt": "octopamine",
+        "n": 1
+      },
+      {
+        "superclass": "descending_neuron_tbc",
+        "nt": "acetylcholine",
+        "n": 1
+      },
+      {
+        "superclass": "descending_neuron_tbc",
+        "nt": "unclear",
+        "n": 1
+      },
+      {
+        "superclass": "sensory_ascending_tbc",
+        "nt": "unclear",
+        "n": 1
+      }
+    ]
+  },
+  "cross_type_x_nt": [
+    {
+      "type": "R1-R6",
+      "nt": "histamine",
+      "n": 3377
+    },
+    {
+      "type": "Tm3",
+      "nt": "acetylcholine",
+      "n": 2054
+    },
+    {
+      "type": "T3",
+      "nt": "acetylcholine",
+      "n": 1940
+    },
+    {
+      "type": "T2a",
+      "nt": "acetylcholine",
+      "n": 1871
+    },
+    {
+      "type": "L5",
+      "nt": "acetylcholine",
+      "n": 1787
+    },
+    {
+      "type": "C3",
+      "nt": "gaba",
+      "n": 1779
+    },
+    {
+      "type": "L2",
+      "nt": "acetylcholine",
+      "n": 1779
+    },
+    {
+      "type": "T4c",
+      "nt": "acetylcholine",
+      "n": 1778
+    },
+    {
+      "type": "Tm1",
+      "nt": "acetylcholine",
+      "n": 1777
+    },
+    {
+      "type": "T1",
+      "nt": "histamine",
+      "n": 1777
+    },
+    {
+      "type": "L1",
+      "nt": "glutamate",
+      "n": 1776
+    },
+    {
+      "type": "Mi9",
+      "nt": "glutamate",
+      "n": 1775
+    },
+    {
+      "type": "Mi1",
+      "nt": "acetylcholine",
+      "n": 1773
+    },
+    {
+      "type": "L3",
+      "nt": "acetylcholine",
+      "n": 1772
+    },
+    {
+      "type": "Mi4",
+      "nt": "gaba",
+      "n": 1772
+    },
+    {
+      "type": "Tm9",
+      "nt": "acetylcholine",
+      "n": 1771
+    },
+    {
+      "type": "L4",
+      "nt": "acetylcholine",
+      "n": 1770
+    },
+    {
+      "type": "Tm2",
+      "nt": "acetylcholine",
+      "n": 1766
+    },
+    {
+      "type": "Tm20",
+      "nt": "acetylcholine",
+      "n": 1762
+    },
+    {
+      "type": "C2",
+      "nt": "gaba",
+      "n": 1745
+    },
+    {
+      "type": "T5c",
+      "nt": "acetylcholine",
+      "n": 1720
+    },
+    {
+      "type": "T5b",
+      "nt": "acetylcholine",
+      "n": 1715
+    },
+    {
+      "type": "T4d",
+      "nt": "acetylcholine",
+      "n": 1709
+    },
+    {
+      "type": "T4b",
+      "nt": "acetylcholine",
+      "n": 1690
+    },
+    {
+      "type": "T4a",
+      "nt": "acetylcholine",
+      "n": 1684
+    },
+    {
+      "type": "Tm4",
+      "nt": "acetylcholine",
+      "n": 1670
+    },
+    {
+      "type": "T5a",
+      "nt": "acetylcholine",
+      "n": 1664
+    },
+    {
+      "type": "T2",
+      "nt": "acetylcholine",
+      "n": 1630
+    },
+    {
+      "type": "T5d",
+      "nt": "acetylcholine",
+      "n": 1620
+    },
+    {
+      "type": "Tm6",
+      "nt": "acetylcholine",
+      "n": 1526
+    },
+    {
+      "type": "Dm2",
+      "nt": "acetylcholine",
+      "n": 1452
+    },
+    {
+      "type": "TmY18",
+      "nt": "acetylcholine",
+      "n": 1367
+    },
+    {
+      "type": "TmY5a",
+      "nt": "glutamate",
+      "n": 1364
+    },
+    {
+      "type": "KCg-m",
+      "nt": "acetylcholine",
+      "n": 1342
+    },
+    {
+      "type": "Dm3a",
+      "nt": "glutamate",
+      "n": 1204
+    },
+    {
+      "type": "Mi15",
+      "nt": "acetylcholine",
+      "n": 1151
+    },
+    {
+      "type": "Dm3b",
+      "nt": "glutamate",
+      "n": 1137
+    },
+    {
+      "type": "Mi2",
+      "nt": "glutamate",
+      "n": 986
+    },
+    {
+      "type": "Tm12",
+      "nt": "acetylcholine",
+      "n": 967
+    },
+    {
+      "type": "Mi13",
+      "nt": "glutamate",
+      "n": 910
+    },
+    {
+      "type": "Tm5Y",
+      "nt": "acetylcholine",
+      "n": 898
+    },
+    {
+      "type": "TmY3",
+      "nt": "acetylcholine",
+      "n": 824
+    },
+    {
+      "type": "Dm3c",
+      "nt": "glutamate",
+      "n": 787
+    },
+    {
+      "type": "Tm5c",
+      "nt": "glutamate",
+      "n": 750
+    },
+    {
+      "type": "BM_InOm",
+      "nt": "acetylcholine",
+      "n": 745
+    },
+    {
+      "type": "KCab-s",
+      "nt": "acetylcholine",
+      "n": 657
+    },
+    {
+      "type": "Y3",
+      "nt": "acetylcholine",
+      "n": 627
+    },
+    {
+      "type": "Dm10",
+      "nt": "gaba",
+      "n": 626
+    },
+    {
+      "type": "Tm5a",
+      "nt": "acetylcholine",
+      "n": 624
+    },
+    {
+      "type": "Dm8a",
+      "nt": "glutamate",
+      "n": 572
+    },
+    {
+      "type": "TmY4",
+      "nt": "acetylcholine",
+      "n": 562
+    },
+    {
+      "type": "Tm37",
+      "nt": "glutamate",
+      "n": 559
+    },
+    {
+      "type": "TmY10",
+      "nt": "acetylcholine",
+      "n": 552
+    },
+    {
+      "type": "Tm29",
+      "nt": "glutamate",
+      "n": 544
+    },
+    {
+      "type": "KCab-m",
+      "nt": "acetylcholine",
+      "n": 536
+    },
+    {
+      "type": "Dm8b",
+      "nt": "glutamate",
+      "n": 532
+    },
+    {
+      "type": "Tm5b",
+      "nt": "acetylcholine",
+      "n": 522
+    },
+    {
+      "type": "TmY9b",
+      "nt": "acetylcholine",
+      "n": 515
+    },
+    {
+      "type": "LC12",
+      "nt": "acetylcholine",
+      "n": 498
+    },
+    {
+      "type": "KCab-c",
+      "nt": "acetylcholine",
+      "n": 488
+    },
+    {
+      "type": "Dm15",
+      "nt": "glutamate",
+      "n": 485
+    },
+    {
+      "type": "R7y",
+      "nt": "histamine",
+      "n": 482
+    },
+    {
+      "type": "R8y",
+      "nt": "histamine",
+      "n": 481
+    },
+    {
+      "type": "TmY14",
+      "nt": "unclear",
+      "n": 477
+    },
+    {
+      "type": "Cm1",
+      "nt": "acetylcholine",
+      "n": 472
+    },
+    {
+      "type": "TmY9a",
+      "nt": "acetylcholine",
+      "n": 471
+    },
+    {
+      "type": "Mi10",
+      "nt": "acetylcholine",
+      "n": 444
+    },
+    {
+      "type": "R8_unclear",
+      "nt": "histamine",
+      "n": 442
+    },
+    {
+      "type": "TmY13",
+      "nt": "acetylcholine",
+      "n": 432
+    },
+    {
+      "type": "Tm39",
+      "nt": "acetylcholine",
+      "n": 426
+    },
+    {
+      "type": "R7_unclear",
+      "nt": "histamine",
+      "n": 404
+    },
+    {
+      "type": "Tm16",
+      "nt": "acetylcholine",
+      "n": 396
+    },
+    {
+      "type": "TmY17",
+      "nt": "acetylcholine",
+      "n": 395
+    },
+    {
+      "type": "Lawf2",
+      "nt": "acetylcholine",
+      "n": 383
+    },
+    {
+      "type": "Cm2",
+      "nt": "acetylcholine",
+      "n": 383
+    },
+    {
+      "type": "TmY21",
+      "nt": "acetylcholine",
+      "n": 372
+    },
+    {
+      "type": "Lawf1",
+      "nt": "acetylcholine",
+      "n": 361
+    },
+    {
+      "type": "LC17",
+      "nt": "acetylcholine",
+      "n": 353
+    },
+    {
+      "type": "TmY20",
+      "nt": "acetylcholine",
+      "n": 343
+    },
+    {
+      "type": "R7p",
+      "nt": "histamine",
+      "n": 332
+    },
+    {
+      "type": "R8p",
+      "nt": "histamine",
+      "n": 330
+    },
+    {
+      "type": "Cm3",
+      "nt": "gaba",
+      "n": 323
+    },
+    {
+      "type": "Mi14",
+      "nt": "glutamate",
+      "n": 315
+    },
+    {
+      "type": "KCa'b'-ap2",
+      "nt": "acetylcholine",
+      "n": 291
+    },
+    {
+      "type": "LLPC1",
+      "nt": "acetylcholine",
+      "n": 285
+    },
+    {
+      "type": "Tm33",
+      "nt": "acetylcholine",
+      "n": 280
+    },
+    {
+      "type": "Dm12",
+      "nt": "glutamate",
+      "n": 276
+    },
+    {
+      "type": "LC10a",
+      "nt": "acetylcholine",
+      "n": 275
+    },
+    {
+      "type": "Dm9",
+      "nt": "glutamate",
+      "n": 273
+    },
+    {
+      "type": "SNta29",
+      "nt": "acetylcholine",
+      "n": 260
+    },
+    {
+      "type": "Cm4",
+      "nt": "glutamate",
+      "n": 251
+    },
+    {
+      "type": "LLPC2",
+      "nt": "acetylcholine",
+      "n": 250
+    },
+    {
+      "type": "MeTu1",
+      "nt": "acetylcholine",
+      "n": 249
+    },
+    {
+      "type": "Pm1",
+      "nt": "gaba",
+      "n": 246
+    },
+    {
+      "type": "Tm24",
+      "nt": "acetylcholine",
+      "n": 245
+    },
+    {
+      "type": "SNta02,SNta09",
+      "nt": "acetylcholine",
+      "n": 241
+    },
+    {
+      "type": "Li22",
+      "nt": "gaba",
+      "n": 232
+    },
+    {
+      "type": "SNta37",
+      "nt": "acetylcholine",
+      "n": 228
+    },
+    {
+      "type": "LPC1",
+      "nt": "acetylcholine",
+      "n": 224
+    },
+    {
+      "type": "Tm38",
+      "nt": "acetylcholine",
+      "n": 223
+    },
+    {
+      "type": "LLPC3",
+      "nt": "acetylcholine",
+      "n": 219
+    },
+    {
+      "type": "LC9",
+      "nt": "acetylcholine",
+      "n": 219
+    },
+    {
+      "type": "Pm2a",
+      "nt": "gaba",
+      "n": 219
+    },
+    {
+      "type": "Li14",
+      "nt": "glutamate",
+      "n": 217
+    },
+    {
+      "type": "Cm5",
+      "nt": "gaba",
+      "n": 214
+    },
+    {
+      "type": "LC10d",
+      "nt": "acetylcholine",
+      "n": 214
+    },
+    {
+      "type": "Cm6",
+      "nt": "gaba",
+      "n": 211
+    },
+    {
+      "type": "TmY15",
+      "nt": "gaba",
+      "n": 209
+    },
+    {
+      "type": "Y14",
+      "nt": "glutamate",
+      "n": 208
+    },
+    {
+      "type": "LC18",
+      "nt": "acetylcholine",
+      "n": 208
+    },
+    {
+      "type": "Li21",
+      "nt": "acetylcholine",
+      "n": 207
+    },
+    {
+      "type": "KCg-d",
+      "nt": "acetylcholine",
+      "n": 206
+    },
+    {
+      "type": "KCa'b'-m",
+      "nt": "acetylcholine",
+      "n": 205
+    },
+    {
+      "type": "ORN_DA1",
+      "nt": "acetylcholine",
+      "n": 204
+    },
+    {
+      "type": "KCa'b'-ap1",
+      "nt": "acetylcholine",
+      "n": 199
+    },
+    {
+      "type": "Y13",
+      "nt": "glutamate",
+      "n": 193
+    },
+    {
+      "type": "Mi16",
+      "nt": "gaba",
+      "n": 191
+    },
+    {
+      "type": "Mi17",
+      "nt": "gaba",
+      "n": 189
+    },
+    {
+      "type": "SNxx03",
+      "nt": "acetylcholine",
+      "n": 186
+    },
+    {
+      "type": "Y12",
+      "nt": "glutamate",
+      "n": 186
+    },
+    {
+      "type": "LPLC2",
+      "nt": "acetylcholine",
+      "n": 185
+    },
+    {
+      "type": "Cm7",
+      "nt": "glutamate",
+      "n": 184
+    },
+    {
+      "type": "Cm8",
+      "nt": "gaba",
+      "n": 182
+    },
+    {
+      "type": "LC16",
+      "nt": "acetylcholine",
+      "n": 182
+    },
+    {
+      "type": "Pm5",
+      "nt": "gaba",
+      "n": 182
+    },
+    {
+      "type": "Tm40",
+      "nt": "acetylcholine",
+      "n": 180
+    },
+    {
+      "type": "LC13",
+      "nt": "acetylcholine",
+      "n": 177
+    },
+    {
+      "type": "Tm34",
+      "nt": "glutamate",
+      "n": 174
+    },
+    {
+      "type": "MeTu3c",
+      "nt": "acetylcholine",
+      "n": 173
+    },
+    {
+      "type": "Pm4",
+      "nt": "gaba",
+      "n": 168
+    },
+    {
+      "type": "TmY16",
+      "nt": "glutamate",
+      "n": 168
+    },
+    {
+      "type": "LgLG3",
+      "nt": "acetylcholine",
+      "n": 162
+    },
+    {
+      "type": "Dm11",
+      "nt": "glutamate",
+      "n": 158
+    },
+    {
+      "type": "SNta20",
+      "nt": "acetylcholine",
+      "n": 156
+    },
+    {
+      "type": "Tm36",
+      "nt": "acetylcholine",
+      "n": 155
+    },
+    {
+      "type": "LPC2",
+      "nt": "acetylcholine",
+      "n": 154
+    },
+    {
+      "type": "LC21",
+      "nt": "acetylcholine",
+      "n": 153
+    },
+    {
+      "type": "Y11",
+      "nt": "glutamate",
+      "n": 153
+    },
+    {
+      "type": "Dm16",
+      "nt": "glutamate",
+      "n": 151
+    },
+    {
+      "type": "SApp",
+      "nt": "acetylcholine",
+      "n": 148
+    },
+    {
+      "type": "MeLo2",
+      "nt": "acetylcholine",
+      "n": 145
+    },
+    {
+      "type": "Cm9",
+      "nt": "glutamate",
+      "n": 143
+    },
+    {
+      "type": "LC11",
+      "nt": "acetylcholine",
+      "n": 143
+    },
+    {
+      "type": "Tlp12",
+      "nt": "glutamate",
+      "n": 139
+    },
+    {
+      "type": "PFNp_b",
+      "nt": "acetylcholine",
+      "n": 136
+    },
+    {
+      "type": "LgLG1a",
+      "nt": "acetylcholine",
+      "n": 136
+    },
+    {
+      "type": "LgLG1b",
+      "nt": "unclear",
+      "n": 134
+    },
+    {
+      "type": "LPLC1",
+      "nt": "acetylcholine",
+      "n": 134
+    },
+    {
+      "type": "ORN_VA1d",
+      "nt": "acetylcholine",
+      "n": 132
+    },
+    {
+      "type": "ORN_VA1v",
+      "nt": "acetylcholine",
+      "n": 130
+    },
+    {
+      "type": "LC10c-1",
+      "nt": "acetylcholine",
+      "n": 130
+    },
+    {
+      "type": "LgLG2",
+      "nt": "acetylcholine",
+      "n": 130
+    },
+    {
+      "type": "SNxx04",
+      "nt": "acetylcholine",
+      "n": 130
+    },
+    {
+      "type": "KCab-p",
+      "nt": "acetylcholine",
+      "n": 129
+    },
+    {
+      "type": "LC15",
+      "nt": "acetylcholine",
+      "n": 126
+    },
+    {
+      "type": "LC4",
+      "nt": "acetylcholine",
+      "n": 126
+    },
+    {
+      "type": "LC10c-2",
+      "nt": "acetylcholine",
+      "n": 125
+    },
+    {
+      "type": "Tm32",
+      "nt": "glutamate",
+      "n": 125
+    },
+    {
+      "type": "LC6",
+      "nt": "acetylcholine",
+      "n": 124
+    },
+    {
+      "type": "Tm30",
+      "nt": "gaba",
+      "n": 124
+    },
+    {
+      "type": "Pm2b",
+      "nt": "gaba",
+      "n": 124
+    },
+    {
+      "type": "LPi3a",
+      "nt": "glutamate",
+      "n": 123
+    },
+    {
+      "type": "MeLo1",
+      "nt": "acetylcholine",
+      "n": 123
+    },
+    {
+      "type": "MeVP1",
+      "nt": "acetylcholine",
+      "n": 122
+    },
+    {
+      "type": "SNta38",
+      "nt": "acetylcholine",
+      "n": 122
+    },
+    {
+      "type": "Tm31",
+      "nt": "gaba",
+      "n": 120
+    },
+    {
+      "type": "Li23",
+      "nt": "acetylcholine",
+      "n": 119
+    },
+    {
+      "type": "LPi34",
+      "nt": "glutamate",
+      "n": 119
+    },
+    {
+      "type": "Li25",
+      "nt": "gaba",
+      "n": 117
+    },
+    {
+      "type": "SNta21",
+      "nt": "acetylcholine",
+      "n": 117
+    },
+    {
+      "type": "Tlp13",
+      "nt": "glutamate",
+      "n": 115
+    },
+    {
+      "type": "Li27",
+      "nt": "gaba",
+      "n": 113
+    },
+    {
+      "type": "LC10e",
+      "nt": "acetylcholine",
+      "n": 110
+    },
+    {
+      "type": "MeLo3a",
+      "nt": "acetylcholine",
+      "n": 107
+    },
+    {
+      "type": "LPi3412",
+      "nt": "glutamate",
+      "n": 104
+    },
+    {
+      "type": "Tm26",
+      "nt": "acetylcholine",
+      "n": 103
+    },
+    {
+      "type": "ORN_DL3",
+      "nt": "acetylcholine",
+      "n": 103
+    },
+    {
+      "type": "SNxxxx",
+      "nt": "acetylcholine",
+      "n": 102
+    },
+    {
+      "type": "LPT111",
+      "nt": "gaba",
+      "n": 101
+    },
+    {
+      "type": "MeVP6",
+      "nt": "glutamate",
+      "n": 99
+    },
+    {
+      "type": "Dm4",
+      "nt": "glutamate",
+      "n": 99
+    },
+    {
+      "type": "Dm20",
+      "nt": "glutamate",
+      "n": 98
+    },
+    {
+      "type": "ORN_VL2a",
+      "nt": "acetylcholine",
+      "n": 98
+    },
+    {
+      "type": "LPLC4",
+      "nt": "acetylcholine",
+      "n": 97
+    },
+    {
+      "type": "WG2",
+      "nt": "acetylcholine",
+      "n": 97
+    },
+    {
+      "type": "MeLo7",
+      "nt": "acetylcholine",
+      "n": 96
+    },
+    {
+      "type": "WG1",
+      "nt": "acetylcholine",
+      "n": 96
+    },
+    {
+      "type": "WG3",
+      "nt": "unclear",
+      "n": 96
+    },
+    {
+      "type": "WG4",
+      "nt": "acetylcholine",
+      "n": 96
+    },
+    {
+      "type": "LC10b",
+      "nt": "acetylcholine",
+      "n": 95
+    },
+    {
+      "type": "MeTu4a",
+      "nt": "acetylcholine",
+      "n": 95
+    },
+    {
+      "type": "LPi2e",
+      "nt": "glutamate",
+      "n": 95
+    },
+    {
+      "type": "LC24",
+      "nt": "acetylcholine",
+      "n": 94
+    },
+    {
+      "type": "Cm10",
+      "nt": "gaba",
+      "n": 89
+    },
+    {
+      "type": "MeTu4c",
+      "nt": "acetylcholine",
+      "n": 87
+    },
+    {
+      "type": "TmY19a",
+      "nt": "gaba",
+      "n": 86
+    },
+    {
+      "type": "Tm35",
+      "nt": "glutamate",
+      "n": 86
+    },
+    {
+      "type": "Lai",
+      "nt": "glutamate",
+      "n": 86
+    },
+    {
+      "type": "R7R8_unclear",
+      "nt": "histamine",
+      "n": 85
+    },
+    {
+      "type": "ORN_VM5d",
+      "nt": "acetylcholine",
+      "n": 84
+    }
+  ]
+}
