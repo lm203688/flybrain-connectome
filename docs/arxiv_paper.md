@@ -4,6 +4,16 @@
 Independent researcher  
 `lm203688/flybrain-connectome` · MIT License
 
+**Version 1.1.0 update (2026-09-20):** Added variant true differentiation (19
+modules with per-variant parameter overrides), SwarmLabs multi-agent team
+integration, and a virtual-organism market. The cell-level densification
+experiment (Section 4.3, previously unreported) confirms that the compute
+advantage negative result is **closed**: after adding intra-module recursive
+edges to reach ESN-viable density (0.10-0.14), motif routing advantage remains
+0/7 under paired controls (effect size +0.001 to +0.018 R² points). The
+bottleneck was missing cell substrate (9.7× geometric mean improvement from
+densification alone), not motif selection.
+
 ---
 
 ## Abstract
