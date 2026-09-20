@@ -27,6 +27,10 @@ _MOTIFS_DIR = os.path.dirname(os.path.abspath(__file__))      # .../mcp_connecto
 MOTIF_FILE = os.path.abspath(os.path.join(_MOTIFS_DIR, "..", "motifs",
                                            "swarm_agent_topology_motifs.json"))
 EXTRACT_SCRIPT = os.path.abspath(os.path.join(_MOTIFS_DIR, "..", "extract_motifs.py"))
+_STACKED_REPORT = os.path.abspath(os.path.join(_MOTIFS_DIR, "..", "..",
+                                               "male_cns", "stacked_blueprints.json"))
+_NEUROFIL_STATS = os.path.abspath(os.path.join(_MOTIFS_DIR, "..", "..",
+                                               "male_cns", "neuropil_stats.json"))
 
 
 def export_swarm_motifs(refresh: bool = False):
@@ -233,6 +237,44 @@ TOOLS = [
                 "blueprint": {"type": "string", "description": "蓝图名，如 'predictive_coding'"},
             },
             "required": ["blueprint"],
+        },
+    },
+    {
+        "name": "list_stacked_blueprints",
+        "description": "列出 5 个「某方面特别强」的堆叠方案（stack_visual_cognition / stack_reinforcement_decision / stack_active_inference / stack_habit_automation / stack_meta_cognition）。每个方案由 3 个基础 blueprint 组合而成，追溯到 1-2 个真实 MaleCNS motif。含可行性判断：nodes/edges/fanout 爆炸/权重冲突/stability_target/metrics。",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "get_stacked_feasibility",
+        "description": "获取某个堆叠方案的详细可行性报告：组合标签、追溯 motif 链、organism 边数、规则冲突详情（哪些 blueprint 对同一 (from_profile, to_profile, kind, semantic) 组合产生规则）、stability_target 是否落在合理范围、metrics 快照、生成耗时。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "堆叠方案名，如 'stack_visual_cognition'"},
+            },
+            "required": ["name"],
+        },
+    },    {
+        "name": "list_neuropils",
+        "description": "列出 MaleCNS v1.0 的 146 个 primary neuropil（脑区）及其突触数量、涉及 pre/post 神经元数、mean_synapses_per_pre。空间维度的顶层聚合（不加载 6.78 GB 大文件）。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "top": {"type": "integer", "default": 30,
+                        "description": "按突触数排序后返回前 N 个"},
+            },
+        },
+    },
+    {
+        "name": "get_neuropil_detail",
+        "description": "获取单个 neuropil 的详细突触统计（含 pre/post 神经元数、突触均值、脑区左右对比信息）。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string",
+                         "description": "neuropil 名，如 'ME(L)' / 'LO(R)' / 'GNG' / 'AVLP(L)'"},
+            },
+            "required": ["name"],
         },
     },
 ]
@@ -557,6 +599,124 @@ def _get_prov_bundle(blueprint):
     return out
 
 
+def _load_stacked_report():
+    """Load male_cns/stacked_blueprints.json lazily."""
+    if not os.path.exists(_STACKED_REPORT):
+        raise FileNotFoundError(
+            "stacked_blueprints.json not found at %s (run "
+            "drosophila_connectome/scripts/stacked_blueprints.py first)"
+            % _STACKED_REPORT)
+    with open(_STACKED_REPORT, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _list_stacked_blueprints():
+    """Return a compact view of all stacked schemes + feasibility summary."""
+    report = _load_stacked_report()
+    items = []
+    for s in report.get("stacks", []):
+        f = s.get("feasibility", {}) or {}
+        items.append({
+            "name": s.get("name"),
+            "label": s.get("label"),
+            "combination": s.get("combination"),
+            "strength": s.get("strength"),
+            "use_cases": s.get("use_cases"),
+            "expected_motifs": s.get("expected_motifs"),
+            "feasible": f.get("feasible"),
+            "n_motifs_traced": f.get("n_distinct_motifs"),
+            "stability_target": f.get("stability_target"),
+            "stability_in_range": f.get("stability_in_range"),
+            "n_blueprint_edges": (f.get("organism_stats") or {}).get("n_blueprint_edges"),
+            "rule_conflicts": (f.get("organism_stats") or {}).get("rule_conflicts"),
+        })
+    return {
+        "schema_version": report.get("schema_version"),
+        "generated_at": report.get("generated_at"),
+        "n_stacks": report.get("n_stacks"),
+        "motif_library": report.get("motif_library"),
+        "summary": report.get("summary"),
+        "stacks": items,
+    }
+
+
+def _get_stacked_feasibility(name):
+    """Return the full feasibility record for a single stacked scheme."""
+    report = _load_stacked_report()
+    for s in report.get("stacks", []):
+        if s.get("name") == name:
+            return {
+                "name": s.get("name"),
+                "label": s.get("label"),
+                "combination": s.get("combination"),
+                "strength": s.get("strength"),
+                "rational": s.get("rational"),
+                "use_cases": s.get("use_cases"),
+                "expected_motifs": s.get("expected_motifs"),
+                "feasibility": s.get("feasibility"),
+            }
+    available = [s.get("name") for s in report.get("stacks", [])]
+    raise ValueError("unknown stacked blueprint '%s'. Available: %s"
+                     % (name, ", ".join(available)))
+
+
+def _load_neuropil_stats():
+    """Load male_cns/neuropil_stats.json lazily."""
+    if not os.path.exists(_NEUROFIL_STATS):
+        raise FileNotFoundError(
+            "neuropil_stats.json not found at %s (run "
+            "drosophila_connectome/scripts/analyze_neuropil.py first)"
+            % _NEUROFIL_STATS)
+    with open(_NEUROFIL_STATS, encoding="utf-8") as f:
+        return json.load(f)
+
+
+def _list_neuropils(top=30):
+    """Return the top-N neuropils by synapse count."""
+    d = _load_neuropil_stats()
+    items = sorted(d.get("neuropils", {}).items(),
+                   key=lambda x: -x[1]["synapses"])[:top]
+    return {
+        "schema_version": d.get("generated_at"),
+        "source_file": d.get("source_file_syn_partners"),
+        "source_file_tbar_nt": d.get("source_file_tbar_nt"),
+        "total_synapse_pairs": d.get("total_synapse_pairs"),
+        "total_tbar_synapses": d.get("total_tbar_synapses"),
+        "n_neuropil_categories": d.get("n_neuropil_categories"),
+        "top": top,
+        "neuropils": [
+            {"name": name, **vals} for name, vals in items
+        ],
+    }
+
+
+def _get_neuropil_detail(name):
+    """Return full stats for a single neuropil."""
+    d = _load_neuropil_stats()
+    neu = d.get("neuropils", {})
+    if name not in neu:
+        # Fuzzy: list candidates
+        cands = [k for k in neu.keys() if name.lower() in k.lower()][:20]
+        raise ValueError(
+            "unknown neuropil '%s'. Similar: %s"
+            % (name, ", ".join(cands) if cands else "(none)"))
+    v = neu[name]
+    total = d.get("total_synapse_pairs", 0)
+    return {
+        "name": name,
+        "synapses": v["synapses"],
+        "pct_of_total": round(v["synapses"] * 100 / total, 3) if total else None,
+        "distinct_pre_neurons": v["distinct_pre_neurons"],
+        "distinct_post_neurons": v["distinct_post_neurons"],
+        "mean_synapses_per_pre": v["mean_synapses_per_pre"],
+        "tbar_synapses": v.get("tbar_synapses"),
+        "distinct_bodies_tbar": v.get("distinct_bodies_tbar"),
+        "neurotransmitters": v.get("neurotransmitters"),
+        "source_file": d.get("source_file_syn_partners"),
+        "source_file_tbar_nt": d.get("source_file_tbar_nt"),
+    }
+
+
 # --------------------------------------------------------------------------- #
 # Dispatch
 # --------------------------------------------------------------------------- #
@@ -604,6 +764,15 @@ def handle_call(name, args):
         return json.dumps(_batch_generate(args), ensure_ascii=False)
     if name == "get_provenance_bundle":
         return json.dumps(_get_prov_bundle(str(args["blueprint"])), ensure_ascii=False)
+    if name == "list_stacked_blueprints":
+        return json.dumps(_list_stacked_blueprints(), ensure_ascii=False)
+    if name == "get_stacked_feasibility":
+        return json.dumps(_get_stacked_feasibility(str(args["name"])), ensure_ascii=False)
+    if name == "list_neuropils":
+        top = int(args.get("top", 30))
+        return json.dumps(_list_neuropils(top), ensure_ascii=False)
+    if name == "get_neuropil_detail":
+        return json.dumps(_get_neuropil_detail(str(args["name"])), ensure_ascii=False)
     raise ValueError("unknown tool: %s" % name)
 
 
