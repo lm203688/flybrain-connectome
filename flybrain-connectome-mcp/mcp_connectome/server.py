@@ -362,6 +362,106 @@ TOOLS = [
             "required": ["name"],
         },
     },
+    # ---- Phase 5: SwarmLabs 集成工具 ----
+    {
+        "name": "organism_to_swarmlabs",
+        "description": "把虚拟生物拓扑转换为 SwarmLabs 多 Agent 团队 spec（含 agents/modules/edges/guardrails/validation/motif_provenance/prov_json）。让每个模块的 profile / task_hint / capability 直接映射到 SwarmLabs agent 角色。返回 module_role_summary 便于查看每个模块的 Agent 角色分配。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string",
+                         "description": "SwarmLabs 团队名称（可选，默认从预设名推导）"},
+                "organism_result": {"type": "object",
+                                    "description": "compose_virtual_organism 或 apply_preset 的完整返回结果（含 organism/stats 字段）"},
+            },
+            "required": ["organism_result"],
+        },
+    },
+    {
+        "name": "get_module_agent_roles",
+        "description": "列出所有模块到 SwarmLabs Agent 角色的映射表（每个模块的 swarm_role / lead_task_hint / task_hints / capability / category / motif_source）。让 SwarmLabs 用户一眼看到选了哪些模块会得到哪些 Agent 角色。",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
+    # ---- Phase 6: 虚拟生物市场工具 ----
+    {
+        "name": "save_market_organism",
+        "description": "保存自定义模块组合到市场（JSON 持久化 + 自动 compose 拿 stats）。同名会覆盖。市场目录：male_cns/virtual_organisms/market/。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "组合名称（唯一）"},
+                "module_spec": {"type": "object",
+                                "description": "模块规格（modules/counts/variants/blueprint/agents_per_module/seed）"},
+                "description": {"type": "string", "description": "组合说明"},
+                "tags": {"type": "array", "items": {"type": "string"},
+                         "description": "标签列表，便于检索"},
+                "author": {"type": "string", "description": "作者"},
+            },
+            "required": ["name", "module_spec"],
+        },
+    },
+    {
+        "name": "load_market_organism",
+        "description": "从市场加载指定组合（返回 module_spec + 已 compose 的完整拓扑 JSON）。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "组合名称"},
+            },
+            "required": ["name"],
+        },
+    },
+    {
+        "name": "list_market_organisms",
+        "description": "列出市场所有组合，支持按 tag 过滤、按 rating/name/nodes/created 排序。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "tag": {"type": "string", "description": "按标签过滤（可选）"},
+                "sort_by": {"type": "string",
+                            "enum": ["name", "rating", "nodes", "created"],
+                            "description": "排序字段，默认 name"},
+                "limit": {"type": "integer", "description": "返回数量上限，默认 50"},
+            },
+        },
+    },
+    {
+        "name": "rate_market_organism",
+        "description": "给市场组合评分（1.0-5.0 分）。重复评分会追加到 comments 并重新计算平均分。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "组合名称"},
+                "score": {"type": "number", "description": "评分 1.0-5.0"},
+                "comment": {"type": "string", "description": "评语"},
+                "rater": {"type": "string", "description": "评分者"},
+            },
+            "required": ["name", "score"],
+        },
+    },
+    {
+        "name": "search_market_organisms",
+        "description": "按关键词搜索市场组合（匹配 name/description/tags/modules/blueprint）。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "query": {"type": "string", "description": "搜索关键词"},
+                "limit": {"type": "integer", "description": "返回数量上限，默认 20"},
+            },
+            "required": ["query"],
+        },
+    },
+    {
+        "name": "delete_market_organism",
+        "description": "从市场删除组合（含 JSON 文件）。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "组合名称"},
+            },
+            "required": ["name"],
+        },
+    },
 ]
 
 
@@ -886,6 +986,67 @@ def _list_virtual_organisms():
     return {"organism_count": len(items), "organisms": items}
 
 
+# ---- Phase 5: SwarmLabs 集成 ----
+def _organism_to_swarmlabs(args):
+    organism_result = args.get("organism_result")
+    if not organism_result or not isinstance(organism_result, dict):
+        return {"status": "error", "error": "organism_result is required (must be dict from compose_virtual_organism or apply_preset)"}
+    name = args.get("name")
+    return ModuleFactory.to_swarmlabs(organism_result, name=name)
+
+
+def _get_module_agent_roles():
+    roles = ModuleFactory.get_module_agent_roles()
+    return {"role_count": len(roles), "roles": roles}
+
+
+# ---- Phase 6: 虚拟生物市场 ----
+def _save_market_organism(args):
+    name = args.get("name")
+    module_spec = args.get("module_spec")
+    if not name or not module_spec:
+        return {"status": "error", "error": "name and module_spec are required"}
+    return ModuleFactory.save_market_organism(
+        name=name,
+        module_spec=module_spec,
+        description=args.get("description", ""),
+        tags=args.get("tags"),
+        author=args.get("author", "anonymous"),
+    )
+
+
+def _load_market_organism(args):
+    return ModuleFactory.load_market_organism(str(args["name"]))
+
+
+def _list_market_organisms(args):
+    return ModuleFactory.list_market_organisms(
+        tag=args.get("tag"),
+        sort_by=args.get("sort_by", "name"),
+        limit=int(args.get("limit", 50)),
+    )
+
+
+def _rate_market_organism(args):
+    return ModuleFactory.rate_market_organism(
+        name=str(args["name"]),
+        score=float(args["score"]),
+        comment=args.get("comment", ""),
+        rater=args.get("rater", "anonymous"),
+    )
+
+
+def _search_market_organisms(args):
+    return ModuleFactory.search_market_organisms(
+        query=str(args["query"]),
+        limit=int(args.get("limit", 20)),
+    )
+
+
+def _delete_market_organism(args):
+    return ModuleFactory.delete_market_organism(str(args["name"]))
+
+
 # --------------------------------------------------------------------------- #
 # Dispatch
 # --------------------------------------------------------------------------- #
@@ -957,6 +1118,24 @@ def handle_call(name, args):
         return json.dumps(_get_preset(str(args["name"])), ensure_ascii=False)
     if name == "apply_preset":
         return json.dumps(_apply_preset(args), ensure_ascii=False)
+    # ---- Phase 5: SwarmLabs 集成 ----
+    if name == "organism_to_swarmlabs":
+        return json.dumps(_organism_to_swarmlabs(args), ensure_ascii=False)
+    if name == "get_module_agent_roles":
+        return json.dumps(_get_module_agent_roles(), ensure_ascii=False)
+    # ---- Phase 6: 虚拟生物市场 ----
+    if name == "save_market_organism":
+        return json.dumps(_save_market_organism(args), ensure_ascii=False)
+    if name == "load_market_organism":
+        return json.dumps(_load_market_organism(args), ensure_ascii=False)
+    if name == "list_market_organisms":
+        return json.dumps(_list_market_organisms(args), ensure_ascii=False)
+    if name == "rate_market_organism":
+        return json.dumps(_rate_market_organism(args), ensure_ascii=False)
+    if name == "search_market_organisms":
+        return json.dumps(_search_market_organisms(args), ensure_ascii=False)
+    if name == "delete_market_organism":
+        return json.dumps(_delete_market_organism(args), ensure_ascii=False)
     raise ValueError("unknown tool: %s" % name)
 
 
