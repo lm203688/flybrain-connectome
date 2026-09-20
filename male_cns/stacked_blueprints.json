@@ -1,0 +1,437 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-09-20T09:22:52+0800",
+  "n_stacks": 5,
+  "motif_library": [
+    "inhibitory_hub",
+    "recurrent_feedback",
+    "reservoir_smallworld"
+  ],
+  "stacks": [
+    {
+      "name": "stack_visual_cognition",
+      "label": "视觉认知专精",
+      "combination": "hierarchical+lateral_inhibition+attention_gate",
+      "strength": "视觉抽象 + 对比度增强 + 选择性注意",
+      "use_cases": [
+        "图像分类多步推理",
+        "视觉特征增强",
+        "注意引导的视觉推理"
+      ],
+      "expected_motifs": [
+        "reservoir_smallworld",
+        "inhibitory_hub"
+      ],
+      "expected_stability": 0.3,
+      "rational": "皮质层级 (hierarchical) 提供 V1→V2→IT 分层抽象；侧向抑制 (lateral_inhibition) 在 memory 之间突出局部信号；注意力门控 (attention_gate) 对输入做选择性过滤。三者组合形成「输入过滤 → 分层抽象 → 局部增强」的完整视觉认知链。",
+      "feasibility": {
+        "feasible": true,
+        "combination": "hierarchical+lateral_inhibition+attention_gate",
+        "n_components": 3,
+        "components": [
+          "hierarchical",
+          "lateral_inhibition",
+          "attention_gate"
+        ],
+        "motif_traces": {
+          "reservoir_smallworld": {
+            "blueprints": [
+              "hierarchical"
+            ],
+            "anchor": "MaleCNS v1.0 reservoir_smallworld motif"
+          },
+          "inhibitory_hub": {
+            "blueprints": [
+              "lateral_inhibition",
+              "attention_gate"
+            ],
+            "anchor": "MaleCNS v1.0 APL body 10540 (inhibitory_hub)"
+          }
+        },
+        "n_distinct_motifs": 2,
+        "n_motifs_matches_expected": true,
+        "organism_stats": {
+          "n_nodes": 41,
+          "n_edges_total": 49,
+          "n_blueprint_edges": 9,
+          "blueprint_edges_added": 9,
+          "fanout_edge_count": 9,
+          "fanout_explosion": false,
+          "fanout_edge_count_threshold": 200,
+          "rule_conflicts": 0,
+          "rule_conflict_details": {}
+        },
+        "metrics_snapshot": {
+          "n_nodes": 41,
+          "n_edges": 49,
+          "avg_degree": 2.39,
+          "inhibition_ratio": 0.449,
+          "intra_module_edges": 28,
+          "inter_module_edges": 21,
+          "modularity_est": 0.571
+        },
+        "stability_target": 0.15,
+        "stability_targets_all": [
+          0.25,
+          0.15,
+          0.15
+        ],
+        "expected_stability": 0.3,
+        "stability_in_range": true,
+        "generation_ms": 202.2
+      }
+    },
+    {
+      "name": "stack_reinforcement_decision",
+      "label": "强化决策专精",
+      "combination": "competitive_selection+reward_gated_selection+punishment_suppression",
+      "strength": "winner-take-all + 奖励强化 + 惩罚抑制",
+      "use_cases": [
+        "A/B 候选选择",
+        "强化学习决策",
+        "安全护栏 + 奖励调制"
+      ],
+      "expected_motifs": [
+        "inhibitory_hub"
+      ],
+      "expected_stability": 0.3,
+      "rational": "竞争选择 (competitive_selection) 提供 winner-take-all 骨架；奖赏门控 (reward_gated_selection) 引入多巴胺偏置强化胜者；惩罚抑制 (punishment_suppression) 对错误动作施加广播抑制。三者全部追溯 inhibitory_hub（APL body 10540），单一 motif 的三重强化，形成「候选投票 → 奖励调制 → 惩罚否决」的完整决策链。",
+      "feasibility": {
+        "feasible": true,
+        "combination": "competitive_selection+reward_gated_selection+punishment_suppression",
+        "n_components": 3,
+        "components": [
+          "competitive_selection",
+          "reward_gated_selection",
+          "punishment_suppression"
+        ],
+        "motif_traces": {
+          "inhibitory_hub": {
+            "blueprints": [
+              "competitive_selection",
+              "reward_gated_selection",
+              "punishment_suppression"
+            ],
+            "anchor": "MaleCNS v1.0 APL body 10540 (inhibitory_hub)"
+          }
+        },
+        "n_distinct_motifs": 1,
+        "n_motifs_matches_expected": true,
+        "organism_stats": {
+          "n_nodes": 41,
+          "n_edges_total": 48,
+          "n_blueprint_edges": 8,
+          "blueprint_edges_added": 8,
+          "fanout_edge_count": 8,
+          "fanout_explosion": false,
+          "fanout_edge_count_threshold": 200,
+          "rule_conflicts": 3,
+          "rule_conflict_details": {
+            "('motor', 'integration', 'reservoir', 'candidate_vote')": [
+              {
+                "bp": "competitive_selection",
+                "weight": 0.35
+              },
+              {
+                "bp": "reward_gated_selection",
+                "weight": 0.35
+              }
+            ],
+            "('integration', 'motor', 'inhibitory', 'suppress_loser')": [
+              {
+                "bp": "competitive_selection",
+                "weight": -0.4
+              },
+              {
+                "bp": "reward_gated_selection",
+                "weight": -0.4
+              }
+            ],
+            "('sensory', 'motor', 'reservoir', 'shared_stimulus')": [
+              {
+                "bp": "competitive_selection",
+                "weight": 0.2
+              },
+              {
+                "bp": "reward_gated_selection",
+                "weight": 0.2
+              }
+            ]
+          }
+        },
+        "metrics_snapshot": {
+          "n_nodes": 41,
+          "n_edges": 48,
+          "avg_degree": 2.341,
+          "inhibition_ratio": 0.521,
+          "intra_module_edges": 28,
+          "inter_module_edges": 20,
+          "modularity_est": 0.583
+        },
+        "stability_target": 0.15,
+        "stability_targets_all": [
+          0.15,
+          0.15,
+          0.15
+        ],
+        "expected_stability": 0.3,
+        "stability_in_range": true,
+        "generation_ms": 144.2
+      }
+    },
+    {
+      "name": "stack_active_inference",
+      "label": "主动推断专精",
+      "combination": "predictive_coding+working_memory_buffer+attention_working_combo",
+      "strength": "生成模型 + 工作记忆 + 认知控制",
+      "use_cases": [
+        "主动推断",
+        "假设-检验循环",
+        "生成模型 + 注意力引导操作"
+      ],
+      "expected_motifs": [
+        "recurrent_feedback",
+        "inhibitory_hub"
+      ],
+      "expected_stability": 0.3,
+      "rational": "预测编码 (predictive_coding) 提供自上而下预测 + 自下而上误差；工作记忆缓冲 (working_memory_buffer) 用 recurrent 实现活跃操作；注意力+工作组合 (attention_working_combo) 把两者串成完整认知控制链。双 motif 组合（recurrent_feedback 主 + inhibitory_hub 辅），形成「预测 → 误差 → 工作记忆操作 → 注意力状态上报」的闭环。",
+      "feasibility": {
+        "feasible": true,
+        "combination": "predictive_coding+working_memory_buffer+attention_working_combo",
+        "n_components": 3,
+        "components": [
+          "predictive_coding",
+          "working_memory_buffer",
+          "attention_working_combo"
+        ],
+        "motif_traces": {
+          "recurrent_feedback": {
+            "blueprints": [
+              "predictive_coding",
+              "working_memory_buffer"
+            ],
+            "anchor": "MaleCNS v1.0 recurrent_feedback motif"
+          },
+          "inhibitory_hub": {
+            "blueprints": [
+              "attention_working_combo"
+            ],
+            "anchor": "MaleCNS v1.0 APL body 10540 (inhibitory_hub) + recurrent_feedback motif"
+          }
+        },
+        "n_distinct_motifs": 2,
+        "n_motifs_matches_expected": true,
+        "organism_stats": {
+          "n_nodes": 41,
+          "n_edges_total": 50,
+          "n_blueprint_edges": 10,
+          "blueprint_edges_added": 10,
+          "fanout_edge_count": 10,
+          "fanout_explosion": false,
+          "fanout_edge_count_threshold": 200,
+          "rule_conflicts": 1,
+          "rule_conflict_details": {
+            "('working_memory', 'working_memory', 'reservoir', 'active_manipulation')": [
+              {
+                "bp": "working_memory_buffer",
+                "weight": 0.5
+              },
+              {
+                "bp": "attention_working_combo",
+                "weight": 0.45
+              }
+            ]
+          }
+        },
+        "metrics_snapshot": {
+          "n_nodes": 41,
+          "n_edges": 50,
+          "avg_degree": 2.439,
+          "inhibition_ratio": 0.44,
+          "intra_module_edges": 28,
+          "inter_module_edges": 22,
+          "modularity_est": 0.56
+        },
+        "stability_target": 0.15,
+        "stability_targets_all": [
+          0.25,
+          0.25,
+          0.15
+        ],
+        "expected_stability": 0.3,
+        "stability_in_range": true,
+        "generation_ms": 135.5
+      }
+    },
+    {
+      "name": "stack_habit_automation",
+      "label": "习惯自动化专精",
+      "combination": "habit_consolidation+fast_reflex+modular_isolation",
+      "strength": "习惯固化 + 快速反射 + 模块隔离",
+      "use_cases": [
+        "技能自动化",
+        "程序性记忆",
+        "故障隔离的高 recurrent 回路"
+      ],
+      "expected_motifs": [
+        "recurrent_feedback",
+        "inhibitory_hub"
+      ],
+      "expected_stability": 0.3,
+      "rational": "习惯固化 (habit_consolidation) 建立 memory→habit 的高 recurrent 回路；快速反射 (fast_reflex) 建立 sensory→motor 的跳跃通路（事后补记）；模块隔离 (modular_isolation) 强化模块内密化 + 跨模块极稀疏路由。两者组合（recurrent_feedback + inhibitory_hub）+ 1 个人工蓝图（fast_reflex, motif=none），形成「快反射执行 + 慢习惯固化 + 高隔离稳定」的习惯自动化范式。",
+      "feasibility": {
+        "feasible": true,
+        "combination": "habit_consolidation+fast_reflex+modular_isolation",
+        "n_components": 3,
+        "components": [
+          "habit_consolidation",
+          "fast_reflex",
+          "modular_isolation"
+        ],
+        "motif_traces": {
+          "recurrent_feedback": {
+            "blueprints": [
+              "habit_consolidation"
+            ],
+            "anchor": "MaleCNS v1.0 recurrent_feedback motif"
+          },
+          "inhibitory_hub": {
+            "blueprints": [
+              "modular_isolation"
+            ],
+            "anchor": "MaleCNS v1.0 APL body 10540 (inhibitory_hub)"
+          }
+        },
+        "n_distinct_motifs": 2,
+        "n_motifs_matches_expected": true,
+        "organism_stats": {
+          "n_nodes": 41,
+          "n_edges_total": 49,
+          "n_blueprint_edges": 9,
+          "blueprint_edges_added": 9,
+          "fanout_edge_count": 9,
+          "fanout_explosion": false,
+          "fanout_edge_count_threshold": 200,
+          "rule_conflicts": 0,
+          "rule_conflict_details": {}
+        },
+        "metrics_snapshot": {
+          "n_nodes": 41,
+          "n_edges": 49,
+          "avg_degree": 2.39,
+          "inhibition_ratio": 0.49,
+          "intra_module_edges": 28,
+          "inter_module_edges": 21,
+          "modularity_est": 0.571
+        },
+        "stability_target": 0.25,
+        "stability_targets_all": [
+          0.25,
+          0.25,
+          0.3
+        ],
+        "expected_stability": 0.3,
+        "stability_in_range": true,
+        "generation_ms": 139.3
+      }
+    },
+    {
+      "name": "stack_meta_cognition",
+      "label": "元认知控制专精",
+      "combination": "metacognitive_control+working_memory_buffer+attention_working_combo",
+      "strength": "元认知监控 + 工作记忆 + 认知控制",
+      "use_cases": [
+        "自我修正",
+        "认知监控",
+        "多步任务的元层面控制"
+      ],
+      "expected_motifs": [
+        "inhibitory_hub",
+        "recurrent_feedback"
+      ],
+      "expected_stability": 0.3,
+      "rational": "元认知控制 (metacognitive_control) 建立 metacognition 层做全局监控；工作记忆缓冲 (working_memory_buffer) 提供活跃操作的工作空间；注意力+工作组合 (attention_working_combo) 串起注意力到工作记忆的完整链。双 motif 组合（inhibitory_hub + recurrent_feedback），形成「工作记忆操作 → 元认知监控 → 认知控制调整」的元层面闭环。",
+      "feasibility": {
+        "feasible": true,
+        "combination": "metacognitive_control+working_memory_buffer+attention_working_combo",
+        "n_components": 3,
+        "components": [
+          "metacognitive_control",
+          "working_memory_buffer",
+          "attention_working_combo"
+        ],
+        "motif_traces": {
+          "inhibitory_hub": {
+            "blueprints": [
+              "metacognitive_control",
+              "attention_working_combo"
+            ],
+            "anchor": "MaleCNS v1.0 APL body 10540 (inhibitory_hub)"
+          },
+          "recurrent_feedback": {
+            "blueprints": [
+              "working_memory_buffer"
+            ],
+            "anchor": "MaleCNS v1.0 recurrent_feedback motif"
+          }
+        },
+        "n_distinct_motifs": 2,
+        "n_motifs_matches_expected": true,
+        "organism_stats": {
+          "n_nodes": 41,
+          "n_edges_total": 50,
+          "n_blueprint_edges": 10,
+          "blueprint_edges_added": 10,
+          "fanout_edge_count": 10,
+          "fanout_explosion": false,
+          "fanout_edge_count_threshold": 200,
+          "rule_conflicts": 1,
+          "rule_conflict_details": {
+            "('working_memory', 'working_memory', 'reservoir', 'active_manipulation')": [
+              {
+                "bp": "working_memory_buffer",
+                "weight": 0.5
+              },
+              {
+                "bp": "attention_working_combo",
+                "weight": 0.45
+              }
+            ]
+          }
+        },
+        "metrics_snapshot": {
+          "n_nodes": 41,
+          "n_edges": 50,
+          "avg_degree": 2.439,
+          "inhibition_ratio": 0.48,
+          "intra_module_edges": 28,
+          "inter_module_edges": 22,
+          "modularity_est": 0.56
+        },
+        "stability_target": 0.15,
+        "stability_targets_all": [
+          0.15,
+          0.25,
+          0.15
+        ],
+        "expected_stability": 0.3,
+        "stability_in_range": true,
+        "generation_ms": 137.1
+      }
+    }
+  ],
+  "summary": {
+    "all_feasible": true,
+    "all_stability_ok": true,
+    "n_feasible": 5,
+    "n_stability_ok": 5,
+    "total_fanout_edges": 46
+  },
+  "organism_paths": {
+    "stack_visual_cognition": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\male_cns\\stacked_organisms\\stack_visual_cognition.json",
+    "stack_reinforcement_decision": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\male_cns\\stacked_organisms\\stack_reinforcement_decision.json",
+    "stack_active_inference": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\male_cns\\stacked_organisms\\stack_active_inference.json",
+    "stack_habit_automation": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\male_cns\\stacked_organisms\\stack_habit_automation.json",
+    "stack_meta_cognition": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\male_cns\\stacked_organisms\\stack_meta_cognition.json"
+  }
+}

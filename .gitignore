@@ -93,3 +93,5 @@ flybrain-connectome-mcp/ops/
 .DS_Store
 Thumbs.db
 *.swp
+male_cns/skeletons-swc/
+male_cns/stacked_organisms/

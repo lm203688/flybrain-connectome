@@ -24,7 +24,7 @@ found by the first CI run below.)
 
 ### Added
 
-- **Connectome query service** — 17 tools over HTTP (`:8799`) and MCP stdio,
+- **Connectome query service** — 21 tools over HTTP (`:8799`) and MCP stdio,
   backed by the real MaleCNS v1.0 dataset (166,700 neurons / 124,177,617
   synapses / CC-BY). 11 tools query the connectome (`export_swarm_motifs` also
   works offline, reading the bundled snapshot); 5 expose the generator surface
