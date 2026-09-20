@@ -23,7 +23,7 @@ before you quote it.
 
 | ✅ This project | ❌ Not this project |
 |---|---|
-| A connectome **query service** (21 tools over HTTP + MCP) | A spiking-neuron simulator |
+| A connectome **query service** (25 tools over HTTP + MCP) | A spiking-neuron simulator |
 | A **motif-extraction** pipeline (real fly → derived motif doc) | A repository of the raw 5.63 GB data |
 | A **synthetic topology generator** (bio-motifs → agent graphs) | A trained / fine-tuned model with weights |
 | **W3C PROV** provenance on every generated artifact | A claim that the "virtual organism" is alive |
@@ -144,7 +144,7 @@ export FLYBRAIN_DATA_DIR=/path/to/your/male_cns
 
 ```bash
 flybrain info
-# -> toolkit root [ok] · motif snapshot [ok, 7363 bytes] · tools exposed: 21
+# -> toolkit root [ok] · motif snapshot [ok, 7363 bytes] · tools exposed: 25
 ```
 
 ### 1. Serve the connectome (optional — only for querying real data)
@@ -196,7 +196,7 @@ flybrain-connectome/
 ├── pyproject.toml                  zero deps, `flybrain` console script
 ├── LICENSE · CITATION.cff · CHANGELOG.md
 ├── flybrain-connectome-mcp/
-│   ├── mcp_connectome/             query engine (core) + 21-tool MCP + HTTP API (:8799)
+│   ├── mcp_connectome/             query engine (core) + 25-tool MCP + HTTP API (:8799)
 │   ├── motifs/                     drop-in client + derived motif snapshot
 │   ├── synthetic_bio_topology.py   ★ C1 generator (motif → agent graph + config + PROV)
 │   ├── _verify.py                  end-to-end smoke test (70/70)
@@ -218,7 +218,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 | Endpoint | Auth | Purpose |
 |---|---|---|
 | `GET  /health` | none | liveness + version |
-| `GET  /tools`  | key  | list the 21 tools + descriptions |
+| `GET  /tools`  | key  | list the 25 tools + descriptions |
 | `POST /query`  | key  | `{"tool": <name>, "args": {...}}` → `{"ok": true, "result": ...}` |
 
 **Auth:** `Authorization: Bearer <key>` or `X-API-Key: <key>`. Keys come from
@@ -226,7 +226,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 server generates a temporary per-boot key and warns loudly — it never falls
 back to a key committed to source.
 
-**The 21 tools** (real names, do not invent — verified against `GET /tools`
+**The 25 tools** (real names, do not invent — verified against `GET /tools`
 by `scripts/check_docs_consistency.py`):
 
 *Real-connectome queries — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`:*
@@ -241,7 +241,8 @@ by `scripts/check_docs_consistency.py`):
 `list_blueprints` · `list_modules` · `list_bio_motifs` ·
 `batch_generate_topologies` · `get_provenance_bundle` ·
 `list_stacked_blueprints` · `get_stacked_feasibility` ·
-`list_neuropils` · `get_neuropil_detail`
+`list_neuropils` · `get_neuropil_detail` · `get_module` ·
+`check_module_compatibility` · `compose_virtual_organism` · `list_virtual_organisms`
 
 ---
 
@@ -331,7 +332,7 @@ references:
 which claims were retracted, are in [`CHANGELOG.md`](CHANGELOG.md).
 
 **Using it from an MCP client:** see [`docs/mcp_setup.md`](docs/mcp_setup.md)
-for client configs, the 21-tool reference, and troubleshooting.
+for client configs, the 25-tool reference, and troubleshooting.
 
 ---
 

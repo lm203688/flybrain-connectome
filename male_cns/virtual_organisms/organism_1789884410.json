@@ -1,0 +1,85 @@
+{
+  "status": "success",
+  "organism": {
+    "modules": [
+      {
+        "id": 0,
+        "name": "sensory",
+        "function": "perceive",
+        "n_nodes": 28,
+        "motif_source": "none",
+        "parameters": {
+          "reservoir_density": 0.5,
+          "recurrent_pct": 0.1,
+          "has_inhibition": false
+        }
+      },
+      {
+        "id": 1,
+        "name": "sensory",
+        "function": "perceive",
+        "n_nodes": 11,
+        "motif_source": "none",
+        "parameters": {
+          "reservoir_density": 0.5,
+          "recurrent_pct": 0.1,
+          "has_inhibition": false
+        }
+      },
+      {
+        "id": 2,
+        "name": "memory",
+        "function": "remember",
+        "n_nodes": 9,
+        "motif_source": "recurrent_feedback",
+        "parameters": {
+          "reservoir_density": 0.2,
+          "recurrent_pct": 0.4,
+          "has_inhibition": false
+        }
+      },
+      {
+        "id": 3,
+        "name": "motor",
+        "function": "execute",
+        "n_nodes": 15,
+        "motif_source": "none",
+        "parameters": {
+          "reservoir_density": 0.1,
+          "recurrent_pct": 0.1,
+          "has_inhibition": true
+        }
+      }
+    ],
+    "edges": [],
+    "stats": {
+      "total_nodes": 63,
+      "n_modules": 4,
+      "motif_sources": [
+        "recurrent_feedback"
+      ],
+      "size_range": [
+        28,
+        128
+      ]
+    }
+  },
+  "compatibility": {
+    "compatible": true,
+    "modules": [
+      "sensory",
+      "sensory",
+      "memory",
+      "motor"
+    ],
+    "n_modules": 4,
+    "conflicts": [],
+    "motif_sources": [
+      "recurrent_feedback"
+    ],
+    "total_size_range": [
+      28,
+      128
+    ]
+  }
+}
