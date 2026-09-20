@@ -206,7 +206,7 @@ flybrain-connectome/
 │                                   check_mcp_tools.py · check_degraded_mode.py
 │                                   check_generated_artifact.py · gh_publish.py
 ├── .github/workflows/ci.yml        the same gates, on py3.10/3.12/3.13 + packaged-CLI job
-└── docs/                           arxiv_paper.md · mcp_setup.md
+└── docs/                           arxiv_paper.md · mcp_setup.md · module_factory.md
 ```
 
 ---
@@ -335,7 +335,9 @@ references:
 "Cite this repository" button from it). Release-by-release changes, including
 which claims were retracted, are in [`CHANGELOG.md`](CHANGELOG.md).
 
-**Using it from an MCP client:** see [`docs/mcp_setup.md`](docs/mcp_setup.md)
+**Using it from an MCP client:** see [`docs/mcp_setup.md`](docs/mcp_setup.md).
+**Module variants, SwarmLabs integration, and the organism market (v1.1.0):**
+see [`docs/module_factory.md`](docs/module_factory.md).
 for client configs, the 36-tool reference, and troubleshooting.
 
 ---
