@@ -58,6 +58,10 @@ ARGS = {
     "check_module_compatibility": {"modules": ["sensory", "memory", "motor"]},
     "compose_virtual_organism": {"modules": ["sensory", "memory", "motor"], "seed": 42},
     "list_virtual_organisms": {},
+    # Phase 2: preset combination tools
+    "list_presets": {},
+    "get_preset": {"name": "cognitive_animal"},
+    "apply_preset": {"name": "minimal_reflex", "overrides": {"seed": 100}},
 }
 
 DATA_TOOLS = {
@@ -70,7 +74,8 @@ DATA_TOOLS = {
 JSON_TOOLS = {"export_swarm_motifs", "list_blueprints", "list_modules",
               "list_bio_motifs", "batch_generate_topologies",
               "get_provenance_bundle", "check_module_compatibility",
-              "compose_virtual_organism", "list_virtual_organisms"}
+              "compose_virtual_organism", "list_virtual_organisms",
+              "list_presets", "get_preset", "apply_preset"}
 
 
 def _speak(python: str, env: dict, reqs: list[dict], timeout: int):
