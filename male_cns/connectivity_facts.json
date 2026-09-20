@@ -1,0 +1,1611 @@
+{
+  "total_synapses": 124177617,
+  "n_neurons": 166700,
+  "n_superclasses": 27,
+  "superclass_list": [
+    "ENS",
+    "ascending_neuron",
+    "cb_efferent",
+    "cb_endocrine",
+    "cb_intrinsic",
+    "cb_motor",
+    "cb_sensory",
+    "cb_sensory_tbc",
+    "descending_neuron",
+    "descending_neuron_tbc",
+    "efferent_ascending",
+    "efferent_descending",
+    "ol_intrinsic",
+    "ol_sensory",
+    "sensory_ascending",
+    "sensory_ascending_tbc",
+    "sensory_descending",
+    "visual_centrifugal",
+    "visual_projection",
+    "visual_projection_tbc",
+    "vnc_efferent",
+    "vnc_endocrine",
+    "vnc_intrinsic",
+    "vnc_motor",
+    "vnc_sensory",
+    "vnc_sensory_tbc",
+    "vnc_tbc"
+  ],
+  "superclass_io": [
+    {
+      "superclass": "ENS",
+      "n_neurons": 50,
+      "out_synapses": 4,
+      "in_synapses": 3
+    },
+    {
+      "superclass": "ascending_neuron",
+      "n_neurons": 1846,
+      "out_synapses": 5136176,
+      "in_synapses": 3889161
+    },
+    {
+      "superclass": "cb_efferent",
+      "n_neurons": 4,
+      "out_synapses": 74,
+      "in_synapses": 298
+    },
+    {
+      "superclass": "cb_endocrine",
+      "n_neurons": 72,
+      "out_synapses": 2928,
+      "in_synapses": 57771
+    },
+    {
+      "superclass": "cb_intrinsic",
+      "n_neurons": 32164,
+      "out_synapses": 39150032,
+      "in_synapses": 43025033
+    },
+    {
+      "superclass": "cb_motor",
+      "n_neurons": 107,
+      "out_synapses": 38955,
+      "in_synapses": 397910
+    },
+    {
+      "superclass": "cb_sensory",
+      "n_neurons": 4868,
+      "out_synapses": 2263961,
+      "in_synapses": 660478
+    },
+    {
+      "superclass": "cb_sensory_tbc",
+      "n_neurons": 14,
+      "out_synapses": 3907,
+      "in_synapses": 1518
+    },
+    {
+      "superclass": "descending_neuron",
+      "n_neurons": 1314,
+      "out_synapses": 4092559,
+      "in_synapses": 4582510
+    },
+    {
+      "superclass": "descending_neuron_tbc",
+      "n_neurons": 2,
+      "out_synapses": 149,
+      "in_synapses": 49
+    },
+    {
+      "superclass": "efferent_ascending",
+      "n_neurons": 8,
+      "out_synapses": 13911,
+      "in_synapses": 14658
+    },
+    {
+      "superclass": "efferent_descending",
+      "n_neurons": 4,
+      "out_synapses": 384,
+      "in_synapses": 1210
+    },
+    {
+      "superclass": "ol_intrinsic",
+      "n_neurons": 89403,
+      "out_synapses": 43984759,
+      "in_synapses": 39066723
+    },
+    {
+      "superclass": "ol_sensory",
+      "n_neurons": 6098,
+      "out_synapses": 651362,
+      "in_synapses": 232248
+    },
+    {
+      "superclass": "sensory_ascending",
+      "n_neurons": 537,
+      "out_synapses": 372228,
+      "in_synapses": 91081
+    },
+    {
+      "superclass": "sensory_ascending_tbc",
+      "n_neurons": 2,
+      "out_synapses": 353,
+      "in_synapses": 69
+    },
+    {
+      "superclass": "sensory_descending",
+      "n_neurons": 12,
+      "out_synapses": 26502,
+      "in_synapses": 5173
+    },
+    {
+      "superclass": "visual_centrifugal",
+      "n_neurons": 563,
+      "out_synapses": 2139715,
+      "in_synapses": 1332864
+    },
+    {
+      "superclass": "visual_projection",
+      "n_neurons": 9201,
+      "out_synapses": 7354973,
+      "in_synapses": 10517103
+    },
+    {
+      "superclass": "visual_projection_tbc",
+      "n_neurons": 2,
+      "out_synapses": 186,
+      "in_synapses": 223
+    },
+    {
+      "superclass": "vnc_efferent",
+      "n_neurons": 94,
+      "out_synapses": 3194,
+      "in_synapses": 172400
+    },
+    {
+      "superclass": "vnc_endocrine",
+      "n_neurons": 22,
+      "out_synapses": 630,
+      "in_synapses": 20979
+    },
+    {
+      "superclass": "vnc_intrinsic",
+      "n_neurons": 13161,
+      "out_synapses": 15592981,
+      "in_synapses": 16503165
+    },
+    {
+      "superclass": "vnc_motor",
+      "n_neurons": 708,
+      "out_synapses": 29903,
+      "in_synapses": 2671789
+    },
+    {
+      "superclass": "vnc_sensory",
+      "n_neurons": 6370,
+      "out_synapses": 3300704,
+      "in_synapses": 924007
+    },
+    {
+      "superclass": "vnc_sensory_tbc",
+      "n_neurons": 36,
+      "out_synapses": 3461,
+      "in_synapses": 528
+    },
+    {
+      "superclass": "vnc_tbc",
+      "n_neurons": 38,
+      "out_synapses": 13626,
+      "in_synapses": 8666
+    }
+  ],
+  "cross_superclass_top": [
+    {
+      "from": "ol_intrinsic",
+      "to": "ol_intrinsic",
+      "synapses": 35691182,
+      "pct_of_total": 28.74
+    },
+    {
+      "from": "cb_intrinsic",
+      "to": "cb_intrinsic",
+      "synapses": 34365451,
+      "pct_of_total": 27.67
+    },
+    {
+      "from": "vnc_intrinsic",
+      "to": "vnc_intrinsic",
+      "synapses": 11042345,
+      "pct_of_total": 8.89
+    },
+    {
+      "from": "ol_intrinsic",
+      "to": "visual_projection",
+      "synapses": 7714143,
+      "pct_of_total": 6.21
+    },
+    {
+      "from": "visual_projection",
+      "to": "cb_intrinsic",
+      "synapses": 3847546,
+      "pct_of_total": 3.1
+    },
+    {
+      "from": "cb_intrinsic",
+      "to": "descending_neuron",
+      "synapses": 2732731,
+      "pct_of_total": 2.2
+    },
+    {
+      "from": "vnc_intrinsic",
+      "to": "vnc_motor",
+      "synapses": 2214610,
+      "pct_of_total": 1.78
+    },
+    {
+      "from": "vnc_sensory",
+      "to": "vnc_intrinsic",
+      "synapses": 1968053,
+      "pct_of_total": 1.58
+    },
+    {
+      "from": "ascending_neuron",
+      "to": "cb_intrinsic",
+      "synapses": 1872674,
+      "pct_of_total": 1.51
+    },
+    {
+      "from": "cb_sensory",
+      "to": "cb_intrinsic",
+      "synapses": 1785104,
+      "pct_of_total": 1.44
+    },
+    {
+      "from": "descending_neuron",
+      "to": "vnc_intrinsic",
+      "synapses": 1718761,
+      "pct_of_total": 1.38
+    },
+    {
+      "from": "vnc_intrinsic",
+      "to": "ascending_neuron",
+      "synapses": 1636238,
+      "pct_of_total": 1.32
+    },
+    {
+      "from": "visual_projection",
+      "to": "visual_projection",
+      "synapses": 1613964,
+      "pct_of_total": 1.3
+    },
+    {
+      "from": "ascending_neuron",
+      "to": "vnc_intrinsic",
+      "synapses": 1594274,
+      "pct_of_total": 1.28
+    },
+    {
+      "from": "visual_centrifugal",
+      "to": "ol_intrinsic",
+      "synapses": 1469897,
+      "pct_of_total": 1.18
+    },
+    {
+      "from": "visual_projection",
+      "to": "ol_intrinsic",
+      "synapses": 1321731,
+      "pct_of_total": 1.06
+    },
+    {
+      "from": "descending_neuron",
+      "to": "cb_intrinsic",
+      "synapses": 864574,
+      "pct_of_total": 0.7
+    },
+    {
+      "from": "vnc_sensory",
+      "to": "ascending_neuron",
+      "synapses": 784019,
+      "pct_of_total": 0.63
+    },
+    {
+      "from": "cb_intrinsic",
+      "to": "visual_projection",
+      "synapses": 680696,
+      "pct_of_total": 0.55
+    },
+    {
+      "from": "ascending_neuron",
+      "to": "ascending_neuron",
+      "synapses": 656576,
+      "pct_of_total": 0.53
+    },
+    {
+      "from": "descending_neuron",
+      "to": "descending_neuron",
+      "synapses": 598721,
+      "pct_of_total": 0.48
+    },
+    {
+      "from": "ascending_neuron",
+      "to": "descending_neuron",
+      "synapses": 572657,
+      "pct_of_total": 0.46
+    },
+    {
+      "from": "ol_sensory",
+      "to": "ol_intrinsic",
+      "synapses": 564685,
+      "pct_of_total": 0.45
+    },
+    {
+      "from": "cb_intrinsic",
+      "to": "visual_centrifugal",
+      "synapses": 527967,
+      "pct_of_total": 0.43
+    },
+    {
+      "from": "vnc_sensory",
+      "to": "vnc_sensory",
+      "synapses": 439451,
+      "pct_of_total": 0.35
+    },
+    {
+      "from": "visual_centrifugal",
+      "to": "visual_projection",
+      "synapses": 439005,
+      "pct_of_total": 0.35
+    },
+    {
+      "from": "descending_neuron",
+      "to": "ascending_neuron",
+      "synapses": 427455,
+      "pct_of_total": 0.34
+    },
+    {
+      "from": "cb_intrinsic",
+      "to": "cb_sensory",
+      "synapses": 371813,
+      "pct_of_total": 0.3
+    },
+    {
+      "from": "ol_intrinsic",
+      "to": "visual_centrifugal",
+      "synapses": 366826,
+      "pct_of_total": 0.3
+    },
+    {
+      "from": "vnc_intrinsic",
+      "to": "vnc_sensory",
+      "synapses": 365870,
+      "pct_of_total": 0.29
+    },
+    {
+      "from": "visual_projection",
+      "to": "descending_neuron",
+      "synapses": 291793,
+      "pct_of_total": 0.23
+    },
+    {
+      "from": "visual_projection",
+      "to": "visual_centrifugal",
+      "synapses": 267179,
+      "pct_of_total": 0.22
+    },
+    {
+      "from": "cb_sensory",
+      "to": "cb_sensory",
+      "synapses": 252504,
+      "pct_of_total": 0.2
+    },
+    {
+      "from": "descending_neuron",
+      "to": "vnc_motor",
+      "synapses": 229565,
+      "pct_of_total": 0.18
+    },
+    {
+      "from": "cb_intrinsic",
+      "to": "ascending_neuron",
+      "synapses": 212075,
+      "pct_of_total": 0.17
+    },
+    {
+      "from": "cb_intrinsic",
+      "to": "cb_motor",
+      "synapses": 197543,
+      "pct_of_total": 0.16
+    },
+    {
+      "from": "ol_intrinsic",
+      "to": "ol_sensory",
+      "synapses": 182275,
+      "pct_of_total": 0.15
+    },
+    {
+      "from": "vnc_intrinsic",
+      "to": "descending_neuron",
+      "synapses": 145735,
+      "pct_of_total": 0.12
+    },
+    {
+      "from": "visual_centrifugal",
+      "to": "cb_intrinsic",
+      "synapses": 144766,
+      "pct_of_total": 0.12
+    },
+    {
+      "from": "cb_sensory",
+      "to": "descending_neuron",
+      "synapses": 138543,
+      "pct_of_total": 0.11
+    }
+  ],
+  "degree_buckets": [
+    {
+      "range": "0",
+      "neurons_out": 1220,
+      "neurons_in": 370
+    },
+    {
+      "range": "1-10",
+      "neurons_out": 1722,
+      "neurons_in": 3164
+    },
+    {
+      "range": "11-100",
+      "neurons_out": 8828,
+      "neurons_in": 13340
+    },
+    {
+      "range": "101-500",
+      "neurons_out": 82010,
+      "neurons_in": 92117
+    },
+    {
+      "range": "501-1000",
+      "neurons_out": 44783,
+      "neurons_in": 29286
+    },
+    {
+      "range": "1001-5000",
+      "neurons_out": 26079,
+      "neurons_in": 25610
+    },
+    {
+      "range": "5001-10000",
+      "neurons_out": 1690,
+      "neurons_in": 2106
+    },
+    {
+      "range": "10001-50000",
+      "neurons_out": 362,
+      "neurons_in": 695
+    },
+    {
+      "range": ">50000",
+      "neurons_out": 6,
+      "neurons_in": 12
+    }
+  ],
+  "top_hubs_with_targets": [
+    {
+      "hub_body": 10009,
+      "hub_type": "CT1",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 222215,
+      "hub_fanout": 140897,
+      "hub_fanin": 81318,
+      "top_targets": [
+        {
+          "target_body": 537032,
+          "target_type": "LT33",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 288
+        },
+        {
+          "target_body": 111469,
+          "target_type": "T5b",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 47
+        },
+        {
+          "target_body": 112291,
+          "target_type": "T5a",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 44
+        }
+      ]
+    },
+    {
+      "hub_body": 10540,
+      "hub_type": "APL",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 222198,
+      "hub_fanout": 102263,
+      "hub_fanin": 119935,
+      "top_targets": [
+        {
+          "target_body": 12569,
+          "target_type": "DPM",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 711
+        },
+        {
+          "target_body": 519371,
+          "target_type": "MBON05",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 594
+        },
+        {
+          "target_body": 10013,
+          "target_type": "MBON01",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 439
+        }
+      ]
+    },
+    {
+      "hub_body": 10977,
+      "hub_type": "APL",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 221739,
+      "hub_fanout": 107649,
+      "hub_fanin": 114090,
+      "top_targets": [
+        {
+          "target_body": 11734,
+          "target_type": "DPM",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 871
+        },
+        {
+          "target_body": 10495,
+          "target_type": "MBON05",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 566
+        },
+        {
+          "target_body": 520151,
+          "target_type": "MBON01",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 364
+        }
+      ]
+    },
+    {
+      "hub_body": 10157,
+      "hub_type": "CT1",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 186106,
+      "hub_fanout": 112796,
+      "hub_fanin": 73310,
+      "top_targets": [
+        {
+          "target_body": 10414,
+          "target_type": "LT33",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 284
+        },
+        {
+          "target_body": 82035,
+          "target_type": "T5b",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 41
+        },
+        {
+          "target_body": 74357,
+          "target_type": "T5a",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 41
+        }
+      ]
+    },
+    {
+      "hub_body": 10066,
+      "hub_type": "LPi21",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 126299,
+      "hub_fanout": 50226,
+      "hub_fanin": 76073,
+      "top_targets": [
+        {
+          "target_body": 10027,
+          "target_type": "VCH",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 1747
+        },
+        {
+          "target_body": 10023,
+          "target_type": "HSS",
+          "target_superclass": "visual_projection",
+          "synapses": 1554
+        },
+        {
+          "target_body": 10016,
+          "target_type": "HSE",
+          "target_superclass": "visual_projection",
+          "synapses": 1386
+        }
+      ]
+    },
+    {
+      "hub_body": 10093,
+      "hub_type": "Am1",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 115759,
+      "hub_fanout": 49864,
+      "hub_fanin": 65895,
+      "top_targets": [
+        {
+          "target_body": 10066,
+          "target_type": "LPi21",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 1383
+        },
+        {
+          "target_body": 10061,
+          "target_type": "DCH",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 959
+        },
+        {
+          "target_body": 10027,
+          "target_type": "VCH",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 555
+        }
+      ]
+    },
+    {
+      "hub_body": 10051,
+      "hub_type": "Li39",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 111154,
+      "hub_fanout": 53934,
+      "hub_fanin": 57220,
+      "top_targets": [
+        {
+          "target_body": 11394,
+          "target_type": "Li16",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 1371
+        },
+        {
+          "target_body": 11689,
+          "target_type": "Li16",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 1078
+        },
+        {
+          "target_body": 15363,
+          "target_type": "LoVP59",
+          "target_superclass": "visual_projection",
+          "synapses": 394
+        }
+      ]
+    },
+    {
+      "hub_body": 11041,
+      "hub_type": "LPi21",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 107555,
+      "hub_fanout": 39283,
+      "hub_fanin": 68272,
+      "top_targets": [
+        {
+          "target_body": 10003,
+          "target_type": "VCH",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 1543
+        },
+        {
+          "target_body": 10419,
+          "target_type": "HSS",
+          "target_superclass": "visual_projection",
+          "synapses": 1373
+        },
+        {
+          "target_body": 10108,
+          "target_type": "DCH",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 1286
+        }
+      ]
+    },
+    {
+      "hub_body": 10611,
+      "hub_type": "Li39",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 103210,
+      "hub_fanout": 49925,
+      "hub_fanin": 53285,
+      "top_targets": [
+        {
+          "target_body": 20524,
+          "target_type": "Li16",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 1060
+        },
+        {
+          "target_body": 22715,
+          "target_type": "Li16",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 1005
+        },
+        {
+          "target_body": 517336,
+          "target_type": "LoVP59",
+          "target_superclass": "visual_projection",
+          "synapses": 364
+        }
+      ]
+    },
+    {
+      "hub_body": 10085,
+      "hub_type": "Am1",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 102558,
+      "hub_fanout": 42446,
+      "hub_fanin": 60112,
+      "top_targets": [
+        {
+          "target_body": 11041,
+          "target_type": "LPi21",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 1231
+        },
+        {
+          "target_body": 10108,
+          "target_type": "DCH",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 867
+        },
+        {
+          "target_body": 10003,
+          "target_type": "VCH",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 552
+        }
+      ]
+    },
+    {
+      "hub_body": 10503,
+      "hub_type": "LPi4b",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 93537,
+      "hub_fanout": 47667,
+      "hub_fanin": 45870,
+      "top_targets": [
+        {
+          "target_body": 11117,
+          "target_type": "LPT27",
+          "target_superclass": "visual_projection",
+          "synapses": 368
+        },
+        {
+          "target_body": 11077,
+          "target_type": "vCal3",
+          "target_superclass": "visual_projection",
+          "synapses": 220
+        },
+        {
+          "target_body": 10481,
+          "target_type": "LPT50",
+          "target_superclass": "visual_projection",
+          "synapses": 190
+        }
+      ]
+    },
+    {
+      "hub_body": 10452,
+      "hub_type": "LPi4b",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 81729,
+      "hub_fanout": 37690,
+      "hub_fanin": 44039,
+      "top_targets": [
+        {
+          "target_body": 557838,
+          "target_type": "LPT27",
+          "target_superclass": "visual_projection",
+          "synapses": 390
+        },
+        {
+          "target_body": 10214,
+          "target_type": "LPT50",
+          "target_superclass": "visual_projection",
+          "synapses": 196
+        },
+        {
+          "target_body": 10955,
+          "target_type": "vCal3",
+          "target_superclass": "visual_projection",
+          "synapses": 193
+        }
+      ]
+    },
+    {
+      "hub_body": 11734,
+      "hub_type": "DPM",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 80837,
+      "hub_fanout": 25927,
+      "hub_fanin": 54910,
+      "top_targets": [
+        {
+          "target_body": 10977,
+          "target_type": "APL",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 1878
+        },
+        {
+          "target_body": 10495,
+          "target_type": "MBON05",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 733
+        },
+        {
+          "target_body": 19267,
+          "target_type": "MBON09",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 473
+        }
+      ]
+    },
+    {
+      "hub_body": 10351,
+      "hub_type": "Li33",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 79668,
+      "hub_fanout": 35134,
+      "hub_fanin": 44534,
+      "top_targets": [
+        {
+          "target_body": 10051,
+          "target_type": "Li39",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 975
+        },
+        {
+          "target_body": 10352,
+          "target_type": "Li32",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 396
+        },
+        {
+          "target_body": 13727,
+          "target_type": "LoVP103",
+          "target_superclass": "visual_projection",
+          "synapses": 235
+        }
+      ]
+    },
+    {
+      "hub_body": 10352,
+      "hub_type": "Li32",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 79470,
+      "hub_fanout": 41574,
+      "hub_fanin": 37896,
+      "top_targets": [
+        {
+          "target_body": 10351,
+          "target_type": "Li33",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 2591
+        },
+        {
+          "target_body": 11319,
+          "target_type": "LT42",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 439
+        },
+        {
+          "target_body": 10974,
+          "target_type": "Li31",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 178
+        }
+      ]
+    },
+    {
+      "hub_body": 10473,
+      "hub_type": "il3LN6",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 77797,
+      "hub_fanout": 26887,
+      "hub_fanin": 50910,
+      "top_targets": [
+        {
+          "target_body": 13431,
+          "target_type": "lLN2T_b",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 571
+        },
+        {
+          "target_body": 521586,
+          "target_type": "ALBN1",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 511
+        },
+        {
+          "target_body": 14243,
+          "target_type": "lLN2T_b",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 505
+        }
+      ]
+    },
+    {
+      "hub_body": 13612,
+      "hub_type": "Li32",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 77579,
+      "hub_fanout": 40826,
+      "hub_fanin": 36753,
+      "top_targets": [
+        {
+          "target_body": 16076,
+          "target_type": "Li33",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 2443
+        },
+        {
+          "target_body": 10475,
+          "target_type": "LT42",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 475
+        },
+        {
+          "target_body": 10466,
+          "target_type": "Li31",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 154
+        }
+      ]
+    },
+    {
+      "hub_body": 523591,
+      "hub_type": "il3LN6",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 75829,
+      "hub_fanout": 28609,
+      "hub_fanin": 47220,
+      "top_targets": [
+        {
+          "target_body": 67052,
+          "target_type": "lLN2T_b",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 767
+        },
+        {
+          "target_body": 11123,
+          "target_type": "ALBN1",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 710
+        },
+        {
+          "target_body": 16460,
+          "target_type": "lLN2T_b",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 553
+        }
+      ]
+    },
+    {
+      "hub_body": 10241,
+      "hub_type": "AVLP001",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 74534,
+      "hub_fanout": 27068,
+      "hub_fanin": 47466,
+      "top_targets": [
+        {
+          "target_body": 16624,
+          "target_type": "AVLP153",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 270
+        },
+        {
+          "target_body": 12063,
+          "target_type": "AVLP053",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 233
+        },
+        {
+          "target_body": 11367,
+          "target_type": "PVLP061",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 219
+        }
+      ]
+    },
+    {
+      "hub_body": 16659,
+      "hub_type": "PVLP011",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 72915,
+      "hub_fanout": 28922,
+      "hub_fanin": 43993,
+      "top_targets": [
+        {
+          "target_body": 11530,
+          "target_type": "PLP249",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 223
+        },
+        {
+          "target_body": 13786,
+          "target_type": "PLP018",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 183
+        },
+        {
+          "target_body": 13269,
+          "target_type": "PLP018",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 170
+        }
+      ]
+    },
+    {
+      "hub_body": 10169,
+      "hub_type": "lLN2F_b",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 72235,
+      "hub_fanout": 34036,
+      "hub_fanin": 38199,
+      "top_targets": [
+        {
+          "target_body": 10254,
+          "target_type": "lLN2F_a",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 1250
+        },
+        {
+          "target_body": 10456,
+          "target_type": "lLN2F_a",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 1215
+        },
+        {
+          "target_body": 10650,
+          "target_type": "lLN2T_c",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 921
+        }
+      ]
+    },
+    {
+      "hub_body": 10515,
+      "hub_type": "lLN2F_b",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 71250,
+      "hub_fanout": 33639,
+      "hub_fanin": 37611,
+      "top_targets": [
+        {
+          "target_body": 10456,
+          "target_type": "lLN2F_a",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 1174
+        },
+        {
+          "target_body": 10254,
+          "target_type": "lLN2F_a",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 1156
+        },
+        {
+          "target_body": 10201,
+          "target_type": "lLN2T_c",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 836
+        }
+      ]
+    },
+    {
+      "hub_body": 10719,
+      "hub_type": "AVLP079",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 70184,
+      "hub_fanout": 24440,
+      "hub_fanin": 45744,
+      "top_targets": [
+        {
+          "target_body": 11367,
+          "target_type": "PVLP061",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 566
+        },
+        {
+          "target_body": 10082,
+          "target_type": "AVLP016",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 327
+        },
+        {
+          "target_body": 10558,
+          "target_type": "DNp35",
+          "target_superclass": "descending_neuron",
+          "synapses": 300
+        }
+      ]
+    },
+    {
+      "hub_body": 12569,
+      "hub_type": "DPM",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 68674,
+      "hub_fanout": 21770,
+      "hub_fanin": 46904,
+      "top_targets": [
+        {
+          "target_body": 10540,
+          "target_type": "APL",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 1611
+        },
+        {
+          "target_body": 519371,
+          "target_type": "MBON05",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 505
+        },
+        {
+          "target_body": 12690,
+          "target_type": "MBON06",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 321
+        }
+      ]
+    },
+    {
+      "hub_body": 10376,
+      "hub_type": "lLN2F_b",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 66997,
+      "hub_fanout": 29934,
+      "hub_fanin": 37063,
+      "top_targets": [
+        {
+          "target_body": 10096,
+          "target_type": "lLN2F_a",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 1203
+        },
+        {
+          "target_body": 10459,
+          "target_type": "lLN2F_a",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 1154
+        },
+        {
+          "target_body": 11517,
+          "target_type": "lLN2T_c",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 981
+        }
+      ]
+    },
+    {
+      "hub_body": 523564,
+      "hub_type": "PVLP011",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 66783,
+      "hub_fanout": 28237,
+      "hub_fanin": 38546,
+      "top_targets": [
+        {
+          "target_body": 524091,
+          "target_type": "PLP249",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 235
+        },
+        {
+          "target_body": 38037,
+          "target_type": "PLP018",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 219
+        },
+        {
+          "target_body": 12501,
+          "target_type": "PLP018",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 178
+        }
+      ]
+    },
+    {
+      "hub_body": 520034,
+      "hub_type": "AVLP082",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 66056,
+      "hub_fanout": 23115,
+      "hub_fanin": 42941,
+      "top_targets": [
+        {
+          "target_body": 531837,
+          "target_type": "AVLP400",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 403
+        },
+        {
+          "target_body": 55937,
+          "target_type": "AVLP103",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 346
+        },
+        {
+          "target_body": 17898,
+          "target_type": "AVLP102",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 301
+        }
+      ]
+    },
+    {
+      "hub_body": 10404,
+      "hub_type": "AVLP082",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 65617,
+      "hub_fanout": 27408,
+      "hub_fanin": 38209,
+      "top_targets": [
+        {
+          "target_body": 13747,
+          "target_type": "AVLP400",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 491
+        },
+        {
+          "target_body": 12959,
+          "target_type": "AVLP103",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 443
+        },
+        {
+          "target_body": 17811,
+          "target_type": "AVLP102",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 404
+        }
+      ]
+    },
+    {
+      "hub_body": 10082,
+      "hub_type": "AVLP016",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 64886,
+      "hub_fanout": 17942,
+      "hub_fanin": 46944,
+      "top_targets": [
+        {
+          "target_body": 11654,
+          "target_type": "AVLP077",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 589
+        },
+        {
+          "target_body": 19158,
+          "target_type": "PVLP004",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 423
+        },
+        {
+          "target_body": 17272,
+          "target_type": "PVLP004",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 343
+        }
+      ]
+    },
+    {
+      "hub_body": 10308,
+      "hub_type": "LPi12",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 64610,
+      "hub_fanout": 23583,
+      "hub_fanin": 41027,
+      "top_targets": [
+        {
+          "target_body": 10093,
+          "target_type": "Am1",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 1601
+        },
+        {
+          "target_body": 10025,
+          "target_type": "H2",
+          "target_superclass": "visual_projection",
+          "synapses": 1260
+        },
+        {
+          "target_body": 10066,
+          "target_type": "LPi21",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 852
+        }
+      ]
+    },
+    {
+      "hub_body": 10133,
+      "hub_type": "lLN2F_b",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 63034,
+      "hub_fanout": 27656,
+      "hub_fanin": 35378,
+      "top_targets": [
+        {
+          "target_body": 10459,
+          "target_type": "lLN2F_a",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 1078
+        },
+        {
+          "target_body": 10096,
+          "target_type": "lLN2F_a",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 1033
+        },
+        {
+          "target_body": 11517,
+          "target_type": "lLN2T_c",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 853
+        }
+      ]
+    },
+    {
+      "hub_body": 21568,
+      "hub_type": "AVLP080",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 62859,
+      "hub_fanout": 25443,
+      "hub_fanin": 37416,
+      "top_targets": [
+        {
+          "target_body": 10841,
+          "target_type": "AN09B004",
+          "target_superclass": "ascending_neuron",
+          "synapses": 638
+        },
+        {
+          "target_body": 10558,
+          "target_type": "DNp35",
+          "target_superclass": "descending_neuron",
+          "synapses": 435
+        },
+        {
+          "target_body": 11367,
+          "target_type": "PVLP061",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 340
+        }
+      ]
+    },
+    {
+      "hub_body": 10224,
+      "hub_type": "AVLP001",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 62290,
+      "hub_fanout": 22069,
+      "hub_fanin": 40221,
+      "top_targets": [
+        {
+          "target_body": 512347,
+          "target_type": "AVLP153",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 235
+        },
+        {
+          "target_body": 10364,
+          "target_type": "PVLP061",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 222
+        },
+        {
+          "target_body": 558793,
+          "target_type": "AVLP053",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 186
+        }
+      ]
+    },
+    {
+      "hub_body": 16076,
+      "hub_type": "Li33",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 61001,
+      "hub_fanout": 24815,
+      "hub_fanin": 36186,
+      "top_targets": [
+        {
+          "target_body": 10611,
+          "target_type": "Li39",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 507
+        },
+        {
+          "target_body": 13612,
+          "target_type": "Li32",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 277
+        },
+        {
+          "target_body": 10289,
+          "target_type": "LT39",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 185
+        }
+      ]
+    },
+    {
+      "hub_body": 10172,
+      "hub_type": "AVLP080",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 60218,
+      "hub_fanout": 22598,
+      "hub_fanin": 37620,
+      "top_targets": [
+        {
+          "target_body": 519516,
+          "target_type": "AN09B004",
+          "target_superclass": "ascending_neuron",
+          "synapses": 664
+        },
+        {
+          "target_body": 10364,
+          "target_type": "PVLP061",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 429
+        },
+        {
+          "target_body": 10234,
+          "target_type": "DNp35",
+          "target_superclass": "descending_neuron",
+          "synapses": 380
+        }
+      ]
+    },
+    {
+      "hub_body": 10879,
+      "hub_type": "AVLP076",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 59678,
+      "hub_fanout": 19956,
+      "hub_fanin": 39722,
+      "top_targets": [
+        {
+          "target_body": 10558,
+          "target_type": "DNp35",
+          "target_superclass": "descending_neuron",
+          "synapses": 468
+        },
+        {
+          "target_body": 10584,
+          "target_type": "DNp06",
+          "target_superclass": "descending_neuron",
+          "synapses": 238
+        },
+        {
+          "target_body": 12870,
+          "target_type": "AVLP500",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 159
+        }
+      ]
+    },
+    {
+      "hub_body": 10421,
+      "hub_type": "AVLP079",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 59146,
+      "hub_fanout": 20644,
+      "hub_fanin": 38502,
+      "top_targets": [
+        {
+          "target_body": 10364,
+          "target_type": "PVLP061",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 556
+        },
+        {
+          "target_body": 10115,
+          "target_type": "AVLP016",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 300
+        },
+        {
+          "target_body": 10234,
+          "target_type": "DNp35",
+          "target_superclass": "descending_neuron",
+          "synapses": 276
+        }
+      ]
+    },
+    {
+      "hub_body": 10436,
+      "hub_type": "LPi12",
+      "hub_superclass": "ol_intrinsic",
+      "hub_total_synapses": 58232,
+      "hub_fanout": 22240,
+      "hub_fanin": 35992,
+      "top_targets": [
+        {
+          "target_body": 10093,
+          "target_type": "Am1",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 1562
+        },
+        {
+          "target_body": 10025,
+          "target_type": "H2",
+          "target_superclass": "visual_projection",
+          "synapses": 1026
+        },
+        {
+          "target_body": 10066,
+          "target_type": "LPi21",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 676
+        }
+      ]
+    },
+    {
+      "hub_body": 10115,
+      "hub_type": "AVLP016",
+      "hub_superclass": "cb_intrinsic",
+      "hub_total_synapses": 57571,
+      "hub_fanout": 16765,
+      "hub_fanin": 40806,
+      "top_targets": [
+        {
+          "target_body": 11937,
+          "target_type": "AVLP077",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 566
+        },
+        {
+          "target_body": 512086,
+          "target_type": "PVLP004",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 353
+        },
+        {
+          "target_body": 514265,
+          "target_type": "PVLP004",
+          "target_superclass": "cb_intrinsic",
+          "synapses": 345
+        }
+      ]
+    },
+    {
+      "hub_body": 10046,
+      "hub_type": "MeVC11",
+      "hub_superclass": "visual_centrifugal",
+      "hub_total_synapses": 57295,
+      "hub_fanout": 46425,
+      "hub_fanin": 10870,
+      "top_targets": [
+        {
+          "target_body": 10531,
+          "target_type": "Pm12",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 1078
+        },
+        {
+          "target_body": 10612,
+          "target_type": "Pm12",
+          "target_superclass": "ol_intrinsic",
+          "synapses": 895
+        },
+        {
+          "target_body": 10072,
+          "target_type": "OA-AL2i1",
+          "target_superclass": "visual_centrifugal",
+          "synapses": 608
+        }
+      ]
+    }
+  ],
+  "mean_fanout": 744.9,
+  "mean_fanin": 744.9
+}
