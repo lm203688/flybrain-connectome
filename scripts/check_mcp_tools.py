@@ -49,6 +49,10 @@ ARGS = {
         "seed": 42, "max_nodes": 64,
     },
     "get_provenance_bundle": {"blueprint": "predictive_coding_v2"},
+    "list_stacked_blueprints": {},
+    "get_stacked_feasibility": {"name": "stack_visual_cognition"},
+    "list_neuropils": {"top": 5},
+    "get_neuropil_detail": {"name": "ME(L)"},
 }
 
 DATA_TOOLS = {
