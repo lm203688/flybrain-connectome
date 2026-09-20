@@ -154,3 +154,17 @@ payload where JSON is promised.
 | `401` on `/tools` or `/query` | key missing or wrong | set `FLYBRAIN_API_KEY`; `X-API-Key` also works |
 | `ERROR: cannot reach http://127.0.0.1:8799` | service not running, or a stale process holds the port | check `/health`; kill the PID on 8799 and restart |
 | tools missing from the list | client cached an older `tools/list` | restart the client |
+
+---
+
+## 6. Advanced features (v1.1.0+)
+
+- **Module variants** — per-module parameter overrides (`sensory_vision`,
+  `sensory_sound`, etc.) produce measurably different topologies.
+- **SwarmLabs integration** — export any organism as a multi-agent team spec
+  (`organism_to_swarmlabs`).
+- **Virtual-organism market** — save, load, list, rate, search, and delete
+  custom combinations (`save_market_organism` etc.).
+
+See [docs/module_factory.md](module_factory.md) for full usage examples and
+API reference.
