@@ -8,9 +8,53 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.0.0` | the toolkit as a whole |
+| package | `1.1.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
+
+---
+
+## [1.1.0] — 2026-09-20
+
+Module factory v2: variant true differentiation, SwarmLabs agent-team
+integration, and a virtual-organism market. Tool count **28 → 36**.
+
+### Added
+
+- **Variant true differentiation** — module variants (e.g. `sensory_vision`,
+  `sensory_sound`, `sensory_touch`) now carry real parameter overrides
+  (`reservoir_density`, `recurrent_pct`, `has_inhibition`) injected into
+  `MODULE_PROFILES`. Variants produce measurably different topologies, not
+  just cosmetic labels. Blueprint prefix-matching (`sensory_*` → `sensory`)
+  ensures variant profiles participate in cross-module wiring.
+- **SwarmLabs agent-team integration** (`organism_to_swarmlabs`,
+  `get_module_agent_roles`) — converts any generated organism into a SwarmLabs
+  multi-agent team spec (agents, modules, edges, guardrails, validation,
+  motif_provenance, prov_json). 19 modules mapped to Agent roles.
+- **Virtual-organism market** (`save_market_organism`, `load_market_organism`,
+  `list_market_organisms`, `rate_market_organism`, `search_market_organisms`,
+  `delete_market_organism`) — local file-based CRUD for sharing custom module
+  combinations, with tag filtering, rating (1-5), and keyword search.
+- **Cycle detection softening** — biological recurrent/predictive/reward loops
+  no longer trigger hard conflicts in `check_module_compatibility`; only cycles
+  involving 3+ distinct modules are flagged.
+- **Module factory v2** — 19 modules, 10 presets, nested composition
+  `a+(b+c)`, variant overrides, blueprint stacking.
+
+### Fixed
+
+- **Blueprint prefix matching** — `_apply_blueprint()` now matches variant
+  profiles (`sensory_vision`) to base blueprint rules (`sensory`) via
+  `startswith` prefix check, and flattens list-of-lists with `extend`.
+- **Variant profile field copies** — `capability` and `task_hint_pool` now
+  use `list()` to avoid mutable-reference hash errors.
+
+### Tool count
+
+28 (v1.0.0) → **36** (v1.1.0). New tools: `organism_to_swarmlabs`,
+`get_module_agent_roles`, `save_market_organism`, `load_market_organism`,
+`list_market_organisms`, `rate_market_organism`, `search_market_organisms`,
+`delete_market_organism`.
 
 ---
 
