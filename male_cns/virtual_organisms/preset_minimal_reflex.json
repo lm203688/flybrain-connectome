@@ -1,0 +1,298 @@
+{
+  "status": "success",
+  "organism": {
+    "schema_version": "1.2.1",
+    "kind": "virtual_organism",
+    "generated_utc": "2026-09-20T06:40:22.867409+00:00",
+    "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
+    "spec": {
+      "n_modules": 2,
+      "agents_per_module": 4,
+      "module_profiles": {
+        "custom": {
+          "0": "sensory",
+          "1": "motor"
+        }
+      },
+      "blueprint": "fast_reflex"
+    },
+    "blueprint": "fast_reflex",
+    "blueprint_edges_added": 1,
+    "motif_provenance": {
+      "dataset": {
+        "name": "MaleCNS v1.0",
+        "license": "CC-BY",
+        "total_synapses": 124177617,
+        "annotated_neurons": 166700,
+        "dataset_url": "https://flycellatlas.org/male_cns",
+        "annotation_version": "v1.0"
+      },
+      "blueprints_used": [
+        "fast_reflex"
+      ],
+      "blueprint_to_motif": {
+        "fast_reflex": {
+          "source_motif": "none",
+          "motif_body": null,
+          "motif_type": null,
+          "motif_fanout": null,
+          "motif_synapse_stats": null,
+          "motif_query": null,
+          "stability_target": 0.25,
+          "note": "人工设计的快速反射通路，非生物先验",
+          "anchor": null,
+          "is_bio_prior": false
+        }
+      },
+      "is_bio_prior": false,
+      "bio_prior_count": 0,
+      "total_blueprint_count": 1,
+      "stability_summary": {
+        "worst_case_target": 0.25,
+        "targets_seen": [
+          0.25
+        ],
+        "note": "Cross-module edge ratio upper bound. Lower = more isolated. Set by design intent; verified by _verify.py stability check."
+      },
+      "generated_utc": "2026-09-20T06:40:22.867432+00:00",
+      "schema_version": "1.2.0"
+    },
+    "module_profiles": {
+      "0": {
+        "name": "sensory",
+        "description": "High-density input buffer (ol_intrinsic analog)"
+      },
+      "1": {
+        "name": "memory",
+        "description": "Recurrent working memory (cb_intrinsic analog)"
+      }
+    },
+    "organism": {
+      "nodes": [
+        {
+          "id": "m0_a0",
+          "role": "cell",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "data_ingest"
+        },
+        {
+          "id": "m0_a1",
+          "role": "cell",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "signal_preprocess"
+        },
+        {
+          "id": "m0_a2",
+          "role": "cell",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "stream_buffer"
+        },
+        {
+          "id": "m0_a3",
+          "role": "cell",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "sensor_noise_filter"
+        },
+        {
+          "id": "m0_rep",
+          "role": "tissue_rep",
+          "module": 0,
+          "profile": "sensory",
+          "task_hint": "input_triage"
+        },
+        {
+          "id": "m1_a0",
+          "role": "cell",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "gp_surrogate_fit"
+        },
+        {
+          "id": "m1_a1",
+          "role": "cell",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "prior_recall"
+        },
+        {
+          "id": "m1_a2",
+          "role": "cell",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "state_carry"
+        },
+        {
+          "id": "m1_a3",
+          "role": "cell",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "history_replay"
+        },
+        {
+          "id": "m1_rep",
+          "role": "tissue_rep",
+          "module": 1,
+          "profile": "memory",
+          "task_hint": "memory_synthesis"
+        },
+        {
+          "id": "coordinator",
+          "role": "guardrail",
+          "source": "APL(body 10540)",
+          "task_hint": "global_guardrail"
+        }
+      ],
+      "edges": [
+        {
+          "from": "m0_rep",
+          "to": "m0_rep",
+          "weight": 0.1,
+          "kind": "recurrent",
+          "module": 0
+        },
+        {
+          "from": "m1_rep",
+          "to": "m1_rep",
+          "weight": 0.4,
+          "kind": "recurrent",
+          "module": 1
+        },
+        {
+          "from": "m0_a0",
+          "to": "m0_a2",
+          "weight": 0.706,
+          "kind": "reservoir",
+          "module": 0
+        },
+        {
+          "from": "m0_a2",
+          "to": "m1_rep",
+          "weight": 0.121,
+          "kind": "reservoir",
+          "module": 0
+        },
+        {
+          "from": "m0_rep",
+          "to": "m0_a1",
+          "weight": 0.335,
+          "kind": "reservoir",
+          "module": 0
+        },
+        {
+          "from": "m1_a3",
+          "to": "m1_a2",
+          "weight": 0.37,
+          "kind": "reservoir",
+          "module": 1
+        },
+        {
+          "from": "coordinator",
+          "to": "m0_rep",
+          "weight": -1.0,
+          "kind": "inhibitory",
+          "module": 0
+        },
+        {
+          "from": "coordinator",
+          "to": "m1_rep",
+          "weight": -0.5,
+          "kind": "inhibitory",
+          "module": 1
+        },
+        {
+          "from": "m0_rep",
+          "to": "m1_rep",
+          "weight": 0.15,
+          "kind": "reservoir",
+          "blueprint": "fast_reflex",
+          "semantic_hint": "async_record"
+        }
+      ]
+    },
+    "metrics": {
+      "n_nodes": 11,
+      "n_edges": 9,
+      "avg_degree": 1.636,
+      "inhibition_ratio": 0.222,
+      "n_modules": 2,
+      "intra_module_edges": 5,
+      "inter_module_edges": 4,
+      "modularity_est": 0.556,
+      "profile_breakdown": {
+        "sensory": {
+          "nodes": 5,
+          "edges": 5
+        },
+        "memory": {
+          "nodes": 5,
+          "edges": 2
+        },
+        "uniform": {
+          "nodes": 1,
+          "edges": 2
+        }
+      }
+    },
+    "prov_json": null
+  },
+  "stats": {
+    "total_nodes": 11,
+    "total_edges": 9,
+    "n_modules": 2,
+    "n_unique_modules": 2,
+    "motif_sources": [],
+    "blueprint": "fast_reflex",
+    "blueprint_edges_added": 1
+  },
+  "compatibility": {
+    "compatible": true,
+    "modules": [
+      "sensory",
+      "motor"
+    ],
+    "n_modules": 2,
+    "conflicts": [],
+    "cycle_paths": [],
+    "motif_sources": [],
+    "total_size_range": [
+      12,
+      48
+    ]
+  },
+  "module_spec": {
+    "description": "最小反射弧：感知 → 执行（无记忆），最快响应",
+    "modules": [
+      "sensory",
+      "motor"
+    ],
+    "counts": {
+      "sensory": 1,
+      "motor": 1
+    },
+    "blueprint": "fast_reflex",
+    "agents_per_module": 4,
+    "seed": 100
+  },
+  "variants": {},
+  "module_inventory": {
+    "modules": [
+      "sensory",
+      "motor"
+    ],
+    "counts": {
+      "sensory": 1,
+      "motor": 1
+    },
+    "expanded": [
+      "sensory",
+      "motor"
+    ],
+    "blueprint": "fast_reflex",
+    "agents_per_module": 4
+  },
+  "preset_name": "minimal_reflex"
+}
