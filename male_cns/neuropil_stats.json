@@ -1,0 +1,886 @@
+{
+  "source_file": "syn-partners-male-cns-v1.0-minconf-0.5.feather",
+  "source_size_bytes": 6777179098,
+  "total_synapse_pairs": 311833243,
+  "n_neuropil_categories": 146,
+  "neuropils": {
+    "ME(L)": {
+      "synapses": 28398255,
+      "distinct_pre_neurons": 168555,
+      "distinct_post_neurons": 7376307,
+      "mean_synapses_per_pre": 168.48
+    },
+    "ME(R)": {
+      "synapses": 27365057,
+      "distinct_pre_neurons": 118062,
+      "distinct_post_neurons": 5653713,
+      "mean_synapses_per_pre": 231.79
+    },
+    "LO(L)": {
+      "synapses": 14970636,
+      "distinct_pre_neurons": 77123,
+      "distinct_post_neurons": 3886310,
+      "mean_synapses_per_pre": 194.11
+    },
+    "GNG": {
+      "synapses": 14620320,
+      "distinct_pre_neurons": 122491,
+      "distinct_post_neurons": 4590552,
+      "mean_synapses_per_pre": 119.36
+    },
+    "LO(R)": {
+      "synapses": 14427068,
+      "distinct_pre_neurons": 58049,
+      "distinct_post_neurons": 3000005,
+      "mean_synapses_per_pre": 248.53
+    },
+    "LegNp(T3)(R)": {
+      "synapses": 7897069,
+      "distinct_pre_neurons": 76869,
+      "distinct_post_neurons": 2409729,
+      "mean_synapses_per_pre": 102.73
+    },
+    "AVLP(L)": {
+      "synapses": 7790490,
+      "distinct_pre_neurons": 23035,
+      "distinct_post_neurons": 2227193,
+      "mean_synapses_per_pre": 338.2
+    },
+    "ANm": {
+      "synapses": 7755078,
+      "distinct_pre_neurons": 33190,
+      "distinct_post_neurons": 1830508,
+      "mean_synapses_per_pre": 233.66
+    },
+    "LegNp(T3)(L)": {
+      "synapses": 7752288,
+      "distinct_pre_neurons": 85408,
+      "distinct_post_neurons": 2450670,
+      "mean_synapses_per_pre": 90.77
+    },
+    "AVLP(R)": {
+      "synapses": 7186034,
+      "distinct_pre_neurons": 15212,
+      "distinct_post_neurons": 1635158,
+      "mean_synapses_per_pre": 472.39
+    },
+    "LegNp(T1)(L)": {
+      "synapses": 6430939,
+      "distinct_pre_neurons": 74859,
+      "distinct_post_neurons": 2526485,
+      "mean_synapses_per_pre": 85.91
+    },
+    "LegNp(T2)(L)": {
+      "synapses": 6420731,
+      "distinct_pre_neurons": 54891,
+      "distinct_post_neurons": 1826973,
+      "mean_synapses_per_pre": 116.97
+    },
+    "LOP(R)": {
+      "synapses": 6144193,
+      "distinct_pre_neurons": 27246,
+      "distinct_post_neurons": 971777,
+      "mean_synapses_per_pre": 225.51
+    },
+    "CentralBrain-unspecified": {
+      "synapses": 6050191,
+      "distinct_pre_neurons": 156049,
+      "distinct_post_neurons": 2252871,
+      "mean_synapses_per_pre": 38.77
+    },
+    "LOP(L)": {
+      "synapses": 6027458,
+      "distinct_pre_neurons": 34262,
+      "distinct_post_neurons": 1268495,
+      "mean_synapses_per_pre": 175.92
+    },
+    "LegNp(T2)(R)": {
+      "synapses": 5834664,
+      "distinct_pre_neurons": 44026,
+      "distinct_post_neurons": 1819522,
+      "mean_synapses_per_pre": 132.53
+    },
+    "SLP(L)": {
+      "synapses": 5535740,
+      "distinct_pre_neurons": 25696,
+      "distinct_post_neurons": 2014187,
+      "mean_synapses_per_pre": 215.43
+    },
+    "LegNp(T1)(R)": {
+      "synapses": 5500030,
+      "distinct_pre_neurons": 69761,
+      "distinct_post_neurons": 2541403,
+      "mean_synapses_per_pre": 78.84
+    },
+    "SLP(R)": {
+      "synapses": 5297255,
+      "distinct_pre_neurons": 25989,
+      "distinct_post_neurons": 1770062,
+      "mean_synapses_per_pre": 203.83
+    },
+    "SMP(R)": {
+      "synapses": 4929999,
+      "distinct_pre_neurons": 21825,
+      "distinct_post_neurons": 1703793,
+      "mean_synapses_per_pre": 225.89
+    },
+    "SMP(L)": {
+      "synapses": 4776045,
+      "distinct_pre_neurons": 20158,
+      "distinct_post_neurons": 1571057,
+      "mean_synapses_per_pre": 236.93
+    },
+    "PVLP(L)": {
+      "synapses": 4692949,
+      "distinct_pre_neurons": 18154,
+      "distinct_post_neurons": 1237980,
+      "mean_synapses_per_pre": 258.51
+    },
+    "SAD": {
+      "synapses": 4386118,
+      "distinct_pre_neurons": 51911,
+      "distinct_post_neurons": 1410471,
+      "mean_synapses_per_pre": 84.49
+    },
+    "PVLP(R)": {
+      "synapses": 4194393,
+      "distinct_pre_neurons": 13839,
+      "distinct_post_neurons": 937936,
+      "mean_synapses_per_pre": 303.08
+    },
+    "PLP(R)": {
+      "synapses": 4144808,
+      "distinct_pre_neurons": 21534,
+      "distinct_post_neurons": 1332664,
+      "mean_synapses_per_pre": 192.48
+    },
+    "PLP(L)": {
+      "synapses": 3949981,
+      "distinct_pre_neurons": 19803,
+      "distinct_post_neurons": 1351336,
+      "mean_synapses_per_pre": 199.46
+    },
+    "AL(R)": {
+      "synapses": 3438694,
+      "distinct_pre_neurons": 26951,
+      "distinct_post_neurons": 621998,
+      "mean_synapses_per_pre": 127.59
+    },
+    "AL(L)": {
+      "synapses": 3310043,
+      "distinct_pre_neurons": 44664,
+      "distinct_post_neurons": 753455,
+      "mean_synapses_per_pre": 74.11
+    },
+    "FB": {
+      "synapses": 2917059,
+      "distinct_pre_neurons": 11592,
+      "distinct_post_neurons": 533989,
+      "mean_synapses_per_pre": 251.64
+    },
+    "LH(L)": {
+      "synapses": 2857054,
+      "distinct_pre_neurons": 12156,
+      "distinct_post_neurons": 1153217,
+      "mean_synapses_per_pre": 235.03
+    },
+    "LH(R)": {
+      "synapses": 2764553,
+      "distinct_pre_neurons": 10226,
+      "distinct_post_neurons": 984911,
+      "mean_synapses_per_pre": 270.35
+    },
+    "LTct": {
+      "synapses": 2716905,
+      "distinct_pre_neurons": 18992,
+      "distinct_post_neurons": 868389,
+      "mean_synapses_per_pre": 143.06
+    },
+    "SPS(L)": {
+      "synapses": 2627002,
+      "distinct_pre_neurons": 12739,
+      "distinct_post_neurons": 879093,
+      "mean_synapses_per_pre": 206.22
+    },
+    "SPS(R)": {
+      "synapses": 2613290,
+      "distinct_pre_neurons": 12389,
+      "distinct_post_neurons": 897625,
+      "mean_synapses_per_pre": 210.94
+    },
+    "LAL(L)": {
+      "synapses": 2562333,
+      "distinct_pre_neurons": 8429,
+      "distinct_post_neurons": 750513,
+      "mean_synapses_per_pre": 303.99
+    },
+    "IntTct": {
+      "synapses": 2435726,
+      "distinct_pre_neurons": 17022,
+      "distinct_post_neurons": 853478,
+      "mean_synapses_per_pre": 143.09
+    },
+    "WED(L)": {
+      "synapses": 2326783,
+      "distinct_pre_neurons": 10455,
+      "distinct_post_neurons": 792705,
+      "mean_synapses_per_pre": 222.55
+    },
+    "LAL(R)": {
+      "synapses": 2302001,
+      "distinct_pre_neurons": 8076,
+      "distinct_post_neurons": 703011,
+      "mean_synapses_per_pre": 285.04
+    },
+    "ICL(L)": {
+      "synapses": 2235900,
+      "distinct_pre_neurons": 10343,
+      "distinct_post_neurons": 725179,
+      "mean_synapses_per_pre": 216.18
+    },
+    "SCL(L)": {
+      "synapses": 2224227,
+      "distinct_pre_neurons": 13344,
+      "distinct_post_neurons": 842283,
+      "mean_synapses_per_pre": 166.68
+    },
+    "SIP(R)": {
+      "synapses": 2220596,
+      "distinct_pre_neurons": 15398,
+      "distinct_post_neurons": 795639,
+      "mean_synapses_per_pre": 144.21
+    },
+    "SIP(L)": {
+      "synapses": 2189324,
+      "distinct_pre_neurons": 12437,
+      "distinct_post_neurons": 763307,
+      "mean_synapses_per_pre": 176.03
+    },
+    "WED(R)": {
+      "synapses": 2184159,
+      "distinct_pre_neurons": 8242,
+      "distinct_post_neurons": 678426,
+      "mean_synapses_per_pre": 265.0
+    },
+    "IB": {
+      "synapses": 2132615,
+      "distinct_pre_neurons": 10164,
+      "distinct_post_neurons": 736916,
+      "mean_synapses_per_pre": 209.82
+    },
+    "ICL(R)": {
+      "synapses": 2109288,
+      "distinct_pre_neurons": 10892,
+      "distinct_post_neurons": 755441,
+      "mean_synapses_per_pre": 193.65
+    },
+    "SCL(R)": {
+      "synapses": 2103310,
+      "distinct_pre_neurons": 13450,
+      "distinct_post_neurons": 774494,
+      "mean_synapses_per_pre": 156.38
+    },
+    "VES(R)": {
+      "synapses": 2070020,
+      "distinct_pre_neurons": 8692,
+      "distinct_post_neurons": 656765,
+      "mean_synapses_per_pre": 238.15
+    },
+    "VES(L)": {
+      "synapses": 2042735,
+      "distinct_pre_neurons": 8405,
+      "distinct_post_neurons": 636979,
+      "mean_synapses_per_pre": 243.04
+    },
+    "VNC-unspecified": {
+      "synapses": 1891883,
+      "distinct_pre_neurons": 34981,
+      "distinct_post_neurons": 654619,
+      "mean_synapses_per_pre": 54.08
+    },
+    "WTct(UTct-T2)(R)": {
+      "synapses": 1733545,
+      "distinct_pre_neurons": 11088,
+      "distinct_post_neurons": 503453,
+      "mean_synapses_per_pre": 156.34
+    },
+    "WTct(UTct-T2)(L)": {
+      "synapses": 1712468,
+      "distinct_pre_neurons": 8758,
+      "distinct_post_neurons": 439096,
+      "mean_synapses_per_pre": 195.53
+    },
+    "CRE(L)": {
+      "synapses": 1676981,
+      "distinct_pre_neurons": 8216,
+      "distinct_post_neurons": 531638,
+      "mean_synapses_per_pre": 204.11
+    },
+    "CRE(R)": {
+      "synapses": 1609159,
+      "distinct_pre_neurons": 10094,
+      "distinct_post_neurons": 553118,
+      "mean_synapses_per_pre": 159.42
+    },
+    "PRW": {
+      "synapses": 1513368,
+      "distinct_pre_neurons": 10574,
+      "distinct_post_neurons": 503421,
+      "mean_synapses_per_pre": 143.12
+    },
+    "Ov(L)": {
+      "synapses": 1440379,
+      "distinct_pre_neurons": 6781,
+      "distinct_post_neurons": 265396,
+      "mean_synapses_per_pre": 212.41
+    },
+    "IPS(R)": {
+      "synapses": 1357899,
+      "distinct_pre_neurons": 7529,
+      "distinct_post_neurons": 433378,
+      "mean_synapses_per_pre": 180.36
+    },
+    "IPS(L)": {
+      "synapses": 1321813,
+      "distinct_pre_neurons": 6808,
+      "distinct_post_neurons": 422071,
+      "mean_synapses_per_pre": 194.16
+    },
+    "Ov(R)": {
+      "synapses": 1286435,
+      "distinct_pre_neurons": 6958,
+      "distinct_post_neurons": 287656,
+      "mean_synapses_per_pre": 184.89
+    },
+    "Optic-unspecified(L)": {
+      "synapses": 1171801,
+      "distinct_pre_neurons": 42115,
+      "distinct_post_neurons": 396384,
+      "mean_synapses_per_pre": 27.82
+    },
+    "LA(R)": {
+      "synapses": 1037059,
+      "distinct_pre_neurons": 58119,
+      "distinct_post_neurons": 407168,
+      "mean_synapses_per_pre": 17.84
+    },
+    "AOTU(L)": {
+      "synapses": 965896,
+      "distinct_pre_neurons": 4246,
+      "distinct_post_neurons": 178041,
+      "mean_synapses_per_pre": 227.48
+    },
+    "AOTU(R)": {
+      "synapses": 941900,
+      "distinct_pre_neurons": 3223,
+      "distinct_post_neurons": 141807,
+      "mean_synapses_per_pre": 292.24
+    },
+    "EB": {
+      "synapses": 921449,
+      "distinct_pre_neurons": 4280,
+      "distinct_post_neurons": 77303,
+      "mean_synapses_per_pre": 215.29
+    },
+    "gL(L)": {
+      "synapses": 878358,
+      "distinct_pre_neurons": 6592,
+      "distinct_post_neurons": 104766,
+      "mean_synapses_per_pre": 133.25
+    },
+    "LA(L)": {
+      "synapses": 811749,
+      "distinct_pre_neurons": 55472,
+      "distinct_post_neurons": 307214,
+      "mean_synapses_per_pre": 14.63
+    },
+    "gL(R)": {
+      "synapses": 807815,
+      "distinct_pre_neurons": 7768,
+      "distinct_post_neurons": 96284,
+      "mean_synapses_per_pre": 103.99
+    },
+    "FLA(L)": {
+      "synapses": 787132,
+      "distinct_pre_neurons": 7642,
+      "distinct_post_neurons": 269677,
+      "mean_synapses_per_pre": 103.0
+    },
+    "FLA(R)": {
+      "synapses": 759837,
+      "distinct_pre_neurons": 6528,
+      "distinct_post_neurons": 254157,
+      "mean_synapses_per_pre": 116.4
+    },
+    "HTct(UTct-T3)(R)": {
+      "synapses": 742632,
+      "distinct_pre_neurons": 4208,
+      "distinct_post_neurons": 241546,
+      "mean_synapses_per_pre": 176.48
+    },
+    "HTct(UTct-T3)(L)": {
+      "synapses": 733295,
+      "distinct_pre_neurons": 3709,
+      "distinct_post_neurons": 219889,
+      "mean_synapses_per_pre": 197.71
+    },
+    "CA(R)": {
+      "synapses": 532379,
+      "distinct_pre_neurons": 4827,
+      "distinct_post_neurons": 119268,
+      "mean_synapses_per_pre": 110.29
+    },
+    "CA(L)": {
+      "synapses": 495052,
+      "distinct_pre_neurons": 4529,
+      "distinct_post_neurons": 129505,
+      "mean_synapses_per_pre": 109.31
+    },
+    "PB": {
+      "synapses": 398413,
+      "distinct_pre_neurons": 1434,
+      "distinct_post_neurons": 127731,
+      "mean_synapses_per_pre": 277.83
+    },
+    "Optic-unspecified(R)": {
+      "synapses": 374658,
+      "distinct_pre_neurons": 29450,
+      "distinct_post_neurons": 151155,
+      "mean_synapses_per_pre": 12.72
+    },
+    "NTct(UTct-T1)(L)": {
+      "synapses": 370818,
+      "distinct_pre_neurons": 2795,
+      "distinct_post_neurons": 143576,
+      "mean_synapses_per_pre": 132.67
+    },
+    "GOR(R)": {
+      "synapses": 365715,
+      "distinct_pre_neurons": 3127,
+      "distinct_post_neurons": 122153,
+      "mean_synapses_per_pre": 116.95
+    },
+    "GOR(L)": {
+      "synapses": 351957,
+      "distinct_pre_neurons": 3415,
+      "distinct_post_neurons": 119177,
+      "mean_synapses_per_pre": 103.06
+    },
+    "EPA(L)": {
+      "synapses": 336261,
+      "distinct_pre_neurons": 2726,
+      "distinct_post_neurons": 116296,
+      "mean_synapses_per_pre": 123.35
+    },
+    "NTct(UTct-T1)(R)": {
+      "synapses": 335446,
+      "distinct_pre_neurons": 2675,
+      "distinct_post_neurons": 137801,
+      "mean_synapses_per_pre": 125.4
+    },
+    "aL(R)": {
+      "synapses": 295084,
+      "distinct_pre_neurons": 4117,
+      "distinct_post_neurons": 37251,
+      "mean_synapses_per_pre": 71.67
+    },
+    "b'L(L)": {
+      "synapses": 285643,
+      "distinct_pre_neurons": 2549,
+      "distinct_post_neurons": 28425,
+      "mean_synapses_per_pre": 112.06
+    },
+    "mVAC(T2)(L)": {
+      "synapses": 282950,
+      "distinct_pre_neurons": 5386,
+      "distinct_post_neurons": 85679,
+      "mean_synapses_per_pre": 52.53
+    },
+    "EPA(R)": {
+      "synapses": 276828,
+      "distinct_pre_neurons": 2428,
+      "distinct_post_neurons": 105344,
+      "mean_synapses_per_pre": 114.01
+    },
+    "mVAC(T2)(R)": {
+      "synapses": 259004,
+      "distinct_pre_neurons": 4823,
+      "distinct_post_neurons": 76939,
+      "mean_synapses_per_pre": 53.7
+    },
+    "aL(L)": {
+      "synapses": 254760,
+      "distinct_pre_neurons": 3024,
+      "distinct_post_neurons": 29812,
+      "mean_synapses_per_pre": 84.25
+    },
+    "b'L(R)": {
+      "synapses": 254569,
+      "distinct_pre_neurons": 4310,
+      "distinct_post_neurons": 42093,
+      "mean_synapses_per_pre": 59.06
+    },
+    "NO": {
+      "synapses": 241539,
+      "distinct_pre_neurons": 1496,
+      "distinct_post_neurons": 21061,
+      "mean_synapses_per_pre": 161.46
+    },
+    "bL(L)": {
+      "synapses": 238885,
+      "distinct_pre_neurons": 2444,
+      "distinct_post_neurons": 22376,
+      "mean_synapses_per_pre": 97.74
+    },
+    "bL(R)": {
+      "synapses": 229527,
+      "distinct_pre_neurons": 3422,
+      "distinct_post_neurons": 34598,
+      "mean_synapses_per_pre": 67.07
+    },
+    "mVAC(T1)(L)": {
+      "synapses": 210000,
+      "distinct_pre_neurons": 5328,
+      "distinct_post_neurons": 78624,
+      "mean_synapses_per_pre": 39.41
+    },
+    "ATL(L)": {
+      "synapses": 199360,
+      "distinct_pre_neurons": 1738,
+      "distinct_post_neurons": 69349,
+      "mean_synapses_per_pre": 114.71
+    },
+    "mVAC(T1)(R)": {
+      "synapses": 181811,
+      "distinct_pre_neurons": 6464,
+      "distinct_post_neurons": 79769,
+      "mean_synapses_per_pre": 28.13
+    },
+    "a'L(R)": {
+      "synapses": 179812,
+      "distinct_pre_neurons": 2725,
+      "distinct_post_neurons": 37945,
+      "mean_synapses_per_pre": 65.99
+    },
+    "ATL(R)": {
+      "synapses": 177856,
+      "distinct_pre_neurons": 1850,
+      "distinct_post_neurons": 68781,
+      "mean_synapses_per_pre": 96.14
+    },
+    "mVAC(T3)(R)": {
+      "synapses": 157746,
+      "distinct_pre_neurons": 1585,
+      "distinct_post_neurons": 32644,
+      "mean_synapses_per_pre": 99.52
+    },
+    "<unspecified>": {
+      "synapses": 151875,
+      "distinct_pre_neurons": 25147,
+      "distinct_post_neurons": 119375,
+      "mean_synapses_per_pre": 6.04
+    },
+    "mVAC(T3)(L)": {
+      "synapses": 136218,
+      "distinct_pre_neurons": 1894,
+      "distinct_post_neurons": 28588,
+      "mean_synapses_per_pre": 71.92
+    },
+    "a'L(L)": {
+      "synapses": 133684,
+      "distinct_pre_neurons": 1641,
+      "distinct_post_neurons": 22172,
+      "mean_synapses_per_pre": 81.46
+    },
+    "PED(R)": {
+      "synapses": 128963,
+      "distinct_pre_neurons": 3056,
+      "distinct_post_neurons": 19947,
+      "mean_synapses_per_pre": 42.2
+    },
+    "CAN(L)": {
+      "synapses": 122423,
+      "distinct_pre_neurons": 1265,
+      "distinct_post_neurons": 36569,
+      "mean_synapses_per_pre": 96.78
+    },
+    "CAN(R)": {
+      "synapses": 121896,
+      "distinct_pre_neurons": 1239,
+      "distinct_post_neurons": 37851,
+      "mean_synapses_per_pre": 98.38
+    },
+    "CV-unspecified": {
+      "synapses": 121624,
+      "distinct_pre_neurons": 12870,
+      "distinct_post_neurons": 62881,
+      "mean_synapses_per_pre": 9.45
+    },
+    "PED(L)": {
+      "synapses": 117772,
+      "distinct_pre_neurons": 2893,
+      "distinct_post_neurons": 16641,
+      "mean_synapses_per_pre": 40.71
+    },
+    "BU(R)": {
+      "synapses": 58898,
+      "distinct_pre_neurons": 481,
+      "distinct_post_neurons": 19568,
+      "mean_synapses_per_pre": 122.45
+    },
+    "BU(L)": {
+      "synapses": 57066,
+      "distinct_pre_neurons": 517,
+      "distinct_post_neurons": 17726,
+      "mean_synapses_per_pre": 110.38
+    },
+    "DMetaN(L)": {
+      "synapses": 56996,
+      "distinct_pre_neurons": 1878,
+      "distinct_post_neurons": 24450,
+      "mean_synapses_per_pre": 30.35
+    },
+    "MesoLN(R)": {
+      "synapses": 52838,
+      "distinct_pre_neurons": 2771,
+      "distinct_post_neurons": 27258,
+      "mean_synapses_per_pre": 19.07
+    },
+    "DMetaN(R)": {
+      "synapses": 51204,
+      "distinct_pre_neurons": 1521,
+      "distinct_post_neurons": 23765,
+      "mean_synapses_per_pre": 33.66
+    },
+    "AME(R)": {
+      "synapses": 47711,
+      "distinct_pre_neurons": 543,
+      "distinct_post_neurons": 9665,
+      "mean_synapses_per_pre": 87.87
+    },
+    "MetaLN(R)": {
+      "synapses": 35616,
+      "distinct_pre_neurons": 2838,
+      "distinct_post_neurons": 22094,
+      "mean_synapses_per_pre": 12.55
+    },
+    "AB(R)": {
+      "synapses": 26429,
+      "distinct_pre_neurons": 309,
+      "distinct_post_neurons": 8121,
+      "mean_synapses_per_pre": 85.53
+    },
+    "AbNT(L)": {
+      "synapses": 20093,
+      "distinct_pre_neurons": 517,
+      "distinct_post_neurons": 8716,
+      "mean_synapses_per_pre": 38.86
+    },
+    "AbNT(R)": {
+      "synapses": 19446,
+      "distinct_pre_neurons": 476,
+      "distinct_post_neurons": 8226,
+      "mean_synapses_per_pre": 40.85
+    },
+    "ADMN(R)": {
+      "synapses": 16286,
+      "distinct_pre_neurons": 1318,
+      "distinct_post_neurons": 7772,
+      "mean_synapses_per_pre": 12.36
+    },
+    "AME(L)": {
+      "synapses": 16073,
+      "distinct_pre_neurons": 261,
+      "distinct_post_neurons": 4458,
+      "mean_synapses_per_pre": 61.58
+    },
+    "ADMN(L)": {
+      "synapses": 14835,
+      "distinct_pre_neurons": 1327,
+      "distinct_post_neurons": 6119,
+      "mean_synapses_per_pre": 11.18
+    },
+    "AbN4(R)": {
+      "synapses": 11823,
+      "distinct_pre_neurons": 517,
+      "distinct_post_neurons": 4011,
+      "mean_synapses_per_pre": 22.87
+    },
+    "PDMN(R)": {
+      "synapses": 10822,
+      "distinct_pre_neurons": 631,
+      "distinct_post_neurons": 4562,
+      "mean_synapses_per_pre": 17.15
+    },
+    "MetaLN(L)": {
+      "synapses": 10328,
+      "distinct_pre_neurons": 1137,
+      "distinct_post_neurons": 7387,
+      "mean_synapses_per_pre": 9.08
+    },
+    "PDMN(L)": {
+      "synapses": 8421,
+      "distinct_pre_neurons": 494,
+      "distinct_post_neurons": 3622,
+      "mean_synapses_per_pre": 17.05
+    },
+    "AB(L)": {
+      "synapses": 6291,
+      "distinct_pre_neurons": 137,
+      "distinct_post_neurons": 2181,
+      "mean_synapses_per_pre": 45.92
+    },
+    "MesoLN(L)": {
+      "synapses": 5248,
+      "distinct_pre_neurons": 705,
+      "distinct_post_neurons": 3983,
+      "mean_synapses_per_pre": 7.44
+    },
+    "ProLN(L)": {
+      "synapses": 5234,
+      "distinct_pre_neurons": 464,
+      "distinct_post_neurons": 3068,
+      "mean_synapses_per_pre": 11.28
+    },
+    "MesoAN(R)": {
+      "synapses": 4631,
+      "distinct_pre_neurons": 356,
+      "distinct_post_neurons": 2579,
+      "mean_synapses_per_pre": 13.01
+    },
+    "MesoAN(L)": {
+      "synapses": 2416,
+      "distinct_pre_neurons": 326,
+      "distinct_post_neurons": 1780,
+      "mean_synapses_per_pre": 7.41
+    },
+    "AbN4(L)": {
+      "synapses": 1864,
+      "distinct_pre_neurons": 156,
+      "distinct_post_neurons": 711,
+      "mean_synapses_per_pre": 11.95
+    },
+    "ProLN(R)": {
+      "synapses": 1612,
+      "distinct_pre_neurons": 232,
+      "distinct_post_neurons": 1277,
+      "mean_synapses_per_pre": 6.95
+    },
+    "CRN": {
+      "synapses": 983,
+      "distinct_pre_neurons": 228,
+      "distinct_post_neurons": 768,
+      "mean_synapses_per_pre": 4.31
+    },
+    "VProN(L)": {
+      "synapses": 542,
+      "distinct_pre_neurons": 63,
+      "distinct_post_neurons": 349,
+      "mean_synapses_per_pre": 8.6
+    },
+    "CvN(R)": {
+      "synapses": 518,
+      "distinct_pre_neurons": 51,
+      "distinct_post_neurons": 250,
+      "mean_synapses_per_pre": 10.16
+    },
+    "AbN1(R)": {
+      "synapses": 469,
+      "distinct_pre_neurons": 47,
+      "distinct_post_neurons": 388,
+      "mean_synapses_per_pre": 9.98
+    },
+    "AbN1(L)": {
+      "synapses": 454,
+      "distinct_pre_neurons": 72,
+      "distinct_post_neurons": 378,
+      "mean_synapses_per_pre": 6.31
+    },
+    "CvN(L)": {
+      "synapses": 427,
+      "distinct_pre_neurons": 75,
+      "distinct_post_neurons": 294,
+      "mean_synapses_per_pre": 5.69
+    },
+    "ProAN(R)": {
+      "synapses": 413,
+      "distinct_pre_neurons": 88,
+      "distinct_post_neurons": 385,
+      "mean_synapses_per_pre": 4.69
+    },
+    "AbN2(L)": {
+      "synapses": 392,
+      "distinct_pre_neurons": 49,
+      "distinct_post_neurons": 323,
+      "mean_synapses_per_pre": 8.0
+    },
+    "DProN(R)": {
+      "synapses": 341,
+      "distinct_pre_neurons": 60,
+      "distinct_post_neurons": 288,
+      "mean_synapses_per_pre": 5.68
+    },
+    "DProN(L)": {
+      "synapses": 307,
+      "distinct_pre_neurons": 64,
+      "distinct_post_neurons": 286,
+      "mean_synapses_per_pre": 4.8
+    },
+    "AbN3(L)": {
+      "synapses": 293,
+      "distinct_pre_neurons": 73,
+      "distinct_post_neurons": 211,
+      "mean_synapses_per_pre": 4.01
+    },
+    "AbN3(R)": {
+      "synapses": 263,
+      "distinct_pre_neurons": 46,
+      "distinct_post_neurons": 158,
+      "mean_synapses_per_pre": 5.72
+    },
+    "ProAN(L)": {
+      "synapses": 241,
+      "distinct_pre_neurons": 54,
+      "distinct_post_neurons": 218,
+      "mean_synapses_per_pre": 4.46
+    },
+    "AbN2(R)": {
+      "synapses": 234,
+      "distinct_pre_neurons": 46,
+      "distinct_post_neurons": 175,
+      "mean_synapses_per_pre": 5.09
+    },
+    "ProCN(L)": {
+      "synapses": 153,
+      "distinct_pre_neurons": 32,
+      "distinct_post_neurons": 112,
+      "mean_synapses_per_pre": 4.78
+    },
+    "VProN(R)": {
+      "synapses": 126,
+      "distinct_pre_neurons": 30,
+      "distinct_post_neurons": 107,
+      "mean_synapses_per_pre": 4.2
+    },
+    "PrN(L)": {
+      "synapses": 93,
+      "distinct_pre_neurons": 20,
+      "distinct_post_neurons": 82,
+      "mean_synapses_per_pre": 4.65
+    },
+    "ProCN(R)": {
+      "synapses": 14,
+      "distinct_pre_neurons": 5,
+      "distinct_post_neurons": 14,
+      "mean_synapses_per_pre": 2.8
+    },
+    "PrN(R)": {
+      "synapses": 12,
+      "distinct_pre_neurons": 5,
+      "distinct_post_neurons": 12,
+      "mean_synapses_per_pre": 2.4
+    }
+  },
+  "generated_at": "2026-09-20T08:40:31+08:00",
+  "notes": "基于 syn-partners 全量（minconf=0.5）聚合。primary_post 是 post 侧的脑区归属；<unspecified> 表示坐标不在任何已标 ROI 内。body_pre/body_post 为 body id（对应 annotations.json 里的 body）。"
+}
