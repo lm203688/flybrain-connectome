@@ -66,7 +66,7 @@ has `numpy` and `pyarrow`; the toolkit itself has no dependencies.
 
 ---
 
-## 2. The 17 tools
+## 2. The 21 tools
 
 **Real-connectome queries** — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`;
 `export_swarm_motifs` works from the bundled snapshot (only `refresh=true`
@@ -80,7 +80,9 @@ reads the data):
 **Generator surface** — offline, served from the derived motif snapshot:
 
 `list_blueprints` · `list_modules` · `list_bio_motifs` ·
-`batch_generate_topologies` · `get_provenance_bundle`
+`batch_generate_topologies` · `get_provenance_bundle` ·
+`list_stacked_blueprints` · `get_stacked_feasibility` ·
+`list_neuropils` · `get_neuropil_detail`
 
 Tool schemas are authoritative in source: `TOOLS` in
 `flybrain-connectome-mcp/mcp_connectome/server.py`. Do not invent tool names —
