@@ -62,6 +62,41 @@ ARGS = {
     "list_presets": {},
     "get_preset": {"name": "cognitive_animal"},
     "apply_preset": {"name": "minimal_reflex", "overrides": {"seed": 100}},
+    # Phase 5: SwarmLabs integration tools
+    "organism_to_swarmlabs": {
+        "name": "test_swarm",
+        "organism_result": {
+            "status": "success",
+            "organism": {"organism": {"nodes": [], "edges": []}},
+            "stats": {},
+            "preset_name": "minimal_reflex",
+        },
+    },
+    "get_module_agent_roles": {},
+    # Phase 6: Virtual organism market tools
+    "save_market_organism": {
+        "name": "test_market_organism",
+        "module_spec": {"modules": ["sensory", "memory", "motor"], "seed": 42},
+        "description": "test entry",
+        "tags": ["test", "minimal"],
+        "author": "ci-test",
+    },
+    "load_market_organism": {"name": "test_market_organism"},
+    "list_market_organisms": {"sort_by": "name", "limit": 10},
+    "rate_market_organism": {"name": "test_market_organism", "score": 4.5, "comment": "good", "rater": "ci-test"},
+    "search_market_organisms": {"query": "test", "limit": 5},
+    "delete_market_organism": {"name": "test_market_organism"},
+    # Phase 8: 组合规则 middleware
+    "list_combination_rules": {},
+    "validate_combination": {"combos": [
+        {"from_category": "sensory_input", "to_category": "recurrent_memory",
+         "from_superclass": "ol_sensory", "to_superclass": "ol_intrinsic"},
+    ]},
+    "expand_organism": {"spec": {"modules": [
+        {"category": "recurrent_memory", "copies": 2},
+        {"category": "sensory_input", "copies": 1},
+    ]}},
+    "get_multiplier_metrics": {},
 }
 
 DATA_TOOLS = {
@@ -75,7 +110,15 @@ JSON_TOOLS = {"export_swarm_motifs", "list_blueprints", "list_modules",
               "list_bio_motifs", "batch_generate_topologies",
               "get_provenance_bundle", "check_module_compatibility",
               "compose_virtual_organism", "list_virtual_organisms",
-              "list_presets", "get_preset", "apply_preset"}
+              "list_presets", "get_preset", "apply_preset",
+              # Phase 5/6
+              "organism_to_swarmlabs", "get_module_agent_roles",
+              "save_market_organism", "load_market_organism",
+              "list_market_organisms", "rate_market_organism",
+              "search_market_organisms", "delete_market_organism",
+              # Phase 8: 组合规则 middleware
+              "list_combination_rules", "validate_combination",
+              "expand_organism", "get_multiplier_metrics"}
 
 
 def _speak(python: str, env: dict, reqs: list[dict], timeout: int):

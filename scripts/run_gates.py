@@ -108,11 +108,21 @@ def main() -> int:
         if not os.environ.get("FLYBRAIN_DATA_DIR"):
             print("-" * 72)
             print("    (--with-data requested but FLYBRAIN_DATA_DIR is unset — skipping)")
-            results.append(("6/6 flybrain verify", True))
+            results.append(("6/7 flybrain verify", True))
         else:
-            results.append(("6/6 flybrain verify", run(
-                "GATE 6/6 — end-to-end smoke test against the real connectome",
+            results.append(("6/7 flybrain verify", run(
+                "GATE 6/7 — end-to-end smoke test against the real connectome",
                 [py, str(ROOT / "flybrain_cli.py"), "verify"])[0]))
+
+    # ---- Gate 7: module architecture (Phase 8) ----
+    results.append(("7/7 module arch", run(
+        "GATE 7/7 — neuropil modules + worm data + combinator middleware + fingerprints + HMAC",
+        [py, str(SCRIPTS / "check_module_architecture.py")])[0]))
+
+    # ---- Gate 8: physical tiering (Phase 9) ----
+    results.append(("8/8 physical tiering", run(
+        "GATE 8/8 — physical tiering architecture (core_bridge + LICENSE clause)",
+        [py, str(SCRIPTS / "check_physical_tiering.py")])[0]))
 
     print("=" * 72)
     print("gate summary")

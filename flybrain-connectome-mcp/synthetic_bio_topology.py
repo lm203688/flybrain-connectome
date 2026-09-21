@@ -1269,6 +1269,20 @@ def _apply_blueprint(nodes: list[dict], edges: list[dict],
         to_prof = rule["to_profile"]
         srcs = leads_by_profile.get(from_prof, [])
         tgts = leads_by_profile.get(to_prof, [])
+        # Phase 4: 变体 profile 前缀匹配
+        # 当 blueprint 规则指定 "sensory" 时，变体 profile "sensory_vision"/"sensory_sound"
+        # 也应匹配（变体是同模块的参数覆盖，功能相同）
+        if not srcs:
+            # Flatten: leads_by_profile[k] is a list of lead IDs, extend not append
+            srcs = []
+            for k, v in leads_by_profile.items():
+                if k == from_prof or k.startswith(from_prof + "_"):
+                    srcs.extend(v)
+        if not tgts:
+            tgts = []
+            for k, v in leads_by_profile.items():
+                if k == to_prof or k.startswith(to_prof + "_"):
+                    tgts.extend(v)
         if not srcs or not tgts:
             continue
         if rule.get("fanout"):

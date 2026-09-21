@@ -96,6 +96,86 @@ jobs:
       - name: "Gate 5 - the generated artifact is real"
         run: python scripts/check_generated_artifact.py --dir /tmp/ci_out --name ci_smoke
 
+      # Phase 4/5/6: variant differentiation, SwarmLabs integration, market CRUD
+      - name: "Gate 6 - Phase 4/5/6 features (variants + SwarmLabs + market)"
+        run: |
+          python -c "
+          import sys, json, os
+          sys.path.insert(0, 'flybrain-connectome-mcp')
+          os.environ['FLYBRAIN_DATA_DIR'] = '/tmp/nonexistent'  # force offline
+
+          from synthetic_bio_topology import MODULE_PROFILES, BLUEPRINTS
+          from module_registry import ModuleFactory, MODULE_REGISTRY, PRESETS
+
+          # 1. Variant true differentiation: same module, different params
+          v_profiles = [k for k in MODULE_PROFILES if any(k.startswith(m + '_') for m in MODULE_REGISTRY)]
+          assert len(v_profiles) >= 3, f'Expected variant profiles, got {v_profiles}'
+          print(f'  variant profiles: {v_profiles[:5]}...')
+
+          # 2. Compose with variants and blueprint
+          result = ModuleFactory.compose_organism({
+              'modules': ['sensory', 'memory', 'motor'],
+              'counts': {'sensory': 3},
+              'variants': {'sensory': ['vision', 'sound', 'touch']},
+              'blueprint': 'hierarchical_deep',
+              'agents_per_module': 3,
+              'seed': 42,
+          })
+          assert result['status'] == 'success', f'compose failed: {result.get(\"error\")}'
+          stats = result['stats']
+          assert stats['total_nodes'] > 0
+          assert stats['blueprint_edges_added'] > 0, 'No blueprint edges added'
+          assert stats['n_variants_applied'] == 3, f'Expected 3 variants, got {stats[\"n_variants_applied\"]}'
+          print(f'  composed: {stats[\"total_nodes\"]} nodes, {stats[\"total_edges\"]} edges, '
+                f'{stats[\"blueprint_edges_added\"]} bp edges, {stats[\"n_variants_applied\"]} variants')
+
+          # 3. SwarmLabs integration
+          from synthetic_bio_topology import build_swarmlabs_config
+          swarm = build_swarmlabs_config(result['organism'])
+          assert swarm['schema_version'] == '1.2.1'
+          assert len(swarm['agents']) > 0
+          assert len(swarm['edges']) > 0
+          assert swarm['validation']['ok'] is True
+          print(f'  swarmlabs: {len(swarm[\"agents\"])} agents, {len(swarm[\"edges\"])} edges, ok={swarm[\"validation\"][\"ok\"]}')
+
+          # 4. Module agent roles mapping
+          roles = ModuleFactory.get_module_agent_roles()
+          assert len(roles) == 19, f'Expected 19 module roles, got {len(roles)}'
+          print(f'  module roles: {len(roles)} modules mapped')
+
+          # 5. Market CRUD
+          market_dir = '/tmp/test_market'
+          os.makedirs(market_dir, exist_ok=True)
+          ModuleFactory.save_market_organism('test_organism', result['organism'], tags=['test', 'ci'])
+          loaded = ModuleFactory.load_market_organism('test_organism')
+          assert loaded['organism']['name'] == 'test_organism'
+          listed = ModuleFactory.list_market_organisms(tag='test')
+          assert len(listed) >= 1
+          rated = ModuleFactory.rate_market_organism('test_organism', 5, 'ci test')
+          assert rated['average_rating'] == 5.0
+          searched = ModuleFactory.search_market_organisms('test')
+          assert len(searched) >= 1
+          ModuleFactory.delete_market_organism('test_organism')
+          print('  market: save/load/list/rate/search/delete all OK')
+
+          # 6. All presets with blueprint still work
+          preset_failures = []
+          for pname in PRESETS:
+              try:
+                  r = ModuleFactory.apply_preset(pname)
+                  if r['status'] != 'success':
+                      preset_failures.append(f'{pname}: {r.get(\"error\")}')
+              except Exception as e:
+                  preset_failures.append(f'{pname}: {type(e).__name__}: {e}')
+          if preset_failures:
+              for f in preset_failures:
+                  print(f'  PRESET FAIL: {f}')
+              sys.exit(1)
+          print(f'  all {len(PRESETS)} presets: PASS')
+
+          print('GATE 6: PASS')
+          "
+
   package:
     name: packaged CLI / pip install .
     runs-on: ubuntu-latest

@@ -8,9 +8,217 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.0.0` | the toolkit as a whole |
+| package | `1.2.2` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
+| combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
+| fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [1.2.2] — 2026-09-21
+
+**Physical tiering mechanism + HMAC anti-forgery + data-driven rule discovery + task-level multiplier redefinition.**
+
+### Added
+- **HMAC-SHA-256 fingerprint signing** (`scripts/fingerprint_organism.py`): service-side
+  keyed signatures make organism fingerprints unforgeable without the server key;
+  SHA-256 remains the unsigned local-dev fallback. New Gate 7 §4b enforces it.
+- **Data-driven combination-rule discovery** (`scripts/data_driven_rules.py`): derives
+  candidate rules directly from the real 27×27 connectome matrix via an independence
+  null model (enrichment + z-score). Output `male_cns/candidate_combination_rules.json`.
+  `module_combinator.audit_rules_against_data()` reconciles the 12 curated rules
+  against the evidence (e.g. `ol_sensory→ol_intrinsic` enrichment 2.76,
+  `visual_projection→visual_centrifugal` 3.38 are data-supported).
+- **Physical tiering bridge** (`flybrain-connectome-mcp/core_bridge.py`) + **Gate 8**:
+  public code prefers the private Tier-2 package `flybrain_core`; bare public install
+  degrades to 31 functional tools (40 − 9 Tier-2-dependent). (Irreversible IP removal
+  from the public git tree is staged separately, pending explicit push confirmation —
+  the files are also in git history from v1.2.0/1.2.1.)
+- **Performance multiplier redefined to task-level** (`scripts/performance_multiplier_tasklevel.py`):
+  A/B/C three-arm framework (organism prior vs random vs none) measuring task success
+  rate / relative latency / structural traceability — replaces the engine-level metric
+  that was negative (SNN 0/24, ESN 0/7).
+
+### Changed
+- Package version 1.2.1 → 1.2.2; combinator schema v1.1 unchanged.
+- `MULTIPLIER_SEMANTICS["performance"]` now honestly states `measured=False` and points
+  to the task-level framework instead of any engine-speed claim.
+
+---
+
+## [1.2.1] — 2026-09-21
+
+**Layer-2 combinator expansion + Tier-2 physical separation.**
+
+Triggered by Kaganovsky / Pașca et al. *Nature* 2026 (DOI
+`10.1038/s41586-026-11032-2`) — human cortical organoids implanted into
+apallial mice integrate to 91.9% cortical volume yet mice still behave as
+mice — direct empirical support for the connectome-determinism thesis
+underpinning Layer-2 combination rules.
+
+### Added
+
+- **5 new paper-anchored combination rules** (`module_combinator.py`,
+  schema v1.1):
+  - `state_gated_combination` — state-gated activation windows
+    (Beiran & Litwin-Kumar 2025, Quian Quiroga 2020)
+  - `inhibitory_balance_gate` — E/I balance range [0.3, 3.0]
+    (Khona & Fiete 2022, Dorkenwald et al. 2024)
+  - `hub_integration` — rich-club hub broadcast (Dorkenwald 2024: 30%
+    fraction)
+  - `hierarchical_attractor_encapsulation` — reusable attractor units
+    (Khona & Fiete 2022)
+  - `homolog_role_alignment` — cross-species wiring-role binding
+    (Throesch 2024, Pașca 2026, Özel & Desplan 2025)
+- **3 new nesting rules**: `inhibitory_wrap`, `attractor_encapsulation`,
+  `cross_species_role_binding`
+- **1 new multiplier semantic**: `cross_species_invariance` — 5/7
+  conserved across fruit fly + worm (71.4%)
+- **Rule-specificity ranking**: `_specificity()` + `find_all_rules()` for
+  handling double-wildcard constraint rules alongside specific rules
+- **`docs/connectome_determinism_papers.md`** — 17-paper literature
+  survey anchoring the new rules
+
+### Changed
+
+- **Physical tier-2 separation**: `lm203688/flybrain-connectome-core`
+  (private repo) now hosts the full IP — MODULE_PROFILES,
+  COMBINATION_RULES / NESTING_RULES / MULTIPLIER_SEMANTICS, all
+  module-discovery scripts + clustering parameters, all data artifacts
+  (`discovered_modules*.json`, `worm_modules.json`, `superclass_matrix.json`),
+  and HMAC signing. The public repo retains functional MIT code but the
+  proprietary rule tables live in the private repo.
+
+### Verified
+
+- Gate 7 updated to accept `MULTIPLIER_SEMANTICS` with ≥3 keys
+- All 6 gates PASS on 1.2.1
+- Layer-2 self-test: 5 combos + 3 nesting chains all validate
+
+### Honest boundary
+
+- Neuropil × Superclass cross-tab requires per-body neuropil membership,
+  which is not in the source data (`body_annotations.somaLocation` is a
+  body-id array, not a neuropil name). Deferred — see
+  `.workbuddy/memory/MEMORY.md`.
+
+## [1.2.0] — 2026-09-21
+
+Data-driven module architecture v2: neuropil-grain module discovery,
+cross-species (C. elegans) lower-bound validation, standardized
+combination middleware, and three-tier anti-plagiarism enforcement.
+Tool count **36 → 40**. Gate count **6 → 7**.
+
+### Added
+
+- **Neuropil-grain module discovery** (`male_cns/discovered_modules_neuropil.json`)
+  — descends the existing superclass (27) analysis to neuropil (146) grain.
+  Merges left/right pairs (146 → 81), clusters on NT(7) + log(synapses) +
+  log(density) via Ward hierarchical clustering, cross-validated by Louvain
+  (Q=0.4704, better than superclass's Q=0.3748). Produces 10 functional
+  units with 100% coverage; 5 cholinergic, 3 histaminergic, 2 dopaminergic.
+  - New script: `scripts/module_discovery/step1b_neuropil_cluster.py`
+
+- **Cross-species lower-bound validation** (`data/worm/worm_modules.json`)
+  — fetches Cook et al. 2019 C. elegans hermaphrodite connectome
+  (302 neurons, 3,671 chemical + 1,090 gap edges) from the
+  Netzschleuder mirror of Emmons Lab data. Runs the same Ward + Louvain
+  pipeline at neuron-node grain, produces 12 units with Q=0.5173.
+  - New script: `scripts/module_discovery/step1c_worm_modules.py`
+  - Explicit cross-species comparison: `sensory → inter → motor` is the
+    conserved skeleton; fruit-fly-specific recurrent memory cores
+    (81%/88% self-loop) do NOT exist in worm at 302 scale — confirming
+    recurrent memory is a large-brain structural inevitability, not a
+    universal module.
+
+- **Module Combinator Middleware** (`flybrain-connectome-mcp/module_combinator.py`)
+  — standardizes layer-2 combination rules with three rule types:
+  1. **CombinationRules** (7 rules) — allowed cross-category connections,
+     data-driven from `cross_superclass_top` in discovered_modules.json
+  2. **NestingRules** (4 rules) — module multi-copy, hierarchical containment,
+     modulation wraps-any, no-self-containment
+  3. **MultiplierSemantics** (3 semantics) — combinatorial (C(19,4)=4032),
+     structural (fault isolation 25/27), performance (**⚠️ unverified**)
+  - New MCP tools: `list_combination_rules`, `validate_combination`,
+    `expand_organism`, `get_multiplier_metrics`
+
+- **Anti-plagiarism three-tier enforcement** (`LICENSE-CLAUSE.md` +
+  `scripts/fingerprint_organism.py`):
+  - **Tier 1 — Open (MIT)**: interfaces, schemas, documentation
+  - **Tier 2 — Closed (Proprietary)**: derived payloads (raw .npy/.feather,
+    worm zips, generated organisms)
+  - **Tier 3 — Service-side (API-key)**: SHA-256 fingerprints per organism,
+    embedded on save; every save_market_organism call now computes
+    `flybrain:organism-v1:<sha256>` fingerprint and stores it in the entry
+
+- **Gate 7: module architecture integrity** (`scripts/check_module_architecture.py`)
+  — 32 checks across neuropil modules, worm data, combinator middleware,
+  fingerprint determinism, LICENSE-CLAUSE content, and MCP tool registration.
+
+### Changed
+
+- **Version bumped** to 1.2.0 across `pyproject.toml`, `server.py`,
+  `api_server.py`, `__init__.py`, `flybrain_cli.py`, `CITATION.cff`.
+- **`.gitignore` extended** with Tier 2/3 entries:
+  `data/worm/raw/*.zip`, `male_cns/virtual_organisms/organism_*.json`,
+  `male_cns/generated_organisms/`, `flybrain-connectome-mcp/module_combinator.cache/`.
+
+### Notable data points
+
+- Neuropil grain: 146 raw → 81 merged → 10 Ward clusters, coverage 100%
+- Worm grain: 302 neurons → 12 clusters, Louvain Q=0.5173
+- Fly Louvain Q=0.4704 (neuropil) > 0.3748 (superclass) — finer grain
+  reveals more structure
+- Worm Louvain Q=0.5173 > fly's 0.4704 — smaller, sparser graph has more
+  community structure (expected)
+- 7 combination rules + 4 nesting rules + 3 multiplier semantics
+- Performance multiplier remains 0/24 SNN + 0/7 ESN (unverified, per
+  project hard constraint)
+
+---
+
+## [1.1.0] — 2026-09-20
+
+Module factory v2: variant true differentiation, SwarmLabs agent-team
+integration, and a virtual-organism market. Tool count **28 → 36**.
+
+### Added
+
+- **Variant true differentiation** — module variants (e.g. `sensory_vision`,
+  `sensory_sound`, `sensory_touch`) now carry real parameter overrides
+  (`reservoir_density`, `recurrent_pct`, `has_inhibition`) injected into
+  `MODULE_PROFILES`. Variants produce measurably different topologies, not
+  just cosmetic labels. Blueprint prefix-matching (`sensory_*` → `sensory`)
+  ensures variant profiles participate in cross-module wiring.
+- **SwarmLabs agent-team integration** (`organism_to_swarmlabs`,
+  `get_module_agent_roles`) — converts any generated organism into a SwarmLabs
+  multi-agent team spec (agents, modules, edges, guardrails, validation,
+  motif_provenance, prov_json). 19 modules mapped to Agent roles.
+- **Virtual-organism market** (`save_market_organism`, `load_market_organism`,
+  `list_market_organisms`, `rate_market_organism`, `search_market_organisms`,
+  `delete_market_organism`) — local file-based CRUD for sharing custom module
+  combinations, with tag filtering, rating (1-5), and keyword search.
+- **Cycle detection softening** — biological recurrent/predictive/reward loops
+  no longer trigger hard conflicts in `check_module_compatibility`; only cycles
+  involving 3+ distinct modules are flagged.
+- **Module factory v2** — 19 modules, 10 presets, nested composition
+  `a+(b+c)`, variant overrides, blueprint stacking.
+
+### Fixed
+
+- **Blueprint prefix matching** — `_apply_blueprint()` now matches variant
+  profiles (`sensory_vision`) to base blueprint rules (`sensory`) via
+  `startswith` prefix check, and flattens list-of-lists with `extend`.
+- **Variant profile field copies** — `capability` and `task_hint_pool` now
+  use `list()` to avoid mutable-reference hash errors.
+
+### Tool count
+
+28 (v1.0.0) → **36** (v1.1.0). New tools: `organism_to_swarmlabs`,
+`get_module_agent_roles`, `save_market_organism`, `load_market_organism`,
+`list_market_organisms`, `rate_market_organism`, `search_market_organisms`,
+`delete_market_organism`.
 
 ---
 

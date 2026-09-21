@@ -66,7 +66,7 @@ has `numpy` and `pyarrow`; the toolkit itself has no dependencies.
 
 ---
 
-## 2. The 28 tools
+## 2. The 40 tools
 
 **Real-connectome queries** — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`;
 `export_swarm_motifs` works from the bundled snapshot (only `refresh=true`
@@ -84,7 +84,12 @@ reads the data):
 `list_stacked_blueprints` · `get_stacked_feasibility` ·
 `list_neuropils` · `get_neuropil_detail` ·
 `get_module` · `check_module_compatibility` · `compose_virtual_organism` · `list_virtual_organisms` ·
-`list_presets` · `get_preset` · `apply_preset`
+`list_presets` · `get_preset` · `apply_preset` ·
+`organism_to_swarmlabs` · `get_module_agent_roles` ·
+`save_market_organism` · `load_market_organism` · `list_market_organisms` ·
+`rate_market_organism` · `search_market_organisms` · `delete_market_organism` ·
+`list_combination_rules` · `validate_combination` · `expand_organism` ·
+`get_multiplier_metrics`
 
 Tool schemas are authoritative in source: `TOOLS` in
 `flybrain-connectome-mcp/mcp_connectome/server.py`. Do not invent tool names —
@@ -151,3 +156,17 @@ payload where JSON is promised.
 | `401` on `/tools` or `/query` | key missing or wrong | set `FLYBRAIN_API_KEY`; `X-API-Key` also works |
 | `ERROR: cannot reach http://127.0.0.1:8799` | service not running, or a stale process holds the port | check `/health`; kill the PID on 8799 and restart |
 | tools missing from the list | client cached an older `tools/list` | restart the client |
+
+---
+
+## 6. Advanced features (v1.1.0+)
+
+- **Module variants** — per-module parameter overrides (`sensory_vision`,
+  `sensory_sound`, etc.) produce measurably different topologies.
+- **SwarmLabs integration** — export any organism as a multi-agent team spec
+  (`organism_to_swarmlabs`).
+- **Virtual-organism market** — save, load, list, rate, search, and delete
+  custom combinations (`save_market_organism` etc.).
+
+See [docs/module_factory.md](module_factory.md) for full usage examples and
+API reference.

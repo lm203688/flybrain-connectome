@@ -3,16 +3,14 @@
   "organism": {
     "schema_version": "1.2.1",
     "kind": "virtual_organism",
-    "generated_utc": "2026-09-20T06:40:22.867409+00:00",
+    "generated_utc": "2026-09-21T14:59:56.424063+00:00",
     "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
     "spec": {
       "n_modules": 2,
       "agents_per_module": 4,
       "module_profiles": {
-        "custom": {
-          "0": "sensory",
-          "1": "motor"
-        }
+        "0": "sensory",
+        "1": "motor"
       },
       "blueprint": "fast_reflex"
     },
@@ -54,7 +52,7 @@
         ],
         "note": "Cross-module edge ratio upper bound. Lower = more isolated. Set by design intent; verified by _verify.py stability check."
       },
-      "generated_utc": "2026-09-20T06:40:22.867432+00:00",
+      "generated_utc": "2026-09-21T14:59:56.424093+00:00",
       "schema_version": "1.2.0"
     },
     "module_profiles": {
@@ -63,8 +61,8 @@
         "description": "High-density input buffer (ol_intrinsic analog)"
       },
       "1": {
-        "name": "memory",
-        "description": "Recurrent working memory (cb_intrinsic analog)"
+        "name": "motor",
+        "description": "Motor output with local inhibition (vnc_intrinsic)"
       }
     },
     "organism": {
@@ -108,36 +106,36 @@
           "id": "m1_a0",
           "role": "cell",
           "module": 1,
-          "profile": "memory",
-          "task_hint": "gp_surrogate_fit"
+          "profile": "motor",
+          "task_hint": "experiment_run"
         },
         {
           "id": "m1_a1",
           "role": "cell",
           "module": 1,
-          "profile": "memory",
-          "task_hint": "prior_recall"
+          "profile": "motor",
+          "task_hint": "numeric_integration"
         },
         {
           "id": "m1_a2",
           "role": "cell",
           "module": 1,
-          "profile": "memory",
-          "task_hint": "state_carry"
+          "profile": "motor",
+          "task_hint": "output_check"
         },
         {
           "id": "m1_a3",
           "role": "cell",
           "module": 1,
-          "profile": "memory",
-          "task_hint": "history_replay"
+          "profile": "motor",
+          "task_hint": "actuation_dispatch"
         },
         {
           "id": "m1_rep",
           "role": "tissue_rep",
           "module": 1,
-          "profile": "memory",
-          "task_hint": "memory_synthesis"
+          "profile": "motor",
+          "task_hint": "output_coordination"
         },
         {
           "id": "coordinator",
@@ -157,7 +155,7 @@
         {
           "from": "m1_rep",
           "to": "m1_rep",
-          "weight": 0.4,
+          "weight": 0.1,
           "kind": "recurrent",
           "module": 1
         },
@@ -183,10 +181,24 @@
           "module": 0
         },
         {
-          "from": "m1_a3",
+          "from": "m1_rep",
           "to": "m1_a2",
-          "weight": 0.37,
-          "kind": "reservoir",
+          "weight": -0.585,
+          "kind": "inhibitory",
+          "module": 1
+        },
+        {
+          "from": "m1_rep",
+          "to": "m1_a3",
+          "weight": -0.284,
+          "kind": "inhibitory",
+          "module": 1
+        },
+        {
+          "from": "m1_rep",
+          "to": "m1_a1",
+          "weight": -0.582,
+          "kind": "inhibitory",
           "module": 1
         },
         {
@@ -206,30 +218,30 @@
         {
           "from": "m0_rep",
           "to": "m1_rep",
-          "weight": 0.15,
+          "weight": 0.55,
           "kind": "reservoir",
           "blueprint": "fast_reflex",
-          "semantic_hint": "async_record"
+          "semantic_hint": "bypass_fast_path"
         }
       ]
     },
     "metrics": {
       "n_nodes": 11,
-      "n_edges": 9,
-      "avg_degree": 1.636,
-      "inhibition_ratio": 0.222,
+      "n_edges": 11,
+      "avg_degree": 2.0,
+      "inhibition_ratio": 0.455,
       "n_modules": 2,
-      "intra_module_edges": 5,
+      "intra_module_edges": 7,
       "inter_module_edges": 4,
-      "modularity_est": 0.556,
+      "modularity_est": 0.636,
       "profile_breakdown": {
         "sensory": {
           "nodes": 5,
           "edges": 5
         },
-        "memory": {
+        "motor": {
           "nodes": 5,
-          "edges": 2
+          "edges": 4
         },
         "uniform": {
           "nodes": 1,
@@ -237,13 +249,133 @@
         }
       }
     },
-    "prov_json": null
+    "prov_json": {
+      "prefix": {
+        "dataprov": "https://ri-se.github.io/dataprov/ontology/dataprov.ttl#",
+        "prov": "http://www.w3.org/ns/prov#",
+        "xsd": "http://www.w3.org/2001/XMLSchema#"
+      },
+      "dataprov:metadata": {
+        "version": "3.0",
+        "created": "2026-09-21T14:59:56.424134Z",
+        "lastModified": "2026-09-21T14:59:56.424395Z",
+        "rootEntityId": "flybrain_organism",
+        "description": "Virtual organism synthesized from MaleCNS v1.0 motifs; blueprints: fast_reflex",
+        "initialSource": "https://flycellatlas.org/male_cns",
+        "tags": []
+      },
+      "entity": {
+        "flybrain_organism": {
+          "prov:type": "dataprov:RootEntity",
+          "prov:atLocation": "https://flycellatlas.org/male_cns"
+        },
+        "entity:MaleCNS_v1.0.tsv": {
+          "prov:type": "dataprov:DataFile",
+          "dataprov:format": "TSV"
+        },
+        "entity:motif:fast_reflex": {
+          "prov:type": "dataprov:DataFile",
+          "dataprov:format": "JSON"
+        },
+        "entity:flybrain_organism": {
+          "prov:type": "dataprov:DataFile",
+          "dataprov:format": "JSON"
+        }
+      },
+      "activity": {
+        "activity:step_1": {
+          "prov:startedAtTime": "2026-09-21T14:59:56.424145+00:00",
+          "dataprov:operation": "blueprint_motif_extraction",
+          "prov:endedAtTime": "2026-09-21T14:59:57.424152+00:00",
+          "dataprov:arguments": "--blueprint=fast_reflex --motif=none --motif-body=None --is-bio-prior=False",
+          "dataprov:drl": 4
+        },
+        "activity:step_2": {
+          "prov:startedAtTime": "2026-09-21T14:59:57.424333+00:00",
+          "dataprov:operation": "virtual_organism_synthesis",
+          "prov:endedAtTime": "2026-09-21T14:59:59.424338+00:00",
+          "dataprov:arguments": "--n-modules=2 --blueprint=fast_reflex",
+          "dataprov:drl": 6
+        }
+      },
+      "agent": {
+        "agent:tool_flybrain-connectome_1.2.0": {
+          "prov:type": "prov:SoftwareAgent",
+          "dataprov:toolName": "flybrain-connectome",
+          "dataprov:toolVersion": "1.2.0"
+        },
+        "agent:FlyCellAtlas": {
+          "prov:type": "prov:Organization",
+          "dataprov:name": "FlyCellAtlas"
+        }
+      },
+      "used": {
+        "_:u_1_0": {
+          "prov:activity": "activity:step_1",
+          "prov:entity": "entity:MaleCNS_v1.0.tsv"
+        },
+        "_:u_2_0": {
+          "prov:activity": "activity:step_2",
+          "prov:entity": "entity:motif:fast_reflex"
+        }
+      },
+      "wasGeneratedBy": {
+        "_:g_1_0": {
+          "prov:entity": "entity:motif:fast_reflex",
+          "prov:activity": "activity:step_1"
+        },
+        "_:g_2_0": {
+          "prov:entity": "entity:flybrain_organism",
+          "prov:activity": "activity:step_2"
+        }
+      },
+      "wasDerivedFrom": {
+        "_:d_1_0_0": {
+          "prov:generatedEntity": "entity:motif:fast_reflex",
+          "prov:usedEntity": "entity:MaleCNS_v1.0.tsv",
+          "prov:activity": "activity:step_1"
+        },
+        "_:d_2_0_0": {
+          "prov:generatedEntity": "entity:flybrain_organism",
+          "prov:usedEntity": "entity:motif:fast_reflex",
+          "prov:activity": "activity:step_2"
+        }
+      },
+      "wasAssociatedWith": {
+        "_:assoc_1": {
+          "prov:activity": "activity:step_1",
+          "prov:agent": "agent:tool_flybrain-connectome_1.2.0"
+        },
+        "_:assoc_2": {
+          "prov:activity": "activity:step_2",
+          "prov:agent": "agent:tool_flybrain-connectome_1.2.0"
+        }
+      },
+      "wasAttributedTo": {
+        "_:attr_0": {
+          "prov:entity": "entity:MaleCNS_v1.0.tsv",
+          "prov:agent": "agent:FlyCellAtlas",
+          "prov:role": "dataset_provider"
+        }
+      },
+      "flybrain:dataset_anchor": {
+        "name": "MaleCNS v1.0",
+        "license": "CC-BY",
+        "total_synapses": 124177617,
+        "annotated_neurons": 166700,
+        "dataset_url": "https://flycellatlas.org/male_cns",
+        "annotation_version": "v1.0",
+        "bio_prior_count": 0,
+        "total_blueprint_count": 1
+      }
+    }
   },
   "stats": {
     "total_nodes": 11,
-    "total_edges": 9,
+    "total_edges": 11,
     "n_modules": 2,
     "n_unique_modules": 2,
+    "n_variants_applied": 0,
     "motif_sources": [],
     "blueprint": "fast_reflex",
     "blueprint_edges_added": 1
@@ -256,6 +388,7 @@
     ],
     "n_modules": 2,
     "conflicts": [],
+    "cycle_warnings": [],
     "cycle_paths": [],
     "motif_sources": [],
     "total_size_range": [
