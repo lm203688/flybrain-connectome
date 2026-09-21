@@ -6,7 +6,7 @@ Verifies:
   2. Worm data files exist and have valid structure (data/worm/worm_modules.json)
   3. Cross-species comparison table is present
   4. Combinator middleware loads and all rules parse
-  5. Fingerprint is deterministic and change-sensitive
+  5. Fingerprint is deterministic, change-sensitive, and HMAC-signable
 
 Exit code 0 on pass, 1 on fail.
 """
@@ -119,6 +119,33 @@ def main() -> int:
             check("real organism fingerprint starts with prefix", real_fp.startswith("flybrain:organism-v1:"))
     except Exception as e:
         check("fingerprint computes", False, str(e))
+
+    # 4b. HMAC signing scheme (unforgeable fingerprints without the server key)
+    print("\n-- 4b. HMAC fingerprint signing (anti-forgery) --")
+    try:
+        from fingerprint_organism import compute_fingerprint, sign_organism, verify_signature
+        org1 = {"name": "test", "modules": [{"name": "sensory", "count": 2}], "seed": 42}
+        unsigned = compute_fingerprint(org1)              # key=None → SHA-256
+        signed_a = compute_fingerprint(org1, key="server-secret")
+        signed_b = compute_fingerprint(org1, key="server-secret")
+        check("HMAC fingerprint stable with same key", signed_a == signed_b)
+        check("HMAC differs from unsigned SHA-256 (key matters)",
+              signed_a != unsigned and signed_a.startswith("flybrain:organism-v1:"))
+        check("unsigned fingerprint stable (backward compat)", unsigned == compute_fingerprint(org1))
+        # sign_organism falls back to unsigned when no key configured locally
+        s = sign_organism(org1)
+        check("sign_organism returns a fingerprint", s["fingerprint"].startswith("flybrain:organism-v1:"))
+        check("sign_organism honest about key absence (local dev)",
+              s["key_present"] is False and s["signed"] is False)
+        # verify_signature: a tampered organism fails
+        tampered = json.loads(json.dumps(org1)); tampered["seed"] = 99
+        vr = verify_signature(tampered, signed_a)
+        check("verify_signature rejects tampered organism", vr["valid"] is False)
+        # verify_signature with the right key accepts
+        vr2 = verify_signature(org1, signed_a, key="server-secret")
+        check("verify_signature accepts authentic organism (keyed)", vr2["valid"] is True)
+    except Exception as e:
+        check("HMAC scheme computes", False, str(e))
 
     # 5. LICENSE-CLAUSE.md present
     print("\n-- 5. Anti-plagiarism documentation --")
