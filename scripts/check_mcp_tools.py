@@ -86,6 +86,17 @@ ARGS = {
     "rate_market_organism": {"name": "test_market_organism", "score": 4.5, "comment": "good", "rater": "ci-test"},
     "search_market_organisms": {"query": "test", "limit": 5},
     "delete_market_organism": {"name": "test_market_organism"},
+    # Phase 8: 组合规则 middleware
+    "list_combination_rules": {},
+    "validate_combination": {"combos": [
+        {"from_category": "sensory_input", "to_category": "recurrent_memory",
+         "from_superclass": "ol_sensory", "to_superclass": "ol_intrinsic"},
+    ]},
+    "expand_organism": {"spec": {"modules": [
+        {"category": "recurrent_memory", "copies": 2},
+        {"category": "sensory_input", "copies": 1},
+    ]}},
+    "get_multiplier_metrics": {},
 }
 
 DATA_TOOLS = {
@@ -104,7 +115,10 @@ JSON_TOOLS = {"export_swarm_motifs", "list_blueprints", "list_modules",
               "organism_to_swarmlabs", "get_module_agent_roles",
               "save_market_organism", "load_market_organism",
               "list_market_organisms", "rate_market_organism",
-              "search_market_organisms", "delete_market_organism"}
+              "search_market_organisms", "delete_market_organism",
+              # Phase 8: 组合规则 middleware
+              "list_combination_rules", "validate_combination",
+              "expand_organism", "get_multiplier_metrics"}
 
 
 def _speak(python: str, env: dict, reqs: list[dict], timeout: int):
