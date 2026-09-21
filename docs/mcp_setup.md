@@ -66,7 +66,7 @@ has `numpy` and `pyarrow`; the toolkit itself has no dependencies.
 
 ---
 
-## 2. The 36 tools
+## 2. The 40 tools
 
 **Real-connectome queries** — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`;
 `export_swarm_motifs` works from the bundled snapshot (only `refresh=true`
@@ -87,7 +87,9 @@ reads the data):
 `list_presets` · `get_preset` · `apply_preset` ·
 `organism_to_swarmlabs` · `get_module_agent_roles` ·
 `save_market_organism` · `load_market_organism` · `list_market_organisms` ·
-`rate_market_organism` · `search_market_organisms` · `delete_market_organism`
+`rate_market_organism` · `search_market_organisms` · `delete_market_organism` ·
+`list_combination_rules` · `validate_combination` · `expand_organism` ·
+`get_multiplier_metrics`
 
 Tool schemas are authoritative in source: `TOOLS` in
 `flybrain-connectome-mcp/mcp_connectome/server.py`. Do not invent tool names —
