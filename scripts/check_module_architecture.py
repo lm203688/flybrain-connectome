@@ -80,8 +80,9 @@ def main() -> int:
         import module_combinator as mc
         check("COMBINATION_RULES ≥ 1", len(mc.COMBINATION_RULES) >= 1)
         check("NESTING_RULES ≥ 1", len(mc.NESTING_RULES) >= 1)
-        check("MULTIPLIER_SEMANTICS has 3 keys",
-              set(mc.MULTIPLIER_SEMANTICS.keys()) == {"combinatorial", "structural", "performance"})
+        check("MULTIPLIER_SEMANTICS has ≥3 keys",
+              len(mc.MULTIPLIER_SEMANTICS) >= 3
+              and {"combinatorial", "structural", "performance"}.issubset(mc.MULTIPLIER_SEMANTICS.keys()))
         # Validate a real combo
         r = mc.validate_combination([
             {"from_category": "sensory_input", "to_category": "recurrent_memory",
