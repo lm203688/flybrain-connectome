@@ -107,6 +107,7 @@ data/worm/raw/*.zip
 # do NOT commit to public repos.
 male_cns/virtual_organisms/organism_*.json
 male_cns/generated_organisms/
+male_cns/virtual_organisms/market/
 
 # Runtime caches for combinator middleware (may hold large lookup tables)
 flybrain-connectome-mcp/__pycache__/
