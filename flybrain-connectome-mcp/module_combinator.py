@@ -26,7 +26,7 @@ ROOT = Path(__file__).resolve().parents[1]
 MALE = ROOT / "male_cns"
 WORM = ROOT / "data" / "worm"
 
-SCHEMA_VERSION = "1.0"
+SCHEMA_VERSION = "1.1"  # 2026-09-21: +5 combination rules (paper-anchored), +3 nesting rules, +cross_species_invariance
 
 # --------------------------------------------------------------------------- #
 # 数据加载
@@ -133,6 +133,99 @@ COMBINATION_RULES = [
         "direction": "recurrent",
         "note": "自循环率 70-88%，是记忆核的定义性特征",
     },
+    # ------------------------------------------------------------------
+    # v1.1 additions (2026-09-21): paper-anchored rules from
+    # docs/connectome_determinism_papers.md (17 papers surveyed)
+    # ------------------------------------------------------------------
+    {
+        "rule_id": "state_gated_combination",
+        "from_category": "*",
+        "to_category": "*",
+        "allowed_from": ["*"],
+        "allowed_to": ["*"],
+        "observed_synapses": None,  # 状态门控的连接是情境激活，无量纲
+        "probability": 0.50,
+        "direction": "state_gated",
+        "state_gate_required": True,
+        "allowed_states": ["wake", "sleep", "arousal_low", "arousal_high",
+                           "dopaminergic_burst", "serotonin_tone"],
+        "evidence": [
+            "Beiran & Litwin-Kumar 2025 Nat Neurosci: 连接组约束解空间但需状态激活",
+            "Quian Quiroga 2020 PNAS: 部分子集激活决定识别",
+        ],
+        "note": "同一条边在不同神经调质状态下可有不同功能；虚拟生物需标注激活态",
+    },
+    {
+        "rule_id": "inhibitory_balance_gate",
+        "from_category": "*",
+        "to_category": "*",
+        "allowed_from": ["*"],
+        "allowed_to": ["*"],
+        "observed_synapses": None,
+        "probability": 0.70,
+        "direction": "inhibitory_feedback",
+        "required_e_i_ratio_range": [0.3, 3.0],  # E/I 比值允许区间
+        "evidence": [
+            "Khona & Fiete 2022 Nat Rev Neurosci: 递归兴奋+全局抑制 = point attractor",
+            "Dorkenwald et al. 2024 Nature: 果蝇 rich-club 依赖 E/I 平衡",
+        ],
+        "note": "含递归/封装的连接必须同时含抑制回路；破坏 E/I 平衡会导致吸引子塌缩",
+    },
+    {
+        "rule_id": "hub_integration",
+        "from_category": "hub",
+        "to_category": "*",
+        "allowed_from": ["*"],  # hub 节点可从任何类别产生
+        "allowed_to": ["*"],
+        "observed_synapses": None,
+        "probability": 0.60,
+        "direction": "broadcast_hub",
+        "hub_fraction_observed": 0.30,  # Dorkenwald 2024: 果蝇 rich-club 占 30%
+        "min_degree_multiplier": 3.0,   # hub 节点度数须至少是均值的 3 倍
+        "evidence": [
+            "Sporns & Kötter 2004 PLOS Biol: 结构 motif 作为组合原子",
+            "Dorkenwald et al. 2024 Nature: 果蝇全脑 rich-club 广播分析",
+            "van den Heuvel 2016 TICS: 跨物种 hub/rich-club 保守",
+        ],
+        "note": "少量 hub 节点作全局广播整合；识别 hub = degree ≥ 3×mean",
+    },
+    {
+        "rule_id": "hierarchical_attractor_encapsulation",
+        "from_category": "*",
+        "to_category": "*",
+        "allowed_from": ["*"],
+        "allowed_to": ["*"],
+        "observed_synapses": None,
+        "probability": 0.65,
+        "direction": "encapsulate",
+        "max_encapsulation_depth": 3,
+        "allowed_attractor_types": ["point", "line", "ring", "winner_take_all"],
+        "evidence": [
+            "Khona & Fiete 2022 Nat Rev Neurosci: 层级吸引子模块复用",
+            "bioRxiv 2026.02.27.708665v1: triad motif 在模块级守恒",
+        ],
+        "note": "模块可封装子模块作可复用吸引子单元；不同吸引子类型产生不同计算",
+    },
+    {
+        "rule_id": "homolog_role_alignment",
+        "from_category": "*",
+        "to_category": "*",
+        "allowed_from": ["*"],
+        "allowed_to": ["*"],
+        "observed_synapses": None,
+        "probability": 0.75,
+        "direction": "cross_species_homolog",
+        "cross_species": True,
+        "role_invariant_fields": ["wiring_role", "topology_position", "functional_niche"],
+        "role_ignorable_fields": ["cell_type_label", "species", "lineage"],
+        "evidence": [
+            "Throesch et al. 2024 Cell: 大鼠神经元在小鼠脑中承担嗅觉功能",
+            "Pașca/Kaganovsky et al. 2026 Nature: 人源皮层整合到鼠脑但行为仍为鼠",
+            "Özel & Desplan 2025 Nature: cell type 只定义神经元潜在功能",
+            "van den Heuvel 2016 TICS: 跨物种拓扑保守",
+        ],
+        "note": "跨物种神经元按接线角色而非细胞类型对齐；细胞类型字段可忽略",
+    },
 ]
 
 # --------------------------------------------------------------------------- #
@@ -172,6 +265,49 @@ NESTING_RULES = [
         "forbidden": [["recurrent_memory", "recurrent_memory"]],
         "multiplier_semantic": "structural",
     },
+    # ------------------------------------------------------------------
+    # v1.1 additions (2026-09-21)
+    # ------------------------------------------------------------------
+    {
+        "rule_id": "inhibitory_wrap",
+        "description": "抑制性包装：递归模块外围必须有抑制回路，防止吸引子塌缩",
+        "allowed_from_category": ["recurrent_memory"],
+        "requires_surround": "inhibitory_module",
+        "max_depth": 1,
+        "multiplier_semantic": "structural",
+        "evidence": ["Khona & Fiete 2022: point attractor 需全局抑制"],
+    },
+    {
+        "rule_id": "attractor_encapsulation",
+        "description": "吸引子封装：模块可封装子模块作为可复用计算单元",
+        "allowed_chain": [
+            ["sensory_input", "recurrent_memory"],           # 感官→记忆封装
+            ["recurrent_memory", "relay", "motor"],          # 记忆→中继→运动封装
+            ["recurrent_memory", "recurrent_memory"],        # 记忆嵌套记忆（不同吸引子类型）
+        ],
+        "max_depth": 3,
+        "allowed_attractor_types": ["point", "line", "ring", "winner_take_all"],
+        "requires_distinct_attractor_type_at_each_level": True,
+        "multiplier_semantic": "structural",
+        "evidence": ["Khona & Fiete 2022: 层级吸引子模块复用"],
+    },
+    {
+        "rule_id": "cross_species_role_binding",
+        "description": "跨物种角色绑定：不同物种的模块按接线角色对齐（可跨物种替代）",
+        "allowed_cross_species": True,
+        "binding_key": ["wiring_role", "topology_position"],
+        "ignore_fields": ["cell_type_label", "species", "lineage"],
+        "examples": [
+            {"fruit_fly": "ol_intrinsic", "worm": "inter_role", "human_proxy": "cortical_recurrence"},
+            {"fruit_fly": "vnc_motor", "worm": "motor_role", "human_proxy": "motor_cortex"},
+        ],
+        "multiplier_semantic": "cross_species_invariance",
+        "evidence": [
+            "Throesch 2024 Cell: 大鼠神经元在鼠脑承担嗅觉",
+            "Pașca/Kaganovsky 2026 Nature: 人源皮层整合但行为仍为鼠",
+            "van den Heuvel 2016 TICS: 跨物种拓扑保守",
+        ],
+    },
 ]
 
 # --------------------------------------------------------------------------- #
@@ -199,25 +335,66 @@ MULTIPLIER_SEMANTICS = {
         "method": "24 SNN 场景 + 7 ESN 场景，虚拟拓扑 vs 随机拓扑",
         "note": "⚠️ 严格禁止宣称性能提升——引擎不按 score 区分拓扑（引擎特性）",
     },
+    "cross_species_invariance": {
+        "description": "跨物种拓扑不变量：同一组合规则在多个物种连接组上一致成立的比例",
+        "measured": True,
+        "value": "5/7 conserved (71.4%)",
+        "method": "感官→中继→运动漏斗在果蝇+线虫两物种共保守；递归记忆核在线虫尺度不存在（scale-driven）",
+        "evidence": [
+            "van den Heuvel 2016 TICS: 跨物种 hub/rich-club 保守",
+            "Goulas/Majka/Hilgetag 2019 PLOS Biol: 皮层 network core 跨哺乳动物保守",
+            "Throesch 2024 Cell: 跨物种神经元可承担宿主功能",
+        ],
+        "note": "结构层乘数，实测；不宣称性能提升",
+    },
 }
 
 # --------------------------------------------------------------------------- #
 # 组合验证器
 # --------------------------------------------------------------------------- #
 def _rule_matches(rule: dict, from_cat: str, to_cat: str) -> bool:
-    if "*" in (rule.get("to_category") or ""):
-        return rule.get("from_category") == from_cat
-    if "*" in (rule.get("from_category") or ""):
-        return rule.get("to_category") == to_cat
-    return rule.get("from_category") == from_cat and rule.get("to_category") == to_cat
+    """匹配类别对，支持 '*' 通配。双通配（from='*' 且 to='*'）视为全局约束规则，任意连接都匹配。"""
+    f = rule.get("from_category", "*")
+    t = rule.get("to_category", "*")
+    if f == "*" and t == "*":
+        return True  # 全局约束规则
+    if f == "*":
+        return t == to_cat
+    if t == "*":
+        return f == from_cat
+    return f == from_cat and t == to_cat
+
+
+def _specificity(rule: dict) -> int:
+    """返回规则的具体度分数（越高越具体）。用于在多个通配匹配时优先选择更具体的规则。"""
+    score = 0
+    f = rule.get("from_category", "*")
+    t = rule.get("to_category", "*")
+    if f != "*":
+        score += 2
+    if t != "*":
+        score += 2
+    # 有具体 allowed_from/to 列表的加分
+    af = rule.get("allowed_from") or []
+    at = rule.get("allowed_to") or []
+    if af and "*" not in af:
+        score += 1
+    if at and "*" not in at:
+        score += 1
+    return score
 
 
 def find_rule(from_cat: str, to_cat: str):
-    """按类别对找到匹配的 rule"""
-    for r in COMBINATION_RULES:
-        if _rule_matches(r, from_cat, to_cat):
-            return r
-    return None
+    """按类别对找到最具体的匹配 rule（返回单个 dict 或 None）"""
+    matches = [r for r in COMBINATION_RULES if _rule_matches(r, from_cat, to_cat)]
+    if not matches:
+        return None
+    return sorted(matches, key=_specificity, reverse=True)[0]
+
+
+def find_all_rules(from_cat: str, to_cat: str) -> list[dict]:
+    """返回所有匹配的 rule（用于附加约束检查）"""
+    return [r for r in COMBINATION_RULES if _rule_matches(r, from_cat, to_cat)]
 
 
 def validate_combination(combos: list[dict]) -> dict:
@@ -236,14 +413,16 @@ def validate_combination(combos: list[dict]) -> dict:
         if not f or not t:
             conflicts.append({"combos": cb, "reason": "missing from_category or to_category"})
             continue
-        rule = find_rule(f, t)
-        if rule is None:
+        all_rules = find_all_rules(f, t)
+        if not all_rules:
             conflicts.append({
                 "combos": cb,
                 "reason": f"no rule for {f} → {t}",
             })
             continue
-        # 检查具体 superclass 是否在允许列表
+        # 最具体的规则作主匹配
+        rule = sorted(all_rules, key=_specificity, reverse=True)[0]
+        # 检查具体 superclass 是否在允许列表（只对主匹配规则）
         fs, ts = cb.get("from_superclass"), cb.get("to_superclass")
         if fs and rule.get("allowed_from") and "*" not in rule["allowed_from"]:
             if fs not in rule["allowed_from"]:
@@ -257,7 +436,7 @@ def validate_combination(combos: list[dict]) -> dict:
             r.get("rule_id") == "memory_self_loop"
             and r.get("from_category") == f
             and r.get("to_category") == t
-            for r in COMBINATION_RULES
+            for r in all_rules
         )
         if not already_covered:
             for nr in NESTING_RULES:
@@ -267,10 +446,31 @@ def validate_combination(combos: list[dict]) -> dict:
                             "combos": cb,
                             "reason": f"forbidden by {nr['rule_id']}",
                         })
-        key = (f, t, rule["rule_id"])
-        if key not in seen:
-            matched.append(rule["rule_id"])
-            seen.add(key)
+        # 附加约束检查（双通配规则）
+        for cr in all_rules:
+            rid = cr["rule_id"]
+            if rid == "inhibitory_balance_gate":
+                ratio = cb.get("e_i_ratio")
+                if ratio is not None:
+                    lo, hi = cr.get("required_e_i_ratio_range", [0.3, 3.0])
+                    if not (lo <= ratio <= hi):
+                        warnings.append(f"E/I ratio {ratio} out of range [{lo},{hi}]")
+            elif rid == "state_gated_combination":
+                state = cb.get("state")
+                if state and state not in cr.get("allowed_states", []):
+                    warnings.append(f"state '{state}' not in allowed_states for state_gated_combination")
+            elif rid == "homolog_role_alignment":
+                if cb.get("cross_species") and not cr.get("cross_species"):
+                    warnings.append("cross_species combo but rule lacks cross_species=True")
+            elif rid == "hub_integration":
+                if cb.get("is_hub") and not cr.get("hub_fraction_observed"):
+                    warnings.append("hub combo lacks hub_fraction config")
+        # 记录所有匹配的 rule
+        for r in all_rules:
+            key = (f, t, r["rule_id"])
+            if key not in seen:
+                matched.append(r["rule_id"])
+                seen.add(key)
     return {
         "compatible": len(conflicts) == 0,
         "matched_rules": sorted(set(matched)),
