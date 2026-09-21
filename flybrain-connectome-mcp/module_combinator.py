@@ -53,6 +53,12 @@ def _load_worm_units():
     return d or {"units": []}
 
 
+def _load_candidate_rules():
+    """Load data-driven candidate rules from male_cns/candidate_combination_rules.json."""
+    d = _load_json(MALE / "candidate_combination_rules.json")
+    return d or {"candidates": []}
+
+
 # --------------------------------------------------------------------------- #
 # 层2.1  CombinationRules — 允许的跨模块连接（数据驱动）
 # --------------------------------------------------------------------------- #
@@ -329,11 +335,13 @@ MULTIPLIER_SEMANTICS = {
         "note": "已验证，是**结构层**（不依赖性能）",
     },
     "performance": {
-        "description": "性能乘数：拓扑改进的实际计算性能提升",
+        "description": "性能乘数（已重定义为任务级，非引擎级）",
         "measured": False,
-        "value": "0/24 SNN + 0/7 ESN（全负）",
-        "method": "24 SNN 场景 + 7 ESN 场景，虚拟拓扑 vs 随机拓扑",
-        "note": "⚠️ 严格禁止宣称性能提升——引擎不按 score 区分拓扑（引擎特性）",
+        "value": "framework_defined，尚未产出数字",
+        "method": "A/B/C 三臂：虚拟生物先验 vs 随机拓扑 vs 无拓扑；测任务成功率/相对推理时延/结构可追溯性",
+        "evidence_engine_level": "引擎级实测为负（SNN 0/24，ESN 0/7）——引擎不按 score 区分拓扑，属引擎特性，不宣称",
+        "framework": "scripts/performance_multiplier_tasklevel.py",
+        "note": "⚠️ 严禁用引擎绝对性能宣称；任务级数字须由 run_ab_comparison 真实产出后方可引用",
     },
     "cross_species_invariance": {
         "description": "跨物种拓扑不变量：同一组合规则在多个物种连接组上一致成立的比例",
@@ -549,6 +557,41 @@ def get_multiplier_metrics(organism_spec: dict | None = None) -> dict:
             "组合乘数（C(19,4)=4032）是纯组合学",
         ],
     }
+
+
+def audit_rules_against_data() -> dict:
+    """
+    把人工提炼的 COMBINATION_RULES 与数据驱动候选规则做对账。
+    返回每条规则的支撑度：data_supported / hypothesis。
+    """
+    cand = _load_candidate_rules().get("candidates", [])
+    lut = {(c["from_superclass"], c["to_superclass"]): c for c in cand}
+    report = []
+    for r in COMBINATION_RULES:
+        af = [x for x in (r.get("allowed_from") or []) if x != "*"]
+        at = [x for x in (r.get("allowed_to") or []) if x != "*"]
+        if not af or not at:
+            report.append({"rule_id": r["rule_id"], "support": "non_pairwise",
+                            "note": "通配规则，无法用成对数据直接对账（如调制广播/状态门控）"})
+            continue
+        supported, checked = 0, 0
+        hits = []
+        for f in af:
+            for t in at:
+                checked += 1
+                c = lut.get((f, t))
+                if c and c["enrichment"] >= 1.5:
+                    supported += 1
+                    hits.append({"pair": f"{f}→{t}", "enrichment": c["enrichment"],
+                                 "observed_pct": c["observed_pct"]})
+        report.append({
+            "rule_id": r["rule_id"],
+            "support": "data_supported" if (checked and supported / checked >= 0.5) else "hypothesis",
+            "supported_pairs": supported,
+            "checked_pairs": checked,
+            "evidence_hits": hits[:5],
+        })
+    return {"schema_version": SCHEMA_VERSION, "audit": report}
 
 
 # --------------------------------------------------------------------------- #
