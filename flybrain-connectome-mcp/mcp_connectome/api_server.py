@@ -123,7 +123,7 @@ class _Handler(BaseHTTPRequestHandler):
             self._send(200, {
                 "status": "ok",
                 "service": "flybrain-connectome",
-                "version": "1.2.1",
+                "version": "1.2.2",
                 "api_keys_configured": len(api_keys),
                 "tools": len(_srv.TOOLS),
             })
