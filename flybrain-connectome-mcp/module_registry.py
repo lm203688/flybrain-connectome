@@ -927,6 +927,17 @@ class ModuleFactory:
             }
 
         stats = compose_result.get("stats", {})
+        # Tier 3: 生成防抄袭指纹
+        try:
+            sys_path = __import__("sys").path
+            _scripts_dir = str(_MARKET_ROOT.parents[1] / "scripts") if "_MARKET_ROOT" in dir() else None
+            if _scripts_dir and _scripts_dir not in sys_path:
+                sys_path.insert(0, _scripts_dir)
+            from fingerprint_organism import compute_fingerprint
+            fingerprint = compute_fingerprint(compose_result)
+        except Exception:
+            fingerprint = "flybrain:organism-v1:unfingerprinted"
+
         entry = {
             "name": name,
             "description": description,
@@ -936,6 +947,7 @@ class ModuleFactory:
                 __import__("datetime").timezone.utc
             ).isoformat(),
             "module_spec": module_spec,
+            "fingerprint": fingerprint,
             "stats": {
                 "total_nodes": stats.get("total_nodes"),
                 "total_edges": stats.get("total_edges"),
