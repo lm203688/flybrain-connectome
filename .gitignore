@@ -95,3 +95,19 @@ Thumbs.db
 *.swp
 male_cns/skeletons-swc/
 male_cns/stacked_organisms/
+
+# ---------------------------------------------------------------------------
+# Anti-plagiarism Tier 2/3: closed-tier data (per LICENSE-CLAUSE.md)
+# ---------------------------------------------------------------------------
+# Raw worm connectome zips (Cook 2019, Emmons Lab mirror) — source data,
+# not redistributed under MIT. Fetch with curl from networks.skewed.de.
+data/worm/raw/*.zip
+
+# User-generated organism instances — contain fingerprinted payloads;
+# do NOT commit to public repos.
+male_cns/virtual_organisms/organism_*.json
+male_cns/generated_organisms/
+
+# Runtime caches for combinator middleware (may hold large lookup tables)
+flybrain-connectome-mcp/__pycache__/
+flybrain-connectome-mcp/module_combinator.cache/
