@@ -462,6 +462,52 @@ TOOLS = [
             "required": ["name"],
         },
     },
+    # ---- Phase 8: 组合规则 middleware (2026-09-21) ----
+    {
+        "name": "list_combination_rules",
+        "description": "列出所有组合规则 (CombinationRule)、嵌套规则 (NestingRule) 与乘数语义 (MultiplierSemantic)。规则源自 discovered_modules.json 与 cross_superclass_top 真实数据。",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "validate_combination",
+        "description": "验证一组模块组合的合法性。输入 [{from_category, to_category, from_superclass?, to_superclass?}]，返回 compatible/warnings/conflicts/matched_rules。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "combos": {
+                    "type": "array",
+                    "items": {"type": "object"},
+                    "description": "模块组合列表，每项含 from_category, to_category 及可选的 from_superclass/to_superclass",
+                },
+            },
+            "required": ["combos"],
+        },
+    },
+    {
+        "name": "expand_organism",
+        "description": "按倍乘语义 (combinatorial/structural/performance) 展开模块副本数。返回 expanded_modules / total_copies / estimated_nodes。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "spec": {
+                    "type": "object",
+                    "properties": {
+                        "modules": {
+                            "type": "array",
+                            "items": {"type": "object"},
+                            "description": "每个模块的 category/copies/superclass",
+                        },
+                    },
+                },
+            },
+            "required": ["spec"],
+        },
+    },
+    {
+        "name": "get_multiplier_metrics",
+        "description": "返回三义乘数的当前实测值：combinatorial (C(19,4)=4032)、structural (故障隔离 25/27)、performance (⚠️ 未经证实)。",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
 ]
 
 
@@ -1048,6 +1094,30 @@ def _delete_market_organism(args):
 
 
 # --------------------------------------------------------------------------- #
+# Phase 8: 组合规则 middleware (module_combinator)
+# --------------------------------------------------------------------------- #
+def _load_combinator():
+    import importlib
+    return importlib.import_module("module_combinator")
+
+
+def _list_combination_rules():
+    return _load_combinator().list_rules()
+
+
+def _validate_combination(args):
+    return _load_combinator().validate_combination(args.get("combos", []))
+
+
+def _expand_organism(args):
+    return _load_combinator().expand_organism(args.get("spec", {}))
+
+
+def _get_multiplier_metrics(args):
+    return _load_combinator().get_multiplier_metrics()
+
+
+# --------------------------------------------------------------------------- #
 # Dispatch
 # --------------------------------------------------------------------------- #
 def handle_call(name, args):
@@ -1136,6 +1206,15 @@ def handle_call(name, args):
         return json.dumps(_search_market_organisms(args), ensure_ascii=False)
     if name == "delete_market_organism":
         return json.dumps(_delete_market_organism(args), ensure_ascii=False)
+    # ---- Phase 8: 组合规则 middleware ----
+    if name == "list_combination_rules":
+        return json.dumps(_list_combination_rules(), ensure_ascii=False)
+    if name == "validate_combination":
+        return json.dumps(_validate_combination(args), ensure_ascii=False)
+    if name == "expand_organism":
+        return json.dumps(_expand_organism(args), ensure_ascii=False)
+    if name == "get_multiplier_metrics":
+        return json.dumps(_get_multiplier_metrics(args), ensure_ascii=False)
     raise ValueError("unknown tool: %s" % name)
 
 
@@ -1158,7 +1237,7 @@ def main():
             resp = {"jsonrpc": "2.0", "id": rid, "result": {
                 "protocolVersion": PROTOCOL_VERSION,
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "drosophila-connectome", "version": "1.1.0"},
+                "serverInfo": {"name": "drosophila-connectome", "version": "1.2.0"},
             }}
         elif method == "notifications/initialized":
             continue
