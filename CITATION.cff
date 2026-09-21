@@ -2,8 +2,8 @@ cff-version: 1.2.0
 message: "If you use this software or the derived motif catalogue in academic work, please cite it as below."
 title: "flybrain-connectome: traceable synthetic bio-topology generation from a real brain connectome"
 type: software
-version: 1.2.0
-date-released: "2026-09-20"
+version: 1.2.2
+date-released: "2026-09-21"
 license: MIT
 abstract: >-
   A zero-dependency toolkit that converts the real male Drosophila brain
