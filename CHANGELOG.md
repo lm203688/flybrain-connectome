@@ -8,11 +8,68 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.2.0` | the toolkit as a whole |
+| package | `1.2.1` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
+| combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
 
 ---
+
+## [1.2.1] — 2026-09-21
+
+**Layer-2 combinator expansion + Tier-2 physical separation.**
+
+Triggered by Kaganovsky / Pașca et al. *Nature* 2026 (DOI
+`10.1038/s41586-026-11032-2`) — human cortical organoids implanted into
+apallial mice integrate to 91.9% cortical volume yet mice still behave as
+mice — direct empirical support for the connectome-determinism thesis
+underpinning Layer-2 combination rules.
+
+### Added
+
+- **5 new paper-anchored combination rules** (`module_combinator.py`,
+  schema v1.1):
+  - `state_gated_combination` — state-gated activation windows
+    (Beiran & Litwin-Kumar 2025, Quian Quiroga 2020)
+  - `inhibitory_balance_gate` — E/I balance range [0.3, 3.0]
+    (Khona & Fiete 2022, Dorkenwald et al. 2024)
+  - `hub_integration` — rich-club hub broadcast (Dorkenwald 2024: 30%
+    fraction)
+  - `hierarchical_attractor_encapsulation` — reusable attractor units
+    (Khona & Fiete 2022)
+  - `homolog_role_alignment` — cross-species wiring-role binding
+    (Throesch 2024, Pașca 2026, Özel & Desplan 2025)
+- **3 new nesting rules**: `inhibitory_wrap`, `attractor_encapsulation`,
+  `cross_species_role_binding`
+- **1 new multiplier semantic**: `cross_species_invariance` — 5/7
+  conserved across fruit fly + worm (71.4%)
+- **Rule-specificity ranking**: `_specificity()` + `find_all_rules()` for
+  handling double-wildcard constraint rules alongside specific rules
+- **`docs/connectome_determinism_papers.md`** — 17-paper literature
+  survey anchoring the new rules
+
+### Changed
+
+- **Physical tier-2 separation**: `lm203688/flybrain-connectome-core`
+  (private repo) now hosts the full IP — MODULE_PROFILES,
+  COMBINATION_RULES / NESTING_RULES / MULTIPLIER_SEMANTICS, all
+  module-discovery scripts + clustering parameters, all data artifacts
+  (`discovered_modules*.json`, `worm_modules.json`, `superclass_matrix.json`),
+  and HMAC signing. The public repo retains functional MIT code but the
+  proprietary rule tables live in the private repo.
+
+### Verified
+
+- Gate 7 updated to accept `MULTIPLIER_SEMANTICS` with ≥3 keys
+- All 6 gates PASS on 1.2.1
+- Layer-2 self-test: 5 combos + 3 nesting chains all validate
+
+### Honest boundary
+
+- Neuropil × Superclass cross-tab requires per-body neuropil membership,
+  which is not in the source data (`body_annotations.somaLocation` is a
+  body-id array, not a neuropil name). Deferred — see
+  `.workbuddy/memory/MEMORY.md`.
 
 ## [1.2.0] — 2026-09-21
 
