@@ -8,10 +8,42 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.2.1` | the toolkit as a whole |
+| package | `1.2.2` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
+| fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [1.2.2] — 2026-09-21
+
+**Physical tiering mechanism + HMAC anti-forgery + data-driven rule discovery + task-level multiplier redefinition.**
+
+### Added
+- **HMAC-SHA-256 fingerprint signing** (`scripts/fingerprint_organism.py`): service-side
+  keyed signatures make organism fingerprints unforgeable without the server key;
+  SHA-256 remains the unsigned local-dev fallback. New Gate 7 §4b enforces it.
+- **Data-driven combination-rule discovery** (`scripts/data_driven_rules.py`): derives
+  candidate rules directly from the real 27×27 connectome matrix via an independence
+  null model (enrichment + z-score). Output `male_cns/candidate_combination_rules.json`.
+  `module_combinator.audit_rules_against_data()` reconciles the 12 curated rules
+  against the evidence (e.g. `ol_sensory→ol_intrinsic` enrichment 2.76,
+  `visual_projection→visual_centrifugal` 3.38 are data-supported).
+- **Physical tiering bridge** (`flybrain-connectome-mcp/core_bridge.py`) + **Gate 8**:
+  public code prefers the private Tier-2 package `flybrain_core`; bare public install
+  degrades to 31 functional tools (40 − 9 Tier-2-dependent). (Irreversible IP removal
+  from the public git tree is staged separately, pending explicit push confirmation —
+  the files are also in git history from v1.2.0/1.2.1.)
+- **Performance multiplier redefined to task-level** (`scripts/performance_multiplier_tasklevel.py`):
+  A/B/C three-arm framework (organism prior vs random vs none) measuring task success
+  rate / relative latency / structural traceability — replaces the engine-level metric
+  that was negative (SNN 0/24, ESN 0/7).
+
+### Changed
+- Package version 1.2.1 → 1.2.2; combinator schema v1.1 unchanged.
+- `MULTIPLIER_SEMANTICS["performance"]` now honestly states `measured=False` and points
+  to the task-level framework instead of any engine-speed claim.
 
 ---
 
