@@ -44,18 +44,36 @@ or semi-proprietary sources. They are NOT redistributed under MIT:
 - `male_cns/generated_organisms/` — batch-generated topology outputs
 - `mcp_connectome/config.json` — API-key-gated runtime config
 
+The **canonical, authoritative copy** of every Tier-2 artifact lives in the
+**private repository `flybrain-connectome-core`** (`lm203688/flybrain-connectome-core`).
+The public repo (`lm203688/flybrain-connectome`, MIT) ships only the Tier-1 code and
+the tiering *mechanism* (`flybrain-connectome-mcp/core_bridge.py`): public code prefers
+the private package when installed and degrades gracefully (9 tools return a
+"Tier-2 required" envelope) when it is absent. This keeps the MIT surface auditable
+while the closed IP never ships in the open package.
+
 The **schemas and interfaces** for these artifacts are open; only the payloads are gated.
 
 ## Tier 3 — Service-side (API-key)
 
 When the HTTP API is deployed at scale:
 
-- All organism downloads are fingerprinted with SHA-256 and delivered as signed JSON
+- All organism downloads are fingerprinted and delivered as signed JSON
 - Raw connectome queries are served only through authenticated endpoints
 - Every organism instance is watermarked with the fingerprint on save
 
-The fingerprint generation script is at `scripts/fingerprint_organism.py`. See the
-`LICENSE-CLAUSE` below for the specific conditions.
+**Two signature schemes** (see `scripts/fingerprint_organism.py`):
+
+- **SHA-256 (unsigned)** — local-dev default. Deterministic and change-sensitive,
+  but *forgeable*: anyone holding the organism payload can recompute it.
+- **HMAC-SHA-256 (signed)** — service-side. Keyed with the server-side signing key
+  (`FLYBRAIN_HMAC_KEY` env or `mcp_connectome/config.json:organism_signing_key`),
+  which is **never shipped in the public repo**. Without that key an attacker cannot
+  produce a valid fingerprint, so a stolen organism cannot be re-signed as authentic.
+
+The output prefix is identical (`flybrain:organism-v1:`) in both cases, so downstream
+consumers need no change. The `sign_organism()` result reports `signed` and `scheme`
+explicitly, so a consumer can never mistake an unsigned organism for an authenticated one.
 
 ## Additional License Conditions
 
