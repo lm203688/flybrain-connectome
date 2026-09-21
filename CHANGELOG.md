@@ -8,9 +8,84 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.1.0` | the toolkit as a whole |
+| package | `1.2.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
+
+---
+
+## [1.2.0] — 2026-09-21
+
+Data-driven module architecture v2: neuropil-grain module discovery,
+cross-species (C. elegans) lower-bound validation, standardized
+combination middleware, and three-tier anti-plagiarism enforcement.
+Tool count **36 → 40**. Gate count **6 → 7**.
+
+### Added
+
+- **Neuropil-grain module discovery** (`male_cns/discovered_modules_neuropil.json`)
+  — descends the existing superclass (27) analysis to neuropil (146) grain.
+  Merges left/right pairs (146 → 81), clusters on NT(7) + log(synapses) +
+  log(density) via Ward hierarchical clustering, cross-validated by Louvain
+  (Q=0.4704, better than superclass's Q=0.3748). Produces 10 functional
+  units with 100% coverage; 5 cholinergic, 3 histaminergic, 2 dopaminergic.
+  - New script: `scripts/module_discovery/step1b_neuropil_cluster.py`
+
+- **Cross-species lower-bound validation** (`data/worm/worm_modules.json`)
+  — fetches Cook et al. 2019 C. elegans hermaphrodite connectome
+  (302 neurons, 3,671 chemical + 1,090 gap edges) from the
+  Netzschleuder mirror of Emmons Lab data. Runs the same Ward + Louvain
+  pipeline at neuron-node grain, produces 12 units with Q=0.5173.
+  - New script: `scripts/module_discovery/step1c_worm_modules.py`
+  - Explicit cross-species comparison: `sensory → inter → motor` is the
+    conserved skeleton; fruit-fly-specific recurrent memory cores
+    (81%/88% self-loop) do NOT exist in worm at 302 scale — confirming
+    recurrent memory is a large-brain structural inevitability, not a
+    universal module.
+
+- **Module Combinator Middleware** (`flybrain-connectome-mcp/module_combinator.py`)
+  — standardizes layer-2 combination rules with three rule types:
+  1. **CombinationRules** (7 rules) — allowed cross-category connections,
+     data-driven from `cross_superclass_top` in discovered_modules.json
+  2. **NestingRules** (4 rules) — module multi-copy, hierarchical containment,
+     modulation wraps-any, no-self-containment
+  3. **MultiplierSemantics** (3 semantics) — combinatorial (C(19,4)=4032),
+     structural (fault isolation 25/27), performance (**⚠️ unverified**)
+  - New MCP tools: `list_combination_rules`, `validate_combination`,
+    `expand_organism`, `get_multiplier_metrics`
+
+- **Anti-plagiarism three-tier enforcement** (`LICENSE-CLAUSE.md` +
+  `scripts/fingerprint_organism.py`):
+  - **Tier 1 — Open (MIT)**: interfaces, schemas, documentation
+  - **Tier 2 — Closed (Proprietary)**: derived payloads (raw .npy/.feather,
+    worm zips, generated organisms)
+  - **Tier 3 — Service-side (API-key)**: SHA-256 fingerprints per organism,
+    embedded on save; every save_market_organism call now computes
+    `flybrain:organism-v1:<sha256>` fingerprint and stores it in the entry
+
+- **Gate 7: module architecture integrity** (`scripts/check_module_architecture.py`)
+  — 32 checks across neuropil modules, worm data, combinator middleware,
+  fingerprint determinism, LICENSE-CLAUSE content, and MCP tool registration.
+
+### Changed
+
+- **Version bumped** to 1.2.0 across `pyproject.toml`, `server.py`,
+  `api_server.py`, `__init__.py`, `flybrain_cli.py`, `CITATION.cff`.
+- **`.gitignore` extended** with Tier 2/3 entries:
+  `data/worm/raw/*.zip`, `male_cns/virtual_organisms/organism_*.json`,
+  `male_cns/generated_organisms/`, `flybrain-connectome-mcp/module_combinator.cache/`.
+
+### Notable data points
+
+- Neuropil grain: 146 raw → 81 merged → 10 Ward clusters, coverage 100%
+- Worm grain: 302 neurons → 12 clusters, Louvain Q=0.5173
+- Fly Louvain Q=0.4704 (neuropil) > 0.3748 (superclass) — finer grain
+  reveals more structure
+- Worm Louvain Q=0.5173 > fly's 0.4704 — smaller, sparser graph has more
+  community structure (expected)
+- 7 combination rules + 4 nesting rules + 3 multiplier semantics
+- Performance multiplier remains 0/24 SNN + 0/7 ESN (unverified, per
+  project hard constraint)
 
 ---
 
