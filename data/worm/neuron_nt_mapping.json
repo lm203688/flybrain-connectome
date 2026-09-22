@@ -1,0 +1,2842 @@
+{
+  "source": "WormAtlas Loer & Rand 2022",
+  "source_url": "https://www.wormatlas.org/images/Ce_NTtables_Loer&Rand2022.xlsx",
+  "n_neurons": 397,
+  "summary": {
+    "ACh": 198,
+    "Glu": 93,
+    "Unknown": 44,
+    "GABA": 37,
+    "5HT": 35,
+    "DA": 16,
+    "ACh (unc-17, no cho-1)": 7,
+    "TA": 7,
+    "unknown monamine*": 2,
+    "OA": 2
+  },
+  "neurons": {
+    "ADAL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ADAR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ADEL": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "ADER": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "ADFL": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "ADFR": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "ADLL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ADLR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AFDL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AFDR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AIAL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AIAR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AIBL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AIBR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AIML": {
+      "neurotransmitters": [
+        "5HT",
+        "Glu"
+      ],
+      "nt1": "5HT",
+      "nt2": "Glu"
+    },
+    "AIMR": {
+      "neurotransmitters": [
+        "5HT",
+        "Glu"
+      ],
+      "nt1": "5HT",
+      "nt2": "Glu"
+    },
+    "AINL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AINR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AIYL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AIYR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AIZL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AIZR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ALA": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "ALML": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ALMR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ALNL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "ALNR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AQR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AS1": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AS2": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AS3": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AS4": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AS5": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AS6": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AS7": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AS8": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AS9": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AS10": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AS11": {
+      "neurotransmitters": [
+        "ACh",
+        "Glu"
+      ],
+      "nt1": "ACh",
+      "nt2": "Glu"
+    },
+    "ASEL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ASER": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ASGL": {
+      "neurotransmitters": [
+        "Glu",
+        "5HT"
+      ],
+      "nt1": "Glu",
+      "nt2": "5HT"
+    },
+    "ASGR": {
+      "neurotransmitters": [
+        "Glu",
+        "5HT"
+      ],
+      "nt1": "Glu",
+      "nt2": "5HT"
+    },
+    "ASHL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ASHR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ASIL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "ASIR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "ASJL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "ASJR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "ASKL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "ASKR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AUAL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AUAR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AVAL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AVAR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AVBL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AVBR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AVDL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AVDR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AVEL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AVER": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AVFL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "AVFR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "AVG": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AVHL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "AVHR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "AVJL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "AVJR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "AVKL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "AVKR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "AVL": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "AVM": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AWAL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "AWAR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "AWBL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AWBR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "AWCL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "AWCR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "BAGL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "BAGR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "BDUL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "BDUR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "CA1": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "CA2": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "CA3": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "CA4": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "CA5": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "CA6": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "CA7": {
+      "neurotransmitters": [
+        "ACh (unc-17, no cho-1)"
+      ],
+      "nt1": "ACh (unc-17, no cho-1)",
+      "nt2": null
+    },
+    "CA8": {
+      "neurotransmitters": [
+        "ACh (unc-17, no cho-1)"
+      ],
+      "nt1": "ACh (unc-17, no cho-1)",
+      "nt2": null
+    },
+    "CA9": {
+      "neurotransmitters": [
+        "ACh (unc-17, no cho-1)"
+      ],
+      "nt1": "ACh (unc-17, no cho-1)",
+      "nt2": null
+    },
+    "CANL": {
+      "neurotransmitters": [
+        "unknown monamine*"
+      ],
+      "nt1": "unknown monamine*",
+      "nt2": null
+    },
+    "CANR": {
+      "neurotransmitters": [
+        "unknown monamine*"
+      ],
+      "nt1": "unknown monamine*",
+      "nt2": null
+    },
+    "CEMDL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "CEMDR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "CEMVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "CEMVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "CEPDL": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "CEPDR": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "CEPVL": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "CEPVR": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "CP0": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "CP1": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "CP2": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "CP3": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "CP4": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "CP5": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "CP6": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "CP7": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "CP8": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "CP9": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "DA1": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DA2": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DA3": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DA4": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DA5": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DA6": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DA7": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DA8": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DA9": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DB1": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DB2": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DB3": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DB4": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DB5": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DB6": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DB7": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DD1": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "DD2": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "DD3": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "DD4": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "DD5": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "DD6": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "DVA": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "DVB": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "DVC": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "DVE": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "DVF": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "DX1": {
+      "neurotransmitters": [
+        "ACh (unc-17, no cho-1)"
+      ],
+      "nt1": "ACh (unc-17, no cho-1)",
+      "nt2": null
+    },
+    "DX2": {
+      "neurotransmitters": [
+        "ACh (unc-17, no cho-1)"
+      ],
+      "nt1": "ACh (unc-17, no cho-1)",
+      "nt2": null
+    },
+    "DX3": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "DX4": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "EF1": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "EF2": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "EF3": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "EF4": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "FLPL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "FLPR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "HOA": {
+      "neurotransmitters": [
+        "TA",
+        "Glu"
+      ],
+      "nt1": "TA",
+      "nt2": "Glu"
+    },
+    "HOB": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "HSNL": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "HSNR": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "I1L": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "I1R": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "I2L": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "I2R": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "I3": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "I4": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "I5": {
+      "neurotransmitters": [
+        "Glu",
+        "5HT"
+      ],
+      "nt1": "Glu",
+      "nt2": "5HT"
+    },
+    "I6": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "IL1DL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "IL1DR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "IL1L": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "IL1R": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "IL1VL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "IL1VR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "IL2DL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "IL2DR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "IL2L": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "IL2R": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "IL2VL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "IL2VR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "LUAL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "LUAR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "M1": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "M2L": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "M2R": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "M3L": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "M3R": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "M4": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "M5": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "MCL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "MCML": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "MCMR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "MCR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "MI": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "NSML": {
+      "neurotransmitters": [
+        "5HT",
+        "ACh"
+      ],
+      "nt1": "5HT",
+      "nt2": "ACh"
+    },
+    "NSMR": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "OLLL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "OLLR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "OLQDL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "OLQDR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "OLQVL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "OLQVR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PCAL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PCAR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PCBL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PCBR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PCCL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PCCR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PDA": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PDB": {
+      "neurotransmitters": [
+        "ACh",
+        "Glu"
+      ],
+      "nt1": "ACh",
+      "nt2": "Glu"
+    },
+    "PDC": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PDEL": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "PDER": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "PGA": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "PHAL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PHAR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PHBL": {
+      "neurotransmitters": [
+        "Glu",
+        "5HT"
+      ],
+      "nt1": "Glu",
+      "nt2": "5HT"
+    },
+    "PHBR": {
+      "neurotransmitters": [
+        "Glu",
+        "5HT"
+      ],
+      "nt1": "Glu",
+      "nt2": "5HT"
+    },
+    "PHCL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PHCR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PLML": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PLMR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PLNL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PLNR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PQR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PVCL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PVCR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PVDL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PVDR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PVM": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "PVNL": {
+      "neurotransmitters": [
+        "ACh (unc-17, no cho-1)",
+        "Glu"
+      ],
+      "nt1": "ACh (unc-17, no cho-1)",
+      "nt2": "Glu"
+    },
+    "PVNR": {
+      "neurotransmitters": [
+        "ACh (unc-17, no cho-1)",
+        "Glu"
+      ],
+      "nt1": "ACh (unc-17, no cho-1)",
+      "nt2": "Glu"
+    },
+    "PVPL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PVPR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PVQL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PVQR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PVR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "PVS": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "PVT": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "PVU": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PVV": {
+      "neurotransmitters": [
+        "ACh",
+        "Glu"
+      ],
+      "nt1": "ACh",
+      "nt2": "Glu"
+    },
+    "PVWL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "PVWR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "PVX": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PVY": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "PVZ": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "R1AL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "R1AR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "R1BL": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "R1BR": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "R2AL": {
+      "neurotransmitters": [
+        "ACh",
+        "GABA"
+      ],
+      "nt1": "ACh",
+      "nt2": "GABA"
+    },
+    "R2AR": {
+      "neurotransmitters": [
+        "ACh",
+        "GABA"
+      ],
+      "nt1": "ACh",
+      "nt2": "GABA"
+    },
+    "R2BL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "R2BR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "R3AL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "R3AR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "R3BL": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "R3BR": {
+      "neurotransmitters": [
+        "5HT"
+      ],
+      "nt1": "5HT",
+      "nt2": null
+    },
+    "R4AL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "R4AR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "R4BL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "R4BR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "R5AL": {
+      "neurotransmitters": [
+        "DA",
+        "Glu"
+      ],
+      "nt1": "DA",
+      "nt2": "Glu"
+    },
+    "R5AR": {
+      "neurotransmitters": [
+        "DA",
+        "Glu"
+      ],
+      "nt1": "DA",
+      "nt2": "Glu"
+    },
+    "R5BL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "R5BR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "R6AL": {
+      "neurotransmitters": [
+        "ACh",
+        "GABA"
+      ],
+      "nt1": "ACh",
+      "nt2": "GABA"
+    },
+    "R6AR": {
+      "neurotransmitters": [
+        "ACh",
+        "GABA"
+      ],
+      "nt1": "ACh",
+      "nt2": "GABA"
+    },
+    "R6BL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "R6BR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "R7AL": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "R7AR": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "R7BL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "R7BR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "R8AL": {
+      "neurotransmitters": [
+        "ACh",
+        "TA"
+      ],
+      "nt1": "ACh",
+      "nt2": "TA"
+    },
+    "R8AR": {
+      "neurotransmitters": [
+        "ACh",
+        "TA"
+      ],
+      "nt1": "ACh",
+      "nt2": "TA"
+    },
+    "R8BL": {
+      "neurotransmitters": [
+        "ACh",
+        "TA"
+      ],
+      "nt1": "ACh",
+      "nt2": "TA"
+    },
+    "R8BR": {
+      "neurotransmitters": [
+        "ACh",
+        "TA"
+      ],
+      "nt1": "ACh",
+      "nt2": "TA"
+    },
+    "R9AL": {
+      "neurotransmitters": [
+        "DA",
+        "Glu"
+      ],
+      "nt1": "DA",
+      "nt2": "Glu"
+    },
+    "R9AR": {
+      "neurotransmitters": [
+        "DA",
+        "Glu"
+      ],
+      "nt1": "DA",
+      "nt2": "Glu"
+    },
+    "R9BL": {
+      "neurotransmitters": [
+        "5HT",
+        "GABA"
+      ],
+      "nt1": "5HT",
+      "nt2": "GABA"
+    },
+    "R9BR": {
+      "neurotransmitters": [
+        "5HT",
+        "GABA"
+      ],
+      "nt1": "5HT",
+      "nt2": "GABA"
+    },
+    "RIAL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "RIAR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "RIBL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RIBR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RICL": {
+      "neurotransmitters": [
+        "OA"
+      ],
+      "nt1": "OA",
+      "nt2": null
+    },
+    "RICR": {
+      "neurotransmitters": [
+        "OA"
+      ],
+      "nt1": "OA",
+      "nt2": null
+    },
+    "RID": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "RIFL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RIFR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RIGL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "RIGR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "RIH": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "RIML": {
+      "neurotransmitters": [
+        "TA",
+        "Glu"
+      ],
+      "nt1": "TA",
+      "nt2": "Glu"
+    },
+    "RIMR": {
+      "neurotransmitters": [
+        "TA",
+        "Glu"
+      ],
+      "nt1": "TA",
+      "nt2": "Glu"
+    },
+    "RIPL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "RIPR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "RIR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RIS": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "RIVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RIVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RMDDL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RMDDR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RMDL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RMDR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RMDVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RMDVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RMED": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "RMEL": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "RMER": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "RMEV": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "RMFL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RMFR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RMGL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "RMGR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "RMHL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "RMHR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SAADL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SAADR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SAAVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SAAVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SABD": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SABVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SABVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SDQL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SDQR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SIADL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SIADR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SIAVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SIAVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SIBDL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SIBDR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SIBVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SIBVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SMBDL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SMBDR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SMBVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SMBVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SMDDL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SMDDR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SMDVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SMDVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SPCL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SPCR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SPDL": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "SPDR": {
+      "neurotransmitters": [
+        "Unknown"
+      ],
+      "nt1": "Unknown",
+      "nt2": null
+    },
+    "SPSoL": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "SPSoR": {
+      "neurotransmitters": [
+        "DA"
+      ],
+      "nt1": "DA",
+      "nt2": null
+    },
+    "SPVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "SPVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "URADL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "URADR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "URAVL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "URAVR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "URBL": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "URBR": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "URXL": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "URXR": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "URYDL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "URYDR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "URYVL": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "URYVR": {
+      "neurotransmitters": [
+        "Glu"
+      ],
+      "nt1": "Glu",
+      "nt2": null
+    },
+    "VA1": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA2": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA3": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA4": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA5": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA6": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA7": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA8": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA9": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA10": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA11": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VA12": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB1": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB2": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB3": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB4": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB5": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB6": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB7": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB8": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB9": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB10": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VB11": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VC1": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VC2": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VC3": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VC4": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "VC5": {
+      "neurotransmitters": [
+        "ACh",
+        "5HT"
+      ],
+      "nt1": "ACh",
+      "nt2": "5HT"
+    },
+    "VC6": {
+      "neurotransmitters": [
+        "ACh"
+      ],
+      "nt1": "ACh",
+      "nt2": null
+    },
+    "VD1": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD2": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD3": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD4": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD5": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD6": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD7": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD8": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD9": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD10": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD11": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD12": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    },
+    "VD13": {
+      "neurotransmitters": [
+        "GABA"
+      ],
+      "nt1": "GABA",
+      "nt2": null
+    }
+  }
+}
