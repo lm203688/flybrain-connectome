@@ -1,40 +1,18 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2",
   "source": "MaleCNS v1.0 (male Drosophila brain connectome), license CC-BY",
-  "generated_utc": "2026-09-22T21:01:00+08:00",
-  "caveat": "Motifs are TOPOLOGY PATTERNS derived from real wiring (inhibitory_hub, reservoir_smallworld, recurrent_feedback) AND from cross-species neuroscience literature (17 additional conceptual patterns). They are descriptions, not raw neuron data. Authoritative 166,700 neurons live in flybrain-connectome-mcp (queried via MCP/HTTP API). New motifs use hub_body=0, hub_type=\"\" to signal they are abstract patterns, not extracted from a specific neuron.",
+  "generated_utc": "2026-09-22T14:51:02Z",
+  "caveat": "Motifs are TOPOLOGY PATTERNS derived from real wiring (3 original extract from MaleCNS v1.0: inhibitory_hub, reservoir_smallworld, recurrent_feedback) AND from cross-species neuroscience literature (37 additional conceptual patterns, hub_body=0). They are descriptions, not raw neuron data. Authoritative 166,700 neurons live in flybrain-connectome-male_cns/ (separate repo). This file only encodes wiring patterns usable by synthetic_bio_topology.",
   "dataset_stats": {
-    "total_synapses": 124177617,
-    "annotated_neurons": 211577,
-    "mean_fanout": 744.9,
-    "mean_fanin": 744.9,
-    "top_hubs": [
-      {
-        "hub_type": "CT1",
-        "hub_body": 10009,
-        "total_synapses": 222215
-      },
-      {
-        "hub_type": "APL",
-        "hub_body": 10540,
-        "total_synapses": 222198
-      },
-      {
-        "hub_type": "APL",
-        "hub_body": 10977,
-        "total_synapses": 221739
-      },
-      {
-        "hub_type": "CT1",
-        "hub_body": 10157,
-        "total_synapses": 186106
-      },
-      {
-        "hub_type": "LPi21",
-        "hub_body": 10066,
-        "total_synapses": 126299
-      }
-    ]
+    "total_motifs": 40,
+    "original_extracted_from_male_cns": 3,
+    "conceptual_patterns": 37,
+    "original_extract": [
+      "inhibitory_hub",
+      "reservoir_smallworld",
+      "recurrent_feedback"
+    ],
+    "conceptual_hub_body_zero": 37
   },
   "motifs": {
     "inhibitory_hub": {
@@ -732,6 +710,346 @@
       "references": [
         "Buzsaki 2002 gamma via gap junctions"
       ]
+    },
+    "pre_presynaptic_inhibition": {
+      "pattern": "pre_presynaptic_inhibition",
+      "biological_role": "Axo-axonic presynaptic inhibition: one neuron modulates the synaptic release of another (e.g. interneuron_lamp → purkinje). Reduces neurotransmitter release at target terminal.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "presynaptic gate agent",
+        "rule": "One agent reduces the pre-synaptic release weight of K target agents by gating factor in [0.2,0.8].",
+        "edge_weight_hint": "multiplicative pre-factor on each gated edge"
+      }
+    },
+    "pre_presynaptic_excitation": {
+      "pattern": "pre_presynaptic_excitation",
+      "biological_role": "Presynaptic facilitation: enhances neurotransmitter release (e.g. serotonergic facilitation on retinal bipolar). Increases release probability.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "serotonin_dopamine",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "presynaptic booster agent",
+        "rule": "One agent boosts release of K target agents by gain in [1.2,2.0].",
+        "edge_weight_hint": "multiplicative post-factor"
+      }
+    },
+    "dendritic_excitatory_synapse": {
+      "pattern": "dendritic_excitatory_synapse",
+      "biological_role": "Excitatory synapse located on dendrites (not somatic): enables compartmental computation and NMDA-dependent spatial sums.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "dendritic excitatory agent",
+        "rule": "Edges land on dendritic compartment of target (weight in [0.3,0.6]).",
+        "edge_weight_hint": "dendritic-only activation"
+      }
+    },
+    "dendritic_inhibitory_synapse": {
+      "pattern": "dendritic_inhibitory_synapse",
+      "biological_role": "GABAergic synapse on dendrites: dendritic shunting / feedback inhibition (e.g. SOM+ dendritic interneurons).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "dendritic inhibitor agent",
+        "rule": "Applies negative-edge gain in [-0.5,-0.2] specifically to dendritic compartment.",
+        "edge_weight_hint": "dendritic shunting weight"
+      }
+    },
+    "axo_dendrite_reciprocal": {
+      "pattern": "axo_dendrite_reciprocal",
+      "biological_role": "Reciprocal (bidirectional) synapse between axon of one neuron and dendrite of another (e.g. retinal bipolar↔horizontal).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate_gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "reciprocal pair",
+        "rule": "Create mutual edges with opposite signs (source→target excitatory, target→source inhibitory).",
+        "edge_weight_hint": "±0.35 with sign flip"
+      }
+    },
+    "lateral_feedback": {
+      "pattern": "lateral_feedback",
+      "biological_role": "Same-layer feedback: neurons at layer L inhibit or excite their lateral peers (e.g. VLAC+ long-range GABA).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "lateral feedback agent",
+        "rule": "Agents in same role cluster form inhibitory feedback loop (weight in [-0.4,-0.15]).",
+        "edge_weight_hint": "lateral negative edge"
+      }
+    },
+    "recurrent_inhibitory": {
+      "pattern": "recurrent_inhibitory",
+      "biological_role": "Recurrent GABAergic loop within a module: fast local inhibition, sharpens winner-take-all.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "recurrent inhibitory agent",
+        "rule": "Each agent connects to random 30% same-module peers with weight in [-0.4,-0.15].",
+        "edge_weight_hint": "intra-cluster inhibitory"
+      }
+    },
+    "recurrent_excitatory": {
+      "pattern": "recurrent_excitatory",
+      "biological_role": "Recurrent excitatory loop: builds attractor states, supports working memory (e.g. CA3 recurrent).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "recurrent excitatory agent",
+        "rule": "Each agent connects to random 25-40% same-module peers with weight in [0.2,0.5].",
+        "edge_weight_hint": "intra-cluster excitatory"
+      }
+    },
+    "disinhibition": {
+      "pattern": "disinhibition",
+      "biological_role": "Inhibition of an inhibitor (inhibiting-inhibition): effectively excites the target. Classic NPV→PV/SST.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "disinhibition gate",
+        "rule": "One agent's inhibition of another inhibitor results in net excitation of that inhibitor's target.",
+        "edge_weight_hint": "two-hop sign flip"
+      }
+    },
+    "shunting_inhibition": {
+      "pattern": "shunting_inhibition",
+      "biological_role": "GABAergic somatic shunting: reduces membrane resistance, decreases gain without shifting threshold.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "gain modulator (shunt)",
+        "rule": "One agent applies multiplicative gain reduction in [0.3,0.7] to K peers.",
+        "edge_weight_hint": "multiplicative gain, not additive"
+      }
+    },
+    "contrast_inhibition": {
+      "pattern": "contrast_inhibition",
+      "biological_role": "Surround suppression: center excitatory, surround inhibitory (retinal ACL amacrine / V1 lateral).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "contrast enhancer",
+        "rule": "Center agent excites, 3-5 surround agents inhibit (weight ±0.3).",
+        "edge_weight_hint": "center-excitatory + surround-inhibitory"
+      }
+    },
+    "feedforward_gating": {
+      "pattern": "feedforward_gating",
+      "biological_role": "Feed-forward gating via fast inhibition: incoming signal gated by an inhibitor receiving the same signal (e.g. thalamic RTN gating).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "signal gate",
+        "rule": "External input splits to gate agent (fast negative) and target agent (excitatory); net gain depends on gate strength.",
+        "edge_weight_hint": "two-pathway with fast negative"
+      }
+    },
+    "temporal_coherence": {
+      "pattern": "temporal_coherence",
+      "biological_role": "Temporal synchrony via STDP-like coupling: neurons that fire together wire together.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "temporal binder",
+        "rule": "Agents synchronize through time-delayed mutual excitation (τ_delay ∈ [20,100ms]).",
+        "edge_weight_hint": "time-locked edge with delay"
+      }
+    },
+    "retrograde_messenger": {
+      "pattern": "retrograde_messenger",
+      "biological_role": "Retrograde signaling: postsynaptic messenger travels backward to presynaptic terminal (e.g. NO, endocannabinoids, climbing fibers).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "no_endocannabinoid",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "retrograde modifier",
+        "rule": "Postsynaptic agent broadcasts a slow modulatory signal backward to all pre-synaptic partners.",
+        "edge_weight_hint": "slow bidirectional modifier"
+      }
+    },
+    "dendritic_computation": {
+      "pattern": "dendritic_computation",
+      "biological_role": "Dendritic spike-driven nonlinear integration: each dendritic branch is a mini-compute unit (NMDA spikes, calcium spikes).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate_gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "branch computer",
+        "rule": "Each agent's dendritic branches are modeled as sub-units that perform local threshold nonlinearity before axonal spike.",
+        "edge_weight_hint": "local nonlinear gates"
+      }
+    },
+    "ephaptic_coupling": {
+      "pattern": "ephaptic_coupling",
+      "biological_role": "Ephaptic coupling: direct electrical influence through extracellular field, no chemical synapse (e.g. hippocampal mossy fiber → CA3).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "field-coupled agent",
+        "rule": "Agents couple via a shared extracellular field (field amplitude in [0.05,0.15] of spike strength).",
+        "edge_weight_hint": "field-coupling factor"
+      }
+    },
+    "astrocyte_neuron_tripartite": {
+      "pattern": "astrocyte_neuron_tripartite",
+      "biological_role": "Tripartite synapse: astrocyte modulates between pre- and post-synaptic neurons (gliotransmitter release, glutamate recycling).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate_serotonin_dopamine",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "triangulation glia",
+        "rule": "A glial agent interposes between pre and post agents, adding a slow positive or negative bias.",
+        "edge_weight_hint": "glia-bias weight in [-0.1,0.1]"
+      }
+    },
+    "gap_junction_inhibitory": {
+      "pattern": "gap_junction_inhibitory",
+      "biological_role": "Gap-junction-mediated inhibitory coupling between GABAergic interneurons (e.g. glycinergic spinal inhibition).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "electrical-sync inhibitor",
+        "rule": "Agents coupled by bidirectional undirected weight (no sign) in [0.2,0.5].",
+        "edge_weight_hint": "electrical bidirectional edge"
+      }
+    },
+    "neuromodulatory_axon": {
+      "pattern": "neuromodulatory_axon",
+      "biological_role": "Long-range neuromodulatory axon projecting from brainstem to specific target region (e.g. horizontal band → thalamus).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "dopamine_serotonin_acetylcholine_noradrenaline",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "long-range modulator",
+        "rule": "One modulator sends weak positive edges (weight in [0.05,0.2]) to all neurons in a target region.",
+        "edge_weight_hint": "weak broad positive edge"
+      }
+    },
+    "short_range_volume": {
+      "pattern": "short_range_volume",
+      "biological_role": "Short-range volume transmission: modulator releases transmitter into local extracellular space, affecting nearby but not synaptically-connected neurons.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "dopamine_serotonin",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "canonical_target": null,
+      "agent_mapping": {
+        "role": "local volume modulator",
+        "rule": "Modulator affects agents within a spatial radius (weight decayed by distance, [0.02,0.1]).",
+        "edge_weight_hint": "distance-decayed weak edge"
+      }
     }
   },
   "how_to_consume": {
@@ -740,29 +1058,49 @@
   },
   "motif_categories": {
     "anatomical": [
+      "axo_axonic",
+      "axo_dendrite_reciprocal",
       "axo_dendritic",
       "axo_somatic",
-      "axo_axonic",
-      "dendro_dendritic"
+      "dendritic_excitatory_synapse",
+      "dendritic_inhibitory_synapse",
+      "dendro_dendritic",
+      "pre_presynaptic_excitation",
+      "pre_presynaptic_inhibition"
     ],
     "functional": [
-      "feedforward_excitatory",
-      "feedforward_inhibitory",
+      "contrast_inhibition",
+      "disinhibition",
       "feedback_excitatory",
       "feedback_inhibitory",
+      "feedforward_excitatory",
+      "feedforward_gating",
+      "feedforward_inhibitory",
+      "lateral_feedback",
       "lateral_inhibitory",
-      "mutual_inhibitory",
       "modulatory_diffuse",
+      "mutual_inhibitory",
+      "recurrent_excitatory",
+      "recurrent_inhibitory",
+      "shunting_inhibition",
+      "temporal_coherence",
       "topographic_mapping"
     ],
     "plasticity": [
-      "stdp_rule",
+      "dendritic_computation",
       "ltp_ltd",
-      "short_term_plasticity"
+      "retrograde_messenger",
+      "short_term_plasticity",
+      "stdp_rule"
     ],
     "specialized": [
-      "volume_transmission",
-      "gap_junction_sync"
+      "astrocyte_neuron_tripartite",
+      "ephaptic_coupling",
+      "gap_junction_inhibitory",
+      "gap_junction_sync",
+      "neuromodulatory_axon",
+      "short_range_volume",
+      "volume_transmission"
     ],
     "original_extracted": [
       "inhibitory_hub",
