@@ -17,6 +17,12 @@ It is a **developer toolkit and research artifact**, not a trained model and
 not a simulation of a fly. Read the [honest boundaries](#honest-boundaries)
 before you quote it.
 
+> **Repo status:** this repository is currently **private** (2026-09-22). It
+> was made private as an immediate mitigation after Tier-2 IP was found in the
+> public git history (see [CHANGELOG v1.3.0](CHANGELOG.md)). The Tier-1 code
+> remains MIT-licensed; a history rewrite is planned to re-publicize it.
+> Authorized collaborators can request access from the owner.
+
 ---
 
 ## What it is / what it is NOT
@@ -63,6 +69,11 @@ Honesty is a feature. The reproducible experiment scripts live in
 
 The toolkit is **standard-library only** — no `requirements.txt`, nothing to
 build. Pick either setup:
+
+> **Note (2026-09-22):** this repo is **private** until the git-history
+> rewrite is complete. You need a GitHub account with access to
+> `lm203688/flybrain-connectome`; the clone commands below still work once
+> you're authenticated (`gh auth login` or SSH keys).
 
 ### A. Clone and run (recommended, verified end-to-end)
 
@@ -393,7 +404,9 @@ generator surface and the packaging, while the data path is proved by
 
 ## License & data provenance
 
-- **Code:** MIT — see [LICENSE](LICENSE).
+- **Code:** MIT — see [LICENSE](LICENSE). The repo is currently **private**
+  (2026-09-22); see [LICENSE-CLAUSE.md](LICENSE-CLAUSE.md) for the 3-tier
+  split and the re-publicization plan.
 - **Connectome data:** MaleCNS v1.0, CC-BY. The 5.63 GB dataset is **not**
   included in this repository. Obtain it from the original publication and set
   `FLYBRAIN_DATA_DIR`. All numbers in this project are derived from that real
