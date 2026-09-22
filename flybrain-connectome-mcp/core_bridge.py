@@ -59,6 +59,8 @@ TIER2_ARTIFACTS = [
     ("scripts/module_discovery/step3_build_library.py", False),
     ("scripts/module_discovery/step4_superclass_neuropil.py", False),
     ("scripts/data_driven_rules.py", False),
+    ("data/worm/neuron_nt_mapping.json", False),
+    ("data/worm/worm_modules_nt_annotated.json", False),
 ]
 
 # A stubbed path is only a stub if it carries no Tier-2 payload. These
