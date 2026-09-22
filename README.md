@@ -301,12 +301,16 @@ MLflow2PROV, and MIT Sloan provenance tooling.
 
 ## Blueprint & module library
 
-**25 blueprints** across three categories, composed from a **10 modules**
-(sensory / memory / motor / integration / attention / working_memory / reward /
-punishment / habit / metacognition). Every blueprint traces to a real motif
-(`inhibitory_hub` / `reservoir_smallworld` / `recurrent_feedback`) or is
-honestly marked `motif: none` (synthetic orchestration, no bio-prior) — 16
-bio-prior, 9 not:
+**25 blueprints** across three categories, composed from **41 modules**:
+**10 cognitive-function modules** (sensory / memory / motor / integration / attention /
+working_memory / reward / punishment / habit / metacognition) + **31 cross-species
+neuron types** (pyramidal cells, PV/SST/VIP interneurons, dopaminergic/serotonergic/
+noradrenergic/cholinergic modulatory neurons, retinal ganglion/bipolar/horizontal/amacrine,
+spinal motor α/γ, cerebellar Purkinje/granule/stellate, striatal MSN, thalamic relay/reticular,
+hippocampal CA1/CA3/DG granule, grid cell, orexin neuron). Every blueprint traces to one of
+**20 topology motifs** (3 original MaleCNS-extracted + 17 conceptual patterns spanning
+anatomical / functional / plasticity / specialized categories) or is honestly marked
+`motif: none` (synthetic orchestration, no bio-prior) — 16 bio-prior, 9 not:
 
 - **5 basic** — flat / hub / ring / layered / random reference topologies
 - **16 biological** — e.g. `predictive_coding_v2` (recurrent_feedback+reward),
