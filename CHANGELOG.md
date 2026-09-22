@@ -67,14 +67,25 @@ content reappears.
   `C:/Users/xing/Desktop/flybrain-tier2-backup-2026-09-22` with
   `MANIFEST.sha256.json` (15/15 round-trip verified).
 
+### Security — visibility change (2026-09-22)
+
+- **Repo made private.** `PATCH /repos/lm203688/flybrain-connectome {"private":true}`
+  succeeded; anonymous access to the API, contents, and
+  `raw.githubusercontent.com` all return 404. This immediately stops public exposure
+  of the Tier-2 files that remain in git history.
+- **README and LICENSE-CLAUSE updated** to note the private status and the
+  re-publicization plan.
+- **Gate 8 unaffected** — it only asserts the *private* repo's visibility, not the
+  main repo's.
+
 ### Known residual
 
-- Files deleted at HEAD are **still reachable in git history** from v1.2.0 / v1.2.1.
-  A full scrub needs a rewritten history plus force-push, which the Contents-API push
-  channel cannot perform and which local `git push` cannot reach (github.com:443
-  blocked from this network). The canonical protected copy is the private repo; the
-  public history remains readable until a scrub is performed from a machine with
-  direct GitHub access.
+- The 14 Tier-2 files deleted at HEAD are **still reachable in git history** from
+  v1.2.0 / v1.2.1. They are now **no longer publicly accessible** (repo is private),
+  but a full scrub requires a history rewrite + force-push, which needs a machine with
+  direct `github.com:443` access (the Contents-API push channel cannot rewrite history,
+  and local `git push` is blocked from this network). The canonical protected copy is
+  the private repo `lm203688/flybrain-connectome-core`.
 
 ---
 
