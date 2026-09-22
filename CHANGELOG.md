@@ -8,11 +8,70 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.2.2` | the toolkit as a whole |
+| package | `1.3.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [1.3.0] — 2026-09-22
+
+**Physical tiering executed — Tier-2 IP is now absent from the public tree.**
+
+Closes the gap left by v1.2.2: the tiering *mechanism* existed, but every Tier-2
+artifact still physically shipped in the MIT repo (all rule tables, data artifacts,
+and discovery pipelines were MIT-licensed in practice). The public tree is now
+genuinely clean — a bare `pip install` exposes 36 of the 40 MCP tools, the combinator
+is a 5.5 KB seam carrying no rule payload, and Gate 8 fails the build if any Tier-2
+content reappears.
+
+### Added
+
+- **`scripts/push_core.py`** — manifest-driven Tier-2 mover with `--verify` / `--push`
+  / `--delete --yes`, driven by `core_bridge.TIER2_ARTIFACTS` as the single source of
+  truth. Content resolves from the local tree, falling back to the outside-repo backup
+  for the stubbed seam (the local copy of `module_combinator.py` is the public stub,
+  not the IP).
+- **`scripts/check_physical_tiering.py` (Gate 8)** — asserts the license declaration,
+  the degradation + tool-count contract (40 − 4 = 36 bare), **physical absence** of
+  every Tier-2 payload, and that the private repo actually holds 15/15 artifacts.
+- **Thin combinator seam** — `module_combinator.py` 29.3 KB → 5.5 KB. The same 10
+  public functions and `SCHEMA_VERSION = "1.1"` survive; every rule lookup delegates to
+  `flybrain_core.module_combinator` or returns a `tier2_required` envelope that names
+  the tool and carries no payload.
+
+### Changed
+
+- Package version 1.2.2 → 1.3.0 (feature: enforced physical isolation + new gate).
+- `core_bridge.CORE_DEPENDENT_TOOLS` corrected 9 → **4**. The earlier figure counted
+  `list_neuropils` / `get_neuropil_detail` and the `MODULE_PROFILES` readers as
+  Tier-2-dependent; they read Tier-1 data (`neuropil_stats.json`, inline profiles) and
+  work bare. Functional tool count is **36**, not 31.
+- `LICENSE-CLAUSE.md` rewritten to match reality: Tier 1 no longer claims the discovery
+  scripts or the full combinator are open; the Tier-2 table lists the 14 relocated
+  artifacts; the stale "9 tools" claim is replaced with 4.
+- `scripts/fingerprint_organism.py` confirmed **Tier 1** and stays public (format +
+  generic key loader only; no proprietary data). Only the signing *key* is Tier 3.
+
+### Security
+
+- **14 Tier-2 artifacts deleted** from the public repo and the working tree: 6 data
+  JSONs, 7 `scripts/module_discovery/` files, and `scripts/data_driven_rules.py`.
+  Empty `scripts/module_discovery/` pruned.
+- **Private repo** `lm203688/flybrain-connectome-core` holds **15/15** artifacts,
+  including the 29.3 KB real combinator, plus a Tier-2 `README.md` and
+  `LICENSE-CLAUSE.md`.
+- Local backup retained **outside** the repo at
+  `C:/Users/xing/Desktop/flybrain-tier2-backup-2026-09-22` with
+  `MANIFEST.sha256.json` (15/15 round-trip verified).
+
+### Known residual
+
+- Files deleted at HEAD are **still reachable in git history** from v1.2.0 / v1.2.1.
+  A full scrub needs a rewritten history plus force-push, which the Contents-API push
+  channel cannot perform. See the follow-up note below.
 
 ---
 
