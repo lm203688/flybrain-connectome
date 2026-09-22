@@ -301,14 +301,21 @@ MLflow2PROV, and MIT Sloan provenance tooling.
 
 ## Blueprint & module library
 
-**25 blueprints** across three categories, composed from **41 modules**:
+**25 blueprints** across three categories, composed from **101 modules**:
 **10 cognitive-function modules** (sensory / memory / motor / integration / attention /
-working_memory / reward / punishment / habit / metacognition) + **31 cross-species
-neuron types** (pyramidal cells, PV/SST/VIP interneurons, dopaminergic/serotonergic/
-noradrenergic/cholinergic modulatory neurons, retinal ganglion/bipolar/horizontal/amacrine,
-spinal motor α/γ, cerebellar Purkinje/granule/stellate, striatal MSN, thalamic relay/reticular,
-hippocampal CA1/CA3/DG granule, grid cell, orexin neuron). Every blueprint traces to one of
-**20 topology motifs** (3 original MaleCNS-extracted + 17 conceptual patterns spanning
+working_memory / reward / punishment / habit / metacognition) + **91 cross-species
+neuron types** spanning cortical pyramidal (L2/3 CX1/CX5, L4b/L4c, L5 basal tuft, L6 reticulo-thalamic,
+L7 temporal, Mayeret) + intermediate interneurons (Calbindin/LAMP/NPH/NPF/VLAC/SST-dendritic/
+SST-somatic/KCN, plus PV/SST/VIP/chandelier/basket) + modulatory systems (dopaminergic
+A9/A11/VMC/VTA/SNC, serotonergic dorsal/ventral/median raphe, noradrenergic LC, cholinergic
+MT/horizontal, histaminergic TM, orexin) + retinal (bipolar cone/rod, amacrine ACL1/ACL2,
+midget/PV ganglion, horizontal) + spinal/cerebellar (α/γ motor, Icc/Ih/Ihp interneurons,
+glycinergic, nociceptive, Purkinje/granule/stellate, inferior olive) + thalamic/basal ganglia
+(LGN/MD/VA/VL/VPL/VPM/RTN, STN, red nucleus, striatal D1/D2 MSN) + limbic/edge
+(hippocampal CA1/CA2/CA3/CA4/granule/subiculum, amygdala BLA/LA, septum, entorhinal L2/L3,
+grid cell) + special senses (pineal, melanopsin, olfactory, vestibular, cochlear outer hair)
++ reactive astrocyte. Every blueprint traces to one of
+**40 topology motifs** (3 original MaleCNS-extracted + 37 conceptual patterns spanning
 anatomical / functional / plasticity / specialized categories) or is honestly marked
 `motif: none` (synthetic orchestration, no bio-prior) — 16 bio-prior, 9 not:
 
