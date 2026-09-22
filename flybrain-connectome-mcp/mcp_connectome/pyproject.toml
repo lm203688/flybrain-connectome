@@ -1,6 +1,6 @@
 [project]
 name = "flybrain-connectome-mcp"
-version = "1.2.2"
+version = "1.3.0"
 description = "Query/analyze the Drosophila MaleCNS connectome via MCP stdio or a zero-dependency HTTP API (apikey auth)."
 readme = "README.md"
 requires-python = ">=3.10"

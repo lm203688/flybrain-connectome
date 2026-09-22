@@ -10,8 +10,8 @@ package) or a local checkout pointed to by $FLYBRAIN_CORE.
 This module is the single seam: public code calls `core_available()` and, when
 False, returns a graceful "Tier-2 required" response instead of crashing or
 leaking the IP. When the private package IS present, the full 40-tool surface is
-active; without it, the Tier-2-dependent tools degrade to a stub (target: 31
-functional tools on a bare public install — 40 minus the 9 Tier-2-dependent
+active; without it, the Tier-2-dependent tools degrade to a stub (36
+functional tools on a bare public install — 40 minus the 4 Tier-2-dependent
 tools).
 
 Nothing in this file embeds Tier-2 content.
@@ -25,11 +25,51 @@ from typing import Any
 
 # Tools whose behaviour depends on Tier-2 IP. On a bare public install these
 # degrade to a stub; with flybrain_core installed they are fully functional.
+# Scoped precisely: only the four combinator tools read the proprietary rule
+# tables (12 combination + 7 nesting rules, 4 multiplier semantics, 27 data-driven
+# candidates). Other developer/module tools were previously listed here but are NOT
+# Tier-2: list_neuropils / get_neuropil_detail read male_cns/neuropil_stats.json
+# (aggregate synapse counts, Tier-1 data), and list_modules / get_module /
+# check_module_compatibility read MODULE_PROFILES in module_registry.py (module
+# definitions and presets, Tier-1 schema/config).
 CORE_DEPENDENT_TOOLS = [
     "list_combination_rules", "validate_combination", "expand_organism",
     "get_multiplier_metrics",
-    "list_neuropils", "get_neuropil_detail", "get_module",
-    "check_module_compatibility", "list_modules",
+]
+
+# Tier-2 artifacts that must NOT ship in the public tree. Single source of
+# truth for Gate 8's absence assertion.
+#
+# stubbed=True  -> a Tier-1 interface stub occupies this path in the public
+#                  repo (the real implementation lives privately)
+# stubbed=False -> the path must be fully absent from the public tree
+TIER2_ARTIFACTS = [
+    ("flybrain-connectome-mcp/module_combinator.py", True),
+    ("data/worm/worm_modules.json", False),
+    ("male_cns/discovered_modules.json", False),
+    ("male_cns/discovered_modules_neuropil.json", False),
+    ("male_cns/superclass_matrix.json", False),
+    ("male_cns/superclass_neuropil_matrix.json", False),
+    ("male_cns/candidate_combination_rules.json", False),
+    ("scripts/module_discovery/README.md", False),
+    ("scripts/module_discovery/step1_build_matrix.py", False),
+    ("scripts/module_discovery/step1b_neuropil_cluster.py", False),
+    ("scripts/module_discovery/step1c_worm_modules.py", False),
+    ("scripts/module_discovery/step2_cluster.py", False),
+    ("scripts/module_discovery/step3_build_library.py", False),
+    ("scripts/module_discovery/step4_superclass_neuropil.py", False),
+    ("scripts/data_driven_rules.py", False),
+    ("data/worm/neuron_nt_mapping.json", False),
+    ("data/worm/worm_modules_nt_annotated.json", False),
+]
+
+# A stubbed path is only a stub if it carries no Tier-2 payload. These
+# identifiers mark proprietary content; their presence means the real
+# implementation leaked back into the public tree.
+TIER2_LEAK_MARKERS = [
+    "COMBINATION_RULES =", "NESTING_RULES =", "MULTIPLIER_SEMANTICS =",
+    "def _load_fly_units", "def _load_neuropil_units", "def _load_worm_units",
+    "def _load_candidate_rules",
 ]
 
 ROOT = Path(__file__).resolve().parents[1]

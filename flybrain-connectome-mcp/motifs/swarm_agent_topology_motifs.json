@@ -1,8 +1,8 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "source": "MaleCNS v1.0 (male Drosophila brain connectome), license CC-BY",
-  "generated_utc": "2026-09-16T22:29:57.040787+00:00",
-  "caveat": "Motifs are TOPOLOGY PATTERNS derived from real wiring; they are descriptions, not the raw neuron data. The authoritative 166,700 neurons live in flybrain-connectome-mcp (queried via MCP/HTTP API).",
+  "generated_utc": "2026-09-22T21:01:00+08:00",
+  "caveat": "Motifs are TOPOLOGY PATTERNS derived from real wiring (inhibitory_hub, reservoir_smallworld, recurrent_feedback) AND from cross-species neuroscience literature (17 additional conceptual patterns). They are descriptions, not raw neuron data. Authoritative 166,700 neurons live in flybrain-connectome-mcp (queried via MCP/HTTP API). New motifs use hub_body=0, hub_type=\"\" to signal they are abstract patterns, not extracted from a specific neuron.",
   "dataset_stats": {
     "total_synapses": 124177617,
     "annotated_neurons": 211577,
@@ -224,10 +224,550 @@
         "role": "module internal memory / stabilization",
         "rule": "For any functional module, connect its output back to its input with recurrent weight = self_recurrence pct (normalized). Keeps the module's prior state alive across steps without external storage."
       }
+    },
+    "axo_dendritic": {
+      "pattern": "axo_dendritic",
+      "biological_role": "Classical chemical synapse: presynaptic axon terminal -> postsynaptic dendrite. Excitatory (glutamate) or inhibitory (GABA).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate_or_gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "anatomical",
+      "direction": "excitatory_or_inhibitory",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_one",
+        "recurrence": false,
+        "plasticity": "fixed"
+      },
+      "source_species": [
+        "drosophila",
+        "c_elegans",
+        "zebrafish",
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Shatz & Kirk 2017",
+        "Markram VSA 2015"
+      ]
+    },
+    "axo_somatic": {
+      "pattern": "axo_somatic",
+      "biological_role": "Presynaptic axon synapses directly onto the soma of a postsynaptic neuron, enabling fast spike-blocker inhibition.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "anatomical",
+      "direction": "inhibitory",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_one",
+        "recurrence": false,
+        "plasticity": "fixed"
+      },
+      "source_species": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Bhatt et al 2017 PNAS axo-somatic in cortex"
+      ]
+    },
+    "axo_axonic": {
+      "pattern": "axo_axonic",
+      "biological_role": "Presynaptic axon synapses onto another presynaptic axon terminal; modulates release probability (presynaptic inhibition).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "anatomical",
+      "direction": "modulatory",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_one",
+        "recurrence": false,
+        "plasticity": "short_term"
+      },
+      "source_species": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Katz 1967",
+        "Chandelier cell presynaptic inhibition"
+      ]
+    },
+    "dendro_dendritic": {
+      "pattern": "dendro_dendritic",
+      "biological_role": "Chemical synapse between dendrites of two neurons (rare but present in retina, cortex).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate_or_gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "anatomical",
+      "direction": "bidirectional",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_one",
+        "recurrence": false,
+        "plasticity": "fixed"
+      },
+      "source_species": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Gross et al 2026 bioRxiv fly synapse types"
+      ]
+    },
+    "feedforward_excitatory": {
+      "pattern": "feedforward_excitatory",
+      "biological_role": "Information flows forward: presynaptic neuron excites postsynaptic neuron in a feedforward chain.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "functional",
+      "direction": "excitatory",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_many",
+        "recurrence": false,
+        "plasticity": "fixed"
+      },
+      "source_species": [
+        "drosophila",
+        "c_elegans",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Canonical cortical column"
+      ]
+    },
+    "feedforward_inhibitory": {
+      "pattern": "feedforward_inhibitory",
+      "biological_role": "Pre-inhibitory: inhibitory neuron excites another inhibitory neuron that then suppresses targets (disinhibition).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "functional",
+      "direction": "inhibitory",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_many",
+        "recurrence": false,
+        "plasticity": "fixed"
+      },
+      "source_species": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "VIP interneuron disinhibition, Lee et al 2010"
+      ]
+    },
+    "feedback_excitatory": {
+      "pattern": "feedback_excitatory",
+      "biological_role": "Self-excitation loop: neuron excites itself or a mutual excitatory partner; supports persistent activity and working memory.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "functional",
+      "direction": "excitatory",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_one",
+        "recurrence": true,
+        "plasticity": "ltp_ltd"
+      },
+      "source_species": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Wilson & Cowan 1972",
+        "Working memory attractor"
+      ]
+    },
+    "feedback_inhibitory": {
+      "pattern": "feedback_inhibitory",
+      "biological_role": "Output inhibits its own pre-synaptic input; stabilizes gain, prevents runaway excitation.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "functional",
+      "direction": "inhibitory",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_one",
+        "recurrence": true,
+        "plasticity": "fixed"
+      },
+      "source_species": [
+        "drosophila",
+        "c_elegans",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Retina feedback inhibition"
+      ]
+    },
+    "lateral_inhibitory": {
+      "pattern": "lateral_inhibitory",
+      "biological_role": "Siblings (same layer/region) inhibit each other; enhances contrast, center-surround, winner-take-all.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "functional",
+      "direction": "inhibitory",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 2,
+        "fan_out": "one_to_many_lateral",
+        "recurrence": false,
+        "plasticity": "fixed"
+      },
+      "source_species": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Huang & Wong 2005",
+        "Retina ON/OFF contrast"
+      ]
+    },
+    "mutual_inhibitory": {
+      "pattern": "mutual_inhibitory",
+      "biological_role": "Two neurons mutually inhibit each other; forms the classic oscillator (flip-flop, theta, gamma rhythms).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "functional",
+      "direction": "inhibitory",
+      "topology_hint": {
+        "n_sources": 2,
+        "n_targets": 2,
+        "fan_out": "reciprocal",
+        "recurrence": true,
+        "plasticity": "short_term"
+      },
+      "source_species": [
+        "drosophila",
+        "c_elegans",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Mackay network model",
+        "Gamma rhythm PING model"
+      ]
+    },
+    "modulatory_diffuse": {
+      "pattern": "modulatory_diffuse",
+      "biological_role": "Modulatory neurons (dopamine/serotonin/NE/ACh) broadcast diffuse signals to vast areas via volume transmission.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "dopamine_or_serotonin_or_na_or_ach",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "functional",
+      "direction": "modulatory",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 50,
+        "fan_out": "broadcast",
+        "recurrence": false,
+        "plasticity": "ltp_ltd"
+      },
+      "source_species": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Dopamine reward prediction error, Schultz 1997"
+      ]
+    },
+    "topographic_mapping": {
+      "pattern": "topographic_mapping",
+      "biological_role": "Spatially ordered projection: input coordinates map to output coordinates (retinotopic, tonotopic, somatotopic).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "functional",
+      "direction": "excitatory",
+      "topology_hint": {
+        "n_sources": 10,
+        "n_targets": 10,
+        "fan_out": "many_to_many_topographic",
+        "recurrence": false,
+        "plasticity": "fixed"
+      },
+      "source_species": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Retinotopic mapping, Hubel & Wiesel 1959"
+      ]
+    },
+    "stdp_rule": {
+      "pattern": "stdp_rule",
+      "biological_role": "Spike-Timing-Dependent Plasticity: if presynaptic fires before postsynaptic -> LTP; reverse -> LTD. Hebbian learning.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "plasticity",
+      "direction": "bidirectional",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_one",
+        "recurrence": false,
+        "plasticity": "stdp"
+      },
+      "source_species": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Bi et al 1998 PNAS",
+        "Srebro & Tishby 2002"
+      ]
+    },
+    "ltp_ltd": {
+      "pattern": "ltp_ltd",
+      "biological_role": "Long-Term Potentiation/Depression: sustained change in synaptic strength over hours-days (consolidation of memory).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "plasticity",
+      "direction": "bidirectional",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_one",
+        "recurrence": false,
+        "plasticity": "ltp_ltd"
+      },
+      "source_species": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Bliss & Lømo 1973 hippocampal LTP"
+      ]
+    },
+    "short_term_plasticity": {
+      "pattern": "short_term_plasticity",
+      "biological_role": "Short-term plasticity (seconds): synaptic facilitation or depression based on recent history. Enables temporal filtering.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "glutamate_or_gaba",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "plasticity",
+      "direction": "bidirectional",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 1,
+        "fan_out": "one_to_one",
+        "recurrence": false,
+        "plasticity": "short_term"
+      },
+      "source_species": [
+        "drosophila",
+        "c_elegans",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "TSVM model, Abbott & Reimer 1996"
+      ]
+    },
+    "volume_transmission": {
+      "pattern": "volume_transmission",
+      "biological_role": "Neuromodulators diffuse through extracellular fluid (not via specific synapses); reach all nearby neurons within a domain.",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "dopamine_or_serotonin_or_orexin_or_na",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "specialized",
+      "direction": "modulatory",
+      "topology_hint": {
+        "n_sources": 1,
+        "n_targets": 100,
+        "fan_out": "broadcast_volume",
+        "recurrence": false,
+        "plasticity": "ltp_ltd"
+      },
+      "source_species": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Bains 2004",
+        "Dopamine volume transmission"
+      ]
+    },
+    "gap_junction_sync": {
+      "pattern": "gap_junction_sync",
+      "biological_role": "Electrical synapse (gap junction) directly couples neurons; enables near-synchronous firing (gamma rhythms, cholinergic interneurons).",
+      "hub_body": 0,
+      "hub_type": "",
+      "hub_superclass": "",
+      "neurotransmitter": "electrical",
+      "fan_out_synapses": 0,
+      "fan_in_synapses": 0,
+      "broadcast_targets": [],
+      "category": "specialized",
+      "direction": "bidirectional",
+      "topology_hint": {
+        "n_sources": 2,
+        "n_targets": 2,
+        "fan_out": "reciprocal_electrical",
+        "recurrence": true,
+        "plasticity": "fixed"
+      },
+      "source_species": [
+        "drosophila",
+        "c_elegans",
+        "mouse",
+        "human"
+      ],
+      "data_source": "conceptual_from_literature",
+      "references": [
+        "Buzsaki 2002 gamma via gap junctions"
+      ]
     }
   },
   "how_to_consume": {
     "keep_independence": "SwarmLabs stores ONLY this JSON; the 166,700 neurons stay in flybrain-connectome-mcp. To refresh, call the MCP tool hub_targets / neuron_outputs or re-run this script.",
     "refresh_command": "FLYBRAIN_DATA_DIR=<male_cns> python extract_motifs.py"
+  },
+  "motif_categories": {
+    "anatomical": [
+      "axo_dendritic",
+      "axo_somatic",
+      "axo_axonic",
+      "dendro_dendritic"
+    ],
+    "functional": [
+      "feedforward_excitatory",
+      "feedforward_inhibitory",
+      "feedback_excitatory",
+      "feedback_inhibitory",
+      "lateral_inhibitory",
+      "mutual_inhibitory",
+      "modulatory_diffuse",
+      "topographic_mapping"
+    ],
+    "plasticity": [
+      "stdp_rule",
+      "ltp_ltd",
+      "short_term_plasticity"
+    ],
+    "specialized": [
+      "volume_transmission",
+      "gap_junction_sync"
+    ],
+    "original_extracted": [
+      "inhibitory_hub",
+      "reservoir_smallworld",
+      "recurrent_feedback"
+    ]
   }
 }

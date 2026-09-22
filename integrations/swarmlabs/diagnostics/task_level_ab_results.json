@@ -1,0 +1,46 @@
+{
+  "config": {
+    "n_nodes": 30,
+    "n_modules": 4,
+    "n_edges": 80,
+    "n_seeds": 30,
+    "n_trials": 10,
+    "delay": 5,
+    "rho": 1.0,
+    "threshold": 0.5
+  },
+  "arms": {
+    "bio_prior": {
+      "n_edges": 25,
+      "task_success": 0.0,
+      "mean_r2": 0.0056271212259010215,
+      "fault_isolation": 0.0,
+      "traceability": 1.0,
+      "latency_ms": 1.5081499994266778
+    },
+    "random": {
+      "n_edges": 25,
+      "task_success": 0.03333333333333333,
+      "mean_r2": 0.04097999471227841,
+      "fault_isolation": 0.25,
+      "traceability": 0.0,
+      "latency_ms": 1.1880299949552864
+    },
+    "no_topology": {
+      "n_edges": 94,
+      "task_success": 0.06666666666666667,
+      "mean_r2": 0.21356827115412755,
+      "fault_isolation": 0.75,
+      "traceability": 0.0,
+      "latency_ms": 1.1701000097673386
+    }
+  },
+  "verdict": {
+    "criteria_met": [
+      "traceability"
+    ],
+    "task_advantage": -0.03333333333333333,
+    "fi_advantage": -0.25,
+    "trace_advantage": 1.0
+  }
+}

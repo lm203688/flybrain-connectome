@@ -39,7 +39,7 @@ import os
 import sys
 from pathlib import Path
 
-PIPELINE_VERSION = "1.2.2"
+PIPELINE_VERSION = "1.3.0"
 SCHEMA_PREFIX = "flybrain:organism-v1"
 PIPELINE_VERSION_TAG = "v1"  # version tag embedded in the fingerprint
 
