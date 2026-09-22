@@ -71,7 +71,10 @@ content reappears.
 
 - Files deleted at HEAD are **still reachable in git history** from v1.2.0 / v1.2.1.
   A full scrub needs a rewritten history plus force-push, which the Contents-API push
-  channel cannot perform. See the follow-up note below.
+  channel cannot perform and which local `git push` cannot reach (github.com:443
+  blocked from this network). The canonical protected copy is the private repo; the
+  public history remains readable until a scrub is performed from a machine with
+  direct GitHub access.
 
 ---
 
