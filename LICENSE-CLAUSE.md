@@ -1,5 +1,12 @@
 # License & Anti-Plagiarism Tiering
 
+> **Current status (2026-09-22):** this repository is **private**. It was
+> made private as an immediate mitigation after Tier-2 IP was found in the
+> public git history (v1.2.0 / v1.2.1). The Tier-1 MIT license below is
+> still in force for anyone who receives access; a history rewrite is
+> planned to re-publicize the Tier-1 layer. See [CHANGELOG v1.3.0](CHANGELOG.md)
+> for details.
+
 This repository uses a **three-tier license split** to maximize open-source reach while
 protecting the data-driven intellectual property that is the actual moat.
 
@@ -133,8 +140,9 @@ The three-tier split exists to:
 - **Protect the moat.** The data-driven module classifications (which are the actual
   IP) are not easily recreated without running the full discovery pipeline on the
   raw payloads, and the fingerprint system provides additional attribution.
-- **Enable open-source reach.** The MIT Tier 1 layer lets the community fork, extend,
-  and audit the code freely.
+- **Enable open-source reach.** The MIT Tier 1 layer is intended to let the community
+  fork, extend, and audit the code freely. *Currently paused* (repo is private since
+  2026-09-22) — a history rewrite is planned to re-publicize Tier 1.
 - **Preserve data sovereignty.** The raw connectome payloads remain with the original
   data owners; we only redistribute schemas, interfaces, and derived summaries.
 
