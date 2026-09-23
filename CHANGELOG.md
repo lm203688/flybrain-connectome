@@ -8,12 +8,85 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.4.0` | the toolkit as a whole |
+| package | `1.5.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 40 units + 50 connection types (new in 1.4.0) |
+| functional-unit library schema | `1.0` | 56 units + 58 connection types (1.4.0; grown in 1.5.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [1.5.0] — 2026-09-23
+
+**Cross-clade coverage: the library stops being mammal-cortex shaped.**
+
+The point of this library is combinatorial coverage of the animal kingdom, not of
+one brain. Four clades carry computational roles that have no vertebrate-cortex
+equivalent, and if they are missing then "compose a virtual organism" silently
+means "compose a mammal". This release adds them: **insect, bird, fish and
+cephalopod** — 35 neuron populations, 16 functional units, 8 connection forms
+and 18 port types.
+
+### Added
+
+- **35 cross-clade neuron populations** in
+  `synthetic_bio_topology.MODULE_PROFILES` (91 → **126** neuron types, 101 → **136**
+  profiles): insect 14 (Kenyon cell, MBON, PPL1/PAM dopaminergic, APL, antennal-lobe
+  projection/local neurons, protocerebral bridge, ellipsoid body, fan-shaped body,
+  noduli, ring neuron, s-LNv, lateral clock neuron, descending neuron) · bird 6
+  (HVC, RA, LMAN, Area X, DLM, NIf) · fish 8 (Mauthner cell, reticulospinal neuron,
+  lateral-line hair cell, ampullary and tuberous electroreceptors, ELL pyramidal
+  cell, electrosensory inhibitory interneuron, pacemaker nucleus neuron) ·
+  cephalopod 7 (vertical-lobe large/amacrine/small cells, superior frontal lobe cell,
+  chromatophore motor neuron, arm motor neuron, arm sensory afferent).
+  `MODULE_REGISTRY` grows 110 → **145** in step.
+
+- **16 cross-clade functional units** (40 → **56**): mushroom-body sparse coding and
+  associative memory, antennal-lobe glomerular processing, central-complex heading
+  (ring attractor) and steering, insect clock pacemaker, birdsong HVC timing / RA
+  motor / basal-ganglia learning loop, Mauthner escape command, passive and active
+  electroreception, electric-organ-discharge pacemaker, cephalopod vertical-lobe
+  learning, chromatophore control, arm motor. Systems covered 13 → **23**.
+
+- **8 connection forms** (50 → **58**), all with a named primary reference:
+  `sparse_expansion_projection`, `global_inhibitory_gain_control`,
+  `neural_chain_sequence`, `efference_copy_cancellation`,
+  `mixed_electrical_chemical_synapse`, `modulatory_gated_plasticity`,
+  `repetitive_activation_lts`, `command_neuron_recruitment`.
+
+- **18 port types** (36 → **54**): skylight compass, ampullary/tuberous electric,
+  lateral line, startle auditory, sparse odour code, learned olfactory valence,
+  heading / steering / ego-speed, clock phase, associative memory, song / escape /
+  chromatophore / arm / EOD motor, efference copy.
+
+- **Two more canonical demo chains**, both validated by Gate 9 every run:
+  `demo_insect_olfactory_navigation` (antennal lobe → sparse code → learned valence →
+  central complex heading/steering, clock-biased, with an intentional heading↔steering
+  loop) and `demo_electrosensory_escape` (EOD pacemaker → efference-copy cancellation
+  → electrolocation, plus a passive-electric cue into the escape command).
+  `functional_units.py --demo mammal|insect|electrosensory|all`.
+
+### Changed
+
+- Gate 9 grew from 7 to **10 fail-closed injections** (efference-copy form fed by a
+  non-efference source; cross-clade chain through a non-existent out-port;
+  cross-clade chain validated in strict interior-sub-chain mode), and now asserts
+  clade coverage, that every v1.4.1 form is actually wired by a unit or a demo
+  chain, and that all three demo chains compose deterministically.
+- `ephaptic_coupling` span corrected `intra_unit` → `either`: a field does not
+  respect a unit boundary, and the electric organ drives its own receptors with it.
+- Connection-library `source` string is now computed from the data instead of
+  restating a stale "40 forms + 10 new".
+
+### Honest boundary
+
+The 35 new neuron types and all 16 new units are **curated literature summaries**
+(`provenance.extracted_from_malecns = false`), not connectome-extracted, and not a
+claim that the clade list is exhaustive. Allen's mouse atlas alone has 5,322 cell
+types; this library is a deliberately conservative compositional scaffold. Insect,
+bird, fish and cephalopod are represented by their *most computationally
+distinctive* circuits, not by complete inventories.
 
 ---
 
