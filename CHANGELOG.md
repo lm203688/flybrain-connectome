@@ -8,13 +8,77 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.8.0` | the toolkit as a whole |
+| package | `1.9.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 82 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0 and 1.8.0) |
+| functional-unit library schema | `1.0` | 85 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0 and 1.9.0) |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [1.9.0] — 2026-09-23
+
+**Completing the three remaining cleanly-anchorable fly circuits: arousal, looming and pharyngeal gustatory.**
+
+v1.8.0 pushed profile anchoring from 14 to 34 and added ten fly-shaped
+units. Three further fly populations were already in
+`MODULE_PROFILES` (in the v1.8.0 vocabulary expansion) but their
+`MODULE_REGISTRY` entries, `TYPE_RULES`, and functional units never
+landed — a mid-batch break left them half-done. This release completes
+them and turns each into an embodied unit. Discipline unchanged: every
+declared edge was checked against the measured profile×profile matrix
+BEFORE being written; zero-synapse candidates were dropped, not forced
+through.
+
+### Added
+
+- **3 anchor rules** (`build_malecns_anchors.py`):
+  - `octopamine_vum` — OA-VUMa / OA-VPM octopaminergic arousal neurons
+    (9 real types, 17 cells).
+  - `looming_lplc` — LPLC1 / LPLC2 / LPLC4 collision / looming detectors
+    (4 real types, 417 cells).
+  - `pharyngeal_gustatory` — PhG taste / feeding sensory neurons
+    (18 real types, 48 cells).
+- **3 MODULE_REGISTRY entries** (`module_registry.py`): v1.8.0 had these
+  in `MODULE_PROFILES` only; the registry was 189 and never caught up.
+- **2 port types** (`scripts/gen_functional_units.py`):
+  `modulatory.octopamine` (invertebrate norepinephrine analogue) and
+  `sensory.gustatory` (taste channel).
+- **3 functional units**:
+  - `octopamine_arousal_unit` — arousal / effort / gain-set diffusion.
+    4 measured edges (vum→kc 4,196; vum→mbout 3,496; vum→lh 14,362;
+    vum→dn 6,220).
+  - `looming_detection_unit` — LPLC loom / collision detector to escape
+    descending neuron. 3 measured edges (medulla→T4/T5 as in v1.8.0;
+    T4/T5→LPLC 169,876; LPLC→DN 63,290 — the strongest single
+    vision-to-motor edge in the whole library).
+  - `pharyngeal_gustatory_unit` — proboscis / pharyngeal taste to motor.
+    2 measured edges (PhG→DN 1,024; PhG→LH 5 — sparse but present,
+    likely the innate taste-pheromone cross-modal edge).
+
+### Changed
+
+- Embodied units **16 → 19 of 85**; anchored profiles 34 → 37; anchored
+  real cells 84,645 → 85,127.
+- Measured structural-support edges 48 → 57.
+- Package version 1.8.0 → 1.9.0 across `pyproject.toml`, `flybrain_cli.py`,
+  `mcp_connectome/server.py`, `mcp_connectome/api_server.py`.
+- Gate 9 unit-count assertion 82 → 85.
+
+### Honesty notes
+
+- Zero-synapse candidates were dropped, not forced through. Notable
+  omissions (all measured 0 in the profile×profile matrix):
+  - `octopamine_vum → escape_giant_fiber` (OA-VUM does not reach DNp01).
+  - `looming_lplc → escape_psi`, `looming_lplc → escape_vnc_gfc`
+    (LPLC reaches escape via DN, not via PSI/GFC).
+  - `pharyngeal_gustatory → courtship_pc1`, `→ antennal_lobe_ln`,
+    `→ central_complex_eb`, `→ mushroom_body_output`, `→ kenyon_cell`
+    (PhG projects narrowly; MaleCNS shows no wide cortical fan-out).
+- The `central_complex_steering_unit` contradiction from v1.7.0 is
+  unchanged (nod→fb = 0 synapses; remains UNSUPPORTED).
 
 ---
 

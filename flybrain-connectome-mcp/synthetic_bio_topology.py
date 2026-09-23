@@ -3028,6 +3028,43 @@ MODULE_PROFILES = {
         "species_source": ["drosophila"], "allen_class": "",
         "biological_reference": "Vosshall & Stocker 2007"
     },
+    # ---------------- v1.9.0: remaining cleanly-anchorable fly circuits ----
+    "octopamine_vum":   {
+        "reservoir_density": 0.02, "recurrent_pct": 0.0, "has_inhibition": False,
+        "description": "Octopaminergic ventral unpaired median neurons (OA-VUMa / OA-VPM): the "
+                       "invertebrate arousal-effort system. A small, widely projecting population "
+                       "that sets behavioural gain for locomotion, learning and aggression.",
+        "capability": ["arousal_modulate", "effort_set", "gain_control"],
+        "task_hint_pool": ["arousal_modulate", "effort_set", "gain_control"],
+        "lead_task_hint": "arousal_modulate",
+        "neurotransmitter": "octopamine", "brain_region": "central_body",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Roeder 1999; Schwaerzel et al 2003; Busch et al 2009"
+    },
+    "looming_lplc":     {
+        "reservoir_density": 0.3, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Lobula plate lobula columnar neurons (LPLC1/2/4): feature detectors for an "
+                       "expanding optic-flow / looming stimulus. Their output drives the giant-fibre "
+                       "escape pathway -- the fly's collision-evoked jump.",
+        "capability": ["looming_detect", "collision_detect", "expansion_flow"],
+        "task_hint_pool": ["looming_detect", "collision_detect", "expansion_flow"],
+        "lead_task_hint": "looming_detect",
+        "neurotransmitter": "glutamate", "brain_region": "lobula_plate",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "de Vries & Clandinin 2012; Klapoetke et al 2017; von Reyn et al 2014"
+    },
+    "pharyngeal_gustatory": {
+        "reservoir_density": 0.15, "recurrent_pct": 0.02, "has_inhibition": False,
+        "description": "Pharyngeal (PhG) gustatory sensory neurons: taste / cibarial input from the "
+                       "proboscis region, feeding into descending motor command. Resolved to real "
+                       "MaleCNS types (PhG1a-c, PhG2, PhG4, PhG7-9, ...).",
+        "capability": ["taste_encode", "feed_drive", "appetitive_sense"],
+        "task_hint_pool": ["taste_encode", "feed_drive", "appetitive_sense"],
+        "lead_task_hint": "taste_encode",
+        "neurotransmitter": "acetylcholine", "brain_region": "subesophageal_zone",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Marella et al 2006; Mann et al 2013"
+    },
 }# default profile assignment: round-robin so all 10 types are represented
 DEFAULT_PROFILE_CYCLE = ("sensory", "memory", "motor", "integration",
                          "attention", "working_memory",
