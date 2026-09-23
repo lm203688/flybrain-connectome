@@ -211,6 +211,19 @@ TYPE_RULES: list[dict] = [
      "note": "Olfactory receptor neurons typed per glomerular class (ORN_DA1, ORN_VA1d, "
              "...). This resolves what the generic `olfactory_receptor` profile could "
              "not: the fly ORN classes ARE published in this release."},
+    # ---------------- v1.9.0: remaining cleanly-anchorable fly circuits ----
+    {"profile": "octopamine_vum", "type_re": r"^OA-VU|^OA-VP",
+     "superclass": ["cb_intrinsic"],
+     "note": "Octopaminergic ventral unpaired median neurons (OA-VUMa / OA-VPM): "
+             "the invertebrate arousal / effort system."},
+    {"profile": "looming_lplc", "type_re": r"^LPLC",
+     "superclass": ["visual_projection"],
+     "note": "Lobula plate lobula columnar (LPLC1 / LPLC2 / LPLC4): expanding-loom "
+             "/ collision detectors feeding the visual escape pathway."},
+    {"profile": "pharyngeal_gustatory", "type_re": r"^PhG",
+     "superclass": ["cb_sensory"],
+     "note": "Pharyngeal (PhG) sensory neurons: taste / feeding input from the "
+             "proboscis / cibarial region."},
 ]
 
 # Profiles that ARE a fly cell class but whose real counterpart could not be
