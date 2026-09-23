@@ -97,7 +97,7 @@ pip install flybrain-connectome-core --token <api-key>
 export FLYBRAIN_CORE=/path/to/checkout
 ```
 
-A bare public install exposes 36 of the 40 MCP tools; installing the core
+A bare public install exposes 40 of the 44 MCP tools; installing the core
 package restores the 4 combinator tools.
 """,
     "LICENSE-CLAUSE.md": """# License & Anti-Plagiarism Tiering
