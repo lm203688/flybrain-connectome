@@ -56,17 +56,40 @@
     "motor.chromatophore": "Skin-pattern display command (chromatophore radial muscles).",
     "motor.arm": "Arm motion command issued from the arm nerve cord.",
     "motor.eod": "Electric-organ discharge command.",
-    "efference.copy": "Efference copy / corollary discharge of a self-generated motor command."
+    "efference.copy": "Efference copy / corollary discharge of a self-generated motor command.",
+    "sensory.infrared": "Infrared (thermal-radiation) signal from a pit organ (trigeminal afferents).",
+    "sensory.vibrissa": "Mechanosensory signal from a single whisker follicle.",
+    "thermal.vector": "Bearing of a warm target derived from the infrared map.",
+    "spatial.place_code": "Population code for the animal's current position.",
+    "motor.swim": "Swim thrust command (segmental / axial musculature).",
+    "motor.feeding": "Ingestive rhythm command (buccal mass protraction/retraction).",
+    "motor.respiration": "Respiratory drive (diaphragmatic / buccal pump).",
+    "motor.eye": "Extraocular muscle command (gaze stabilisation).",
+    "motor.strike": "Ballistic strike command (tongue / fang projection).",
+    "motor.whisk": "Whisker sweep command (follicle muscle drive).",
+    "motor.gill": "Gill-withdrawal effector command.",
+    "rhythm.swim": "Swim-rhythm phase (which half-cycle the oscillator is in).",
+    "rhythm.respiratory": "Respiratory-rhythm phase.",
+    "arousal.sleep": "Sleep-pressure / homeostatic sleep drive.",
+    "arousal.wake": "Wake-promoting drive.",
+    "gating.hunger": "Hunger-state gate on a competing motor programme.",
+    "cerebellar.climbing": "Climbing-fibre teaching signal (error / complex spike).",
+    "reafference.tactile": "Self-generated tactile reafference from active sensing."
   },
   "stats": {
-    "functional_units": 56,
-    "connection_types": 58,
-    "neural_members_referenced": 123,
+    "functional_units": 72,
+    "connection_types": 66,
+    "neural_members_referenced": 147,
     "systems": [
       "antennal_lobe",
+      "aplysia_ganglion",
       "arm_cord",
+      "arousal_switch",
+      "ascidian_larva",
+      "barrel_cortex",
       "basal_ganglia",
       "brainstem",
+      "buccal_ganglion",
       "central_complex",
       "cerebellum",
       "chromatophore",
@@ -77,15 +100,23 @@
       "glia",
       "hippocampus",
       "hypothalamus",
+      "infrared_pit",
+      "leech_ganglion",
       "limbic",
+      "locus_coeruleus",
       "mushroom_body",
       "neuromodulatory",
+      "olivocerebellar",
+      "optic_tectum",
+      "respiratory",
+      "reticulospinal",
       "sensory",
       "song_system",
       "spinal_cord",
       "startle_circuit",
       "thalamus",
-      "vertical_lobe"
+      "vertical_lobe",
+      "vestibular"
     ],
     "connection_families": [
       "circuit",
@@ -95,7 +126,7 @@
       "modulatory",
       "plasticity"
     ],
-    "connection_types_used_by_units": 36
+    "connection_types_used_by_units": 46
   },
   "how_to_compose": [
     "1. pick units by `capability` / `lead_task_hint`;",
@@ -6436,6 +6467,1817 @@
         "squid"
       ],
       "biological_reference": "Young 1965; Sumbre et al 2001; Zullo et al 2009",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "leech_swim_cpg_unit",
+      "display": "水蛭游泳节律单元",
+      "function": "rhythm_generate",
+      "system": "leech_ganglion",
+      "description": "体壁运动神经元与一对互相抑制的 CPG 中间神经元构成半中心振荡器，靠交互抑制加适应交替释放，不需要任何细胞自身是节律性的。",
+      "members": [
+        {
+          "role": "cpg",
+          "neuron": "leech_cpg_interneuron",
+          "count_ratio": 0.45
+        },
+        {
+          "role": "mn",
+          "neuron": "leech_motor_neuron",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "sens",
+          "neuron": "leech_mechanosensory_neuron",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "cpg",
+          "to": "cpg",
+          "type": "half_center_oscillation",
+          "weight": 1.0
+        },
+        {
+          "from": "cpg",
+          "to": "mn",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "mn",
+          "to": "cpg",
+          "type": "feedback_inhibitory",
+          "weight": 0.5
+        },
+        {
+          "from": "sens",
+          "to": "cpg",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "touch_in",
+            "type": "sensory.somatosensory",
+            "required": true
+          },
+          {
+            "name": "rhythm_in",
+            "type": "rhythm.swim",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "swim_rhythm",
+            "type": "rhythm.swim",
+            "required": true
+          },
+          {
+            "name": "motor_out",
+            "type": "motor.swim",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        200,
+        600
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "half_center_oscillation"
+      ],
+      "capability": [
+        "rhythm_generate",
+        "swim_control",
+        "oscillate",
+        "segment_coordinate"
+      ],
+      "task_hint_pool": [
+        "rhythm_generate",
+        "swim_control",
+        "oscillate"
+      ],
+      "lead_task_hint": "rhythm_generate",
+      "neurotransmitter": [
+        "acetylcholine",
+        "glutamate"
+      ],
+      "species_source": [
+        "leech",
+        "medicinal_leech"
+      ],
+      "biological_reference": "Kristan et al 2005; Marder & Calabrese 1996; Friesen 1989",
+      "composable_with": [
+        "ascidian_larval_escape_swim_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "ascidian_larval_escape_swim_unit",
+      "display": "海鞘幼虫逃逸游泳单元",
+      "function": "escape_swim",
+      "system": "ascidian_larva",
+      "description": "幼虫眼点感光细胞把阴影信号交给一小群运动神经元，两侧交替发放驱动尾肌摆动，持续不到一秒的逃逸游泳完全由外周回路完成。",
+      "members": [
+        {
+          "role": "eye",
+          "neuron": "ascidian_photoreceptor",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "mn",
+          "neuron": "ascidian_larval_motor_neuron",
+          "count_ratio": 0.5
+        },
+        {
+          "role": "inh",
+          "neuron": "spinal_glycinergic",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "eye",
+          "to": "mn",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "mn",
+          "to": "inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "inh",
+          "to": "mn",
+          "type": "mutual_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "mn",
+          "to": "mn",
+          "type": "half_center_oscillation",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "light_in",
+            "type": "sensory.visual.irradiance",
+            "required": true
+          },
+          {
+            "name": "rhythm_in",
+            "type": "rhythm.swim",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "swim_rhythm",
+            "type": "rhythm.swim",
+            "required": true
+          },
+          {
+            "name": "motor_out",
+            "type": "motor.swim",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        20,
+        80
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "half_center_oscillation",
+        "mutual_inhibitory"
+      ],
+      "capability": [
+        "escape_swim",
+        "rhythm_generate",
+        "phototaxis",
+        "fast_escape"
+      ],
+      "task_hint_pool": [
+        "escape_swim",
+        "rhythm_generate",
+        "fast_escape"
+      ],
+      "lead_task_hint": "escape_swim",
+      "neurotransmitter": [
+        "acetylcholine",
+        "glycine"
+      ],
+      "species_source": [
+        "ciona",
+        "ascidian"
+      ],
+      "biological_reference": "Bone 1958; Nishino et al 2011; Ryan et al 2016",
+      "composable_with": [
+        "frog_escape_swim_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "aplysia_gill_withdrawal_unit",
+      "display": "海兔缩鳃反射单元",
+      "function": "reflex_plasticity",
+      "system": "aplysia_ganglion",
+      "description": "触觉直接驱动缩鳃运动神经元，可被血清素能中间神经元突触前易化放大（敏感化），也可被重复刺激压低（习惯化）——同一突触上并存两种相反的记忆。",
+      "members": [
+        {
+          "role": "sens",
+          "neuron": "aplysia_sensory_neuron",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "mn",
+          "neuron": "aplysia_motor_neuron",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "fac",
+          "neuron": "aplysia_facilitating_interneuron",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_sst",
+          "count_ratio": 0.1
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "sens",
+          "to": "mn",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "fac",
+          "to": "sens",
+          "type": "serotonergic_presynaptic_facilitation",
+          "weight": 0.9
+        },
+        {
+          "from": "fac",
+          "to": "mn",
+          "type": "modulatory_diffuse",
+          "weight": 0.5
+        },
+        {
+          "from": "inh",
+          "to": "sens",
+          "type": "short_term_habituation",
+          "weight": 0.6
+        },
+        {
+          "from": "mn",
+          "to": "sens",
+          "type": "feedback_inhibitory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "siphon_touch",
+            "type": "sensory.somatosensory",
+            "required": true
+          },
+          {
+            "name": "modulatory_in",
+            "type": "modulatory.serotonin",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "gill_retract",
+            "type": "motor.gill",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        20,
+        60
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "modulatory_diffuse",
+        "serotonergic_presynaptic_facilitation",
+        "short_term_habituation"
+      ],
+      "capability": [
+        "reflex",
+        "sensitization",
+        "habituation",
+        "presynaptic_memory"
+      ],
+      "task_hint_pool": [
+        "reflex",
+        "sensitization",
+        "habituation"
+      ],
+      "lead_task_hint": "reflex",
+      "neurotransmitter": [
+        "glutamate",
+        "serotonin"
+      ],
+      "species_source": [
+        "aplysia",
+        "sea_hare"
+      ],
+      "biological_reference": "Kandel 1976; Castellucci & Kandel 1976; Bailey & Chen 1988",
+      "composable_with": [
+        "buccal_feeding_cpg_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "buccal_feeding_cpg_unit",
+      "display": "口球喂食节律单元",
+      "function": "feeding_rhythm",
+      "system": "buccal_ganglion",
+      "description": "口球神经节内的 CPG 用相互兴奋加半中心交替，产生咀嚼-吞咽的固定相位序列，饥饿状态只改变节律快慢而不改变相位关系。",
+      "members": [
+        {
+          "role": "cpg",
+          "neuron": "buccal_cpg_neuron",
+          "count_ratio": 0.55
+        },
+        {
+          "role": "mn",
+          "neuron": "aplysia_motor_neuron",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "mod",
+          "neuron": "cholinergic_mt",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "cpg",
+          "to": "cpg",
+          "type": "recurrent_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "cpg",
+          "to": "mn",
+          "type": "half_center_oscillation",
+          "weight": 0.9
+        },
+        {
+          "from": "mn",
+          "to": "cpg",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "mod",
+          "to": "cpg",
+          "type": "modulatory_diffuse",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "feeding_cmd",
+            "type": "motor.command",
+            "required": true
+          },
+          {
+            "name": "hunger",
+            "type": "gating.hunger",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "feeding_rhythm",
+            "type": "motor.feeding",
+            "required": true
+          },
+          {
+            "name": "motor_out",
+            "type": "motor.command",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        30,
+        100
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "half_center_oscillation",
+        "modulatory_diffuse",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "feeding_rhythm",
+        "rhythm_generate",
+        "ingest",
+        "phase_sequence"
+      ],
+      "task_hint_pool": [
+        "feeding_rhythm",
+        "rhythm_generate",
+        "ingest"
+      ],
+      "lead_task_hint": "feeding_rhythm",
+      "neurotransmitter": [
+        "acetylcholine"
+      ],
+      "species_source": [
+        "aplysia",
+        "lobster"
+      ],
+      "biological_reference": "Kupfermann 1974; Cropper et al 1996",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "trigeminal_infrared_map_unit",
+      "display": "三叉红外热图单元",
+      "function": "thermal_imaging",
+      "system": "infrared_pit",
+      "description": "颊窝器的三叉神经传入在中脑顶盖铺成一张与视网膜图配准的热图，侧抑制把物体边缘锐化，得到不依赖光照的目标方位。",
+      "members": [
+        {
+          "role": "aff",
+          "neuron": "trigeminal_infrared_afferent",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "map",
+          "neuron": "infrared_tectal_neuron",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_sst",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "aff",
+          "to": "map",
+          "type": "topographic_mapping",
+          "weight": 1.0
+        },
+        {
+          "from": "inh",
+          "to": "map",
+          "type": "lateral_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "map",
+          "to": "inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "thermal_in",
+            "type": "sensory.infrared",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "thermal_map",
+            "type": "spatial.map",
+            "required": true
+          },
+          {
+            "name": "thermal_vec",
+            "type": "thermal.vector",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        200,
+        2000
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "lateral_inhibitory",
+        "topographic_mapping"
+      ],
+      "capability": [
+        "thermal_imaging",
+        "infrared_localize",
+        "topographic_map",
+        "contrast_enhance"
+      ],
+      "task_hint_pool": [
+        "thermal_imaging",
+        "infrared_localize",
+        "topographic_map"
+      ],
+      "lead_task_hint": "thermal_imaging",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "python",
+        "rattlesnake",
+        "pit_viper"
+      ],
+      "biological_reference": "Bullock & Cowles 1952; Gracheva et al 2010; Hartline et al 2011",
+      "composable_with": [
+        "pit_viper_strike_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "pit_viper_strike_unit",
+      "display": "蝮蛇弹道袭击单元",
+      "function": "strike",
+      "system": "infrared_pit",
+      "description": "红外图与视觉图在同一顶盖神经元上配准，任一模态都能把目标锁进袭击坐标，运动池被全部或无地召集完成弹道出击。",
+      "members": [
+        {
+          "role": "mm",
+          "neuron": "optic_tectum_multimodal",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "ir",
+          "neuron": "infrared_tectal_neuron",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "mn",
+          "neuron": "spinal_motor_alpha",
+          "count_ratio": 0.4
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "ir",
+          "to": "mm",
+          "type": "thermal_cross_modal_convergence",
+          "weight": 1.0
+        },
+        {
+          "from": "mm",
+          "to": "mn",
+          "type": "command_neuron_recruitment",
+          "weight": 0.9
+        },
+        {
+          "from": "mn",
+          "to": "mm",
+          "type": "feedback_excitatory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "thermal_map",
+            "type": "spatial.map",
+            "required": true
+          },
+          {
+            "name": "visual_map",
+            "type": "sensory.visual",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "strike_cmd",
+            "type": "motor.strike",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        300,
+        1500
+      ],
+      "motif_source": [
+        "command_neuron_recruitment",
+        "feedback_excitatory",
+        "thermal_cross_modal_convergence"
+      ],
+      "capability": [
+        "strike",
+        "cross_modal_bind",
+        "thermal_target",
+        "ballistic"
+      ],
+      "task_hint_pool": [
+        "strike",
+        "cross_modal_bind",
+        "ballistic"
+      ],
+      "lead_task_hint": "strike",
+      "neurotransmitter": [
+        "glutamate",
+        "acetylcholine"
+      ],
+      "species_source": [
+        "pit_viper",
+        "rattlesnake"
+      ],
+      "biological_reference": "Kardong & Bels 1998; Hartline et al 2011",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "frog_tectal_prey_capture_unit",
+      "display": "蛙顶盖捕食释放单元",
+      "function": "prey_capture",
+      "system": "optic_tectum",
+      "description": "顶盖 T5 类神经元只对移动的小目标放电，一旦越过阈值就以命令神经元方式整段释放舌肌弹射，是「刺激-固定动作模式」的经典实例。",
+      "members": [
+        {
+          "role": "det",
+          "neuron": "tectal_prey_detector",
+          "count_ratio": 0.45
+        },
+        {
+          "role": "mn",
+          "neuron": "tongue_motor_neuron",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "det",
+          "to": "mn",
+          "type": "command_neuron_recruitment",
+          "weight": 1.0
+        },
+        {
+          "from": "inh",
+          "to": "det",
+          "type": "feedforward_inhibitory",
+          "weight": 0.7
+        },
+        {
+          "from": "mn",
+          "to": "det",
+          "type": "feedback_inhibitory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "prey_in",
+            "type": "sensory.visual",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "capture_cmd",
+            "type": "motor.command",
+            "required": true
+          },
+          {
+            "name": "strike_out",
+            "type": "motor.strike",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        500,
+        5000
+      ],
+      "motif_source": [
+        "command_neuron_recruitment",
+        "feedback_inhibitory",
+        "feedforward_inhibitory"
+      ],
+      "capability": [
+        "prey_capture",
+        "visual_detect",
+        "ballistic",
+        "fixed_action_pattern"
+      ],
+      "task_hint_pool": [
+        "prey_capture",
+        "visual_detect",
+        "fixed_action_pattern"
+      ],
+      "lead_task_hint": "prey_capture",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "frog",
+        "toad"
+      ],
+      "biological_reference": "Lettvin et al 1959; Ingle 1968; Ewert 1984",
+      "composable_with": [
+        "frog_escape_swim_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "frog_escape_swim_unit",
+      "display": "蛙逃逸游泳单元",
+      "function": "escape_swim",
+      "system": "reticulospinal",
+      "description": "视觉威胁经网状脊髓神经元一次性召集轴向运动池，对侧甘氨酸能抑制保证左右不同时收缩，形成方向明确的逃逸游泳。",
+      "members": [
+        {
+          "role": "rs",
+          "neuron": "reticulospinal_neuron",
+          "count_ratio": 0.45
+        },
+        {
+          "role": "mn",
+          "neuron": "spinal_motor_alpha",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "inh",
+          "neuron": "spinal_glycinergic",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "rs",
+          "to": "mn",
+          "type": "command_neuron_recruitment",
+          "weight": 1.0
+        },
+        {
+          "from": "rs",
+          "to": "inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "inh",
+          "to": "mn",
+          "type": "mutual_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "rs",
+          "to": "rs",
+          "type": "recurrent_excitatory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "threat_in",
+            "type": "sensory.visual",
+            "required": true
+          },
+          {
+            "name": "startle_in",
+            "type": "sensory.auditory.startle",
+            "required": false
+          },
+          {
+            "name": "rhythm_in",
+            "type": "rhythm.swim",
+            "required": false
+          },
+          {
+            "name": "swim_in",
+            "type": "motor.swim",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "escape_swim",
+            "type": "motor.escape",
+            "required": true
+          },
+          {
+            "name": "rhythm_out",
+            "type": "rhythm.swim",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        200,
+        900
+      ],
+      "motif_source": [
+        "command_neuron_recruitment",
+        "feedforward_excitatory",
+        "mutual_inhibitory",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "escape_swim",
+        "fast_command",
+        "all_or_none",
+        "contralateral_turn"
+      ],
+      "task_hint_pool": [
+        "escape_swim",
+        "fast_command",
+        "all_or_none"
+      ],
+      "lead_task_hint": "escape_swim",
+      "neurotransmitter": [
+        "glutamate",
+        "glycine"
+      ],
+      "species_source": [
+        "frog",
+        "xenopus",
+        "lamprey"
+      ],
+      "biological_reference": "Will 1991; Ewert 1984; Eaton et al 2001",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cerebellar_climbing_fibre_teaching_unit",
+      "display": "小脑攀爬纤维误差教学单元",
+      "function": "error_teaching",
+      "system": "olivocerebellar",
+      "description": "下橄榄把运动误差编码成攀爬纤维的复杂spike，一对一地送到浦肯野细胞；这是全库唯一的监督式教学通路，误差信号本身不带目标值只带方向。",
+      "members": [
+        {
+          "role": "cf",
+          "neuron": "climbing_fibre",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "pc",
+          "neuron": "cerebellar_purkinje",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "io",
+          "neuron": "inferior_olive",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "cf",
+          "to": "pc",
+          "type": "coincidence_detection",
+          "weight": 1.0
+        },
+        {
+          "from": "io",
+          "to": "cf",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "pc",
+          "to": "io",
+          "type": "feedback_inhibitory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "error_in",
+            "type": "error.teaching",
+            "required": true
+          },
+          {
+            "name": "context_in",
+            "type": "cerebellar.input",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "climbing_out",
+            "type": "cerebellar.climbing",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        50,
+        300
+      ],
+      "motif_source": [
+        "coincidence_detection",
+        "feedback_inhibitory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "error_teaching",
+        "supervised_learn",
+        "credit_assign",
+        "timing_signal"
+      ],
+      "task_hint_pool": [
+        "error_teaching",
+        "supervised_learn",
+        "timing_signal"
+      ],
+      "lead_task_hint": "error_teaching",
+      "neurotransmitter": [
+        "glutamate"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human",
+        "electric_fish"
+      ],
+      "biological_reference": "Ito & Kano 1982; Ito 1984; De Zeeuw et al 2011",
+      "composable_with": [
+        "cerebellar_purkinje_ltd_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cerebellar_purkinje_ltd_unit",
+      "display": "浦肯野细胞 LTD 微区单元",
+      "function": "predictive_learn",
+      "system": "cerebellum",
+      "description": "颗粒细胞展开成平行纤维与攀爬纤维教学信号在同一浦肯野细胞上符合，只有同时到达才产生 LTD；高尔基与星状细胞把活动限制在微区内。",
+      "members": [
+        {
+          "role": "gr",
+          "neuron": "cerebellar_granule",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "pc",
+          "neuron": "cerebellar_purkinje",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "go",
+          "neuron": "cerebellar_go_cell",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "sc",
+          "neuron": "cerebellar_stellate",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "gr",
+          "to": "pc",
+          "type": "coincidence_detection",
+          "weight": 1.0
+        },
+        {
+          "from": "go",
+          "to": "gr",
+          "type": "feedback_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "sc",
+          "to": "pc",
+          "type": "feedforward_inhibitory",
+          "weight": 0.7
+        },
+        {
+          "from": "gr",
+          "to": "go",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "context_in",
+            "type": "cerebellar.input",
+            "required": true
+          },
+          {
+            "name": "teaching_in",
+            "type": "cerebellar.climbing",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "purkinje_out",
+            "type": "cerebellar.output",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        10000,
+        100000
+      ],
+      "motif_source": [
+        "coincidence_detection",
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "feedforward_inhibitory"
+      ],
+      "capability": [
+        "ltd",
+        "predictive_learn",
+        "internal_model",
+        "gain_calibrate"
+      ],
+      "task_hint_pool": [
+        "ltd",
+        "predictive_learn",
+        "internal_model"
+      ],
+      "lead_task_hint": "ltd",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Marr 1969; Albus 1971; Ito 2000",
+      "composable_with": [
+        "vestibulo_ocular_reflex_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "vestibulo_ocular_reflex_unit",
+      "display": "前庭眼动适应单元",
+      "function": "gaze_stabilize",
+      "system": "vestibular",
+      "description": "前庭毛细胞把头部角加速度经前庭核送到眼外肌，延迟极短；长期配戴棱镜时同一回路借小脑教学信号慢慢重标定，是适应而非反射改变。",
+      "members": [
+        {
+          "role": "hair",
+          "neuron": "vestibular_hair",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "vn",
+          "neuron": "vestibular_nucleus_neuron",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "mn",
+          "neuron": "spinal_motor_alpha",
+          "count_ratio": 0.3
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "hair",
+          "to": "vn",
+          "type": "topographic_mapping",
+          "weight": 1.0
+        },
+        {
+          "from": "vn",
+          "to": "mn",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "mn",
+          "to": "vn",
+          "type": "feedback_inhibitory",
+          "weight": 0.5
+        },
+        {
+          "from": "vn",
+          "to": "vn",
+          "type": "lateral_inhibitory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "head_motion",
+            "type": "sensory.vestibular",
+            "required": true
+          },
+          {
+            "name": "teaching",
+            "type": "error.teaching",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "eye_cmd",
+            "type": "motor.eye",
+            "required": true
+          },
+          {
+            "name": "gaze_out",
+            "type": "motor.command",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        200,
+        1000
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "lateral_inhibitory",
+        "topographic_mapping"
+      ],
+      "capability": [
+        "gaze_stabilize",
+        "reflex",
+        "adaptation",
+        "compensatory"
+      ],
+      "task_hint_pool": [
+        "gaze_stabilize",
+        "reflex",
+        "adaptation"
+      ],
+      "lead_task_hint": "gaze_stabilize",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "rabbit",
+        "mouse",
+        "monkey"
+      ],
+      "biological_reference": "Ito 1982; Lisberger 1988; Boyden et al 2004",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "respiratory_rhythm_cpg_unit",
+      "display": "呼吸节律起搏单元",
+      "function": "breathing_rhythm",
+      "system": "respiratory",
+      "description": "前包钦格复合体用平台电位加抑制性反弹产生吸气-呼气两相节律，膈运动神经元被全量募集，节律快慢受血气和觉醒状态调制。",
+      "members": [
+        {
+          "role": "pre",
+          "neuron": "pre_botzinger_neuron",
+          "count_ratio": 0.45
+        },
+        {
+          "role": "mn",
+          "neuron": "phrenic_motor_neuron",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "pre",
+          "to": "mn",
+          "type": "command_neuron_recruitment",
+          "weight": 1.0
+        },
+        {
+          "from": "inh",
+          "to": "pre",
+          "type": "recurrent_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "mn",
+          "to": "pre",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "pre",
+          "to": "pre",
+          "type": "plateau_potential_bistability",
+          "weight": 0.9
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "chemo_drive",
+            "type": "modulatory.serotonin",
+            "required": true
+          },
+          {
+            "name": "arousal_in",
+            "type": "arousal.state",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "breath_out",
+            "type": "motor.respiration",
+            "required": true
+          },
+          {
+            "name": "rhythm_out",
+            "type": "rhythm.respiratory",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        200,
+        800
+      ],
+      "motif_source": [
+        "command_neuron_recruitment",
+        "feedback_excitatory",
+        "plateau_potential_bistability",
+        "recurrent_inhibitory"
+      ],
+      "capability": [
+        "breathing_rhythm",
+        "rhythm_generate",
+        "chemo_response",
+        "state_dependent"
+      ],
+      "task_hint_pool": [
+        "breathing_rhythm",
+        "rhythm_generate",
+        "chemo_response"
+      ],
+      "lead_task_hint": "breathing_rhythm",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Smith et al 1991; Feldman et al 2013; Ramirez et al 2016",
+      "composable_with": [
+        "sleep_wake_flipflop_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "sleep_wake_flipflop_unit",
+      "display": "睡眠觉醒双稳态单元",
+      "function": "state_switch",
+      "system": "arousal_switch",
+      "description": "促睡眠的 VLPO 与促觉醒的蓝斑互相抑制构成双稳态开关，食欲素提供单侧偏置把开关按在清醒一侧；整个系统不允许停在中间态。",
+      "members": [
+        {
+          "role": "vlpo",
+          "neuron": "vlpo_neuron",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "orexin",
+          "neuron": "orexin_neuron",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "ne",
+          "neuron": "noradrenergic_lc",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "vlpo",
+          "to": "ne",
+          "type": "mutual_inhibitory",
+          "weight": 1.0
+        },
+        {
+          "from": "ne",
+          "to": "vlpo",
+          "type": "mutual_inhibitory",
+          "weight": 1.0
+        },
+        {
+          "from": "orexin",
+          "to": "ne",
+          "type": "state_switch_bistable",
+          "weight": 0.9
+        },
+        {
+          "from": "orexin",
+          "to": "vlpo",
+          "type": "feedforward_inhibitory",
+          "weight": 0.7
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "clock_in",
+            "type": "clock.phase",
+            "required": true
+          },
+          {
+            "name": "homeostatic",
+            "type": "arousal.sleep",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "state_out",
+            "type": "arousal.state",
+            "required": true
+          },
+          {
+            "name": "wake_out",
+            "type": "arousal.wake",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        2000,
+        20000
+      ],
+      "motif_source": [
+        "feedforward_inhibitory",
+        "mutual_inhibitory",
+        "state_switch_bistable"
+      ],
+      "capability": [
+        "state_switch",
+        "bistable",
+        "sleep_wake",
+        "hysteresis"
+      ],
+      "task_hint_pool": [
+        "state_switch",
+        "bistable",
+        "sleep_wake"
+      ],
+      "lead_task_hint": "state_switch",
+      "neurotransmitter": [
+        "gaba",
+        "orexin"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Saper et al 2005; Saper et al 2010",
+      "composable_with": [
+        "locus_coeruleus_arousal_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "locus_coeruleus_arousal_unit",
+      "display": "蓝斑去甲肾上腺素唤醒单元",
+      "function": "global_arousal",
+      "system": "locus_coeruleus",
+      "description": "蓝斑把显著性信号转成一束弥散去甲肾上腺素，同时经星形胶质细胞的钙波做慢时间尺度的扩散；这不是点对点传递而是全局增益重设。",
+      "members": [
+        {
+          "role": "ne",
+          "neuron": "noradrenergic_lc",
+          "count_ratio": 0.5
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_vip",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "glia",
+          "neuron": "astrocyte_reactive",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "ne",
+          "to": "inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "inh",
+          "to": "ne",
+          "type": "lateral_inhibitory",
+          "weight": 0.7
+        },
+        {
+          "from": "ne",
+          "to": "glia",
+          "type": "global_broadcast",
+          "weight": 0.6
+        },
+        {
+          "from": "glia",
+          "to": "ne",
+          "type": "volume_transmission",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "salience",
+            "type": "arousal.state",
+            "required": true
+          },
+          {
+            "name": "sleep_drive",
+            "type": "arousal.sleep",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "ne_out",
+            "type": "modulatory.noradrenaline",
+            "required": true
+          },
+          {
+            "name": "wake_drive",
+            "type": "arousal.wake",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        2000,
+        30000
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "global_broadcast",
+        "lateral_inhibitory",
+        "volume_transmission"
+      ],
+      "capability": [
+        "global_arousal",
+        "gain_modulation",
+        "salience_broadcast",
+        "state_gate"
+      ],
+      "task_hint_pool": [
+        "global_arousal",
+        "gain_modulation",
+        "salience_broadcast"
+      ],
+      "lead_task_hint": "global_arousal",
+      "neurotransmitter": [
+        "noradrenaline",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Aston-Jones & Cohen 2005; Sara 2009",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "hippocampal_spatial_map_unit",
+      "display": "海马空间地图单元",
+      "function": "spatial_map",
+      "system": "hippocampus",
+      "description": "网格细胞提供多尺度度量，头方向细胞提供朝向，位置细胞把两者与 theta 节律的相位进动结合，形成随体重写的位置码。",
+      "members": [
+        {
+          "role": "place",
+          "neuron": "place_cell",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "grid",
+          "neuron": "grid_cell",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "hd",
+          "neuron": "head_direction_cell",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "grid",
+          "to": "place",
+          "type": "grid_phase_precession",
+          "weight": 1.0
+        },
+        {
+          "from": "hd",
+          "to": "place",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "inh",
+          "to": "place",
+          "type": "lateral_inhibitory",
+          "weight": 0.6
+        },
+        {
+          "from": "place",
+          "to": "grid",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "self_motion",
+            "type": "navigation.ego_speed",
+            "required": true
+          },
+          {
+            "name": "theta_in",
+            "type": "rhythm.theta",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "spatial_code",
+            "type": "spatial.place_code",
+            "required": true
+          },
+          {
+            "name": "map_out",
+            "type": "spatial.map",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        5000,
+        50000
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "grid_phase_precession",
+        "lateral_inhibitory"
+      ],
+      "capability": [
+        "spatial_map",
+        "path_integration",
+        "place_code",
+        "episodic_context"
+      ],
+      "task_hint_pool": [
+        "spatial_map",
+        "path_integration",
+        "place_code"
+      ],
+      "lead_task_hint": "spatial_map",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human",
+        "bat"
+      ],
+      "biological_reference": "O'Keefe & Dostrovsky 1971; Hafting et al 2005; Moser et al 2008",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "barrel_cortex_whisking_unit",
+      "display": "桶状皮层主动触觉单元",
+      "function": "active_touch",
+      "system": "barrel_cortex",
+      "description": "胡须运动神经元主动扫动，丘脑中继把每个毛囊的偏转送回同名桶状柱；运动指令的副本与触觉再传入在皮层内比对，主动触碰才可被识别为自己产生的。",
+      "members": [
+        {
+          "role": "barrel",
+          "neuron": "barrel_cortex_neuron",
+          "count_ratio": 0.45
+        },
+        {
+          "role": "relay",
+          "neuron": "thalamic_relay",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "mn",
+          "neuron": "whisker_motor_neuron",
+          "count_ratio": 0.3
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "relay",
+          "to": "barrel",
+          "type": "topographic_mapping",
+          "weight": 1.0
+        },
+        {
+          "from": "barrel",
+          "to": "mn",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "mn",
+          "to": "relay",
+          "type": "feedback_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "barrel",
+          "to": "barrel",
+          "type": "lateral_inhibitory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "touch_in",
+            "type": "sensory.vibrissa",
+            "required": true
+          },
+          {
+            "name": "arousal_in",
+            "type": "arousal.state",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "tactile_map",
+            "type": "spatial.map",
+            "required": true
+          },
+          {
+            "name": "whisk_cmd",
+            "type": "motor.whisk",
+            "required": true
+          },
+          {
+            "name": "reafference",
+            "type": "reafference.tactile",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        2000,
+        15000
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "lateral_inhibitory",
+        "topographic_mapping"
+      ],
+      "capability": [
+        "active_touch",
+        "tactile_map",
+        "sensorimotor_loop",
+        "reafference_separate"
+      ],
+      "task_hint_pool": [
+        "active_touch",
+        "tactile_map",
+        "sensorimotor_loop"
+      ],
+      "lead_task_hint": "active_touch",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "rat"
+      ],
+      "biological_reference": "Woolsey & Van der Loos 1970; Kleinfeld & Deschenes 2011; Diamond et al 2008",
       "composable_with": [],
       "provenance": {
         "class": "curated-cross-species",
