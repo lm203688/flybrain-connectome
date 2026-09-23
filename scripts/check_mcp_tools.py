@@ -41,6 +41,19 @@ ARGS = {
     "list_blueprints": {},
     "list_modules": {},
     "list_bio_motifs": {},
+    # Functional-unit composition library (Tier-1)
+    "list_functional_units": {},
+    "get_functional_unit": {"name": "thalamocortical_relay_unit"},
+    "list_connection_types": {},
+    "compose_from_units": {
+        "units": ["retinal_phototransduction_unit", "visual_thalamic_relay_unit",
+                  "cortical_l4_input_unit"],
+        "connections": [
+            "retinal_phototransduction_unit.high_res->visual_thalamic_relay_unit.retina:feedforward_excitatory",
+            "visual_thalamic_relay_unit.lgn_out->cortical_l4_input_unit.thalamic_in:feedforward_excitatory",
+        ],
+        "name": "gate3_smoke",
+    },
     "batch_generate_topologies": {
         "spec_list": [
             {"blueprint": "sequential", "n_modules": 3, "agents_per_module": 4},
@@ -111,6 +124,9 @@ JSON_TOOLS = {"export_swarm_motifs", "list_blueprints", "list_modules",
               "get_provenance_bundle", "check_module_compatibility",
               "compose_virtual_organism", "list_virtual_organisms",
               "list_presets", "get_preset", "apply_preset",
+              # Functional-unit composition library (Tier-1)
+              "list_functional_units", "get_functional_unit",
+              "list_connection_types", "compose_from_units",
               # Phase 5/6
               "organism_to_swarmlabs", "get_module_agent_roles",
               "save_market_organism", "load_market_organism",
