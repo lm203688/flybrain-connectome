@@ -195,7 +195,7 @@ TOOLS = [
     },
     {
         "name": "list_functional_units",
-        "description": "列出 72 个功能单元（最小可组合单位 = 一个功能，由一组神经元群 + 内部微回路构成，带类型化输入/输出端口；其中 16 个为 v1.4.1 跨进化支：昆虫 / 鸟类 / 鱼类 / 头足类，另 16 个为 v1.6.0 节律/状态/误差与主动感知批次：环节动物 / 海鞘 / 软体动物 / 颊窝蛇 / 蛙 / 小脑 / 脑干 / 海马 / 桶状皮层）。可按 system（如 cortex / hippocampus）或 capability（如 action_select）过滤。这是组合虚拟生物时真正当节点用的那一层，不是单神经元类型。",
+        "description": "列出 72 个功能单元（最小可组合单位 = 一个功能，由一组神经元群 + 内部微回路构成，带类型化输入/输出端口；其中 16 个为 v1.4.1 跨进化支：昆虫 / 鸟类 / 鱼类 / 头足类，另 16 个为 v1.6.0 节律/状态/误差与主动感知批次：环节动物 / 海鞘 / 软体动物 / 颊窝蛇 / 蛙 / 小脑 / 脑干 / 海马 / 桶状皮层；其中 6 个单元成员已锚定到真实 MaleCNS 细胞类型，14 个神经元群对应 8,798 个真实细胞，见 embodiment 字段）。可按 system（如 cortex / hippocampus）或 capability（如 action_select）过滤。这是组合虚拟生物时真正当节点用的那一层，不是单神经元类型。",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -1373,7 +1373,7 @@ def main():
             resp = {"jsonrpc": "2.0", "id": rid, "result": {
                 "protocolVersion": PROTOCOL_VERSION,
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "drosophila-connectome", "version": "1.6.0"},
+                "serverInfo": {"name": "drosophila-connectome", "version": "1.7.0"},
             }}
         elif method == "notifications/initialized":
             continue
