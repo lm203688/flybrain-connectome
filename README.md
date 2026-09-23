@@ -29,7 +29,7 @@ before you quote it.
 
 | ✅ This project | ❌ Not this project |
 |---|---|
-| A connectome **query service** (40 tools over HTTP + MCP) | A spiking-neuron simulator |
+| A connectome **query service** (44 tools over HTTP + MCP) | A spiking-neuron simulator |
 | A **motif-extraction** pipeline (real fly → derived motif doc) | A repository of the raw 5.63 GB data |
 | A **synthetic topology generator** (bio-motifs → agent graphs) | A trained / fine-tuned model with weights |
 | **W3C PROV** provenance on every generated artifact | A claim that the "virtual organism" is alive |
@@ -207,7 +207,7 @@ flybrain-connectome/
 ├── pyproject.toml                  zero deps, `flybrain` console script
 ├── LICENSE · CITATION.cff · CHANGELOG.md
 ├── flybrain-connectome-mcp/
-│   ├── mcp_connectome/             query engine (core) + 40-tool MCP + HTTP API (:8799)
+│   ├── mcp_connectome/             query engine (core) + 44-tool MCP + HTTP API (:8799)
 │   ├── motifs/                     drop-in client + derived motif snapshot
 │   ├── synthetic_bio_topology.py   ★ C1 generator (motif → agent graph + config + PROV)
 │   ├── _verify.py                  end-to-end smoke test (70/70)
@@ -229,7 +229,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 | Endpoint | Auth | Purpose |
 |---|---|---|
 | `GET  /health` | none | liveness + version |
-| `GET  /tools`  | key  | list the 40 tools + descriptions |
+| `GET  /tools`  | key  | list the 44 tools + descriptions |
 | `POST /query`  | key  | `{"tool": <name>, "args": {...}}` → `{"ok": true, "result": ...}` |
 
 **Auth:** `Authorization: Bearer <key>` or `X-API-Key: <key>`. Keys come from
@@ -237,7 +237,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 server generates a temporary per-boot key and warns loudly — it never falls
 back to a key committed to source.
 
-**The 40 tools** (real names, do not invent — verified against `GET /tools`
+**The 44 tools** (real names, do not invent — verified against `GET /tools`
 by `scripts/check_docs_consistency.py`):
 
 *Real-connectome queries — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`:*
@@ -259,6 +259,11 @@ by `scripts/check_docs_consistency.py`):
 `save_market_organism` · `load_market_organism` · `list_market_organisms` ·
 `rate_market_organism` · `search_market_organisms` · `delete_market_organism` ·
 `list_combination_rules` · `validate_combination` · `expand_organism` · `get_multiplier_metrics`
+
+*Functional-unit composition library — the composable layer above neuron types:*
+
+`list_functional_units` · `get_functional_unit` ·
+`list_connection_types` · `compose_from_units`
 
 ---
 
@@ -338,6 +343,59 @@ Machine-readable equivalents (same data, over HTTP/MCP): `list_blueprints`,
 
 ---
 
+## Functional-unit & connection-type library
+
+The neuron list above is the *vocabulary*. It is not the *unit of composition*: a
+single neuron type does nothing on its own, and wiring two of them together means
+nothing. What composes is a **function with a known interface**. So the library is
+split into two tiers, and the upper tier is the one you actually build from:
+
+- **40 functional units** — each is ONE function (phototransduction, action
+  selection, theta pacing, gliotransmission …) delivered by a **group** of neuron
+  populations (1–6 of them, taken from the 101-module vocabulary) wired into an
+  internal sub-circuit, and exposing **typed ports** (`light` in →
+  `high_res` out; `candidates` + `value` in → `selected_action` out).
+- **50 connection types** — each is one connection FORM, constrained on the port
+  types it may join, in six families:
+  **micro** (axo-dendritic / axo-somatic / axo-axonic / dendro-dendritic …
+  point-to-point contact sites) · **circuit** (feedforward / feedback / lateral /
+  mutual / recurrent / disinhibition / winner-take-all …) · **modulatory**
+  (diffuse / volume / retrograde / state gating) · **electrical** (gap junction /
+  ephaptic / tripartite astrocyte) · **plasticity** (STDP / LTP-LTD / short-term /
+  homeostatic scaling) · **macro** (topographic mapping / divergent fan-out /
+  convergent fan-in / corollary discharge / global broadcast).
+
+So the algebra is `virtual organism = units (nodes) + connection types (typed
+edges)`, and every edge is mechanically checkable because both endpoints declare
+port types:
+
+```
+unit A .out_port[type]  --connection_type(from_port, to_port)-->  unit B .in_port[type]
+```
+
+`compose_from_units` enforces port-type compatibility, required-port
+satisfaction, external drivability/readability of the whole organism, and
+reports feedback loops as warnings (an intentional feedback loop is a
+first-class citizen here). An unsatisfied *required* input on the organism
+boundary is the organism's external input, not a defect — pass
+`allow_boundary_inputs: false` to validate an interior sub-chain instead.
+
+**Honest boundary.** These units are curated from comparative-neuroscience
+literature with a named reference each (`provenance.extracted_from_malecns` is
+`false` for all 40) — they are NOT extracted from MaleCNS v1.0, unlike the three
+original fly motifs. Member ratios are composition weights, not measured cell
+counts. Treat the layer as a composable scaffold with literature provenance, not
+as a measured cell assembly.
+
+Machine-readable equivalents: `list_functional_units`, `get_functional_unit`,
+`list_connection_types`, `compose_from_units`. Regenerate + verify with
+`python scripts/gen_functional_units.py` and `scripts/check_functional_units.py`
+(Gate 9, which fails the build if the artifacts drift from the generator, if a
+member neuron does not exist in the vocabulary, or if the composer stops
+rejecting malformed wiring).
+
+---
+
 ## Science & paper
 
 The methodology, the four moats, and the two negative results are written up
@@ -361,7 +419,7 @@ which claims were retracted, are in [`CHANGELOG.md`](CHANGELOG.md).
 **Using it from an MCP client:** see [`docs/mcp_setup.md`](docs/mcp_setup.md).
 **Module variants, SwarmLabs integration, and the organism market (v1.1.0):**
 see [`docs/module_factory.md`](docs/module_factory.md).
-for client configs, the 40-tool reference, and troubleshooting.
+for client configs, the 44-tool reference, and troubleshooting.
 
 ---
 
