@@ -2843,6 +2843,191 @@ MODULE_PROFILES = {
         "allen_class": "",
         "biological_reference": 'Kleinfeld & Deschenes 2011'
     },
+    # ------------------------------------------------------------------ #
+    # v1.8.0 果蝇形状扩展：20 个可被 MaleCNS v1.0 实测锚定的神经元档案。
+    # 每一个都对应真实注释细胞类型（scripts/build_malecns_anchors.py 的
+    # TYPE_RULES 里有同名锚定规则），细胞数见 build 产物 profile_anchors。
+    # ------------------------------------------------------------------ #
+    "ol_photoreceptor_r1r6":     {
+        "reservoir_density": 0.15, "recurrent_pct": 0.02, "has_inhibition": False,
+        "description": "Outer photoreceptors R1-R6: histaminergic luminance/motion channel from every ommatidium into the lamina",
+        "capability": ["phototransduce", "luminance_encode", "temporal_sharpen"],
+        "task_hint_pool": ["phototransduce", "luminance_encode"], "lead_task_hint": "phototransduce",
+        "neurotransmitter": "histamine", "brain_region": "retina",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Hardie & Raghu 2001"
+    },
+    "ol_photoreceptor_r7r8":     {
+        "reservoir_density": 0.15, "recurrent_pct": 0.02, "has_inhibition": False,
+        "description": "Inner photoreceptors R7/R8: the ultraviolet/blue colour channel targeting the medulla directly",
+        "capability": ["phototransduce", "colour_encode"],
+        "task_hint_pool": ["colour_encode", "wavelength_detect"], "lead_task_hint": "colour_encode",
+        "neurotransmitter": "histamine", "brain_region": "retina",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Morante & Desplan 2008"
+    },
+    "ol_lamina_monopolar":     {
+        "reservoir_density": 0.3, "recurrent_pct": 0.1, "has_inhibition": True,
+        "description": "Lamina monopolar cells L1-L5: per-cartridge relay that high-pass filters photoreceptor input and feeds the medulla",
+        "capability": ["relay", "high_pass_filter", "surround_inhibit"],
+        "task_hint_pool": ["visual_relay", "contrast_enhance"], "lead_task_hint": "visual_relay",
+        "neurotransmitter": "glutamate", "brain_region": "lamina",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Meinertzhagen & O'Neil 1991"
+    },
+    "ol_medulla_intrinsic":     {
+        "reservoir_density": 0.35, "recurrent_pct": 0.3, "has_inhibition": True,
+        "description": "Medulla columnar cells (Tm/TmY/Mi): the early-vision compute layer where ON/OFF and temporal channels are separated",
+        "capability": ["on_off_split", "temporal_filter", "feature_extract"],
+        "task_hint_pool": ["feature_extract", "on_off_split"], "lead_task_hint": "feature_extract",
+        "neurotransmitter": "acetylcholine", "brain_region": "medulla",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Fischbach & Dittrich 1989; Nern et al 2015"
+    },
+    "ol_motion_detector_t45":     {
+        "reservoir_density": 0.4, "recurrent_pct": 0.15, "has_inhibition": False,
+        "description": "T4/T5 direction-selective cells: the elementary motion detectors, T4 for ON and T5 for OFF edges, four subtypes per lobula-plate layer",
+        "capability": ["direction_select", "motion_detect", "elementary_motion"],
+        "task_hint_pool": ["motion_detect", "direction_encode"], "lead_task_hint": "motion_detect",
+        "neurotransmitter": "acetylcholine", "brain_region": "lobula_plate",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Maisak et al 2013"
+    },
+    "ol_lptc":     {
+        "reservoir_density": 0.35, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "Lobula-plate tangential cells (HS/VS/CH/FD): wide-field optic-flow integrators that estimate course deviation",
+        "capability": ["optic_flow_integrate", "course_estimate", "wide_field_sum"],
+        "task_hint_pool": ["optic_flow", "course_control"], "lead_task_hint": "optic_flow",
+        "neurotransmitter": "acetylcholine", "brain_region": "lobula_plate",
+        "species_source": ["drosophila", "blowfly"], "allen_class": "",
+        "biological_reference": "Hausen 1984; Borst & Weber 2011"
+    },
+    "ol_lpi":     {
+        "reservoir_density": 0.35, "recurrent_pct": 0.25, "has_inhibition": True,
+        "description": "Lobula-plate intrinsic cells (LPi): inhibitory inter-columnar links that create directional opponency between columns",
+        "capability": ["directional_opponency", "lateral_inhibit"],
+        "task_hint_pool": ["directional_opponency", "lateral_inhibit"], "lead_task_hint": "directional_opponency",
+        "neurotransmitter": "gaba", "brain_region": "lobula_plate",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Schnell et al 2010; Mauss et al 2015"
+    },
+    "ol_visual_lc":     {
+        "reservoir_density": 0.35, "recurrent_pct": 0.1, "has_inhibition": False,
+        "description": "Lobula columnar (LC) cells: feature- and target-selective visual projection neurons relaying detected objects onward",
+        "capability": ["target_detect", "feature_relay", "visual_projection"],
+        "task_hint_pool": ["target_detect", "visual_relay"], "lead_task_hint": "target_detect",
+        "neurotransmitter": "acetylcholine", "brain_region": "lobula",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Wu et al 2016; Keles & Frye 2017"
+    },
+    "escape_giant_fiber":     {
+        "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Giant fiber (DNp01): the descending command neuron of the jump-escape circuit, driving TTMn through a mixed electrical-chemical synapse",
+        "capability": ["escape_command", "fast_conduction", "descending_command"],
+        "task_hint_pool": ["escape_command", "startle_trigger"], "lead_task_hint": "escape_command",
+        "neurotransmitter": "acetylcholine", "brain_region": "neck_connective",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Tanouye & Wyman 1980; Allen et al 2006"
+    },
+    "escape_vnc_gfc":     {
+        "reservoir_density": 0.3, "recurrent_pct": 0.15, "has_inhibition": False,
+        "description": "Giant-fiber-connected interneurons (GFC1-4): VNC relays between the descending giant fiber and thoracic motor pools",
+        "capability": ["relay", "escape_relay"],
+        "task_hint_pool": ["escape_relay"], "lead_task_hint": "escape_relay",
+        "neurotransmitter": "acetylcholine", "brain_region": "thoracic_ganglion",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Phelan et al 1996; MaleCNS GFC types"
+    },
+    "escape_psi":     {
+        "reservoir_density": 0.25, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Peripheral synapsing interneuron (PSI): the DLM branch relay of the giant-fiber escape pathway",
+        "capability": ["relay", "escape_relay", "flight_power_trigger"],
+        "task_hint_pool": ["escape_relay"], "lead_task_hint": "escape_relay",
+        "neurotransmitter": "acetylcholine", "brain_region": "thoracic_ganglion",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "King & Wyman 1980"
+    },
+    "escape_jump_motor":     {
+        "reservoir_density": 0.25, "recurrent_pct": 0.02, "has_inhibition": False,
+        "description": "Jump/flight-power motor neurons (TTMn, DLMn, STTMm): the output muscles of the escape reflex - tergotrochanteral jump and dorsal longitudinal flight power",
+        "capability": ["jump_drive", "flight_power_drive", "motor_output"],
+        "task_hint_pool": ["jump_drive", "escape_execute"], "lead_task_hint": "jump_drive",
+        "neurotransmitter": "glutamate", "brain_region": "thoracic_ganglion",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Tanouye & Wyman 1980"
+    },
+    "courtship_pc1":     {
+        "reservoir_density": 0.35, "recurrent_pct": 0.3, "has_inhibition": True,
+        "description": "pC1/P1 cluster: the male courtship decision population that integrates pheromone and song input and gates courtship behaviour",
+        "capability": ["courtship_decision", "pheromone_integrate", "behaviour_gate"],
+        "task_hint_pool": ["courtship_decision", "behaviour_gate"], "lead_task_hint": "courtship_decision",
+        "neurotransmitter": "acetylcholine", "brain_region": "lateral_protocerebrum",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Clowney et al 2015; Deutsch et al 2020"
+    },
+    "courtship_asp":     {
+        "reservoir_density": 0.3, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "Male-specific aggression neurons (aSP10 cluster): promote inter-male aggression and compete with courtship drive",
+        "capability": ["aggression_drive", "behaviour_compete"],
+        "task_hint_pool": ["aggression_drive"], "lead_task_hint": "aggression_drive",
+        "neurotransmitter": "acetylcholine", "brain_region": "lateral_protocerebrum",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Watanabe et al 2017"
+    },
+    "courtship_pip":     {
+        "reservoir_density": 0.3, "recurrent_pct": 0.1, "has_inhibition": False,
+        "description": "pIP descending neurons (pIP1/pIP10): carry the courtship/aggression decision to the ventral nerve cord song and motor networks",
+        "capability": ["descending_command", "courtship_output"],
+        "task_hint_pool": ["courtship_output", "descending_command"], "lead_task_hint": "courtship_output",
+        "neurotransmitter": "acetylcholine", "brain_region": "neck_connective",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Deutsch et al 2020; MaleCNS pIP types"
+    },
+    "song_vnc_int":     {
+        "reservoir_density": 0.4, "recurrent_pct": 0.45, "has_inhibition": True,
+        "description": "VNC song network interneurons (vMS11/vMS12/vPR): the pattern generator that shapes pulse and sine song in the wing muscles",
+        "capability": ["song_pattern_generate", "pulse_shape", "rhythm_generate"],
+        "task_hint_pool": ["song_pattern", "rhythm_generate"], "lead_task_hint": "song_pattern",
+        "neurotransmitter": "acetylcholine", "brain_region": "thoracic_ganglion",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "von Philipsborn et al 2011; MaleCNS vMS/vPR types"
+    },
+    "song_vpo":     {
+        "reservoir_density": 0.3, "recurrent_pct": 0.3, "has_inhibition": False,
+        "description": "Ventral protocerebrum song-pathway cells (vpoEN/vpoIN): recurrent partners of the pC1 courtship decision population",
+        "capability": ["courtship_amplify", "decision_recurrent"],
+        "task_hint_pool": ["courtship_amplify"], "lead_task_hint": "courtship_amplify",
+        "neurotransmitter": "acetylcholine", "brain_region": "lateral_protocerebrum",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Deutsch et al 2020"
+    },
+    "auditory_ammc":     {
+        "reservoir_density": 0.35, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "Antennal mechanosensory and motor centre (AMMC) neurons: the first brain relay for near-field sound - the courtship song itself",
+        "capability": ["song_reception", "mechano_relay"],
+        "task_hint_pool": ["song_reception", "auditory_relay"], "lead_task_hint": "song_reception",
+        "neurotransmitter": "acetylcholine", "brain_region": "antennal_mechanosensory",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Lefevre et al 2021; MaleCNS AMMC types"
+    },
+    "lateral_horn_ln":     {
+        "reservoir_density": 0.35, "recurrent_pct": 0.3, "has_inhibition": True,
+        "description": "Lateral horn neurons (LH cell families): the innate-odour centre that hard-wires pheromone and kairomone meaning without MB learning",
+        "capability": ["innate_odour", "pheromone_classify", "hardwired_valence"],
+        "task_hint_pool": ["innate_odour", "pheromone_classify"], "lead_task_hint": "innate_odour",
+        "neurotransmitter": "gaba", "brain_region": "lateral_horn",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Jefferis et al 2007; Dolan et al 2019"
+    },
+    "antennal_orn":     {
+        "reservoir_density": 0.2, "recurrent_pct": 0.02, "has_inhibition": False,
+        "description": "Olfactory receptor neurons (ORN_ classes, e.g. ORN_DA1): one receptor class per sensillum class, converging onto single glomeruli",
+        "capability": ["odorant_transduce", "receptor_code"],
+        "task_hint_pool": ["odorant_transduce", "receptor_code"], "lead_task_hint": "odorant_transduce",
+        "neurotransmitter": "acetylcholine", "brain_region": "antenna",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Vosshall & Stocker 2007"
+    },
 }# default profile assignment: round-robin so all 10 types are represented
 DEFAULT_PROFILE_CYCLE = ("sensory", "memory", "motor", "integration",
                          "attention", "working_memory",
