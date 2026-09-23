@@ -1,18 +1,40 @@
 """gen_functional_units.py -- author the two composition libraries.
 
 Writes (single source of truth, stdlib-only JSON):
-    flybrain-connectome-mcp/functional_units/functional_units.json    (56 units)
-    flybrain-connectome-mcp/functional_units/connection_types.json    (58 types)
+    flybrain-connectome-mcp/functional_units/functional_units.json    (72 units)
+    flybrain-connectome-mcp/functional_units/connection_types.json    (66 types)
 
 CLADE COVERAGE (v1.4.1)
 -----------------------
-The library is no longer mammal-cortex shaped. 16 of the 56 units carry
+The library is no longer mammal-cortex shaped. 16 of the 72 units carry
 functions with no vertebrate-cortex equivalent, because the point of the
 library is combinatorial coverage of the whole animal kingdom, not of one
 brain: insect (mushroom body, antennal lobe, central complex, clock), bird
 (song system), fish (Mauthner escape, active/passive electroreception, EOD
 pacemaker) and cephalopod (vertical lobe, chromatophore, arm cord). Drosophila
 is the starting point, not the target.
+
+COMPUTATIONAL-ROLE COVERAGE (v1.6.0)
+------------------------------------
+The second 16 units add what the first 56 silently lacked: autonomous rhythm
+with no cortex (half-centre oscillation, plateau bistability), a real two-state
+machine (sleep/wake flip-flop), a supervised error path (climbing fibre ->
+Purkinje LTD), plus peripheral segmental CPGs, infrared/amphibian prey capture,
+hippocampal replay-style navigation and active touch.
+
+EMBODIMENT (v1.7.0)
+-------------------
+Everything above is curated from literature, and the library carried a
+permanent hole: nothing had ever been checked against the real connectome it is
+named after. `malecns_anchors.json` (built by scripts/build_malecns_anchors.py)
+maps library neuron populations onto real annotated MaleCNS v1.0 cell types and
+measures the real superclass connectivity backbone. Each unit therefore carries
+an `embodiment` block, and `provenance.embodied_in_malecns` is true only when at
+least one member population resolves to real annotated cells.
+
+`extracted_from_malecns` stays FALSE for every unit. Anchoring proves the parts
+exist and that a declared pathway is not *contradicted* at superclass
+resolution. It does not prove the declared microcircuit or its connection FORM.
 
 WHY A GENERATOR AND NOT HAND-WRITTEN JSON
 -----------------------------------------
@@ -38,6 +60,7 @@ port types it may join. Composition is therefore checkable mechanically instead
 of by eyeball.
 """
 from __future__ import annotations
+import hashlib
 import importlib.util
 import json
 import sys
@@ -46,6 +69,24 @@ from pathlib import Path
 ROOT = Path("C:/Users/xing/Desktop/flybrain-connectome")
 MCP = ROOT / "flybrain-connectome-mcp"
 OUT_DIR = MCP / "functional_units"
+ANCHORS_FILE = OUT_DIR / "malecns_anchors.json"
+
+# Contradictions between a declared unit edge and the measured connectome.
+# Each entry MUST carry a reason. The generator REFUSES to write when the set of
+# contradictions it measured differs from this list -- so a new one cannot ship
+# silently, and an acknowledged one cannot quietly disappear either. Nothing here
+# is "supported": a listed edge is a literature claim that the real data does not
+# show, and it is recorded so it is never cited as if it were.
+ACKNOWLEDGED_CONTRADICTIONS = [
+    {"unit": "central_complex_steering_unit", "edge": "nod->fb",
+     "reason": "The noduli population resolves to only 5 Nod cell types / 12 real "
+               "cells, and the dataset files them under `visual_projection` rather "
+               "than cb_intrinsic. MaleCNS v1.0 contains no Nod -> PFN/FS/FC synapses, "
+               "so this declared projection is UNSUPPORTED at this resolution. Kept "
+               "because it is a literature claim about the central complex, not a claim "
+               "about this release's connectivity; a fix requires resolving the noduli "
+               "population properly, which is future work."},
+]
 
 
 def _load_profiles() -> dict:
@@ -1014,8 +1055,105 @@ FUNCTIONAL_UNITS += [
 # ====================================================================== #
 # 4. VALIDATE + WRITE
 # ====================================================================== #
+# ----------------------------------------------------------------------
+# EMBODIMENT (v1.7.0) -- attach the measured MaleCNS anchor to every unit
+# ----------------------------------------------------------------------
+def _load_anchors() -> dict:
+    if not ANCHORS_FILE.exists():
+        raise SystemExit(
+            "REFUSING TO WRITE: %s is missing.\n"
+            "The embodiment layer is part of the library contract: without it every "
+            "unit silently reverts to 'literature only' with no way for a reader to "
+            "tell. Rebuild it with:\n"
+            "    python scripts/build_malecns_anchors.py\n"
+            "(needs a local MaleCNS v1.0 copy under FLYBRAIN_DATA_DIR)."
+            % ANCHORS_FILE.name)
+    return json.loads(ANCHORS_FILE.read_text(encoding="utf-8"))
+
+
+def _embody(unit: dict, anchors: dict) -> None:
+    """Attach `embodiment` to one unit, in place.
+
+    `structural_support` is measured at CELL-TYPE-SET resolution: for each
+    declared internal edge whose endpoints both anchor, it records the real
+    synapse count between the two populations' actual cell-type sets (summed over
+    the type-level matrix). A zero count is a contradiction. The coarser
+    superclass count is kept alongside for context but is not the verdict -- 11 of
+    the 14 anchored profiles share one superclass, so superclass resolution cannot
+    tell two different edges apart.
+    """
+    pa = anchors["profile_anchors"]
+    pidx = anchors["profile_matrix"]["index"]
+    psyn = anchors["profile_matrix"]["synapses"]
+    sidx = anchors["superclass_matrix"]["index"]
+    ssyn = anchors["superclass_matrix"]["synapses"]
+
+    anchored = {m["role"]: pa[m["neuron"]] for m in unit["members"]
+                if m["neuron"] in pa}
+    role_profile = {m["role"]: m["neuron"] for m in unit["members"]}
+
+    support = []
+    for w in unit["internal_wiring"]:
+        if w["from"] not in anchored or w["to"] not in anchored:
+            continue
+        p1 = role_profile[w["from"]]
+        p2 = role_profile[w["to"]]
+        measured = psyn[pidx[p1]][pidx[p2]]
+        coarse = 0
+        for s1 in anchored[w["from"]]["superclasses"]:
+            for s2 in anchored[w["to"]]["superclasses"]:
+                coarse = max(coarse, ssyn[sidx[s1]][sidx[s2]])
+        support.append({
+            "from_role": w["from"], "to_role": w["to"], "form": w["type"],
+            "from_population": p1, "to_population": p2,
+            "measured_synapses": measured,
+            "measured_edges": anchors["profile_matrix"]["edges"][pidx[p1]][pidx[p2]],
+            "measured_synapses_superclass_coarse": coarse,
+            "contradicted": measured == 0,
+        })
+
+    unit["embodiment"] = {
+        "populations_anchored": len(anchored),
+        "populations_total": len(unit["members"]),
+        "real_cells_anchored": sum(a["n_bodies"] for a in anchored.values()),
+        "anchored": {r: {"n_bodies": a["n_bodies"], "n_types": a["n_types"],
+                         "example_types": [h["type"] for h in a["types"]][:6],
+                         "lower_bound": a.get("coverage") == "lower_bound",
+                         **({"caveat": a["caveat"]} if a.get("caveat") else {})}
+                     for r, a in sorted(anchored.items())},
+        "structural_support": support,
+        "support_resolution": ("cell-type set (both endpoints anchored; zero measured "
+                               "synapses = contradiction)") if support else None,
+        "regions": anchors["regions"]["systems"].get(unit["system"]),
+        "anchors_file": ANCHORS_FILE.name,
+    }
+    unit["provenance"]["embodied_in_malecns"] = bool(anchored)
+    unit["provenance"]["embodiment_basis"] = (
+        "member populations matched to real annotated MaleCNS v1.0 cell types; "
+        "declared wiring and connection FORM NOT verified against the connectome"
+        if anchored else
+        "no member population resolves to a MaleCNS v1.0 cell type "
+        "(non-Drosophila taxon or mammalian-shaped cell class)")
+
+
+def embodied_units() -> tuple[list, dict]:
+    """The units exactly as `main()` writes them, plus the anchors used.
+
+    Module-level `FUNCTIONAL_UNITS` is the *authored* literature source; the
+    artifact additionally carries the measured embodiment block. Anything that
+    wants to know "what would the generator write" must go through here, or it
+    will diff the authored source against the written artifact and see phantom
+    drift. Idempotent.
+    """
+    anchors = _load_anchors()
+    for u in FUNCTIONAL_UNITS:
+        _embody(u, anchors)
+    return FUNCTIONAL_UNITS, anchors
+
+
 def main() -> int:
     profiles = _load_profiles()
+    anchors = _load_anchors()
     cnames = {c["name"] for c in CONNECTION_TYPES}
     unames = {u["name"] for u in FUNCTIONAL_UNITS}
     problems = []
@@ -1096,6 +1234,36 @@ def main() -> int:
         if not (fam_names & used):
             problems.append("connection family %s is never wired by any unit" % fam)
 
+    # 4.4 embodiment: attach the measured anchor, then verify its own invariants
+    for u in FUNCTIONAL_UNITS:
+        _embody(u, anchors)
+    for u in FUNCTIONAL_UNITS:
+        e = u["embodiment"]
+        if u["provenance"]["embodied_in_malecns"] != (e["populations_anchored"] > 0):
+            problems.append("unit %s: embodied_in_malecns disagrees with "
+                            "populations_anchored" % u["name"])
+        if e["populations_anchored"] > e["populations_total"]:
+            problems.append("unit %s: anchored more populations than it has" % u["name"])
+    anchored_populations = {m["neuron"] for u in FUNCTIONAL_UNITS for m in u["members"]
+                            if m["neuron"] in anchors["profile_anchors"]}
+    support_edges = [(u["name"], s) for u in FUNCTIONAL_UNITS
+                     for s in u["embodiment"]["structural_support"]]
+    measured_contradictions = sorted(
+        {"unit": n, "edge": "%s->%s" % (s["from_role"], s["to_role"])}
+        for n, s in support_edges if s["contradicted"])
+    acknowledged = sorted({"unit": c["unit"], "edge": c["edge"]}
+                          for c in ACKNOWLEDGED_CONTRADICTIONS)
+    if measured_contradictions != acknowledged:
+        new = [c for c in measured_contradictions if c not in acknowledged]
+        gone = [c for c in acknowledged if c not in measured_contradictions]
+        if new:
+            problems.append("unacknowledged contradiction(s): %s -- either fix the "
+                            "declared edge or register it in "
+                            "ACKNOWLEDGED_CONTRADICTIONS with a reason" % new)
+        if gone:
+            problems.append("acknowledged contradiction(s) no longer detected: %s -- "
+                            "remove them from ACKNOWLEDGED_CONTRADICTIONS" % gone)
+
     if problems:
         print("REFUSING TO WRITE -- %d problem(s):" % len(problems))
         for p in problems:
@@ -1111,6 +1279,14 @@ def main() -> int:
         "systems": sorted({u["system"] for u in FUNCTIONAL_UNITS}),
         "connection_families": sorted({c["family"] for c in CONNECTION_TYPES}),
         "connection_types_used_by_units": len(used),
+        "embodied_units": sum(1 for u in FUNCTIONAL_UNITS
+                              if u["provenance"]["embodied_in_malecns"]),
+        "embodied_populations_referenced": len(anchored_populations),
+        "embodied_real_cells_referenced": sum(
+            anchors["profile_anchors"][n]["n_bodies"] for n in anchored_populations),
+        "structural_support_edges_measured": len(support_edges),
+        "structural_support_edges_contradicted": len(measured_contradictions),
+        "contradictions_acknowledged": len(acknowledged),
     }
 
     units_doc = {
@@ -1121,9 +1297,35 @@ def main() -> int:
                   "measured cell assembly. Members name neuron populations from "
                   "synthetic_bio_topology.MODULE_PROFILES; ratios are composition "
                   "weights, not measured cell counts. Treat as a compositional "
-                  "scaffold with literature provenance, not as ground truth.",
+                  "scaffold with literature provenance, not as ground truth. "
+                  "Where `embodiment.populations_anchored` > 0 the member populations "
+                  "DO correspond to real annotated MaleCNS v1.0 cell types, but the "
+                  "declared wiring and its connection FORM remain literature-derived -- "
+                  "see `provenance.extracted_from_malecns` (false everywhere).",
         "port_types": PORT_TYPES,
         "stats": stats,
+        "embodiment_source": {
+            "file": ANCHORS_FILE.name,
+            "schema_version": anchors["schema_version"],
+            "sha256": hashlib.sha256(ANCHORS_FILE.read_bytes()).hexdigest(),
+            "anchored_profiles": anchors["summary"]["anchored_profiles"],
+            "anchored_real_cells": anchors["summary"]["anchored_real_cells"],
+            "anchored_types": anchors["summary"]["anchored_types"],
+            "measured_synapses_neuron_subgraph":
+                anchors["validation"]["measured_synapses_neuron_subgraph"],
+            "measured_edges_neuron_subgraph":
+                anchors["validation"]["measured_edges_neuron_subgraph"],
+            "scope": "Presence + non-contradiction only. A matched population proves "
+                     "the parts exist in the real connectome; a nonzero measured "
+                     "pathway proves the declared edge is not contradicted at cell-type "
+                     "resolution. Neither proves the declared microcircuit or connection "
+                     "form. Declared edges measured at ZERO synapses are listed in "
+                     "`contradicted_edges` and are UNSUPPORTED, not supported.",
+            "contradicted_edges": measured_contradictions,
+            "acknowledged_contradictions": [
+                {"unit": c["unit"], "edge": c["edge"], "reason": c["reason"]}
+                for c in ACKNOWLEDGED_CONTRADICTIONS],
+        },
         "how_to_compose": [
             "1. pick units by `capability` / `lead_task_hint`;",
             "2. join an out-port to an in-port whose `type` matches (or via a "
