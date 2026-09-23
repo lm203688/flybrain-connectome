@@ -3326,6 +3326,41 @@ MODULE_REGISTRY.update({
         category="biological"),
 })
 
+# ---------------- v1.9.0: remaining cleanly-anchorable fly circuits ----
+# These three profiles were added to MODULE_PROFILES in v1.8.0 but the
+# MODULE_REGISTRY entries never landed (a mid-batch break in v1.9.0). They are
+# now complete: each has a profile, a registry entry, an anchor rule, and an
+# embodied functional unit that declares only measured non-zero edges.
+MODULE_REGISTRY.update({
+    'octopamine_vum': ModuleSpec(
+        name='octopamine_vum', function='arousal_modulate',
+        description='Octopaminergic ventral unpaired median neurons OA-VUMa/OA-VPM (small widely-projecting population): the invertebrate arousal-effort system',
+        connection_pattern={"inputs": ['external', 'descending_neuron'], "outputs": ['kenyon_cell', 'mushroom_body_dan', 'central_complex_eb', 'descending_neuron']},
+        size_range=(2, 10), motif_source='diffuse_modulation',
+        parameters={"reservoir_density": 0.02, "recurrent_pct": 0.0, "has_inhibition": False},
+        capabilities=['arousal_modulate', 'effort_set', 'gain_control'],
+        task_hints=['arousal_modulate', 'effort_set', 'gain_control'], lead_task_hint='arousal_modulate',
+        category="biological"),
+    'looming_lplc': ModuleSpec(
+        name='looming_lplc', function='looming_detect',
+        description='Lobula plate lobula columnar LPLC1/2/4 (416 real cells): collision / looming detector feeding the escape pathway',
+        connection_pattern={"inputs": ['ol_visual_lc', 'ol_lptc'], "outputs": ['descending_neuron', 'escape_giant_fiber']},
+        size_range=(50, 416), motif_source='feedforward_excitatory',
+        parameters={"reservoir_density": 0.3, "recurrent_pct": 0.05, "has_inhibition": False},
+        capabilities=['looming_detect', 'collision_detect', 'expansion_flow'],
+        task_hints=['looming_detect', 'collision_detect', 'expansion_flow'], lead_task_hint='looming_detect',
+        category="biological"),
+    'pharyngeal_gustatory': ModuleSpec(
+        name='pharyngeal_gustatory', function='taste_encode',
+        description='Pharyngeal (PhG) gustatory sensory neurons (feed-drive): taste / cibarial input from the proboscis region',
+        connection_pattern={"inputs": ['external'], "outputs": ['descending_neuron', 'courtship_pc1', 'lateral_horn_ln', 'antennal_lobe_ln']},
+        size_range=(10, 60), motif_source='feedforward_excitatory',
+        parameters={"reservoir_density": 0.15, "recurrent_pct": 0.02, "has_inhibition": False},
+        capabilities=['taste_encode', 'feed_drive', 'appetitive_sense'],
+        task_hints=['taste_encode', 'feed_drive', 'appetitive_sense'], lead_task_hint='taste_encode',
+        category="biological"),
+})
+
 
 # ====================================================================== #
 # 导出
