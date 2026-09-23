@@ -190,12 +190,12 @@ TOOLS = [
     },
     {
         "name": "list_modules",
-        "description": "列出 flybrain 当前全部模块（10 个认知功能模块 + 跨生物保守神经元类型），返回名称、能力 profile、生物学依据与描述。",
+        "description": "列出 flybrain 当前全部模块（10 个认知功能模块 + 126 个跨生物保守神经元类型，含昆虫 / 鸟类 / 鱼类 / 头足类四个非脊椎皮层进化支），返回名称、能力 profile、生物学依据与描述。",
         "inputSchema": {"type": "object", "properties": {}},
     },
     {
         "name": "list_functional_units",
-        "description": "列出 40 个功能单元（最小可组合单位 = 一个功能，由一组神经元群 + 内部微回路构成，带类型化输入/输出端口）。可按 system（如 cortex / hippocampus）或 capability（如 action_select）过滤。这是组合虚拟生物时真正当节点用的那一层，不是单神经元类型。",
+        "description": "列出 56 个功能单元（最小可组合单位 = 一个功能，由一组神经元群 + 内部微回路构成，带类型化输入/输出端口；其中 16 个为跨进化支：昆虫 / 鸟类 / 鱼类 / 头足类）。可按 system（如 cortex / hippocampus）或 capability（如 action_select）过滤。这是组合虚拟生物时真正当节点用的那一层，不是单神经元类型。",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -218,7 +218,7 @@ TOOLS = [
     },
     {
         "name": "list_connection_types",
-        "description": "列出 50 种连接件（最小可组合连接单位 = 一种连接形式，带端口类型约束、符号、扇出、时延与可塑性标记）。分 6 族：micro（点对点突触位点）/ circuit（多神经元回路）/ modulatory（弥散·容积·逆行）/ electrical（电突触·电场·胶质）/ plasticity（可塑性规则）/ macro（群体投射几何）。",
+        "description": "列出 58 种连接件（最小可组合连接单位 = 一种连接形式，带端口类型约束、符号、扇出、时延与可塑性标记）。分 6 族：micro（点对点突触位点）/ circuit（多神经元回路）/ modulatory（弥散·容积·逆行）/ electrical（电突触·电场·胶质）/ plasticity（可塑性规则）/ macro（群体投射几何）。",
         "inputSchema": {
             "type": "object",
             "properties": {
@@ -1373,7 +1373,7 @@ def main():
             resp = {"jsonrpc": "2.0", "id": rid, "result": {
                 "protocolVersion": PROTOCOL_VERSION,
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "drosophila-connectome", "version": "1.4.0"},
+                "serverInfo": {"name": "drosophila-connectome", "version": "1.5.0"},
             }}
         elif method == "notifications/initialized":
             continue
