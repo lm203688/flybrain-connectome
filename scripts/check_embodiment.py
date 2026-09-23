@@ -12,7 +12,7 @@ separate kinds of claim:
      up to the numbers they claim, the profile-level matrix is exactly the
      type-level matrix aggregated over each profile's real cell-type set, every
      anchored profile actually matched cells, and the classification partitions
-     all 160 profiles with no double-counting. These run in CI with no dataset.
+     all 180 profiles with no double-counting. These run in CI with no dataset.
 
   B. **Unit-level embodiment honesty.** `provenance.embodied_in_malecns` is true
      for exactly the units with an anchored population -- no unit may claim
