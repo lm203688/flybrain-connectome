@@ -103,10 +103,26 @@ def main(argv: list[str] | None = None) -> int:
     from flybrain_connectome_client import build_agent_topology, FlybrainHTTPClient
     motif_doc = json.loads(
         (HERE / "motifs" / "swarm_agent_topology_motifs.json").read_text(encoding="utf-8"))
-    check("motif 文档含三个 motif",
-          set(motif_doc["motifs"]) == {"inhibitory_hub", "reservoir_smallworld",
-                                       "recurrent_feedback"},
-          str(sorted(motif_doc["motifs"])))
+    # The document has two tiers of motif, and conflating them was a real bug:
+    #   1. the THREE connectome-extracted topology motifs, which are the only ones
+    #      `build_agent_topology()` can instantiate (they carry the real anchor
+    #      statistics), and
+    #   2. the conceptual patterns (hub_body == 0) that describe a connection FORM
+    #      rather than a buildable fly-derived topology.
+    # Assert (1) is still intact, that (2) is honest, and only build from (1).
+    TOPOLOGY_MOTIFS = ("inhibitory_hub", "reservoir_smallworld", "recurrent_feedback")
+    present = set(motif_doc["motifs"])
+    check("motif 文档仍含三个 MaleCNS 抽取的拓扑 motif",
+          set(TOPOLOGY_MOTIFS) <= present,
+          "missing: %s" % sorted(set(TOPOLOGY_MOTIFS) - present))
+    check("motif 文档 schema_version = 1.2",
+          motif_doc.get("schema_version") == "1.2",
+          str(motif_doc.get("schema_version")))
+    conceptual = {k for k, v in motif_doc["motifs"].items()
+                  if v.get("hub_body") == 0 and k not in TOPOLOGY_MOTIFS}
+    check("概念性 motif 全部标记 hub_body=0（非真实抽取）",
+          len(conceptual) == len(present) - len(TOPOLOGY_MOTIFS),
+          "%d conceptual / %d total" % (len(conceptual), len(present)))
     check("motif 锚点 fanout 101-1000 = 49.36%",
           motif_doc["motifs"]["reservoir_smallworld"]
                    ["fanout_distribution_pct"]["101-1000"] == 49.36)
@@ -114,14 +130,14 @@ def main(argv: list[str] | None = None) -> int:
           motif_doc["motifs"]["recurrent_feedback"]
                    ["self_recurrence_top"][0]["pct_of_total"] == 28.74)
 
-    # ---- 3. 拓扑构建 ---------------------------------------------- #
+    # ---- 3. 拓扑构建（只对三个可构建的拓扑 motif） ------------------- #
     expected = {"inhibitory_hub": (11, 10), "reservoir_smallworld": (10, 20),
                 "recurrent_feedback": (8, 8)}
-    for name, mot in motif_doc["motifs"].items():
-        t = build_agent_topology(mot, K_workers=10)
+    for name, (en, ee) in expected.items():
+        t = build_agent_topology(motif_doc["motifs"][name], K_workers=10)
         n, e = len(t["nodes"]), len(t["edges"])
-        check("build_agent_topology(%s) = %s" % (name, expected[name]),
-              (n, e) == expected[name], "nodes=%d edges=%d" % (n, e))
+        check("build_agent_topology(%s) = %s" % (name, (en, ee)),
+              (n, e) == (en, ee), "nodes=%d edges=%d" % (n, e))
 
     # ---- 4. C1：motif 解析（离线）+ SwarmLabs config ---------------- #
     import synthetic_bio_topology as c1
@@ -157,12 +173,26 @@ def main(argv: list[str] | None = None) -> int:
 
     # --- Phase 3: blueprint (cross-module topology, dimension 3) ---
     # 9 blueprints total: 5 basic + 4 biological
-    check("MODULE_PROFILES 10 种功能模块（Phase 1 决策 1：激进 4→10）",
-          len(c1.MODULE_PROFILES) == 10,
-          "modules=%d" % len(c1.MODULE_PROFILES))
-    check("DEFAULT_PROFILE_CYCLE 覆盖全部 10 模块",
-          len(c1.DEFAULT_PROFILE_CYCLE) == 10
-          and set(c1.DEFAULT_PROFILE_CYCLE) == set(c1.MODULE_PROFILES.keys()),
+    # MODULE_PROFILES now holds two tiers: the 10 cognitive-function profiles
+    # (what the default cycle rotates through) and the cross-species neuron types
+    # (which are composition vocabulary, not default profiles). Asserting a flat
+    # == 10 here was correct only while the library was 10 items, so assert the
+    # tiered shape instead.
+    COGNITIVE_MODULES = {"sensory", "memory", "motor", "integration", "attention",
+                         "working_memory", "reward", "punishment", "habit",
+                         "metacognition"}
+    n_profiles = len(c1.MODULE_PROFILES)
+    n_neuron_types = sum(1 for v in c1.MODULE_PROFILES.values()
+                         if v.get("neurotransmitter"))
+    check("MODULE_PROFILES 分层：10 认知模块 + 跨生物神经元类型",
+          n_profiles >= 101 and n_neuron_types == n_profiles - 10,
+          "profiles=%d neuron_types=%d" % (n_profiles, n_neuron_types))
+    check("10 个认知功能模块仍然存在",
+          COGNITIVE_MODULES <= set(c1.MODULE_PROFILES),
+          "missing=%s" % sorted(COGNITIVE_MODULES - set(c1.MODULE_PROFILES)))
+    check("DEFAULT_PROFILE_CYCLE 恰好覆盖 10 个认知模块",
+          set(c1.DEFAULT_PROFILE_CYCLE) == COGNITIVE_MODULES
+          and len(c1.DEFAULT_PROFILE_CYCLE) == 10,
           "cycle=%d" % len(c1.DEFAULT_PROFILE_CYCLE))
     bp_names = list(c1.BLUEPRINTS.keys())
     basic = [k for k, v in c1.BLUEPRINTS.items() if v.get("category") == "basic"]
