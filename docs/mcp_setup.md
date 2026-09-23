@@ -66,7 +66,7 @@ has `numpy` and `pyarrow`; the toolkit itself has no dependencies.
 
 ---
 
-## 2. The 40 tools
+## 2. The 44 tools
 
 **Real-connectome queries** — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`;
 `export_swarm_motifs` works from the bundled snapshot (only `refresh=true`
@@ -90,6 +90,14 @@ reads the data):
 `rate_market_organism` · `search_market_organisms` · `delete_market_organism` ·
 `list_combination_rules` · `validate_combination` · `expand_organism` ·
 `get_multiplier_metrics`
+
+**Functional-unit composition library** — offline, Tier-1, stdlib-only. This is
+the layer that actually composes: 40 functional units (a function delivered by a
+group of neuron populations, with typed ports) + 50 connection types
+(connection forms, constrained on port types).
+
+`list_functional_units` · `get_functional_unit` ·
+`list_connection_types` · `compose_from_units`
 
 Tool schemas are authoritative in source: `TOOLS` in
 `flybrain-connectome-mcp/mcp_connectome/server.py`. Do not invent tool names —
