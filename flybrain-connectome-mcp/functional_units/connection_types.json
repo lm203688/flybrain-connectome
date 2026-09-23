@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "source": "42 of the 58 connection forms map onto the curated motif document (motifs/swarm_agent_topology_motifs.json); the other 16 are new forms introduced by this library.",
+  "source": "45 of the 66 connection forms map onto the curated motif document (motifs/swarm_agent_topology_motifs.json); the other 21 are new forms introduced by this library.",
   "caveat": "Connection forms are qualitative taxonomies. `parameters` are literature-scale defaults for simulation, not fitted values.",
   "families": {
     "micro": "point-to-point chemical synaptic contact sites",
@@ -11,14 +11,19 @@
     "macro": "population-level projection geometry"
   },
   "stats": {
-    "functional_units": 56,
-    "connection_types": 58,
-    "neural_members_referenced": 123,
+    "functional_units": 72,
+    "connection_types": 66,
+    "neural_members_referenced": 147,
     "systems": [
       "antennal_lobe",
+      "aplysia_ganglion",
       "arm_cord",
+      "arousal_switch",
+      "ascidian_larva",
+      "barrel_cortex",
       "basal_ganglia",
       "brainstem",
+      "buccal_ganglion",
       "central_complex",
       "cerebellum",
       "chromatophore",
@@ -29,15 +34,23 @@
       "glia",
       "hippocampus",
       "hypothalamus",
+      "infrared_pit",
+      "leech_ganglion",
       "limbic",
+      "locus_coeruleus",
       "mushroom_body",
       "neuromodulatory",
+      "olivocerebellar",
+      "optic_tectum",
+      "respiratory",
+      "reticulospinal",
       "sensory",
       "song_system",
       "spinal_cord",
       "startle_circuit",
       "thalamus",
-      "vertical_lobe"
+      "vertical_lobe",
+      "vestibular"
     ],
     "connection_families": [
       "circuit",
@@ -47,7 +60,7 @@
       "modulatory",
       "plasticity"
     ],
-    "connection_types_used_by_units": 36
+    "connection_types_used_by_units": 46
   },
   "connection_types": [
     {
@@ -1120,6 +1133,158 @@
         "all_or_none": true
       },
       "biological_reference": "Korn & Faber 2005; Eaton et al 2001"
+    },
+    {
+      "name": "half_center_oscillation",
+      "family": "circuit",
+      "display": "半中心振荡",
+      "description": "Two reciprocally inhibitory pools plus adaptation: whichever is releasing the other from inhibition takes the next half-cycle, so a tonic drive becomes an alternating rhythm with no cell being intrinsically rhythmic (leech swim CPG; respiratory pre-Botzinger).",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": null,
+      "parameters": {
+        "adaptation_time_constant": 0.8,
+        "escape_threshold": 0.4
+      },
+      "biological_reference": "Marder & Calabrese 1996; Friesen 1989; Kristan et al 2005"
+    },
+    {
+      "name": "plateau_potential_bistability",
+      "family": "electrical",
+      "display": "平台电位双稳态",
+      "description": "A brief input pushes the cell onto a sustained depolarised plateau that outlives the stimulus by hundreds of milliseconds; this is what gives a CPG its commitment and its hysteresis.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "long",
+      "plastic": true,
+      "motif_ref": null,
+      "parameters": {
+        "plateau_duration_ms": 800,
+        "reset_threshold": 0.2
+      },
+      "biological_reference": "Kiehn 1991; Ramirez et al 2016"
+    },
+    {
+      "name": "serotonergic_presynaptic_facilitation",
+      "family": "plasticity",
+      "display": "血清素能突触前易化",
+      "description": "A modulatory terminal raises release probability in the sensory neuron without any postsynaptic depolarisation -- the mechanism of sensitisation in the Aplysia gill-withdrawal reflex, i.e. a memory stored presynaptically.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "pre_presynaptic_excitation",
+      "parameters": {
+        "release_gain": 2.0,
+        "camp_dependent": true
+      },
+      "biological_reference": "Castellucci & Kandel 1976; Kandel 2001"
+    },
+    {
+      "name": "short_term_habituation",
+      "family": "plasticity",
+      "display": "短时程习惯化",
+      "description": "Repeated activation of the same pathway depresses release, so the same stimulus produces a progressively smaller response and recovers in minutes -- the counterweight to presynaptic facilitation.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "short_term_plasticity",
+      "parameters": {
+        "depression_per_pulse": 0.15,
+        "recovery_minutes": 10
+      },
+      "biological_reference": "Castellucci et al 1970; Rankin et al 2009"
+    },
+    {
+      "name": "coincidence_detection",
+      "family": "plasticity",
+      "display": "符合检测",
+      "description": "The synapse only changes when two inputs arrive together: a single climbing fibre carrying the error must coincide with parallel-fibre activity for the Purkinje synapse to depress. Teaching, not correlation.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": true,
+      "motif_ref": null,
+      "parameters": {
+        "coincidence_window_ms": 20,
+        "ltd_depth": 0.6
+      },
+      "biological_reference": "Ito & Kano 1982; Ito 1984; De Zeeuw et al 2011"
+    },
+    {
+      "name": "state_switch_bistable",
+      "family": "macro",
+      "display": "双稳态状态切换",
+      "description": "Two mutually inhibitory populations with a slow external bias: the circuit sits in one of two stable states and a small, brief input flips the whole thing, which is how sleep/wake cannot sit halfway.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "long",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "hysteresis": 0.3,
+        "flip_threshold": 0.55
+      },
+      "biological_reference": "Saper et al 2005; Saper et al 2010"
+    },
+    {
+      "name": "grid_phase_precession",
+      "family": "circuit",
+      "display": "网格相位进动",
+      "description": "A theta-rhythm reference makes a spatial cell's firing phase advance linearly with distance travelled, converting a place code into a temporal code -- the mechanism that lets position be read out by spike timing.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": true,
+      "motif_ref": null,
+      "parameters": {
+        "precession_slope": 0.3,
+        "theta_ref_hz": 8
+      },
+      "biological_reference": "O'Keefe & Recce 1993; Hafting et al 2005; Burgess et al 2007"
+    },
+    {
+      "name": "thermal_cross_modal_convergence",
+      "family": "macro",
+      "display": "热-视觉跨模态汇聚",
+      "description": "An infrared map and a visual map registered onto the same tectal neurons, so a warm target is localised in the same coordinates as a seen one and either modality can drive the strike (pit vipers; vampire bats).",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "many_to_one",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "topographic_mapping",
+      "parameters": {
+        "registration_tolerance_deg": 5,
+        "gain_visual": 0.6
+      },
+      "biological_reference": "Hartline et al 2011; Gracheva et al 2010; Newman & Hartline 1982"
     }
   ]
 }
