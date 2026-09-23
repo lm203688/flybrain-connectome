@@ -1,15 +1,25 @@
 """gen_functional_units.py -- author the two composition libraries.
 
 Writes (single source of truth, stdlib-only JSON):
-    flybrain-connectome-mcp/functional_units/functional_units.json    (40 units)
-    flybrain-connectome-mcp/functional_units/connection_types.json    (50 types)
+    flybrain-connectome-mcp/functional_units/functional_units.json    (56 units)
+    flybrain-connectome-mcp/functional_units/connection_types.json    (58 types)
+
+CLADE COVERAGE (v1.4.1)
+-----------------------
+The library is no longer mammal-cortex shaped. 16 of the 56 units carry
+functions with no vertebrate-cortex equivalent, because the point of the
+library is combinatorial coverage of the whole animal kingdom, not of one
+brain: insect (mushroom body, antennal lobe, central complex, clock), bird
+(song system), fish (Mauthner escape, active/passive electroreception, EOD
+pacemaker) and cephalopod (vertical lobe, chromatophore, arm cord). Drosophila
+is the starting point, not the target.
 
 WHY A GENERATOR AND NOT HAND-WRITTEN JSON
 -----------------------------------------
 Every functional unit's `members` reference neuron keys that MUST exist in
 synthetic_bio_topology.MODULE_PROFILES, and every `internal_wiring` edge MUST
 reference a connection type that exists in connection_types.json. Hand-writing
-80 KB of JSON would let a typo (`pyramidal_l5b` vs `pyramidal_l5bt`) ship as a
+120 KB of JSON would let a typo (`pyramidal_l5b` vs `pyramidal_l5bt`) ship as a
 silently dead module. The generator loads MODULE_PROFILES first and refuses to
 write if any reference is dangling -- so the artifacts can never drift from the
 neuron library they are built on.
@@ -261,9 +271,11 @@ CONNECTION_TYPES = [
       "*", "*", "-", "many_to_many", "intra_unit", "immediate", False,
       "gap_junction_inhibitory", {"coupling_conductance": 0.15}, "GABAergic gap junctions"),
     C("ephaptic_coupling", "electrical", "电场耦合",
-      "Non-synaptic field coupling; activity in one fibre changes the excitability of a neighbour.",
-      "*", "*", "+/-", "many_to_many", "intra_unit", "immediate", False,
-      "ephaptic_coupling", {"field_gain": 0.05}, "ephatic/ephaptic coupling (Anastassiou 2011)"),
+      "Non-synaptic field coupling; activity in one fibre changes the excitability of a "
+      "neighbour. Span is 'either', because a field does not respect a unit boundary -- an "
+      "electric organ drives its own receptors across tissues.",
+      "*", "*", "+/-", "many_to_many", "either", "immediate", False,
+      "ephaptic_coupling", {"field_gain": 0.05}, "ephaptic coupling (Anastassiou 2011)"),
     C("astrocyte_neuron_tripartite", "electrical", "星形胶质三方突触",
       "Astrocyte senses synaptic activity and returns a slow modulatory signal.",
       "glial.support", "*", "mod", "one_to_many", "either", "long", True,
@@ -340,7 +352,7 @@ CONNECTION_TYPES = [
 
 
 # ====================================================================== #
-# 2. FUNCTIONAL UNITS -- 40 units, each = one function, N neuron populations
+# 2. FUNCTIONAL UNITS -- 56 units, each = one function, N neuron populations
 # ====================================================================== #
 def U(name, display, function, system, desc, members, wiring, in_ports, out_ports,
       size, capability, hints, lead, nts, ref, species, composes=()):
@@ -1123,9 +1135,12 @@ def main() -> int:
     }
     conn_doc = {
         "schema_version": "1.0",
-        "source": "40 forms map 1:1 onto the curated motif document "
-                  "(motifs/swarm_agent_topology_motifs.json); 10 additional "
-                  "macro-projection forms are new here.",
+        "source": "%d of the %d connection forms map onto the curated motif "
+                  "document (motifs/swarm_agent_topology_motifs.json); the other "
+                  "%d are new forms introduced by this library."
+                  % (sum(1 for c in CONNECTION_TYPES if c["motif_ref"]),
+                     len(CONNECTION_TYPES),
+                     sum(1 for c in CONNECTION_TYPES if not c["motif_ref"])),
         "caveat": "Connection forms are qualitative taxonomies. `parameters` are "
                   "literature-scale defaults for simulation, not fitted values.",
         "families": {
@@ -1147,6 +1162,344 @@ def main() -> int:
     print("WROTE functional_units.json + connection_types.json")
     print(json.dumps(stats, ensure_ascii=False, indent=2))
     return 0
+
+
+# ====================================================================== #
+# v1.4.1 CROSS-CLADE EXTENSION -- insect / bird / fish / cephalopod
+# ----------------------------------------------------------------------
+# The first 40 units were (with two exceptions) mammalian-cortex shaped.
+# These 16 add functions that have NO vertebrate-cortex equivalent: sparse
+# mushroom-body coding, a ring-attractor heading system, a synfire timing
+# chain for song, a single-cell escape command neuron, active electro-
+# location with reafference cancellation, and a cephalopod learning lobe
+# whose rule is repeated-activation facilitation. Same algebra, same ports.
+# ====================================================================== #
+PORT_TYPES.update({
+    "sensory.skylight_compass":  "Polarised-light / sun-compass heading cue (insect central complex).",
+    "sensory.electric.ampullary": "Low-frequency passive electric-field signal (prey bioelectric field).",
+    "sensory.electric.tuberous": "High-frequency active-electrolocation signal (own EOD amplitude + phase).",
+    "sensory.lateral_line":      "Water-flow / pressure-wave signal from the lateral line.",
+    "sensory.auditory.startle":  "Abrupt acoustic transient able to trigger a startle response.",
+    "olfactory.sparse_code":     "Sparse high-dimensional odour code (mushroom-body Kenyon-cell output).",
+    "olfactory.learned_valence": "Learned appetitive/aversive value attached to an odour.",
+    "navigation.heading":        "Angular head-direction (bearing) estimate.",
+    "navigation.steering":       "Turn command that reduces the heading-to-goal error.",
+    "navigation.ego_speed":      "Forward / self-motion speed estimate.",
+    "clock.phase":               "Circadian phase signal.",
+    "memory.associative":        "Recurrently stored associative memory trace.",
+    "motor.song":                "Vocal-motor command (syllable timing and syringeal drive).",
+    "motor.escape":              "All-or-none escape motor command (C-start).",
+    "motor.chromatophore":       "Skin-pattern display command (chromatophore radial muscles).",
+    "motor.arm":                 "Arm motion command issued from the arm nerve cord.",
+    "motor.eod":                 "Electric-organ discharge command.",
+    "efference.copy":            "Efference copy / corollary discharge of a self-generated motor command.",
+})
+
+
+CONNECTION_TYPES += [
+    # ---------------- v1.4.1 forms (8) ------------------------------------ #
+    C("sparse_expansion_projection", "macro", "稀疏展开投射",
+      "A few input channels fan out onto a very large population of which only "
+      "a small fraction is active per stimulus -- the mushroom-body Kenyon-cell code.",
+      "*", "*", "+", "one_to_many", "either", "immediate", False, None,
+      {"expansion_factor": 50, "active_fraction": 0.05},
+      "Turner et al 2008; Caron et al 2013"),
+    C("global_inhibitory_gain_control", "circuit", "全局抑制增益控制",
+      "One wide-field inhibitory cell sums the whole population and feeds back "
+      "onto all of it, enforcing sparseness (APL onto Kenyon cells).",
+      "*", "*", "-", "one_to_many", "intra_unit", "immediate", False, "inhibitory_hub",
+      {"divisive_gain": 0.7}, "Wilson & Laurent 2005; Papadopoulou et al 2011"),
+    C("neural_chain_sequence", "circuit", "链式顺序激活",
+      "A synfire-like chain in which each element activates the next after a short "
+      "delay, turning a static command into a temporal sequence (HVC song timing).",
+      "*", "*", "+", "one_to_one", "intra_unit", "short", True, None,
+      {"chain_length": 8, "jitter_ms": 5}, "Long et al 2010; Picardo et al 2016"),
+    C("efference_copy_cancellation", "circuit", "传出副本抵消",
+      "A copy of the motor command is sent ahead to sensory areas and subtracted "
+      "from the reafferent input, so self-generated signals are not mistaken for "
+      "the world (electric-fish EOD; song auditory feedback).",
+      "efference.copy", "*", "-", "one_to_one", "inter_unit", "immediate", True, None,
+      {"cancellation_gain": 0.9}, "Bell 1981; Crapse & Sommer 2008"),
+    C("mixed_electrical_chemical_synapse", "electrical", "电化学混合突触",
+      "A contact carrying both a gap-junction conductance and a chemical component; "
+      "this is what gives the Mauthner cell its sub-millisecond all-or-none drive.",
+      "*", "*", "+/-", "one_to_one", "either", "immediate", False, None,
+      {"electrical_fraction": 0.5}, "Korn & Faber 2005; Pereda 2014"),
+    C("modulatory_gated_plasticity", "plasticity", "调质门控可塑性",
+      "A synapse whose weight changes only when a third, modulatory neuron is "
+      "co-active: local learning requires a global reinforcement signal "
+      "(DAN onto the Kenyon-cell output synapse).",
+      "*", "*", "+/-", "one_to_many", "either", "short", True, None,
+      {"gating_threshold": 0.5, "learning_rate": 0.01},
+      "Aso et al 2014; Cognigni et al 2018"),
+    C("repetitive_activation_lts", "plasticity", "反复激活长时程增强",
+      "A brief run of presynaptic spikes produces a lasting increase in release "
+      "that outlives the train by many minutes -- the cephalopod vertical-lobe rule.",
+      "*", "*", "+", "one_to_one", "intra_unit", "long", True, "ltp_ltd",
+      {"pulses_required": 5, "decay_minutes": 30}, "Shomrat et al 2008; Hochner 2012"),
+    C("command_neuron_recruitment", "macro", "指令神经元募集",
+      "One identified command neuron, once past threshold, recruits an entire "
+      "downstream motor pool all-or-none (Mauthner cell; EOD pacemaker nucleus).",
+      "*", "*", "+", "one_to_one", "intra_unit", "immediate", False, None,
+      {"threshold": 0.8, "all_or_none": True}, "Korn & Faber 2005; Eaton et al 2001"),
+]
+
+
+FUNCTIONAL_UNITS += [
+    # ================= INSECT (6) ================= #
+    U("antennal_lobe_glomerular_unit", "触角叶球状体单元", "odour_encode", "antennal_lobe",
+      "感受神经元投射到球状体，局部中间神经元做跨球归一化，投射神经元把气味通道送进蘑菇体和高位侧角。",
+      [("orn", "olfactory_receptor", 0.30),
+       ("pn", "antennal_lobe_pn", 0.35),
+       ("ln", "antennal_lobe_ln", 0.35)],
+      [("orn", "pn", "feedforward_excitatory", 1.0),
+       ("ln", "pn", "lateral_inhibitory", 0.9),
+       ("pn", "ln", "feedforward_excitatory", 0.7),
+       ("ln", "ln", "mutual_inhibitory", 0.4)],
+      [("odour", "sensory.olfactory", True)], [("pn_out", "sensory.olfactory", True)],
+      (40, 160), ["odour_encode", "normalize", "pattern_separate", "background_separate"],
+      ["odour_encode", "channel_relay", "background_separate"], "odour_encode",
+      ["acetylcholine", "gaba"], "Wilson & Mainen 2006; Olsen & Wilson 2008",
+      ["drosophila", "honeybee", "moth"], ("mushroom_body_sparse_code_unit",)),
+    U("mushroom_body_sparse_code_unit", "蘑菇体稀疏编码单元", "sparse_encode", "mushroom_body",
+      "投射神经元在约两千个 Kenyon 细胞上随机展开，单个 APL 神经元全局回抑制把活动压到约 5%，得到高维稀疏气味码。",
+      [("kc", "kenyon_cell", 0.75),
+       ("gaba", "mushroom_body_apl", 0.10),
+       ("input", "antennal_lobe_pn", 0.15)],
+      [("input", "kc", "sparse_expansion_projection", 1.0),
+       ("kc", "gaba", "feedforward_excitatory", 0.9),
+       ("gaba", "kc", "global_inhibitory_gain_control", 0.8),
+       ("kc", "kc", "lateral_inhibitory", 0.3)],
+      [("pn_in", "sensory.olfactory", True)], [("sparse_out", "olfactory.sparse_code", True)],
+      (1500, 2500), ["sparse_encode", "pattern_separate", "high_dim_expand", "gain_control"],
+      ["sparse_encode", "pattern_separation", "high_dim_hash"], "sparse_encode",
+      ["acetylcholine", "gaba", "glutamate"], "Laurent 2002; Turner et al 2008; Papadopoulou et al 2011",
+      ["drosophila", "honeybee", "locust"], ("mushroom_body_associative_memory_unit",)),
+    U("mushroom_body_associative_memory_unit", "蘑菇体联想记忆单元", "associative_learn", "mushroom_body",
+      "多巴胺能神经元把奖赏/惩罚送到 Kenyon 细胞输出突触上做门控，只有气味与效价同时出现时权重才变，读出由 MBON 完成。",
+      [("kc", "kenyon_cell", 0.55),
+       ("mbon", "mushroom_body_output", 0.20),
+       ("dan", "mushroom_body_dan", 0.15),
+       ("gaba", "mushroom_body_apl", 0.10)],
+      [("kc", "mbon", "modulatory_gated_plasticity", 1.0),
+       ("dan", "kc", "modulatory_diffuse", 0.8),
+       ("gaba", "kc", "global_inhibitory_gain_control", 0.7),
+       ("mbon", "dan", "feedback_excitatory", 0.4)],
+      [("sparse_code", "olfactory.sparse_code", True),
+       ("value_in", "modulatory.dopamine", False)],
+      [("learned_valence", "olfactory.learned_valence", True)],
+      (1500, 2500), ["associative_learn", "valence_assign", "credit_assign", "memory_write"],
+      ["associative_learn", "reward_punish", "valence_readout"], "associative_learn",
+      ["acetylcholine", "dopamine", "gaba"], "Heisenberg 2003; Aso et al 2014; Cognigni et al 2018",
+      ["drosophila", "honeybee"], ("central_complex_steering_unit",)),
+    U("central_complex_heading_unit", "中央复合体头向单元", "heading_track", "central_complex",
+      "脑桥与椭球体构成环形吸引子，环神经元整形出单个活动峰，峰的位置就是当前朝向，给出不依赖视觉瞬时输入的方位记忆。",
+      [("pb", "central_complex_pb", 0.35),
+       ("eb", "central_complex_eb", 0.35),
+       ("ring", "central_complex_ring", 0.30)],
+      [("pb", "eb", "feedforward_excitatory", 1.0),
+       ("eb", "pb", "feedback_excitatory", 0.9),
+       ("ring", "eb", "lateral_inhibitory", 0.8),
+       ("ring", "pb", "lateral_inhibitory", 0.6)],
+      [("compass_in", "sensory.skylight_compass", True),
+       ("steer_in", "navigation.steering", False),
+       ("clock_in", "clock.phase", False)],
+      [("heading_out", "navigation.heading", True)],
+      (60, 200), ["ring_attractor", "heading_track", "angular_integrate", "bump_sharpen"],
+      ["heading_track", "angular_code", "ring_attractor"], "heading_track",
+      ["acetylcholine", "gaba"], "Seelig & Jayaraman 2015; Green et al 2017; Turner-Evans et al 2017",
+      ["drosophila", "locust", "monarch_butterfly"], ("central_complex_steering_unit",)),
+    U("central_complex_steering_unit", "中央复合体转向单元", "steering", "central_complex",
+      "扇形体的分层目标图把当前朝向与期望朝向的差转成转向量，结节提供自身速度门控，下行神经元把指令送进腹神经索。",
+      [("fb", "central_complex_fb", 0.40),
+       ("nod", "central_complex_noduli", 0.25),
+       ("dn", "descending_neuron", 0.35)],
+      [("nod", "fb", "feedforward_excitatory", 1.0),
+       ("fb", "dn", "feedforward_excitatory", 0.9),
+       ("dn", "fb", "feedback_inhibitory", 0.4),
+       ("dn", "nod", "feedforward_excitatory", 0.5)],
+      [("heading_in", "navigation.heading", True),
+       ("speed_in", "navigation.ego_speed", False),
+       ("valence_in", "olfactory.learned_valence", False)],
+      [("turn_cmd", "navigation.steering", True), ("motor_cmd", "motor.command", True)],
+      (60, 250), ["steering", "goal_bearing", "heading_correct", "descending_command"],
+      ["steering", "goal_bearing", "heading_correct"], "steering",
+      ["acetylcholine"], "Strausfeld 1999; Green et al 2017; Rayshubskiy et al 2020",
+      ["drosophila", "locust"], ("central_complex_heading_unit",)),
+    U("insect_clock_pacemaker_unit", "昆虫生物钟起搏单元", "circadian_pace", "circadian",
+      "小腹侧侧神经元以 PDF 肽与电耦合把昼夜相位分发给侧神经元网络，松果体作为跨物种的褪黑素效应端被一并纳入。",
+      [("pacemaker", "clock_neuron_slnv", 0.40),
+       ("network", "clock_neuron_ln", 0.35),
+       ("effector", "pineal", 0.25)],
+      [("pacemaker", "network", "gap_junction_sync", 1.0),
+       ("network", "pacemaker", "gap_junction_sync", 0.8),
+       ("pacemaker", "effector", "modulatory_diffuse", 0.7),
+       ("effector", "pacemaker", "feedback_inhibitory", 0.3)],
+      [("light_in", "sensory.visual.irradiance", True)], [("phase_out", "clock.phase", True)],
+      (20, 200), ["circadian_pace", "phase_lock", "entrain", "rhythm_generate"],
+      ["circadian_pace", "phase_lock", "entrain"], "circadian_pace",
+      ["pdf_neuropeptide", "gaba"], "Helfrich-Forster 2003; Hastings et al 2018",
+      ["drosophila", "mouse", "human"], ("central_complex_heading_unit",)),
+
+    # ================= BIRD (3) ================= #
+    U("birdsong_hvc_timing_unit", "鸣唱时序链单元", "sequence_generate", "song_system",
+      "HVC 用链式激活把静态前运动指令展开成毫秒级时序，每个神经元在音节的一个极短时间窗内爆发，为下游提供节拍。",
+      [("hvc", "hvc_neuron", 0.55),
+       ("inh", "interneuron_pv", 0.20),
+       ("nif", "nif_neuron", 0.25)],
+      [("hvc", "hvc", "neural_chain_sequence", 1.0),
+       ("nif", "hvc", "feedforward_excitatory", 0.8),
+       ("inh", "hvc", "recurrent_inhibitory", 0.6)],
+      [("premotor", "cortex.output", True), ("auditory_fb", "sensory.auditory", False)],
+      [("timing_out", "motor.song", True)],
+      (20000, 40000), ["sequence_generate", "temporal_chain", "motor_timing", "pattern_clock"],
+      ["sequence_generate", "temporal_chain", "motor_timing"], "sequence_generate",
+      ["glutamate", "gaba"], "Hahnloser et al 2002; Long & Fee 2008; Picardo et al 2016",
+      ["zebra_finch", "canary", "bengalese_finch"], ("birdsong_ra_motor_unit",)),
+    U("birdsong_ra_motor_unit", "发声运动输出单元", "vocal_motor", "song_system",
+      "RA 把来自 HVC 的时序窗转成对鸣管运动神经元与呼吸运动神经元的爆发式驱动，音节与呼吸必须严格配准。",
+      [("ra", "ra_neuron", 0.50),
+       ("motor", "spinal_motor_alpha", 0.25),
+       ("inh", "interneuron_pv", 0.25)],
+      [("ra", "motor", "command_neuron_recruitment", 1.0),
+       ("inh", "ra", "feedforward_inhibitory", 0.7),
+       ("motor", "ra", "feedback_excitatory", 0.4)],
+      [("timing_in", "motor.song", True)], [("song_motor", "motor.song", True)],
+      (10000, 20000), ["vocal_motor", "respiration_sync", "syringeal_control", "motor_burst"],
+      ["vocal_motor", "respiration_sync", "motor_burst"], "vocal_motor",
+      ["glutamate", "gaba"], "Vicario 1991; Sober et al 2008",
+      ["zebra_finch", "canary"], ()),
+    U("birdsong_basal_ganglia_learning_unit", "发声学习回路单元", "motor_learning", "song_system",
+      "前脑通路 Area X 到 DLM 到 LMAN 的基底神经节环路，用听觉误差与多巴胺能价值信号把探索性变异筛选成稳定音节。",
+      [("x", "area_x_neuron", 0.35),
+       ("dlm", "dlm_neuron", 0.25),
+       ("lman", "lman_neuron", 0.25),
+       ("msn", "striatal_msn", 0.15)],
+      [("x", "dlm", "feedforward_inhibitory", 1.0),
+       ("dlm", "lman", "feedforward_excitatory", 0.9),
+       ("lman", "x", "feedforward_excitatory", 0.5),
+       ("msn", "x", "feedforward_excitatory", 0.6)],
+      [("error_in", "sensory.auditory", True), ("value_in", "basal_ganglia.value", True)],
+      [("variation_out", "motor.song", True)],
+      (50000, 200000), ["explore_variation", "error_correct", "motor_learning", "credit_assign"],
+      ["explore_variation", "motor_learning", "credit_assign"], "motor_learning",
+      ["gaba", "glutamate", "dopamine"], "Bottjer et al 1984; Mooney 2009; Andalman & Fee 2009",
+      ["zebra_finch", "bengalese_finch"], ("birdsong_ra_motor_unit",)),
+
+    # ================= FISH (4) ================= #
+    U("startle_escape_command_unit", "逃逸启动指令单元", "escape_trigger", "startle_circuit",
+      "侧线或听觉的突然输入经电化学混合突触在亚毫秒内点燃 Mauthner 细胞，单个指令神经元全部或无地召集对侧网状脊髓池，形成 C 型逃逸。",
+      [("m", "mauthner_cell", 0.20),
+       ("aff", "lateral_line_hair_cell", 0.25),
+       ("rs", "reticulospinal_neuron", 0.35),
+       ("inh", "spinal_glycinergic", 0.20)],
+      [("aff", "m", "mixed_electrical_chemical_synapse", 1.0),
+       ("m", "rs", "command_neuron_recruitment", 0.9),
+       ("rs", "inh", "feedforward_excitatory", 0.6),
+       ("inh", "rs", "mutual_inhibitory", 0.7)],
+      [("startle_in", "sensory.auditory.startle", True),
+       ("flow_in", "sensory.lateral_line", False),
+       ("threat_in", "sensory.electric.ampullary", False)],
+      [("escape_cmd", "motor.escape", True)],
+      (100, 400), ["escape_trigger", "fast_command", "contralateral_turn", "all_or_none"],
+      ["escape_trigger", "command_neuron", "fast_command"], "escape_trigger",
+      ["glutamate", "glycine"], "Zottoli 1977; Eaton et al 2001; Korn & Faber 2005",
+      ["zebrafish", "goldfish", "lamprey"], ("passive_electroreception_unit",)),
+    U("passive_electroreception_unit", "被动电感受单元", "passive_electrolocate", "electrosensory",
+      "壶腹型感受器探测猎物肌肉与鳃产生的低频弱电场，电感受侧线叶把三叉神经输入变成方向性猎物向量。",
+      [("amp", "electroreceptor_ampullary", 0.35),
+       ("ell", "ells_pyramidal", 0.40),
+       ("inh", "electrosensory_inhibitory_interneuron", 0.25)],
+      [("amp", "ell", "feedforward_excitatory", 1.0),
+       ("inh", "ell", "lateral_inhibitory", 0.8),
+       ("ell", "inh", "feedforward_excitatory", 0.6)],
+      [("field_in", "sensory.electric.ampullary", True)],
+      [("prey_vector", "sensory.electric.ampullary", True)],
+      (500, 5000), ["passive_electrolocate", "weak_field_detect", "prey_localize", "dc_encode"],
+      ["passive_electrolocate", "weak_field_detect", "prey_localize"], "passive_electrolocate",
+      ["glutamate", "gaba"], "Kalmijn 1974; Bell & Maler 2005",
+      ["shark", "ray", "catfish", "platypus"], ("startle_escape_command_unit",)),
+    U("electrosensory_electrolocation_unit", "主动电定位单元", "active_electrolocate", "electrosensory",
+      "结节型感受器读取自身电器官放电被物体扭曲后的振幅与相位，传出副本先把自身电场分量减掉，剩下的才是外部目标。",
+      [("tub", "electroreceptor_tuberous", 0.30),
+       ("ell", "ells_pyramidal", 0.40),
+       ("inh", "electrosensory_inhibitory_interneuron", 0.15),
+       ("relay", "thalamic_relay", 0.15)],
+      [("tub", "ell", "feedforward_excitatory", 1.0),
+       ("inh", "ell", "contrast_inhibition", 0.8),
+       ("ell", "relay", "feedforward_excitatory", 0.8),
+       ("relay", "ell", "feedback_inhibitory", 0.4)],
+      [("eod_self", "sensory.electric.tuberous", True),
+       ("eff_in", "efference.copy", True)],
+      [("object_echo", "sensory.electric.tuberous", True)],
+      (1000, 10000), ["active_electrolocate", "eod_amplitude", "object_detect", "reafferent_cancel"],
+      ["active_electrolocate", "object_detect", "reafferent_cancel"], "active_electrolocate",
+      ["glutamate", "gaba"], "Heiligenberg 1991; Bell 2001; Bell & Maler 2005",
+      ["gymnotiform", "mormyrid", "electric_ray"], ("electric_organ_discharge_unit",)),
+    U("electric_organ_discharge_unit", "电器官放电起搏单元", "pacemaking", "electrosensory",
+      "起搏核自主节律发放，经中继核与脊髓运动神经元驱动电器官，同时把传出副本并行送给电感受通路用于抵消。",
+      [("pm", "pacemaker_nucleus_neuron", 0.45),
+       ("relay", "thalamic_relay", 0.25),
+       ("organ", "spinal_motor_alpha", 0.30)],
+      [("pm", "relay", "command_neuron_recruitment", 1.0),
+       ("relay", "organ", "feedforward_excitatory", 0.9),
+       ("relay", "pm", "feedback_inhibitory", 0.3),
+       ("pm", "pm", "autapse_recurrent", 0.4)],
+      [("arousal_in", "arousal.state", True)],
+      [("eod_out", "motor.eod", True), ("eff_out", "efference.copy", True)],
+      (50, 200), ["pacemaking", "eod_generate", "efference_copy", "rhythm_generate"],
+      ["pacemaking", "eod_generate", "rhythm_generate"], "pacemaking",
+      ["acetylcholine", "glutamate"], "Bennett 1971; Bell et al 1997",
+      ["gymnotiform", "mormyrid"], ("electrosensory_electrolocation_unit",)),
+
+    # ================= CEPHALOPOD (3) ================= #
+    U("cephalopod_vertical_lobe_learning_unit", "头足类垂直叶学习单元", "associative_learn", "vertical_lobe",
+      "小细胞把视觉/触觉/化学触觉汇聚进垂直叶，无长突细胞连续数次发放后对大型细胞输出突触产生持续增强，学习规则是反复激活而非成对 STDP。",
+      [("sa", "vertical_lobe_small_cell", 0.40),
+       ("lg", "vertical_lobe_large_cell", 0.30),
+       ("am", "vertical_lobe_amacrine_cell", 0.30)],
+      [("sa", "am", "feedforward_excitatory", 1.0),
+       ("am", "lg", "repetitive_activation_lts", 0.9),
+       ("lg", "am", "feedback_inhibitory", 0.5),
+       ("sa", "lg", "feedforward_inhibitory", 0.4)],
+      [("multimodal_in", "cortex.association", True),
+       ("reward_in", "modulatory.acetylcholine", False)],
+      [("learned_cmd", "motor.command", True)],
+      (100000, 500000), ["associative_learn", "long_term_facilitation", "multimodal_bind", "command_release"],
+      ["associative_learn", "long_term_facilitation", "command_release"], "associative_learn",
+      ["acetylcholine", "gaba"], "Young 1964, 1991; Boycott 1961; Shomrat et al 2008",
+      ["octopus", "cuttlefish", "squid"],
+      ("cephalopod_chromatophore_control_unit", "cephalopod_arm_motor_unit")),
+    U("cephalopod_chromatophore_control_unit", "色素细胞控制单元", "camouflage", "chromatophore",
+      "额上叶高层指令经色素细胞运动神经元控制放射肌，把色素囊撑开或收拢，在不到一秒内铺出整片皮肤图案。",
+      [("cmd", "superior_frontal_lobe_cell", 0.40),
+       ("mn", "chromatophore_motor_neuron", 0.40),
+       ("ach", "cholinergic_mt", 0.20)],
+      [("cmd", "mn", "feedforward_excitatory", 1.0),
+       ("ach", "mn", "modulatory_diffuse", 0.6),
+       ("mn", "cmd", "feedback_inhibitory", 0.3)],
+      [("display_cmd", "cortex.output", True), ("visual_in", "sensory.visual", False)],
+      [("skin_pattern", "motor.chromatophore", True)],
+      (20000, 200000), ["camouflage", "pattern_display", "muscle_drive", "body_signalling"],
+      ["camouflage", "pattern_display", "body_signalling"], "camouflage",
+      ["glutamate", "acetylcholine"], "Hanlon & Messenger 1996; Messenger 2001",
+      ["octopus", "cuttlefish", "squid"], ()),
+    U("cephalopod_arm_motor_unit", "腕运动单元", "arm_control", "arm_cord",
+      "腕的神经索自带运动神经元与感觉传入，脑只下达粗略高层指令，精细运动与本体感觉闭环都在腕内本地完成。",
+      [("mn", "arm_motor_neuron", 0.55),
+       ("aff", "arm_sensory_afferent", 0.30),
+       ("mod", "cholinergic_mt", 0.15)],
+      [("aff", "mn", "feedforward_excitatory", 1.0),
+       ("mod", "mn", "modulatory_diffuse", 0.5),
+       ("mn", "aff", "feedback_inhibitory", 0.4),
+       ("mn", "mn", "recurrent_excitatory", 0.3)],
+      [("arm_cmd", "cortex.output", True)],
+      [("arm_motion", "motor.arm", True), ("proprio_out", "motor.spindle", False)],
+      (10000, 100000), ["arm_control", "distributed_motor", "reach", "proprioception"],
+      ["arm_control", "distributed_motor", "reach"], "arm_control",
+      ["acetylcholine", "glutamate"], "Young 1965; Sumbre et al 2001; Zullo et al 2009",
+      ["octopus", "squid"], ()),
+]
 
 
 if __name__ == "__main__":

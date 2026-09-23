@@ -655,8 +655,1616 @@ MODULE_PROFILES = {
         "allen_class": "",
         "biological_reference": "Sakurai 1998, orexin discovery",
     },
-}
-# default profile assignment: round-robin so all 10 types are represented
+
+    # ==================== Phase 5 大规模扩展 (2026-09-22) ====================
+    # +60 神经元类型（皮层锥体补充 8 / 中间神经元补充 8 / 调制系统补充 8 /
+    #   视觉补充 8 / 脊髓脑干 8 / 皮层下边缘 8 / 丘脑 6 / 特殊感觉胶质 6）
+    # 依据：Allen 2023 小鼠全脑图谱 + Kozorowski-Coburn 2020 + 跨物种比较神经科学
+    "pyramidal_l23_cx1": {
+        "reservoir_density": 0.35, "recurrent_pct": 0.18, "has_inhibition": False,
+        "description": "Prefrontal L2/3 pyramidal (CX1 cortex): executive control, decision gating",
+        "capability": ['executive_control', 'decision_gating', 'top_down_bias', 'prefrontal'],
+        "task_hint_pool": ['executive_control', 'decision_gating', 'top_down_bias'],
+        "lead_task_hint": "executive_control",
+        "neurotransmitter": "glutamate",
+        "brain_region": "prefrontal_cortex_cx1",
+        "species_source": ['mouse', 'rat', 'human', 'macaque'],
+        "allen_class": "E_PVAL1",
+        "biological_reference": "Markesan et al 2018, mouse L2/3 atlas",
+    },
+    "pyramidal_l23_cx5": {
+        "reservoir_density": 0.38, "recurrent_pct": 0.2, "has_inhibition": False,
+        "description": "Motor L2/3 pyramidal (CX5 cortex): motor planning, premotor",
+        "capability": ['motor_planning', 'premotor', 'kinematics', 'movement_sequence'],
+        "task_hint_pool": ['motor_planning', 'premotor', 'kinematics'],
+        "lead_task_hint": "motor_planning",
+        "neurotransmitter": "glutamate",
+        "brain_region": "motor_cortex_cx5",
+        "species_source": ['mouse', 'rat', 'human', 'macaque'],
+        "allen_class": "E_PVAL1",
+        "biological_reference": "Markesan et al 2018, CX5 atlas",
+    },
+    "pyramidal_l4b": {
+        "reservoir_density": 0.42, "recurrent_pct": 0.22, "has_inhibition": True,
+        "description": "V1 L4b pyramidal: on-center orientation selective, visual input hub",
+        "capability": ['orientation_selective', 'on_center', 'visual_hub', 'edge_detection'],
+        "task_hint_pool": ['orientation_selective', 'on_center', 'visual_hub'],
+        "lead_task_hint": "edge_detection",
+        "neurotransmitter": "glutamate",
+        "brain_region": "primary_visual_cortex_l4b",
+        "species_source": ['mouse', 'cat', 'monkey'],
+        "allen_class": "E_PVAL1",
+        "biological_reference": "Hubel & Wiesel 1968, Hubel-Wiesel model",
+    },
+    "pyramidal_l4c": {
+        "reservoir_density": 0.4, "recurrent_pct": 0.22, "has_inhibition": True,
+        "description": "V1 L4c pyramidal: columnar visual processing",
+        "capability": ['columnar_processing', 'visual_feature', 'contrast_detect'],
+        "task_hint_pool": ['columnar_processing', 'visual_feature', 'contrast_detect'],
+        "lead_task_hint": "visual_feature",
+        "neurotransmitter": "glutamate",
+        "brain_region": "primary_visual_cortex_l4c",
+        "species_source": ['mouse', 'cat', 'monkey'],
+        "allen_class": "E_PVAL1",
+        "biological_reference": "Hubel & Wiesel 1962",
+    },
+    "pyramidal_l5bt": {
+        "reservoir_density": 0.32, "recurrent_pct": 0.16, "has_inhibition": True,
+        "description": "L5 basal-tuft pyramidal: corticothalamic/corticofugal feedback (long-range)",
+        "capability": ['corticothalamic', 'feedback_to_thalamus', 'long_range_projection', 'broadcast'],
+        "task_hint_pool": ['corticothalamic', 'feedback_to_thalamus', 'broadcast'],
+        "lead_task_hint": "feedback_to_thalamus",
+        "neurotransmitter": "glutamate",
+        "brain_region": "cortex_l5b",
+        "species_source": ['mouse', 'rat', 'human', 'monkey'],
+        "allen_class": "E_PVAL1",
+        "biological_reference": "DeFelipe 2011, basal-tuft cells",
+    },
+    "pyramidal_l6rt": {
+        "reservoir_density": 0.28, "recurrent_pct": 0.14, "has_inhibition": True,
+        "description": "L6 reticulo-thalamic: feedback control of thalamic relay (gain control)",
+        "capability": ['thalamic_gain_control', 'top_down', 'feedback', 'attention_bias'],
+        "task_hint_pool": ['thalamic_gain_control', 'top_down', 'feedback'],
+        "lead_task_hint": "thalamic_gain_control",
+        "neurotransmitter": "glutamate",
+        "brain_region": "cortex_l6rt",
+        "species_source": ['mouse', 'rat', 'human', 'monkey'],
+        "allen_class": "E_PVAL1",
+        "biological_reference": "Sikorski et al 2018",
+    },
+    "pyramidal_l7": {
+        "reservoir_density": 0.3, "recurrent_pct": 0.15, "has_inhibition": True,
+        "description": "Temporal cortex L7 pyramidal: multimodal integration, associative memory",
+        "capability": ['multimodal_integration', 'associative_memory', 'temporal_object'],
+        "task_hint_pool": ['multimodal_integration', 'associative_memory'],
+        "lead_task_hint": "associative_memory",
+        "neurotransmitter": "glutamate",
+        "brain_region": "temporal_cortex_l7",
+        "species_source": ['mouse', 'monkey', 'human'],
+        "allen_class": "E_PVAL1",
+        "biological_reference": "Rolls 1999, object cells",
+    },
+    "pyramidal_mayeret": {
+        "reservoir_density": 0.4, "recurrent_pct": 0.3, "has_inhibition": False,
+        "description": "Mayeret cell: vestibular output, cerebellovestibular circuitry",
+        "capability": ['vestibular_output', 'posture', 'eye_head_reflex', 'self_stabilization'],
+        "task_hint_pool": ['vestibular_output', 'posture', 'eye_head_reflex'],
+        "lead_task_hint": "posture",
+        "neurotransmitter": "glutamate",
+        "brain_region": "vestibular_lobe_cerebellum",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Mayer 1907, Mayeret cells",
+    },
+    "interneuron_calbindin": {
+        "reservoir_density": 0.6, "recurrent_pct": 0.25, "has_inhibition": True,
+        "description": "Cerebellar stellate (Calbindin+): GABAergic feed-forward inhibition",
+        "capability": ['feed_forward_inhib', 'temporal_precision', 'cerebellar_refinement'],
+        "task_hint_pool": ['feed_forward_inhib', 'temporal_precision'],
+        "lead_task_hint": "temporal_precision",
+        "neurotransmitter": "gaba",
+        "brain_region": "cerebellar_molecular_layer",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "I_CAB2",
+        "biological_reference": "Rasmussen et al 2009",
+    },
+    "interneuron_lamp": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "Cerebellar Lugaro/LAMP+ large basket cell: strong lateral inhibition of Purkinje",
+        "capability": ['strong_lateral_inhib', 'purkinje_shaping', 'cerebellar_refinement'],
+        "task_hint_pool": ['strong_lateral_inhib', 'purkinje_shaping'],
+        "lead_task_hint": "purkinje_shaping",
+        "neurotransmitter": "gaba",
+        "brain_region": "cerebellar_molecular_layer",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "I_LAMP1",
+        "biological_reference": "Ramanathan et al 2019",
+    },
+    "interneuron_nph": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.22, "has_inhibition": True,
+        "description": "NPV+ H-type interneuron: disinhibition of PV/SST",
+        "capability": ['disinhibition', 'gating', 'state_switching'],
+        "task_hint_pool": ['disinhibition', 'gating'],
+        "lead_task_hint": "disinhibition",
+        "neurotransmitter": "gaba",
+        "brain_region": "cortex_l23_l5",
+        "species_source": ['mouse', 'human'],
+        "allen_class": "I_NPF3",
+        "biological_reference": "Yi et al 2011",
+    },
+    "interneuron_npf": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "NPY/NPV+ F-type interneuron: slow recurrent inhibition",
+        "capability": ['slow_recurrent_inhib', 'rhythmicity', 'theta_coupling'],
+        "task_hint_pool": ['slow_recurrent_inhib', 'theta_coupling'],
+        "lead_task_hint": "theta_coupling",
+        "neurotransmitter": "gaba",
+        "brain_region": "cortex_hippocampus",
+        "species_source": ['mouse', 'human'],
+        "allen_class": "I_NPF1",
+        "biological_reference": "Yi et al 2011",
+    },
+    "interneuron_vlac": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "VLAC+ intermediate: long-range GABAergic cortico-cortical projection",
+        "capability": ['long_range_inhib', 'cross_cortical_gating'],
+        "task_hint_pool": ['long_range_inhib', 'cross_cortical_gating'],
+        "lead_task_hint": "cross_cortical_gating",
+        "neurotransmitter": "gaba",
+        "brain_region": "cortex_long_range",
+        "species_source": ['mouse', 'human'],
+        "allen_class": "I_VLAC1",
+        "biological_reference": "Sikorski et al 2018",
+    },
+    "interneuron_sst_dendritic": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "SOM+ dendritic-type: dendritic shunting inhibition",
+        "capability": ['dendritic_shunt', 'feedback_inhib', 'gain_control'],
+        "task_hint_pool": ['dendritic_shunt', 'feedback_inhib'],
+        "lead_task_hint": "feedback_inhib",
+        "neurotransmitter": "gaba",
+        "brain_region": "cortex_l2_l5",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "I_SOM1",
+        "biological_reference": "Tremblay et al 2016",
+    },
+    "interneuron_sst_somatic": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "SOM+ somatic-type: perisomatic fast inhibition",
+        "capability": ['perisomatic_fast_inhib', 'somatic_suppression'],
+        "task_hint_pool": ['perisomatic_fast_inhib'],
+        "lead_task_hint": "perisomatic_fast_inhib",
+        "neurotransmitter": "gaba",
+        "brain_region": "cortex_l2_l5",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "I_SOM2",
+        "biological_reference": "Tremblay et al 2016",
+    },
+    "interneuron_kcn": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.18, "has_inhibition": True,
+        "description": "KCN+ (kisspeptin-related) interneuron: slow adaptation inhibitory",
+        "capability": ['adaptation_inhib', 'slow_gate', 'homeostatic'],
+        "task_hint_pool": ['adaptation_inhib'],
+        "lead_task_hint": "adaptation_inhib",
+        "neurotransmitter": "gaba",
+        "brain_region": "cortex_l5",
+        "species_source": ['mouse', 'human'],
+        "allen_class": "I_KCN1",
+        "biological_reference": "Perez-Fous et al 2019",
+    },
+    "dopaminergic_a9_snr": {
+        "reservoir_density": 0.3, "recurrent_pct": 0.15, "has_inhibition": False,
+        "description": "A9 nigrostriatal (SNr/SNr): nigrostriatal dopaminergic, reward/action",
+        "capability": ['action_selection', 'nigrostriatal', 'habit', 'long_term_dopamine'],
+        "task_hint_pool": ['action_selection', 'nigrostriatal', 'habit'],
+        "lead_task_hint": "action_selection",
+        "neurotransmitter": "dopamine",
+        "brain_region": "substantia_nigra_sn",
+        "species_source": ['mouse', 'rat', 'human', 'monkey'],
+        "allen_class": "",
+        "biological_reference": "Werniger 2007, SNr/SNc",
+    },
+    "dopaminergic_a11": {
+        "reservoir_density": 0.28, "recurrent_pct": 0.15, "has_inhibition": False,
+        "description": "A11 SNC ventral: mesocortical dopaminergic, working memory",
+        "capability": ['working_memory_dopamine', 'mesocortical', 'executive'],
+        "task_hint_pool": ['working_memory_dopamine', 'mesocortical'],
+        "lead_task_hint": "working_memory_dopamine",
+        "neurotransmitter": "dopamine",
+        "brain_region": "substantia_nigra_snc",
+        "species_source": ['mouse', 'rat', 'human', 'monkey'],
+        "allen_class": "",
+        "biological_reference": "Bhatt & Bhatt 1973, SNC",
+    },
+    "dopaminergic_vmc": {
+        "reservoir_density": 0.25, "recurrent_pct": 0.12, "has_inhibition": False,
+        "description": "VMC (ventral midbrain cluster): mesolimbic reward, dopamine tone",
+        "capability": ['mesolimbic_reward', 'dopamine_tone', 'motivation'],
+        "task_hint_pool": ['mesolimbic_reward', 'dopamine_tone'],
+        "lead_task_hint": "dopamine_tone",
+        "neurotransmitter": "dopamine",
+        "brain_region": "ventral_midbrain_vmc",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Almeida & Bhatt 2008, VMC",
+    },
+    "serotonergic_dorsal": {
+        "reservoir_density": 0.25, "recurrent_pct": 0.14, "has_inhibition": False,
+        "description": "Dorsal raphe serotonergic: mood, impulsivity, anxiety",
+        "capability": ['mood_regulation', 'impulsivity_gate', 'anxiety'],
+        "task_hint_pool": ['mood_regulation', 'anxiety'],
+        "lead_task_hint": "mood_regulation",
+        "neurotransmitter": "serotonin",
+        "brain_region": "dorsal_raphe",
+        "species_source": ['mouse', 'rat', 'human', 'monkey'],
+        "allen_class": "",
+        "biological_reference": "Aziz 2008, DRN",
+    },
+    "serotonergic_ventral": {
+        "reservoir_density": 0.22, "recurrent_pct": 0.12, "has_inhibition": False,
+        "description": "Ventral raphe serotonergic: reward, anxiety control",
+        "capability": ['reward_modulation', 'ventral_serotonin'],
+        "task_hint_pool": ['reward_modulation'],
+        "lead_task_hint": "reward_modulation",
+        "neurotransmitter": "serotonin",
+        "brain_region": "ventral_raphe",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Aziz 2008, VRN",
+    },
+    "serotonergic_median": {
+        "reservoir_density": 0.22, "recurrent_pct": 0.14, "has_inhibition": False,
+        "description": "Median raphe serotonergic: hippocampal modulation",
+        "capability": ['hippocampal_serotonin', 'memory_modulation', 'spatial'],
+        "task_hint_pool": ['hippocampal_serotonin', 'memory_modulation'],
+        "lead_task_hint": "memory_modulation",
+        "neurotransmitter": "serotonin",
+        "brain_region": "median_raphe",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Aziz 2008, MRN",
+    },
+    "cholinergic_horizontal": {
+        "reservoir_density": 0.28, "recurrent_pct": 0.15, "has_inhibition": False,
+        "description": "Horizontal band of the midbrain cholinergic: thalamic arousal",
+        "capability": ['thalamic_arousal', 'awakening', 'cholinergic'],
+        "task_hint_pool": ['thalamic_arousal', 'awakening'],
+        "lead_task_hint": "thalamic_arousal",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "horizontal_band",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Jones 1985, horizontal band",
+    },
+    "histaminergic_tm": {
+        "reservoir_density": 0.22, "recurrent_pct": 0.12, "has_inhibition": False,
+        "description": "Tuberomammillary histaminergic: wakefulness, attention",
+        "capability": ['wakefulness', 'attention_gate', 'sleep_arousal'],
+        "task_hint_pool": ['wakefulness', 'attention_gate'],
+        "lead_task_hint": "wakefulness",
+        "neurotransmitter": "histamine",
+        "brain_region": "tuberomammillary",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Sakurai 1998, TMN",
+    },
+    "retinal_bipolar_cone": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.15, "has_inhibition": False,
+        "description": "Cone bipolar: day-vision photoreceptor to amacrine/ganglion",
+        "capability": ['cone_signaling', 'day_vision', 'color_code'],
+        "task_hint_pool": ['cone_signaling', 'color_code'],
+        "lead_task_hint": "color_code",
+        "neurotransmitter": "glutamate",
+        "brain_region": "retina",
+        "species_source": ['mouse', 'rat', 'human', 'fish'],
+        "allen_class": "",
+        "biological_reference": "Cheng et al 2010",
+    },
+    "retinal_bipolar_rod": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.15, "has_inhibition": False,
+        "description": "Rod bipolar: night-vision photoreceptor pathway",
+        "capability": ['rod_signaling', 'scotopic_vision', 'low_light'],
+        "task_hint_pool": ['rod_signaling', 'scotopic_vision'],
+        "lead_task_hint": "scotopic_vision",
+        "neurotransmitter": "glutamate",
+        "brain_region": "retina",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Cheng et al 2010",
+    },
+    "retinal_amacrine_acl1": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "ACL1 amacrine: direction-selective (DCT), motion direction",
+        "capability": ['direction_selective', 'motion', 'retinal_processing'],
+        "task_hint_pool": ['direction_selective', 'motion'],
+        "lead_task_hint": "direction_selective",
+        "neurotransmitter": "gaba",
+        "brain_region": "retina",
+        "species_source": ['mouse', 'fish'],
+        "allen_class": "",
+        "biological_reference": "Goslin & Cui 2015, DCT",
+    },
+    "retinal_amacrine_acl2": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "ACL2 amacrine: starburst-like amacrine, motion onset",
+        "capability": ['motion_onset', 'starburst', 'temporal'],
+        "task_hint_pool": ['motion_onset'],
+        "lead_task_hint": "motion_onset",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "retina",
+        "species_source": ['mouse', 'fish'],
+        "allen_class": "",
+        "biological_reference": "Goslin & Cui 2015",
+    },
+    "retina_midget_gc": {
+        "reservoir_density": 0.4, "recurrent_pct": 0.12, "has_inhibition": False,
+        "description": "Midget retinal ganglion: high-resolution spatial, color",
+        "capability": ['high_res_spatial', 'color_code', 'retinal_gc'],
+        "task_hint_pool": ['high_res_spatial', 'color_code'],
+        "lead_task_hint": "high_res_spatial",
+        "neurotransmitter": "glutamate",
+        "brain_region": "retina",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Cheng et al 2010, Midget RGC",
+    },
+    "retina_parvalbumin_gc": {
+        "reservoir_density": 0.42, "recurrent_pct": 0.14, "has_inhibition": False,
+        "description": "PV+ retinal ganglion: motion detection, fast visual reflex",
+        "capability": ['fast_motion', 'startle', 'retinal_reflex'],
+        "task_hint_pool": ['fast_motion', 'startle'],
+        "lead_task_hint": "fast_motion",
+        "neurotransmitter": "glutamate",
+        "brain_region": "retina",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Cheng et al 2010, PV RGC",
+    },
+    "lateral_geniculate_ventral": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "VPL (ventral posterolateral): somatosensory relay to S1",
+        "capability": ['somatosensory_relay', 'body_map', 'touch'],
+        "task_hint_pool": ['somatosensory_relay', 'body_map'],
+        "lead_task_hint": "somatosensory_relay",
+        "neurotransmitter": "glutamate",
+        "brain_region": "thalamic_vpl",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Jones 1985, VPL",
+    },
+    "lateral_geniculate_dorsal": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "VPM (ventral posteromedial): facial/trigeminal relay",
+        "capability": ['facial_sensation', 'trigeminal_relay', 'pain_touch_face'],
+        "task_hint_pool": ['facial_sensation', 'trigeminal_relay'],
+        "lead_task_hint": "facial_sensation",
+        "neurotransmitter": "glutamate",
+        "brain_region": "thalamic_vpm",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Jones 1985, VPM",
+    },
+    "spinal_interneuron_ih": {
+        "reservoir_density": 0.45, "recurrent_pct": 0.3, "has_inhibition": True,
+        "description": "Ih interneuron (persistent sodium): post-inhibitory rebound, locomotor",
+        "capability": ['rebound_excitatory', 'locomotor_rhythm', 'spinal_rhythm'],
+        "task_hint_pool": ['rebound_excitatory', 'locomotor_rhythm'],
+        "lead_task_hint": "locomotor_rhythm",
+        "neurotransmitter": "gaba_glycine",
+        "brain_region": "spinal_cord",
+        "species_source": ['mouse', 'rat', 'cat'],
+        "allen_class": "",
+        "biological_reference": "Kiehn 2016, Ih spinal",
+    },
+    "spinal_interneuron_icc": {
+        "reservoir_density": 0.45, "recurrent_pct": 0.3, "has_inhibition": True,
+        "description": "Icc interneuron: commissural, ipsilateral/contralateral switching",
+        "capability": ['commissural_inhib', 'limb_switching', 'locomotor'],
+        "task_hint_pool": ['commissural_inhib', 'limb_switching'],
+        "lead_task_hint": "limb_switching",
+        "neurotransmitter": "gaba",
+        "brain_region": "spinal_cord",
+        "species_source": ['mouse', 'rat', 'cat'],
+        "allen_class": "",
+        "biological_reference": "Kiehn 2016, Icc",
+    },
+    "spinal_interneuron_ihp": {
+        "reservoir_density": 0.45, "recurrent_pct": 0.28, "has_inhibition": True,
+        "description": "Ihp interneuron: half-center, flexion/extension gating",
+        "capability": ['half_center', 'flexion_extension', 'locomotor'],
+        "task_hint_pool": ['half_center', 'flexion_extension'],
+        "lead_task_hint": "flexion_extension",
+        "neurotransmitter": "gaba",
+        "brain_region": "spinal_cord",
+        "species_source": ['mouse', 'rat', 'cat'],
+        "allen_class": "",
+        "biological_reference": "Kiehn 2016, Ihp",
+    },
+    "spinal_glycinergic": {
+        "reservoir_density": 0.45, "recurrent_pct": 0.25, "has_inhibition": True,
+        "description": "Glycinergic spinal inhibitory: fast chloride-mediated inhibition",
+        "capability": ['fast_inhibition', 'spinal_motor_control'],
+        "task_hint_pool": ['fast_inhibition'],
+        "lead_task_hint": "fast_inhibition",
+        "neurotransmitter": "glycine",
+        "brain_region": "spinal_cord",
+        "species_source": ['mouse', 'rat', 'cat'],
+        "allen_class": "",
+        "biological_reference": "Feltner 2016, glycinergic",
+    },
+    "spinal_nociceptor": {
+        "reservoir_density": 0.3, "recurrent_pct": 0.1, "has_inhibition": False,
+        "description": "Spinal nociceptive neuron: pain signal processing",
+        "capability": ['pain_processing', 'nociceptive_relay', 'thermal_chemical'],
+        "task_hint_pool": ['pain_processing'],
+        "lead_task_hint": "pain_processing",
+        "neurotransmitter": "glutamate_substance_p",
+        "brain_region": "spinal_cord_dorsal_horn",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Basbaum & Fields 2018",
+    },
+    "brainstem_vpm": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "Ventral posteromedial: somatosensory relay (spinal trigeminal)",
+        "capability": ['trigeminal_relay', 'face_touch'],
+        "task_hint_pool": ['trigeminal_relay'],
+        "lead_task_hint": "face_touch",
+        "neurotransmitter": "glutamate",
+        "brain_region": "thalamic_vpm",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Jones 1985",
+    },
+    "red_nucleus": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.2, "has_inhibition": False,
+        "description": "Red nucleus (interposed): brainstem-motor coordination",
+        "capability": ['motor_coordination', 'brainstem_motor', 'red_nucleus'],
+        "task_hint_pool": ['motor_coordination', 'brainstem_motor'],
+        "lead_task_hint": "motor_coordination",
+        "neurotransmitter": "glutamate",
+        "brain_region": "red_nucleus",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Schiene 1864, red nucleus",
+    },
+    "inferior_olive": {
+        "reservoir_density": 0.45, "recurrent_pct": 0.35, "has_inhibition": False,
+        "description": "Inferior olive: climbing fibers to cerebellum, error learning",
+        "capability": ['error_signal', 'climbing_fiber', 'cerebellar_learning'],
+        "task_hint_pool": ['error_signal', 'climbing_fiber'],
+        "lead_task_hint": "error_signal",
+        "neurotransmitter": "glutamate",
+        "brain_region": "inferior_olive",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Llinas 1987, climbing fibers",
+    },
+    "striatum_d1_msn": {
+        "reservoir_density": 0.4, "recurrent_pct": 0.18, "has_inhibition": True,
+        "description": "D1-type medium spiny: dopamine-driven direct path (Go) in basal ganglia",
+        "capability": ['direct_pathway', 'go_circuit', 'dopamine_action'],
+        "task_hint_pool": ['direct_pathway', 'go_circuit'],
+        "lead_task_hint": "go_circuit",
+        "neurotransmitter": "gaba",
+        "brain_region": "striatum",
+        "species_source": ['mouse', 'rat', 'human', 'monkey'],
+        "allen_class": "",
+        "biological_reference": "Kravitz 2010, D1 MSN",
+    },
+    "striatum_d2_msn": {
+        "reservoir_density": 0.4, "recurrent_pct": 0.18, "has_inhibition": True,
+        "description": "D2-type medium spiny: dopamine-driven indirect path (No-Go) in basal ganglia",
+        "capability": ['indirect_pathway', 'no_go_circuit', 'action_inhibition'],
+        "task_hint_pool": ['indirect_pathway', 'no_go_circuit'],
+        "lead_task_hint": "no_go_circuit",
+        "neurotransmitter": "gaba",
+        "brain_region": "striatum",
+        "species_source": ['mouse', 'rat', 'human', 'monkey'],
+        "allen_class": "",
+        "biological_reference": "Kravitz 2010, D2 MSN",
+    },
+    "hippocampal_ca2": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.4, "has_inhibition": True,
+        "description": "Hippocampal CA2: stress, kindling, aggression-circuit",
+        "capability": ['stress_response', 'kindling', 'aggression'],
+        "task_hint_pool": ['stress_response', 'kindling'],
+        "lead_task_hint": "stress_response",
+        "neurotransmitter": "glutamate",
+        "brain_region": "hippocampal_ca2",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Wiberg 2003, CA2",
+    },
+    "hippocampal_ca4": {
+        "reservoir_density": 0.6, "recurrent_pct": 0.45, "has_inhibition": True,
+        "description": "Hippocampal CA4 (subiculum border): Schaffer collaterals origin",
+        "capability": ['schaffer_source', 'hippocampal_relay'],
+        "task_hint_pool": ['schaffer_source'],
+        "lead_task_hint": "schaffer_source",
+        "neurotransmitter": "glutamate",
+        "brain_region": "hippocampal_ca4",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Wiberg 2003, CA4",
+    },
+    "hippocampal_subiculum": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.3, "has_inhibition": True,
+        "description": "Subiculum: hippocampal output to entorhinal, memory retrieval",
+        "capability": ['memory_output', 'hippocampal_retrieval', 'entorhinal_target'],
+        "task_hint_pool": ['memory_output', 'hippocampal_retrieval'],
+        "lead_task_hint": "hippocampal_retrieval",
+        "neurotransmitter": "glutamate",
+        "brain_region": "hippocampal_subiculum",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Wiberg 2003, Sub",
+    },
+    "amygdala_bla": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.25, "has_inhibition": True,
+        "description": "Central amygdala: fear conditioning, anxiety, output circuit",
+        "capability": ['fear_output', 'anxiety', 'amygdala_output'],
+        "task_hint_pool": ['fear_output', 'anxiety'],
+        "lead_task_hint": "fear_output",
+        "neurotransmitter": "glutamate_gaba",
+        "brain_region": "central_amygdala_bla",
+        "species_source": ['mouse', 'rat', 'human', 'monkey'],
+        "allen_class": "",
+        "biological_reference": "LeDoux 2000, CeA",
+    },
+    "amygdala_lateral": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.22, "has_inhibition": True,
+        "description": "Lateral amygdala: fear input, sensory encoding, fear conditioning",
+        "capability": ['sensory_fear_input', 'fear_encoding', 'sensory_association'],
+        "task_hint_pool": ['sensory_fear_input', 'fear_encoding'],
+        "lead_task_hint": "fear_encoding",
+        "neurotransmitter": "glutamate",
+        "brain_region": "lateral_amygdala",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "LeDoux 2000, LA",
+    },
+    "septum": {
+        "reservoir_density": 0.45, "recurrent_pct": 0.3, "has_inhibition": False,
+        "description": "Medial septum / diagonal band: hippocampal rhythm, theta generation",
+        "capability": ['theta_rhythm', 'hippocampal_pacing', 'septal_inhibition'],
+        "task_hint_pool": ['theta_rhythm', 'hippocampal_pacing'],
+        "lead_task_hint": "theta_rhythm",
+        "neurotransmitter": "gaba_acetylcholine",
+        "brain_region": "septum",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Vann & Aggleton 2005",
+    },
+    "thalamic_lgn": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.25, "has_inhibition": True,
+        "description": "Lateral geniculate nucleus: visual relay retina -> V1",
+        "capability": ['visual_relay', 'retina_to_v1', 'thalamic_relay'],
+        "task_hint_pool": ['visual_relay', 'retina_to_v1'],
+        "lead_task_hint": "visual_relay",
+        "neurotransmitter": "glutamate",
+        "brain_region": "thalamic_lgn",
+        "species_source": ['mouse', 'rat', 'human', 'monkey'],
+        "allen_class": "",
+        "biological_reference": "Jones 1985, LGN",
+    },
+    "thalamic_md": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.25, "has_inhibition": True,
+        "description": "Medial geniculate: auditory relay -> auditory cortex",
+        "capability": ['auditory_relay', 'auditory_processing', 'sound'],
+        "task_hint_pool": ['auditory_relay', 'auditory_processing'],
+        "lead_task_hint": "auditory_relay",
+        "neurotransmitter": "glutamate",
+        "brain_region": "thalamic_mgn",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Jones 1985, MGN",
+    },
+    "thalamic_va": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.22, "has_inhibition": True,
+        "description": "Ventral anterior thalamus: motor/basal ganglia relay",
+        "capability": ['motor_thalamic', 'basal_ganglia_relay', 'parkinson_circuit'],
+        "task_hint_pool": ['motor_thalamic', 'basal_ganglia_relay'],
+        "lead_task_hint": "motor_thalamic",
+        "neurotransmitter": "glutamate",
+        "brain_region": "thalamic_va",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Jones 1985, VA",
+    },
+    "thalamic_vl": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.22, "has_inhibition": True,
+        "description": "Ventral lateral thalamus: somatomotor relay, thalamocortical",
+        "capability": ['somatomotor_relay', 'thalamocortical'],
+        "task_hint_pool": ['somatomotor_relay'],
+        "lead_task_hint": "somatomotor_relay",
+        "neurotransmitter": "glutamate",
+        "brain_region": "thalamic_vl",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Jones 1985, VL",
+    },
+    "reticular_thalamic": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.3, "has_inhibition": True,
+        "description": "Reticular nucleus (RTN): GABAergic thalamic gate, sleep spindle",
+        "capability": ['thalamic_gate', 'sleep_spindle', 'attention_focus'],
+        "task_hint_pool": ['thalamic_gate', 'sleep_spindle'],
+        "lead_task_hint": "sleep_spindle",
+        "neurotransmitter": "gaba",
+        "brain_region": "reticular_thalamic",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Steriade 2001, RTN",
+    },
+    "subthalamic_nucleus": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.25, "has_inhibition": False,
+        "description": "Subthalamic nucleus (STN): basal ganglia indirect pathway hub",
+        "capability": ['basal_ganglia_indirect', 'action_suppression', 'decision_bias'],
+        "task_hint_pool": ['basal_ganglia_indirect', 'action_suppression'],
+        "lead_task_hint": "action_suppression",
+        "neurotransmitter": "glutamate",
+        "brain_region": "subthalamic_nucleus",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Nambu 2002, STN",
+    },
+    "pineal": {
+        "reservoir_density": 0.25, "recurrent_pct": 0.1, "has_inhibition": False,
+        "description": "Pinealocyte: melatonin production, circadian rhythm output",
+        "capability": ['circadian_output', 'melatonin', 'day_night'],
+        "task_hint_pool": ['circadian_output', 'melatonin'],
+        "lead_task_hint": "circadian_output",
+        "neurotransmitter": "melatonin_norepinephrine",
+        "brain_region": "pineal_gland",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Berson 1959, pineal",
+    },
+    "melanopsin_ganglion": {
+        "reservoir_density": 0.4, "recurrent_pct": 0.12, "has_inhibition": False,
+        "description": "MELANOPSIN+ intrinsically photosensitive RGC: circadian photic input",
+        "capability": ['intrinsic_photoreception', 'circadian_input', 'melanopsin'],
+        "task_hint_pool": ['intrinsic_photoreception', 'circadian_input'],
+        "lead_task_hint": "circadian_input",
+        "neurotransmitter": "glutamate",
+        "brain_region": "retina",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Hattar 2002, ipRGC",
+    },
+    "olfactory_receptor": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.1, "has_inhibition": False,
+        "description": "Olfactory receptor neuron (ORN): odorant transduction, 1:1 glomerulus map",
+        "capability": ['odorant_transduction', 'glomerular_map', 'olfactory_input'],
+        "task_hint_pool": ['odorant_transduction', 'glomerular_map'],
+        "lead_task_hint": "odorant_transduction",
+        "neurotransmitter": "glutamate",
+        "brain_region": "olfactory_epithelium",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "",
+        "biological_reference": "Axel & Buck 1997, ORN",
+    },
+    "vestibular_hair": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.12, "has_inhibition": False,
+        "description": "Vestibular hair cell: linear/angular acceleration transduction",
+        "capability": ['acceleration_transduction', 'balance', 'head_orientation'],
+        "task_hint_pool": ['acceleration_transduction', 'balance'],
+        "lead_task_hint": "balance",
+        "neurotransmitter": "glutamate",
+        "brain_region": "vestibular_organ",
+        "species_source": ['mouse', 'rat', 'human', 'fish'],
+        "allen_class": "",
+        "biological_reference": "Corey & Hug 1973, hair cells",
+    },
+    "cochlear_outer_hair": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.1, "has_inhibition": False,
+        "description": "Cochlear outer hair cell (OHC): mechanical amplifier, frequency sharpening",
+        "capability": ['cochlear_amplification', 'frequency_selective', 'auditory_gain'],
+        "task_hint_pool": ['cochlear_amplification', 'frequency_selective'],
+        "lead_task_hint": "cochlear_amplification",
+        "neurotransmitter": "glutamate",
+        "brain_region": "cochlea",
+        "species_source": ['mouse', 'rat', 'human', 'fish'],
+        "allen_class": "",
+        "biological_reference": "Corey & Hug 1973, OHC",
+    },
+    "astrocyte_reactive": {
+        "reservoir_density": 0.6, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Reactive astrocyte: glial modulation, neurovascular coupling, gliotransmission",
+        "capability": ['neurovascular_coupling', 'gliotransmission', 'glial_modulation'],
+        "task_hint_pool": ['neurovascular_coupling', 'gliotransmission'],
+        "lead_task_hint": "gliotransmission",
+        "neurotransmitter": "glutamate_gaba_serotonin",
+        "brain_region": "pan_encephalon",
+        "species_source": ['mouse', 'rat', 'human'],
+        "allen_class": "G_AST1",
+        "biological_reference": "Perea & Araque 2016",
+    },
+    # ================================================================== #
+    # v1.4.1 cross-clade extension -- insect / bird / fish / cephalopod
+    # ------------------------------------------------------------------ #
+    # 35 neuron populations whose computational role has NO vertebrate-
+    # cortex equivalent. Same schema as the 91 above; the 10 cognitive
+    # profiles at the top of this dict stay the only neurotransmitter-less
+    # entries (asserted by _verify.py).
+    # ================================================================== #
+    "kenyon_cell":     {
+        "reservoir_density": 0.95,
+        "recurrent_pct": 0.05,
+        "has_inhibition": False,
+        "description": "Mushroom-body Kenyon cell: sparse high-dimensional odour code, ~5% of the population active per odour",
+        "capability": [
+            "sparse_encode",
+            "pattern_separate",
+            "high_dim_expand"
+        ],
+        "task_hint_pool": [
+            "sparse_encode",
+            "pattern_separation",
+            "high_dim_hash"
+        ],
+        "lead_task_hint": "sparse_encode",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "mushroom_body_calyx",
+        "species_source": [
+            "drosophila",
+            "honeybee",
+            "locust"
+        ],
+        "allen_class": "",
+        "biological_reference": "Laurent 2002; Turner et al 2008"
+    },
+    "mushroom_body_output":     {
+        "reservoir_density": 0.45,
+        "recurrent_pct": 0.1,
+        "has_inhibition": False,
+        "description": "Mushroom-body output neuron (MBON): reads the sparse Kenyon-cell code and drives approach/avoid",
+        "capability": [
+            "readout",
+            "valence_readout",
+            "behaviour_gate"
+        ],
+        "task_hint_pool": [
+            "readout",
+            "valence_readout",
+            "approach_avoid"
+        ],
+        "lead_task_hint": "valence_readout",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "mushroom_body_lobes",
+        "species_source": [
+            "drosophila",
+            "honeybee"
+        ],
+        "allen_class": "",
+        "biological_reference": "Aso et al 2014"
+    },
+    "mushroom_body_dan":     {
+        "reservoir_density": 0.3,
+        "recurrent_pct": 0.05,
+        "has_inhibition": False,
+        "description": "Mushroom-body dopaminergic neuron (PPL1/PAM): reward/punishment teaching signal onto Kenyon-cell output synapses",
+        "capability": [
+            "teach",
+            "reward_punish",
+            "credit_assign"
+        ],
+        "task_hint_pool": [
+            "reward_punish",
+            "teach_signal",
+            "value_update"
+        ],
+        "lead_task_hint": "reward_punish",
+        "neurotransmitter": "dopamine",
+        "brain_region": "mushroom_body_lobes",
+        "species_source": [
+            "drosophila"
+        ],
+        "allen_class": "",
+        "biological_reference": "Aso et al 2012; Cognigni et al 2018"
+    },
+    "mushroom_body_apl":     {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.15,
+        "has_inhibition": True,
+        "description": "APL neuron: one GABAergic cell that feeds back globally onto every Kenyon cell and enforces sparse coding",
+        "capability": [
+            "global_inhibition",
+            "sparse_enforce",
+            "gain_control"
+        ],
+        "task_hint_pool": [
+            "global_inhibition",
+            "sparsify_code",
+            "gain_control"
+        ],
+        "lead_task_hint": "global_inhibition",
+        "neurotransmitter": "gaba",
+        "brain_region": "mushroom_body",
+        "species_source": [
+            "drosophila"
+        ],
+        "allen_class": "",
+        "biological_reference": "Liu & Davis 2009; Papadopoulou et al 2011"
+    },
+    "antennal_lobe_pn":     {
+        "reservoir_density": 0.5,
+        "recurrent_pct": 0.1,
+        "has_inhibition": False,
+        "description": "Antennal-lobe projection neuron: glomerular odour channel relayed to mushroom body and lateral horn",
+        "capability": [
+            "odour_encode",
+            "glomerular_relay",
+            "channel_preserve"
+        ],
+        "task_hint_pool": [
+            "odour_encode",
+            "channel_relay",
+            "stimulus_track"
+        ],
+        "lead_task_hint": "odour_encode",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "antennal_lobe",
+        "species_source": [
+            "drosophila",
+            "honeybee",
+            "moth"
+        ],
+        "allen_class": "",
+        "biological_reference": "Wilson & Mainen 2006"
+    },
+    "antennal_lobe_ln":     {
+        "reservoir_density": 0.6,
+        "recurrent_pct": 0.35,
+        "has_inhibition": True,
+        "description": "Antennal-lobe local neuron: cross-glomerular inhibition, gain normalisation and odour-background separation",
+        "capability": [
+            "normalize",
+            "lateral_inhibit",
+            "denoise"
+        ],
+        "task_hint_pool": [
+            "normalize",
+            "lateral_inhibit",
+            "background_separate"
+        ],
+        "lead_task_hint": "normalize",
+        "neurotransmitter": "gaba",
+        "brain_region": "antennal_lobe",
+        "species_source": [
+            "drosophila",
+            "honeybee",
+            "moth"
+        ],
+        "allen_class": "",
+        "biological_reference": "Olsen & Wilson 2008"
+    },
+    "central_complex_pb":     {
+        "reservoir_density": 0.55,
+        "recurrent_pct": 0.4,
+        "has_inhibition": False,
+        "description": "Protocerebral-bridge columnar neuron: angular head-direction representation, one half of the ring attractor",
+        "capability": [
+            "heading_represent",
+            "angular_code",
+            "ring_attractor"
+        ],
+        "task_hint_pool": [
+            "heading_track",
+            "angular_code",
+            "ring_attractor"
+        ],
+        "lead_task_hint": "heading_track",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "central_complex_pb",
+        "species_source": [
+            "drosophila",
+            "locust",
+            "monarch_butterfly"
+        ],
+        "allen_class": "",
+        "biological_reference": "Seelig & Jayaraman 2015"
+    },
+    "central_complex_eb":     {
+        "reservoir_density": 0.55,
+        "recurrent_pct": 0.45,
+        "has_inhibition": False,
+        "description": "Ellipsoid-body neuron: bump attractor that holds the current heading between compass updates",
+        "capability": [
+            "attractor_hold",
+            "heading_memory",
+            "bump_dynamics"
+        ],
+        "task_hint_pool": [
+            "attractor_hold",
+            "heading_memory",
+            "bump_sharpen"
+        ],
+        "lead_task_hint": "attractor_hold",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "central_complex_eb",
+        "species_source": [
+            "drosophila",
+            "locust"
+        ],
+        "allen_class": "",
+        "biological_reference": "Turner-Evans et al 2017"
+    },
+    "central_complex_fb":     {
+        "reservoir_density": 0.5,
+        "recurrent_pct": 0.3,
+        "has_inhibition": False,
+        "description": "Fan-shaped-body neuron: layered goal/steering map converting a heading error into a turn",
+        "capability": [
+            "steering_map",
+            "goal_bearing",
+            "error_to_turn"
+        ],
+        "task_hint_pool": [
+            "steering",
+            "goal_bearing",
+            "heading_correct"
+        ],
+        "lead_task_hint": "steering",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "central_complex_fb",
+        "species_source": [
+            "drosophila",
+            "locust"
+        ],
+        "allen_class": "",
+        "biological_reference": "Green et al 2017; Rayshubskiy et al 2020"
+    },
+    "central_complex_noduli":     {
+        "reservoir_density": 0.45,
+        "recurrent_pct": 0.2,
+        "has_inhibition": False,
+        "description": "Nodulus neuron: forward-speed / self-motion estimate that gates the steering map",
+        "capability": [
+            "speed_estimate",
+            "self_motion",
+            "gate"
+        ],
+        "task_hint_pool": [
+            "speed_estimate",
+            "self_motion",
+            "locomotion_gate"
+        ],
+        "lead_task_hint": "speed_estimate",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "central_complex_noduli",
+        "species_source": [
+            "drosophila"
+        ],
+        "allen_class": "",
+        "biological_reference": "Rayshubskiy et al 2020"
+    },
+    "central_complex_ring":     {
+        "reservoir_density": 0.35,
+        "recurrent_pct": 0.2,
+        "has_inhibition": True,
+        "description": "Ring neuron (R-neuron): inhibitory input that shapes and rotates the heading bump",
+        "capability": [
+            "bump_sharpen",
+            "inhibit",
+            "rotate"
+        ],
+        "task_hint_pool": [
+            "bump_sharpen",
+            "lateral_inhibit",
+            "heading_rotate"
+        ],
+        "lead_task_hint": "bump_sharpen",
+        "neurotransmitter": "gaba",
+        "brain_region": "central_complex",
+        "species_source": [
+            "drosophila"
+        ],
+        "allen_class": "",
+        "biological_reference": "Hanesch et al 1989; Turner-Evans et al 2017"
+    },
+    "clock_neuron_slnv":     {
+        "reservoir_density": 0.25,
+        "recurrent_pct": 0.3,
+        "has_inhibition": False,
+        "description": "Small ventral lateral neuron (s-LNv): PDF-secreting master pacemaker of the insect circadian clock",
+        "capability": [
+            "circadian_pace",
+            "phase_lock",
+            "pdf_secrete"
+        ],
+        "task_hint_pool": [
+            "circadian_pace",
+            "phase_lock",
+            "entrain"
+        ],
+        "lead_task_hint": "circadian_pace",
+        "neurotransmitter": "pdf_neuropeptide",
+        "brain_region": "accessory_medulla",
+        "species_source": [
+            "drosophila"
+        ],
+        "allen_class": "",
+        "biological_reference": "Helfrich-Forster 2003"
+    },
+    "clock_neuron_ln":     {
+        "reservoir_density": 0.3,
+        "recurrent_pct": 0.3,
+        "has_inhibition": True,
+        "description": "Lateral neuron (LN): clock-network interneuron coupling to and entraining the pacemaker cluster",
+        "capability": [
+            "clock_couple",
+            "phase_integrate",
+            "light_entrain"
+        ],
+        "task_hint_pool": [
+            "clock_couple",
+            "phase_integrate",
+            "entrain"
+        ],
+        "lead_task_hint": "clock_couple",
+        "neurotransmitter": "gaba",
+        "brain_region": "accessory_medulla",
+        "species_source": [
+            "drosophila"
+        ],
+        "allen_class": "",
+        "biological_reference": "Helfrich-Forster 2003; Hastings et al 2018"
+    },
+    "descending_neuron":     {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.1,
+        "has_inhibition": False,
+        "description": "Descending neuron: neck-connective output carrying brain steering commands to the ventral nerve cord",
+        "capability": [
+            "descending_command",
+            "steering_output",
+            "motor_gate"
+        ],
+        "task_hint_pool": [
+            "descending_command",
+            "steering_output",
+            "motor_gate"
+        ],
+        "lead_task_hint": "descending_command",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "neck_connective",
+        "species_source": [
+            "drosophila",
+            "locust"
+        ],
+        "allen_class": "",
+        "biological_reference": "Strausfeld 1999; Namiki et al 2018"
+    },
+    "hvc_neuron":     {
+        "reservoir_density": 0.6,
+        "recurrent_pct": 0.45,
+        "has_inhibition": False,
+        "description": "HVC neuron: premotor timing chain that marks each ~10 ms syllable element of the song",
+        "capability": [
+            "sequence_generate",
+            "temporal_chain",
+            "motor_timing"
+        ],
+        "task_hint_pool": [
+            "sequence_generate",
+            "temporal_chain",
+            "motor_timing"
+        ],
+        "lead_task_hint": "sequence_generate",
+        "neurotransmitter": "glutamate",
+        "brain_region": "hvc",
+        "species_source": [
+            "zebra_finch",
+            "canary",
+            "bengalese_finch"
+        ],
+        "allen_class": "",
+        "biological_reference": "Hahnloser et al 2002; Long & Fee 2008"
+    },
+    "ra_neuron":     {
+        "reservoir_density": 0.35,
+        "recurrent_pct": 0.1,
+        "has_inhibition": False,
+        "description": "Robust nucleus of the arcopallium (RA) neuron: song motor output onto syringeal and respiratory motorneurons",
+        "capability": [
+            "vocal_motor",
+            "respiration_sync",
+            "syringeal_control"
+        ],
+        "task_hint_pool": [
+            "vocal_motor",
+            "respiration_sync",
+            "motor_burst"
+        ],
+        "lead_task_hint": "vocal_motor",
+        "neurotransmitter": "glutamate",
+        "brain_region": "ra",
+        "species_source": [
+            "zebra_finch",
+            "canary"
+        ],
+        "allen_class": "",
+        "biological_reference": "Vicario 1991; Sober et al 2008"
+    },
+    "lman_neuron":     {
+        "reservoir_density": 0.45,
+        "recurrent_pct": 0.25,
+        "has_inhibition": False,
+        "description": "LMAN neuron: cortical-like output of the anterior forebrain pathway that injects trial-to-trial motor variation",
+        "capability": [
+            "variation_inject",
+            "explore",
+            "motor_bias"
+        ],
+        "task_hint_pool": [
+            "explore_variation",
+            "motor_bias",
+            "stochastic_probe"
+        ],
+        "lead_task_hint": "explore_variation",
+        "neurotransmitter": "glutamate",
+        "brain_region": "lman",
+        "species_source": [
+            "zebra_finch",
+            "bengalese_finch"
+        ],
+        "allen_class": "",
+        "biological_reference": "Mooney 2009; Andalman & Fee 2009"
+    },
+    "area_x_neuron":     {
+        "reservoir_density": 0.5,
+        "recurrent_pct": 0.4,
+        "has_inhibition": True,
+        "description": "Area X neuron: striatal (basal-ganglia) node of the song-learning loop",
+        "capability": [
+            "action_value",
+            "selection",
+            "credit_assign"
+        ],
+        "task_hint_pool": [
+            "action_value",
+            "selection",
+            "credit_assign"
+        ],
+        "lead_task_hint": "action_value",
+        "neurotransmitter": "gaba",
+        "brain_region": "area_x",
+        "species_source": [
+            "zebra_finch",
+            "bengalese_finch"
+        ],
+        "allen_class": "",
+        "biological_reference": "Bottjer et al 1984; Farries & Perkel 2002"
+    },
+    "dlm_neuron":     {
+        "reservoir_density": 0.35,
+        "recurrent_pct": 0.15,
+        "has_inhibition": False,
+        "description": "Thalamic nucleus DLM: relay from Area X to LMAN inside the song loop",
+        "capability": [
+            "thalamic_relay",
+            "disinhibit",
+            "relay"
+        ],
+        "task_hint_pool": [
+            "thalamic_relay",
+            "disinhibit",
+            "signal_relay"
+        ],
+        "lead_task_hint": "thalamic_relay",
+        "neurotransmitter": "glutamate",
+        "brain_region": "dlm",
+        "species_source": [
+            "zebra_finch"
+        ],
+        "allen_class": "",
+        "biological_reference": "Okuhata & Saito 1987; Mooney 2009"
+    },
+    "nif_neuron":     {
+        "reservoir_density": 0.45,
+        "recurrent_pct": 0.2,
+        "has_inhibition": False,
+        "description": "Nucleus interface of the nidopallium (NIf): premotor and auditory input to HVC",
+        "capability": [
+            "premotor_input",
+            "auditory_gate",
+            "context"
+        ],
+        "task_hint_pool": [
+            "premotor_input",
+            "auditory_gate",
+            "context_supply"
+        ],
+        "lead_task_hint": "premotor_input",
+        "neurotransmitter": "glutamate",
+        "brain_region": "nif",
+        "species_source": [
+            "zebra_finch"
+        ],
+        "allen_class": "",
+        "biological_reference": "Cardin et al 2005; Lewandowski & Hahnloser 2009"
+    },
+    "mauthner_cell":     {
+        "reservoir_density": 0.2,
+        "recurrent_pct": 0.1,
+        "has_inhibition": True,
+        "description": "Mauthner cell: single giant reticulospinal command neuron that triggers the C-start escape",
+        "capability": [
+            "escape_trigger",
+            "command_neuron",
+            "all_or_none"
+        ],
+        "task_hint_pool": [
+            "escape_trigger",
+            "command_neuron",
+            "fast_command"
+        ],
+        "lead_task_hint": "escape_trigger",
+        "neurotransmitter": "glutamate",
+        "brain_region": "hindbrain_mauthner",
+        "species_source": [
+            "zebrafish",
+            "goldfish",
+            "lamprey"
+        ],
+        "allen_class": "",
+        "biological_reference": "Zottoli 1977; Korn & Faber 2005"
+    },
+    "reticulospinal_neuron":     {
+        "reservoir_density": 0.35,
+        "recurrent_pct": 0.15,
+        "has_inhibition": False,
+        "description": "Reticulospinal neuron: descending axon pool that recruits contralateral axial muscle",
+        "capability": [
+            "descending_command",
+            "contralateral_recruit",
+            "motor_pool"
+        ],
+        "task_hint_pool": [
+            "descending_command",
+            "motor_recruit",
+            "axial_turn"
+        ],
+        "lead_task_hint": "descending_command",
+        "neurotransmitter": "glutamate",
+        "brain_region": "hindbrain_reticular",
+        "species_source": [
+            "zebrafish",
+            "lamprey"
+        ],
+        "allen_class": "",
+        "biological_reference": "Hale et al 2002; Eaton et al 2001"
+    },
+    "lateral_line_hair_cell":     {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.05,
+        "has_inhibition": False,
+        "description": "Lateral-line hair cell: water-motion detector reporting the pressure wave of an approaching predator",
+        "capability": [
+            "flow_detect",
+            "predator_wave",
+            "mechanotransduce"
+        ],
+        "task_hint_pool": [
+            "flow_detect",
+            "predator_wave",
+            "mechano_encode"
+        ],
+        "lead_task_hint": "flow_detect",
+        "neurotransmitter": "glutamate",
+        "brain_region": "lateral_line",
+        "species_source": [
+            "zebrafish",
+            "goldfish",
+            "xenopus"
+        ],
+        "allen_class": "",
+        "biological_reference": "Chagnaud & Bass 2013"
+    },
+    "electroreceptor_ampullary":     {
+        "reservoir_density": 0.3,
+        "recurrent_pct": 0.05,
+        "has_inhibition": False,
+        "description": "Ampullary electroreceptor: low-frequency passive electroreception of prey bioelectric fields",
+        "capability": [
+            "passive_electrolocate",
+            "weak_field_detect",
+            "dc_encode"
+        ],
+        "task_hint_pool": [
+            "passive_electrolocate",
+            "weak_field_detect",
+            "prey_localize"
+        ],
+        "lead_task_hint": "passive_electrolocate",
+        "neurotransmitter": "glutamate",
+        "brain_region": "ampullary_organ",
+        "species_source": [
+            "shark",
+            "ray",
+            "catfish",
+            "platypus"
+        ],
+        "allen_class": "",
+        "biological_reference": "Kalmijn 1974; Bell & Maler 2005"
+    },
+    "electroreceptor_tuberous":     {
+        "reservoir_density": 0.35,
+        "recurrent_pct": 0.05,
+        "has_inhibition": False,
+        "description": "Tuberous electroreceptor: high-frequency active-electrolocation channel reporting EOD amplitude and phase",
+        "capability": [
+            "active_electrolocate",
+            "eod_amplitude",
+            "phase_code"
+        ],
+        "task_hint_pool": [
+            "active_electrolocate",
+            "eod_amplitude",
+            "object_detect"
+        ],
+        "lead_task_hint": "active_electrolocate",
+        "neurotransmitter": "glutamate",
+        "brain_region": "tuberous_organ",
+        "species_source": [
+            "gymnotiform",
+            "mormyrid"
+        ],
+        "allen_class": "",
+        "biological_reference": "Heiligenberg 1991; Bell 2001"
+    },
+    "ells_pyramidal":     {
+        "reservoir_density": 0.55,
+        "recurrent_pct": 0.35,
+        "has_inhibition": False,
+        "description": "Electrosensory lateral-line lobe (ELL) pyramidal cell: adaptive filter separating self- from other-generated fields",
+        "capability": [
+            "reafferent_cancel",
+            "adaptive_filter",
+            "amplitude_compare"
+        ],
+        "task_hint_pool": [
+            "reafferent_cancel",
+            "adaptive_filter",
+            "object_detect"
+        ],
+        "lead_task_hint": "reafferent_cancel",
+        "neurotransmitter": "glutamate",
+        "brain_region": "ells",
+        "species_source": [
+            "gymnotiform",
+            "mormyrid"
+        ],
+        "allen_class": "",
+        "biological_reference": "Bell 1981; Bell & Maler 2005"
+    },
+    "electrosensory_inhibitory_interneuron":     {
+        "reservoir_density": 0.45,
+        "recurrent_pct": 0.25,
+        "has_inhibition": True,
+        "description": "Electrosensory inhibitory interneuron: local gain control and contrast enhancement inside ELL",
+        "capability": [
+            "lateral_inhibit",
+            "contrast_enhance",
+            "gain_control"
+        ],
+        "task_hint_pool": [
+            "lateral_inhibit",
+            "contrast_enhance",
+            "gain_control"
+        ],
+        "lead_task_hint": "contrast_enhance",
+        "neurotransmitter": "gaba",
+        "brain_region": "ells",
+        "species_source": [
+            "gymnotiform",
+            "mormyrid"
+        ],
+        "allen_class": "",
+        "biological_reference": "Berman & Maler 1999"
+    },
+    "pacemaker_nucleus_neuron":     {
+        "reservoir_density": 0.3,
+        "recurrent_pct": 0.6,
+        "has_inhibition": False,
+        "description": "Electric-organ pacemaker neuron: autonomously rhythmic command nucleus that sets the EOD frequency",
+        "capability": [
+            "pacemaking",
+            "rhythm_generate",
+            "eod_command"
+        ],
+        "task_hint_pool": [
+            "pacemaking",
+            "eod_generate",
+            "rhythm_generate"
+        ],
+        "lead_task_hint": "pacemaking",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "pacemaker_nucleus",
+        "species_source": [
+            "gymnotiform",
+            "mormyrid"
+        ],
+        "allen_class": "",
+        "biological_reference": "Bennett 1971; Bell et al 1997"
+    },
+    "vertical_lobe_large_cell":     {
+        "reservoir_density": 0.45,
+        "recurrent_pct": 0.3,
+        "has_inhibition": False,
+        "description": "Vertical-lobe large cell: output neuron whose synapses are persistently facilitated by repeated amacrine firing",
+        "capability": [
+            "long_term_facilitation",
+            "learned_output",
+            "command_release"
+        ],
+        "task_hint_pool": [
+            "associative_learn",
+            "long_term_facilitation",
+            "command_release"
+        ],
+        "lead_task_hint": "associative_learn",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "vertical_lobe",
+        "species_source": [
+            "octopus",
+            "cuttlefish"
+        ],
+        "allen_class": "",
+        "biological_reference": "Young 1964, 1991; Shomrat et al 2008"
+    },
+    "vertical_lobe_amacrine_cell":     {
+        "reservoir_density": 0.5,
+        "recurrent_pct": 0.55,
+        "has_inhibition": False,
+        "description": "Vertical-lobe amacrine cell: a run of about five spikes produces a lasting increase in transmitter release (LTS)",
+        "capability": [
+            "repetition_detect",
+            "lts_express",
+            "plasticity_gate"
+        ],
+        "task_hint_pool": [
+            "repetition_detect",
+            "lts_express",
+            "plasticity_gate"
+        ],
+        "lead_task_hint": "lts_express",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "vertical_lobe",
+        "species_source": [
+            "octopus",
+            "cuttlefish"
+        ],
+        "allen_class": "",
+        "biological_reference": "Shomrat et al 2008; Hochner 2012"
+    },
+    "vertical_lobe_small_cell":     {
+        "reservoir_density": 0.55,
+        "recurrent_pct": 0.2,
+        "has_inhibition": False,
+        "description": "Vertical-lobe small cell: multimodal (visual / tactile / chemotactile) afferent converging on the learning matrix",
+        "capability": [
+            "multimodal_converge",
+            "afferent_encode",
+            "feature_bind"
+        ],
+        "task_hint_pool": [
+            "multimodal_converge",
+            "feature_bind",
+            "afferent_encode"
+        ],
+        "lead_task_hint": "multimodal_converge",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "vertical_lobe",
+        "species_source": [
+            "octopus",
+            "cuttlefish"
+        ],
+        "allen_class": "",
+        "biological_reference": "Young 1991; Shigeno et al 2018"
+    },
+    "superior_frontal_lobe_cell":     {
+        "reservoir_density": 0.5,
+        "recurrent_pct": 0.35,
+        "has_inhibition": False,
+        "description": "Superior frontal lobe cell: higher-order associative centre that drives learned motor programs",
+        "capability": [
+            "higher_associate",
+            "motor_plan",
+            "context_gate"
+        ],
+        "task_hint_pool": [
+            "higher_associate",
+            "motor_plan",
+            "context_gate"
+        ],
+        "lead_task_hint": "higher_associate",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "superior_frontal_lobe",
+        "species_source": [
+            "octopus"
+        ],
+        "allen_class": "",
+        "biological_reference": "Young 1991; Wollesen et al 2015"
+    },
+    "chromatophore_motor_neuron":     {
+        "reservoir_density": 0.25,
+        "recurrent_pct": 0.05,
+        "has_inhibition": False,
+        "description": "Chromatophore motor neuron: radial muscle fibres expand pigment sacs to display a skin pattern",
+        "capability": [
+            "pattern_display",
+            "muscle_drive",
+            "camouflage"
+        ],
+        "task_hint_pool": [
+            "pattern_display",
+            "camouflage",
+            "body_signalling"
+        ],
+        "lead_task_hint": "camouflage",
+        "neurotransmitter": "glutamate",
+        "brain_region": "chromatophore",
+        "species_source": [
+            "octopus",
+            "cuttlefish",
+            "squid"
+        ],
+        "allen_class": "",
+        "biological_reference": "Hanlon & Messenger 1996; Messenger 2001"
+    },
+    "arm_motor_neuron":     {
+        "reservoir_density": 0.35,
+        "recurrent_pct": 0.2,
+        "has_inhibition": False,
+        "description": "Arm motor neuron: motorneuron inside the arm nerve cord driving the intrinsic arm musculature",
+        "capability": [
+            "arm_control",
+            "distributed_motor",
+            "reach"
+        ],
+        "task_hint_pool": [
+            "arm_control",
+            "distributed_motor",
+            "reach"
+        ],
+        "lead_task_hint": "arm_control",
+        "neurotransmitter": "acetylcholine",
+        "brain_region": "arm_nerve_cord",
+        "species_source": [
+            "octopus",
+            "squid"
+        ],
+        "allen_class": "",
+        "biological_reference": "Young 1965; Sumbre et al 2001"
+    },
+    "arm_sensory_afferent":     {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.1,
+        "has_inhibition": False,
+        "description": "Arm sensory afferent: mechano- and chemoreceptor afferent from the suckers and skin of the arm",
+        "capability": [
+            "proprioception",
+            "tactile_sense",
+            "chemo_sense"
+        ],
+        "task_hint_pool": [
+            "proprioceptive_loop",
+            "tactile_sense",
+            "chemo_sense"
+        ],
+        "lead_task_hint": "proprioceptive_loop",
+        "neurotransmitter": "glutamate",
+        "brain_region": "arm_nerve_cord",
+        "species_source": [
+            "octopus",
+            "squid"
+        ],
+        "allen_class": "",
+        "biological_reference": "Graziadei 1962; Sumbre et al 2001"
+    },
+}# default profile assignment: round-robin so all 10 types are represented
 DEFAULT_PROFILE_CYCLE = ("sensory", "memory", "motor", "integration",
                          "attention", "working_memory",
                          "reward", "punishment", "habit", "metacognition")

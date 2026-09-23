@@ -18,13 +18,15 @@ What this gate proves:
   3. Every `members[].neuron` exists in synthetic_bio_topology.MODULE_PROFILES,
      every `internal_wiring[].type` and every connection `motif_ref` exists, and
      every port type is in the declared vocabulary.
-  4. Composition works AND is deterministic: the canonical DEMO chain validates,
-     twice in a row, to the same sha256.
-  5. FAIL-CLOSED PROOF (defect injection): four deliberately broken inputs must
+  4. Composition works AND is deterministic: all three canonical DEMO chains
+     (mammal visual-to-action, insect olfactory-navigation, electrosensory
+     escape) validate, twice in a row, to the same sha256.
+  5. FAIL-CLOSED PROOF (defect injection): ten deliberately broken inputs must
      each make the composer return ok=False. A validator that cannot go red is
      not a validator -- so this gate re-injects the defects every run.
-  6. Coverage: 40 units / 50 connection types / all 6 families actually wired /
-     >= 12 anatomical systems.
+  6. Coverage: 56 units / 58 connection types / all 6 families actually wired /
+     >= 20 anatomical systems / the four v1.4.1 clades present / every v1.4.1
+     connection form actually wired by at least one unit.
 
 Exit code 0 on pass, 1 on fail.
 """
@@ -95,11 +97,13 @@ def main() -> int:
     if len(gen_units) == len(units):
         mism = [g["name"] for g, a in zip(gen_units, units) if g != a]
         check("artifact units are byte-identical to generator output",
-              not mism, ("drifted: %s" % ", ".join(mism[:4])) if mism else "40/40")
+              not mism, ("drifted: %s" % ", ".join(mism[:4])) if mism else "%d/%d"
+              % (len(units), len(units)))
     if len(gen_conns) == len(conns):
         mism = [g["name"] for g, a in zip(gen_conns, conns) if g != a]
         check("artifact connection types identical to generator output",
-              not mism, ("drifted: %s" % ", ".join(mism[:4])) if mism else "50/50")
+              not mism, ("drifted: %s" % ", ".join(mism[:4])) if mism else "%d/%d"
+              % (len(conns), len(conns)))
 
     # ---------------------------------------------------------------- 3
     conn_names = {c["name"] for c in conns}
@@ -158,27 +162,40 @@ def main() -> int:
 
     # ---------------------------------------------------------------- 4
     fu = _load(MCP / "functional_units.py", "fu_gate")
-    d1 = fu.compose_from_units(fu.DEMO["units"], fu.DEMO["connections"],
-                               name=fu.DEMO["name"])
-    d2 = fu.compose_from_units(fu.DEMO["units"], fu.DEMO["connections"],
-                               name=fu.DEMO["name"])
-    check("canonical DEMO chain composes and validates", d1["validation"]["ok"],
-          ("errors: %s" % d1["validation"]["errors"]) if not d1["validation"]["ok"]
-          else "%d nodes / %d edges / %d populations"
-          % (d1["organism"]["n_nodes"], d1["organism"]["n_edges"],
-             d1["organism"]["total_member_populations"]))
-    check("composition is deterministic (same sha256 twice)",
-          d1["provenance"]["input_sha256"] == d2["provenance"]["input_sha256"],
-          d1["provenance"]["input_sha256"][:16])
-    check("composed organism exposes >=1 external IN and OUT port",
-          bool(d1["interface"]["external_in"]) and bool(d1["interface"]["external_out"]),
-          "in=%d out=%d" % (len(d1["interface"]["external_in"]),
-                            len(d1["interface"]["external_out"])))
+    demos = getattr(fu, "DEMOS", {"mammal": fu.DEMO})
+    built = {}
+    for label in sorted(demos):
+        spec = demos[label]
+        b1 = fu.compose_from_units(spec["units"], spec["connections"], name=spec["name"])
+        b2 = fu.compose_from_units(spec["units"], spec["connections"], name=spec["name"])
+        built[label] = b1
+        check("%s demo chain composes and validates" % label, b1["validation"]["ok"],
+              ("errors: %s" % b1["validation"]["errors"]) if not b1["validation"]["ok"]
+              else "%d nodes / %d edges / %d populations"
+              % (b1["organism"]["n_nodes"], b1["organism"]["n_edges"],
+                 b1["organism"]["total_member_populations"]))
+        check("%s composition is deterministic (same sha256 twice)" % label,
+              b1["provenance"]["input_sha256"] == b2["provenance"]["input_sha256"],
+              b1["provenance"]["input_sha256"][:16])
+        check("%s exposes >=1 external IN and OUT port" % label,
+              bool(b1["interface"]["external_in"]) and bool(b1["interface"]["external_out"]),
+              "in=%d out=%d" % (len(b1["interface"]["external_in"]),
+                                len(b1["interface"]["external_out"])))
+    d1 = built.get("mammal") or list(built.values())[0]
     check("intentional feedback loops are reported, not silently dropped",
           any("cycle" in w for w in d1["validation"]["warnings"]),
           str(len(d1["validation"]["warnings"])) + " warning(s)")
     check("validate_composition() re-checks a built organism",
           fu.validate_composition(d1)["ok"], "")
+    # The two cross-clade chains exist to prove the v1.4.1 inter-unit forms are
+    # usable, not decorative. If they stop using them, the chains have drifted.
+    cross_forms = set()
+    for label in ("insect", "electrosensory"):
+        if label in built:
+            cross_forms |= set(built[label]["validation"]["connection_types_used"])
+    check("cross-clade chains exercise the v1.4.1 inter-unit forms",
+          {"efference_copy_cancellation", "ephaptic_coupling"} <= cross_forms,
+          ", ".join(sorted(cross_forms)))
 
     # ---------------------------------------------------------------- 5
     # FAIL-CLOSED PROOF. Each defect below MUST produce ok=False; if any slips
@@ -213,6 +230,19 @@ def main() -> int:
          fu.compose_from_units(good_u, good_c, allow_boundary_inputs=False)),
         ("completely empty composition",
          fu.compose_from_units([], [])),
+        ("efference-copy form fed by a non-efference source",
+         fu.compose_from_units(good_u, good_c + [
+             # `efference_copy_cancellation` declares from_port = "efference.copy";
+             # an association-cortex output is not a copy of a motor command.
+             "cortical_l23_association_unit.assoc_out->cerebellar_cortical_unit.mossy_fibre:"
+             "efference_copy_cancellation"])),
+        ("cross-clade chain wired through a non-existent out-port",
+         fu.compose_from_units(fu.DEMO_ESCAPE["units"], fu.DEMO_ESCAPE["connections"] + [
+             "electric_organ_discharge_unit.no_such_out->"
+             "electrosensory_electrolocation_unit.eod_self:ephaptic_coupling"])),
+        ("cross-clade chain validated as an interior sub-chain (dangling mandatory input)",
+         fu.compose_from_units(fu.DEMO_INSECT["units"], fu.DEMO_INSECT["connections"],
+                               allow_boundary_inputs=False)),
     ]
     for label, doc in injections:
         check("fail-closed: %s is rejected" % label, not doc["validation"]["ok"],
@@ -221,8 +251,8 @@ def main() -> int:
               + " error(s)")
 
     # ---------------------------------------------------------------- 6
-    check("unit count is 40", len(units) == 40, str(len(units)))
-    check("connection-type count is 50", len(conns) == 50, str(len(conns)))
+    check("unit count is 56", len(units) == 56, str(len(units)))
+    check("connection-type count is 58", len(conns) == 58, str(len(conns)))
     used = {w["type"] for u in units for w in u["internal_wiring"]}
     fams = {c["family"] for c in conns}
     for fam in sorted(fams):
@@ -230,11 +260,34 @@ def main() -> int:
         check("connection family '%s' is actually wired by >=1 unit" % fam,
               bool(fam_names & used), "%d/%d forms used"
               % (len(fam_names & used), len(fam_names)))
+    # the v1.4.1 forms must be wired somewhere, otherwise they are dead weight
+    # and the "cross-clade coverage" claim is decoration.
+    v4_forms = {"sparse_expansion_projection", "global_inhibitory_gain_control",
+                "neural_chain_sequence", "efference_copy_cancellation",
+                "mixed_electrical_chemical_synapse", "modulatory_gated_plasticity",
+                "repetitive_activation_lts", "command_neuron_recruitment"}
+    # A form counts as "used" if it is wired inside a unit OR across units in one
+    # of the demo chains -- `efference_copy_cancellation` is by definition an
+    # inter-unit form and never appears as internal wiring.
+    used_all = set(used)
+    for b in built.values():
+        used_all |= set(b["validation"]["connection_types_used"])
+    unwired = sorted(v4_forms - used_all)
+    check("every v1.4.1 connection form is wired by >=1 unit or demo chain",
+          not unwired, str(unwired) if unwired else "%d/%d wired" % (len(v4_forms), len(v4_forms)))
     systems = {u["system"] for u in units}
-    check("units span >= 12 anatomical systems", len(systems) >= 12,
+    check("units span >= 20 anatomical systems", len(systems) >= 20,
           "%d: %s" % (len(systems), ", ".join(sorted(systems))))
+    clades = {"mushroom_body": "insect", "central_complex": "insect",
+              "song_system": "bird", "startle_circuit": "fish",
+              "electrosensory": "fish", "vertical_lobe": "cephalopod",
+              "chromatophore": "cephalopod", "arm_cord": "cephalopod"}
+    absent = sorted(s for s in clades if s not in systems)
+    check("all four v1.4.1 clades are represented (insect/bird/fish/cephalopod)",
+          not absent, str(absent) if absent else
+          ", ".join(sorted({v for k, v in clades.items() if k in systems})))
     mem = {m["neuron"] for u in units for m in u["members"]}
-    check("units reference >= 60 distinct neuron populations", len(mem) >= 60,
+    check("units reference >= 110 distinct neuron populations", len(mem) >= 110,
           "%d/%d of MODULE_PROFILES" % (len(mem), len(profiles)))
     check("library is honestly marked as NOT connectome-extracted",
           all(u["provenance"]["extracted_from_malecns"] is False for u in units), "")
@@ -261,7 +314,8 @@ def main() -> int:
     if failures:
         print("FAILED (%d): %s" % (len(failures), ", ".join(failures)))
         return 1
-    print("Gate 9 PASSED - 40 units, 50 connection types, composer fail-closed.")
+    print("Gate 9 PASSED - %d units, %d connection types, 4 clades, composer fail-closed."
+          % (len(units), len(conns)))
     return 0
 
 

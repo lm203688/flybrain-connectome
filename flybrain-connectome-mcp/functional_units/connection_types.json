@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "source": "40 forms map 1:1 onto the curated motif document (motifs/swarm_agent_topology_motifs.json); 10 additional macro-projection forms are new here.",
+  "source": "42 of the 58 connection forms map onto the curated motif document (motifs/swarm_agent_topology_motifs.json); the other 16 are new forms introduced by this library.",
   "caveat": "Connection forms are qualitative taxonomies. `parameters` are literature-scale defaults for simulation, not fitted values.",
   "families": {
     "micro": "point-to-point chemical synaptic contact sites",
@@ -11,23 +11,33 @@
     "macro": "population-level projection geometry"
   },
   "stats": {
-    "functional_units": 40,
-    "connection_types": 50,
-    "neural_members_referenced": 87,
+    "functional_units": 56,
+    "connection_types": 58,
+    "neural_members_referenced": 123,
     "systems": [
+      "antennal_lobe",
+      "arm_cord",
       "basal_ganglia",
       "brainstem",
+      "central_complex",
       "cerebellum",
+      "chromatophore",
+      "circadian",
       "cortex",
+      "electrosensory",
       "entorhinal",
       "glia",
       "hippocampus",
       "hypothalamus",
       "limbic",
+      "mushroom_body",
       "neuromodulatory",
       "sensory",
+      "song_system",
       "spinal_cord",
-      "thalamus"
+      "startle_circuit",
+      "thalamus",
+      "vertical_lobe"
     ],
     "connection_families": [
       "circuit",
@@ -37,7 +47,7 @@
       "modulatory",
       "plasticity"
     ],
-    "connection_types_used_by_units": 28
+    "connection_types_used_by_units": 36
   },
   "connection_types": [
     {
@@ -648,19 +658,19 @@
       "name": "ephaptic_coupling",
       "family": "electrical",
       "display": "电场耦合",
-      "description": "Non-synaptic field coupling; activity in one fibre changes the excitability of a neighbour.",
+      "description": "Non-synaptic field coupling; activity in one fibre changes the excitability of a neighbour. Span is 'either', because a field does not respect a unit boundary -- an electric organ drives its own receptors across tissues.",
       "from_port": "*",
       "to_port": "*",
       "sign": "+/-",
       "fanout": "many_to_many",
-      "span": "intra_unit",
+      "span": "either",
       "delay_class": "immediate",
       "plastic": false,
       "motif_ref": "ephaptic_coupling",
       "parameters": {
         "field_gain": 0.05
       },
-      "biological_reference": "ephatic/ephaptic coupling (Anastassiou 2011)"
+      "biological_reference": "ephaptic coupling (Anastassiou 2011)"
     },
     {
       "name": "astrocyte_neuron_tripartite",
@@ -961,6 +971,155 @@
         "coverage": "all_units"
       },
       "biological_reference": "neuromodulatory global broadcast"
+    },
+    {
+      "name": "sparse_expansion_projection",
+      "family": "macro",
+      "display": "稀疏展开投射",
+      "description": "A few input channels fan out onto a very large population of which only a small fraction is active per stimulus -- the mushroom-body Kenyon-cell code.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "expansion_factor": 50,
+        "active_fraction": 0.05
+      },
+      "biological_reference": "Turner et al 2008; Caron et al 2013"
+    },
+    {
+      "name": "global_inhibitory_gain_control",
+      "family": "circuit",
+      "display": "全局抑制增益控制",
+      "description": "One wide-field inhibitory cell sums the whole population and feeds back onto all of it, enforcing sparseness (APL onto Kenyon cells).",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_many",
+      "span": "intra_unit",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "inhibitory_hub",
+      "parameters": {
+        "divisive_gain": 0.7
+      },
+      "biological_reference": "Wilson & Laurent 2005; Papadopoulou et al 2011"
+    },
+    {
+      "name": "neural_chain_sequence",
+      "family": "circuit",
+      "display": "链式顺序激活",
+      "description": "A synfire-like chain in which each element activates the next after a short delay, turning a static command into a temporal sequence (HVC song timing).",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_one",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": null,
+      "parameters": {
+        "chain_length": 8,
+        "jitter_ms": 5
+      },
+      "biological_reference": "Long et al 2010; Picardo et al 2016"
+    },
+    {
+      "name": "efference_copy_cancellation",
+      "family": "circuit",
+      "display": "传出副本抵消",
+      "description": "A copy of the motor command is sent ahead to sensory areas and subtracted from the reafferent input, so self-generated signals are not mistaken for the world (electric-fish EOD; song auditory feedback).",
+      "from_port": "efference.copy",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_one",
+      "span": "inter_unit",
+      "delay_class": "immediate",
+      "plastic": true,
+      "motif_ref": null,
+      "parameters": {
+        "cancellation_gain": 0.9
+      },
+      "biological_reference": "Bell 1981; Crapse & Sommer 2008"
+    },
+    {
+      "name": "mixed_electrical_chemical_synapse",
+      "family": "electrical",
+      "display": "电化学混合突触",
+      "description": "A contact carrying both a gap-junction conductance and a chemical component; this is what gives the Mauthner cell its sub-millisecond all-or-none drive.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "electrical_fraction": 0.5
+      },
+      "biological_reference": "Korn & Faber 2005; Pereda 2014"
+    },
+    {
+      "name": "modulatory_gated_plasticity",
+      "family": "plasticity",
+      "display": "调质门控可塑性",
+      "description": "A synapse whose weight changes only when a third, modulatory neuron is co-active: local learning requires a global reinforcement signal (DAN onto the Kenyon-cell output synapse).",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": null,
+      "parameters": {
+        "gating_threshold": 0.5,
+        "learning_rate": 0.01
+      },
+      "biological_reference": "Aso et al 2014; Cognigni et al 2018"
+    },
+    {
+      "name": "repetitive_activation_lts",
+      "family": "plasticity",
+      "display": "反复激活长时程增强",
+      "description": "A brief run of presynaptic spikes produces a lasting increase in release that outlives the train by many minutes -- the cephalopod vertical-lobe rule.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_one",
+      "span": "intra_unit",
+      "delay_class": "long",
+      "plastic": true,
+      "motif_ref": "ltp_ltd",
+      "parameters": {
+        "pulses_required": 5,
+        "decay_minutes": 30
+      },
+      "biological_reference": "Shomrat et al 2008; Hochner 2012"
+    },
+    {
+      "name": "command_neuron_recruitment",
+      "family": "macro",
+      "display": "指令神经元募集",
+      "description": "One identified command neuron, once past threshold, recruits an entire downstream motor pool all-or-none (Mauthner cell; EOD pacemaker nucleus).",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_one",
+      "span": "intra_unit",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "threshold": 0.8,
+        "all_or_none": true
+      },
+      "biological_reference": "Korn & Faber 2005; Eaton et al 2001"
     }
   ]
 }

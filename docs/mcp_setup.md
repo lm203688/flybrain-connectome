@@ -92,8 +92,9 @@ reads the data):
 `get_multiplier_metrics`
 
 **Functional-unit composition library** — offline, Tier-1, stdlib-only. This is
-the layer that actually composes: 40 functional units (a function delivered by a
-group of neuron populations, with typed ports) + 50 connection types
+the layer that actually composes: 56 functional units (a function delivered by a
+group of neuron populations, with typed ports -- 16 of them cross-clade: insect,
+bird, fish, cephalopod) + 58 connection types
 (connection forms, constrained on port types).
 
 `list_functional_units` · `get_functional_unit` ·

@@ -2,12 +2,12 @@
 
 TWO LIBRARIES, ONE ALGEBRA
 --------------------------
-`functional_units/functional_units.json` holds 40 FUNCTIONAL UNITS. A unit is
+`functional_units/functional_units.json` holds 56 FUNCTIONAL UNITS. A unit is
 NOT a neuron type: it is a group of one-or-more neuron populations wired into a
 sub-circuit that delivers exactly one function (phototransduction, action
 selection, theta pacing, ...) and that exposes typed PORTS.
 
-`functional_units/connection_types.json` holds 50 CONNECTION TYPES. A connection
+`functional_units/connection_types.json` holds 58 CONNECTION TYPES. A connection
 type is NOT a single synapse: it is a connection FORM (axo-somatic, mutual
 inhibitory, volume transmission, corollary discharge, ...) that constrains which
 port types it may join.
@@ -22,7 +22,8 @@ and every edge is checkable, because both sides declare port types:
 
 WHY THIS REPLACES "one module = one neuron type"
 ------------------------------------------------
-The earlier library exposed 101 neuron types as leaves. A single neuron type is
+The earlier library exposed 136 leaf entries (10 cognitive-function profiles plus
+126 cross-species neuron types). A single neuron type is
 not a composable unit: `pyramidal_l5` on its own does nothing, and joining two of
 them means nothing. What composes is a FUNCTION with a known interface. This
 module is the layer where a function becomes a node you can wire.
@@ -449,6 +450,59 @@ DEMO = {
     ],
 }
 
+# ---------------------------------------------------------------------- #
+# Two more canonical chains, one per non-mammalian clade group. They exist
+# because the claim "the library composes cross-clade" is only worth
+# something if the cross-clade chains actually validate end to end.
+# ---------------------------------------------------------------------- #
+DEMO_INSECT = {
+    "name": "demo_insect_olfactory_navigation",
+    "units": [
+        "antennal_lobe_glomerular_unit",
+        "mushroom_body_sparse_code_unit",
+        "mushroom_body_associative_memory_unit",
+        "central_complex_heading_unit",
+        "central_complex_steering_unit",
+        "insect_clock_pacemaker_unit",
+    ],
+    "connections": [
+        # odour -> sparse mushroom-body code -> learned valence
+        "antennal_lobe_glomerular_unit.pn_out->mushroom_body_sparse_code_unit.pn_in:feedforward_excitatory",
+        "mushroom_body_sparse_code_unit.sparse_out->mushroom_body_associative_memory_unit.sparse_code:feedforward_excitatory",
+        # learned odour value biases the steering map
+        "mushroom_body_associative_memory_unit.learned_valence->central_complex_steering_unit.valence_in:divergent_fanout",
+        # heading -> steering, with a feedback turn back onto the heading map
+        "central_complex_heading_unit.heading_out->central_complex_steering_unit.heading_in:feedforward_excitatory",
+        "central_complex_steering_unit.turn_cmd->central_complex_heading_unit.steer_in:lateral_feedback",
+        # the clock biases the heading system (time-of-day dependent navigation)
+        "insect_clock_pacemaker_unit.phase_out->central_complex_heading_unit.clock_in:feedforward_excitatory",
+    ],
+}
+
+DEMO_ESCAPE = {
+    "name": "demo_electrosensory_escape",
+    "units": [
+        "electric_organ_discharge_unit",
+        "electrosensory_electrolocation_unit",
+        "passive_electroreception_unit",
+        "startle_escape_command_unit",
+    ],
+    "connections": [
+        # the pacemaker tells the sensory side what it is about to emit
+        "electric_organ_discharge_unit.eff_out->electrosensory_electrolocation_unit.eff_in:efference_copy_cancellation",
+        # ...and the emitted field itself reaches the receptors (field coupling)
+        "electric_organ_discharge_unit.eod_out->electrosensory_electrolocation_unit.eod_self:ephaptic_coupling",
+        # a passive electric cue from prey/danger reaches the escape command
+        "passive_electroreception_unit.prey_vector->startle_escape_command_unit.threat_in:feedforward_excitatory",
+    ],
+}
+
+DEMOS = {
+    "mammal": DEMO,
+    "insect": DEMO_INSECT,
+    "electrosensory": DEMO_ESCAPE,
+}
+
 
 def stats() -> dict:
     u = load_units()
@@ -471,7 +525,8 @@ def _cli() -> int:
     ap.add_argument("--show", metavar="UNIT")
     ap.add_argument("--suggest", metavar="HINT")
     ap.add_argument("--connections", action="store_true")
-    ap.add_argument("--demo", action="store_true")
+    ap.add_argument("--demo", nargs="?", const="all", metavar="NAME",
+                    help="mammal | insect | electrosensory | all (default)")
     ap.add_argument("--stats", action="store_true")
     a = ap.parse_args()
 
@@ -496,8 +551,16 @@ def _cli() -> int:
         print(json.dumps(suggest_composition(a.suggest), ensure_ascii=False, indent=2))
         return 0
     if a.demo:
-        doc = compose_from_units(DEMO["units"], DEMO["connections"], name=DEMO["name"])
-        print(json.dumps(doc, ensure_ascii=False, indent=2)); return 0
+        names = list(DEMOS) if a.demo == "all" else [a.demo]
+        built = []
+        for n in names:
+            if n not in DEMOS:
+                print("no such demo:", n, file=sys.stderr); return 2
+            spec = DEMOS[n]
+            built.append(compose_from_units(spec["units"], spec["connections"],
+                                             name=spec["name"]))
+        print(json.dumps(built[0] if len(built) == 1 else built,
+                         ensure_ascii=False, indent=2)); return 0
     ap.print_help()
     return 0
 
