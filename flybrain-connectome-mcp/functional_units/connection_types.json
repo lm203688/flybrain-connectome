@@ -60,7 +60,13 @@
       "modulatory",
       "plasticity"
     ],
-    "connection_types_used_by_units": 46
+    "connection_types_used_by_units": 46,
+    "embodied_units": 6,
+    "embodied_populations_referenced": 14,
+    "embodied_real_cells_referenced": 8798,
+    "structural_support_edges_measured": 21,
+    "structural_support_edges_contradicted": 1,
+    "contradictions_acknowledged": 1
   },
   "connection_types": [
     {

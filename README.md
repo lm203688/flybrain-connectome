@@ -429,19 +429,69 @@ and `--demo swim` (leech half-centre swim CPG → ascidian larval oscillator →
 frog reticulospinal escape swim).
 `--demo` with no argument runs all four.
 
+### MaleCNS embodiment (v1.7.0)
+
+Everything above is literature-curated, which left the library unable to answer
+the first question any reader asks: does any of this correspond to the fly brain
+it is named after? `functional_units/malecns_anchors.json` (built by
+`scripts/build_malecns_anchors.py`) answers it, for the part where an answer is
+honest.
+
+- **Presence.** **6 of 72 units** have member populations that resolve to real
+  annotated MaleCNS v1.0 cell types. Across the whole library that is
+  **14 of 160 neuron populations** covering **8,798 real cells**: the `kc` role of
+  the mushroom-body unit is 4,064 real Kenyon cells over 15 real KC types
+  (`KCg-m`, `KCab-m`, `KCa'b'-ap2` …), its `input` role is 583 real antennal-lobe
+  projection neurons over 145 types (`DA1_lPN`, `VM5d_adPN` …), its `gaba` role is
+  the 2 real APL cells. Matching is by an explicit name rule **plus** the
+  dataset's own `superclass` — a name rule alone would have swallowed the clock
+  neurons `DN1a`/`DN1pA` and the endocrine `DNES1-3` into the descending-neuron
+  anchor — and the complete match list is written into the artifact, so a wrong
+  rule is auditable by reading JSON rather than by trusting a script.
+- **Measured structure instead of assumed structure.** A single pass over the
+  real synapse table produces the complete 27×27 superclass matrix and the
+  anchored-cell-type matrix, independently cross-checked against
+  `connectivity_stats.json`: both agree on **124,177,617** synapses over
+  25,582,938 edges. Each declared unit edge therefore carries the real measured
+  synapse count between its two populations' actual cell types — antennal-lobe
+  PN → Kenyon cell measures 378,315 synapses over 21,658 connected type pairs,
+  Kenyon cell → mushroom-body output neuron measures 463,640, Kenyon cell → APL
+  measures 210,352.
+- **Falsification, not confirmation.** A nonzero count means only that the
+  declared edge is *not contradicted* at cell-type-set resolution; it says nothing
+  about whether the declared connection FORM is the one the fly uses. A zero count
+  is a real contradiction, and the library has exactly one:
+  `central_complex_steering_unit`'s `nod -> fb` projection, which this release's
+  Nod population (5 types, 12 cells, filed by the dataset under
+  `visual_projection`) does not exhibit. It is kept and flagged **UNSUPPORTED**
+  rather than quietly rewritten to something that passes — Gate 10 fails on any
+  contradiction that is not registered in `ACKNOWLEDGED_CONTRADICTIONS` with a
+  reason.
+- **The other 146 populations are unanchored with a stated reason**, not silently
+  skipped: 131 are non-Drosophila (bird song system, fish Mauthner and
+  electroreception, cephalopod vertical lobe, mammalian cortical classes), 5 could
+  not be resolved narrowly enough to defend, and 10 are abstract cognitive modules
+  with no single cell class.
+
 **Honest boundary.** These units are curated from comparative-neuroscience
 literature with a named reference each (`provenance.extracted_from_malecns` is
 `false` for all 72) — they are NOT extracted from MaleCNS v1.0, unlike the three
 original fly motifs. Member ratios are composition weights, not measured cell
-counts. Treat the layer as a composable scaffold with literature provenance, not
-as a measured cell assembly.
+counts. `provenance.embodied_in_malecns` marks the 6 units whose populations *do*
+resolve to real annotated cells. Embodiment proves the parts exist and that a
+declared edge is not contradicted; it does not prove the declared microcircuit or
+its connection form. Treat the layer as a composable scaffold with literature
+provenance, not as a measured cell assembly.
 
 Machine-readable equivalents: `list_functional_units`, `get_functional_unit`,
 `list_connection_types`, `compose_from_units`. Regenerate + verify with
 `python scripts/gen_functional_units.py` and `scripts/check_functional_units.py`
 (Gate 9, which fails the build if the artifacts drift from the generator, if a
 member neuron does not exist in the vocabulary, or if the composer stops
-rejecting malformed wiring).
+rejecting malformed wiring). The embodiment layer is rebuilt with
+`python scripts/build_malecns_anchors.py` and locked by `scripts/check_embodiment.py`
+(Gate 10, which recomputes every measured count from the matrices, re-injects six
+defects every run, and refuses to let an unacknowledged contradiction ship).
 
 ---
 

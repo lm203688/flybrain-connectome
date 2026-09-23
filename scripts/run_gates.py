@@ -12,14 +12,17 @@ Gates, in order of cheapness:
   3  MCP tools    scripts/check_mcp_tools.py         needs numpy; spawns the server
   4  degraded     scripts/check_degraded_mode.py     optional dep absent must not crash
   5  artifact     generated output is structurally real (see the checker's docstring)
+  6  flybrain     flybrain_cli verify                 needs the MaleCNS dataset
   7  module arch  neuropil modules + worm data + combinator + HMAC
   8  tiering      physical tiering (public MIT tree vs private Tier-2 repo)
   9  unit library functional units + connection types + composer fail-closed
+ 10  embodiment   anchors + measured matrices + acknowledged contradictions
 
 Gates 4 and 5 generate a throwaway organism into a temp dir, so they need no
 dataset. The data-backed smoke test (`flybrain verify`, 70 assertions) is *not*
 run unless you pass --with-data, because it needs a local MaleCNS v1.0 copy
-(~5.63 GB) pointed at by FLYBRAIN_DATA_DIR.
+(~5.63 GB) pointed at by FLYBRAIN_DATA_DIR. Gate 10 runs offline against the
+committed anchor artifact, and only recomputes from raw data under --with-data.
 
 Usage:
     python scripts/run_gates.py                  # offline, CI-equivalent
@@ -81,6 +84,14 @@ def main() -> int:
     results.append(("gate9 unit library", run(
         "GATE 9 — functional units + connection types + composer fail-closed",
         [py, str(SCRIPTS / "check_functional_units.py")])[0]))
+
+    # ---- Gate 10: embodiment layer (stdlib only, runs even in --quick) ----
+    gate10_cmd = [py, str(SCRIPTS / "check_embodiment.py")]
+    if args.with_data:
+        gate10_cmd.append("--with-data")
+    results.append(("gate10 embodiment", run(
+        "GATE 10 — MaleCNS embodiment anchors + measured matrices + contradictions",
+        gate10_cmd)[0]))
 
     if not args.quick:
         results.append(("gate3 MCP tools", run(

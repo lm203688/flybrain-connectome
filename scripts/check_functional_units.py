@@ -88,12 +88,19 @@ def main() -> int:
     # what is committed.
     gen = _load(ROOT / "scripts" / "gen_functional_units.py", "gen_fu_gate")
     profiles = gen._load_profiles()
-    gen_units = gen.FUNCTIONAL_UNITS
+    # `FUNCTIONAL_UNITS` is the authored source; `embodied_units()` returns what
+    # the generator actually writes (embodiment applied). Comparing the authored
+    # list against the artifact would report phantom drift for every unit.
+    gen_units, gen_anchors = gen.embodied_units()
     gen_conns = gen.CONNECTION_TYPES
     check("generator unit count matches artifact",
           len(gen_units) == len(units), "%d vs %d" % (len(gen_units), len(units)))
     check("generator connection count matches artifact",
           len(gen_conns) == len(conns), "%d vs %d" % (len(gen_conns), len(conns)))
+    check("every written unit carries an embodiment block",
+          all("embodiment" in u and "embodied_in_malecns" in u["provenance"]
+              for u in gen_units),
+          "%d/%d" % (sum(1 for u in gen_units if u.get("embodiment")), len(gen_units)))
     if len(gen_units) == len(units):
         mism = [g["name"] for g, a in zip(gen_units, units) if g != a]
         check("artifact units are byte-identical to generator output",
