@@ -306,9 +306,9 @@ MLflow2PROV, and MIT Sloan provenance tooling.
 
 ## Blueprint & module library
 
-**25 blueprints** across three categories, composed from **101 modules**:
+**25 blueprints** across three categories, composed from **136 modules**:
 **10 cognitive-function modules** (sensory / memory / motor / integration / attention /
-working_memory / reward / punishment / habit / metacognition) + **91 cross-species
+working_memory / reward / punishment / habit / metacognition) + **126 cross-species
 neuron types** spanning cortical pyramidal (L2/3 CX1/CX5, L4b/L4c, L5 basal tuft, L6 reticulo-thalamic,
 L7 temporal, Mayeret) + intermediate interneurons (Calbindin/LAMP/NPH/NPF/VLAC/SST-dendritic/
 SST-somatic/KCN, plus PV/SST/VIP/chandelier/basket) + modulatory systems (dopaminergic
@@ -319,7 +319,22 @@ glycinergic, nociceptive, Purkinje/granule/stellate, inferior olive) + thalamic/
 (LGN/MD/VA/VL/VPL/VPM/RTN, STN, red nucleus, striatal D1/D2 MSN) + limbic/edge
 (hippocampal CA1/CA2/CA3/CA4/granule/subiculum, amygdala BLA/LA, septum, entorhinal L2/L3,
 grid cell) + special senses (pineal, melanopsin, olfactory, vestibular, cochlear outer hair)
-+ reactive astrocyte. Every blueprint traces to one of
++ reactive astrocyte
+
++ **four clades whose neurons have no vertebrate-cortex counterpart** (35 further types,
+each carrying its own `biological_reference`):
+
+- **insect (14)** — Kenyon cell / mushroom-body output / PPL1-PAM dopaminergic / APL,
+  antennal-lobe projection and local neurons, protocerebral bridge / ellipsoid body /
+  fan-shaped body / noduli / ring neurons, s-LNv and lateral clock neurons, descending neuron
+- **bird (6)** — HVC, RA, LMAN, Area X, DLM, NIf (the song system)
+- **fish (8)** — Mauthner cell, reticulospinal neuron, lateral-line hair cell,
+  ampullary and tuberous electroreceptors, ELL pyramidal cell, electrosensory inhibitory
+  interneuron, electric-organ pacemaker neuron
+- **cephalopod (7)** — vertical-lobe large / amacrine / small cells, superior frontal lobe
+  cell, chromatophore motor neuron, arm motor neuron, arm sensory afferent
+
+Every blueprint traces to one of
 **40 topology motifs** (3 original MaleCNS-extracted + 37 conceptual patterns spanning
 anatomical / functional / plasticity / specialized categories) or is honestly marked
 `motif: none` (synthetic orchestration, no bio-prior) — 16 bio-prior, 9 not:
@@ -350,20 +365,25 @@ single neuron type does nothing on its own, and wiring two of them together mean
 nothing. What composes is a **function with a known interface**. So the library is
 split into two tiers, and the upper tier is the one you actually build from:
 
-- **40 functional units** — each is ONE function (phototransduction, action
-  selection, theta pacing, gliotransmission …) delivered by a **group** of neuron
-  populations (1–6 of them, taken from the 101-module vocabulary) wired into an
-  internal sub-circuit, and exposing **typed ports** (`light` in →
+- **56 functional units** — each is ONE function (phototransduction, action
+  selection, theta pacing, gliotransmission, sparse mushroom-body coding, ring-attractor
+  heading, song timing, Mauthner escape, active electrolocation, camouflage …) delivered
+  by a **group** of neuron populations (1–6 of them, taken from the 136-module vocabulary)
+  wired into an internal sub-circuit, and exposing **typed ports** (`light` in →
   `high_res` out; `candidates` + `value` in → `selected_action` out).
-- **50 connection types** — each is one connection FORM, constrained on the port
+  **16 of the 56 are cross-clade** (insect / bird / fish / cephalopod) and 40 are the
+  mammal-cortex-shaped set.
+- **58 connection types** — each is one connection FORM, constrained on the port
   types it may join, in six families:
   **micro** (axo-dendritic / axo-somatic / axo-axonic / dendro-dendritic …
   point-to-point contact sites) · **circuit** (feedforward / feedback / lateral /
-  mutual / recurrent / disinhibition / winner-take-all …) · **modulatory**
+  mutual / recurrent / disinhibition / winner-take-all / global inhibitory gain control /
+  synfire chain / efference-copy cancellation …) · **modulatory**
   (diffuse / volume / retrograde / state gating) · **electrical** (gap junction /
-  ephaptic / tripartite astrocyte) · **plasticity** (STDP / LTP-LTD / short-term /
-  homeostatic scaling) · **macro** (topographic mapping / divergent fan-out /
-  convergent fan-in / corollary discharge / global broadcast).
+  ephaptic / mixed electro-chemical / tripartite astrocyte) · **plasticity** (STDP /
+  LTP-LTD / short-term / homeostatic scaling / modulator-gated / repeated-activation LTS) ·
+  **macro** (topographic mapping / divergent fan-out / convergent fan-in / corollary
+  discharge / global broadcast / sparse expansion / command-neuron recruitment).
 
 So the algebra is `virtual organism = units (nodes) + connection types (typed
 edges)`, and every edge is mechanically checkable because both endpoints declare
@@ -380,9 +400,17 @@ first-class citizen here). An unsatisfied *required* input on the organism
 boundary is the organism's external input, not a defect — pass
 `allow_boundary_inputs: false` to validate an interior sub-chain instead.
 
+Three canonical chains ship as fixtures and are re-validated by Gate 9 on every
+run — `--demo mammal` (retina → thalamus → cortex → basal ganglia → motor
+thalamus), `--demo insect` (antennal lobe → mushroom body sparse code → learned
+valence → central complex heading/steering, clock-biased) and
+`--demo electrosensory` (EOD pacemaker → efference-copy cancellation →
+electrolocation, plus a passive-electric cue into the Mauthner escape command).
+`--demo` with no argument runs all three.
+
 **Honest boundary.** These units are curated from comparative-neuroscience
 literature with a named reference each (`provenance.extracted_from_malecns` is
-`false` for all 40) — they are NOT extracted from MaleCNS v1.0, unlike the three
+`false` for all 56) — they are NOT extracted from MaleCNS v1.0, unlike the three
 original fly motifs. Member ratios are composition weights, not measured cell
 counts. Treat the layer as a composable scaffold with literature provenance, not
 as a measured cell assembly.
