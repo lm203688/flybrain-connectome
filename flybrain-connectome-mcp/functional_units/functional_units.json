@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "source": "Curated cross-species comparative neuroscience; NOT extracted from MaleCNS v1.0 (see per-unit provenance.extracted_from_malecns).",
-  "caveat": "A functional unit is a curated sub-circuit pattern, not a measured cell assembly. Members name neuron populations from synthetic_bio_topology.MODULE_PROFILES; ratios are composition weights, not measured cell counts. Treat as a compositional scaffold with literature provenance, not as ground truth.",
+  "caveat": "A functional unit is a curated sub-circuit pattern, not a measured cell assembly. Members name neuron populations from synthetic_bio_topology.MODULE_PROFILES; ratios are composition weights, not measured cell counts. Treat as a compositional scaffold with literature provenance, not as ground truth. Where `embodiment.populations_anchored` > 0 the member populations DO correspond to real annotated MaleCNS v1.0 cell types, but the declared wiring and its connection FORM remain literature-derived -- see `provenance.extracted_from_malecns` (false everywhere).",
   "port_types": {
     "sensory.visual": "Photoreceptor-driven visual signal (retina -> thalamus).",
     "sensory.visual.motion": "Direction/motion-selective visual signal.",
@@ -126,7 +126,37 @@
       "modulatory",
       "plasticity"
     ],
-    "connection_types_used_by_units": 46
+    "connection_types_used_by_units": 46,
+    "embodied_units": 6,
+    "embodied_populations_referenced": 14,
+    "embodied_real_cells_referenced": 8798,
+    "structural_support_edges_measured": 21,
+    "structural_support_edges_contradicted": 1,
+    "contradictions_acknowledged": 1
+  },
+  "embodiment_source": {
+    "file": "malecns_anchors.json",
+    "schema_version": "1.0",
+    "sha256": "267c086dadbbf15c6ebbd70b7479d48d8e0c94448402c84a74c9f26688675316",
+    "anchored_profiles": 14,
+    "anchored_real_cells": 8798,
+    "anchored_types": 889,
+    "measured_synapses_neuron_subgraph": 124177617,
+    "measured_edges_neuron_subgraph": 25582938,
+    "scope": "Presence + non-contradiction only. A matched population proves the parts exist in the real connectome; a nonzero measured pathway proves the declared edge is not contradicted at cell-type resolution. Neither proves the declared microcircuit or connection form. Declared edges measured at ZERO synapses are listed in `contradicted_edges` and are UNSUPPORTED, not supported.",
+    "contradicted_edges": [
+      {
+        "unit": "central_complex_steering_unit",
+        "edge": "nod->fb"
+      }
+    ],
+    "acknowledged_contradictions": [
+      {
+        "unit": "central_complex_steering_unit",
+        "edge": "nod->fb",
+        "reason": "The noduli population resolves to only 5 Nod cell types / 12 real cells, and the dataset files them under `visual_projection` rather than cb_intrinsic. MaleCNS v1.0 contains no Nod -> PFN/FS/FC synapses, so this declared projection is UNSUPPORTED at this resolution. Kept because it is a literature claim about the central complex, not a claim about this release's connectivity; a fix requires resolving the noduli population properly, which is future work."
+      }
+    ]
   },
   "how_to_compose": [
     "1. pick units by `capability` / `lead_task_hint`;",
@@ -240,7 +270,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -350,7 +392,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -459,7 +513,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -555,7 +621,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -659,7 +737,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -757,7 +847,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -855,7 +957,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -967,7 +1081,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -1072,7 +1198,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 2,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -1164,7 +1302,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 2,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -1256,7 +1406,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 2,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -1371,7 +1533,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -1486,7 +1660,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -1609,7 +1795,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 5,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -1769,7 +1967,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 6,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -1911,7 +2121,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 5,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -2026,7 +2248,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -2169,7 +2403,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 6,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -2284,7 +2530,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -2426,7 +2684,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 5,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -2536,7 +2806,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -2662,7 +2944,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -2771,7 +3065,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -2881,7 +3187,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -2998,7 +3316,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -3097,7 +3427,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 2,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -3209,7 +3551,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -3352,7 +3706,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 5,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -3464,7 +3830,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -3581,7 +3959,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -3693,7 +4083,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -3809,7 +4211,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -3950,7 +4364,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 5,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -4062,7 +4488,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -4173,7 +4611,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -4295,7 +4745,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 5,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -4411,7 +4873,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -4505,7 +4979,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 2,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -4603,7 +5089,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -4725,7 +5223,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -4830,7 +5340,93 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 2,
+        "populations_total": 3,
+        "real_cells_anchored": 599,
+        "anchored": {
+          "ln": {
+            "n_bodies": 16,
+            "n_types": 5,
+            "example_types": [
+              "GLNO",
+              "LN60",
+              "LNO1",
+              "LNO2",
+              "LNOa"
+            ],
+            "lower_bound": true
+          },
+          "pn": {
+            "n_bodies": 583,
+            "n_types": 145,
+            "example_types": [
+              "DA1_lPN",
+              "M_lPNm11D",
+              "M_vPNml53",
+              "VM5d_adPN",
+              "DL3_lPN",
+              "DA2_lPN"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "ln",
+            "to_role": "pn",
+            "form": "lateral_inhibitory",
+            "from_population": "antennal_lobe_ln",
+            "to_population": "antennal_lobe_pn",
+            "measured_synapses": 10596,
+            "measured_edges": 903,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "pn",
+            "to_role": "ln",
+            "form": "feedforward_excitatory",
+            "from_population": "antennal_lobe_pn",
+            "to_population": "antennal_lobe_ln",
+            "measured_synapses": 2870,
+            "measured_edges": 504,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "ln",
+            "to_role": "ln",
+            "form": "mutual_inhibitory",
+            "from_population": "antennal_lobe_ln",
+            "to_population": "antennal_lobe_ln",
+            "measured_synapses": 4746,
+            "measured_edges": 53,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": {
+          "rois": [
+            {
+              "roi": "AL(L)",
+              "synapses": 3310043,
+              "tbar_synapses": 626980
+            },
+            {
+              "roi": "AL(R)",
+              "synapses": 3438694,
+              "tbar_synapses": 656660
+            }
+          ],
+          "total_synapses": 6748737
+        },
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -4937,7 +5533,173 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 3,
+        "populations_total": 3,
+        "real_cells_anchored": 4649,
+        "anchored": {
+          "gaba": {
+            "n_bodies": 2,
+            "n_types": 1,
+            "example_types": [
+              "APL"
+            ],
+            "lower_bound": false
+          },
+          "input": {
+            "n_bodies": 583,
+            "n_types": 145,
+            "example_types": [
+              "DA1_lPN",
+              "M_lPNm11D",
+              "M_vPNml53",
+              "VM5d_adPN",
+              "DL3_lPN",
+              "DA2_lPN"
+            ],
+            "lower_bound": false
+          },
+          "kc": {
+            "n_bodies": 4064,
+            "n_types": 15,
+            "example_types": [
+              "KCg-m",
+              "KCab-s",
+              "KCab-m",
+              "KCab-c",
+              "KCa'b'-ap2",
+              "KCg-d"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "input",
+            "to_role": "kc",
+            "form": "sparse_expansion_projection",
+            "from_population": "antennal_lobe_pn",
+            "to_population": "kenyon_cell",
+            "measured_synapses": 378315,
+            "measured_edges": 21658,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "kc",
+            "to_role": "gaba",
+            "form": "feedforward_excitatory",
+            "from_population": "kenyon_cell",
+            "to_population": "mushroom_body_apl",
+            "measured_synapses": 210352,
+            "measured_edges": 4693,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "gaba",
+            "to_role": "kc",
+            "form": "global_inhibitory_gain_control",
+            "from_population": "mushroom_body_apl",
+            "to_population": "kenyon_cell",
+            "measured_synapses": 196200,
+            "measured_edges": 4633,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "kc",
+            "to_role": "kc",
+            "form": "lateral_inhibitory",
+            "from_population": "kenyon_cell",
+            "to_population": "kenyon_cell",
+            "measured_synapses": 1153845,
+            "measured_edges": 642933,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": {
+          "rois": [
+            {
+              "roi": "CA(L)",
+              "synapses": 495052,
+              "tbar_synapses": 63065
+            },
+            {
+              "roi": "CA(R)",
+              "synapses": 532379,
+              "tbar_synapses": 71181
+            },
+            {
+              "roi": "PED(L)",
+              "synapses": 117772,
+              "tbar_synapses": 27912
+            },
+            {
+              "roi": "PED(R)",
+              "synapses": 128963,
+              "tbar_synapses": 29934
+            },
+            {
+              "roi": "aL(L)",
+              "synapses": 254760,
+              "tbar_synapses": 59886
+            },
+            {
+              "roi": "aL(R)",
+              "synapses": 295084,
+              "tbar_synapses": 70007
+            },
+            {
+              "roi": "a'L(L)",
+              "synapses": 133684,
+              "tbar_synapses": 27181
+            },
+            {
+              "roi": "a'L(R)",
+              "synapses": 179812,
+              "tbar_synapses": 33771
+            },
+            {
+              "roi": "bL(L)",
+              "synapses": 238885,
+              "tbar_synapses": 56287
+            },
+            {
+              "roi": "bL(R)",
+              "synapses": 229527,
+              "tbar_synapses": 49337
+            },
+            {
+              "roi": "b'L(L)",
+              "synapses": 285643,
+              "tbar_synapses": 61986
+            },
+            {
+              "roi": "b'L(R)",
+              "synapses": 254569,
+              "tbar_synapses": 52256
+            },
+            {
+              "roi": "gL(L)",
+              "synapses": 878358,
+              "tbar_synapses": 184946
+            },
+            {
+              "roi": "gL(R)",
+              "synapses": 807815,
+              "tbar_synapses": 173166
+            }
+          ],
+          "total_synapses": 4832303
+        },
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -5053,7 +5815,186 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 4,
+        "populations_total": 4,
+        "real_cells_anchored": 4517,
+        "anchored": {
+          "dan": {
+            "n_bodies": 354,
+            "n_types": 32,
+            "example_types": [
+              "PAM08",
+              "PAM01",
+              "PAM04",
+              "PAM06",
+              "PAM12",
+              "PAM05"
+            ],
+            "lower_bound": false
+          },
+          "gaba": {
+            "n_bodies": 2,
+            "n_types": 1,
+            "example_types": [
+              "APL"
+            ],
+            "lower_bound": false
+          },
+          "kc": {
+            "n_bodies": 4064,
+            "n_types": 15,
+            "example_types": [
+              "KCg-m",
+              "KCab-s",
+              "KCab-m",
+              "KCab-c",
+              "KCa'b'-ap2",
+              "KCg-d"
+            ],
+            "lower_bound": false
+          },
+          "mbon": {
+            "n_bodies": 97,
+            "n_types": 37,
+            "example_types": [
+              "MBON10",
+              "MBON07",
+              "MBON09",
+              "MBON12",
+              "MBON14",
+              "MBON15"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "kc",
+            "to_role": "mbon",
+            "form": "modulatory_gated_plasticity",
+            "from_population": "kenyon_cell",
+            "to_population": "mushroom_body_output",
+            "measured_synapses": 463640,
+            "measured_edges": 61210,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "dan",
+            "to_role": "kc",
+            "form": "modulatory_diffuse",
+            "from_population": "mushroom_body_dan",
+            "to_population": "kenyon_cell",
+            "measured_synapses": 225149,
+            "measured_edges": 129132,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "gaba",
+            "to_role": "kc",
+            "form": "global_inhibitory_gain_control",
+            "from_population": "mushroom_body_apl",
+            "to_population": "kenyon_cell",
+            "measured_synapses": 196200,
+            "measured_edges": 4633,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "mbon",
+            "to_role": "dan",
+            "form": "feedback_excitatory",
+            "from_population": "mushroom_body_output",
+            "to_population": "mushroom_body_dan",
+            "measured_synapses": 12075,
+            "measured_edges": 2618,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": {
+          "rois": [
+            {
+              "roi": "CA(L)",
+              "synapses": 495052,
+              "tbar_synapses": 63065
+            },
+            {
+              "roi": "CA(R)",
+              "synapses": 532379,
+              "tbar_synapses": 71181
+            },
+            {
+              "roi": "PED(L)",
+              "synapses": 117772,
+              "tbar_synapses": 27912
+            },
+            {
+              "roi": "PED(R)",
+              "synapses": 128963,
+              "tbar_synapses": 29934
+            },
+            {
+              "roi": "aL(L)",
+              "synapses": 254760,
+              "tbar_synapses": 59886
+            },
+            {
+              "roi": "aL(R)",
+              "synapses": 295084,
+              "tbar_synapses": 70007
+            },
+            {
+              "roi": "a'L(L)",
+              "synapses": 133684,
+              "tbar_synapses": 27181
+            },
+            {
+              "roi": "a'L(R)",
+              "synapses": 179812,
+              "tbar_synapses": 33771
+            },
+            {
+              "roi": "bL(L)",
+              "synapses": 238885,
+              "tbar_synapses": 56287
+            },
+            {
+              "roi": "bL(R)",
+              "synapses": 229527,
+              "tbar_synapses": 49337
+            },
+            {
+              "roi": "b'L(L)",
+              "synapses": 285643,
+              "tbar_synapses": 61986
+            },
+            {
+              "roi": "b'L(R)",
+              "synapses": 254569,
+              "tbar_synapses": 52256
+            },
+            {
+              "roi": "gL(L)",
+              "synapses": 878358,
+              "tbar_synapses": 184946
+            },
+            {
+              "roi": "gL(R)",
+              "synapses": 807815,
+              "tbar_synapses": 173166
+            }
+          ],
+          "total_synapses": 4832303
+        },
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -5168,7 +6109,126 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 3,
+        "populations_total": 3,
+        "real_cells_anchored": 1280,
+        "anchored": {
+          "eb": {
+            "n_bodies": 86,
+            "n_types": 4,
+            "example_types": [
+              "EPG",
+              "EL",
+              "PEG",
+              "EPGt"
+            ],
+            "lower_bound": false
+          },
+          "pb": {
+            "n_bodies": 251,
+            "n_types": 71,
+            "example_types": [
+              "PEN_b(PEN2)",
+              "PEN_a(PEN1)",
+              "IB004_a",
+              "IB002",
+              "IB054",
+              "IB032"
+            ],
+            "lower_bound": false
+          },
+          "ring": {
+            "n_bodies": 943,
+            "n_types": 55,
+            "example_types": [
+              "vDeltaA_a",
+              "vDeltaM",
+              "vDeltaK",
+              "Delta7",
+              "vDeltaL",
+              "hDeltaJ"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "pb",
+            "to_role": "eb",
+            "form": "feedforward_excitatory",
+            "from_population": "central_complex_pb",
+            "to_population": "central_complex_eb",
+            "measured_synapses": 32876,
+            "measured_edges": 1181,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "eb",
+            "to_role": "pb",
+            "form": "feedback_excitatory",
+            "from_population": "central_complex_eb",
+            "to_population": "central_complex_pb",
+            "measured_synapses": 15218,
+            "measured_edges": 982,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "ring",
+            "to_role": "eb",
+            "form": "lateral_inhibitory",
+            "from_population": "central_complex_ring",
+            "to_population": "central_complex_eb",
+            "measured_synapses": 176534,
+            "measured_edges": 17584,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          },
+          {
+            "from_role": "ring",
+            "to_role": "pb",
+            "form": "lateral_inhibitory",
+            "from_population": "central_complex_ring",
+            "to_population": "central_complex_pb",
+            "measured_synapses": 14819,
+            "measured_edges": 2086,
+            "measured_synapses_superclass_coarse": 34365451,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": {
+          "rois": [
+            {
+              "roi": "EB",
+              "synapses": 921449,
+              "tbar_synapses": 186469
+            },
+            {
+              "roi": "PB",
+              "synapses": 398413,
+              "tbar_synapses": 51265
+            },
+            {
+              "roi": "FB",
+              "synapses": 2917059,
+              "tbar_synapses": 460038
+            },
+            {
+              "roi": "NO",
+              "synapses": 241539,
+              "tbar_synapses": 42043
+            }
+          ],
+          "total_synapses": 4478460
+        },
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -5285,7 +6345,128 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 3,
+        "populations_total": 3,
+        "real_cells_anchored": 2356,
+        "anchored": {
+          "dn": {
+            "n_bodies": 1306,
+            "n_types": 477,
+            "example_types": [
+              "DNg08",
+              "DNpe008",
+              "DNg07",
+              "DNg106",
+              "DNge091",
+              "DNge094"
+            ],
+            "lower_bound": false
+          },
+          "fb": {
+            "n_bodies": 1038,
+            "n_types": 37,
+            "example_types": [
+              "PFNp_b",
+              "PFNp_a",
+              "PFNa",
+              "FS4A",
+              "FC2C",
+              "FS2"
+            ],
+            "lower_bound": false
+          },
+          "nod": {
+            "n_bodies": 12,
+            "n_types": 5,
+            "example_types": [
+              "Nod1",
+              "Nod2",
+              "Nod3",
+              "Nod4",
+              "Nod5"
+            ],
+            "lower_bound": false,
+            "caveat": "The dataset files Nod1-5 under `visual_projection`, not cb_intrinsic, which is unexpected for CX noduli cells. The match is therefore a NAME match with a possibly wrong dataset label; treat as low confidence."
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "nod",
+            "to_role": "fb",
+            "form": "feedforward_excitatory",
+            "from_population": "central_complex_noduli",
+            "to_population": "central_complex_fb",
+            "measured_synapses": 0,
+            "measured_edges": 0,
+            "measured_synapses_superclass_coarse": 3847546,
+            "contradicted": true
+          },
+          {
+            "from_role": "fb",
+            "to_role": "dn",
+            "form": "feedforward_excitatory",
+            "from_population": "central_complex_fb",
+            "to_population": "descending_neuron",
+            "measured_synapses": 224,
+            "measured_edges": 124,
+            "measured_synapses_superclass_coarse": 2732731,
+            "contradicted": false
+          },
+          {
+            "from_role": "dn",
+            "to_role": "fb",
+            "form": "feedback_inhibitory",
+            "from_population": "descending_neuron",
+            "to_population": "central_complex_fb",
+            "measured_synapses": 48,
+            "measured_edges": 42,
+            "measured_synapses_superclass_coarse": 864574,
+            "contradicted": false
+          },
+          {
+            "from_role": "dn",
+            "to_role": "nod",
+            "form": "feedforward_excitatory",
+            "from_population": "descending_neuron",
+            "to_population": "central_complex_noduli",
+            "measured_synapses": 34,
+            "measured_edges": 27,
+            "measured_synapses_superclass_coarse": 8439,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": {
+          "rois": [
+            {
+              "roi": "EB",
+              "synapses": 921449,
+              "tbar_synapses": 186469
+            },
+            {
+              "roi": "PB",
+              "synapses": 398413,
+              "tbar_synapses": 51265
+            },
+            {
+              "roi": "FB",
+              "synapses": 2917059,
+              "tbar_synapses": 460038
+            },
+            {
+              "roi": "NO",
+              "synapses": 241539,
+              "tbar_synapses": 42043
+            }
+          ],
+          "total_synapses": 4478460
+        },
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -5390,7 +6571,65 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 2,
+        "populations_total": 3,
+        "real_cells_anchored": 46,
+        "anchored": {
+          "network": {
+            "n_bodies": 34,
+            "n_types": 6,
+            "example_types": [
+              "l-LNv",
+              "s-LNv",
+              "LNd_c",
+              "5thsLNv_LNd6",
+              "LN60",
+              "LNd_b"
+            ],
+            "lower_bound": false
+          },
+          "pacemaker": {
+            "n_bodies": 12,
+            "n_types": 2,
+            "example_types": [
+              "s-LNv",
+              "5thsLNv_LNd6"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "pacemaker",
+            "to_role": "network",
+            "form": "gap_junction_sync",
+            "from_population": "clock_neuron_slnv",
+            "to_population": "clock_neuron_ln",
+            "measured_synapses": 644,
+            "measured_edges": 64,
+            "measured_synapses_superclass_coarse": 3847546,
+            "contradicted": false
+          },
+          {
+            "from_role": "network",
+            "to_role": "pacemaker",
+            "form": "gap_junction_sync",
+            "from_population": "clock_neuron_ln",
+            "to_population": "clock_neuron_slnv",
+            "measured_synapses": 308,
+            "measured_edges": 52,
+            "measured_synapses_superclass_coarse": 7714143,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -5494,7 +6733,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -5590,7 +6841,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -5704,7 +6967,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -5825,7 +7100,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -5924,7 +7211,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -6039,7 +7338,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -6149,7 +7460,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -6261,7 +7584,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -6363,7 +7698,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -6471,7 +7818,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -6585,7 +7944,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -6699,7 +8070,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -6821,7 +8204,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -6933,7 +8328,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -7037,7 +8444,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -7138,7 +8557,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -7241,7 +8672,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -7365,7 +8808,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -7469,7 +8924,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -7585,7 +9052,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -7699,7 +9178,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -7815,7 +9306,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -7930,7 +9433,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -8044,7 +9559,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -8164,7 +9691,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 4,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     },
     {
@@ -8282,7 +9821,19 @@
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
-        "basis": "comparative-neuroscience literature, not a trained classifier"
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": false,
+        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 3,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
       }
     }
   ]
