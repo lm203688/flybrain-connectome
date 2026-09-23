@@ -8,11 +8,84 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.3.0` | the toolkit as a whole |
+| package | `1.4.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
+| functional-unit library schema | `1.0` | 40 units + 50 connection types (new in 1.4.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [1.4.0] — 2026-09-23
+
+**The unit of composition is now a FUNCTION, not a neuron type.**
+
+Until now the library's smallest atom was a neuron type (101 of them). That was
+the wrong unit: `pyramidal_l5` alone does nothing, and wiring two neuron types
+together means nothing. What composes is a function with a known interface. This
+release adds the layer above the vocabulary — **40 functional units** (one
+function each, delivered by a *group* of neuron populations wired into a
+sub-circuit) and **50 connection types** (connection *forms*, constrained on port
+types) — plus the composer that joins them and refuses malformed wiring.
+
+### Added
+
+- **`flybrain-connectome-mcp/functional_units/functional_units.json`** — 40
+  functional units. Each declares `members` (role → neuron population from the
+  101-module vocabulary, with composition ratios), `internal_wiring` (edges typed
+  by connection form), and typed `ports` (`in` / `out`, with `required` flags).
+  Coverage: 13 anatomical systems, 87 of 101 neuron populations, retina →
+  thalamus → cortex → basal ganglia → cerebellum → motor → neuromodulatory →
+  glia.
+- **`flybrain-connectome-mcp/functional_units/connection_types.json`** — 50
+  connection forms in six families: `micro` (10 point-to-point contact sites),
+  `circuit` (15 multi-neuron motifs), `modulatory` (6), `electrical` (5,
+  incl. glial coupling), `plasticity` (5), `macro` (9 population-level
+  projection geometries). 40 of them map 1:1 onto the existing motif document;
+  10 macro forms (divergent fan-out, convergent fan-in, corollary discharge,
+  global broadcast, …) are new. Each carries `from_port` / `to_port`
+  constraints, sign, fan-out, delay class and a literature reference.
+- **`flybrain-connectome-mcp/functional_units.py`** — the composition engine
+  (stdlib only). `compose_from_units()` enforces port-type compatibility,
+  required-port satisfaction, whole-organism drivability/readability, and reports
+  feedback cycles. Boundary semantics: an unsatisfied *required* input on the
+  organism boundary IS the organism's external input (pass
+  `allow_boundary_inputs=False` to validate an interior sub-chain). Output is
+  deterministic — the input spec's sha256 is embedded.
+- **`scripts/gen_functional_units.py`** — authors both artifacts. It loads
+  `MODULE_PROFILES` first and **refuses to write** if any member neuron, wiring
+  type, port type or `composable_with` target does not resolve, so the artifacts
+  cannot drift from the vocabulary they are built on.
+- **`scripts/check_functional_units.py` (Gate 9)** — proves the library cannot
+  silently rot: artifacts are byte-identical to generator output (drift = fail),
+  every reference resolves, composition is deterministic, and **seven injected
+  defects must each be rejected** (unknown connection type, two port-type
+  violations, non-existent port, unknown unit, forbidden dangling boundary input,
+  empty composition). The gate itself was defect-tested: a hand-edited artifact
+  and a renamed member neuron both turn it red.
+- **4 MCP tools** (Tier-1, offline): `list_functional_units`,
+  `get_functional_unit`, `list_connection_types`, `compose_from_units`.
+
+### Changed
+
+- Package version 1.3.0 → 1.4.0. Advertised tool count 40 → **44**; bare public
+  install (no Tier-2 core) 36 → **40**. `core_bridge.TOTAL_TOOLS` is now the
+  single source of truth for that number and Gate 8 asserts it matches
+  `check_physical_tiering.TOTAL_TOOLS`, so the two cannot diverge.
+- Gate 2 now also requires the new tool names and the counts in `README.md`,
+  `docs/mcp_setup.md` and the registered `mcp.json` description.
+- `scripts/run_gates.py` runs Gate 9 alongside the dependency-free gates (it is
+  stdlib-only, so `--quick` includes it) and gate labels are renumbered without
+  the misleading `/N` fragments.
+
+### Honest boundary
+
+The 40 units are curated from comparative-neuroscience literature with a named
+reference each; `provenance.extracted_from_malecns` is **`false` for all 40** —
+unlike the three original fly motifs, they are not extracted from MaleCNS v1.0.
+Member ratios are composition weights, not measured cell counts. The layer is a
+composable scaffold with literature provenance, not a measured cell assembly.
 
 ---
 
