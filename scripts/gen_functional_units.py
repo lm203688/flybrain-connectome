@@ -1,7 +1,7 @@
 """gen_functional_units.py -- author the two composition libraries.
 
 Writes (single source of truth, stdlib-only JSON):
-    flybrain-connectome-mcp/functional_units/functional_units.json    (82 units)
+    flybrain-connectome-mcp/functional_units/functional_units.json    (85 units)
     flybrain-connectome-mcp/functional_units/connection_types.json    (66 types)
 
 CLADE COVERAGE (v1.4.1)
@@ -1752,6 +1752,10 @@ PORT_TYPES.update({
     "gating.hunger":         "Hunger-state gate on a competing motor programme.",
     "cerebellar.climbing":   "Climbing-fibre teaching signal (error / complex spike).",
     "reafference.tactile":   "Self-generated tactile reafference from active sensing.",
+    # ---------------- v1.9.0 additions ------------------------------------ #
+    "modulatory.octopamine": "Octopaminergic diffuse modulation (invertebrate "
+                             "arousal / effort / gain-set; invertebrate analogue of norepinephrine).",
+    "sensory.gustatory":     "Taste signal from proboscis or pharyngeal gustatory neurons.",
 })
 
 
@@ -2224,10 +2228,72 @@ FUNCTIONAL_UNITS += [
        ("lh", "dn", "feedforward_excitatory", 0.7)],
       [("odour", "sensory.olfactory", True)],
       [("innate_action", "motor.command", True)],
-      (50, 2000), ["innate_odour", "pheromone_classify", "hardwired_valence"],
+      (50, 2000),       ["innate_odour", "pheromone_classify", "hardwired_valence"],
       ["innate_odour", "pheromone_classify"], "innate_olfaction",
       ["acetylcholine", "gaba"], "Jefferis et al 2007; Dolan et al 2019",
       ["drosophila"], ("antennal_lobe_glomerular_unit",)),
+
+    # ==================================================================== #
+    # v1.9.0 REMAINING CLEANLY-ANCHORABLE FLY CIRCUITS (3)
+    # -------------------------------------------------------------------- #
+    # v1.8.0 pushed profile anchoring from 30 to 34 profiles; three further
+    # cleanly-anchorable fly populations were queued but their anchor rules
+    # never landed (mid-batch break). This batch completes them and turns
+    # each into an embodied unit. Discipline unchanged: every declared edge
+    # was checked against the measured profile x profile matrix BEFORE being
+    # written. Zero-synapse candidates were dropped, not forced through.
+    # ==================================================================== #
+
+    # ---------- AROUSAL MODULATION (1) ---------- #
+    U("octopamine_arousal_unit", "八胺觉醒调节单元", "arousal_modulate", "modulatory",
+      "OA-VUM/OA-VPM 少量（MaleCNS 里 17 个真实细胞 / 9 类）广泛投射，把觉醒-努力设定跨域写到蘑菇体、下行神经元与侧角；无自循环、纯扩散调制。",
+      [("vum", "octopamine_vum", 0.35),
+       ("kc", "kenyon_cell", 0.20),
+       ("mbout", "mushroom_body_output", 0.15),
+       ("lh", "lateral_horn_ln", 0.15),
+       ("dn", "descending_neuron", 0.15)],
+      [("vum", "kc", "feedforward_excitatory", 1.0),
+       ("vum", "mbout", "feedforward_excitatory", 0.7),
+       ("vum", "lh", "feedforward_excitatory", 0.9),
+       ("vum", "dn", "feedforward_excitatory", 0.9)],
+      [("arousal", "modulatory.octopamine", True), ("effort", "modulatory.octopamine", False)],
+      [("gain_set", "modulatory.octopamine", True)],
+      (2, 20), ["arousal_modulate", "gain_control", "effort_set"],
+      ["arousal_modulate", "effort_set", "gain_control"], "arousal_modulate",
+      ["octopamine"], "Roeder 1999; Schwaerzel et al 2003; Busch et al 2009",
+      ["drosophila"], ("courtship_decision_unit", "central_complex_heading_unit")),
+
+    # ---------- LOOMING / COLLISION DETECTION (1) ---------- #
+    U("looming_detection_unit", "碰撞逼近检测单元", "looming_detect", "optic_lobe",
+      "T4/T5 方向检测把扩张型光流汇聚到 LPLC1/2/4，LPLC 直驱下行神经元触发逃逸——MaleCNS 实测 LPLC→DN 突触数 63,290，是本项目最强单条视觉-运动边。",
+      [("medulla", "ol_medulla_intrinsic", 0.25),
+       ("t45", "ol_motion_detector_t45", 0.30),
+       ("lplc", "looming_lplc", 0.20),
+       ("dn", "descending_neuron", 0.25)],
+      [("medulla", "t45", "feedforward_excitatory", 1.0),
+       ("t45", "lplc", "feedforward_excitatory", 1.0),
+       ("lplc", "dn", "feedforward_excitatory", 1.0)],
+      [("motion", "sensory.visual.motion", True), ("touch", "sensory.somatosensory", False)],
+      [("loom_cmd", "motor.command", True)],
+      (50, 800), ["looming_detect", "collision_detect", "expansion_flow"],
+      ["looming_detect", "collision_detect"], "looming_detect",
+      ["acetylcholine", "gaba"], "de Vries & Clandinin 2012; Klapoetke et al 2017",
+      ["drosophila"], ("giant_fiber_escape_unit", "lobula_plate_optic_flow_unit")),
+
+    # ---------- PHARYNGEAL GUSTATORY / FEED DRIVE (1) ---------- #
+    U("pharyngeal_gustatory_unit", "咽味觉食欲单元", "taste_encode", "subesophageal_zone",
+      "PhG 味觉神经元（48 真实细胞 / 18 类）把吻部味觉信号送入下行神经元并微弱耦合到侧角；MaleCNS 实测 PhG→DN 1,024 突触，PhG→LH 5 突触（稀疏但存在，可能是先天味-信息素整合的边缘通道）。",
+      [("phar", "pharyngeal_gustatory", 0.50),
+       ("lh", "lateral_horn_ln", 0.20),
+       ("dn", "descending_neuron", 0.30)],
+      [("phar", "dn", "feedforward_excitatory", 1.0),
+       ("phar", "lh", "feedforward_excitatory", 0.5)],
+      [("taste", "sensory.gustatory", True)],
+      [("feed_drive", "motor.feeding", True)],
+      (10, 60), ["taste_encode", "feed_drive", "appetitive_sense"],
+      ["taste_encode", "feed_drive"], "taste_encode",
+      ["acetylcholine"], "Marella et al 2006; Mann et al 2013",
+      ["drosophila"], ("lateral_horn_innate_odour_unit",)),
 ]
 
 
