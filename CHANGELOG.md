@@ -8,12 +8,88 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.5.0` | the toolkit as a whole |
+| package | `1.6.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 56 units + 58 connection types (1.4.0; grown in 1.5.0) |
+| functional-unit library schema | `1.0` | 72 units + 66 connection types (1.4.0; grown in 1.5.0 and 1.6.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [1.6.0] — 2026-09-23
+
+**Rhythm, state and error: the library gains an oscillating and a teaching tier.**
+
+v1.5.0 covered clades; it did not cover *time*. Every unit added there was a
+feedforward or feedback computation. This release adds the three things a
+composition library needs before it can express an animal that keeps going on its
+own: autonomous rhythm without a cortex, a state machine that cannot sit halfway,
+and one supervised error-teaching path. 24 neuron populations, 16 functional
+units, 8 connection forms and 18 port types.
+
+### Added
+
+- **24 neuron populations** in `synthetic_bio_topology.MODULE_PROFILES`
+  (136 → **160** profiles, 126 → **150** cross-species neuron types):
+  segmental/peripheral oscillators 9 — leech swim-CPG interneuron, leech body-wall
+  motor neuron, leech mechanosensory (T) cell, ascidian larval motor neuron,
+  ascidian ocellus photoreceptor, Aplysia sensory neuron, Aplysia motor neuron,
+  Aplysia serotonergic facilitating interneuron, buccal-ganglion CPG neuron ·
+  infrared and amphibian 5 — trigeminal infrared afferent, infrared tectal map
+  neuron, multimodal optic-tectum neuron, tectal T5-type prey detector, tongue
+  motor neuron · error teaching and state 6 — climbing fibre, cerebellar Golgi
+  cell, vestibular nucleus neuron, pre-Bötzinger complex neuron, phrenic motor
+  neuron, VLPO neuron · navigation and active sensing 4 — head-direction cell,
+  place cell, barrel cortex neuron, whisker motor neuron.
+  `MODULE_REGISTRY` grows 145 → **169** in step (all 160 profiles covered).
+
+- **16 functional units** (56 → **72**) across five new animals and three new
+  computational roles: leech swim rhythm and ascidian larval escape swim (half-centre
+  oscillation, no intrinsically rhythmic cell), Aplysia gill-withdrawal reflex
+  (sensitisation *and* habituation on the same synapse) and buccal feeding rhythm,
+  pit-viper infrared thermal map and cross-modal strike, frog tectal prey capture
+  and reticulospinal escape swim, cerebellar climbing-fibre teaching and Purkinje
+  LTD microzone, vestibulo-ocular reflex adaptation, respiratory rhythm
+  (pre-Bötzinger), sleep/wake flip-flop, locus-coeruleus arousal broadcast,
+  hippocampal spatial map, barrel-cortex active touch. Systems covered 23 → **36**.
+
+- **8 connection forms** (58 → **66**), each with a named primary reference:
+  `half_center_oscillation`, `plateau_potential_bistability`,
+  `serotonergic_presynaptic_facilitation`, `short_term_habituation`,
+  `coincidence_detection`, `state_switch_bistable`, `grid_phase_precession`,
+  `thermal_cross_modal_convergence`.
+
+- **18 port types** (54 → **72**): infrared, vibrissa, thermal vector, place code,
+  swim / feeding / respiration / eye / strike / whisk / gill motor, swim and
+  respiratory rhythm phase, sleep pressure and wake drive, hunger gate,
+  climbing-fibre teaching, tactile reafference.
+
+- **A fourth canonical demo chain**, `demo_swim_rhythm_chain` (leech half-centre
+  CPG entrains the ascidian larval oscillator, which gates the frog reticulospinal
+  escape swim), validated by Gate 9 every run.
+  `functional_units.py --demo mammal|insect|electrosensory|swim|all`.
+
+### Changed
+
+- Gate 9 counts move to 72 / 66, the anatomical-system floor rises 20 → **34**,
+  the distinct-population floor 110 → **140**, and the gate gained two assertions:
+  every v1.6.0 connection form must be wired by a unit or a chain, and all twelve
+  v1.6.0 systems must be represented. **Twelve** fail-closed injections now
+  (two added: the rhythm chain wired through a non-existent out-port, and the
+  rhythm chain validated in strict interior-sub-chain mode).
+- The four new assertions were each proved to go red by defect injection before
+  being committed (unwrap a v1.6.0 form; rename a v1.6.0 system; collapse member
+  references; collapse systems onto one).
+
+### Honest boundary
+
+The 24 neuron types and all 16 units are **curated literature summaries**
+(`provenance.extracted_from_malecns = false`), not connectome-extracted. The
+oscillators are reduced to their *mechanism* (reciprocal inhibition plus
+adaptation, plateau bistability) and the port-typed interface; no unit claims to
+reproduce measured membrane kinetics, and none of the rhythm claims is a claim
+about this project's own performance — the SNN/ESN negative results stand.
 
 ---
 
