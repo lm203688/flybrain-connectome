@@ -18,15 +18,15 @@ What this gate proves:
   3. Every `members[].neuron` exists in synthetic_bio_topology.MODULE_PROFILES,
      every `internal_wiring[].type` and every connection `motif_ref` exists, and
      every port type is in the declared vocabulary.
-  4. Composition works AND is deterministic: all three canonical DEMO chains
+  4. Composition works AND is deterministic: all four canonical DEMO chains
      (mammal visual-to-action, insect olfactory-navigation, electrosensory
-     escape) validate, twice in a row, to the same sha256.
-  5. FAIL-CLOSED PROOF (defect injection): ten deliberately broken inputs must
+     escape, swim-rhythm chain) validate, twice in a row, to the same sha256.
+  5. FAIL-CLOSED PROOF (defect injection): twelve deliberately broken inputs must
      each make the composer return ok=False. A validator that cannot go red is
      not a validator -- so this gate re-injects the defects every run.
-  6. Coverage: 56 units / 58 connection types / all 6 families actually wired /
-     >= 20 anatomical systems / the four v1.4.1 clades present / every v1.4.1
-     connection form actually wired by at least one unit.
+  6. Coverage: 72 units / 66 connection types / all 6 families actually wired /
+     >= 34 anatomical systems / the v1.4.1 and v1.6.0 clades present / every
+     v1.4.1 and v1.6.0 connection form actually wired by >= 1 unit or chain.
 
 Exit code 0 on pass, 1 on fail.
 """
@@ -243,6 +243,13 @@ def main() -> int:
         ("cross-clade chain validated as an interior sub-chain (dangling mandatory input)",
          fu.compose_from_units(fu.DEMO_INSECT["units"], fu.DEMO_INSECT["connections"],
                                allow_boundary_inputs=False)),
+        ("v1.6.0 rhythm chain wired through a non-existent out-port",
+         fu.compose_from_units(fu.DEMO_SWIM["units"], fu.DEMO_SWIM["connections"] + [
+             "leech_swim_cpg_unit.no_such_rhythm->frog_escape_swim_unit.rhythm_in:"
+             "feedforward_excitatory"])),
+        ("v1.6.0 rhythm chain validated as an interior sub-chain (dangling mandatory input)",
+         fu.compose_from_units(fu.DEMO_SWIM["units"], fu.DEMO_SWIM["connections"],
+                               allow_boundary_inputs=False)),
     ]
     for label, doc in injections:
         check("fail-closed: %s is rejected" % label, not doc["validation"]["ok"],
@@ -251,8 +258,8 @@ def main() -> int:
               + " error(s)")
 
     # ---------------------------------------------------------------- 6
-    check("unit count is 56", len(units) == 56, str(len(units)))
-    check("connection-type count is 58", len(conns) == 58, str(len(conns)))
+    check("unit count is 72", len(units) == 72, str(len(units)))
+    check("connection-type count is 66", len(conns) == 66, str(len(conns)))
     used = {w["type"] for u in units for w in u["internal_wiring"]}
     fams = {c["family"] for c in conns}
     for fam in sorted(fams):
@@ -275,8 +282,18 @@ def main() -> int:
     unwired = sorted(v4_forms - used_all)
     check("every v1.4.1 connection form is wired by >=1 unit or demo chain",
           not unwired, str(unwired) if unwired else "%d/%d wired" % (len(v4_forms), len(v4_forms)))
+    # v1.6.0 forms: same rule. They exist to make rhythm, state switching and
+    # error teaching expressible; if a unit stops using one it becomes decoration.
+    v5_forms = {"half_center_oscillation", "plateau_potential_bistability",
+                "serotonergic_presynaptic_facilitation", "short_term_habituation",
+                "coincidence_detection", "state_switch_bistable",
+                "grid_phase_precession", "thermal_cross_modal_convergence"}
+    unwired5 = sorted(v5_forms - used_all)
+    check("every v1.6.0 connection form is wired by >=1 unit or demo chain",
+          not unwired5, str(unwired5) if unwired5 else
+          "%d/%d wired" % (len(v5_forms), len(v5_forms)))
     systems = {u["system"] for u in units}
-    check("units span >= 20 anatomical systems", len(systems) >= 20,
+    check("units span >= 34 anatomical systems", len(systems) >= 34,
           "%d: %s" % (len(systems), ", ".join(sorted(systems))))
     clades = {"mushroom_body": "insect", "central_complex": "insect",
               "song_system": "bird", "startle_circuit": "fish",
@@ -286,8 +303,20 @@ def main() -> int:
     check("all four v1.4.1 clades are represented (insect/bird/fish/cephalopod)",
           not absent, str(absent) if absent else
           ", ".join(sorted({v for k, v in clades.items() if k in systems})))
+    # v1.6.0 added systems. The swim CPG, the pit organ and the arousal switch are
+    # the three claims that batch makes, so each must have a system of its own.
+    v5_systems = {"leech_ganglion": "annelid_swim_cpg", "ascidian_larva": "chordate_larva_cpg",
+                  "aplysia_ganglion": "mollusc_reflex", "buccal_ganglion": "mollusc_feeding_cpg",
+                  "infrared_pit": "infrared_cross_modal", "optic_tectum": "amphibian_capture",
+                  "olivocerebellar": "error_teaching", "respiratory": "respiratory_cpg",
+                  "arousal_switch": "sleep_wake_bistable", "locus_coeruleus": "arousal_broadcast",
+                  "hippocampus": "spatial_map", "barrel_cortex": "active_touch"}
+    absent5 = sorted(s for s in v5_systems if s not in systems)
+    check("all v1.6.0 systems are represented (rhythm/state/error/active-sensing)",
+          not absent5, str(absent5) if absent5 else
+          ", ".join(sorted({v for k, v in v5_systems.items() if k in systems})))
     mem = {m["neuron"] for u in units for m in u["members"]}
-    check("units reference >= 110 distinct neuron populations", len(mem) >= 110,
+    check("units reference >= 140 distinct neuron populations", len(mem) >= 140,
           "%d/%d of MODULE_PROFILES" % (len(mem), len(profiles)))
     check("library is honestly marked as NOT connectome-extracted",
           all(u["provenance"]["extracted_from_malecns"] is False for u in units), "")
@@ -314,8 +343,8 @@ def main() -> int:
     if failures:
         print("FAILED (%d): %s" % (len(failures), ", ".join(failures)))
         return 1
-    print("Gate 9 PASSED - %d units, %d connection types, 4 clades, composer fail-closed."
-          % (len(units), len(conns)))
+    print("Gate 9 PASSED - %d units, %d connection types, v1.4.1 + v1.6.0 clades, "
+          "composer fail-closed." % (len(units), len(conns)))
     return 0
 
 

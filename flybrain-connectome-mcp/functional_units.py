@@ -2,12 +2,12 @@
 
 TWO LIBRARIES, ONE ALGEBRA
 --------------------------
-`functional_units/functional_units.json` holds 56 FUNCTIONAL UNITS. A unit is
+`functional_units/functional_units.json` holds 72 FUNCTIONAL UNITS. A unit is
 NOT a neuron type: it is a group of one-or-more neuron populations wired into a
 sub-circuit that delivers exactly one function (phototransduction, action
 selection, theta pacing, ...) and that exposes typed PORTS.
 
-`functional_units/connection_types.json` holds 58 CONNECTION TYPES. A connection
+`functional_units/connection_types.json` holds 66 CONNECTION TYPES. A connection
 type is NOT a single synapse: it is a connection FORM (axo-somatic, mutual
 inhibitory, volume transmission, corollary discharge, ...) that constrains which
 port types it may join.
@@ -22,8 +22,8 @@ and every edge is checkable, because both sides declare port types:
 
 WHY THIS REPLACES "one module = one neuron type"
 ------------------------------------------------
-The earlier library exposed 136 leaf entries (10 cognitive-function profiles plus
-126 cross-species neuron types). A single neuron type is
+The earlier library exposed 160 leaf entries (10 cognitive-function profiles plus
+150 cross-species neuron types). A single neuron type is
 not a composable unit: `pyramidal_l5` on its own does nothing, and joining two of
 them means nothing. What composes is a FUNCTION with a known interface. This
 module is the layer where a function becomes a node you can wire.
@@ -497,10 +497,28 @@ DEMO_ESCAPE = {
     ],
 }
 
+DEMO_SWIM = {
+    "name": "demo_swim_rhythm_chain",
+    "units": [
+        "leech_swim_cpg_unit",
+        "ascidian_larval_escape_swim_unit",
+        "frog_escape_swim_unit",
+    ],
+    "connections": [
+        # a leech half-centre oscillator entrains the ascidian larval oscillator
+        "leech_swim_cpg_unit.swim_rhythm->ascidian_larval_escape_swim_unit.rhythm_in:feedforward_excitatory",
+        # ...and the entrained rhythm gates the vertebrate escape swim
+        "ascidian_larval_escape_swim_unit.swim_rhythm->frog_escape_swim_unit.rhythm_in:feedforward_excitatory",
+        # the driving segmental motor output reaches the escape pool directly
+        "leech_swim_cpg_unit.motor_out->frog_escape_swim_unit.swim_in:feedforward_excitatory",
+    ],
+}
+
 DEMOS = {
     "mammal": DEMO,
     "insect": DEMO_INSECT,
     "electrosensory": DEMO_ESCAPE,
+    "swim": DEMO_SWIM,
 }
 
 
@@ -526,7 +544,7 @@ def _cli() -> int:
     ap.add_argument("--suggest", metavar="HINT")
     ap.add_argument("--connections", action="store_true")
     ap.add_argument("--demo", nargs="?", const="all", metavar="NAME",
-                    help="mammal | insect | electrosensory | all (default)")
+                    help="mammal | insect | electrosensory | swim | all (default)")
     ap.add_argument("--stats", action="store_true")
     a = ap.parse_args()
 

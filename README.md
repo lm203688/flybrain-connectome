@@ -306,9 +306,9 @@ MLflow2PROV, and MIT Sloan provenance tooling.
 
 ## Blueprint & module library
 
-**25 blueprints** across three categories, composed from **136 modules**:
+**25 blueprints** across three categories, composed from **160 modules**:
 **10 cognitive-function modules** (sensory / memory / motor / integration / attention /
-working_memory / reward / punishment / habit / metacognition) + **126 cross-species
+working_memory / reward / punishment / habit / metacognition) + **150 cross-species
 neuron types** spanning cortical pyramidal (L2/3 CX1/CX5, L4b/L4c, L5 basal tuft, L6 reticulo-thalamic,
 L7 temporal, Mayeret) + intermediate interneurons (Calbindin/LAMP/NPH/NPF/VLAC/SST-dendritic/
 SST-somatic/KCN, plus PV/SST/VIP/chandelier/basket) + modulatory systems (dopaminergic
@@ -333,6 +333,19 @@ each carrying its own `biological_reference`):
   interneuron, electric-organ pacemaker neuron
 - **cephalopod (7)** — vertical-lobe large / amacrine / small cells, superior frontal lobe
   cell, chromatophore motor neuron, arm motor neuron, arm sensory afferent
+
++ **a second non-cortical batch: rhythm, state and error** (24 further types, v1.6.0):
+
+- **segmental / peripheral oscillators (9)** — leech swim-CPG interneuron and body-wall
+  motor neuron with its mechanosensory T cell, ascidian larval motor neuron and ocellus
+  photoreceptor, Aplysia sensory / motor / serotonergic facilitating neurons, buccal
+  ganglion CPG neuron
+- **infrared and amphibian (5)** — trigeminal infrared afferent, infrared tectal map
+  neuron, multimodal optic-tectum neuron, tectal T5-type prey detector, tongue motor neuron
+- **error teaching and state (6)** — climbing fibre, cerebellar Golgi cell, vestibular
+  nucleus neuron, pre-Bötzinger complex neuron, phrenic motor neuron, VLPO neuron
+- **navigation and active sensing (4)** — head-direction cell, place cell, barrel cortex
+  neuron, whisker motor neuron
 
 Every blueprint traces to one of
 **40 topology motifs** (3 original MaleCNS-extracted + 37 conceptual patterns spanning
@@ -365,25 +378,31 @@ single neuron type does nothing on its own, and wiring two of them together mean
 nothing. What composes is a **function with a known interface**. So the library is
 split into two tiers, and the upper tier is the one you actually build from:
 
-- **56 functional units** — each is ONE function (phototransduction, action
+- **72 functional units** — each is ONE function (phototransduction, action
   selection, theta pacing, gliotransmission, sparse mushroom-body coding, ring-attractor
-  heading, song timing, Mauthner escape, active electrolocation, camouflage …) delivered
-  by a **group** of neuron populations (1–6 of them, taken from the 136-module vocabulary)
-  wired into an internal sub-circuit, and exposing **typed ports** (`light` in →
-  `high_res` out; `candidates` + `value` in → `selected_action` out).
-  **16 of the 56 are cross-clade** (insect / bird / fish / cephalopod) and 40 are the
-  mammal-cortex-shaped set.
-- **58 connection types** — each is one connection FORM, constrained on the port
+  heading, song timing, Mauthner escape, active electrolocation, camouflage, leech swim
+  rhythm, infrared thermal imaging, climbing-fibre error teaching, sleep/wake switching …)
+  delivered by a **group** of neuron populations (1–6 of them, taken from the 160-module
+  vocabulary) wired into an internal sub-circuit, and exposing **typed ports** (`light`
+  in → `high_res` out; `candidates` + `value` in → `selected_action` out).
+  Composition: 40 mammal-cortex-shaped + **16 cross-clade** (insect / bird / fish /
+  cephalopod, v1.4.1) + **16 rhythm/state/error and active-sensing** (annelid, ascidian,
+  mollusc, pit viper, frog, cerebellum, brainstem, hippocampus, barrel cortex, v1.6.0).
+- **66 connection types** — each is one connection FORM, constrained on the port
   types it may join, in six families:
   **micro** (axo-dendritic / axo-somatic / axo-axonic / dendro-dendritic …
   point-to-point contact sites) · **circuit** (feedforward / feedback / lateral /
   mutual / recurrent / disinhibition / winner-take-all / global inhibitory gain control /
-  synfire chain / efference-copy cancellation …) · **modulatory**
+  synfire chain / efference-copy cancellation / half-centre oscillation / grid phase
+  precession …) · **modulatory**
   (diffuse / volume / retrograde / state gating) · **electrical** (gap junction /
-  ephaptic / mixed electro-chemical / tripartite astrocyte) · **plasticity** (STDP /
-  LTP-LTD / short-term / homeostatic scaling / modulator-gated / repeated-activation LTS) ·
+  ephaptic / mixed electro-chemical / tripartite astrocyte / plateau-potential
+  bistability) · **plasticity** (STDP / LTP-LTD / short-term / homeostatic scaling /
+  modulator-gated / repeated-activation LTS / serotonergic presynaptic facilitation /
+  short-term habituation / coincidence detection) ·
   **macro** (topographic mapping / divergent fan-out / convergent fan-in / corollary
-  discharge / global broadcast / sparse expansion / command-neuron recruitment).
+  discharge / global broadcast / sparse expansion / command-neuron recruitment /
+  bistable state switch / thermal cross-modal convergence).
 
 So the algebra is `virtual organism = units (nodes) + connection types (typed
 edges)`, and every edge is mechanically checkable because both endpoints declare
@@ -400,17 +419,19 @@ first-class citizen here). An unsatisfied *required* input on the organism
 boundary is the organism's external input, not a defect — pass
 `allow_boundary_inputs: false` to validate an interior sub-chain instead.
 
-Three canonical chains ship as fixtures and are re-validated by Gate 9 on every
+Four canonical chains ship as fixtures and are re-validated by Gate 9 on every
 run — `--demo mammal` (retina → thalamus → cortex → basal ganglia → motor
 thalamus), `--demo insect` (antennal lobe → mushroom body sparse code → learned
-valence → central complex heading/steering, clock-biased) and
+valence → central complex heading/steering, clock-biased),
 `--demo electrosensory` (EOD pacemaker → efference-copy cancellation →
-electrolocation, plus a passive-electric cue into the Mauthner escape command).
-`--demo` with no argument runs all three.
+electrolocation, plus a passive-electric cue into the Mauthner escape command)
+and `--demo swim` (leech half-centre swim CPG → ascidian larval oscillator →
+frog reticulospinal escape swim).
+`--demo` with no argument runs all four.
 
 **Honest boundary.** These units are curated from comparative-neuroscience
 literature with a named reference each (`provenance.extracted_from_malecns` is
-`false` for all 56) — they are NOT extracted from MaleCNS v1.0, unlike the three
+`false` for all 72) — they are NOT extracted from MaleCNS v1.0, unlike the three
 original fly motifs. Member ratios are composition weights, not measured cell
 counts. Treat the layer as a composable scaffold with literature provenance, not
 as a measured cell assembly.

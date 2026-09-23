@@ -2264,6 +2264,585 @@ MODULE_PROFILES = {
         "allen_class": "",
         "biological_reference": "Graziadei 1962; Sumbre et al 2001"
     },
+    'leech_cpg_interneuron': {
+        "reservoir_density": 0.35,
+        "recurrent_pct": 0.45,
+        "has_inhibition": True,
+        "description": 'Leech swim CPG interneuron: half-centre oscillator element, reciprocal inhibition plus adaptation, non-rhythmic on its own',
+        "capability": [
+            'rhythm_generate',
+            'oscillate',
+            'swim_control',
+        ],
+        "task_hint_pool": [
+            'rhythm_generate',
+            'oscillate',
+            'swim_control',
+        ],
+        "lead_task_hint": 'rhythm_generate',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'leech_segmental_ganglion',
+        "species_source": [
+            'leech',
+            'medicinal_leech',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Friesen 1989; Marder & Calabrese 1996; Kristan et al 2005'
+    },
+    'leech_motor_neuron': {
+        "reservoir_density": 0.3,
+        "recurrent_pct": 0.15,
+        "has_inhibition": False,
+        "description": 'Leech body-wall motor neuron: drives longitudinal muscle in the swim rhythm',
+        "capability": [
+            'swim_control',
+            'motor_drive',
+        ],
+        "task_hint_pool": [
+            'swim_control',
+            'motor_drive',
+        ],
+        "lead_task_hint": 'swim_control',
+        "neurotransmitter": 'acetylcholine',
+        "brain_region": 'leech_segmental_ganglion',
+        "species_source": [
+            'leech',
+            'medicinal_leech',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Kristan et al 2005'
+    },
+    'leech_mechanosensory_neuron': {
+        "reservoir_density": 0.45,
+        "recurrent_pct": 0.08,
+        "has_inhibition": False,
+        "description": 'Leech mechanosensory (T) cell: touch-sensitive afferent that can start the swim',
+        "capability": [
+            'touch_sense',
+            'trigger_rhythm',
+        ],
+        "task_hint_pool": [
+            'touch_sense',
+            'trigger_rhythm',
+        ],
+        "lead_task_hint": 'touch_sense',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'leech_segmental_ganglion',
+        "species_source": [
+            'leech',
+            'medicinal_leech',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Nicholls & Baylor 1968'
+    },
+    'ascidian_larval_motor_neuron': {
+        "reservoir_density": 0.3,
+        "recurrent_pct": 0.2,
+        "has_inhibition": False,
+        "description": 'Ascidian larval motor neuron: one of the small pool driving the tail muscle in the escape swim',
+        "capability": [
+            'escape_swim',
+            'motor_drive',
+            'rhythm_generate',
+        ],
+        "task_hint_pool": [
+            'escape_swim',
+            'motor_drive',
+        ],
+        "lead_task_hint": 'escape_swim',
+        "neurotransmitter": 'acetylcholine',
+        "brain_region": 'ascidian_larval_cns',
+        "species_source": [
+            'ciona',
+            'ascidian',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Bone 1958; Nishino et al 2011; Ryan et al 2016'
+    },
+    'ascidian_photoreceptor': {
+        "reservoir_density": 0.2,
+        "recurrent_pct": 0.05,
+        "has_inhibition": False,
+        "description": 'Ascidian larval ocellus photoreceptor: the onset of a shadow triggers the escape swim',
+        "capability": [
+            'photoreception',
+            'shadow_detect',
+        ],
+        "task_hint_pool": [
+            'photoreception',
+            'shadow_detect',
+        ],
+        "lead_task_hint": 'photoreception',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'ascidian_larval_cns',
+        "species_source": [
+            'ciona',
+            'ascidian',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Ryan et al 2016'
+    },
+    'aplysia_sensory_neuron': {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.1,
+        "has_inhibition": False,
+        "description": 'Aplysia siphon/gill mechanosensory neuron: excites the motor neuron directly and is the locus of both habituation and sensitisation',
+        "capability": [
+            'touch_sense',
+            'presynaptic_memory',
+        ],
+        "task_hint_pool": [
+            'touch_sense',
+            'presynaptic_memory',
+        ],
+        "lead_task_hint": 'touch_sense',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'aplysia_abdominal_ganglion',
+        "species_source": [
+            'aplysia',
+            'sea_hare',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Castellucci et al 1970; Castellucci & Kandel 1976'
+    },
+    'aplysia_motor_neuron': {
+        "reservoir_density": 0.3,
+        "recurrent_pct": 0.15,
+        "has_inhibition": False,
+        "description": 'Aplysia gill/buccal motor neuron (e.g. L7): the reflex and feeding output stage',
+        "capability": [
+            'gill_retract',
+            'feeding_rhythm',
+            'motor_drive',
+        ],
+        "task_hint_pool": [
+            'gill_retract',
+            'feeding_rhythm',
+            'motor_drive',
+        ],
+        "lead_task_hint": 'gill_retract',
+        "neurotransmitter": 'acetylcholine',
+        "brain_region": 'aplysia_abdominal_ganglion',
+        "species_source": [
+            'aplysia',
+            'sea_hare',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Kupfermann 1974; Kandel 1976'
+    },
+    'aplysia_facilitating_interneuron': {
+        "reservoir_density": 0.3,
+        "recurrent_pct": 0.25,
+        "has_inhibition": False,
+        "description": 'Aplysia serotonergic facilitating interneuron (e.g. L29): raises release probability presynaptically, the substrate of sensitisation',
+        "capability": [
+            'sensitization',
+            'gain_modulation',
+            'presynaptic_memory',
+        ],
+        "task_hint_pool": [
+            'sensitization',
+            'gain_modulation',
+        ],
+        "lead_task_hint": 'sensitization',
+        "neurotransmitter": 'serotonin',
+        "brain_region": 'aplysia_abdominal_ganglion',
+        "species_source": [
+            'aplysia',
+            'sea_hare',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Castellucci & Kandel 1976; Kandel 2001'
+    },
+    'buccal_cpg_neuron': {
+        "reservoir_density": 0.45,
+        "recurrent_pct": 0.4,
+        "has_inhibition": True,
+        "description": 'Molluscan buccal ganglion CPG neuron: produces the ingestive phase sequence',
+        "capability": [
+            'feeding_rhythm',
+            'rhythm_generate',
+            'phase_sequence',
+        ],
+        "task_hint_pool": [
+            'feeding_rhythm',
+            'rhythm_generate',
+            'phase_sequence',
+        ],
+        "lead_task_hint": 'feeding_rhythm',
+        "neurotransmitter": 'acetylcholine',
+        "brain_region": 'buccal_ganglion',
+        "species_source": [
+            'aplysia',
+            'lobster',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Kupfermann 1974; Cropper et al 1996'
+    },
+    'trigeminal_infrared_afferent': {
+        "reservoir_density": 0.35,
+        "recurrent_pct": 0.05,
+        "has_inhibition": False,
+        "description": 'Pit-organ trigeminal afferent: reports thermal radiation from a warm target',
+        "capability": [
+            'infrared_localize',
+            'thermal_imaging',
+        ],
+        "task_hint_pool": [
+            'infrared_localize',
+            'thermal_imaging',
+        ],
+        "lead_task_hint": 'infrared_localize',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'trigeminal_ganglion',
+        "species_source": [
+            'python',
+            'rattlesnake',
+            'pit_viper',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Bullock & Cowles 1952; Gracheva et al 2010'
+    },
+    'infrared_tectal_neuron': {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.15,
+        "has_inhibition": True,
+        "description": 'Infrared tectal map neuron: a thermal map of the surrounding field registered onto the visual one',
+        "capability": [
+            'thermal_imaging',
+            'topographic_map',
+        ],
+        "task_hint_pool": [
+            'thermal_imaging',
+            'topographic_map',
+        ],
+        "lead_task_hint": 'thermal_imaging',
+        "neurotransmitter": 'gaba',
+        "brain_region": 'optic_tectum',
+        "species_source": [
+            'python',
+            'rattlesnake',
+            'pit_viper',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Hartline et al 2011; Newman & Hartline 1982'
+    },
+    'optic_tectum_multimodal': {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.3,
+        "has_inhibition": True,
+        "description": 'Multimodal tectal neuron: visual and infrared maps converge on the same cell',
+        "capability": [
+            'cross_modal_bind',
+            'thermal_target',
+            'strike',
+        ],
+        "task_hint_pool": [
+            'cross_modal_bind',
+            'thermal_target',
+            'strike',
+        ],
+        "lead_task_hint": 'cross_modal_bind',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'optic_tectum',
+        "species_source": [
+            'pit_viper',
+            'rattlesnake',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Newman & Hartline 1982; Hartline et al 2011'
+    },
+    'tectal_prey_detector': {
+        "reservoir_density": 0.45,
+        "recurrent_pct": 0.1,
+        "has_inhibition": True,
+        "description": 'Frog tectal T5-type prey detector: a small moving object releases the capture programme',
+        "capability": [
+            'prey_capture',
+            'visual_detect',
+        ],
+        "task_hint_pool": [
+            'prey_capture',
+            'visual_detect',
+        ],
+        "lead_task_hint": 'prey_capture',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'optic_tectum',
+        "species_source": [
+            'frog',
+            'toad',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Lettvin et al 1959; Ingle 1968; Ewert 1984'
+    },
+    'tongue_motor_neuron': {
+        "reservoir_density": 0.3,
+        "recurrent_pct": 0.1,
+        "has_inhibition": False,
+        "description": 'Frog tongue motor neuron: ballistic projection of the tongue',
+        "capability": [
+            'tongue_strike',
+            'ballistic',
+        ],
+        "task_hint_pool": [
+            'tongue_strike',
+            'ballistic',
+        ],
+        "lead_task_hint": 'tongue_strike',
+        "neurotransmitter": 'acetylcholine',
+        "brain_region": 'hypoglossal_nucleus',
+        "species_source": [
+            'frog',
+            'toad',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Ingle 1968; Ewert 1984'
+    },
+    'climbing_fibre': {
+        "reservoir_density": 0.2,
+        "recurrent_pct": 0.05,
+        "has_inhibition": False,
+        "description": 'Climbing fibre: the olivary axon that delivers the error (complex spike) to a Purkinje cell',
+        "capability": [
+            'error_teaching',
+            'timing_signal',
+        ],
+        "task_hint_pool": [
+            'error_teaching',
+            'timing_signal',
+        ],
+        "lead_task_hint": 'error_teaching',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'inferior_olive',
+        "species_source": [
+            'mouse',
+            'rat',
+            'human',
+            'electric_fish',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Ito & Kano 1982; De Zeeuw et al 2011'
+    },
+    'cerebellar_go_cell': {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.35,
+        "has_inhibition": True,
+        "description": 'Cerebellar Golgi cell: feedforward inhibition onto granule cells that confines activity to a microzone',
+        "capability": [
+            'gain_control',
+            'microzone_isolate',
+        ],
+        "task_hint_pool": [
+            'gain_control',
+            'microzone_isolate',
+        ],
+        "lead_task_hint": 'gain_control',
+        "neurotransmitter": 'gaba',
+        "brain_region": 'cerebellar_cortex',
+        "species_source": [
+            'mouse',
+            'rat',
+            'human',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Marr 1969; Albus 1971'
+    },
+    'vestibular_nucleus_neuron': {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.3,
+        "has_inhibition": True,
+        "description": 'Vestibular nucleus neuron: three-neuron-arc relay from hair cells to the extraocular motoneurons',
+        "capability": [
+            'gaze_stabilize',
+            'reflex',
+            'adaptation',
+        ],
+        "task_hint_pool": [
+            'gaze_stabilize',
+            'reflex',
+            'adaptation',
+        ],
+        "lead_task_hint": 'gaze_stabilize',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'vestibular_nucleus',
+        "species_source": [
+            'rabbit',
+            'mouse',
+            'monkey',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Ito 1982; Lisberger 1988; Boyden et al 2004'
+    },
+    'pre_botzinger_neuron': {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.35,
+        "has_inhibition": True,
+        "description": 'Pre-Botzinger complex neuron: kernel of the respiratory rhythm, bistable plateau potentials plus inhibition',
+        "capability": [
+            'breathing_rhythm',
+            'rhythm_generate',
+            'chemo_response',
+        ],
+        "task_hint_pool": [
+            'breathing_rhythm',
+            'rhythm_generate',
+        ],
+        "lead_task_hint": 'breathing_rhythm',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'medulla',
+        "species_source": [
+            'mouse',
+            'rat',
+            'human',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Smith et al 1991; Feldman et al 2013; Ramirez et al 2016'
+    },
+    'phrenic_motor_neuron': {
+        "reservoir_density": 0.25,
+        "recurrent_pct": 0.1,
+        "has_inhibition": False,
+        "description": 'Phrenic motor neuron: all-or-none recruitment of the diaphragm',
+        "capability": [
+            'respiration_drive',
+            'motor_drive',
+        ],
+        "task_hint_pool": [
+            'respiration_drive',
+            'motor_drive',
+        ],
+        "lead_task_hint": 'respiration_drive',
+        "neurotransmitter": 'acetylcholine',
+        "brain_region": 'spinal_cord_c3_c5',
+        "species_source": [
+            'mouse',
+            'rat',
+            'human',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Feldman et al 2013'
+    },
+    'vlpo_neuron': {
+        "reservoir_density": 0.35,
+        "recurrent_pct": 0.35,
+        "has_inhibition": True,
+        "description": 'Ventrolateral preoptic (VLPO) sleep-promoting neuron: one arm of the sleep/wake flip-flop',
+        "capability": [
+            'sleep_wake',
+            'state_switch',
+        ],
+        "task_hint_pool": [
+            'sleep_wake',
+            'state_switch',
+        ],
+        "lead_task_hint": 'sleep_wake',
+        "neurotransmitter": 'gaba',
+        "brain_region": 'preoptic_area',
+        "species_source": [
+            'mouse',
+            'rat',
+            'human',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Saper et al 2005; Saper et al 2010'
+    },
+    'head_direction_cell': {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.4,
+        "has_inhibition": True,
+        "description": 'Head-direction cell: an internal compass that fires for one allocentric bearing',
+        "capability": [
+            'heading_track',
+            'spatial_map',
+        ],
+        "task_hint_pool": [
+            'heading_track',
+            'spatial_map',
+        ],
+        "lead_task_hint": 'heading_track',
+        "neurotransmitter": 'gaba',
+        "brain_region": 'presubiculum',
+        "species_source": [
+            'mouse',
+            'rat',
+            'human',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Taube 1998; Moser et al 2008'
+    },
+    'place_cell': {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.25,
+        "has_inhibition": True,
+        "description": 'Hippocampal place cell: fires when the animal is in one location, rewritten each theta cycle',
+        "capability": [
+            'place_code',
+            'spatial_map',
+            'episodic_context',
+        ],
+        "task_hint_pool": [
+            'place_code',
+            'spatial_map',
+            'episodic_context',
+        ],
+        "lead_task_hint": 'place_code',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 'hippocampus_ca1',
+        "species_source": [
+            'mouse',
+            'rat',
+            'human',
+            'bat',
+        ],
+        "allen_class": "",
+        "biological_reference": "O'Keefe & Dostrovsky 1971; Moser et al 2008"
+    },
+    'barrel_cortex_neuron': {
+        "reservoir_density": 0.4,
+        "recurrent_pct": 0.25,
+        "has_inhibition": True,
+        "description": 'Barrel cortex neuron: one whisker, one barrel column, self-generated reafference separated from touch',
+        "capability": [
+            'active_touch',
+            'tactile_map',
+        ],
+        "task_hint_pool": [
+            'active_touch',
+            'tactile_map',
+        ],
+        "lead_task_hint": 'active_touch',
+        "neurotransmitter": 'glutamate',
+        "brain_region": 's1_barrel_cortex',
+        "species_source": [
+            'mouse',
+            'rat',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Woolsey & Van der Loos 1970; Diamond et al 2008'
+    },
+    'whisker_motor_neuron': {
+        "reservoir_density": 0.25,
+        "recurrent_pct": 0.15,
+        "has_inhibition": False,
+        "description": 'Whisker motor neuron: drives the follicle muscle that sweeps the vibrissa',
+        "capability": [
+            'active_touch',
+            'motor_drive',
+        ],
+        "task_hint_pool": [
+            'active_touch',
+            'motor_drive',
+        ],
+        "lead_task_hint": 'active_touch',
+        "neurotransmitter": 'acetylcholine',
+        "brain_region": 'facial_nucleus',
+        "species_source": [
+            'mouse',
+            'rat',
+        ],
+        "allen_class": "",
+        "biological_reference": 'Kleinfeld & Deschenes 2011'
+    },
 }# default profile assignment: round-robin so all 10 types are represented
 DEFAULT_PROFILE_CYCLE = ("sensory", "memory", "motor", "integration",
                          "attention", "working_memory",
