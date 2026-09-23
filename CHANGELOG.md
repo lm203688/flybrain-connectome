@@ -8,14 +8,99 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.6.0` | the toolkit as a whole |
+| package | `1.7.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
 | functional-unit library schema | `1.0` | 72 units + 66 connection types (1.4.0; grown in 1.5.0 and 1.6.0) |
+| MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [1.7.0] — 2026-09-23
+
+**Embodiment: the literature library is checked against the real connectome for
+the first time.**
+
+v1.4.0–v1.6.0 made the library broad (clades, then computational roles), but left
+it unfalsifiable: every one of the 72 units was literature-curated, so a reader
+could not tell a unit describing *Drosophila* circuitry from one describing mouse
+cortex, and nothing was ever checked against the MaleCNS v1.0 release the project
+is grounded in. This release adds no new units. It adds a layer that says, for
+each population a unit uses, whether that population corresponds to real
+annotated cells — and then measures the real connectivity between them.
+
+### Added
+
+- **`functional_units/malecns_anchors.json`** (schema `1.0`), built by
+  `scripts/build_malecns_anchors.py` — the embodiment layer:
+  - **14 of 160 neuron populations anchored** to real annotated cell types, by an
+    explicit name rule **plus** the dataset's own `superclass` filter. The filter
+    is load-bearing: `^DN` alone also matches the clock neurons `DN1a`/`DN1pA`
+    (cb_intrinsic) and the endocrine `DNES1-2` cells, none of which are
+    descending neurons.
+  - **8,798 real cells / 889 real cell types** behind those populations — e.g.
+    `kenyon_cell` → 4,064 cells over 15 types (`KCg-m`, `KCab-m`, `KCa'b'-ap2` …),
+    `descending_neuron` → 1,306 cells over 477 types, `central_complex_fb` →
+    1,038 cells over 37 types, `mushroom_body_apl` → the 2 real APL cells.
+  - **The measured backbone**, from one pass over the real synapse table: the
+    complete 27×27 superclass matrix, the anchored-cell-type matrix (57,122
+    nonzero type pairs) and the derived 14×14 population matrix. Recomputing it
+    reproduces `connectivity_stats.json` exactly — **124,177,617 synapses over
+    25,582,938 edges** — which cross-validates both the anchor numbers and the
+    cache.
+  - **A classification of all 160 profiles with a reason**: 14 anchored, 131
+    non-Drosophila (bird / fish / cephalopod / mammalian classes), 5 unresolvable,
+    10 abstract cognitive modules.
+- **Per-unit `embodiment` block** in `functional_units.json`:
+  `populations_anchored`, `real_cells_anchored`, the anchored roles with their
+  real cell types, measured `structural_support` per declared edge, and the ROI
+  totals for the unit's anatomical system.
+- **`provenance.embodied_in_malecns`** — true for exactly the 6 units with an
+  anchored population. `extracted_from_malecns` stays **false** everywhere: the
+  declared wiring and its connection FORM remain literature-derived.
+- **Gate 10 (`scripts/check_embodiment.py`)** — 36 checks plus **six fail-closed
+  defect injections** re-run on every invocation (flipped embodiment flag,
+  fabricated synapse in the measured matrix, deleted anchor type, unacknowledged
+  contradiction, tampered artifact digest, nudged edge count). Under `--with-data`
+  it rebuilds the layer from raw annotations and cached arrays and fails on drift.
+
+### Findings
+
+- **Measured support is real and differentiated.** `antennal_lobe_pn →
+  kenyon_cell` measures 378,315 synapses over 21,658 connected type pairs;
+  `kenyon_cell → mushroom_body_output` measures 463,640; `kenyon_cell → APL`
+  measures 210,352. Superclass resolution was tried first and rejected: 11 of the
+  14 anchored profiles share `cb_intrinsic`, so every edge scored the identical
+  34,365,451 and the number carried no information.
+- **One contradiction, kept and flagged.** `central_complex_steering_unit`
+  declares `nod -> fb`; MaleCNS v1.0 contains **zero** synapses between the
+  resolved Nod population (5 types / 12 cells, filed by the dataset under
+  `visual_projection`) and the fan-shaped-body types. It is recorded in
+  `ACKNOWLEDGED_CONTRADICTIONS` with a reason and marked **UNSUPPORTED** rather
+  than rewritten into an edge that happens to measure non-zero. The generator
+  refuses to write when the measured contradiction set differs from the
+  acknowledged list in either direction, so neither a new contradiction nor a
+  vanished one can ship silently.
+
+### Changed
+
+- `scripts/gen_functional_units.py` now **refuses to write** if
+  `malecns_anchors.json` is absent, so the library cannot silently regress to
+  "literature only".
+- `scripts/run_gates.py` runs Gate 10 (offline tier in `--quick` too); the suite
+  is now nine offline gates plus the data-backed `flybrain verify`.
+- README and `docs/mcp_setup.md` document the embodiment layer and its boundary.
+
+### Honest boundary
+
+Embodiment proves **presence** (the parts exist as real annotated cells) and
+**non-contradiction** (a declared edge is not refuted at cell-type-set
+resolution). It does not prove the declared microcircuit, and it does not prove
+the declared connection form. 58 of 72 units remain anchored to nothing, and that
+is the honest state of the library, not an oversight: the fly is the starting
+point but only the fly-shaped units can be checked against a fly connectome.
 
 ## [1.6.0] — 2026-09-23
 
