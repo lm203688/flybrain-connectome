@@ -38,26 +38,54 @@
     "modulatory.histamine": "Histaminergic diffuse modulation.",
     "modulatory.orexin": "Orexinergic arousal-stability modulation.",
     "glial.support": "Astrocytic metabolic / gliotransmitter support.",
-    "*": "Wildcard: any port type (used by generic forms)."
+    "*": "Wildcard: any port type (used by generic forms).",
+    "sensory.skylight_compass": "Polarised-light / sun-compass heading cue (insect central complex).",
+    "sensory.electric.ampullary": "Low-frequency passive electric-field signal (prey bioelectric field).",
+    "sensory.electric.tuberous": "High-frequency active-electrolocation signal (own EOD amplitude + phase).",
+    "sensory.lateral_line": "Water-flow / pressure-wave signal from the lateral line.",
+    "sensory.auditory.startle": "Abrupt acoustic transient able to trigger a startle response.",
+    "olfactory.sparse_code": "Sparse high-dimensional odour code (mushroom-body Kenyon-cell output).",
+    "olfactory.learned_valence": "Learned appetitive/aversive value attached to an odour.",
+    "navigation.heading": "Angular head-direction (bearing) estimate.",
+    "navigation.steering": "Turn command that reduces the heading-to-goal error.",
+    "navigation.ego_speed": "Forward / self-motion speed estimate.",
+    "clock.phase": "Circadian phase signal.",
+    "memory.associative": "Recurrently stored associative memory trace.",
+    "motor.song": "Vocal-motor command (syllable timing and syringeal drive).",
+    "motor.escape": "All-or-none escape motor command (C-start).",
+    "motor.chromatophore": "Skin-pattern display command (chromatophore radial muscles).",
+    "motor.arm": "Arm motion command issued from the arm nerve cord.",
+    "motor.eod": "Electric-organ discharge command.",
+    "efference.copy": "Efference copy / corollary discharge of a self-generated motor command."
   },
   "stats": {
-    "functional_units": 40,
-    "connection_types": 50,
-    "neural_members_referenced": 87,
+    "functional_units": 56,
+    "connection_types": 58,
+    "neural_members_referenced": 123,
     "systems": [
+      "antennal_lobe",
+      "arm_cord",
       "basal_ganglia",
       "brainstem",
+      "central_complex",
       "cerebellum",
+      "chromatophore",
+      "circadian",
       "cortex",
+      "electrosensory",
       "entorhinal",
       "glia",
       "hippocampus",
       "hypothalamus",
       "limbic",
+      "mushroom_body",
       "neuromodulatory",
       "sensory",
+      "song_system",
       "spinal_cord",
-      "thalamus"
+      "startle_circuit",
+      "thalamus",
+      "vertical_lobe"
     ],
     "connection_families": [
       "circuit",
@@ -67,7 +95,7 @@
       "modulatory",
       "plasticity"
     ],
-    "connection_types_used_by_units": 28
+    "connection_types_used_by_units": 36
   },
   "how_to_compose": [
     "1. pick units by `capability` / `lead_task_hint`;",
@@ -4663,6 +4691,1752 @@
         "cortical_l5_output_unit",
         "cortical_inhibitory_gain_unit"
       ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "antennal_lobe_glomerular_unit",
+      "display": "触角叶球状体单元",
+      "function": "odour_encode",
+      "system": "antennal_lobe",
+      "description": "感受神经元投射到球状体，局部中间神经元做跨球归一化，投射神经元把气味通道送进蘑菇体和高位侧角。",
+      "members": [
+        {
+          "role": "orn",
+          "neuron": "olfactory_receptor",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "pn",
+          "neuron": "antennal_lobe_pn",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "ln",
+          "neuron": "antennal_lobe_ln",
+          "count_ratio": 0.35
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "orn",
+          "to": "pn",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "ln",
+          "to": "pn",
+          "type": "lateral_inhibitory",
+          "weight": 0.9
+        },
+        {
+          "from": "pn",
+          "to": "ln",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "ln",
+          "to": "ln",
+          "type": "mutual_inhibitory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "odour",
+            "type": "sensory.olfactory",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "pn_out",
+            "type": "sensory.olfactory",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        40,
+        160
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "lateral_inhibitory",
+        "mutual_inhibitory"
+      ],
+      "capability": [
+        "odour_encode",
+        "normalize",
+        "pattern_separate",
+        "background_separate"
+      ],
+      "task_hint_pool": [
+        "odour_encode",
+        "channel_relay",
+        "background_separate"
+      ],
+      "lead_task_hint": "odour_encode",
+      "neurotransmitter": [
+        "acetylcholine",
+        "gaba"
+      ],
+      "species_source": [
+        "drosophila",
+        "honeybee",
+        "moth"
+      ],
+      "biological_reference": "Wilson & Mainen 2006; Olsen & Wilson 2008",
+      "composable_with": [
+        "mushroom_body_sparse_code_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "mushroom_body_sparse_code_unit",
+      "display": "蘑菇体稀疏编码单元",
+      "function": "sparse_encode",
+      "system": "mushroom_body",
+      "description": "投射神经元在约两千个 Kenyon 细胞上随机展开，单个 APL 神经元全局回抑制把活动压到约 5%，得到高维稀疏气味码。",
+      "members": [
+        {
+          "role": "kc",
+          "neuron": "kenyon_cell",
+          "count_ratio": 0.75
+        },
+        {
+          "role": "gaba",
+          "neuron": "mushroom_body_apl",
+          "count_ratio": 0.1
+        },
+        {
+          "role": "input",
+          "neuron": "antennal_lobe_pn",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "input",
+          "to": "kc",
+          "type": "sparse_expansion_projection",
+          "weight": 1.0
+        },
+        {
+          "from": "kc",
+          "to": "gaba",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "gaba",
+          "to": "kc",
+          "type": "global_inhibitory_gain_control",
+          "weight": 0.8
+        },
+        {
+          "from": "kc",
+          "to": "kc",
+          "type": "lateral_inhibitory",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "pn_in",
+            "type": "sensory.olfactory",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "sparse_out",
+            "type": "olfactory.sparse_code",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        1500,
+        2500
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "global_inhibitory_gain_control",
+        "lateral_inhibitory",
+        "sparse_expansion_projection"
+      ],
+      "capability": [
+        "sparse_encode",
+        "pattern_separate",
+        "high_dim_expand",
+        "gain_control"
+      ],
+      "task_hint_pool": [
+        "sparse_encode",
+        "pattern_separation",
+        "high_dim_hash"
+      ],
+      "lead_task_hint": "sparse_encode",
+      "neurotransmitter": [
+        "acetylcholine",
+        "gaba",
+        "glutamate"
+      ],
+      "species_source": [
+        "drosophila",
+        "honeybee",
+        "locust"
+      ],
+      "biological_reference": "Laurent 2002; Turner et al 2008; Papadopoulou et al 2011",
+      "composable_with": [
+        "mushroom_body_associative_memory_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "mushroom_body_associative_memory_unit",
+      "display": "蘑菇体联想记忆单元",
+      "function": "associative_learn",
+      "system": "mushroom_body",
+      "description": "多巴胺能神经元把奖赏/惩罚送到 Kenyon 细胞输出突触上做门控，只有气味与效价同时出现时权重才变，读出由 MBON 完成。",
+      "members": [
+        {
+          "role": "kc",
+          "neuron": "kenyon_cell",
+          "count_ratio": 0.55
+        },
+        {
+          "role": "mbon",
+          "neuron": "mushroom_body_output",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "dan",
+          "neuron": "mushroom_body_dan",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "gaba",
+          "neuron": "mushroom_body_apl",
+          "count_ratio": 0.1
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "kc",
+          "to": "mbon",
+          "type": "modulatory_gated_plasticity",
+          "weight": 1.0
+        },
+        {
+          "from": "dan",
+          "to": "kc",
+          "type": "modulatory_diffuse",
+          "weight": 0.8
+        },
+        {
+          "from": "gaba",
+          "to": "kc",
+          "type": "global_inhibitory_gain_control",
+          "weight": 0.7
+        },
+        {
+          "from": "mbon",
+          "to": "dan",
+          "type": "feedback_excitatory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "sparse_code",
+            "type": "olfactory.sparse_code",
+            "required": true
+          },
+          {
+            "name": "value_in",
+            "type": "modulatory.dopamine",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "learned_valence",
+            "type": "olfactory.learned_valence",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        1500,
+        2500
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "global_inhibitory_gain_control",
+        "modulatory_diffuse",
+        "modulatory_gated_plasticity"
+      ],
+      "capability": [
+        "associative_learn",
+        "valence_assign",
+        "credit_assign",
+        "memory_write"
+      ],
+      "task_hint_pool": [
+        "associative_learn",
+        "reward_punish",
+        "valence_readout"
+      ],
+      "lead_task_hint": "associative_learn",
+      "neurotransmitter": [
+        "acetylcholine",
+        "dopamine",
+        "gaba"
+      ],
+      "species_source": [
+        "drosophila",
+        "honeybee"
+      ],
+      "biological_reference": "Heisenberg 2003; Aso et al 2014; Cognigni et al 2018",
+      "composable_with": [
+        "central_complex_steering_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "central_complex_heading_unit",
+      "display": "中央复合体头向单元",
+      "function": "heading_track",
+      "system": "central_complex",
+      "description": "脑桥与椭球体构成环形吸引子，环神经元整形出单个活动峰，峰的位置就是当前朝向，给出不依赖视觉瞬时输入的方位记忆。",
+      "members": [
+        {
+          "role": "pb",
+          "neuron": "central_complex_pb",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "eb",
+          "neuron": "central_complex_eb",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "ring",
+          "neuron": "central_complex_ring",
+          "count_ratio": 0.3
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "pb",
+          "to": "eb",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "eb",
+          "to": "pb",
+          "type": "feedback_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "ring",
+          "to": "eb",
+          "type": "lateral_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "ring",
+          "to": "pb",
+          "type": "lateral_inhibitory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "compass_in",
+            "type": "sensory.skylight_compass",
+            "required": true
+          },
+          {
+            "name": "steer_in",
+            "type": "navigation.steering",
+            "required": false
+          },
+          {
+            "name": "clock_in",
+            "type": "clock.phase",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "heading_out",
+            "type": "navigation.heading",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        60,
+        200
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "lateral_inhibitory"
+      ],
+      "capability": [
+        "ring_attractor",
+        "heading_track",
+        "angular_integrate",
+        "bump_sharpen"
+      ],
+      "task_hint_pool": [
+        "heading_track",
+        "angular_code",
+        "ring_attractor"
+      ],
+      "lead_task_hint": "heading_track",
+      "neurotransmitter": [
+        "acetylcholine",
+        "gaba"
+      ],
+      "species_source": [
+        "drosophila",
+        "locust",
+        "monarch_butterfly"
+      ],
+      "biological_reference": "Seelig & Jayaraman 2015; Green et al 2017; Turner-Evans et al 2017",
+      "composable_with": [
+        "central_complex_steering_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "central_complex_steering_unit",
+      "display": "中央复合体转向单元",
+      "function": "steering",
+      "system": "central_complex",
+      "description": "扇形体的分层目标图把当前朝向与期望朝向的差转成转向量，结节提供自身速度门控，下行神经元把指令送进腹神经索。",
+      "members": [
+        {
+          "role": "fb",
+          "neuron": "central_complex_fb",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "nod",
+          "neuron": "central_complex_noduli",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "dn",
+          "neuron": "descending_neuron",
+          "count_ratio": 0.35
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "nod",
+          "to": "fb",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "fb",
+          "to": "dn",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "dn",
+          "to": "fb",
+          "type": "feedback_inhibitory",
+          "weight": 0.4
+        },
+        {
+          "from": "dn",
+          "to": "nod",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "heading_in",
+            "type": "navigation.heading",
+            "required": true
+          },
+          {
+            "name": "speed_in",
+            "type": "navigation.ego_speed",
+            "required": false
+          },
+          {
+            "name": "valence_in",
+            "type": "olfactory.learned_valence",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "turn_cmd",
+            "type": "navigation.steering",
+            "required": true
+          },
+          {
+            "name": "motor_cmd",
+            "type": "motor.command",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        60,
+        250
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "steering",
+        "goal_bearing",
+        "heading_correct",
+        "descending_command"
+      ],
+      "task_hint_pool": [
+        "steering",
+        "goal_bearing",
+        "heading_correct"
+      ],
+      "lead_task_hint": "steering",
+      "neurotransmitter": [
+        "acetylcholine"
+      ],
+      "species_source": [
+        "drosophila",
+        "locust"
+      ],
+      "biological_reference": "Strausfeld 1999; Green et al 2017; Rayshubskiy et al 2020",
+      "composable_with": [
+        "central_complex_heading_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "insect_clock_pacemaker_unit",
+      "display": "昆虫生物钟起搏单元",
+      "function": "circadian_pace",
+      "system": "circadian",
+      "description": "小腹侧侧神经元以 PDF 肽与电耦合把昼夜相位分发给侧神经元网络，松果体作为跨物种的褪黑素效应端被一并纳入。",
+      "members": [
+        {
+          "role": "pacemaker",
+          "neuron": "clock_neuron_slnv",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "network",
+          "neuron": "clock_neuron_ln",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "effector",
+          "neuron": "pineal",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "pacemaker",
+          "to": "network",
+          "type": "gap_junction_sync",
+          "weight": 1.0
+        },
+        {
+          "from": "network",
+          "to": "pacemaker",
+          "type": "gap_junction_sync",
+          "weight": 0.8
+        },
+        {
+          "from": "pacemaker",
+          "to": "effector",
+          "type": "modulatory_diffuse",
+          "weight": 0.7
+        },
+        {
+          "from": "effector",
+          "to": "pacemaker",
+          "type": "feedback_inhibitory",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "light_in",
+            "type": "sensory.visual.irradiance",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "phase_out",
+            "type": "clock.phase",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        20,
+        200
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "gap_junction_sync",
+        "modulatory_diffuse"
+      ],
+      "capability": [
+        "circadian_pace",
+        "phase_lock",
+        "entrain",
+        "rhythm_generate"
+      ],
+      "task_hint_pool": [
+        "circadian_pace",
+        "phase_lock",
+        "entrain"
+      ],
+      "lead_task_hint": "circadian_pace",
+      "neurotransmitter": [
+        "pdf_neuropeptide",
+        "gaba"
+      ],
+      "species_source": [
+        "drosophila",
+        "mouse",
+        "human"
+      ],
+      "biological_reference": "Helfrich-Forster 2003; Hastings et al 2018",
+      "composable_with": [
+        "central_complex_heading_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "birdsong_hvc_timing_unit",
+      "display": "鸣唱时序链单元",
+      "function": "sequence_generate",
+      "system": "song_system",
+      "description": "HVC 用链式激活把静态前运动指令展开成毫秒级时序，每个神经元在音节的一个极短时间窗内爆发，为下游提供节拍。",
+      "members": [
+        {
+          "role": "hvc",
+          "neuron": "hvc_neuron",
+          "count_ratio": 0.55
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "nif",
+          "neuron": "nif_neuron",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "hvc",
+          "to": "hvc",
+          "type": "neural_chain_sequence",
+          "weight": 1.0
+        },
+        {
+          "from": "nif",
+          "to": "hvc",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "inh",
+          "to": "hvc",
+          "type": "recurrent_inhibitory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "premotor",
+            "type": "cortex.output",
+            "required": true
+          },
+          {
+            "name": "auditory_fb",
+            "type": "sensory.auditory",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "timing_out",
+            "type": "motor.song",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        20000,
+        40000
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "neural_chain_sequence",
+        "recurrent_inhibitory"
+      ],
+      "capability": [
+        "sequence_generate",
+        "temporal_chain",
+        "motor_timing",
+        "pattern_clock"
+      ],
+      "task_hint_pool": [
+        "sequence_generate",
+        "temporal_chain",
+        "motor_timing"
+      ],
+      "lead_task_hint": "sequence_generate",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "zebra_finch",
+        "canary",
+        "bengalese_finch"
+      ],
+      "biological_reference": "Hahnloser et al 2002; Long & Fee 2008; Picardo et al 2016",
+      "composable_with": [
+        "birdsong_ra_motor_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "birdsong_ra_motor_unit",
+      "display": "发声运动输出单元",
+      "function": "vocal_motor",
+      "system": "song_system",
+      "description": "RA 把来自 HVC 的时序窗转成对鸣管运动神经元与呼吸运动神经元的爆发式驱动，音节与呼吸必须严格配准。",
+      "members": [
+        {
+          "role": "ra",
+          "neuron": "ra_neuron",
+          "count_ratio": 0.5
+        },
+        {
+          "role": "motor",
+          "neuron": "spinal_motor_alpha",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "ra",
+          "to": "motor",
+          "type": "command_neuron_recruitment",
+          "weight": 1.0
+        },
+        {
+          "from": "inh",
+          "to": "ra",
+          "type": "feedforward_inhibitory",
+          "weight": 0.7
+        },
+        {
+          "from": "motor",
+          "to": "ra",
+          "type": "feedback_excitatory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "timing_in",
+            "type": "motor.song",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "song_motor",
+            "type": "motor.song",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        10000,
+        20000
+      ],
+      "motif_source": [
+        "command_neuron_recruitment",
+        "feedback_excitatory",
+        "feedforward_inhibitory"
+      ],
+      "capability": [
+        "vocal_motor",
+        "respiration_sync",
+        "syringeal_control",
+        "motor_burst"
+      ],
+      "task_hint_pool": [
+        "vocal_motor",
+        "respiration_sync",
+        "motor_burst"
+      ],
+      "lead_task_hint": "vocal_motor",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "zebra_finch",
+        "canary"
+      ],
+      "biological_reference": "Vicario 1991; Sober et al 2008",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "birdsong_basal_ganglia_learning_unit",
+      "display": "发声学习回路单元",
+      "function": "motor_learning",
+      "system": "song_system",
+      "description": "前脑通路 Area X 到 DLM 到 LMAN 的基底神经节环路，用听觉误差与多巴胺能价值信号把探索性变异筛选成稳定音节。",
+      "members": [
+        {
+          "role": "x",
+          "neuron": "area_x_neuron",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "dlm",
+          "neuron": "dlm_neuron",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "lman",
+          "neuron": "lman_neuron",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "msn",
+          "neuron": "striatal_msn",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "x",
+          "to": "dlm",
+          "type": "feedforward_inhibitory",
+          "weight": 1.0
+        },
+        {
+          "from": "dlm",
+          "to": "lman",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "lman",
+          "to": "x",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "msn",
+          "to": "x",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "error_in",
+            "type": "sensory.auditory",
+            "required": true
+          },
+          {
+            "name": "value_in",
+            "type": "basal_ganglia.value",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "variation_out",
+            "type": "motor.song",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        50000,
+        200000
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "feedforward_inhibitory"
+      ],
+      "capability": [
+        "explore_variation",
+        "error_correct",
+        "motor_learning",
+        "credit_assign"
+      ],
+      "task_hint_pool": [
+        "explore_variation",
+        "motor_learning",
+        "credit_assign"
+      ],
+      "lead_task_hint": "motor_learning",
+      "neurotransmitter": [
+        "gaba",
+        "glutamate",
+        "dopamine"
+      ],
+      "species_source": [
+        "zebra_finch",
+        "bengalese_finch"
+      ],
+      "biological_reference": "Bottjer et al 1984; Mooney 2009; Andalman & Fee 2009",
+      "composable_with": [
+        "birdsong_ra_motor_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "startle_escape_command_unit",
+      "display": "逃逸启动指令单元",
+      "function": "escape_trigger",
+      "system": "startle_circuit",
+      "description": "侧线或听觉的突然输入经电化学混合突触在亚毫秒内点燃 Mauthner 细胞，单个指令神经元全部或无地召集对侧网状脊髓池，形成 C 型逃逸。",
+      "members": [
+        {
+          "role": "m",
+          "neuron": "mauthner_cell",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "aff",
+          "neuron": "lateral_line_hair_cell",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "rs",
+          "neuron": "reticulospinal_neuron",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "inh",
+          "neuron": "spinal_glycinergic",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "aff",
+          "to": "m",
+          "type": "mixed_electrical_chemical_synapse",
+          "weight": 1.0
+        },
+        {
+          "from": "m",
+          "to": "rs",
+          "type": "command_neuron_recruitment",
+          "weight": 0.9
+        },
+        {
+          "from": "rs",
+          "to": "inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "inh",
+          "to": "rs",
+          "type": "mutual_inhibitory",
+          "weight": 0.7
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "startle_in",
+            "type": "sensory.auditory.startle",
+            "required": true
+          },
+          {
+            "name": "flow_in",
+            "type": "sensory.lateral_line",
+            "required": false
+          },
+          {
+            "name": "threat_in",
+            "type": "sensory.electric.ampullary",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "escape_cmd",
+            "type": "motor.escape",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        100,
+        400
+      ],
+      "motif_source": [
+        "command_neuron_recruitment",
+        "feedforward_excitatory",
+        "mixed_electrical_chemical_synapse",
+        "mutual_inhibitory"
+      ],
+      "capability": [
+        "escape_trigger",
+        "fast_command",
+        "contralateral_turn",
+        "all_or_none"
+      ],
+      "task_hint_pool": [
+        "escape_trigger",
+        "command_neuron",
+        "fast_command"
+      ],
+      "lead_task_hint": "escape_trigger",
+      "neurotransmitter": [
+        "glutamate",
+        "glycine"
+      ],
+      "species_source": [
+        "zebrafish",
+        "goldfish",
+        "lamprey"
+      ],
+      "biological_reference": "Zottoli 1977; Eaton et al 2001; Korn & Faber 2005",
+      "composable_with": [
+        "passive_electroreception_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "passive_electroreception_unit",
+      "display": "被动电感受单元",
+      "function": "passive_electrolocate",
+      "system": "electrosensory",
+      "description": "壶腹型感受器探测猎物肌肉与鳃产生的低频弱电场，电感受侧线叶把三叉神经输入变成方向性猎物向量。",
+      "members": [
+        {
+          "role": "amp",
+          "neuron": "electroreceptor_ampullary",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "ell",
+          "neuron": "ells_pyramidal",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "inh",
+          "neuron": "electrosensory_inhibitory_interneuron",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "amp",
+          "to": "ell",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "inh",
+          "to": "ell",
+          "type": "lateral_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "ell",
+          "to": "inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "field_in",
+            "type": "sensory.electric.ampullary",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "prey_vector",
+            "type": "sensory.electric.ampullary",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        500,
+        5000
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "lateral_inhibitory"
+      ],
+      "capability": [
+        "passive_electrolocate",
+        "weak_field_detect",
+        "prey_localize",
+        "dc_encode"
+      ],
+      "task_hint_pool": [
+        "passive_electrolocate",
+        "weak_field_detect",
+        "prey_localize"
+      ],
+      "lead_task_hint": "passive_electrolocate",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "shark",
+        "ray",
+        "catfish",
+        "platypus"
+      ],
+      "biological_reference": "Kalmijn 1974; Bell & Maler 2005",
+      "composable_with": [
+        "startle_escape_command_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "electrosensory_electrolocation_unit",
+      "display": "主动电定位单元",
+      "function": "active_electrolocate",
+      "system": "electrosensory",
+      "description": "结节型感受器读取自身电器官放电被物体扭曲后的振幅与相位，传出副本先把自身电场分量减掉，剩下的才是外部目标。",
+      "members": [
+        {
+          "role": "tub",
+          "neuron": "electroreceptor_tuberous",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "ell",
+          "neuron": "ells_pyramidal",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "inh",
+          "neuron": "electrosensory_inhibitory_interneuron",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "relay",
+          "neuron": "thalamic_relay",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "tub",
+          "to": "ell",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "inh",
+          "to": "ell",
+          "type": "contrast_inhibition",
+          "weight": 0.8
+        },
+        {
+          "from": "ell",
+          "to": "relay",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "relay",
+          "to": "ell",
+          "type": "feedback_inhibitory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "eod_self",
+            "type": "sensory.electric.tuberous",
+            "required": true
+          },
+          {
+            "name": "eff_in",
+            "type": "efference.copy",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "object_echo",
+            "type": "sensory.electric.tuberous",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        1000,
+        10000
+      ],
+      "motif_source": [
+        "contrast_inhibition",
+        "feedback_inhibitory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "active_electrolocate",
+        "eod_amplitude",
+        "object_detect",
+        "reafferent_cancel"
+      ],
+      "task_hint_pool": [
+        "active_electrolocate",
+        "object_detect",
+        "reafferent_cancel"
+      ],
+      "lead_task_hint": "active_electrolocate",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "gymnotiform",
+        "mormyrid",
+        "electric_ray"
+      ],
+      "biological_reference": "Heiligenberg 1991; Bell 2001; Bell & Maler 2005",
+      "composable_with": [
+        "electric_organ_discharge_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "electric_organ_discharge_unit",
+      "display": "电器官放电起搏单元",
+      "function": "pacemaking",
+      "system": "electrosensory",
+      "description": "起搏核自主节律发放，经中继核与脊髓运动神经元驱动电器官，同时把传出副本并行送给电感受通路用于抵消。",
+      "members": [
+        {
+          "role": "pm",
+          "neuron": "pacemaker_nucleus_neuron",
+          "count_ratio": 0.45
+        },
+        {
+          "role": "relay",
+          "neuron": "thalamic_relay",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "organ",
+          "neuron": "spinal_motor_alpha",
+          "count_ratio": 0.3
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "pm",
+          "to": "relay",
+          "type": "command_neuron_recruitment",
+          "weight": 1.0
+        },
+        {
+          "from": "relay",
+          "to": "organ",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "relay",
+          "to": "pm",
+          "type": "feedback_inhibitory",
+          "weight": 0.3
+        },
+        {
+          "from": "pm",
+          "to": "pm",
+          "type": "autapse_recurrent",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "arousal_in",
+            "type": "arousal.state",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "eod_out",
+            "type": "motor.eod",
+            "required": true
+          },
+          {
+            "name": "eff_out",
+            "type": "efference.copy",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        50,
+        200
+      ],
+      "motif_source": [
+        "autapse_recurrent",
+        "command_neuron_recruitment",
+        "feedback_inhibitory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "pacemaking",
+        "eod_generate",
+        "efference_copy",
+        "rhythm_generate"
+      ],
+      "task_hint_pool": [
+        "pacemaking",
+        "eod_generate",
+        "rhythm_generate"
+      ],
+      "lead_task_hint": "pacemaking",
+      "neurotransmitter": [
+        "acetylcholine",
+        "glutamate"
+      ],
+      "species_source": [
+        "gymnotiform",
+        "mormyrid"
+      ],
+      "biological_reference": "Bennett 1971; Bell et al 1997",
+      "composable_with": [
+        "electrosensory_electrolocation_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cephalopod_vertical_lobe_learning_unit",
+      "display": "头足类垂直叶学习单元",
+      "function": "associative_learn",
+      "system": "vertical_lobe",
+      "description": "小细胞把视觉/触觉/化学触觉汇聚进垂直叶，无长突细胞连续数次发放后对大型细胞输出突触产生持续增强，学习规则是反复激活而非成对 STDP。",
+      "members": [
+        {
+          "role": "sa",
+          "neuron": "vertical_lobe_small_cell",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "lg",
+          "neuron": "vertical_lobe_large_cell",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "am",
+          "neuron": "vertical_lobe_amacrine_cell",
+          "count_ratio": 0.3
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "sa",
+          "to": "am",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "am",
+          "to": "lg",
+          "type": "repetitive_activation_lts",
+          "weight": 0.9
+        },
+        {
+          "from": "lg",
+          "to": "am",
+          "type": "feedback_inhibitory",
+          "weight": 0.5
+        },
+        {
+          "from": "sa",
+          "to": "lg",
+          "type": "feedforward_inhibitory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "multimodal_in",
+            "type": "cortex.association",
+            "required": true
+          },
+          {
+            "name": "reward_in",
+            "type": "modulatory.acetylcholine",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "learned_cmd",
+            "type": "motor.command",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        100000,
+        500000
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "feedforward_inhibitory",
+        "repetitive_activation_lts"
+      ],
+      "capability": [
+        "associative_learn",
+        "long_term_facilitation",
+        "multimodal_bind",
+        "command_release"
+      ],
+      "task_hint_pool": [
+        "associative_learn",
+        "long_term_facilitation",
+        "command_release"
+      ],
+      "lead_task_hint": "associative_learn",
+      "neurotransmitter": [
+        "acetylcholine",
+        "gaba"
+      ],
+      "species_source": [
+        "octopus",
+        "cuttlefish",
+        "squid"
+      ],
+      "biological_reference": "Young 1964, 1991; Boycott 1961; Shomrat et al 2008",
+      "composable_with": [
+        "cephalopod_chromatophore_control_unit",
+        "cephalopod_arm_motor_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cephalopod_chromatophore_control_unit",
+      "display": "色素细胞控制单元",
+      "function": "camouflage",
+      "system": "chromatophore",
+      "description": "额上叶高层指令经色素细胞运动神经元控制放射肌，把色素囊撑开或收拢，在不到一秒内铺出整片皮肤图案。",
+      "members": [
+        {
+          "role": "cmd",
+          "neuron": "superior_frontal_lobe_cell",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "mn",
+          "neuron": "chromatophore_motor_neuron",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "ach",
+          "neuron": "cholinergic_mt",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "cmd",
+          "to": "mn",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "ach",
+          "to": "mn",
+          "type": "modulatory_diffuse",
+          "weight": 0.6
+        },
+        {
+          "from": "mn",
+          "to": "cmd",
+          "type": "feedback_inhibitory",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "display_cmd",
+            "type": "cortex.output",
+            "required": true
+          },
+          {
+            "name": "visual_in",
+            "type": "sensory.visual",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "skin_pattern",
+            "type": "motor.chromatophore",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        20000,
+        200000
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "modulatory_diffuse"
+      ],
+      "capability": [
+        "camouflage",
+        "pattern_display",
+        "muscle_drive",
+        "body_signalling"
+      ],
+      "task_hint_pool": [
+        "camouflage",
+        "pattern_display",
+        "body_signalling"
+      ],
+      "lead_task_hint": "camouflage",
+      "neurotransmitter": [
+        "glutamate",
+        "acetylcholine"
+      ],
+      "species_source": [
+        "octopus",
+        "cuttlefish",
+        "squid"
+      ],
+      "biological_reference": "Hanlon & Messenger 1996; Messenger 2001",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cephalopod_arm_motor_unit",
+      "display": "腕运动单元",
+      "function": "arm_control",
+      "system": "arm_cord",
+      "description": "腕的神经索自带运动神经元与感觉传入，脑只下达粗略高层指令，精细运动与本体感觉闭环都在腕内本地完成。",
+      "members": [
+        {
+          "role": "mn",
+          "neuron": "arm_motor_neuron",
+          "count_ratio": 0.55
+        },
+        {
+          "role": "aff",
+          "neuron": "arm_sensory_afferent",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "mod",
+          "neuron": "cholinergic_mt",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "aff",
+          "to": "mn",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "mod",
+          "to": "mn",
+          "type": "modulatory_diffuse",
+          "weight": 0.5
+        },
+        {
+          "from": "mn",
+          "to": "aff",
+          "type": "feedback_inhibitory",
+          "weight": 0.4
+        },
+        {
+          "from": "mn",
+          "to": "mn",
+          "type": "recurrent_excitatory",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "arm_cmd",
+            "type": "cortex.output",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "arm_motion",
+            "type": "motor.arm",
+            "required": true
+          },
+          {
+            "name": "proprio_out",
+            "type": "motor.spindle",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        10000,
+        100000
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "modulatory_diffuse",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "arm_control",
+        "distributed_motor",
+        "reach",
+        "proprioception"
+      ],
+      "task_hint_pool": [
+        "arm_control",
+        "distributed_motor",
+        "reach"
+      ],
+      "lead_task_hint": "arm_control",
+      "neurotransmitter": [
+        "acetylcholine",
+        "glutamate"
+      ],
+      "species_source": [
+        "octopus",
+        "squid"
+      ],
+      "biological_reference": "Young 1965; Sumbre et al 2001; Zullo et al 2009",
+      "composable_with": [],
       "provenance": {
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
