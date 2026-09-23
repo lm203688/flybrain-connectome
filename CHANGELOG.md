@@ -8,15 +8,66 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.7.0` | the toolkit as a whole |
+| package | `1.8.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 72 units + 66 connection types (1.4.0; grown in 1.5.0 and 1.6.0) |
+| functional-unit library schema | `1.0` | 82 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0 and 1.8.0) |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [1.8.0] — 2026-09-23
+
+**Drosophila-shaped densification: ten new units, every member population
+anchored, every declared edge measured before it was written.**
+
+v1.7.0 exposed the honest gap: only 6 of 72 units were embodied. The fly is the
+starting point, and only fly-shaped units can be falsified by the fly connectome —
+so instead of widening the library with another cross-clade batch, this release
+makes the fly-shaped part of it dense. Ten new units (optic lobe ×5, giant-fiber
+escape, male courtship ×2, auditory song reception, lateral horn) built from 20
+new neuron profiles, all 20 with anchor rules into MaleCNS v1.0. This is the
+first batch whose wiring was checked against the measured profile × profile
+matrix *before* being written — no declared edge is a zero, so the
+acknowledged-contradiction list stays at exactly the one v1.7.0 entry.
+
+### Added
+
+- **20 neuron profiles** (`synthetic_bio_topology.py` + `module_registry.py`,
+  vocabulary 160 → 180, registry coverage follows): R1-R6 / R7-R8 photoreceptors,
+  lamina monopolar L1-L5, medulla columnar Tm/TmY/Mi, T4/T5 motion detectors,
+  LPi, LPTC (HS/VS/CH/FD), LC, giant fiber DNp01, GFC1-4, PSI, TTMn/DLMn/STTMm,
+  pC1, aSP, pIP, vMS/vPR, vpo, AMMC, lateral horn families, ORN classes
+  (resolving what the generic `olfactory_receptor` profile could not — the fly
+  ORN classes are published per glomerulus in this release).
+- **10 functional units**: `compound_lamina_relay_unit`,
+  `medulla_colour_pathway_unit`, `elementary_motion_detection_unit`,
+  `lobula_plate_optic_flow_unit`, `visual_target_detection_unit`,
+  `giant_fiber_escape_unit` (the mixed electrical-chemical GF→TTMn synapse is a
+  declared edge, and it measures nonzero), `auditory_song_reception_unit`,
+  `courtship_decision_unit`, `courtship_song_pattern_unit`,
+  `lateral_horn_innate_odour_unit`. 5 new systems: `optic_lobe`,
+  `ventral_nerve_cord`, `lateral_protocerebrum`, `lateral_horn`,
+  `antennal_mechanosensory` (36 → 41).
+- **20 anchor rules** (`build_malecns_anchors.py`), same discipline: name regex
+  AND the dataset's own superclass must agree. Anchored profiles 14 → **34**;
+  anchored real cells 8,798 → **84,645** over 1,631 cell types.
+- Embodiment upgrade of the existing `antennal_lobe_glomerular_unit`: its
+  literature-generic `olfactory_receptor` member is now the fly-specific
+  `antennal_orn` population (2,635 real cells, ORN→PN measures 460,618).
+
+### Changed
+
+- Embodied units **6 → 16 of 82**; measured structural-support edges 21 → 48.
+  Example measured supports of the new batch: medulla→T4/T5 1,924,544;
+  T4/T5→LPTC 296,217; PN→lateral horn 391,155; pC1→pIP 1,973; vMS→vMS 12,603
+  (the song-network recurrence); AMMC→pIP 90.
+- The two edges the data would NOT support are simply not declared: vpo→vMS
+  measures 0 (vpo is a pC1 recurrent partner, not a VNC input) and
+  AMMC→pC1 measures 0 — so the song reception unit routes through pIP/aSP,
+  which the data does show.
 
 ## [1.7.0] — 2026-09-23
 

@@ -1,7 +1,7 @@
 """gen_functional_units.py -- author the two composition libraries.
 
 Writes (single source of truth, stdlib-only JSON):
-    flybrain-connectome-mcp/functional_units/functional_units.json    (72 units)
+    flybrain-connectome-mcp/functional_units/functional_units.json    (82 units)
     flybrain-connectome-mcp/functional_units/connection_types.json    (66 types)
 
 CLADE COVERAGE (v1.4.1)
@@ -35,6 +35,15 @@ least one member population resolves to real annotated cells.
 `extracted_from_malecns` stays FALSE for every unit. Anchoring proves the parts
 exist and that a declared pathway is not *contradicted* at superclass
 resolution. It does not prove the declared microcircuit or its connection FORM.
+
+DROSOPHILA-SHAPED DENSIFICATION (v1.8.0)
+----------------------------------------
+v1.7.0 exposed the honest gap: only 6 of 72 units were embodied, and only
+fly-shaped units can be falsified by the fly connectome. The ten v1.8.0 units
+(optic lobe x5, giant-fiber escape, courtship x2, song reception, lateral horn)
+are built from 20 new profiles that ALL carry anchor rules, and their wiring
+was checked against the measured profile x profile matrix before being written:
+no declared edge is a zero.
 
 WHY A GENERATOR AND NOT HAND-WRITTEN JSON
 -----------------------------------------
@@ -1451,7 +1460,7 @@ FUNCTIONAL_UNITS += [
     # ================= INSECT (6) ================= #
     U("antennal_lobe_glomerular_unit", "触角叶球状体单元", "odour_encode", "antennal_lobe",
       "感受神经元投射到球状体，局部中间神经元做跨球归一化，投射神经元把气味通道送进蘑菇体和高位侧角。",
-      [("orn", "olfactory_receptor", 0.30),
+      [("orn", "antennal_orn", 0.30),
        ("pn", "antennal_lobe_pn", 0.35),
        ("ln", "antennal_lobe_ln", 0.35)],
       [("orn", "pn", "feedforward_excitatory", 1.0),
@@ -1462,7 +1471,7 @@ FUNCTIONAL_UNITS += [
       (40, 160), ["odour_encode", "normalize", "pattern_separate", "background_separate"],
       ["odour_encode", "channel_relay", "background_separate"], "odour_encode",
       ["acetylcholine", "gaba"], "Wilson & Mainen 2006; Olsen & Wilson 2008",
-      ["drosophila", "honeybee", "moth"], ("mushroom_body_sparse_code_unit",)),
+      ["drosophila", "honeybee", "moth"], ("mushroom_body_sparse_code_unit", "lateral_horn_innate_odour_unit")),
     U("mushroom_body_sparse_code_unit", "蘑菇体稀疏编码单元", "sparse_encode", "mushroom_body",
       "投射神经元在约两千个 Kenyon 细胞上随机展开，单个 APL 神经元全局回抑制把活动压到约 5%，得到高维稀疏气味码。",
       [("kc", "kenyon_cell", 0.75),
@@ -2063,6 +2072,162 @@ FUNCTIONAL_UNITS += [
       ["active_touch", "tactile_map", "sensorimotor_loop"], "active_touch",
       ["glutamate", "gaba"], "Woolsey & Van der Loos 1970; Kleinfeld & Deschenes 2011; Diamond et al 2008",
       ["mouse", "rat"], ()),
+
+    # ==================================================================== #
+    # v1.8.0 DROSOPHILA-SHAPED UNITS (9)
+    # -------------------------------------------------------------------- #
+    # The previous batches made the library wider; this batch makes the
+    # FLY-SHAPED part of it denser. Every unit below is composed of
+    # populations that anchor to real MaleCNS cell types (34/180 profiles
+    # now carry anchor rules), and every declared internal edge was checked
+    # against the measured profile x profile matrix BEFORE being written:
+    # none of them is a zero. This is the first batch that could fail its
+    # own embodiment check, and passed.
+    # ==================================================================== #
+
+    # ================= OPTIC LOBE (4) ================= #
+    U("compound_lamina_relay_unit", "复眼-板层输入中继单元", "photoreception", "optic_lobe",
+      "R1-R6 把每个小眼的亮度/运动通道送入同名板层柱做高通滤波，R7/R8 色觉通道绕过板层直达髓质；两条通道并行，进髓质前互不污染。",
+      [("r1r6", "ol_photoreceptor_r1r6", 0.40),
+       ("r7r8", "ol_photoreceptor_r7r8", 0.25),
+       ("lamina", "ol_lamina_monopolar", 0.35)],
+      [("r1r6", "lamina", "feedforward_excitatory", 1.0),
+       ("lamina", "lamina", "lateral_inhibitory", 0.5)],
+      [("light", "sensory.visual", True)],
+      [("lamina_out", "sensory.visual", True), ("colour_bypass", "sensory.visual", False)],
+      (800, 12000), ["photorelay", "high_pass_filter", "parallel_channels"],
+      ["image_ingest", "photorelay", "contrast_enhance"], "visual_ingest",
+      ["histamine", "glutamate"], "Hardie & Raghu 2001; Meinertzhagen & O'Neil 1991",
+      ["drosophila"], ("elementary_motion_detection_unit", "medulla_colour_pathway_unit")),
+    U("medulla_colour_pathway_unit", "髓质色觉通路单元", "colour_encode", "optic_lobe",
+      "R7/R8 直接靶向髓质，经 Tm/Y 与 Dm 系列神经元把紫外/蓝色小目标转成色觉特征；与运动通道分车间计算。",
+      [("r7r8", "ol_photoreceptor_r7r8", 0.35),
+       ("medulla", "ol_medulla_intrinsic", 0.65)],
+      [("r7r8", "medulla", "feedforward_excitatory", 1.0)],
+      [("light", "sensory.visual", True)],
+      [("colour_feature", "sensory.visual", True)],
+      (500, 5000), ["colour_encode", "feature_extract", "parallel_channels"],
+      ["colour_encode", "wavelength_detect"], "colour_ingest",
+      ["histamine", "acetylcholine"], "Morante & Desplan 2008",
+      ["drosophila"], ("visual_target_detection_unit",)),
+    U("elementary_motion_detection_unit", "初级运动检测单元", "motion_detect", "optic_lobe",
+      "髓质柱状细胞把 ON/OFF 信号分开，T4/T5 四个方向亚型与 LPi 抑制性柱间连接一起完成初级方向检测——果蝇版的 Barlow-Levick。",
+      [("medulla", "ol_medulla_intrinsic", 0.55),
+       ("t45", "ol_motion_detector_t45", 0.30),
+       ("lpi", "ol_lpi", 0.15)],
+      [("medulla", "t45", "feedforward_excitatory", 1.0),
+       ("medulla", "lpi", "feedforward_excitatory", 0.5),
+       ("lpi", "t45", "lateral_inhibitory", 0.7)],
+      [("lamina_in", "sensory.visual", True)],
+      [("motion", "sensory.visual.motion", True)],
+      (200, 5000), ["motion_detect", "direction_select", "on_off_split"],
+      ["motion_detect", "direction_encode"], "motion_ingest",
+      ["acetylcholine", "gaba"], "Maisak et al 2013; Mauss et al 2015",
+      ["drosophila"], ("lobula_plate_optic_flow_unit",)),
+    U("lobula_plate_optic_flow_unit", "视叶板光流整合单元", "optic_flow", "optic_lobe",
+      "上万个 T4/T5 收敛到几十个切向细胞，LPi 柱间抑制把方向对立面压掉，HS/VS 输出的是整场光流与航向偏差估计。",
+      [("t45", "ol_motion_detector_t45", 0.40),
+       ("lpi", "ol_lpi", 0.30),
+       ("lptc", "ol_lptc", 0.30)],
+      [("t45", "lptc", "feedforward_excitatory", 1.0),
+       ("lpi", "lptc", "lateral_inhibitory", 0.6)],
+      [("motion_in", "sensory.visual.motion", True)],
+      [("optic_flow", "sensory.visual.motion", True)],
+      (50, 800), ["optic_flow_integrate", "course_estimate", "wide_field_sum"],
+      ["optic_flow", "course_control"], "optic_flow",
+      ["acetylcholine", "gaba"], "Hausen 1984; Borst & Weber 2011",
+      ["drosophila", "blowfly"], ("central_complex_heading_unit",)),
+    U("visual_target_detection_unit", "视觉目标检测单元", "target_detect", "optic_lobe",
+      "髓质柱状细胞把特征汇聚到 LC 系列，LC 按特征分类（小目标/扩张/朝向）后直接驱动下行神经元——果蝇的『看见并分类』发生在视叶内。",
+      [("medulla", "ol_medulla_intrinsic", 0.45),
+       ("lc", "ol_visual_lc", 0.35),
+       ("dn", "descending_neuron", 0.20)],
+      [("medulla", "lc", "feedforward_excitatory", 1.0),
+       ("lc", "dn", "feedforward_excitatory", 0.8)],
+      [("visual_in", "sensory.visual", True)],
+      [("target_cmd", "motor.command", True)],
+      (100, 5000), ["target_detect", "feature_classify", "visual_reflex"],
+      ["target_detect", "visual_relay"], "target_ingest",
+      ["acetylcholine"], "Wu et al 2016; Keles & Frye 2017",
+      ["drosophila"], ("giant_fiber_escape_unit",)),
+
+    # ================= ESCAPE / VENTRAL NERVE CORD (1) ================= #
+    U("giant_fiber_escape_unit", "巨纤维逃逸单元", "escape_reflex", "ventral_nerve_cord",
+      "巨纤维 DNp01 以混合电-化学突触直驱跳肌运动神经元 TTMn（快路径），经 PSI 与 GFC 中继驱 DLM/转肌（强直路径）；全回路延迟以毫秒计。",
+      [("gf", "escape_giant_fiber", 0.15),
+       ("gfc", "escape_vnc_gfc", 0.30),
+       ("psi", "escape_psi", 0.10),
+       ("motor", "escape_jump_motor", 0.45)],
+      [("gf", "motor", "mixed_electrical_chemical_synapse", 1.0),
+       ("gf", "psi", "feedforward_excitatory", 0.7),
+       ("gf", "gfc", "feedforward_excitatory", 0.8),
+       ("psi", "motor", "axo_dendritic", 0.8),
+       ("gfc", "motor", "feedforward_excitatory", 0.9)],
+      [("looming", "sensory.visual", True), ("touch", "sensory.somatosensory", False)],
+      [("jump", "motor.command", True)],
+      (5, 60), ["escape_reflex", "fast_conduction", "mixed_synapse", "startle"],
+      ["escape_command", "startle_trigger", "jump_drive"], "escape_execute",
+      ["acetylcholine", "glutamate"], "Tanouye & Wyman 1980; Allen et al 2006",
+      ["drosophila"], ()),
+
+    # ================= COURTSHIP / SONG (3) ================= #
+    U("auditory_song_reception_unit", "求偶歌接收单元", "song_reception", "antennal_mechanosensory",
+      "JO 机械感受经听觉神经进入 AMMC，AMMC 把近场声音（求偶歌本身）的特征送到 pIP 与 aSP——雄蝇在听自己该不该唱。",
+      [("ammc", "auditory_ammc", 0.50),
+       ("pip", "courtship_pip", 0.30),
+       ("asp", "courtship_asp", 0.20)],
+      [("ammc", "pip", "feedforward_excitatory", 1.0),
+       ("ammc", "asp", "feedforward_excitatory", 0.5)],
+      [("song", "sensory.auditory", True)],
+      [("song_relayed", "sensory.auditory", True)],
+      (40, 250), ["song_reception", "mechano_relay", "social_signal"],
+      ["song_reception", "auditory_relay"], "song_ingest",
+      ["acetylcholine"], "Lefevre et al 2021; Deutsch et al 2020",
+      ["drosophila"], ("courtship_decision_unit",)),
+    U("courtship_decision_unit", "求偶决策单元", "courtship_decision", "lateral_protocerebrum",
+      "pC1 整合信息素与歌声输入，与 vpo 互馈放大决策，aSP 的攻击驱动与之竞争，胜出的决策经 pIP 下行到腹神经索——求偶还是打架在这里分岔。",
+      [("pc1", "courtship_pc1", 0.55),
+       ("vpo", "song_vpo", 0.15),
+       ("asp", "courtship_asp", 0.15),
+       ("pip", "courtship_pip", 0.15)],
+      [("pc1", "pip", "feedforward_excitatory", 1.0),
+       ("pc1", "vpo", "dendro_dendritic", 0.6),
+       ("vpo", "pc1", "dendro_dendritic", 0.7),
+       ("pc1", "asp", "feedforward_excitatory", 0.5),
+       ("asp", "pc1", "mutual_inhibitory", 0.7)],
+      [("pheromone", "sensory.olfactory", True), ("song", "sensory.auditory", False)],
+      [("courtship_drive", "motor.command", True)],
+      (10, 200), ["courtship_decision", "behaviour_gate", "drive_competition", "state_switch"],
+      ["courtship_decision", "behaviour_gate"], "courtship_decide",
+      ["acetylcholine"], "Clowney et al 2015; Watanabe et al 2017; Deutsch et al 2020",
+      ["drosophila"], ("courtship_song_pattern_unit", "antennal_lobe_glomerular_unit")),
+    U("courtship_song_pattern_unit", "求偶歌曲模式生成单元", "song_pattern", "ventral_nerve_cord",
+      "pIP 下行信号触发 vMS/vPR 歌曲网络，网络靠强自激与脉冲模式开关生成脉冲歌与正弦歌的节律，直接驱动翅肌。",
+      [("pip", "courtship_pip", 0.30),
+       ("vms", "song_vnc_int", 0.70)],
+      [("pip", "vms", "feedforward_excitatory", 1.0),
+       ("vms", "vms", "autapse_recurrent", 0.7)],
+      [("courtship_in", "motor.command", True)],
+      [("song_motor", "motor.command", True)],
+      (10, 60), ["song_pattern_generate", "pulse_shape", "rhythm_generate"],
+      ["song_pattern", "rhythm_generate"], "song_generate",
+      ["acetylcholine"], "von Philipsborn et al 2011; MaleCNS vMS/vPR types",
+      ["drosophila"], ()),
+
+    # ================= INNATE ODOUR / LATERAL HORN (1) ================= #
+    U("lateral_horn_innate_odour_unit", "侧角先天嗅觉单元", "innate_odour", "lateral_horn",
+      "投射神经元把球状体模式并行送进侧角，侧角家族按信息素/利它素类别硬连线赋值并直接驱动下行神经元——不经蘑菇体学习就能闻到就该躲/该追。",
+      [("pn", "antennal_lobe_pn", 0.40),
+       ("lh", "lateral_horn_ln", 0.40),
+       ("dn", "descending_neuron", 0.20)],
+      [("pn", "lh", "feedforward_excitatory", 1.0),
+       ("lh", "dn", "feedforward_excitatory", 0.7)],
+      [("odour", "sensory.olfactory", True)],
+      [("innate_action", "motor.command", True)],
+      (50, 2000), ["innate_odour", "pheromone_classify", "hardwired_valence"],
+      ["innate_odour", "pheromone_classify"], "innate_olfaction",
+      ["acetylcholine", "gaba"], "Jefferis et al 2007; Dolan et al 2019",
+      ["drosophila"], ("antennal_lobe_glomerular_unit",)),
 ]
 
 

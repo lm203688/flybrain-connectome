@@ -3,7 +3,7 @@
 
 WHY THIS EXISTS
 ---------------
-Every one of the 72 functional units in `functional_units.json` is curated from
+Every one of the 82 functional units in `functional_units.json` is curated from
 comparative-neuroscience literature. The library therefore carries a permanent
 hole: nothing in it has ever been checked against the real connectome it was
 named after. A reader cannot tell a unit describing *Drosophila* circuitry from
@@ -143,6 +143,74 @@ TYPE_RULES: list[dict] = [
      "note": "Descending neurons (DNg / DNp / DNge / DNpe / DNx) carrying brain output to "
              "the VNC. The superclass filter excludes the clock DN1/DN2/DN3 cells and the "
              "DNES endocrine cells that share the name prefix."},
+    # ---------------- v1.8.0: Drosophila-shaped unit expansion -------------
+    # Same discipline as above: a name regex AND the dataset's own superclass
+    # must both agree. Optic-lobe names are systematic (T4a-d, TmY18, L1-L5,
+    # LC12...) but look-alikes exist in other superclasses, so the filter stays
+    # load-bearing everywhere.
+    {"profile": "ol_photoreceptor_r1r6", "type_re": r"^R1-R6$",
+     "superclass": ["ol_sensory"],
+     "note": "Outer photoreceptors R1-R6: the dataset types the whole outer channel "
+             "as one class. The exact-match regex plus ol_sensory excludes any other "
+             "R-prefixed type."},
+    {"profile": "ol_photoreceptor_r7r8", "type_re": r"^R[78]", "superclass": ["ol_sensory"],
+     "note": "Inner photoreceptors R7/R8 (R7y/R7p/R8y/R8_unclear and friends): the "
+             "colour channel that bypasses the lamina and targets the medulla."},
+    {"profile": "ol_lamina_monopolar", "type_re": r"^L[1-5]$", "superclass": ["ol_intrinsic"],
+     "note": "Lamina monopolar cells L1-L5, exact matches only so that LC12/LT51/LAL094 "
+             "style names can never be swallowed."},
+    {"profile": "ol_medulla_intrinsic", "type_re": r"^(Tm[0-9]|TmY[0-9]|Mi[0-9])",
+     "superclass": ["ol_intrinsic"],
+     "note": "Medulla columnar cells: Tm1-20, TmY series and the Mi series - the "
+             "early-vision compute layer."},
+    {"profile": "ol_motion_detector_t45", "type_re": r"^T[45][a-d]$",
+     "superclass": ["ol_intrinsic"],
+     "note": "T4a-d / T5a-d: the eight direction-selective elementary motion detector "
+             "classes, one per lobula-plate layer and direction."},
+    {"profile": "ol_lptc", "type_re": r"^(HS|VS|CH|FD)", "superclass": ["visual_projection"],
+     "note": "Lobula-plate tangential cells (HSN/HSE/HSS/HST, VS/VST, CH, FD): the "
+             "wide-field optic-flow integrators. Few but famous."},
+    {"profile": "ol_lpi", "type_re": r"^LPi[0-9]", "superclass": ["ol_intrinsic"],
+     "note": "Lobula-plate intrinsic cells LPi: GABAergic inter-columnar links behind "
+             "directional opponency."},
+    {"profile": "ol_visual_lc", "type_re": r"^LC[0-9]", "superclass": ["visual_projection"],
+     "note": "Lobula columnar (LC) visual projection neurons: feature- and target-"
+             "selective detectors with named glomerular targets."},
+    {"profile": "escape_giant_fiber", "type_re": r"^DNp01$", "superclass": DESC,
+     "note": "The giant fiber: MaleCNS type DNp01, the descending jump-escape command "
+             "neuron (instances carry the (GF) annotation)."},
+    {"profile": "escape_vnc_gfc", "type_re": r"^GFC[0-9]", "superclass": ["vnc_intrinsic"],
+     "note": "Giant-fiber-connected interneurons GFC1-4 in the ventral nerve cord."},
+    {"profile": "escape_psi", "type_re": r"^PSI$", "superclass": ["vnc_efferent"],
+     "note": "The peripheral synapsing interneuron (PSI), relay of the DLM escape branch."},
+    {"profile": "escape_jump_motor", "type_re": r"^(TTMn|DLMn|STTMm)",
+     "superclass": ["vnc_motor"],
+     "note": "Jump/flight-power motor neurons: TTMn (tergotrochanteral jump), DLMn and "
+             "STTMm (dorsal longitudinal / steering flight power)."},
+    {"profile": "courtship_pc1", "type_re": r"^pC1", "superclass": ["cb_intrinsic"],
+     "note": "The pC1/P1 courtship decision cluster: 49 MaleCNS types. The superclass "
+             "filter keeps the match inside the brain."},
+    {"profile": "courtship_asp", "type_re": r"^aSP", "superclass": ["cb_intrinsic"],
+     "note": "Male-specific aggression neurons: the aSP10 subtypes."},
+    {"profile": "courtship_pip", "type_re": r"^pIP[0-9]", "superclass": DESC,
+     "note": "pIP1/pIP10: courtship descending neurons carrying the decision to the VNC."},
+    {"profile": "song_vnc_int", "type_re": r"^(vMS|vPR)", "superclass": ["vnc_intrinsic"],
+     "note": "VNC song-network interneurons: the vMS11/vMS12 and vPR song pattern "
+             "generator classes."},
+    {"profile": "song_vpo", "type_re": r"^vpo", "superclass": ["cb_intrinsic"],
+     "note": "Ventral protocerebrum song-pathway cells vpoEN/vpoIN: recurrent partners "
+             "of pC1. Note they are BRAIN cells - do not retag them as VNC."},
+    {"profile": "auditory_ammc", "type_re": r"^AMMC", "superclass": ["cb_intrinsic"],
+     "note": "Antennal mechanosensory and motor centre (AMMC) neurons: the first brain "
+             "relay of near-field sound, i.e. the courtship song."},
+    {"profile": "lateral_horn_ln", "type_re": r"^LH", "superclass": ["cb_intrinsic"],
+     "note": "Lateral horn neuron families (LHPV/LHLN/...): the innate-odour centre. "
+             "Broad by design - the LH is typed by hundreds of families, all of them "
+             "lateral horn cells."},
+    {"profile": "antennal_orn", "type_re": r"^ORN_", "superclass": ["cb_sensory"],
+     "note": "Olfactory receptor neurons typed per glomerular class (ORN_DA1, ORN_VA1d, "
+             "...). This resolves what the generic `olfactory_receptor` profile could "
+             "not: the fly ORN classes ARE published in this release."},
 ]
 
 # Profiles that ARE a fly cell class but whose real counterpart could not be
@@ -164,6 +232,9 @@ SYSTEM_REGIONS: dict[str, list[str]] = {
     "mushroom_body": ["CA(L)", "CA(R)", "PED(L)", "PED(R)", "aL(L)", "aL(R)",
                       "a'L(L)", "a'L(R)", "bL(L)", "bL(R)", "b'L(L)", "b'L(R)",
                       "gL(L)", "gL(R)"],
+    "optic_lobe": ["AME(L)", "AME(R)", "LA(L)", "LA(R)", "ME(L)", "ME(R)",
+                   "LO(L)", "LO(R)", "LOP(L)", "LOP(R)"],
+    "lateral_horn": ["LH(L)", "LH(R)"],
 }
 
 # Profiles whose `species_source` mentions Drosophila but whose IDENTITY is a

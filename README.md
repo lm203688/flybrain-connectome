@@ -306,9 +306,9 @@ MLflow2PROV, and MIT Sloan provenance tooling.
 
 ## Blueprint & module library
 
-**25 blueprints** across three categories, composed from **160 modules**:
+**25 blueprints** across three categories, composed from **180 modules**:
 **10 cognitive-function modules** (sensory / memory / motor / integration / attention /
-working_memory / reward / punishment / habit / metacognition) + **150 cross-species
+working_memory / reward / punishment / habit / metacognition) + **170 cross-species
 neuron types** spanning cortical pyramidal (L2/3 CX1/CX5, L4b/L4c, L5 basal tuft, L6 reticulo-thalamic,
 L7 temporal, Mayeret) + intermediate interneurons (Calbindin/LAMP/NPH/NPF/VLAC/SST-dendritic/
 SST-somatic/KCN, plus PV/SST/VIP/chandelier/basket) + modulatory systems (dopaminergic
@@ -378,16 +378,18 @@ single neuron type does nothing on its own, and wiring two of them together mean
 nothing. What composes is a **function with a known interface**. So the library is
 split into two tiers, and the upper tier is the one you actually build from:
 
-- **72 functional units** — each is ONE function (phototransduction, action
+- **82 functional units** — each is ONE function (phototransduction, action
   selection, theta pacing, gliotransmission, sparse mushroom-body coding, ring-attractor
   heading, song timing, Mauthner escape, active electrolocation, camouflage, leech swim
   rhythm, infrared thermal imaging, climbing-fibre error teaching, sleep/wake switching …)
-  delivered by a **group** of neuron populations (1–6 of them, taken from the 160-module
+  delivered by a **group** of neuron populations (1–6 of them, taken from the 180-module
   vocabulary) wired into an internal sub-circuit, and exposing **typed ports** (`light`
   in → `high_res` out; `candidates` + `value` in → `selected_action` out).
   Composition: 40 mammal-cortex-shaped + **16 cross-clade** (insect / bird / fish /
   cephalopod, v1.4.1) + **16 rhythm/state/error and active-sensing** (annelid, ascidian,
-  mollusc, pit viper, frog, cerebellum, brainstem, hippocampus, barrel cortex, v1.6.0).
+  mollusc, pit viper, frog, cerebellum, brainstem, hippocampus, barrel cortex, v1.6.0)
+  + **10 Drosophila-shaped** (optic lobe, giant-fiber escape, male courtship & song,
+  lateral horn, v1.8.0 — every one of them fully anchored, see below).
 - **66 connection types** — each is one connection FORM, constrained on the port
   types it may join, in six families:
   **micro** (axo-dendritic / axo-somatic / axo-axonic / dendro-dendritic …
@@ -429,7 +431,7 @@ and `--demo swim` (leech half-centre swim CPG → ascidian larval oscillator →
 frog reticulospinal escape swim).
 `--demo` with no argument runs all four.
 
-### MaleCNS embodiment (v1.7.0)
+### MaleCNS embodiment (v1.7.0, densified v1.8.0)
 
 Everything above is literature-curated, which left the library unable to answer
 the first question any reader asks: does any of this correspond to the fly brain
@@ -437,9 +439,9 @@ it is named after? `functional_units/malecns_anchors.json` (built by
 `scripts/build_malecns_anchors.py`) answers it, for the part where an answer is
 honest.
 
-- **Presence.** **6 of 72 units** have member populations that resolve to real
+- **Presence.** **16 of 82 units** have member populations that resolve to real
   annotated MaleCNS v1.0 cell types. Across the whole library that is
-  **14 of 160 neuron populations** covering **8,798 real cells**: the `kc` role of
+  **34 of 180 neuron populations** covering **84,645 real cells**: the `kc` role of
   the mushroom-body unit is 4,064 real Kenyon cells over 15 real KC types
   (`KCg-m`, `KCab-m`, `KCa'b'-ap2` …), its `input` role is 583 real antennal-lobe
   projection neurons over 145 types (`DA1_lPN`, `VM5d_adPN` …), its `gaba` role is
@@ -456,7 +458,12 @@ honest.
   synapse count between its two populations' actual cell types — antennal-lobe
   PN → Kenyon cell measures 378,315 synapses over 21,658 connected type pairs,
   Kenyon cell → mushroom-body output neuron measures 463,640, Kenyon cell → APL
-  measures 210,352.
+  measures 210,352 — and in v1.8.0 the ten new Drosophila-shaped units went
+  through the same test before their wiring was written: T4/T5 → lobula-plate
+  tangential cell measures 296,217, medulla intrinsic → T4/T5 measures
+  1,924,544, PN → lateral horn measures 391,155, giant fiber → TTMn measures
+  the famous 90 (over the real mixed electrical-chemical synapse), pC1 → pIP
+  measures 1,973, AMMC → pIP measures 90.
 - **Falsification, not confirmation.** A nonzero count means only that the
   declared edge is *not contradicted* at cell-type-set resolution; it says nothing
   about whether the declared connection FORM is the one the fly uses. A zero count
@@ -475,9 +482,9 @@ honest.
 
 **Honest boundary.** These units are curated from comparative-neuroscience
 literature with a named reference each (`provenance.extracted_from_malecns` is
-`false` for all 72) — they are NOT extracted from MaleCNS v1.0, unlike the three
+`false` for all 82) — they are NOT extracted from MaleCNS v1.0, unlike the three
 original fly motifs. Member ratios are composition weights, not measured cell
-counts. `provenance.embodied_in_malecns` marks the 6 units whose populations *do*
+counts. `provenance.embodied_in_malecns` marks the 16 units whose populations *do*
 resolve to real annotated cells. Embodiment proves the parts exist and that a
 declared edge is not contradicted; it does not prove the declared microcircuit or
 its connection form. Treat the layer as a composable scaffold with literature
