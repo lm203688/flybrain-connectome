@@ -99,6 +99,18 @@ ascidian, mollusc, pit viper, frog, cerebellum, brainstem, hippocampus, barrel
 cortex) + 66 connection types
 (connection forms, constrained on port types).
 
+**Embodiment layer (v1.7.0)** -- `functional_units/malecns_anchors.json`. It anchors
+14 of the 160 neuron populations to real annotated MaleCNS v1.0 cell types (8,798
+real cells over 889 types) and carries the measured connectivity backbone: the
+complete 27x27 superclass matrix, cross-checked against `connectivity_stats.json`
+(124,177,617 synapses / 25,582,938 edges -- both sources agree). Each declared unit
+edge therefore carries the measured synapse count between its populations' actual
+cell types. 6 of the 72 units have `provenance.embodied_in_malecns: true`; the other
+66 do not resolve to fly cells and say so. A measured count of ZERO is a recorded
+contradiction (currently one, in `central_complex_steering_unit`), never a pass.
+`extracted_from_malecns` stays false everywhere: presence and non-contradiction are
+checked, the declared microcircuit and connection form are not.
+
 `list_functional_units` · `get_functional_unit` ·
 `list_connection_types` · `compose_from_units`
 
