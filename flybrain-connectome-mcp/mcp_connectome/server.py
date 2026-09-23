@@ -190,8 +190,68 @@ TOOLS = [
     },
     {
         "name": "list_modules",
-        "description": "列出 flybrain 当前全部模块 (10 个) 的名称、能力 profile、生物学依据与描述。",
+        "description": "列出 flybrain 当前全部模块（10 个认知功能模块 + 跨生物保守神经元类型），返回名称、能力 profile、生物学依据与描述。",
         "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "list_functional_units",
+        "description": "列出 40 个功能单元（最小可组合单位 = 一个功能，由一组神经元群 + 内部微回路构成，带类型化输入/输出端口）。可按 system（如 cortex / hippocampus）或 capability（如 action_select）过滤。这是组合虚拟生物时真正当节点用的那一层，不是单神经元类型。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "system": {"type": "string",
+                           "description": "解剖系统过滤，如 sensory / thalamus / cortex / cerebellum / hippocampus / basal_ganglia / limbic / spinal_cord / neuromodulatory"},
+                "capability": {"type": "string",
+                               "description": "能力子串过滤，如 gate / select / relay / rhythm"},
+            },
+        },
+    },
+    {
+        "name": "get_functional_unit",
+        "description": "返回单个功能单元的完整定义：成员神经元群（role + neuron + 组成比例）、内部微回路（含连接件类型）、类型化输入/输出端口、能力、任务提示、生物学文献依据与组合约束。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {"name": {"type": "string",
+                                    "description": "单元名，如 thalamocortical_relay_unit"}},
+            "required": ["name"],
+        },
+    },
+    {
+        "name": "list_connection_types",
+        "description": "列出 50 种连接件（最小可组合连接单位 = 一种连接形式，带端口类型约束、符号、扇出、时延与可塑性标记）。分 6 族：micro（点对点突触位点）/ circuit（多神经元回路）/ modulatory（弥散·容积·逆行）/ electrical（电突触·电场·胶质）/ plasticity（可塑性规则）/ macro（群体投射几何）。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "family": {"type": "string",
+                           "description": "仅返回该族，如 circuit / macro"},
+            },
+        },
+    },
+    {
+        "name": "compose_from_units",
+        "description": "用「功能单元 + 连接件」组装一个虚拟生物，并做机械校验：端口类型兼容性、必需端口满足、是否可被外部驱动/读出、回路闭环报告。返回 nodes/edges/interface/validation/provenance（sha256 可复现）。边界上未绑定的必需输入端口即生物体的外部输入，不算错误。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "units": {
+                    "type": "array",
+                    "description": "节点列表，元素为单元名或 {\"unit\":name,\"instances\":n}",
+                    "items": {},
+                },
+                "connections": {
+                    "type": "array",
+                    "description": "边列表，元素为 \"unitA.out_port->unitB.in_port:connection_type\" 字符串或 {\"from\",\"to\",\"type\"} 对象",
+                    "items": {},
+                },
+                "name": {"type": "string", "description": "生物体名，默认 composed_organism"},
+                "seed": {"type": "integer", "description": "确定性种子，默认 42"},
+                "strict_cycles": {"type": "boolean",
+                                  "description": "true 时任何回路都报错（默认 false：回路作为警告报告，因为反馈回路是本库的一等公民）"},
+                "allow_boundary_inputs": {"type": "boolean",
+                                          "description": "默认 true（生物体边界允许外部输入）；校验内部子链时设 false，悬空必需输入即为错误"},
+            },
+            "required": ["units", "connections"],
+        },
     },
     {
         "name": "list_bio_motifs",
@@ -1013,6 +1073,73 @@ def _apply_preset(args):
     return result
 
 
+# --------------------------------------------------------------------------- #
+# Functional-unit composition library (Tier-1, stdlib only)
+#
+# Two libraries live in ../functional_units/*.json: 40 FUNCTIONAL UNITS (a
+# function delivered by a group of neuron populations, with typed ports) and 50
+# CONNECTION TYPES (a connection form, constrained on port types). A virtual
+# organism is composed as units (nodes) + connection types (typed edges) -- the
+# layer above the neuron-type registry, which is what actually composes.
+# --------------------------------------------------------------------------- #
+def _fu_module():
+    """Lazy import so a deployment missing the JSON artifacts still serves the
+    other tools instead of dying at import time."""
+    import importlib
+    return importlib.import_module("functional_units")
+
+
+def _list_functional_units(args):
+    try:
+        fu = _fu_module()
+    except Exception as exc:
+        return {"status": "unit_library_unavailable", "error": str(exc),
+                "hint": "functional_units.py + functional_units/*.json are Tier-1; "
+                        "reinstall or regenerate with scripts/gen_functional_units.py"}
+    units = fu.list_units(system=args.get("system"), capability=args.get("capability"))
+    return {"unit_count": len(units), "stats": fu.stats(), "units": units}
+
+
+def _get_functional_unit(args):
+    try:
+        fu = _fu_module()
+    except Exception as exc:
+        return {"status": "unit_library_unavailable", "error": str(exc)}
+    u = fu.get_unit(str(args["name"]))
+    if u is None:
+        return {"status": "error", "error": "no such functional unit",
+                "name": args["name"],
+                "known": [x["name"] for x in fu.list_units()]}
+    return u
+
+
+def _list_connection_types(args):
+    try:
+        fu = _fu_module()
+    except Exception as exc:
+        return {"status": "unit_library_unavailable", "error": str(exc)}
+    doc = fu.load_connection_types()
+    fam = args.get("family")
+    items = [c for c in doc["connection_types"] if not fam or c["family"] == fam]
+    return {"connection_type_count": len(items), "families": doc["families"],
+            "connection_types": items}
+
+
+def _compose_from_units(args):
+    try:
+        fu = _fu_module()
+    except Exception as exc:
+        return {"status": "unit_library_unavailable", "error": str(exc)}
+    return fu.compose_from_units(
+        args.get("units") or [],
+        args.get("connections") or [],
+        name=args.get("name", "composed_organism"),
+        seed=int(args.get("seed", 42)),
+        strict_cycles=bool(args.get("strict_cycles", False)),
+        allow_boundary_inputs=bool(args.get("allow_boundary_inputs", True)),
+    )
+
+
 def _list_virtual_organisms():
     if not os.path.exists(_MODULE_DIR):
         return {"organisms": [], "count": 0}
@@ -1158,6 +1285,15 @@ def handle_call(name, args):
         return json.dumps(_list_blueprints(), ensure_ascii=False)
     if name == "list_modules":
         return json.dumps(_list_modules(), ensure_ascii=False)
+    # ---- functional-unit composition library (Tier-1) ----
+    if name == "list_functional_units":
+        return json.dumps(_list_functional_units(args), ensure_ascii=False)
+    if name == "get_functional_unit":
+        return json.dumps(_get_functional_unit(args), ensure_ascii=False)
+    if name == "list_connection_types":
+        return json.dumps(_list_connection_types(args), ensure_ascii=False)
+    if name == "compose_from_units":
+        return json.dumps(_compose_from_units(args), ensure_ascii=False)
     if name == "list_bio_motifs":
         return json.dumps(_list_bio_motifs(), ensure_ascii=False)
     if name == "batch_generate_topologies":
@@ -1237,7 +1373,7 @@ def main():
             resp = {"jsonrpc": "2.0", "id": rid, "result": {
                 "protocolVersion": PROTOCOL_VERSION,
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "drosophila-connectome", "version": "1.3.0"},
+                "serverInfo": {"name": "drosophila-connectome", "version": "1.4.0"},
             }}
         elif method == "notifications/initialized":
             continue

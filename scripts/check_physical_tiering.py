@@ -6,8 +6,8 @@ Tier-2 IP lives only in the private repo:
 
   1. LICENSE-CLAUSE.md declares the 3-tier split and names the private repo.
   2. core_bridge degrades gracefully (tier2_required envelope, never a crash)
-     and the functional-tool-count contract holds: bare public install = 36,
-     with flybrain_core installed = 40.
+     and the functional-tool-count contract holds: bare public install = 40,
+     with flybrain_core installed = 44.
   3. Physical absence: no Tier-2 artifact ships in this tree. Stubbed paths
      must hold only a thin seam; every other Tier-2 path must be absent.
   4. Canonical home: the private repo exists, is private, and actually
@@ -24,7 +24,7 @@ from pathlib import Path
 ROOT = Path(__file__).resolve().parents[1]
 MCP = ROOT / "flybrain-connectome-mcp"
 PRIVATE_REPO = "lm203688/flybrain-connectome-core"
-TOTAL_TOOLS = 40
+TOTAL_TOOLS = 44
 
 NL = chr(10)
 failures: list[str] = []
@@ -122,7 +122,7 @@ def main() -> int:
     check("require_core returns a tier2_required envelope",
           isinstance(env, dict) and env.get("status") == "tier2_required")
     bare = TOTAL_TOOLS - len(cb.CORE_DEPENDENT_TOOLS)
-    check("functional_tool_count degrades to %d bare (40 - %d tier-2 tools)"
+    check("functional_tool_count degrades to %d bare (44 - %d tier-2 tools)"
           % (bare, len(cb.CORE_DEPENDENT_TOOLS)),
           cb.functional_tool_count() == bare
           and cb.functional_tool_count() == (TOTAL_TOOLS if cb.core_available() else bare),

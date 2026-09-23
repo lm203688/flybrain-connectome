@@ -1,0 +1,966 @@
+{
+  "schema_version": "1.0",
+  "source": "40 forms map 1:1 onto the curated motif document (motifs/swarm_agent_topology_motifs.json); 10 additional macro-projection forms are new here.",
+  "caveat": "Connection forms are qualitative taxonomies. `parameters` are literature-scale defaults for simulation, not fitted values.",
+  "families": {
+    "micro": "point-to-point chemical synaptic contact sites",
+    "circuit": "multi-neuron recurrent/feedforward motifs",
+    "modulatory": "diffuse / volume / retrograde modulation",
+    "electrical": "gap-junction, ephaptic and glial coupling",
+    "plasticity": "activity-dependent weight change rules",
+    "macro": "population-level projection geometry"
+  },
+  "stats": {
+    "functional_units": 40,
+    "connection_types": 50,
+    "neural_members_referenced": 87,
+    "systems": [
+      "basal_ganglia",
+      "brainstem",
+      "cerebellum",
+      "cortex",
+      "entorhinal",
+      "glia",
+      "hippocampus",
+      "hypothalamus",
+      "limbic",
+      "neuromodulatory",
+      "sensory",
+      "spinal_cord",
+      "thalamus"
+    ],
+    "connection_families": [
+      "circuit",
+      "electrical",
+      "macro",
+      "micro",
+      "modulatory",
+      "plasticity"
+    ],
+    "connection_types_used_by_units": 28
+  },
+  "connection_types": [
+    {
+      "name": "axo_dendritic",
+      "family": "micro",
+      "display": "轴突-树突突触",
+      "description": "Axon terminal onto dendritic shaft/spine; the default cortical excitatory contact.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": true,
+      "motif_ref": "axo_dendritic",
+      "parameters": {
+        "release_probability": 0.3,
+        "quantal_size": 1.0
+      },
+      "biological_reference": "Gray 1959; Peters & Palay 1991"
+    },
+    {
+      "name": "axo_somatic",
+      "family": "micro",
+      "display": "轴突-胞体突触",
+      "description": "Axon terminal onto soma; perisomatic, strongly shunting (basket-cell style).",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "axo_somatic",
+      "parameters": {
+        "shunt_gain": 0.9
+      },
+      "biological_reference": "Freund & Katona 2007"
+    },
+    {
+      "name": "axo_axonic",
+      "family": "micro",
+      "display": "轴突-轴突突触",
+      "description": "Axon terminal onto the axon initial segment; gates spike initiation without touching the soma.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "axo_axonic",
+      "parameters": {
+        "spike_block_probability": 0.7
+      },
+      "biological_reference": "chandelier cells, Szabadics 2006"
+    },
+    {
+      "name": "dendro_dendritic",
+      "family": "micro",
+      "display": "树突-树突突触",
+      "description": "Direct dendro-dendritic contact; allows subthreshold crosstalk and reciprocal pairs.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_one",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "dendro_dendritic",
+      "parameters": {
+        "crosstalk_gain": 0.4
+      },
+      "biological_reference": "Shepherd 2004"
+    },
+    {
+      "name": "axo_dendrite_reciprocal",
+      "family": "micro",
+      "display": "轴-树交互突触",
+      "description": "Reciprocal pair: one direction excitatory, the return direction inhibitory (olfactory-bulb style).",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_one",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "axo_dendrite_reciprocal",
+      "parameters": {
+        "exc_gain": 0.6,
+        "inh_gain": 0.5
+      },
+      "biological_reference": "Rall et al 1966; olfactory bulb mitral/granule pair"
+    },
+    {
+      "name": "pre_presynaptic_inhibition",
+      "family": "micro",
+      "display": "突触前抑制",
+      "description": "Inhibition applied to a presynaptic terminal; attenuates release downstream.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "pre_presynaptic_inhibition",
+      "parameters": {
+        "release_suppression": 0.5
+      },
+      "biological_reference": "axo-axonic GABA-B"
+    },
+    {
+      "name": "pre_presynaptic_excitation",
+      "family": "micro",
+      "display": "突触前易化",
+      "description": "Excitation applied to a presynaptic terminal; boosts release probability.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "pre_presynaptic_excitation",
+      "parameters": {
+        "release_facilitation": 0.4
+      },
+      "biological_reference": "nicotinic presynaptic facilitation"
+    },
+    {
+      "name": "dendritic_excitatory_synapse",
+      "family": "micro",
+      "display": "树突兴奋性突触",
+      "description": "Excitatory contact placed on a specific dendritic branch; branch-local integration.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": true,
+      "motif_ref": "dendritic_excitatory_synapse",
+      "parameters": {
+        "branch_gain": 1.2
+      },
+      "biological_reference": "Larkum 2013"
+    },
+    {
+      "name": "dendritic_inhibitory_synapse",
+      "family": "micro",
+      "display": "树突抑制性突触",
+      "description": "Inhibitory contact on a dendritic branch; vetoes a branch without somatic shunting.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": true,
+      "motif_ref": "dendritic_inhibitory_synapse",
+      "parameters": {
+        "branch_veto": 0.8
+      },
+      "biological_reference": "Miles 1990"
+    },
+    {
+      "name": "autapse_recurrent",
+      "family": "micro",
+      "display": "自突触",
+      "description": "A population connects to itself with a gain < 1; local persistence without a loop node.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "many_to_many",
+      "span": "intra_unit",
+      "delay_class": "immediate",
+      "plastic": true,
+      "motif_ref": null,
+      "parameters": {
+        "self_gain": 0.35
+      },
+      "biological_reference": "Bekkers 2003; cortical autapses"
+    },
+    {
+      "name": "feedforward_excitatory",
+      "family": "circuit",
+      "display": "前馈兴奋",
+      "description": "A -> B -> C all excitatory; signal relayed and sharpened across stages.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "feedforward_excitatory",
+      "parameters": {
+        "stage_gain": 1.1
+      },
+      "biological_reference": "canonical cortical FF drive"
+    },
+    {
+      "name": "feedforward_inhibitory",
+      "family": "circuit",
+      "display": "前馈抑制",
+      "description": "Input excites both a target and an interneuron that inhibits the target; narrows the time window.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "feedforward_inhibitory",
+      "parameters": {
+        "window_ms": 15
+      },
+      "biological_reference": "Pouille & Scanziani 2001"
+    },
+    {
+      "name": "feedforward_gating",
+      "family": "circuit",
+      "display": "前馈门控",
+      "description": "A gating population multiplicatively admits or blocks a throughput path.",
+      "from_port": "cortex.association",
+      "to_port": "*",
+      "sign": "mod",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "feedforward_gating",
+      "parameters": {
+        "gate_open": 1.0,
+        "gate_closed": 0.0
+      },
+      "biological_reference": "attention gating"
+    },
+    {
+      "name": "feedback_excitatory",
+      "family": "circuit",
+      "display": "反馈兴奋",
+      "description": "Higher stage re-excites an earlier stage; sustains and amplifies a representation.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "long",
+      "plastic": true,
+      "motif_ref": "feedback_excitatory",
+      "parameters": {
+        "feedback_gain": 0.7
+      },
+      "biological_reference": "corticothalamic feedback"
+    },
+    {
+      "name": "feedback_inhibitory",
+      "family": "circuit",
+      "display": "反馈抑制",
+      "description": "Higher stage returns inhibition to an earlier stage; predictive suppression.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "long",
+      "plastic": true,
+      "motif_ref": "feedback_inhibitory",
+      "parameters": {
+        "feedback_gain": 0.6
+      },
+      "biological_reference": "predictive coding"
+    },
+    {
+      "name": "lateral_inhibitory",
+      "family": "circuit",
+      "display": "侧抑制",
+      "description": "Neighbouring units inhibit each other; sharpens contrast and sparsifies the code.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "short",
+      "plastic": false,
+      "motif_ref": "lateral_inhibitory",
+      "parameters": {
+        "inhibition_radius": 3
+      },
+      "biological_reference": "Hartline & Ratliff 1958 (Limulus)"
+    },
+    {
+      "name": "lateral_feedback",
+      "family": "circuit",
+      "display": "侧向反馈",
+      "description": "Lateral partner both feeds forward and receives feedback; forms a resonant ring.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "many_to_many",
+      "span": "inter_unit",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "lateral_feedback",
+      "parameters": {
+        "resonance_gain": 0.5
+      },
+      "biological_reference": "cortical lateral connectivity"
+    },
+    {
+      "name": "mutual_inhibitory",
+      "family": "circuit",
+      "display": "交互抑制",
+      "description": "Two populations inhibit each other; produces winner-take-all or alternation.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_one",
+      "span": "intra_unit",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "mutual_inhibitory",
+      "parameters": {
+        "balance": 1.0
+      },
+      "biological_reference": "half-centre oscillator"
+    },
+    {
+      "name": "recurrent_excitatory",
+      "family": "circuit",
+      "display": "循环兴奋",
+      "description": "Population excites itself through a loop; attractor / persistent activity.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "many_to_many",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "recurrent_excitatory",
+      "parameters": {
+        "loop_gain": 0.85
+      },
+      "biological_reference": "Hopfield 1982; persistent activity"
+    },
+    {
+      "name": "recurrent_inhibitory",
+      "family": "circuit",
+      "display": "循环抑制",
+      "description": "Loop where inhibition dominates; keeps activity bounded and rhythmic.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "many_to_many",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "recurrent_inhibitory",
+      "parameters": {
+        "loop_gain": 0.8
+      },
+      "biological_reference": "interneuron-stabilised networks"
+    },
+    {
+      "name": "disinhibition",
+      "family": "circuit",
+      "display": "去抑制",
+      "description": "A -> interneuron -| target: exciting the interneuron releases the target.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_one",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": false,
+      "motif_ref": "disinhibition",
+      "parameters": {
+        "release_gain": 0.9
+      },
+      "biological_reference": "VIP -> SST -> pyramidal (cortex)"
+    },
+    {
+      "name": "shunting_inhibition",
+      "family": "circuit",
+      "display": "分流抑制",
+      "description": "Inhibition lowers input resistance rather than hyperpolarising; divisive gain control.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "shunting_inhibition",
+      "parameters": {
+        "conductance_gain": 1.5
+      },
+      "biological_reference": "Carandini & Heeger 2012"
+    },
+    {
+      "name": "contrast_inhibition",
+      "family": "circuit",
+      "display": "对比度抑制",
+      "description": "Inhibition proportional to local stimulus energy; normalises the population response.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "many_to_one",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": false,
+      "motif_ref": "contrast_inhibition",
+      "parameters": {
+        "normalisation_exponent": 2.0
+      },
+      "biological_reference": "Heeger 1992"
+    },
+    {
+      "name": "winner_take_all",
+      "family": "circuit",
+      "display": "赢者通吃",
+      "description": "Global inhibitory pool lets the strongest unit suppress the rest; selection operator.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "many_to_many",
+      "span": "inter_unit",
+      "delay_class": "short",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "k_winners": 1,
+        "inhibition_slope": 2.0
+      },
+      "biological_reference": "Maass 2000 (WTA circuits)"
+    },
+    {
+      "name": "loop_relay_chain",
+      "family": "circuit",
+      "display": "串联中继链",
+      "description": "Strictly ordered series of relays; each stage passes a transformed copy onward.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_one",
+      "span": "inter_unit",
+      "delay_class": "long",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "max_stages": 8,
+        "per_stage_loss": 0.1
+      },
+      "biological_reference": "sensory relay chains"
+    },
+    {
+      "name": "modulatory_diffuse",
+      "family": "modulatory",
+      "display": "弥散调制",
+      "description": "One modulatory source broadcasts a scalar gain over many targets; no point-to-point map.",
+      "from_port": "modulatory.*",
+      "to_port": "*",
+      "sign": "mod",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "long",
+      "plastic": true,
+      "motif_ref": "modulatory_diffuse",
+      "parameters": {
+        "gain_range": [
+          0.5,
+          1.8
+        ]
+      },
+      "biological_reference": "neuromodulatory systems"
+    },
+    {
+      "name": "neuromodulatory_axon",
+      "family": "modulatory",
+      "display": "调节性轴突",
+      "description": "Axon with en-passant varicosities releasing along its length, not at one terminal.",
+      "from_port": "modulatory.*",
+      "to_port": "*",
+      "sign": "mod",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "long",
+      "plastic": true,
+      "motif_ref": "neuromodulatory_axon",
+      "parameters": {
+        "varicosity_count": 12
+      },
+      "biological_reference": "Descarries 1998"
+    },
+    {
+      "name": "volume_transmission",
+      "family": "modulatory",
+      "display": "容积传递",
+      "description": "Transmitter diffuses through extracellular space and reaches non-synaptic receptors.",
+      "from_port": "modulatory.*",
+      "to_port": "*",
+      "sign": "mod",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "long",
+      "plastic": false,
+      "motif_ref": "volume_transmission",
+      "parameters": {
+        "diffusion_radius": 50.0,
+        "decay_tau": 400.0
+      },
+      "biological_reference": "Fuxe 2010; Agnati 1995"
+    },
+    {
+      "name": "short_range_volume",
+      "family": "modulatory",
+      "display": "短程容积传递",
+      "description": "Locally confined diffusion; a middle case between a synapse and full volume release.",
+      "from_port": "modulatory.*",
+      "to_port": "*",
+      "sign": "mod",
+      "fanout": "one_to_many",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": false,
+      "motif_ref": "short_range_volume",
+      "parameters": {
+        "diffusion_radius": 8.0
+      },
+      "biological_reference": "Sahlender 2014"
+    },
+    {
+      "name": "retrograde_messenger",
+      "family": "modulatory",
+      "display": "逆行信使",
+      "description": "Postsynaptic cell releases a messenger that acts back on the presynaptic terminal.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "mod",
+      "fanout": "one_to_one",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "retrograde_messenger",
+      "parameters": {
+        "messenger": "endocannabinoid",
+        "effect": "suppress_release"
+      },
+      "biological_reference": "endocannabinoid system (Wilson & Nicoll 2001)"
+    },
+    {
+      "name": "state_gating_modulation",
+      "family": "modulatory",
+      "display": "状态门控调制",
+      "description": "A global state variable (arousal, phase) multiplies whole-pathway throughput.",
+      "from_port": "arousal.state",
+      "to_port": "*",
+      "sign": "mod",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "long",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "state_gain_curve": "sigmoid"
+      },
+      "biological_reference": "state-dependent gating"
+    },
+    {
+      "name": "gap_junction_sync",
+      "family": "electrical",
+      "display": "电突触同步",
+      "description": "Bidirectional electrotonic coupling; equalises membrane potential, zero delay.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "many_to_many",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "gap_junction_sync",
+      "parameters": {
+        "coupling_conductance": 0.2
+      },
+      "biological_reference": "connective connexin coupling"
+    },
+    {
+      "name": "gap_junction_inhibitory",
+      "family": "electrical",
+      "display": "抑制性电耦合",
+      "description": "Gap junction onto an inhibitory population; synchronises the local brake.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "many_to_many",
+      "span": "intra_unit",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "gap_junction_inhibitory",
+      "parameters": {
+        "coupling_conductance": 0.15
+      },
+      "biological_reference": "GABAergic gap junctions"
+    },
+    {
+      "name": "ephaptic_coupling",
+      "family": "electrical",
+      "display": "电场耦合",
+      "description": "Non-synaptic field coupling; activity in one fibre changes the excitability of a neighbour.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "many_to_many",
+      "span": "intra_unit",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "ephaptic_coupling",
+      "parameters": {
+        "field_gain": 0.05
+      },
+      "biological_reference": "ephatic/ephaptic coupling (Anastassiou 2011)"
+    },
+    {
+      "name": "astrocyte_neuron_tripartite",
+      "family": "electrical",
+      "display": "星形胶质三方突触",
+      "description": "Astrocyte senses synaptic activity and returns a slow modulatory signal.",
+      "from_port": "glial.support",
+      "to_port": "*",
+      "sign": "mod",
+      "fanout": "one_to_many",
+      "span": "either",
+      "delay_class": "long",
+      "plastic": true,
+      "motif_ref": "astrocyte_neuron_tripartite",
+      "parameters": {
+        "response_tau": 2000.0
+      },
+      "biological_reference": "Araque 1999 tripartite synapse"
+    },
+    {
+      "name": "gliotransmission_calcium_wave",
+      "family": "electrical",
+      "display": "胶质钙波传递",
+      "description": "Calcium wave propagates through the astrocytic syncytium, carrying a slow signal.",
+      "from_port": "glial.support",
+      "to_port": "*",
+      "sign": "mod",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "long",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "wave_speed_um_s": 20.0
+      },
+      "biological_reference": "Cornell-Bell 1990 calcium waves"
+    },
+    {
+      "name": "stdp_rule",
+      "family": "plasticity",
+      "display": "STDP 规则",
+      "description": "Pre-before-post potentiates, post-before-pre depresses; timing-based weight change.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "long",
+      "plastic": true,
+      "motif_ref": "stdp_rule",
+      "parameters": {
+        "a_plus": 0.01,
+        "a_minus": 0.012,
+        "tau_plus": 20.0,
+        "tau_minus": 20.0
+      },
+      "biological_reference": "Bi & Poo 1998"
+    },
+    {
+      "name": "ltp_ltd",
+      "family": "plasticity",
+      "display": "长时程增强/抑制",
+      "description": "Sustained activity produces durable bidirectional weight change.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "long",
+      "plastic": true,
+      "motif_ref": "ltp_ltd",
+      "parameters": {
+        "ltd_threshold_hz": 1.0,
+        "ltp_threshold_hz": 20.0
+      },
+      "biological_reference": "Bliss & Lomo 1973"
+    },
+    {
+      "name": "short_term_plasticity",
+      "family": "plasticity",
+      "display": "短时可塑性",
+      "description": "Vesicle depletion / residual calcium give seconds-scale facilitation or depression.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "one_to_one",
+      "span": "either",
+      "delay_class": "immediate",
+      "plastic": true,
+      "motif_ref": "short_term_plasticity",
+      "parameters": {
+        "facilitation_tau": 200.0,
+        "depression_tau": 800.0
+      },
+      "biological_reference": "Zucker & Regehr 2002"
+    },
+    {
+      "name": "dendritic_computation",
+      "family": "plasticity",
+      "display": "树突计算",
+      "description": "Non-linear dendritic integration (NMDA spikes, plateau potentials) as a local operator.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "many_to_one",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": true,
+      "motif_ref": "dendritic_computation",
+      "parameters": {
+        "nmda_threshold": 3,
+        "plateau_ms": 300
+      },
+      "biological_reference": "London & Hausser 2005"
+    },
+    {
+      "name": "homeostatic_scaling",
+      "family": "plasticity",
+      "display": "稳态缩放",
+      "description": "Slow multiplicative rescaling of all weights to hold a firing-rate set-point.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "many_to_many",
+      "span": "intra_unit",
+      "delay_class": "long",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "target_rate_hz": 5.0,
+        "scaling_tau_hours": 24.0
+      },
+      "biological_reference": "Turrigiano 1998"
+    },
+    {
+      "name": "topographic_mapping",
+      "family": "macro",
+      "display": "拓扑映射",
+      "description": "Spatially ordered projection preserving neighbourhood relations across stages.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_one",
+      "span": "inter_unit",
+      "delay_class": "short",
+      "plastic": false,
+      "motif_ref": "topographic_mapping",
+      "parameters": {
+        "jitter_sigma": 0.1,
+        "dimensions": 2
+      },
+      "biological_reference": "retinotopy / somatotopy"
+    },
+    {
+      "name": "temporal_coherence",
+      "family": "macro",
+      "display": "时间一致性绑定",
+      "description": "Co-active populations phase-align; binding by synchrony rather than by weight.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "many_to_many",
+      "span": "inter_unit",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": "temporal_coherence",
+      "parameters": {
+        "band_hz": [
+          30.0,
+          80.0
+        ]
+      },
+      "biological_reference": "Singer & Gray 1995"
+    },
+    {
+      "name": "inhibitory_hub",
+      "family": "macro",
+      "display": "抑制枢纽广播",
+      "description": "A single inhibitory hub broadcasts to a very large target set (MaleCNS-extracted).",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "-",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "short",
+      "plastic": false,
+      "motif_ref": "inhibitory_hub",
+      "parameters": {
+        "hub_fanout": "dominant"
+      },
+      "biological_reference": "MaleCNS v1.0 APL (fan-out 102,263)"
+    },
+    {
+      "name": "reservoir_smallworld",
+      "family": "macro",
+      "display": "小世界储层",
+      "description": "High-clustering, short-path recurrent pool used as a random-feature reservoir (MaleCNS-extracted).",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "many_to_many",
+      "span": "intra_unit",
+      "delay_class": "short",
+      "plastic": false,
+      "motif_ref": "reservoir_smallworld",
+      "parameters": {
+        "clustering": 0.35,
+        "path_length": 2.4
+      },
+      "biological_reference": "MaleCNS v1.0 ol_intrinsic reservoir"
+    },
+    {
+      "name": "recurrent_feedback",
+      "family": "macro",
+      "display": "循环反馈回路",
+      "description": "Closed loop between two stages with a delay; the MaleCNS-extracted third original motif.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+/-",
+      "fanout": "many_to_many",
+      "span": "inter_unit",
+      "delay_class": "long",
+      "plastic": true,
+      "motif_ref": "recurrent_feedback",
+      "parameters": {
+        "loop_delay_ms": 80
+      },
+      "biological_reference": "MaleCNS v1.0 recurrent feedback motif"
+    },
+    {
+      "name": "divergent_fanout",
+      "family": "macro",
+      "display": "发散投射",
+      "description": "One source drives many independent downstream populations; broadcast without feedback.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "short",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "fanout_targets": 16
+      },
+      "biological_reference": "divergent projection systems"
+    },
+    {
+      "name": "convergent_fanin",
+      "family": "macro",
+      "display": "汇聚投射",
+      "description": "Many sources converge onto one target; the target sees an integrated sum.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "many_to_one",
+      "span": "inter_unit",
+      "delay_class": "short",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "fanin_sources": 16
+      },
+      "biological_reference": "convergent sensory convergence"
+    },
+    {
+      "name": "corollary_discharge",
+      "family": "macro",
+      "display": "传出副本",
+      "description": "A copy of a motor command is routed to a sensory/predictor unit alongside the action.",
+      "from_port": "motor.command",
+      "to_port": "*",
+      "sign": "+",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "copy_gain": 1.0
+      },
+      "biological_reference": "efference copy (von Holst & Mittelstaedt 1950)"
+    },
+    {
+      "name": "global_broadcast",
+      "family": "macro",
+      "display": "全局广播",
+      "description": "A command reaches every unit in the organism; used for reset, halt, or global gain.",
+      "from_port": "*",
+      "to_port": "*",
+      "sign": "mod",
+      "fanout": "one_to_many",
+      "span": "inter_unit",
+      "delay_class": "immediate",
+      "plastic": false,
+      "motif_ref": null,
+      "parameters": {
+        "coverage": "all_units"
+      },
+      "biological_reference": "neuromodulatory global broadcast"
+    }
+  ]
+}

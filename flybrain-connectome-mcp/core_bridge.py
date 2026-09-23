@@ -9,9 +9,9 @@ package) or a local checkout pointed to by $FLYBRAIN_CORE.
 
 This module is the single seam: public code calls `core_available()` and, when
 False, returns a graceful "Tier-2 required" response instead of crashing or
-leaking the IP. When the private package IS present, the full 40-tool surface is
-active; without it, the Tier-2-dependent tools degrade to a stub (36
-functional tools on a bare public install — 40 minus the 4 Tier-2-dependent
+leaking the IP. When the private package IS present, the full 44-tool surface is
+active; without it, the Tier-2-dependent tools degrade to a stub (40
+functional tools on a bare public install — 44 minus the 4 Tier-2-dependent
 tools).
 
 Nothing in this file embeds Tier-2 content.
@@ -32,6 +32,11 @@ from typing import Any
 # (aggregate synapse counts, Tier-1 data), and list_modules / get_module /
 # check_module_compatibility read MODULE_PROFILES in module_registry.py (module
 # definitions and presets, Tier-1 schema/config).
+# Advertised tool count on the full (core-installed) surface. Single source of
+# truth: Gate 8 asserts check_physical_tiering.TOTAL_TOOLS == this value, so the
+# two cannot drift.
+TOTAL_TOOLS = 44
+
 CORE_DEPENDENT_TOOLS = [
     "list_combination_rules", "validate_combination", "expand_organism",
     "get_multiplier_metrics",
@@ -117,14 +122,13 @@ def require_core(tool_name: str) -> dict | None:
 
 def functional_tool_count() -> int:
     """Total advertised tools minus the Tier-2-dependent ones when core absent."""
-    TOTAL = 40
-    return TOTAL if core_available() else TOTAL - len(CORE_DEPENDENT_TOOLS)
+    return TOTAL_TOOLS if core_available() else TOTAL_TOOLS - len(CORE_DEPENDENT_TOOLS)
 
 
 def tiering_status() -> dict:
     return {
         "core_available": core_available(),
-        "total_tools": 40,
+        "total_tools": TOTAL_TOOLS,
         "functional_tools": functional_tool_count(),
         "degraded_tools": [] if core_available() else CORE_DEPENDENT_TOOLS,
         "canonical_tier2_repo": "lm203688/flybrain-connectome-core (private)",

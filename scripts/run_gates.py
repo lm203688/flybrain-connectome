@@ -12,6 +12,9 @@ Gates, in order of cheapness:
   3  MCP tools    scripts/check_mcp_tools.py         needs numpy; spawns the server
   4  degraded     scripts/check_degraded_mode.py     optional dep absent must not crash
   5  artifact     generated output is structurally real (see the checker's docstring)
+  7  module arch  neuropil modules + worm data + combinator + HMAC
+  8  tiering      physical tiering (public MIT tree vs private Tier-2 repo)
+  9  unit library functional units + connection types + composer fail-closed
 
 Gates 4 and 5 generate a throwaway organism into a temp dir, so they need no
 dataset. The data-backed smoke test (`flybrain verify`, 70 assertions) is *not*
@@ -66,27 +69,32 @@ def main() -> int:
     py = sys.executable
     results: list[tuple[str, bool]] = []
 
-    results.append(("1/5 secrets", run(
-        "GATE 1/5 — no hardcoded credentials",
+    results.append(("gate1 secrets", run(
+        "GATE 1 — no hardcoded credentials",
         [py, str(SCRIPTS / "check_no_secrets.py")])[0]))
 
-    results.append(("2/5 docs drift", run(
-        "GATE 2/5 — docs match code",
+    results.append(("gate2 docs drift", run(
+        "GATE 2 — docs match code",
         [py, str(SCRIPTS / "check_docs_consistency.py")])[0]))
 
+    # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
+    results.append(("gate9 unit library", run(
+        "GATE 9 — functional units + connection types + composer fail-closed",
+        [py, str(SCRIPTS / "check_functional_units.py")])[0]))
+
     if not args.quick:
-        results.append(("3/5 MCP tools", run(
-            "GATE 3/5 — every advertised MCP tool responds (offline subset)",
+        results.append(("gate3 MCP tools", run(
+            "GATE 3 — every advertised MCP tool responds (offline subset)",
             [py, str(SCRIPTS / "check_mcp_tools.py"), "--offline", "--python", py])[0]))
 
-        results.append(("4/5 degraded mode", run(
-            "GATE 4/5 — a missing optional dependency degrades, it does not crash",
+        results.append(("gate4 degraded", run(
+            "GATE 4 — a missing optional dependency degrades, it does not crash",
             [py, str(SCRIPTS / "check_degraded_mode.py"), "--python", py])[0]))
 
         tmp = Path(tempfile.mkdtemp(prefix="flybrain_gates_"))
         try:
             gen_ok, _ = run(
-                "GATE 5/5a — generator smoke test",
+                "GATE 5a — generator smoke test",
                 [py, str(ROOT / "flybrain_cli.py"), "generate",
                  "--motif-source", "local", "--blueprint", "predictive_coding_v2",
                  "--modules", "3", "--agents-per-module", "4",
@@ -94,13 +102,13 @@ def main() -> int:
             artifact_ok = False
             if gen_ok:
                 artifact_ok, _ = run(
-                    "GATE 5/5b — the generated artifact is real",
+                    "GATE 5b — the generated artifact is real",
                     [py, str(SCRIPTS / "check_generated_artifact.py"),
                      "--dir", str(tmp), "--name", "gates_smoke"])
             else:
                 print("-" * 72)
                 print("    (skipping 5/5b — generation already failed)")
-            results.append(("5/5 artifact", gen_ok and artifact_ok))
+            results.append(("gate5 artifact", gen_ok and artifact_ok))
         finally:
             shutil.rmtree(tmp, ignore_errors=True)
 
@@ -108,26 +116,26 @@ def main() -> int:
         if not os.environ.get("FLYBRAIN_DATA_DIR"):
             print("-" * 72)
             print("    (--with-data requested but FLYBRAIN_DATA_DIR is unset — skipping)")
-            results.append(("6/7 flybrain verify", True))
+            results.append(("gate6 flybrain verify", True))
         else:
-            results.append(("6/7 flybrain verify", run(
-                "GATE 6/7 — end-to-end smoke test against the real connectome",
+            results.append(("gate6 flybrain verify", run(
+                "GATE 6 — end-to-end smoke test against the real connectome",
                 [py, str(ROOT / "flybrain_cli.py"), "verify"])[0]))
 
     # ---- Gate 7: module architecture (Phase 8) ----
-    results.append(("7/7 module arch", run(
-        "GATE 7/7 — neuropil modules + worm data + combinator middleware + fingerprints + HMAC",
+    results.append(("gate7 module arch", run(
+        "GATE 7 — neuropil modules + worm data + combinator middleware + fingerprints + HMAC",
         [py, str(SCRIPTS / "check_module_architecture.py")])[0]))
 
     # ---- Gate 8: physical tiering (Phase 9) ----
-    results.append(("8/8 physical tiering", run(
-        "GATE 8/8 — physical tiering architecture (core_bridge + LICENSE clause)",
+    results.append(("gate8 tiering", run(
+        "GATE 8 — physical tiering architecture (core_bridge + LICENSE clause)",
         [py, str(SCRIPTS / "check_physical_tiering.py")])[0]))
 
     print("=" * 72)
     print("gate summary")
     for name, ok in results:
-        print("  %-22s %s" % (name, "PASS" if ok else "FAIL"))
+        print("  %-24s %s" % (name, "PASS" if ok else "FAIL"))
     failed = [n for n, ok in results if not ok]
     print("=" * 72)
     if failed:

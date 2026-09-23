@@ -1,0 +1,4673 @@
+{
+  "schema_version": "1.0",
+  "source": "Curated cross-species comparative neuroscience; NOT extracted from MaleCNS v1.0 (see per-unit provenance.extracted_from_malecns).",
+  "caveat": "A functional unit is a curated sub-circuit pattern, not a measured cell assembly. Members name neuron populations from synthetic_bio_topology.MODULE_PROFILES; ratios are composition weights, not measured cell counts. Treat as a compositional scaffold with literature provenance, not as ground truth.",
+  "port_types": {
+    "sensory.visual": "Photoreceptor-driven visual signal (retina -> thalamus).",
+    "sensory.visual.motion": "Direction/motion-selective visual signal.",
+    "sensory.visual.irradiance": "Slow luminance signal (circadian drive).",
+    "sensory.olfactory": "Odourant identity/intensity signal.",
+    "sensory.auditory": "Sound-frequency signal.",
+    "sensory.vestibular": "Head acceleration signal.",
+    "sensory.somatosensory": "Touch/proprioceptive signal.",
+    "sensory.nociceptive": "Noxious-stimulus signal.",
+    "cortex.input": "Cortical layer-4 style afferent input.",
+    "cortex.association": "Higher-order intracortical association signal.",
+    "cortex.output": "Cortical layer-5 style descending command.",
+    "cortex.feedback": "Top-down corticofugal feedback.",
+    "cortex.interneuron": "Local cortical inhibitory drive.",
+    "cerebellar.input": "Mossy-fibre style cerebellar input.",
+    "cerebellar.output": "Purkinje / deep-nucleus cerebellar output.",
+    "error.teaching": "Climbing-fibre error / teaching signal.",
+    "hippocampal.input": "Entorhinal cortical input to hippocampus.",
+    "hippocampal.engram": "Recurrently stored memory trace.",
+    "hippocampal.output": "Hippocampal output to cortex.",
+    "spatial.map": "Self-locating spatial representation.",
+    "basal_ganglia.value": "Action-value / reward-prediction signal.",
+    "basal_ganglia.command": "Selected-action disinhibitory command.",
+    "limbic.fear": "Threat-conditioned affective signal.",
+    "rhythm.theta": "Theta-band oscillatory drive.",
+    "rhythm.circadian": "Circadian phase signal.",
+    "arousal.state": "Wake/sleep arousal-state signal.",
+    "motor.command": "Descending motor command.",
+    "motor.spindle": "Muscle-spindle feedback.",
+    "modulatory.dopamine": "Dopaminergic diffuse modulation.",
+    "modulatory.serotonin": "Serotonergic diffuse modulation.",
+    "modulatory.acetylcholine": "Cholinergic diffuse modulation.",
+    "modulatory.noradrenaline": "Noradrenergic diffuse modulation.",
+    "modulatory.histamine": "Histaminergic diffuse modulation.",
+    "modulatory.orexin": "Orexinergic arousal-stability modulation.",
+    "glial.support": "Astrocytic metabolic / gliotransmitter support.",
+    "*": "Wildcard: any port type (used by generic forms)."
+  },
+  "stats": {
+    "functional_units": 40,
+    "connection_types": 50,
+    "neural_members_referenced": 87,
+    "systems": [
+      "basal_ganglia",
+      "brainstem",
+      "cerebellum",
+      "cortex",
+      "entorhinal",
+      "glia",
+      "hippocampus",
+      "hypothalamus",
+      "limbic",
+      "neuromodulatory",
+      "sensory",
+      "spinal_cord",
+      "thalamus"
+    ],
+    "connection_families": [
+      "circuit",
+      "electrical",
+      "macro",
+      "micro",
+      "modulatory",
+      "plasticity"
+    ],
+    "connection_types_used_by_units": 28
+  },
+  "how_to_compose": [
+    "1. pick units by `capability` / `lead_task_hint`;",
+    "2. join an out-port to an in-port whose `type` matches (or via a connection type whose from_port/to_port constraints admit both);",
+    "3. validate with compose_from_units(); it checks port type compatibility, required-port satisfaction and acyclicity policy."
+  ],
+  "units": [
+    {
+      "name": "retinal_phototransduction_unit",
+      "display": "视网膜光转导单元",
+      "function": "phototransduction",
+      "system": "sensory",
+      "description": "锥体/杆体双极细胞把光强转为分级电位，经水平细胞做增益控制后由 midget 节细胞输出高分辨率空间信号。",
+      "members": [
+        {
+          "role": "cone_bp",
+          "neuron": "retinal_bipolar_cone",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "rod_bp",
+          "neuron": "retinal_bipolar_rod",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "gain",
+          "neuron": "retinal_horizontal",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "output",
+          "neuron": "retina_midget_gc",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "cone_bp",
+          "to": "output",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "rod_bp",
+          "to": "output",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "gain",
+          "to": "output",
+          "type": "shunting_inhibition",
+          "weight": 0.6
+        },
+        {
+          "from": "output",
+          "to": "gain",
+          "type": "feedback_excitatory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "light",
+            "type": "sensory.visual",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "high_res",
+            "type": "sensory.visual",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        6,
+        40
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "shunting_inhibition"
+      ],
+      "capability": [
+        "transduce",
+        "photorelay",
+        "gain_control",
+        "high_res_encode"
+      ],
+      "task_hint_pool": [
+        "image_ingest",
+        "photoreceptor_encode",
+        "retinal_gain"
+      ],
+      "lead_task_hint": "visual_ingest",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque",
+        "human",
+        "salamander"
+      ],
+      "biological_reference": "Rodieck 1998; Masland 2012",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "retinal_direction_selective_unit",
+      "display": "视网膜方向选择单元",
+      "function": "direction_selectivity",
+      "system": "sensory",
+      "description": "星爆无长突细胞的延迟抑制与双极细胞兴奋相遇，只对特定运动方向放电。",
+      "members": [
+        {
+          "role": "bp",
+          "neuron": "retinal_bipolar",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "ac",
+          "neuron": "retinal_amacrine",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "ds_ac",
+          "neuron": "retinal_amacrine_acl1",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "out",
+          "neuron": "retina_parvalbumin_gc",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "bp",
+          "to": "out",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "bp",
+          "to": "ds_ac",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "ds_ac",
+          "to": "out",
+          "type": "lateral_inhibitory",
+          "weight": 0.9
+        },
+        {
+          "from": "ac",
+          "to": "ds_ac",
+          "type": "mutual_inhibitory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "photons",
+            "type": "sensory.visual",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "motion",
+            "type": "sensory.visual.motion",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        6,
+        36
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "lateral_inhibitory",
+        "mutual_inhibitory"
+      ],
+      "capability": [
+        "direction_select",
+        "motion_detect",
+        "temporal_filter"
+      ],
+      "task_hint_pool": [
+        "motion_detect",
+        "direction_encode",
+        "optic_flow"
+      ],
+      "lead_task_hint": "motion_ingest",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "rabbit",
+        "macaque"
+      ],
+      "biological_reference": "Barlow & Levick 1965; Euler 2002",
+      "composable_with": [
+        "retinal_motion_onset_unit",
+        "visual_thalamic_relay_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "retinal_motion_onset_unit",
+      "display": "视网膜运动起始单元",
+      "function": "motion_onset",
+      "system": "sensory",
+      "description": "ACL2 胆碱能无长突细胞在运动起始瞬间发放，给下游一个『有新事件』的突兀信号。",
+      "members": [
+        {
+          "role": "bp",
+          "neuron": "retinal_bipolar",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "onset",
+          "neuron": "retinal_amacrine_acl2",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "gain",
+          "neuron": "retinal_horizontal",
+          "count_ratio": 0.1
+        },
+        {
+          "role": "out",
+          "neuron": "retina_parvalbumin_gc",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "bp",
+          "to": "onset",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "onset",
+          "to": "out",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "gain",
+          "to": "out",
+          "type": "shunting_inhibition",
+          "weight": 0.5
+        },
+        {
+          "from": "out",
+          "to": "gain",
+          "type": "feedback_inhibitory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "photons",
+            "type": "sensory.visual",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "novelty",
+            "type": "sensory.visual.motion",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        5,
+        28
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "shunting_inhibition"
+      ],
+      "capability": [
+        "onset_detect",
+        "novelty_event",
+        "saccade_cue"
+      ],
+      "task_hint_pool": [
+        "novelty_detect",
+        "event_onset",
+        "change_point"
+      ],
+      "lead_task_hint": "novelty_ingest",
+      "neurotransmitter": [
+        "acetylcholine",
+        "glutamate"
+      ],
+      "species_source": [
+        "mouse",
+        "rabbit"
+      ],
+      "biological_reference": "Yonehara 2009; Zhang & Wu 2010",
+      "composable_with": [
+        "retinal_direction_selective_unit",
+        "visual_thalamic_relay_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "retinal_irradiance_unit",
+      "display": "视网膜辐照度单元",
+      "function": "irradiance_sensing",
+      "system": "sensory",
+      "description": "内在光敏节细胞直接被光驱动并缓慢持续放电，把环境亮度传给昼夜节律系统，不经图像通道。",
+      "members": [
+        {
+          "role": "iprgc",
+          "neuron": "melanopsin_ganglion",
+          "count_ratio": 0.55
+        },
+        {
+          "role": "slow_ac",
+          "neuron": "retinal_amacrine_acl2",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "r_gc",
+          "neuron": "retina_midget_gc",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "iprgc",
+          "to": "r_gc",
+          "type": "modulatory_diffuse",
+          "weight": 0.3
+        },
+        {
+          "from": "slow_ac",
+          "to": "iprgc",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "iprgc",
+          "to": "slow_ac",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "light",
+            "type": "sensory.visual",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "irradiance",
+            "type": "sensory.visual.irradiance",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        3,
+        20
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "modulatory_diffuse"
+      ],
+      "capability": [
+        "irradiance_sense",
+        "slow_luminance",
+        "circadian_drive"
+      ],
+      "task_hint_pool": [
+        "ambient_light",
+        "circadian_light_input",
+        "slow_luminance"
+      ],
+      "lead_task_hint": "irradiance_ingest",
+      "neurotransmitter": [
+        "glutamate"
+      ],
+      "species_source": [
+        "mouse",
+        "human"
+      ],
+      "biological_reference": "Hattar 2002; Do 2010",
+      "composable_with": [
+        "circadian_clock_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "olfactory_transduction_unit",
+      "display": "嗅觉转导单元",
+      "function": "olfaction",
+      "system": "sensory",
+      "description": "嗅感觉神经元表达单一受体，经局部抑制性中间神经元做增益归一化后输出气味身份信号。",
+      "members": [
+        {
+          "role": "osn",
+          "neuron": "olfactory_receptor",
+          "count_ratio": 0.5
+        },
+        {
+          "role": "local_inh",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "mitral",
+          "neuron": "pyramidal_l23",
+          "count_ratio": 0.3
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "osn",
+          "to": "mitral",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "osn",
+          "to": "local_inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "local_inh",
+          "to": "mitral",
+          "type": "lateral_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "mitral",
+          "to": "local_inh",
+          "type": "dendro_dendritic",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "odorant",
+            "type": "sensory.olfactory",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "odour_id",
+            "type": "sensory.olfactory",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        5,
+        48
+      ],
+      "motif_source": [
+        "dendro_dendritic",
+        "feedforward_excitatory",
+        "lateral_inhibitory"
+      ],
+      "capability": [
+        "odorant_encode",
+        "sparsify",
+        "gain_normalise"
+      ],
+      "task_hint_pool": [
+        "odour_encode",
+        "chemical_ingest",
+        "sparse_code"
+      ],
+      "lead_task_hint": "olfactory_ingest",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "fly",
+        "human"
+      ],
+      "biological_reference": "Buck & Axel 1991; Wilson & Mainen 2006",
+      "composable_with": [
+        "cortical_l4_input_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cochlear_amplification_unit",
+      "display": "耳蜗放大单元",
+      "function": "cochlear_amplification",
+      "system": "sensory",
+      "description": "外毛细胞的电致运动放大基底膜的微弱振动，是一段主动的机械增益级而非被动换能。",
+      "members": [
+        {
+          "role": "ohc",
+          "neuron": "cochlear_outer_hair",
+          "count_ratio": 0.55
+        },
+        {
+          "role": "relay",
+          "neuron": "brainstem_vpm",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "fb",
+          "neuron": "interneuron_sst",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "ohc",
+          "to": "relay",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "relay",
+          "to": "fb",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "fb",
+          "to": "ohc",
+          "type": "feedback_inhibitory",
+          "weight": 0.7
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "sound",
+            "type": "sensory.auditory",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "amplified",
+            "type": "sensory.auditory",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        3,
+        24
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedback_inhibitory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "mechanical_amplify",
+        "frequency_sharpen",
+        "active_gain"
+      ],
+      "task_hint_pool": [
+        "audio_ingest",
+        "frequency_select",
+        "active_amplification"
+      ],
+      "lead_task_hint": "auditory_ingest",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "human",
+        "bat"
+      ],
+      "biological_reference": "Brownell 1985; Ashmore 2008",
+      "composable_with": [
+        "auditory_thalamic_relay_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "vestibular_transduction_unit",
+      "display": "前庭转导单元",
+      "function": "vestibular_sensing",
+      "system": "sensory",
+      "description": "毛细胞把头部加速度转为放电，经前庭小脑叶做重力参考后再送往运动系统。",
+      "members": [
+        {
+          "role": "hair",
+          "neuron": "vestibular_hair",
+          "count_ratio": 0.5
+        },
+        {
+          "role": "vest_cb",
+          "neuron": "pyramidal_mayeret",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_calbindin",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "hair",
+          "to": "vest_cb",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "hair",
+          "to": "inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "inh",
+          "to": "vest_cb",
+          "type": "feedforward_inhibitory",
+          "weight": 0.7
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "acceleration",
+            "type": "sensory.vestibular",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "head_state",
+            "type": "sensory.vestibular",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        3,
+        22
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "feedforward_inhibitory"
+      ],
+      "capability": [
+        "acceleration_sense",
+        "gravity_reference",
+        "balance_reflex"
+      ],
+      "task_hint_pool": [
+        "balance_sense",
+        "orientation_track",
+        "posture_reflex"
+      ],
+      "lead_task_hint": "vestibular_ingest",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Goldberg 2012",
+      "composable_with": [
+        "cerebellar_cortical_unit",
+        "spinal_reflex_arc_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "somatosensory_dorsalhorn_unit",
+      "display": "躯体感觉背角单元",
+      "function": "somatosensation",
+      "system": "sensory",
+      "description": "痛觉与触觉传入在背角被甘氨酸能/回返性中间神经元预筛，形成门控式上行信号。",
+      "members": [
+        {
+          "role": "nociceptor",
+          "neuron": "spinal_nociceptor",
+          "count_ratio": 0.45
+        },
+        {
+          "role": "gly",
+          "neuron": "spinal_glycinergic",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "rebound",
+          "neuron": "spinal_interneuron_ih",
+          "count_ratio": 0.3
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "nociceptor",
+          "to": "rebound",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "gly",
+          "to": "rebound",
+          "type": "shunting_inhibition",
+          "weight": 0.9
+        },
+        {
+          "from": "rebound",
+          "to": "gly",
+          "type": "recurrent_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "rebound",
+          "to": "rebound",
+          "type": "autapse_recurrent",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "noxious",
+            "type": "sensory.nociceptive",
+            "required": true
+          },
+          {
+            "name": "touch",
+            "type": "sensory.somatosensory",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "ascending",
+            "type": "sensory.somatosensory",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        4,
+        30
+      ],
+      "motif_source": [
+        "autapse_recurrent",
+        "feedforward_excitatory",
+        "recurrent_excitatory",
+        "shunting_inhibition"
+      ],
+      "capability": [
+        "pain_gate",
+        "touch_encode",
+        "descending_control"
+      ],
+      "task_hint_pool": [
+        "pain_gate",
+        "somatic_encode",
+        "nociception_filter"
+      ],
+      "lead_task_hint": "somatosensory_ingest",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba",
+        "glycine"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Melzack & Wall 1965 (gate theory)",
+      "composable_with": [
+        "somatosensory_thalamic_relay_unit",
+        "spinal_reflex_arc_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "thalamocortical_relay_unit",
+      "display": "丘脑皮层中继单元",
+      "function": "thalamic_relay",
+      "system": "thalamus",
+      "description": "中继细胞把上行信号送皮层，网状核形成局部抑制回路控制『门开多大』，是皮层的准入关口。",
+      "members": [
+        {
+          "role": "relay",
+          "neuron": "thalamic_relay",
+          "count_ratio": 0.65
+        },
+        {
+          "role": "gate",
+          "neuron": "reticular_thalamic",
+          "count_ratio": 0.35
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "gate",
+          "to": "relay",
+          "type": "shunting_inhibition",
+          "weight": 0.9
+        },
+        {
+          "from": "relay",
+          "to": "gate",
+          "type": "feedback_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "relay",
+          "to": "relay",
+          "type": "recurrent_excitatory",
+          "weight": 0.35
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "ascending",
+            "type": "sensory.*",
+            "required": true
+          },
+          {
+            "name": "cortical_fb",
+            "type": "cortex.feedback",
+            "required": false
+          },
+          {
+            "name": "modulation",
+            "type": "modulatory.*",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "thalamic_out",
+            "type": "cortex.input",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        4,
+        26
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "recurrent_excitatory",
+        "shunting_inhibition"
+      ],
+      "capability": [
+        "relay",
+        "gate",
+        "synchronise",
+        "gain_set"
+      ],
+      "task_hint_pool": [
+        "sensory_relay",
+        "gate_control",
+        "cortical_drive"
+      ],
+      "lead_task_hint": "thalamic_relay",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque",
+        "human",
+        "ferret"
+      ],
+      "biological_reference": "Sherman & Guillery 2006",
+      "composable_with": [
+        "cortical_l4_input_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "visual_thalamic_relay_unit",
+      "display": "视觉丘脑中继单元",
+      "function": "visual_relay",
+      "system": "thalamus",
+      "description": "外膝体把视网膜信号按通道分流送往 V1，网状核调节中继增益与同步。",
+      "members": [
+        {
+          "role": "relay",
+          "neuron": "thalamic_lgn",
+          "count_ratio": 0.65
+        },
+        {
+          "role": "gate",
+          "neuron": "reticular_thalamic",
+          "count_ratio": 0.35
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "gate",
+          "to": "relay",
+          "type": "shunting_inhibition",
+          "weight": 0.9
+        },
+        {
+          "from": "relay",
+          "to": "gate",
+          "type": "feedback_excitatory",
+          "weight": 0.7
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "retina",
+            "type": "sensory.visual",
+            "required": true
+          },
+          {
+            "name": "cortical_fb",
+            "type": "cortex.feedback",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "lgn_out",
+            "type": "cortex.input",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        4,
+        24
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "shunting_inhibition"
+      ],
+      "capability": [
+        "visual_relay",
+        "channel_split",
+        "gain_set"
+      ],
+      "task_hint_pool": [
+        "visual_relay",
+        "channel_route",
+        "left_right_align"
+      ],
+      "lead_task_hint": "visual_relay",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "macaque",
+        "mouse",
+        "human"
+      ],
+      "biological_reference": "Usrey & Alitto 2015",
+      "composable_with": [
+        "cortical_l4_input_unit",
+        "retinal_direction_selective_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "auditory_thalamic_relay_unit",
+      "display": "听觉丘脑中继单元",
+      "function": "auditory_relay",
+      "system": "thalamus",
+      "description": "内侧膝状体按频率拓扑转发听觉信号，并由皮层下行反馈塑形。",
+      "members": [
+        {
+          "role": "relay",
+          "neuron": "thalamic_md",
+          "count_ratio": 0.65
+        },
+        {
+          "role": "gate",
+          "neuron": "reticular_thalamic",
+          "count_ratio": 0.35
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "gate",
+          "to": "relay",
+          "type": "shunting_inhibition",
+          "weight": 0.85
+        },
+        {
+          "from": "relay",
+          "to": "gate",
+          "type": "feedback_excitatory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "cochlea",
+            "type": "sensory.auditory",
+            "required": true
+          },
+          {
+            "name": "cortical_fb",
+            "type": "cortex.feedback",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "mgb_out",
+            "type": "cortex.input",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        4,
+        24
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "shunting_inhibition"
+      ],
+      "capability": [
+        "auditory_relay",
+        "tonotopy",
+        "cortical_shaping"
+      ],
+      "task_hint_pool": [
+        "auditory_relay",
+        "frequency_route",
+        "sound_localise"
+      ],
+      "lead_task_hint": "auditory_relay",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "bat",
+        "human"
+      ],
+      "biological_reference": "Lee & Sherman 2011",
+      "composable_with": [
+        "cortical_l4_input_unit",
+        "cochlear_amplification_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "somatosensory_thalamic_relay_unit",
+      "display": "体感丘脑中继单元",
+      "function": "somatosensory_relay",
+      "system": "thalamus",
+      "description": "VPL/VPM 分别中继躯干与面部的触觉/本体感觉，是体感拓扑映射的入口。",
+      "members": [
+        {
+          "role": "vpl",
+          "neuron": "lateral_geniculate_ventral",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "vpm",
+          "neuron": "lateral_geniculate_dorsal",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "trigeminal",
+          "neuron": "brainstem_vpm",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "gate",
+          "neuron": "reticular_thalamic",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "vpl",
+          "to": "gate",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "gate",
+          "to": "vpm",
+          "type": "shunting_inhibition",
+          "weight": 0.8
+        },
+        {
+          "from": "vpm",
+          "to": "gate",
+          "type": "feedback_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "trigeminal",
+          "to": "vpm",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "touch",
+            "type": "sensory.somatosensory",
+            "required": true
+          },
+          {
+            "name": "cortical_fb",
+            "type": "cortex.feedback",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "vplvpm_out",
+            "type": "cortex.input",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        5,
+        28
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "shunting_inhibition"
+      ],
+      "capability": [
+        "somatotopic_relay",
+        "touch_route",
+        "body_map"
+      ],
+      "task_hint_pool": [
+        "somatosensory_relay",
+        "body_map_route",
+        "touch_localise"
+      ],
+      "lead_task_hint": "somatosensory_relay",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "macaque",
+        "mouse",
+        "human"
+      ],
+      "biological_reference": "Jones 2007",
+      "composable_with": [
+        "cortical_l4_input_unit",
+        "somatosensory_dorsalhorn_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "motor_thalamic_relay_unit",
+      "display": "运动丘脑中继单元",
+      "function": "motor_relay",
+      "system": "thalamus",
+      "description": "VA/VL 把基底神经节与小脑的输出转给运动皮层，构成两条并行运动通路的共同出口。",
+      "members": [
+        {
+          "role": "va",
+          "neuron": "thalamic_va",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "vl",
+          "neuron": "thalamic_vl",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "gate",
+          "neuron": "reticular_thalamic",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "gate",
+          "to": "va",
+          "type": "shunting_inhibition",
+          "weight": 0.8
+        },
+        {
+          "from": "gate",
+          "to": "vl",
+          "type": "shunting_inhibition",
+          "weight": 0.8
+        },
+        {
+          "from": "va",
+          "to": "gate",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "vl",
+          "to": "gate",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "basal_ganglia",
+            "type": "basal_ganglia.command",
+            "required": true
+          },
+          {
+            "name": "cerebellum",
+            "type": "cerebellar.output",
+            "required": true
+          },
+          {
+            "name": "cortical_fb",
+            "type": "cortex.feedback",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "motor_thalamic_out",
+            "type": "cortex.output",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        5,
+        30
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "shunting_inhibition"
+      ],
+      "capability": [
+        "motor_relay",
+        "pathway_merge",
+        "gain_set"
+      ],
+      "task_hint_pool": [
+        "motor_relay",
+        "action_gate",
+        "command_route"
+      ],
+      "lead_task_hint": "motor_relay",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "macaque",
+        "mouse",
+        "human"
+      ],
+      "biological_reference": "Alexander & Crutcher 1990",
+      "composable_with": [
+        "cortical_l5_output_unit",
+        "basal_ganglia_selection_unit",
+        "cerebellar_cortical_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cortical_l4_input_unit",
+      "display": "皮层 L4 输入单元",
+      "function": "cortical_input",
+      "system": "cortex",
+      "description": "第 4 层接受丘脑输入并立刻被 PV/SST 中间神经元做前馈抑制，把持续输入变成稀疏的时间窗响应。",
+      "members": [
+        {
+          "role": "main",
+          "neuron": "pyramidal_l4",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "b_style",
+          "neuron": "pyramidal_l4b",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "c_style",
+          "neuron": "pyramidal_l4c",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "pv",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.18
+        },
+        {
+          "role": "sst",
+          "neuron": "interneuron_sst",
+          "count_ratio": 0.12
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "main",
+          "to": "pv",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "pv",
+          "to": "main",
+          "type": "axo_somatic",
+          "weight": 1.0
+        },
+        {
+          "from": "main",
+          "to": "sst",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "sst",
+          "to": "b_style",
+          "type": "dendritic_inhibitory_synapse",
+          "weight": 0.7
+        },
+        {
+          "from": "b_style",
+          "to": "c_style",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "thalamic_in",
+            "type": "cortex.input",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "l4_out",
+            "type": "cortex.association",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        8,
+        60
+      ],
+      "motif_source": [
+        "axo_somatic",
+        "dendritic_inhibitory_synapse",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "sensory_ingest",
+        "temporal_sharpen",
+        "sparsify",
+        "feedforward_inhibit"
+      ],
+      "task_hint_pool": [
+        "sensory_ingest",
+        "temporal_sharpen",
+        "stimulus_lock"
+      ],
+      "lead_task_hint": "cortical_input",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Douglas & Martin 2004; Feldmeyer 2012",
+      "composable_with": [
+        "cortical_l23_association_unit",
+        "thalamocortical_relay_unit",
+        "cortical_inhibitory_gain_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cortical_l23_association_unit",
+      "display": "皮层 L2/3 联合单元",
+      "function": "cortical_association",
+      "system": "cortex",
+      "description": "第 2/3 层在皮层内横向联合，VIP 去抑制让 SST 松开树突，形成可切换的关联态。",
+      "members": [
+        {
+          "role": "main",
+          "neuron": "pyramidal_l23",
+          "count_ratio": 0.26
+        },
+        {
+          "role": "exec",
+          "neuron": "pyramidal_l23_cx1",
+          "count_ratio": 0.18
+        },
+        {
+          "role": "plan",
+          "neuron": "pyramidal_l23_cx5",
+          "count_ratio": 0.14
+        },
+        {
+          "role": "pv",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.16
+        },
+        {
+          "role": "sst",
+          "neuron": "interneuron_sst",
+          "count_ratio": 0.14
+        },
+        {
+          "role": "vip",
+          "neuron": "interneuron_vip",
+          "count_ratio": 0.12
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "main",
+          "to": "pv",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "pv",
+          "to": "main",
+          "type": "axo_somatic",
+          "weight": 0.9
+        },
+        {
+          "from": "vip",
+          "to": "sst",
+          "type": "disinhibition",
+          "weight": 0.9
+        },
+        {
+          "from": "sst",
+          "to": "main",
+          "type": "dendritic_inhibitory_synapse",
+          "weight": 0.8
+        },
+        {
+          "from": "main",
+          "to": "exec",
+          "type": "lateral_feedback",
+          "weight": 0.6
+        },
+        {
+          "from": "exec",
+          "to": "plan",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "main",
+          "to": "main",
+          "type": "recurrent_excitatory",
+          "weight": 0.55
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "l4_in",
+            "type": "cortex.input",
+            "required": true
+          },
+          {
+            "name": "top_down",
+            "type": "cortex.feedback",
+            "required": false
+          },
+          {
+            "name": "gate",
+            "type": "arousal.state",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "assoc_out",
+            "type": "cortex.association",
+            "required": true
+          },
+          {
+            "name": "exec_out",
+            "type": "cortex.output",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        10,
+        80
+      ],
+      "motif_source": [
+        "axo_somatic",
+        "dendritic_inhibitory_synapse",
+        "disinhibition",
+        "feedforward_excitatory",
+        "lateral_feedback",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "associate",
+        "bind",
+        "switch_state",
+        "context_gate"
+      ],
+      "task_hint_pool": [
+        "cross_domain_bridge",
+        "context_bind",
+        "state_switch",
+        "factor_combine"
+      ],
+      "lead_task_hint": "cortical_association",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba",
+        "vip"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Harris & Mrsic-Flogel 2013; Pi 2013",
+      "composable_with": [
+        "cortical_l4_input_unit",
+        "cortical_l5_output_unit",
+        "cortical_l6_feedback_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cortical_l5_output_unit",
+      "display": "皮层 L5 输出单元",
+      "function": "cortical_output",
+      "system": "cortex",
+      "description": "第 5 层是皮层唯一的皮层下出口，粗树突细胞同时投向多个下游并带 KCN 型适应调控持续输出。",
+      "members": [
+        {
+          "role": "main",
+          "neuron": "pyramidal_l5",
+          "count_ratio": 0.32
+        },
+        {
+          "role": "tuft",
+          "neuron": "pyramidal_l5bt",
+          "count_ratio": 0.22
+        },
+        {
+          "role": "pv",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.16
+        },
+        {
+          "role": "soma_inh",
+          "neuron": "interneuron_sst_somatic",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "adapt",
+          "neuron": "interneuron_kcn",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "main",
+          "to": "pv",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "pv",
+          "to": "main",
+          "type": "axo_somatic",
+          "weight": 1.0
+        },
+        {
+          "from": "soma_inh",
+          "to": "main",
+          "type": "recurrent_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "main",
+          "to": "adapt",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "adapt",
+          "to": "main",
+          "type": "shunting_inhibition",
+          "weight": 0.7
+        },
+        {
+          "from": "tuft",
+          "to": "main",
+          "type": "dendritic_computation",
+          "weight": 0.8
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "l23_in",
+            "type": "cortex.association",
+            "required": true
+          },
+          {
+            "name": "thalamic_fb",
+            "type": "cortex.input",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "descending",
+            "type": "cortex.output",
+            "required": true
+          },
+          {
+            "name": "ataxia_copy",
+            "type": "motor.command",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        10,
+        70
+      ],
+      "motif_source": [
+        "axo_somatic",
+        "dendritic_computation",
+        "feedforward_excitatory",
+        "recurrent_inhibitory",
+        "shunting_inhibition"
+      ],
+      "capability": [
+        "descend",
+        "command",
+        "adapt",
+        "multi_target_output"
+      ],
+      "task_hint_pool": [
+        "action_dispatch",
+        "command_route",
+        "output_gate",
+        "commit_action"
+      ],
+      "lead_task_hint": "cortical_output",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Manya & Sakmann 2006; Larkum 2013",
+      "composable_with": [
+        "motor_thalamic_relay_unit",
+        "cortical_l23_association_unit",
+        "spinal_reflex_arc_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cortical_l6_feedback_unit",
+      "display": "皮层 L6 反馈单元",
+      "function": "cortical_feedback",
+      "system": "cortex",
+      "description": "第 6 层双投射细胞把皮层状态回送丘脑，其中一类专门调丘脑中继增益、另一类回皮层内其他层。",
+      "members": [
+        {
+          "role": "it",
+          "neuron": "pyramidal_l6_it",
+          "count_ratio": 0.55
+        },
+        {
+          "role": "rt",
+          "neuron": "pyramidal_l6rt",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_npf",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "it",
+          "to": "rt",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "rt",
+          "to": "it",
+          "type": "recurrent_inhibitory",
+          "weight": 0.6
+        },
+        {
+          "from": "inh",
+          "to": "it",
+          "type": "lateral_inhibitory",
+          "weight": 0.7
+        },
+        {
+          "from": "it",
+          "to": "it",
+          "type": "short_term_plasticity",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "l23_in",
+            "type": "cortex.association",
+            "required": true
+          },
+          {
+            "name": "l5_in",
+            "type": "cortex.output",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "corticothalamic",
+            "type": "cortex.feedback",
+            "required": true
+          },
+          {
+            "name": "intracortical",
+            "type": "cortex.association",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        5,
+        34
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "lateral_inhibitory",
+        "recurrent_inhibitory",
+        "short_term_plasticity"
+      ],
+      "capability": [
+        "top_down",
+        "gain_control",
+        "predictive_regulate"
+      ],
+      "task_hint_pool": [
+        "top_down_regulate",
+        "predictive_error",
+        "gain_set"
+      ],
+      "lead_task_hint": "cortical_feedback",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque"
+      ],
+      "biological_reference": "Thomson 2010; Olsen 2012",
+      "composable_with": [
+        "thalamocortical_relay_unit",
+        "cortical_l23_association_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cortical_inhibitory_gain_unit",
+      "display": "皮层抑制增益单元",
+      "function": "inhibitory_gain_control",
+      "system": "cortex",
+      "description": "PV/SST/VIP/chandelier/basket/NPH 六类中间神经元分工——胞体、树突、轴突起始段各有一个刹车位点，合起来是皮层增益控制器。",
+      "members": [
+        {
+          "role": "pv",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.22
+        },
+        {
+          "role": "sst",
+          "neuron": "interneuron_sst",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "vip",
+          "neuron": "interneuron_vip",
+          "count_ratio": 0.14
+        },
+        {
+          "role": "chand",
+          "neuron": "interneuron_chandelier",
+          "count_ratio": 0.1
+        },
+        {
+          "role": "basket",
+          "neuron": "interneuron_basket",
+          "count_ratio": 0.16
+        },
+        {
+          "role": "nph",
+          "neuron": "interneuron_nph",
+          "count_ratio": 0.18
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "vip",
+          "to": "sst",
+          "type": "disinhibition",
+          "weight": 1.0
+        },
+        {
+          "from": "sst",
+          "to": "pv",
+          "type": "mutual_inhibitory",
+          "weight": 0.5
+        },
+        {
+          "from": "pv",
+          "to": "chand",
+          "type": "gap_junction_inhibitory",
+          "weight": 0.4
+        },
+        {
+          "from": "basket",
+          "to": "pv",
+          "type": "gap_junction_sync",
+          "weight": 0.5
+        },
+        {
+          "from": "nph",
+          "to": "sst",
+          "type": "disinhibition",
+          "weight": 0.7
+        },
+        {
+          "from": "chand",
+          "to": "basket",
+          "type": "feedforward_inhibitory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "excitatory_drive",
+            "type": "cortex.association",
+            "required": true
+          },
+          {
+            "name": "state",
+            "type": "arousal.state",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "inhibitory_tone",
+            "type": "cortex.interneuron",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        12,
+        90
+      ],
+      "motif_source": [
+        "disinhibition",
+        "feedforward_inhibitory",
+        "gap_junction_inhibitory",
+        "gap_junction_sync",
+        "mutual_inhibitory"
+      ],
+      "capability": [
+        "gain_control",
+        "shunt",
+        "disinhibit",
+        "rhythm_generate"
+      ],
+      "task_hint_pool": [
+        "gain_regulate",
+        "stability_brake",
+        "rhythm_clock",
+        "state_gate"
+      ],
+      "lead_task_hint": "inhibitory_gain",
+      "neurotransmitter": [
+        "gaba",
+        "vip",
+        "somatostatin"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Markram 2004; Tremblay 2016; Gouwens 2020",
+      "composable_with": [
+        "cortical_l4_input_unit",
+        "cortical_l23_association_unit",
+        "cortical_l5_output_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cortical_highorder_integration_unit",
+      "display": "高阶皮层整合单元",
+      "function": "multimodal_integration",
+      "system": "cortex",
+      "description": "第 7 层与长程抑制细胞构成跨模态汇聚区，把来自不同通道的信号在同一群体内做高阶绑定。",
+      "members": [
+        {
+          "role": "main",
+          "neuron": "pyramidal_l7",
+          "count_ratio": 0.6
+        },
+        {
+          "role": "lri",
+          "neuron": "interneuron_vlac",
+          "count_ratio": 0.22
+        },
+        {
+          "role": "slow",
+          "neuron": "interneuron_npf",
+          "count_ratio": 0.18
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "lri",
+          "to": "main",
+          "type": "lateral_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "slow",
+          "to": "main",
+          "type": "recurrent_inhibitory",
+          "weight": 0.6
+        },
+        {
+          "from": "main",
+          "to": "lri",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "main",
+          "to": "main",
+          "type": "recurrent_excitatory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "modality_a",
+            "type": "cortex.association",
+            "required": true
+          },
+          {
+            "name": "modality_b",
+            "type": "cortex.association",
+            "required": true
+          },
+          {
+            "name": "top_down",
+            "type": "cortex.feedback",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "integrated",
+            "type": "cortex.output",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        8,
+        56
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "lateral_inhibitory",
+        "recurrent_excitatory",
+        "recurrent_inhibitory"
+      ],
+      "capability": [
+        "multimodal_bind",
+        "high_order_represent",
+        "cross_modal_arbitrate"
+      ],
+      "task_hint_pool": [
+        "cross_domain_bridge",
+        "multimodal_fuse",
+        "high_order_abstract"
+      ],
+      "lead_task_hint": "high_order_integration",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "human",
+        "macaque"
+      ],
+      "biological_reference": "Molyneaux 2007; Hilgetag & Goulas 2020",
+      "composable_with": [
+        "cortical_l23_association_unit",
+        "cortical_l5_output_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cerebellar_cortical_unit",
+      "display": "小脑皮层单元",
+      "function": "cerebellar_processing",
+      "system": "cerebellum",
+      "description": "苔藓纤维把输入扩到海量颗粒细胞，浦肯野细胞汇聚后经星形/篮状细胞做侧抑制，是『超稀疏展开 + 强收敛』的经典结构。",
+      "members": [
+        {
+          "role": "granule",
+          "neuron": "cerebellar_granule",
+          "count_ratio": 0.5
+        },
+        {
+          "role": "purkinje",
+          "neuron": "cerebellar_purkinje",
+          "count_ratio": 0.16
+        },
+        {
+          "role": "stellate",
+          "neuron": "cerebellar_stellate",
+          "count_ratio": 0.14
+        },
+        {
+          "role": "calb",
+          "neuron": "interneuron_calbindin",
+          "count_ratio": 0.1
+        },
+        {
+          "role": "lamp",
+          "neuron": "interneuron_lamp",
+          "count_ratio": 0.1
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "granule",
+          "to": "purkinje",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "granule",
+          "to": "stellate",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "granule",
+          "to": "calb",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "stellate",
+          "to": "purkinje",
+          "type": "lateral_inhibitory",
+          "weight": 0.9
+        },
+        {
+          "from": "calb",
+          "to": "purkinje",
+          "type": "feedforward_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "lamp",
+          "to": "purkinje",
+          "type": "lateral_inhibitory",
+          "weight": 1.0
+        },
+        {
+          "from": "granule",
+          "to": "granule",
+          "type": "recurrent_excitatory",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "mossy_fibre",
+            "type": "cerebellar.input",
+            "required": true
+          },
+          {
+            "name": "teaching",
+            "type": "error.teaching",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "purkinje_out",
+            "type": "cerebellar.output",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        14,
+        120
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "feedforward_inhibitory",
+        "lateral_inhibitory",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "expand",
+        "converge",
+        "lateral_inhibit",
+        "motor_refine"
+      ],
+      "task_hint_pool": [
+        "signal_expand",
+        "feature_converge",
+        "fine_regulate",
+        "motor_refine"
+      ],
+      "lead_task_hint": "cerebellar_process",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Eccles 1967; Ito 2006",
+      "composable_with": [
+        "cerebellar_error_teaching_unit",
+        "motor_thalamic_relay_unit",
+        "vestibular_transduction_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cerebellar_error_teaching_unit",
+      "display": "小脑误差教学单元",
+      "function": "error_teaching",
+      "system": "cerebellum",
+      "description": "下橄榄的攀爬纤维把运动误差以强全或无信号送到浦肯野细胞，触发 LTD 修正颗粒-浦肯野权重，是监督学习的生理实现。",
+      "members": [
+        {
+          "role": "olive",
+          "neuron": "inferior_olive",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "purkinje",
+          "neuron": "cerebellar_purkinje",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "granule",
+          "neuron": "cerebellar_granule",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "olive",
+          "to": "purkinje",
+          "type": "ltp_ltd",
+          "weight": 1.0
+        },
+        {
+          "from": "olive",
+          "to": "granule",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "granule",
+          "to": "purkinje",
+          "type": "stdp_rule",
+          "weight": 0.8
+        },
+        {
+          "from": "purkinje",
+          "to": "olive",
+          "type": "feedback_inhibitory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "error",
+            "type": "error.teaching",
+            "required": true
+          },
+          {
+            "name": "context",
+            "type": "cerebellar.input",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "corrected",
+            "type": "cerebellar.output",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        5,
+        40
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "ltp_ltd",
+        "stdp_rule"
+      ],
+      "capability": [
+        "supervised_learn",
+        "error_correct",
+        "credit_assign"
+      ],
+      "task_hint_pool": [
+        "supervised_finetune",
+        "error_correct",
+        "weight_repair"
+      ],
+      "lead_task_hint": "error_teaching",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Ito 1982; De Zeeuw 2011",
+      "composable_with": [
+        "cerebellar_cortical_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "hippocampal_trisynaptic_unit",
+      "display": "海马三突触回路单元",
+      "function": "episodic_memory",
+      "system": "hippocampus",
+      "description": "内嗅→齿状回→CA3→CA1 三站：齿状回做模式分离、CA3 做自联想、CA1 做输出比较，是情景记忆的最小环。",
+      "members": [
+        {
+          "role": "dg",
+          "neuron": "hippocampal_granule",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "ca3",
+          "neuron": "hippocampal_ca3",
+          "count_ratio": 0.32
+        },
+        {
+          "role": "ca1",
+          "neuron": "hippocampal_ca1",
+          "count_ratio": 0.28
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "dg",
+          "to": "ca3",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "ca3",
+          "to": "ca1",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "ca3",
+          "to": "ca3",
+          "type": "recurrent_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "ca1",
+          "to": "ca3",
+          "type": "feedback_inhibitory",
+          "weight": 0.5
+        },
+        {
+          "from": "dg",
+          "to": "dg",
+          "type": "feedforward_inhibitory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "ec_in",
+            "type": "hippocampal.input",
+            "required": true
+          },
+          {
+            "name": "theta",
+            "type": "rhythm.theta",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "ca1_out",
+            "type": "hippocampal.output",
+            "required": true
+          },
+          {
+            "name": "engram",
+            "type": "hippocampal.engram",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        12,
+        90
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "feedforward_inhibitory",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "pattern_separate",
+        "auto_associate",
+        "episodic_encode",
+        "pattern_complete"
+      ],
+      "task_hint_pool": [
+        "memory_encode",
+        "pattern_complete",
+        "episode_bind",
+        "recall_cue"
+      ],
+      "lead_task_hint": "episodic_memory",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Andersen 1971; Rolls 2013",
+      "composable_with": [
+        "entorhinal_spatial_map_unit",
+        "hippocampal_output_unit",
+        "septo_hippocampal_theta_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "hippocampal_ca2_autoassoc_unit",
+      "display": "海马 CA2 自联想单元",
+      "function": "social_stress_memory",
+      "system": "hippocampus",
+      "description": "CA2 缺少典型三突触输入但接收 CA4/CA3 汇入，参与社会记忆与应激响应的特殊亚区。",
+      "members": [
+        {
+          "role": "ca2",
+          "neuron": "hippocampal_ca2",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "ca4",
+          "neuron": "hippocampal_ca4",
+          "count_ratio": 0.32
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_npf",
+          "count_ratio": 0.28
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "ca4",
+          "to": "ca2",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "ca2",
+          "to": "ca2",
+          "type": "recurrent_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "inh",
+          "to": "ca2",
+          "type": "recurrent_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "ca2",
+          "to": "inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "ca3_in",
+            "type": "hippocampal.engram",
+            "required": true
+          },
+          {
+            "name": "stress",
+            "type": "arousal.state",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "ca2_out",
+            "type": "hippocampal.output",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        6,
+        40
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "recurrent_excitatory",
+        "recurrent_inhibitory"
+      ],
+      "capability": [
+        "social_encode",
+        "stress_gate",
+        "associate_context"
+      ],
+      "task_hint_pool": [
+        "social_memory",
+        "stress_modulate",
+        "context_associate"
+      ],
+      "lead_task_hint": "social_memory",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque"
+      ],
+      "biological_reference": "Dudek 2016; Hitti & Siegelbaum 2014",
+      "composable_with": [
+        "hippocampal_trisynaptic_unit",
+        "amygdala_fear_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "hippocampal_output_unit",
+      "display": "海马输出单元",
+      "function": "memory_readout",
+      "system": "hippocampus",
+      "description": "下托整合 CA1 与内嗅的输入并决定往哪个皮层区回送记忆，是记忆读出的路由级。",
+      "members": [
+        {
+          "role": "sub",
+          "neuron": "hippocampal_subiculum",
+          "count_ratio": 0.55
+        },
+        {
+          "role": "ca1",
+          "neuron": "hippocampal_ca1",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_vlac",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "ca1",
+          "to": "sub",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "inh",
+          "to": "sub",
+          "type": "lateral_inhibitory",
+          "weight": 0.7
+        },
+        {
+          "from": "sub",
+          "to": "sub",
+          "type": "recurrent_excitatory",
+          "weight": 0.4
+        },
+        {
+          "from": "sub",
+          "to": "inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "ca1_in",
+            "type": "hippocampal.output",
+            "required": true
+          },
+          {
+            "name": "ec_in",
+            "type": "hippocampal.input",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "cortical_readout",
+            "type": "cortex.input",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        5,
+        38
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "lateral_inhibitory",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "route_readout",
+        "context_reinstate",
+        "memory_dispatch"
+      ],
+      "task_hint_pool": [
+        "memory_readout",
+        "context_reinstate",
+        "recall_route"
+      ],
+      "lead_task_hint": "memory_readout",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "mouse",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Witter 2006; Naber 2001",
+      "composable_with": [
+        "hippocampal_trisynaptic_unit",
+        "cortical_l23_association_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "entorhinal_spatial_map_unit",
+      "display": "内嗅空间地图单元",
+      "function": "spatial_map",
+      "system": "entorhinal",
+      "description": "网格细胞的六边形周期放电与位置/头向细胞共同构成自定位坐标系，是空间记忆的度量基。",
+      "members": [
+        {
+          "role": "grid",
+          "neuron": "grid_cell",
+          "count_ratio": 0.6
+        },
+        {
+          "role": "dg",
+          "neuron": "hippocampal_granule",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_sst",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "grid",
+          "to": "dg",
+          "type": "topographic_mapping",
+          "weight": 1.0
+        },
+        {
+          "from": "grid",
+          "to": "inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "inh",
+          "to": "grid",
+          "type": "lateral_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "grid",
+          "to": "grid",
+          "type": "temporal_coherence",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "self_motion",
+            "type": "sensory.vestibular",
+            "required": true
+          },
+          {
+            "name": "theta",
+            "type": "rhythm.theta",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "spatial_code",
+            "type": "spatial.map",
+            "required": true
+          },
+          {
+            "name": "ec_out",
+            "type": "hippocampal.input",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        8,
+        60
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "lateral_inhibitory",
+        "temporal_coherence",
+        "topographic_mapping"
+      ],
+      "capability": [
+        "metric_map",
+        "path_integrate",
+        "self_locate"
+      ],
+      "task_hint_pool": [
+        "spatial_locate",
+        "path_integrate",
+        "coordinate_frame"
+      ],
+      "lead_task_hint": "spatial_map",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "rat",
+        "mouse",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Moser 2008; Hafting 2005",
+      "composable_with": [
+        "hippocampal_trisynaptic_unit",
+        "vestibular_transduction_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "striatal_direct_pathway_unit",
+      "display": "纹状体直接通路单元",
+      "function": "action_facilitation",
+      "system": "basal_ganglia",
+      "description": "D1 型 MSN 在 dopamine 到达时被易化，抑制苍白球内侧部，从而松开一个动作的刹车。",
+      "members": [
+        {
+          "role": "d1",
+          "neuron": "striatum_d1_msn",
+          "count_ratio": 0.7
+        },
+        {
+          "role": "da",
+          "neuron": "dopaminergic_snc",
+          "count_ratio": 0.3
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "da",
+          "to": "d1",
+          "type": "modulatory_diffuse",
+          "weight": 1.0
+        },
+        {
+          "from": "d1",
+          "to": "d1",
+          "type": "recurrent_inhibitory",
+          "weight": 0.7
+        },
+        {
+          "from": "d1",
+          "to": "da",
+          "type": "feedback_excitatory",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "cortical_in",
+            "type": "cortex.output",
+            "required": true
+          },
+          {
+            "name": "value",
+            "type": "basal_ganglia.value",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "go_signal",
+            "type": "basal_ganglia.command",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        5,
+        34
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "modulatory_diffuse",
+        "recurrent_inhibitory"
+      ],
+      "capability": [
+        "facilitate",
+        "gate_open",
+        "value_gated_action"
+      ],
+      "task_hint_pool": [
+        "action_facilitate",
+        "go_gate",
+        "value_gate"
+      ],
+      "lead_task_hint": "action_facilitate",
+      "neurotransmitter": [
+        "gaba",
+        "dopamine"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Gerfen & Surmeier 2011",
+      "composable_with": [
+        "basal_ganglia_selection_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "striatal_indirect_pathway_unit",
+      "display": "纹状体间接通路单元",
+      "function": "action_suppression",
+      "system": "basal_ganglia",
+      "description": "D2 型 MSN 在 dopamine 缺席时活跃，经 STN 兴奋 GPi，给不该做的动作加刹车。",
+      "members": [
+        {
+          "role": "d2",
+          "neuron": "striatum_d2_msn",
+          "count_ratio": 0.55
+        },
+        {
+          "role": "stn",
+          "neuron": "subthalamic_nucleus",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "da",
+          "neuron": "dopaminergic_a9_snr",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "d2",
+          "to": "stn",
+          "type": "feedforward_inhibitory",
+          "weight": 0.9
+        },
+        {
+          "from": "stn",
+          "to": "d2",
+          "type": "feedback_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "da",
+          "to": "d2",
+          "type": "modulatory_diffuse",
+          "weight": 1.0
+        },
+        {
+          "from": "stn",
+          "to": "stn",
+          "type": "recurrent_excitatory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "cortical_in",
+            "type": "cortex.output",
+            "required": true
+          },
+          {
+            "name": "value",
+            "type": "basal_ganglia.value",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "no_go_signal",
+            "type": "basal_ganglia.command",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        5,
+        34
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_inhibitory",
+        "modulatory_diffuse",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "suppress",
+        "gate_close",
+        "conflict_hold"
+      ],
+      "task_hint_pool": [
+        "action_suppress",
+        "no_go_gate",
+        "conflict_hold"
+      ],
+      "lead_task_hint": "action_suppress",
+      "neurotransmitter": [
+        "gaba",
+        "glutamate",
+        "dopamine"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Albin 1989; DeLong 1990",
+      "composable_with": [
+        "basal_ganglia_selection_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "basal_ganglia_selection_unit",
+      "display": "基底神经节动作选择单元",
+      "function": "action_selection",
+      "system": "basal_ganglia",
+      "description": "直接/间接双通路相互竞争，多巴胺同时调节两侧增益——净输出是对候选动作的赢者通吃式选择。",
+      "members": [
+        {
+          "role": "d1",
+          "neuron": "striatum_d1_msn",
+          "count_ratio": 0.32
+        },
+        {
+          "role": "d2",
+          "neuron": "striatum_d2_msn",
+          "count_ratio": 0.28
+        },
+        {
+          "role": "stn",
+          "neuron": "subthalamic_nucleus",
+          "count_ratio": 0.14
+        },
+        {
+          "role": "da",
+          "neuron": "dopaminergic_a9_snr",
+          "count_ratio": 0.12
+        },
+        {
+          "role": "out",
+          "neuron": "thalamic_va",
+          "count_ratio": 0.14
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "d1",
+          "to": "stn",
+          "type": "mutual_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "d2",
+          "to": "stn",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "stn",
+          "to": "out",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "d1",
+          "to": "out",
+          "type": "winner_take_all",
+          "weight": 0.9
+        },
+        {
+          "from": "da",
+          "to": "d1",
+          "type": "modulatory_diffuse",
+          "weight": 1.0
+        },
+        {
+          "from": "da",
+          "to": "d2",
+          "type": "modulatory_diffuse",
+          "weight": 0.9
+        },
+        {
+          "from": "d1",
+          "to": "d2",
+          "type": "mutual_inhibitory",
+          "weight": 0.9
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "candidates",
+            "type": "cortex.output",
+            "required": true
+          },
+          {
+            "name": "value",
+            "type": "basal_ganglia.value",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "selected_action",
+            "type": "basal_ganglia.command",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        10,
+        70
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "modulatory_diffuse",
+        "mutual_inhibitory",
+        "winner_take_all"
+      ],
+      "capability": [
+        "select_action",
+        "resolve_conflict",
+        "value_gate",
+        "arbitrate"
+      ],
+      "task_hint_pool": [
+        "action_select",
+        "candidate_arbitrate",
+        "winner_pick",
+        "decision_commit"
+      ],
+      "lead_task_hint": "action_selection",
+      "neurotransmitter": [
+        "gaba",
+        "glutamate",
+        "dopamine"
+      ],
+      "species_source": [
+        "macaque",
+        "mouse",
+        "human"
+      ],
+      "biological_reference": "Mink 1996; Redgrave 1999",
+      "composable_with": [
+        "striatal_direct_pathway_unit",
+        "striatal_indirect_pathway_unit",
+        "motor_thalamic_relay_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "amygdala_fear_unit",
+      "display": "杏仁核恐惧单元",
+      "function": "threat_learning",
+      "system": "limbic",
+      "description": "外侧杏仁核接收感觉输入，基底外侧核做威胁关联学习，输出条件性恐惧反应。",
+      "members": [
+        {
+          "role": "la",
+          "neuron": "amygdala_lateral",
+          "count_ratio": 0.45
+        },
+        {
+          "role": "bla",
+          "neuron": "amygdala_bla",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_pv",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "la",
+          "to": "bla",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "inh",
+          "to": "bla",
+          "type": "feedforward_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "bla",
+          "to": "la",
+          "type": "feedback_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "bla",
+          "to": "bla",
+          "type": "ltp_ltd",
+          "weight": 0.7
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "sensory_in",
+            "type": "cortex.association",
+            "required": true
+          },
+          {
+            "name": "threat",
+            "type": "sensory.nociceptive",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "fear_out",
+            "type": "limbic.fear",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        6,
+        42
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "feedforward_inhibitory",
+        "ltp_ltd"
+      ],
+      "capability": [
+        "threat_associate",
+        "fear_condition",
+        "safety_gate"
+      ],
+      "task_hint_pool": [
+        "threat_detect",
+        "risk_associate",
+        "aversion_learn"
+      ],
+      "lead_task_hint": "threat_learning",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "rat",
+        "mouse",
+        "human"
+      ],
+      "biological_reference": "LeDoux 2000; Sah 2003",
+      "composable_with": [
+        "hippocampal_ca2_autoassoc_unit",
+        "somatosensory_dorsalhorn_unit",
+        "hypothalamic_arousal_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "septo_hippocampal_theta_unit",
+      "display": "隔-海马 theta 节律单元",
+      "function": "theta_rhythm",
+      "system": "limbic",
+      "description": "隔核与斜角带胆碱能细胞给海马提供 theta 节律驱动，是记忆编码与检索的时间基准。",
+      "members": [
+        {
+          "role": "septum",
+          "neuron": "septum",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "cholinergic",
+          "neuron": "cholinergic_mt",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "ca1",
+          "neuron": "hippocampal_ca1",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "slow_inh",
+          "neuron": "interneuron_npf",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "septum",
+          "to": "cholinergic",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "cholinergic",
+          "to": "ca1",
+          "type": "modulatory_diffuse",
+          "weight": 1.0
+        },
+        {
+          "from": "slow_inh",
+          "to": "ca1",
+          "type": "recurrent_inhibitory",
+          "weight": 0.8
+        },
+        {
+          "from": "septum",
+          "to": "slow_inh",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "septum",
+          "to": "septum",
+          "type": "mutual_inhibitory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "arousal",
+            "type": "arousal.state",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "theta_out",
+            "type": "rhythm.theta",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        6,
+        44
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "modulatory_diffuse",
+        "mutual_inhibitory",
+        "recurrent_inhibitory"
+      ],
+      "capability": [
+        "pace",
+        "phase_align",
+        "encode_timing"
+      ],
+      "task_hint_pool": [
+        "rhythm_pace",
+        "phase_align",
+        "temporal_benchmark"
+      ],
+      "lead_task_hint": "theta_pace",
+      "neurotransmitter": [
+        "gaba",
+        "acetylcholine"
+      ],
+      "species_source": [
+        "rat",
+        "mouse",
+        "macaque"
+      ],
+      "biological_reference": "Buzsaki 2002; Colgin 2016",
+      "composable_with": [
+        "hippocampal_trisynaptic_unit",
+        "hypothalamic_arousal_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "hypothalamic_arousal_unit",
+      "display": "下丘脑觉醒单元",
+      "function": "arousal_stability",
+      "system": "hypothalamus",
+      "description": "食欲素、组胺、去甲肾上腺素三路共同维持清醒稳定：食欲素缺失导致状态切换不稳（发作性睡病）。",
+      "members": [
+        {
+          "role": "orexin",
+          "neuron": "orexin_neuron",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "histamine",
+          "neuron": "histaminergic_tm",
+          "count_ratio": 0.32
+        },
+        {
+          "role": "ne",
+          "neuron": "noradrenergic_lc",
+          "count_ratio": 0.28
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "orexin",
+          "to": "histamine",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "orexin",
+          "to": "ne",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "histamine",
+          "to": "orexin",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "ne",
+          "to": "histamine",
+          "type": "mutual_inhibitory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "circadian",
+            "type": "rhythm.circadian",
+            "required": true
+          },
+          {
+            "name": "sleep_pressure",
+            "type": "arousal.state",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "arousal_out",
+            "type": "arousal.state",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        4,
+        30
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "mutual_inhibitory"
+      ],
+      "capability": [
+        "stabilise_state",
+        "wake_drive",
+        "flip_flop_stabilise"
+      ],
+      "task_hint_pool": [
+        "state_stabilise",
+        "wake_drive",
+        "mode_switch"
+      ],
+      "lead_task_hint": "arousal_stability",
+      "neurotransmitter": [
+        "orexin",
+        "histamine",
+        "noradrenaline"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Saper 2005; de Lecea 1998",
+      "composable_with": [
+        "circadian_clock_unit",
+        "septo_hippocampal_theta_unit",
+        "cholinergic_arousal_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "spinal_reflex_arc_unit",
+      "display": "脊髓反射弧单元",
+      "function": "reflex_arc",
+      "system": "spinal_cord",
+      "description": "感觉传入→中间神经元→运动神经元的两站式最短回路，可在无脑参与下完成保护性动作。",
+      "members": [
+        {
+          "role": "sensory",
+          "neuron": "spinal_nociceptor",
+          "count_ratio": 0.34
+        },
+        {
+          "role": "interneuron",
+          "neuron": "spinal_interneuron_ih",
+          "count_ratio": 0.33
+        },
+        {
+          "role": "motor",
+          "neuron": "spinal_motor_alpha",
+          "count_ratio": 0.33
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "sensory",
+          "to": "interneuron",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "interneuron",
+          "to": "motor",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "motor",
+          "to": "interneuron",
+          "type": "recurrent_inhibitory",
+          "weight": 0.6
+        },
+        {
+          "from": "interneuron",
+          "to": "sensory",
+          "type": "pre_presynaptic_inhibition",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "afferent",
+            "type": "sensory.nociceptive",
+            "required": true
+          },
+          {
+            "name": "descending",
+            "type": "motor.command",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "contraction",
+            "type": "motor.command",
+            "required": true
+          },
+          {
+            "name": "spindle_fb",
+            "type": "motor.spindle",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        4,
+        26
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "pre_presynaptic_inhibition",
+        "recurrent_inhibitory"
+      ],
+      "capability": [
+        "reflex",
+        "fast_loop",
+        "protective_response"
+      ],
+      "task_hint_pool": [
+        "reflex_act",
+        "fast_respond",
+        "protective_loop"
+      ],
+      "lead_task_hint": "reflex_arc",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba",
+        "glycine"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Sherrington 1906; Eccles 1964",
+      "composable_with": [
+        "spinal_cpg_unit",
+        "gamma_spindle_loop_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "spinal_cpg_unit",
+      "display": "脊髓中枢模式发生器单元",
+      "function": "rhythmic_pattern",
+      "system": "spinal_cord",
+      "description": "半中心 Ihp 与连合 Icc 中间神经元组成互抑制振荡器，产生交替节律（行走/游动/呼吸共用同一原理）。",
+      "members": [
+        {
+          "role": "half_center",
+          "neuron": "spinal_interneuron_ihp",
+          "count_ratio": 0.28
+        },
+        {
+          "role": "commissural",
+          "neuron": "spinal_interneuron_icc",
+          "count_ratio": 0.22
+        },
+        {
+          "role": "gly",
+          "neuron": "spinal_glycinergic",
+          "count_ratio": 0.16
+        },
+        {
+          "role": "alpha",
+          "neuron": "spinal_motor_alpha",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "gamma",
+          "neuron": "spinal_motor_gamma",
+          "count_ratio": 0.14
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "half_center",
+          "to": "commissural",
+          "type": "mutual_inhibitory",
+          "weight": 1.0
+        },
+        {
+          "from": "commissural",
+          "to": "half_center",
+          "type": "mutual_inhibitory",
+          "weight": 1.0
+        },
+        {
+          "from": "half_center",
+          "to": "alpha",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "commissural",
+          "to": "gly",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "gly",
+          "to": "alpha",
+          "type": "shunting_inhibition",
+          "weight": 0.8
+        },
+        {
+          "from": "alpha",
+          "to": "gamma",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "half_center",
+          "to": "half_center",
+          "type": "recurrent_excitatory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "drive",
+            "type": "motor.command",
+            "required": true
+          },
+          {
+            "name": "state",
+            "type": "arousal.state",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "rhythmic_out",
+            "type": "motor.command",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        8,
+        56
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "mutual_inhibitory",
+        "recurrent_excitatory",
+        "shunting_inhibition"
+      ],
+      "capability": [
+        "oscillate",
+        "alternate_phase",
+        "generate_rhythm"
+      ],
+      "task_hint_pool": [
+        "rhythm_generate",
+        "gait_alternate",
+        "phase_sequence"
+      ],
+      "lead_task_hint": "rhythmic_pattern",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba",
+        "glycine"
+      ],
+      "species_source": [
+        "lamprey",
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Grillner 1985; Goulding 2009",
+      "composable_with": [
+        "spinal_reflex_arc_unit",
+        "red_nucleus_coordination_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "gamma_spindle_loop_unit",
+      "display": "γ-肌梭环路单元",
+      "function": "spindle_servo",
+      "system": "spinal_cord",
+      "description": "γ 运动神经元设定肌梭灵敏度，α 运动神经元输出力，Ia 反馈构成伺服回路实时校准收缩。",
+      "members": [
+        {
+          "role": "gamma",
+          "neuron": "spinal_motor_gamma",
+          "count_ratio": 0.34
+        },
+        {
+          "role": "alpha",
+          "neuron": "spinal_motor_alpha",
+          "count_ratio": 0.36
+        },
+        {
+          "role": "fb",
+          "neuron": "spinal_interneuron_ih",
+          "count_ratio": 0.3
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "gamma",
+          "to": "fb",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "fb",
+          "to": "alpha",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "alpha",
+          "to": "gamma",
+          "type": "recurrent_inhibitory",
+          "weight": 0.6
+        },
+        {
+          "from": "fb",
+          "to": "gamma",
+          "type": "lateral_feedback",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "command",
+            "type": "motor.command",
+            "required": true
+          },
+          {
+            "name": "spindle_in",
+            "type": "motor.spindle",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "force_out",
+            "type": "motor.command",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        4,
+        26
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "lateral_feedback",
+        "recurrent_inhibitory"
+      ],
+      "capability": [
+        "servo_control",
+        "gain_set",
+        "closed_loop_correct"
+      ],
+      "task_hint_pool": [
+        "servo_regulate",
+        "gain_set",
+        "closed_loop_correct"
+      ],
+      "lead_task_hint": "spindle_servo",
+      "neurotransmitter": [
+        "glutamate",
+        "acetylcholine",
+        "gaba"
+      ],
+      "species_source": [
+        "cat",
+        "mouse",
+        "human"
+      ],
+      "biological_reference": "Matthews 1972; Prochazka 1996",
+      "composable_with": [
+        "spinal_reflex_arc_unit",
+        "spinal_cpg_unit",
+        "red_nucleus_coordination_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "red_nucleus_coordination_unit",
+      "display": "红核运动协调单元",
+      "function": "motor_coordination",
+      "system": "brainstem",
+      "description": "红核把小脑输出的时序信息转为对 α 运动神经元的直接驱动，协调多关节动作的时序与幅度。",
+      "members": [
+        {
+          "role": "rn",
+          "neuron": "red_nucleus",
+          "count_ratio": 0.45
+        },
+        {
+          "role": "cb",
+          "neuron": "cerebellar_purkinje",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "alpha",
+          "neuron": "spinal_motor_alpha",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "cb",
+          "to": "rn",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "rn",
+          "to": "alpha",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "rn",
+          "to": "cb",
+          "type": "feedback_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "rn",
+          "to": "rn",
+          "type": "recurrent_excitatory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "cerebellar_in",
+            "type": "cerebellar.output",
+            "required": true
+          },
+          {
+            "name": "cortical",
+            "type": "cortex.output",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "coordinated_out",
+            "type": "motor.command",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        5,
+        34
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "coordinate_timing",
+        "multi_joint",
+        "ramp_output"
+      ],
+      "task_hint_pool": [
+        "timing_coordinate",
+        "multi_joint_plan",
+        "ramp_generate"
+      ],
+      "lead_task_hint": "motor_coordination",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "macaque",
+        "cat",
+        "human"
+      ],
+      "biological_reference": "Massion 1988; Houk 2005",
+      "composable_with": [
+        "cerebellar_cortical_unit",
+        "spinal_cpg_unit",
+        "gamma_spindle_loop_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "dopaminergic_value_unit",
+      "display": "多巴胺价值单元",
+      "function": "value_broadcast",
+      "system": "neuromodulatory",
+      "description": "中脑多巴胺群体（A9/A11/VMC/VTA/SNc）把奖赏预测误差广播到纹状体与皮层，是全脑的学习率旋钮。",
+      "members": [
+        {
+          "role": "snc",
+          "neuron": "dopaminergic_snc",
+          "count_ratio": 0.22
+        },
+        {
+          "role": "vta",
+          "neuron": "dopaminergic_vta",
+          "count_ratio": 0.24
+        },
+        {
+          "role": "vmc",
+          "neuron": "dopaminergic_vmc",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "a11",
+          "neuron": "dopaminergic_a11",
+          "count_ratio": 0.16
+        },
+        {
+          "role": "a9",
+          "neuron": "dopaminergic_a9_snr",
+          "count_ratio": 0.18
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "vta",
+          "to": "vmc",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "snc",
+          "to": "a9",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "a11",
+          "to": "vta",
+          "type": "mutual_inhibitory",
+          "weight": 0.5
+        },
+        {
+          "from": "vmc",
+          "to": "a11",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "a9",
+          "to": "snc",
+          "type": "feedback_inhibitory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "rpe_in",
+            "type": "basal_ganglia.value",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "dopamine_out",
+            "type": "modulatory.dopamine",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        6,
+        44
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "mutual_inhibitory"
+      ],
+      "capability": [
+        "value_broadcast",
+        "rpe_compute",
+        "learning_rate_set"
+      ],
+      "task_hint_pool": [
+        "value_signal",
+        "reward_predict",
+        "learning_rate"
+      ],
+      "lead_task_hint": "value_broadcast",
+      "neurotransmitter": [
+        "dopamine"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "macaque",
+        "human"
+      ],
+      "biological_reference": "Schultz 1997; Watabe-Uchida 2017",
+      "composable_with": [
+        "striatal_direct_pathway_unit",
+        "striatal_indirect_pathway_unit",
+        "serotonergic_mood_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "serotonergic_mood_unit",
+      "display": "5-HT 情绪单元",
+      "function": "mood_modulation",
+      "system": "neuromodulatory",
+      "description": "背侧/腹侧/中缝三组 5-HT 群体分别调节情绪、奖赏与海马节律，是全局时间尺度上的『心情』底色。",
+      "members": [
+        {
+          "role": "dorsal",
+          "neuron": "serotonergic_dorsal",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "ventral",
+          "neuron": "serotonergic_ventral",
+          "count_ratio": 0.26
+        },
+        {
+          "role": "median",
+          "neuron": "serotonergic_median",
+          "count_ratio": 0.22
+        },
+        {
+          "role": "raphe",
+          "neuron": "serotonergic_raphe",
+          "count_ratio": 0.22
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "raphe",
+          "to": "dorsal",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "raphe",
+          "to": "ventral",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "raphe",
+          "to": "median",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "ventral",
+          "to": "dorsal",
+          "type": "mutual_inhibitory",
+          "weight": 0.5
+        },
+        {
+          "from": "median",
+          "to": "ventral",
+          "type": "lateral_inhibitory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "state_in",
+            "type": "arousal.state",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "serotonin_out",
+            "type": "modulatory.serotonin",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        6,
+        40
+      ],
+      "motif_source": [
+        "feedforward_excitatory",
+        "lateral_inhibitory",
+        "mutual_inhibitory"
+      ],
+      "capability": [
+        "mood_broadcast",
+        "patience_set",
+        "rhythm_modulate"
+      ],
+      "task_hint_pool": [
+        "mood_modulate",
+        "patience_set",
+        "temporal_discount"
+      ],
+      "lead_task_hint": "mood_broadcast",
+      "neurotransmitter": [
+        "serotonin"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Jacobs & Azmitia 1992; Okaty 2019",
+      "composable_with": [
+        "dopaminergic_value_unit",
+        "septo_hippocampal_theta_unit",
+        "hypothalamic_arousal_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "cholinergic_arousal_unit",
+      "display": "胆碱能觉醒单元",
+      "function": "cholinergic_arousal",
+      "system": "neuromodulatory",
+      "description": "基底前脑与斜角带胆碱能细胞调节皮层兴奋性与丘脑同步，是注意与觉醒的共同杠杆。",
+      "members": [
+        {
+          "role": "mt",
+          "neuron": "cholinergic_mt",
+          "count_ratio": 0.55
+        },
+        {
+          "role": "horizontal",
+          "neuron": "cholinergic_horizontal",
+          "count_ratio": 0.45
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "mt",
+          "to": "horizontal",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "horizontal",
+          "to": "mt",
+          "type": "feedback_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "horizontal",
+          "to": "horizontal",
+          "type": "recurrent_excitatory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "state_in",
+            "type": "arousal.state",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "ach_out",
+            "type": "modulatory.acetylcholine",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        4,
+        28
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "cortical_arousal",
+        "attention_gain",
+        "thalamic_sync"
+      ],
+      "task_hint_pool": [
+        "arousal_set",
+        "attention_gain",
+        "cortical_excite"
+      ],
+      "lead_task_hint": "cholinergic_arousal",
+      "neurotransmitter": [
+        "acetylcholine"
+      ],
+      "species_source": [
+        "rat",
+        "mouse",
+        "human"
+      ],
+      "biological_reference": "Sarter 2005; Zaborszky 2018",
+      "composable_with": [
+        "hypothalamic_arousal_unit",
+        "cortical_l23_association_unit",
+        "septo_hippocampal_theta_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "circadian_clock_unit",
+      "display": "昼夜节律单元",
+      "function": "circadian_rhythm",
+      "system": "neuromodulatory",
+      "description": "松果体在暗期分泌褪黑素，视网膜辐照度信号是它的授时输入，构成约 24 小时的内源振荡。",
+      "members": [
+        {
+          "role": "pineal",
+          "neuron": "pineal",
+          "count_ratio": 0.5
+        },
+        {
+          "role": "iprgc",
+          "neuron": "melanopsin_ganglion",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "wake",
+          "neuron": "orexin_neuron",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "iprgc",
+          "to": "pineal",
+          "type": "modulatory_diffuse",
+          "weight": 1.0
+        },
+        {
+          "from": "pineal",
+          "to": "wake",
+          "type": "modulatory_diffuse",
+          "weight": 0.7
+        },
+        {
+          "from": "wake",
+          "to": "pineal",
+          "type": "feedback_inhibitory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "light_in",
+            "type": "sensory.visual.irradiance",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "circadian_out",
+            "type": "rhythm.circadian",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        3,
+        20
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "modulatory_diffuse"
+      ],
+      "capability": [
+        "oscillate_circadian",
+        "entrain_light",
+        "phase_set"
+      ],
+      "task_hint_pool": [
+        "circadian_track",
+        "light_entrain",
+        "phase_shift"
+      ],
+      "lead_task_hint": "circadian_rhythm",
+      "neurotransmitter": [
+        "melatonin_norepinephrine",
+        "glutamate"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Moore 1995; Hastings 2018",
+      "composable_with": [
+        "retinal_irradiance_unit",
+        "hypothalamic_arousal_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    },
+    {
+      "name": "astrocyte_tripartite_unit",
+      "display": "星形胶质三方单元",
+      "function": "gliotransmission",
+      "system": "glia",
+      "description": "星形胶质细胞包绕突触、感知活动并以钙波回送慢调节信号，是神经元之外的一条独立慢通道。",
+      "members": [
+        {
+          "role": "astro",
+          "neuron": "astrocyte_reactive",
+          "count_ratio": 0.5
+        },
+        {
+          "role": "exc",
+          "neuron": "pyramidal_l5",
+          "count_ratio": 0.28
+        },
+        {
+          "role": "inh",
+          "neuron": "interneuron_sst",
+          "count_ratio": 0.22
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "astro",
+          "to": "exc",
+          "type": "astrocyte_neuron_tripartite",
+          "weight": 0.8
+        },
+        {
+          "from": "astro",
+          "to": "inh",
+          "type": "gliotransmission_calcium_wave",
+          "weight": 0.7
+        },
+        {
+          "from": "exc",
+          "to": "astro",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "inh",
+          "to": "astro",
+          "type": "feedforward_excitatory",
+          "weight": 0.4
+        },
+        {
+          "from": "astro",
+          "to": "astro",
+          "type": "gliotransmission_calcium_wave",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "neuronal_activity",
+            "type": "cortex.association",
+            "required": true
+          },
+          {
+            "name": "metabolic",
+            "type": "glial.support",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "slow_modulation",
+            "type": "glial.support",
+            "required": true
+          },
+          {
+            "name": "vascular",
+            "type": "glial.support",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        3,
+        22
+      ],
+      "motif_source": [
+        "astrocyte_neuron_tripartite",
+        "feedforward_excitatory",
+        "gliotransmission_calcium_wave"
+      ],
+      "capability": [
+        "slow_modulate",
+        "metabolic_support",
+        "calcium_wave"
+      ],
+      "task_hint_pool": [
+        "slow_modulate",
+        "metabolic_support",
+        "homeostatic_regulate"
+      ],
+      "lead_task_hint": "gliotransmission",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba",
+        "serotonin"
+      ],
+      "species_source": [
+        "mouse",
+        "rat",
+        "human"
+      ],
+      "biological_reference": "Araque 1999; Nedergaard 2010",
+      "composable_with": [
+        "cortical_l5_output_unit",
+        "cortical_inhibitory_gain_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier"
+      }
+    }
+  ]
+}
