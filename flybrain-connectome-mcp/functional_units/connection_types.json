@@ -11,9 +11,9 @@
     "macro": "population-level projection geometry"
   },
   "stats": {
-    "functional_units": 82,
+    "functional_units": 85,
     "connection_types": 66,
-    "neural_members_referenced": 167,
+    "neural_members_referenced": 170,
     "systems": [
       "antennal_lobe",
       "antennal_mechanosensory",
@@ -41,6 +41,7 @@
       "leech_ganglion",
       "limbic",
       "locus_coeruleus",
+      "modulatory",
       "mushroom_body",
       "neuromodulatory",
       "olivocerebellar",
@@ -52,6 +53,7 @@
       "song_system",
       "spinal_cord",
       "startle_circuit",
+      "subesophageal_zone",
       "thalamus",
       "ventral_nerve_cord",
       "vertical_lobe",
@@ -66,10 +68,10 @@
       "plasticity"
     ],
     "connection_types_used_by_units": 47,
-    "embodied_units": 16,
-    "embodied_populations_referenced": 34,
-    "embodied_real_cells_referenced": 84645,
-    "structural_support_edges_measured": 48,
+    "embodied_units": 19,
+    "embodied_populations_referenced": 37,
+    "embodied_real_cells_referenced": 85127,
+    "structural_support_edges_measured": 57,
     "structural_support_edges_contradicted": 1,
     "contradictions_acknowledged": 1
   },
