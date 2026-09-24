@@ -1,7 +1,7 @@
 """gen_functional_units.py -- author the two composition libraries.
 
 Writes (single source of truth, stdlib-only JSON):
-    flybrain-connectome-mcp/functional_units/functional_units.json    (99 units)
+    flybrain-connectome-mcp/functional_units/functional_units.json    (101 units)
     flybrain-connectome-mcp/functional_units/connection_types.json    (66 types)
 
 CLADE COVERAGE (v1.4.1)
@@ -2898,6 +2898,78 @@ FUNCTIONAL_UNITS += [
       ["drosophila"],
       ("pharyngeal_gustatory_unit", "vnc_sensory_reflex_unit",
        "cb_sensory_motor_unit")),
+
+    # ==================================================================== #
+    # v2.4.0 CROSS-MODAL DROSOPHILA UNITS (2)
+    # -------------------------------------------------------------------- #
+    # Both units are seeded from unused strong profile-pairs in the
+    # measured profile x profile matrix (synapses > 9,000, all SUPPORTED
+    # at type-pair resolution, no CONTRADICTED and no FRAGILE). Neither
+    # overlaps an existing unit's member set in a way that would make the
+    # new wiring redundant.
+    # ==================================================================== #
+
+    # ---------- MUSHROOM BODY / LATERAL HORN RECIPROCAL (1, v2.4.0) ---------- #
+    U("mushroom_body_lateral_horn_reciprocal_unit", "蘑菇体-侧角往返单元", "cross_modal_integrate",
+      "mushroom_body",
+      "学得的蘑菇体与先天的侧角之间存在双向投影——MaleCNS 实测 mushroom_body_output→lateral_horn_ln 36,712 突触、"
+      "lateral_horn_ln→mushroom_body_output 21,199、mushroom_body_dan→lateral_horn_ln 11,517、"
+      "lateral_horn_ln→mushroom_body_dan 19,655、kenyon_cell→lateral_horn_ln 11,265；再叠上加味通路"
+      "mushroom_body_dan→mushroom_body_output 39,960。六条边全部在类型对层面 SUPPORTED（最少 270/6330 对、"
+      "最多 1555/13504 对）。这个单元填补了此前只有单向 mushroom_body_associative_memory_unit 与"
+      "lateral_horn_innate_odour_unit、没有跨模态整合的缺口：气味在蘑菇体被赋效价之后回写到侧角的先天通道，"
+      "侧角再把信息素类别信号反哺给多巴胺神经元。",
+      [("kc", "kenyon_cell", 0.25),
+       ("lh", "lateral_horn_ln", 0.30),
+       ("mbon", "mushroom_body_output", 0.20),
+       ("dan", "mushroom_body_dan", 0.25)],
+      [("dan", "mbon", "feedforward_excitatory", 0.9),
+       ("mbon", "lh", "feedforward_excitatory", 1.0),
+       ("lh", "mbon", "feedback_excitatory", 0.7),
+       ("dan", "lh", "feedforward_excitatory", 0.8),
+       ("lh", "dan", "feedback_excitatory", 0.5),
+       ("kc", "lh", "feedforward_excitatory", 0.6)],
+      [("sparse_code", "olfactory.sparse_code", True),
+       ("value_in", "modulatory.dopamine", False)],
+      [("learned_valence", "olfactory.learned_valence", True),
+       ("innate_valence", "olfactory.learned_valence", False)],
+      (1000, 2000), ["cross_modal_integrate", "learned_innate_mix", "valence_transfer"],
+      ["cross_modal_integrate", "learned_innate_mix", "valence_transfer",
+       "mb_lh_reciprocal"], "cross_modal_integrate",
+      ["acetylcholine", "dopamine", "gaba"],
+      "Aso et al 2014; Dolan et al 2019; Kaur et al 2021",
+      ["drosophila"],
+      ("mushroom_body_associative_memory_unit", "lateral_horn_innate_odour_unit")),
+
+    # ---------- ANTENNAL LOBE / CENTRAL COMPLEX FEEDBACK (1, v2.4.0) ---------- #
+    U("antennal_lobe_central_complex_feedback_unit", "触角叶-中央复合体反馈单元",
+      "aal_cc_projection", "central_complex",
+      "触角叶的局部神经元（GLNO/LNO 类，16 个真实细胞 / 5 类）直接向中央复合体脑桥与蘑菇体样脑桥发出双向投影——"
+      "MaleCNS 实测 antennal_lobe_ln→central_complex_pb 16,379 突触（GLNO→PEN_a 单类型对 9,806 突触，"
+      "占 60%）、antennal_lobe_ln→central_complex_fb 25,402（LNO2→PFNd 单类型对 9,610）、"
+      "central_complex_fb→antennal_lobe_ln 9,473（PFNd→LNO2 反行 3,542）——三条边在类型对层面全部 SUPPORTED"
+      "（6/355、13/185、11/185），零 FRAGILE、零 CONTRADICTED。这条通路把气味身份写进"
+      "中央复合体的头向参考系，同时让中央复合体把当前航向反哺回触角叶的局部环路，是嗅觉驱动导航的"
+      "解剖学证据；此前 antennal_lobe_glomerular_unit 与 central_complex_heading_unit 各管一段，"
+      "没有单元把两者连起来。",
+      [("ln", "antennal_lobe_ln", 0.25),
+       ("pb", "central_complex_pb", 0.40),
+       ("fb", "central_complex_fb", 0.35)],
+      [("ln", "pb", "feedforward_excitatory", 1.0),
+       ("ln", "fb", "feedforward_excitatory", 0.9),
+       ("fb", "ln", "feedback_excitatory", 0.7)],
+      [("odour_in", "sensory.olfactory", True),
+       ("heading_in", "navigation.heading", False)],
+      [("heading_set", "navigation.heading", True),
+       ("steering_out", "navigation.steering", True)],
+      (20, 300), ["olfactory_to_navigation", "centrifugal_feedback", "heading_set"],
+      ["olfactory_to_navigation", "heading_set", "centrifugal_feedback",
+       "aal_cc_projection"], "olfactory_to_navigation",
+      ["acetylcholine", "gaba", "glutamate"],
+      "Tse et al 2022; Pohl et al 2015; Dorkenwald et al 2022",
+      ["drosophila"],
+      ("antennal_lobe_glomerular_unit", "central_complex_heading_unit",
+       "central_complex_steering_unit")),
 ]
 
 
