@@ -8,15 +8,94 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.1.0` | the toolkit as a whole |
+| package | `2.2.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
 | functional-unit library schema | `1.0` | 97 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0 and 2.1.0) |
+| functional-unit **embodiment block** | `1.1` | adds `support_tier` + `type_pair_support` per declared edge and `provenance.unanchored_reason` (2.2.0) |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [2.2.0] — 2026-09-24
+
+**Support resolution goes from cell-type-set to type-pair, and the three known gaps are closed or reduced to honest enumeration.**
+
+The anchors artifact already carried the full 4,872×4,872 anchored type-pair
+matrix since v1.7.0 — it was simply never used for per-edge verdicts. Every
+declared edge is now walked across the two populations' actual cell-type sets,
+counting how many individual `(from_type, to_type)` pairs carry real synapses.
+
+### Added
+
+- **`support_tier` per declared edge**, re-derived from the raw matrix on every
+  run: `SUPPORTED` (≥2 live type pairs), `FRAGILE` (exactly 1), `CONTRADICTED`
+  (0, which always coincides with the existing profile-level contradiction flag).
+  Verdict over the 116 measured edges: **109 SUPPORTED, 6 FRAGILE, 1 CONTRADICTED**.
+- **`type_pair_support` block** on each supported edge: `n_type_pairs` (the |A×B|
+  pair count), `n_pairs_with_synapses`, `support_tier`, and the top 3 strongest
+  type pairs by synapse count.
+- **`provenance.unanchored_reason`** on every unanchored unit, from a closed
+  three-value enum (`taxon_no_malecns_data` / `identity_not_in_drosophila` /
+  `abstract_module_no_cell_type`) **derived from the profile classification**,
+  never hand-typed.
+- **`support_resolution` + tier counts** in `stats`.
+
+### Why FRAGILE is a new honesty tier, not a new contradiction
+
+The six FRAGILE edges are real — they have measured synapses — but their entire
+profile-level non-zero is carried by a single type pair, so citing them as strong
+evidence would overstate what the data supports:
+
+| unit | edge | live pairs / total | the one live pair |
+|---|---|---|---|
+| `giant_fiber_escape_unit` | `GF → TTMn` | 1 / 4 | `DNp01 → TTMn` = 90 |
+| `giant_fiber_escape_unit` | `GF → PSI` | 1 / 1 | `DNp01 → PSI` = 16 |
+| `auditory_song_reception_unit` | `AMMC → aSP` | 1 / 240 | `AMMC012 → aSP10A_b` = 19 |
+| `cb_efferent_command_unit` | `PN → CB-efferent` | 1 / 145 | `VP2+Z_lvPN → GNG656` = 2 |
+| `buccal_efferent_feedback_unit` | `SDN → EPP-desc` | 1 / 4 | `LN-DN2 → DNg28` = 16 |
+| `buccal_efferent_feedback_unit` | `EPP-desc → pharyngeal` | 1 / 18 | `DNg28 → PhG3` = 3 |
+
+### The three known gaps
+
+1. **Resolution upgrade (done).** Type-pair support is now a first-class verdict,
+   and Gate 10 re-derives every tier from the raw matrix, so a hand-written tier
+   cannot survive. No new contradiction was forced out — the single registered
+   one (`central_complex_steering_unit` `nod → fb` = 0) is untouched.
+2. **13 unanchored-and-unreferenced profiles (checked, not a gap).** A probe
+   (`tmp/probe_v220_state.py`) confirmed all 13 are already classified in
+   `profile_classification` — 10 `abstract_cognitive_module`, 3
+   `identity_not_drosophila` — so there was nothing to annotate. What this
+   release adds is the unit-side counterpart: the "every unanchored profile
+   carries a reason category" check now has a sibling that re-derives each
+   unit's reason from that same classification, so the two layers cannot drift
+   apart in opposite directions.
+3. **66 unanchored units (reduced to an honest enumeration, not a workaround).**
+   These cannot be anchored — MaleCNS v1.0 does not contain their species — so
+   wiring more edges would not help. What changed: each now carries a
+   machine-checkable reason instead of one shared boilerplate string. All 66 fall
+   under `identity_not_in_drosophila` (58 reference only non-Drosophila cell
+   classes, 8 mix those with the 5 profiles too broad to resolve); no unanchored
+   unit is purely abstract-module or purely in-species-without-data, which is why
+   the other two enum values exist but are currently unpopulated. Gate 10 proves
+   each reason re-derives from the classification, so a plausible-looking hand
+   edit fails.
+
+### Changed
+
+- **Gate 10**: 36 → 43 checks; fail-closed injections 6 → 9, adding
+  "a FRAGILE edge is relabelled SUPPORTED", "an unanchored unit carries a
+  non-enum reason", and "an unanchored unit's reason does not re-derive from the
+  classification".
+- **README**: type-pair tier documented with the six FRAGILE edges named; two
+  stale numbers from the v1.9.0 era corrected (`false for all 82` → `all 97`,
+  `the 16 units` → `the 31 units`).
+- **`docs/mcp_setup.md`**: embodiment paragraph now names the tier split.
+- The anchors artifact is **unchanged** (same digest, 105,717 cells / 4,872
+  types) — this release reads a matrix that already existed. Unit, member and
+  connection counts are unchanged: 97 units, 31 embodied, 66 connection types.
 
 ## [2.1.0] — 2026-09-24
 
