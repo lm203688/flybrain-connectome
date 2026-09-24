@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.5.0` | the toolkit as a whole |
+| package | `2.6.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,82 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.6.0] — 2026-09-24
+
+**External ESN benchmark suite + methodological fix to unit W rank (G2 单元库外部锚点).**
+
+v2.5.0 first put the 101-unit library through the ESN pipeline but only on
+a single delay-line task. PROJECT_VISION.md §六 explicitly requires an
+external benchmark suite ("有基准测试证明虚拟生物可以超越生物学限制"),
+which the project had never had.
+
+v2.6.0 adds 4 classic ESN tasks (binary parity, noisy parity, logistic map,
+double-pole filter) and discovers a methodological bug that had been
+hiding all along.
+
+### Added
+
+- **`integrations/swarmlabs/diagnostics/external_benchmark_experiment.py`** —
+  4-task suite with ridge linear readout. --quick 1.4s, full 8.2s at
+  N=60, 20 seeds, 5 units.
+- **`EXTERNAL_BENCHMARK_REPORT.md`** — results, honest verdict, follow-ups.
+
+### Fixed
+
+- **`unit_composition_experiment.py::build_unit_topology` — rank fix.**
+  Prior version filled each `internal_wiring` edge with a dense uniform
+  block, which is rank-1. A unit-composed W made only of uniform blocks
+  has singular rank ≤ #edges (~3), which collapses ESN dynamics to a
+  3-dimensional subspace. **Before fix: rank=3/60. After fix: rank=45/60.**
+  Adds `N(0, 0.5)` Gaussian perturbation on top of the uniform block —
+  preserves block STRUCTURE but restores high-rank dynamics.
+
+### Results (N=60, 20 seeds, 5 units)
+
+| Task | Direction | Bio motif | Textbook | Unit_composed | Unit wins |
+|---|---|---|---|---|---|
+| parity_d3 | acc ↑ | 0.8767 | 0.8767 | 0.8767 (all 5 identical) | **退化** |
+| **noisy_parity_d3** | acc ↑ | 0.4953 | 0.5012 | 0.499–0.506 | **5/5** |
+| logistic_r3.7 | MSE ↓ | 0.0001 | 0.0001 | 0.0001 (all 5 identical) | **退化** |
+| double_pole | MSE ↓ | **0.0124** | 0.0255 | 0.013–0.017 | 0/5 (bio wins) |
+
+### Verdict (honest)
+
+- **G2 partially established**: external benchmark suite exists; 2 of
+  4 tasks have real discriminative power.
+- **unit_composed wins 5/5 on noisy_parity** (0.499–0.506 vs bio_motif
+  0.4953) — small but consistent edge in noise robustness.
+- **double_pole is the surprise**: bio_motif wins (0.0124 vs unit 0.013–0.017).
+  Sparse module_rep structure is uniquely suited to stable 2nd-order
+  linear system identification — a phenomenon the v2.5.0 single-task
+  delay-line view completely missed.
+- **parity_d3 and logistic_r3.7 degenerate** under ridge linear readout
+  (all 5+3 matrices produce identical scores) — task not suitable for
+  this reservoir configuration. Documented, not hidden.
+
+### What this does NOT claim
+
+- **Does not claim unit library beats biology broadly** — 2 of 4 tasks
+  are degenerate, 1/4 double-pole actually favors bio_motif.
+- **Does not claim "超越生物学" is now proven** — noisy_parity 5/5 wins
+  are directionally consistent but the 0.005 accuracy gap is small
+  enough that a t-test would be needed to rule out noise.
+- **Rank fix is methodological, not a functional change** — the unit
+  library data is unchanged; this just makes prior experiment conclusions
+  (v2.5.0) require re-running to be trusted.
+
+### Follow-ups
+
+- **v2.6.1**: re-run `unit_composition_experiment.py` with the new
+  rank-correct unit W (v2.5.0's "2/5 wins" result may shift).
+- **v2.6.2**: t-test on noisy_parity 5/5 to check statistical significance.
+- **v2.6.3**: add NARMA-10 / binary addition / Mackey-Glass for stronger
+  benchmark discrimination.
+- **Multi-unit `compose_from_units`** — still never evaluated;
+  identified in v2.5.0 as the next natural expansion.
 
 ---
 
