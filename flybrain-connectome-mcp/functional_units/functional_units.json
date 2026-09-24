@@ -148,6 +148,9 @@
     "embodied_real_cells_referenced": 105717,
     "structural_support_edges_measured": 116,
     "structural_support_edges_contradicted": 1,
+    "structural_support_edges_fragile": 6,
+    "structural_support_edges_supported": 109,
+    "support_resolution": "type-pair",
     "contradictions_acknowledged": 1
   },
   "embodiment_source": {
@@ -288,7 +291,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -410,7 +414,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -531,7 +536,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -639,7 +645,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -755,7 +762,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -865,7 +873,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -975,7 +984,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1099,7 +1109,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1216,7 +1227,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1320,7 +1332,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1424,7 +1437,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1551,7 +1565,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1678,7 +1693,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1813,7 +1829,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1985,7 +2002,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2139,7 +2157,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2266,7 +2285,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2421,7 +2441,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2548,7 +2569,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2702,7 +2724,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2824,7 +2847,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2962,7 +2986,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3083,7 +3108,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3205,7 +3231,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3334,7 +3361,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3445,7 +3473,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3569,7 +3598,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3724,7 +3754,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3848,7 +3879,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3977,7 +4009,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4101,7 +4134,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4229,7 +4263,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4382,7 +4417,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4506,7 +4542,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4629,7 +4666,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4763,7 +4801,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4891,7 +4930,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4997,7 +5037,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -5107,7 +5148,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -5241,7 +5283,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -5415,6 +5458,29 @@
             "measured_synapses": 460618,
             "measured_edges": 28360,
             "measured_synapses_superclass_coarse": 1785104,
+            "type_pair_support": {
+              "n_type_pairs": 7685,
+              "n_pairs_with_synapses": 1220,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "ORN_DA1",
+                  "to_type": "DA1_lPN",
+                  "synapses": 30067
+                },
+                {
+                  "from_type": "ORN_VM5d",
+                  "to_type": "VM5d_adPN",
+                  "synapses": 16765
+                },
+                {
+                  "from_type": "ORN_DP1m",
+                  "to_type": "DP1m_adPN",
+                  "synapses": 15523
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -5426,6 +5492,29 @@
             "measured_synapses": 10596,
             "measured_edges": 903,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 725,
+              "n_pairs_with_synapses": 102,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LN60",
+                  "to_type": "M_lPNm11D",
+                  "synapses": 819
+                },
+                {
+                  "from_type": "LN60",
+                  "to_type": "VM5d_adPN",
+                  "synapses": 610
+                },
+                {
+                  "from_type": "LN60",
+                  "to_type": "VC3_adPN",
+                  "synapses": 477
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -5437,6 +5526,29 @@
             "measured_synapses": 2870,
             "measured_edges": 504,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 725,
+              "n_pairs_with_synapses": 76,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "M_lPNm11D",
+                  "to_type": "LN60",
+                  "synapses": 346
+                },
+                {
+                  "from_type": "DM1_lPN",
+                  "to_type": "LN60",
+                  "synapses": 226
+                },
+                {
+                  "from_type": "DM2_lPN",
+                  "to_type": "LN60",
+                  "synapses": 183
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -5448,10 +5560,33 @@
             "measured_synapses": 4746,
             "measured_edges": 53,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 25,
+              "n_pairs_with_synapses": 14,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LNO1",
+                  "to_type": "LNO2",
+                  "synapses": 1750
+                },
+                {
+                  "from_type": "LNO2",
+                  "to_type": "LNO1",
+                  "synapses": 1564
+                },
+                {
+                  "from_type": "LNO1",
+                  "to_type": "LNO1",
+                  "synapses": 902
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -5628,6 +5763,29 @@
             "measured_synapses": 378315,
             "measured_edges": 21658,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 2175,
+              "n_pairs_with_synapses": 535,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DC1_adPN",
+                  "to_type": "KCg-m",
+                  "synapses": 7904
+                },
+                {
+                  "from_type": "DA1_lPN",
+                  "to_type": "KCg-m",
+                  "synapses": 6093
+                },
+                {
+                  "from_type": "DP1m_adPN",
+                  "to_type": "KCg-m",
+                  "synapses": 5968
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -5639,6 +5797,29 @@
             "measured_synapses": 210352,
             "measured_edges": 4693,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 15,
+              "n_pairs_with_synapses": 15,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "APL",
+                  "synapses": 79271
+                },
+                {
+                  "from_type": "KCab-s",
+                  "to_type": "APL",
+                  "synapses": 25125
+                },
+                {
+                  "from_type": "KCab-m",
+                  "to_type": "APL",
+                  "synapses": 23463
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -5650,6 +5831,29 @@
             "measured_synapses": 196200,
             "measured_edges": 4633,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 15,
+              "n_pairs_with_synapses": 15,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "APL",
+                  "to_type": "KCg-m",
+                  "synapses": 79151
+                },
+                {
+                  "from_type": "APL",
+                  "to_type": "KCab-s",
+                  "synapses": 24898
+                },
+                {
+                  "from_type": "APL",
+                  "to_type": "KCa'b'-ap2",
+                  "synapses": 19499
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -5661,10 +5865,33 @@
             "measured_synapses": 1153845,
             "measured_edges": 642933,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 225,
+              "n_pairs_with_synapses": 167,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "KCg-m",
+                  "synapses": 414893
+                },
+                {
+                  "from_type": "KCab-s",
+                  "to_type": "KCab-s",
+                  "synapses": 136198
+                },
+                {
+                  "from_type": "KCab-m",
+                  "to_type": "KCab-m",
+                  "synapses": 75511
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -5923,6 +6150,29 @@
             "measured_synapses": 463640,
             "measured_edges": 61210,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 555,
+              "n_pairs_with_synapses": 295,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "MBON09",
+                  "synapses": 37578
+                },
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "MBON05",
+                  "synapses": 30696
+                },
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "MBON01",
+                  "synapses": 30660
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -5934,6 +6184,29 @@
             "measured_synapses": 225149,
             "measured_edges": 129132,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 480,
+              "n_pairs_with_synapses": 213,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PAM08",
+                  "to_type": "KCg-m",
+                  "synapses": 26725
+                },
+                {
+                  "from_type": "PAM01",
+                  "to_type": "KCg-m",
+                  "synapses": 20477
+                },
+                {
+                  "from_type": "PPL103",
+                  "to_type": "KCg-m",
+                  "synapses": 11468
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -5945,6 +6218,29 @@
             "measured_synapses": 196200,
             "measured_edges": 4633,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 15,
+              "n_pairs_with_synapses": 15,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "APL",
+                  "to_type": "KCg-m",
+                  "synapses": 79151
+                },
+                {
+                  "from_type": "APL",
+                  "to_type": "KCab-s",
+                  "synapses": 24898
+                },
+                {
+                  "from_type": "APL",
+                  "to_type": "KCa'b'-ap2",
+                  "synapses": 19499
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -5956,10 +6252,33 @@
             "measured_synapses": 12075,
             "measured_edges": 2618,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 1184,
+              "n_pairs_with_synapses": 443,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "MBON04",
+                  "to_type": "PPL107",
+                  "synapses": 671
+                },
+                {
+                  "from_type": "MBON20",
+                  "to_type": "PPM1201",
+                  "synapses": 629
+                },
+                {
+                  "from_type": "MBON05",
+                  "to_type": "PAM07",
+                  "synapses": 407
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -6207,6 +6526,29 @@
             "measured_synapses": 32876,
             "measured_edges": 1181,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 284,
+              "n_pairs_with_synapses": 10,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PEN_a(PEN1)",
+                  "to_type": "EPG",
+                  "synapses": 14398
+                },
+                {
+                  "from_type": "PEN_b(PEN2)",
+                  "to_type": "EPG",
+                  "synapses": 9671
+                },
+                {
+                  "from_type": "PEN_a(PEN1)",
+                  "to_type": "EL",
+                  "synapses": 4799
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -6218,6 +6560,29 @@
             "measured_synapses": 15218,
             "measured_edges": 982,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 284,
+              "n_pairs_with_synapses": 10,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "EPG",
+                  "to_type": "PEN_b(PEN2)",
+                  "synapses": 6230
+                },
+                {
+                  "from_type": "EPG",
+                  "to_type": "PEN_a(PEN1)",
+                  "synapses": 6100
+                },
+                {
+                  "from_type": "PEG",
+                  "to_type": "PEN_b(PEN2)",
+                  "synapses": 2238
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -6229,6 +6594,29 @@
             "measured_synapses": 176534,
             "measured_edges": 17584,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 220,
+              "n_pairs_with_synapses": 121,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "ER4m",
+                  "to_type": "EPG",
+                  "synapses": 21202
+                },
+                {
+                  "from_type": "ER2_c",
+                  "to_type": "EPG",
+                  "synapses": 14590
+                },
+                {
+                  "from_type": "ER4d",
+                  "to_type": "EPG",
+                  "synapses": 12335
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -6240,10 +6628,33 @@
             "measured_synapses": 14819,
             "measured_edges": 2086,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 3905,
+              "n_pairs_with_synapses": 41,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "Delta7",
+                  "to_type": "PEN_b(PEN2)",
+                  "synapses": 6061
+                },
+                {
+                  "from_type": "ER6",
+                  "to_type": "PEN_b(PEN2)",
+                  "synapses": 2223
+                },
+                {
+                  "from_type": "ER1_b",
+                  "to_type": "PEN_a(PEN1)",
+                  "synapses": 2174
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -6445,6 +6856,13 @@
             "measured_synapses": 0,
             "measured_edges": 0,
             "measured_synapses_superclass_coarse": 3847546,
+            "type_pair_support": {
+              "n_type_pairs": 185,
+              "n_pairs_with_synapses": 0,
+              "support_tier": "CONTRADICTED",
+              "top_pairs": []
+            },
+            "support_tier": "CONTRADICTED",
             "contradicted": true
           },
           {
@@ -6456,6 +6874,29 @@
             "measured_synapses": 224,
             "measured_edges": 124,
             "measured_synapses_superclass_coarse": 2732731,
+            "type_pair_support": {
+              "n_type_pairs": 17649,
+              "n_pairs_with_synapses": 28,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "FS3_a",
+                  "to_type": "DNp48",
+                  "synapses": 49
+                },
+                {
+                  "from_type": "FS3_c",
+                  "to_type": "DNp48",
+                  "synapses": 32
+                },
+                {
+                  "from_type": "FS3_b",
+                  "to_type": "DNp48",
+                  "synapses": 27
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -6467,6 +6908,29 @@
             "measured_synapses": 48,
             "measured_edges": 42,
             "measured_synapses_superclass_coarse": 864574,
+            "type_pair_support": {
+              "n_type_pairs": 17649,
+              "n_pairs_with_synapses": 26,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNp48",
+                  "to_type": "FS3_c",
+                  "synapses": 8
+                },
+                {
+                  "from_type": "DNpe053",
+                  "to_type": "FS4A",
+                  "synapses": 8
+                },
+                {
+                  "from_type": "DNpe053",
+                  "to_type": "FS3_a",
+                  "synapses": 4
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -6478,10 +6942,33 @@
             "measured_synapses": 34,
             "measured_edges": 27,
             "measured_synapses_superclass_coarse": 8439,
+            "type_pair_support": {
+              "n_type_pairs": 2385,
+              "n_pairs_with_synapses": 20,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNbe001",
+                  "to_type": "Nod1",
+                  "synapses": 4
+                },
+                {
+                  "from_type": "DNp26",
+                  "to_type": "Nod1",
+                  "synapses": 3
+                },
+                {
+                  "from_type": "DNp27",
+                  "to_type": "Nod4",
+                  "synapses": 3
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -6654,6 +7141,29 @@
             "measured_synapses": 644,
             "measured_edges": 64,
             "measured_synapses_superclass_coarse": 3847546,
+            "type_pair_support": {
+              "n_type_pairs": 12,
+              "n_pairs_with_synapses": 7,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "5thsLNv_LNd6",
+                  "to_type": "LNd_b",
+                  "synapses": 336
+                },
+                {
+                  "from_type": "5thsLNv_LNd6",
+                  "to_type": "5thsLNv_LNd6",
+                  "synapses": 238
+                },
+                {
+                  "from_type": "s-LNv",
+                  "to_type": "s-LNv",
+                  "synapses": 46
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -6665,10 +7175,33 @@
             "measured_synapses": 308,
             "measured_edges": 52,
             "measured_synapses_superclass_coarse": 7714143,
+            "type_pair_support": {
+              "n_type_pairs": 12,
+              "n_pairs_with_synapses": 7,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "5thsLNv_LNd6",
+                  "to_type": "5thsLNv_LNd6",
+                  "synapses": 238
+                },
+                {
+                  "from_type": "s-LNv",
+                  "to_type": "s-LNv",
+                  "synapses": 46
+                },
+                {
+                  "from_type": "LNd_b",
+                  "to_type": "5thsLNv_LNd6",
+                  "synapses": 8
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -6776,7 +7309,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -6884,7 +7418,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7010,7 +7545,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7143,7 +7679,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7254,7 +7791,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7381,7 +7919,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7503,7 +8042,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7627,7 +8167,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7741,7 +8282,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7861,7 +8403,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7987,7 +8530,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8113,7 +8657,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8247,7 +8792,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8371,7 +8917,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8487,7 +9034,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8600,7 +9148,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8715,7 +9264,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8851,7 +9401,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8967,7 +9518,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9095,7 +9647,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9221,7 +9774,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9349,7 +9903,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9476,7 +10031,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9602,7 +10158,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9734,7 +10291,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9864,7 +10422,8 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
-        "embodiment_basis": "no member population resolves to a MaleCNS v1.0 cell type (non-Drosophila taxon or mammalian-shaped cell class)"
+        "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
+        "unanchored_reason": "identity_not_in_drosophila"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -10022,6 +10581,29 @@
             "measured_synapses": 236807,
             "measured_edges": 11128,
             "measured_synapses_superclass_coarse": 564685,
+            "type_pair_support": {
+              "n_type_pairs": 5,
+              "n_pairs_with_synapses": 5,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "R1-R6",
+                  "to_type": "L2",
+                  "synapses": 107646
+                },
+                {
+                  "from_type": "R1-R6",
+                  "to_type": "L1",
+                  "synapses": 103405
+                },
+                {
+                  "from_type": "R1-R6",
+                  "to_type": "L3",
+                  "synapses": 23510
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -10033,10 +10615,33 @@
             "measured_synapses": 376968,
             "measured_edges": 37508,
             "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 25,
+              "n_pairs_with_synapses": 25,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "L1",
+                  "to_type": "L5",
+                  "synapses": 136202
+                },
+                {
+                  "from_type": "L2",
+                  "to_type": "L5",
+                  "synapses": 86456
+                },
+                {
+                  "from_type": "L5",
+                  "to_type": "L1",
+                  "synapses": 55259
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -10214,10 +10819,33 @@
             "measured_synapses": 109104,
             "measured_edges": 17882,
             "measured_synapses_superclass_coarse": 564685,
+            "type_pair_support": {
+              "n_type_pairs": 513,
+              "n_pairs_with_synapses": 283,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "R8y",
+                  "to_type": "Mi15",
+                  "synapses": 10706
+                },
+                {
+                  "from_type": "R8y",
+                  "to_type": "Mi4",
+                  "synapses": 7028
+                },
+                {
+                  "from_type": "R8y",
+                  "to_type": "Tm5c",
+                  "synapses": 6955
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -10426,6 +11054,29 @@
             "measured_synapses": 1924544,
             "measured_edges": 389150,
             "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 456,
+              "n_pairs_with_synapses": 326,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "Mi1",
+                  "to_type": "T4a",
+                  "synapses": 115153
+                },
+                {
+                  "from_type": "Mi1",
+                  "to_type": "T4c",
+                  "synapses": 110255
+                },
+                {
+                  "from_type": "Mi1",
+                  "to_type": "T4b",
+                  "synapses": 100968
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -10437,6 +11088,29 @@
             "measured_synapses": 77681,
             "measured_edges": 31325,
             "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 855,
+              "n_pairs_with_synapses": 293,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "TmY4",
+                  "to_type": "LPi3412",
+                  "synapses": 9510
+                },
+                {
+                  "from_type": "TmY5a",
+                  "to_type": "LPi4b",
+                  "synapses": 7610
+                },
+                {
+                  "from_type": "TmY17",
+                  "to_type": "LPi2c",
+                  "synapses": 5090
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -10448,10 +11122,33 @@
             "measured_synapses": 134995,
             "measured_edges": 44480,
             "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 120,
+              "n_pairs_with_synapses": 119,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LPi2b",
+                  "to_type": "T4b",
+                  "synapses": 19574
+                },
+                {
+                  "from_type": "LPi2b",
+                  "to_type": "T5b",
+                  "synapses": 16174
+                },
+                {
+                  "from_type": "LPi2c",
+                  "to_type": "T5b",
+                  "synapses": 14870
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -10655,6 +11352,29 @@
             "measured_synapses": 296217,
             "measured_edges": 36821,
             "measured_synapses_superclass_coarse": 7714143,
+            "type_pair_support": {
+              "n_type_pairs": 64,
+              "n_pairs_with_synapses": 53,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "T5d",
+                  "to_type": "VS",
+                  "synapses": 51735
+                },
+                {
+                  "from_type": "T4d",
+                  "to_type": "VS",
+                  "synapses": 51016
+                },
+                {
+                  "from_type": "T5a",
+                  "to_type": "VS",
+                  "synapses": 17008
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -10666,10 +11386,33 @@
             "measured_synapses": 35567,
             "measured_edges": 2231,
             "measured_synapses_superclass_coarse": 7714143,
+            "type_pair_support": {
+              "n_type_pairs": 120,
+              "n_pairs_with_synapses": 92,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LPi34",
+                  "to_type": "VS",
+                  "synapses": 11918
+                },
+                {
+                  "from_type": "LPi34",
+                  "to_type": "VSm",
+                  "synapses": 3379
+                },
+                {
+                  "from_type": "LPi21",
+                  "to_type": "HSS",
+                  "synapses": 2927
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -10870,6 +11613,29 @@
             "measured_synapses": 1244308,
             "measured_edges": 373015,
             "measured_synapses_superclass_coarse": 7714143,
+            "type_pair_support": {
+              "n_type_pairs": 2565,
+              "n_pairs_with_synapses": 1622,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "TmY3",
+                  "to_type": "LC4",
+                  "synapses": 40880
+                },
+                {
+                  "from_type": "Tm5Y",
+                  "to_type": "LC17",
+                  "synapses": 34033
+                },
+                {
+                  "from_type": "Tm4",
+                  "to_type": "LC4",
+                  "synapses": 31134
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -10881,10 +11647,33 @@
             "measured_synapses": 76424,
             "measured_edges": 7399,
             "measured_synapses_superclass_coarse": 291793,
+            "type_pair_support": {
+              "n_type_pairs": 21465,
+              "n_pairs_with_synapses": 689,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LC4",
+                  "to_type": "DNp04",
+                  "synapses": 11597
+                },
+                {
+                  "from_type": "LC4",
+                  "to_type": "DNp01",
+                  "synapses": 6362
+                },
+                {
+                  "from_type": "LC4",
+                  "to_type": "DNp02",
+                  "synapses": 4209
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -11115,6 +11904,19 @@
             "measured_synapses": 90,
             "measured_edges": 2,
             "measured_synapses_superclass_coarse": 229565,
+            "type_pair_support": {
+              "n_type_pairs": 4,
+              "n_pairs_with_synapses": 1,
+              "support_tier": "FRAGILE",
+              "top_pairs": [
+                {
+                  "from_type": "DNp01",
+                  "to_type": "TTMn",
+                  "synapses": 90
+                }
+              ]
+            },
+            "support_tier": "FRAGILE",
             "contradicted": false
           },
           {
@@ -11126,6 +11928,19 @@
             "measured_synapses": 16,
             "measured_edges": 4,
             "measured_synapses_superclass_coarse": 28605,
+            "type_pair_support": {
+              "n_type_pairs": 1,
+              "n_pairs_with_synapses": 1,
+              "support_tier": "FRAGILE",
+              "top_pairs": [
+                {
+                  "from_type": "DNp01",
+                  "to_type": "PSI",
+                  "synapses": 16
+                }
+              ]
+            },
+            "support_tier": "FRAGILE",
             "contradicted": false
           },
           {
@@ -11137,6 +11952,29 @@
             "measured_synapses": 366,
             "measured_edges": 50,
             "measured_synapses_superclass_coarse": 1718761,
+            "type_pair_support": {
+              "n_type_pairs": 4,
+              "n_pairs_with_synapses": 4,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNp01",
+                  "to_type": "GFC2",
+                  "synapses": 144
+                },
+                {
+                  "from_type": "DNp01",
+                  "to_type": "GFC4",
+                  "synapses": 112
+                },
+                {
+                  "from_type": "DNp01",
+                  "to_type": "GFC3",
+                  "synapses": 97
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -11148,6 +11986,24 @@
             "measured_synapses": 449,
             "measured_edges": 10,
             "measured_synapses_superclass_coarse": 807,
+            "type_pair_support": {
+              "n_type_pairs": 4,
+              "n_pairs_with_synapses": 2,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PSI",
+                  "to_type": "DLMn c-f",
+                  "synapses": 406
+                },
+                {
+                  "from_type": "PSI",
+                  "to_type": "DLMn a, b",
+                  "synapses": 43
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -11159,10 +12015,33 @@
             "measured_synapses": 1567,
             "measured_edges": 118,
             "measured_synapses_superclass_coarse": 2214610,
+            "type_pair_support": {
+              "n_type_pairs": 16,
+              "n_pairs_with_synapses": 9,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "GFC2",
+                  "to_type": "TTMn",
+                  "synapses": 481
+                },
+                {
+                  "from_type": "GFC2",
+                  "to_type": "DLMn c-f",
+                  "synapses": 463
+                },
+                {
+                  "from_type": "GFC2",
+                  "to_type": "DLMn a, b",
+                  "synapses": 322
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -11305,6 +12184,29 @@
             "measured_synapses": 90,
             "measured_edges": 18,
             "measured_synapses_superclass_coarse": 2732731,
+            "type_pair_support": {
+              "n_type_pairs": 80,
+              "n_pairs_with_synapses": 8,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "AMMC028",
+                  "to_type": "pIP1",
+                  "synapses": 55
+                },
+                {
+                  "from_type": "AMMC026",
+                  "to_type": "pIP1",
+                  "synapses": 19
+                },
+                {
+                  "from_type": "AMMC008",
+                  "to_type": "pIP1",
+                  "synapses": 6
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -11316,10 +12218,23 @@
             "measured_synapses": 19,
             "measured_edges": 2,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 240,
+              "n_pairs_with_synapses": 1,
+              "support_tier": "FRAGILE",
+              "top_pairs": [
+                {
+                  "from_type": "AMMC012",
+                  "to_type": "aSP10A_b",
+                  "synapses": 19
+                }
+              ]
+            },
+            "support_tier": "FRAGILE",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -11503,6 +12418,29 @@
             "measured_synapses": 1973,
             "measured_edges": 190,
             "measured_synapses_superclass_coarse": 2732731,
+            "type_pair_support": {
+              "n_type_pairs": 98,
+              "n_pairs_with_synapses": 54,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "pC1_14a",
+                  "to_type": "pIP10",
+                  "synapses": 565
+                },
+                {
+                  "from_type": "pC1_5b",
+                  "to_type": "pIP10",
+                  "synapses": 215
+                },
+                {
+                  "from_type": "pC1_7b",
+                  "to_type": "pIP10",
+                  "synapses": 190
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -11514,6 +12452,29 @@
             "measured_synapses": 47,
             "measured_edges": 32,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 98,
+              "n_pairs_with_synapses": 15,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "pC1_6a",
+                  "to_type": "vpoEN",
+                  "synapses": 10
+                },
+                {
+                  "from_type": "pC1_5a",
+                  "to_type": "vpoEN",
+                  "synapses": 7
+                },
+                {
+                  "from_type": "pC1_7a",
+                  "to_type": "vpoIN",
+                  "synapses": 5
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -11525,6 +12486,29 @@
             "measured_synapses": 1250,
             "measured_edges": 122,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 98,
+              "n_pairs_with_synapses": 37,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "vpoEN",
+                  "to_type": "pC1_6a",
+                  "synapses": 687
+                },
+                {
+                  "from_type": "vpoEN",
+                  "to_type": "pC1_10c",
+                  "synapses": 186
+                },
+                {
+                  "from_type": "vpoIN",
+                  "to_type": "pC1_8b",
+                  "synapses": 75
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -11536,6 +12520,29 @@
             "measured_synapses": 877,
             "measured_edges": 275,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 294,
+              "n_pairs_with_synapses": 101,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "pC1_3a",
+                  "to_type": "aSP10A_a",
+                  "synapses": 142
+                },
+                {
+                  "from_type": "pC1_3b",
+                  "to_type": "aSP-g3Am",
+                  "synapses": 99
+                },
+                {
+                  "from_type": "pC1_2c",
+                  "to_type": "aSP10B",
+                  "synapses": 68
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -11547,10 +12554,33 @@
             "measured_synapses": 1022,
             "measured_edges": 344,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 294,
+              "n_pairs_with_synapses": 113,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "aSP10C_b",
+                  "to_type": "pC1_6a",
+                  "synapses": 126
+                },
+                {
+                  "from_type": "aSP10C_a",
+                  "to_type": "pC1_6a",
+                  "synapses": 98
+                },
+                {
+                  "from_type": "aSP10B",
+                  "to_type": "pC1_10b",
+                  "synapses": 83
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -11674,6 +12704,29 @@
             "measured_synapses": 1760,
             "measured_edges": 52,
             "measured_synapses_superclass_coarse": 1718761,
+            "type_pair_support": {
+              "n_type_pairs": 22,
+              "n_pairs_with_synapses": 10,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "pIP10",
+                  "to_type": "vPR9_a",
+                  "synapses": 608
+                },
+                {
+                  "from_type": "pIP10",
+                  "to_type": "vPR9_c",
+                  "synapses": 607
+                },
+                {
+                  "from_type": "pIP10",
+                  "to_type": "vPR9_b",
+                  "synapses": 392
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -11685,10 +12738,33 @@
             "measured_synapses": 12603,
             "measured_edges": 1307,
             "measured_synapses_superclass_coarse": 11042345,
+            "type_pair_support": {
+              "n_type_pairs": 121,
+              "n_pairs_with_synapses": 92,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "vMS12_a",
+                  "to_type": "vMS12_a",
+                  "synapses": 2055
+                },
+                {
+                  "from_type": "vPR6",
+                  "to_type": "vPR6",
+                  "synapses": 915
+                },
+                {
+                  "from_type": "vPR9_a",
+                  "to_type": "vMS11",
+                  "synapses": 809
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -11836,6 +12912,29 @@
             "measured_synapses": 391155,
             "measured_edges": 55498,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 61190,
+              "n_pairs_with_synapses": 15880,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DA1_lPN",
+                  "to_type": "LHAV4a4",
+                  "synapses": 2833
+                },
+                {
+                  "from_type": "DA1_lPN",
+                  "to_type": "LH008m",
+                  "synapses": 2761
+                },
+                {
+                  "from_type": "VA1v_vPN",
+                  "to_type": "LHAV2b2_a",
+                  "synapses": 2001
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -11847,10 +12946,33 @@
             "measured_synapses": 20001,
             "measured_edges": 2893,
             "measured_synapses_superclass_coarse": 2732731,
+            "type_pair_support": {
+              "n_type_pairs": 201294,
+              "n_pairs_with_synapses": 1381,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LHAD1g1",
+                  "to_type": "DNp06",
+                  "synapses": 902
+                },
+                {
+                  "from_type": "LHAD1g1",
+                  "to_type": "DNp103",
+                  "synapses": 591
+                },
+                {
+                  "from_type": "LHAD1g1",
+                  "to_type": "DNg40",
+                  "synapses": 566
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -12066,6 +13188,29 @@
             "measured_synapses": 4196,
             "measured_edges": 2841,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 135,
+              "n_pairs_with_synapses": 44,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "OA-VPM3",
+                  "to_type": "KCg-m",
+                  "synapses": 1336
+                },
+                {
+                  "from_type": "OA-VPM4",
+                  "to_type": "KCg-m",
+                  "synapses": 724
+                },
+                {
+                  "from_type": "OA-VPM4",
+                  "to_type": "KCg-d",
+                  "synapses": 269
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12077,6 +13222,29 @@
             "measured_synapses": 3496,
             "measured_edges": 342,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 333,
+              "n_pairs_with_synapses": 120,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "OA-VUMa6",
+                  "to_type": "MBON35",
+                  "synapses": 540
+                },
+                {
+                  "from_type": "OA-VUMa6",
+                  "to_type": "MBON31",
+                  "synapses": 404
+                },
+                {
+                  "from_type": "OA-VUMa1",
+                  "to_type": "MBON26",
+                  "synapses": 266
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12088,6 +13256,29 @@
             "measured_synapses": 14362,
             "measured_edges": 4361,
             "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 3798,
+              "n_pairs_with_synapses": 1180,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "OA-VUMa2",
+                  "to_type": "LHPV12a1",
+                  "synapses": 436
+                },
+                {
+                  "from_type": "OA-VUMa6",
+                  "to_type": "LHCENT3",
+                  "synapses": 372
+                },
+                {
+                  "from_type": "OA-VPM3",
+                  "to_type": "LHPV5b1",
+                  "synapses": 344
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12099,10 +13290,33 @@
             "measured_synapses": 6220,
             "measured_edges": 1853,
             "measured_synapses_superclass_coarse": 2732731,
+            "type_pair_support": {
+              "n_type_pairs": 4293,
+              "n_pairs_with_synapses": 877,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "OA-VUMa1",
+                  "to_type": "DNa01",
+                  "synapses": 159
+                },
+                {
+                  "from_type": "OA-VUMa1",
+                  "to_type": "DNae007",
+                  "synapses": 137
+                },
+                {
+                  "from_type": "OA-VUMa1",
+                  "to_type": "DNa13",
+                  "synapses": 116
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -12278,6 +13492,29 @@
             "measured_synapses": 1924544,
             "measured_edges": 389150,
             "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 456,
+              "n_pairs_with_synapses": 326,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "Mi1",
+                  "to_type": "T4a",
+                  "synapses": 115153
+                },
+                {
+                  "from_type": "Mi1",
+                  "to_type": "T4c",
+                  "synapses": 110255
+                },
+                {
+                  "from_type": "Mi1",
+                  "to_type": "T4b",
+                  "synapses": 100968
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12289,6 +13526,29 @@
             "measured_synapses": 169876,
             "measured_edges": 50225,
             "measured_synapses_superclass_coarse": 7714143,
+            "type_pair_support": {
+              "n_type_pairs": 32,
+              "n_pairs_with_synapses": 31,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "T5d",
+                  "to_type": "LPLC2",
+                  "synapses": 19165
+                },
+                {
+                  "from_type": "T5b",
+                  "to_type": "LPLC2",
+                  "synapses": 18245
+                },
+                {
+                  "from_type": "T5c",
+                  "to_type": "LPLC2",
+                  "synapses": 17171
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12300,10 +13560,33 @@
             "measured_synapses": 63290,
             "measured_edges": 4915,
             "measured_synapses_superclass_coarse": 291793,
+            "type_pair_support": {
+              "n_type_pairs": 1908,
+              "n_pairs_with_synapses": 120,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LPLC2",
+                  "to_type": "DNp103",
+                  "synapses": 5065
+                },
+                {
+                  "from_type": "LPLC2",
+                  "to_type": "DNp01",
+                  "synapses": 4862
+                },
+                {
+                  "from_type": "LPLC4",
+                  "to_type": "DNb05",
+                  "synapses": 4712
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -12504,6 +13787,29 @@
             "measured_synapses": 1024,
             "measured_edges": 192,
             "measured_synapses_superclass_coarse": 138543,
+            "type_pair_support": {
+              "n_type_pairs": 8586,
+              "n_pairs_with_synapses": 109,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PhG8",
+                  "to_type": "DNpe049",
+                  "synapses": 407
+                },
+                {
+                  "from_type": "PhG14",
+                  "to_type": "DNg65",
+                  "synapses": 78
+                },
+                {
+                  "from_type": "PhG8",
+                  "to_type": "DNg68",
+                  "synapses": 64
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12515,10 +13821,33 @@
             "measured_synapses": 5,
             "measured_edges": 5,
             "measured_synapses_superclass_coarse": 1785104,
+            "type_pair_support": {
+              "n_type_pairs": 7596,
+              "n_pairs_with_synapses": 4,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PhG9",
+                  "to_type": "LHPV11a1",
+                  "synapses": 2
+                },
+                {
+                  "from_type": "PhG8",
+                  "to_type": "LHPV6j1",
+                  "synapses": 1
+                },
+                {
+                  "from_type": "PhG12",
+                  "to_type": "LHAD2c2",
+                  "synapses": 1
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -12706,6 +14035,29 @@
             "measured_synapses": 1836902,
             "measured_edges": 331294,
             "measured_synapses_superclass_coarse": 1968053,
+            "type_pair_support": {
+              "n_type_pairs": 478629,
+              "n_pairs_with_synapses": 31893,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SNta02,SNta09",
+                  "to_type": "IN23B005",
+                  "synapses": 9974
+                },
+                {
+                  "from_type": "LgLG1a",
+                  "to_type": "IN05B002",
+                  "synapses": 9389
+                },
+                {
+                  "from_type": "SNta29",
+                  "to_type": "IN23B009",
+                  "synapses": 8521
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12717,6 +14069,29 @@
             "measured_synapses": 339844,
             "measured_edges": 66022,
             "measured_synapses_superclass_coarse": 365870,
+            "type_pair_support": {
+              "n_type_pairs": 478629,
+              "n_pairs_with_synapses": 9477,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "IN05B002",
+                  "to_type": "LgLG1a",
+                  "synapses": 6945
+                },
+                {
+                  "from_type": "IN05B002",
+                  "to_type": "WG4",
+                  "synapses": 6535
+                },
+                {
+                  "from_type": "INXXX316",
+                  "to_type": "SNxx04",
+                  "synapses": 4176
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12728,6 +14103,29 @@
             "measured_synapses": 154541,
             "measured_edges": 37582,
             "measured_synapses_superclass_coarse": 135399,
+            "type_pair_support": {
+              "n_type_pairs": 78372,
+              "n_pairs_with_synapses": 3778,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SApp06,SApp15",
+                  "to_type": "IN08B008",
+                  "synapses": 1700
+                },
+                {
+                  "from_type": "SApp09,SApp22",
+                  "to_type": "IN03B060",
+                  "synapses": 1437
+                },
+                {
+                  "from_type": "SNpp23",
+                  "to_type": "IN18B026",
+                  "synapses": 1386
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12739,6 +14137,29 @@
             "measured_synapses": 35473,
             "measured_edges": 5579,
             "measured_synapses_superclass_coarse": 31364,
+            "type_pair_support": {
+              "n_type_pairs": 78372,
+              "n_pairs_with_synapses": 1106,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "IN06B017",
+                  "to_type": "SApp",
+                  "synapses": 7494
+                },
+                {
+                  "from_type": "IN06B017",
+                  "to_type": "SApp09,SApp22",
+                  "synapses": 4163
+                },
+                {
+                  "from_type": "IN06B017",
+                  "to_type": "SApp06,SApp15",
+                  "synapses": 1878
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12750,10 +14171,33 @@
             "measured_synapses": 6846,
             "measured_edges": 1188,
             "measured_synapses_superclass_coarse": 6663,
+            "type_pair_support": {
+              "n_type_pairs": 11196,
+              "n_pairs_with_synapses": 424,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LN-DN2",
+                  "to_type": "INXXX245",
+                  "synapses": 411
+                },
+                {
+                  "from_type": "DNx01",
+                  "to_type": "IN00A054",
+                  "synapses": 283
+                },
+                {
+                  "from_type": "DNx01",
+                  "to_type": "IN06B087",
+                  "synapses": 211
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -12965,6 +14409,29 @@
             "measured_synapses": 1205967,
             "measured_edges": 82615,
             "measured_synapses_superclass_coarse": 2214610,
+            "type_pair_support": {
+              "n_type_pairs": 235116,
+              "n_pairs_with_synapses": 19213,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "IN20A.22A001",
+                  "to_type": "Sternotrochanter MN",
+                  "synapses": 6872
+                },
+                {
+                  "from_type": "IN21A001",
+                  "to_type": "Sternal anterior rotator MN",
+                  "synapses": 6575
+                },
+                {
+                  "from_type": "IN19A016",
+                  "to_type": "Sternal posterior rotator MN",
+                  "synapses": 5649
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12976,6 +14443,29 @@
             "measured_synapses": 30913,
             "measured_edges": 5291,
             "measured_synapses_superclass_coarse": 58254,
+            "type_pair_support": {
+              "n_type_pairs": 14364,
+              "n_pairs_with_synapses": 607,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SNpp45",
+                  "to_type": "Sternal posterior rotator MN",
+                  "synapses": 2723
+                },
+                {
+                  "from_type": "SNppxx",
+                  "to_type": "Sternal anterior rotator MN",
+                  "synapses": 1368
+                },
+                {
+                  "from_type": "SNxx20",
+                  "to_type": "MNad22",
+                  "synapses": 1021
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12987,6 +14477,29 @@
             "measured_synapses": 7991,
             "measured_edges": 1426,
             "measured_synapses_superclass_coarse": 18593,
+            "type_pair_support": {
+              "n_type_pairs": 2352,
+              "n_pairs_with_synapses": 138,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SNpp19",
+                  "to_type": "MNnm03",
+                  "synapses": 673
+                },
+                {
+                  "from_type": "SApp08",
+                  "to_type": "MNnm11",
+                  "synapses": 390
+                },
+                {
+                  "from_type": "SApp10",
+                  "to_type": "MNad42",
+                  "synapses": 348
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -12998,6 +14511,29 @@
             "measured_synapses": 11587,
             "measured_edges": 4519,
             "measured_synapses_superclass_coarse": 18590,
+            "type_pair_support": {
+              "n_type_pairs": 235116,
+              "n_pairs_with_synapses": 2819,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "MNad17",
+                  "to_type": "INXXX409",
+                  "synapses": 1117
+                },
+                {
+                  "from_type": "MNad17",
+                  "to_type": "INXXX239",
+                  "synapses": 914
+                },
+                {
+                  "from_type": "MNad17",
+                  "to_type": "INXXX077",
+                  "synapses": 809
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13009,10 +14545,33 @@
             "measured_synapses": 204,
             "measured_edges": 141,
             "measured_synapses_superclass_coarse": 807,
+            "type_pair_support": {
+              "n_type_pairs": 2100,
+              "n_pairs_with_synapses": 91,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "EN00B026",
+                  "to_type": "MNad02",
+                  "synapses": 17
+                },
+                {
+                  "from_type": "EN00B003",
+                  "to_type": "MNad64",
+                  "synapses": 14
+                },
+                {
+                  "from_type": "EN00B026",
+                  "to_type": "MNad06",
+                  "synapses": 12
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -13215,6 +14774,29 @@
             "measured_synapses": 141428,
             "measured_edges": 8344,
             "measured_synapses_superclass_coarse": 2214610,
+            "type_pair_support": {
+              "n_type_pairs": 5598,
+              "n_pairs_with_synapses": 1458,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "IN19A016",
+                  "to_type": "Pleural remotor/abductor MN",
+                  "synapses": 4563
+                },
+                {
+                  "from_type": "IN08A043",
+                  "to_type": "Pleural remotor/abductor MN",
+                  "synapses": 3898
+                },
+                {
+                  "from_type": "IN08A026",
+                  "to_type": "Pleural remotor/abductor MN",
+                  "synapses": 3296
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13226,6 +14808,29 @@
             "measured_synapses": 144642,
             "measured_edges": 10084,
             "measured_synapses_superclass_coarse": 2214610,
+            "type_pair_support": {
+              "n_type_pairs": 16794,
+              "n_pairs_with_synapses": 1634,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "IN19B043",
+                  "to_type": "DLMn c-f",
+                  "synapses": 8108
+                },
+                {
+                  "from_type": "IN19B067",
+                  "to_type": "DLMn c-f",
+                  "synapses": 7448
+                },
+                {
+                  "from_type": "IN03B089",
+                  "to_type": "DLMn c-f",
+                  "synapses": 4565
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13237,6 +14842,29 @@
             "measured_synapses": 43027,
             "measured_edges": 1716,
             "measured_synapses_superclass_coarse": 2214610,
+            "type_pair_support": {
+              "n_type_pairs": 5598,
+              "n_pairs_with_synapses": 461,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "IN03B072",
+                  "to_type": "b1 MN",
+                  "synapses": 1527
+                },
+                {
+                  "from_type": "IN03B066",
+                  "to_type": "b1 MN",
+                  "synapses": 1253
+                },
+                {
+                  "from_type": "IN06A022",
+                  "to_type": "b1 MN",
+                  "synapses": 1183
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13248,6 +14876,29 @@
             "measured_synapses": 84547,
             "measured_edges": 4417,
             "measured_synapses_superclass_coarse": 2214610,
+            "type_pair_support": {
+              "n_type_pairs": 11196,
+              "n_pairs_with_synapses": 1344,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "dMS2",
+                  "to_type": "hg1 MN",
+                  "synapses": 3657
+                },
+                {
+                  "from_type": "IN06B047",
+                  "to_type": "hg3 MN",
+                  "synapses": 2446
+                },
+                {
+                  "from_type": "IN06B047",
+                  "to_type": "hg4 MN",
+                  "synapses": 2057
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13259,6 +14910,29 @@
             "measured_synapses": 747,
             "measured_edges": 556,
             "measured_synapses_superclass_coarse": 18590,
+            "type_pair_support": {
+              "n_type_pairs": 5598,
+              "n_pairs_with_synapses": 345,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "Pleural remotor/abductor MN",
+                  "to_type": "IN21A001",
+                  "synapses": 28
+                },
+                {
+                  "from_type": "Pleural remotor/abductor MN",
+                  "to_type": "IN13A050",
+                  "synapses": 20
+                },
+                {
+                  "from_type": "Pleural remotor/abductor MN",
+                  "to_type": "IN13A068",
+                  "synapses": 19
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13270,10 +14944,33 @@
             "measured_synapses": 429,
             "measured_edges": 225,
             "measured_synapses_superclass_coarse": 18590,
+            "type_pair_support": {
+              "n_type_pairs": 11196,
+              "n_pairs_with_synapses": 148,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "hg3 MN",
+                  "to_type": "dMS2",
+                  "synapses": 105
+                },
+                {
+                  "from_type": "hg3 MN",
+                  "to_type": "IN12A042",
+                  "synapses": 40
+                },
+                {
+                  "from_type": "hg1 MN",
+                  "to_type": "dMS2",
+                  "synapses": 17
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -13464,6 +15161,29 @@
             "measured_synapses": 48207,
             "measured_edges": 7859,
             "measured_synapses_superclass_coarse": 1785104,
+            "type_pair_support": {
+              "n_type_pairs": 1360,
+              "n_pairs_with_synapses": 559,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "JO-EV1",
+                  "to_type": "AMMC026",
+                  "synapses": 1827
+                },
+                {
+                  "from_type": "JO-EV2",
+                  "to_type": "AMMC026",
+                  "synapses": 1824
+                },
+                {
+                  "from_type": "JO-EV3",
+                  "to_type": "AMMC012",
+                  "synapses": 1658
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13475,6 +15195,29 @@
             "measured_synapses": 46595,
             "measured_edges": 7741,
             "measured_synapses_superclass_coarse": 138543,
+            "type_pair_support": {
+              "n_type_pairs": 16218,
+              "n_pairs_with_synapses": 926,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "JO-EV1",
+                  "to_type": "DNp73",
+                  "synapses": 1492
+                },
+                {
+                  "from_type": "JO-EV3",
+                  "to_type": "DNg08",
+                  "synapses": 1443
+                },
+                {
+                  "from_type": "JO-FV",
+                  "to_type": "DNg15",
+                  "synapses": 1278
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13486,6 +15229,29 @@
             "measured_synapses": 1655,
             "measured_edges": 79,
             "measured_synapses_superclass_coarse": 138543,
+            "type_pair_support": {
+              "n_type_pairs": 68,
+              "n_pairs_with_synapses": 11,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "JO-EV2",
+                  "to_type": "pIP1",
+                  "synapses": 1350
+                },
+                {
+                  "from_type": "JO-FV",
+                  "to_type": "pIP1",
+                  "synapses": 193
+                },
+                {
+                  "from_type": "JO-FD1",
+                  "to_type": "pIP1",
+                  "synapses": 66
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13497,10 +15263,33 @@
             "measured_synapses": 709,
             "measured_edges": 28,
             "measured_synapses_superclass_coarse": 138543,
+            "type_pair_support": {
+              "n_type_pairs": 34,
+              "n_pairs_with_synapses": 7,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "JO-B1_a",
+                  "to_type": "DNp01",
+                  "synapses": 545
+                },
+                {
+                  "from_type": "JO-B1_c",
+                  "to_type": "DNp01",
+                  "synapses": 148
+                },
+                {
+                  "from_type": "JO-CA1",
+                  "to_type": "DNp01",
+                  "synapses": 10
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -13692,6 +15481,29 @@
             "measured_synapses": 56231,
             "measured_edges": 32588,
             "measured_synapses_superclass_coarse": 1469897,
+            "type_pair_support": {
+              "n_type_pairs": 285,
+              "n_pairs_with_synapses": 268,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "OA-AL2i2",
+                  "to_type": "TmY5a",
+                  "synapses": 6828
+                },
+                {
+                  "from_type": "OA-ASM1",
+                  "to_type": "TmY5a",
+                  "synapses": 6492
+                },
+                {
+                  "from_type": "OA-AL2i1",
+                  "to_type": "TmY5a",
+                  "synapses": 4072
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13703,6 +15515,29 @@
             "measured_synapses": 8729,
             "measured_edges": 5534,
             "measured_synapses_superclass_coarse": 439005,
+            "type_pair_support": {
+              "n_type_pairs": 225,
+              "n_pairs_with_synapses": 99,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "OA-AL2i2",
+                  "to_type": "LC12",
+                  "synapses": 690
+                },
+                {
+                  "from_type": "OA-ASM1",
+                  "to_type": "LC6",
+                  "synapses": 576
+                },
+                {
+                  "from_type": "OA-AL2i2",
+                  "to_type": "LC17",
+                  "synapses": 510
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13714,6 +15549,29 @@
             "measured_synapses": 6600,
             "measured_edges": 5007,
             "measured_synapses_superclass_coarse": 1469897,
+            "type_pair_support": {
+              "n_type_pairs": 40,
+              "n_pairs_with_synapses": 16,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "OA-AL2i1",
+                  "to_type": "T4a",
+                  "synapses": 912
+                },
+                {
+                  "from_type": "OA-AL2i1",
+                  "to_type": "T4d",
+                  "synapses": 826
+                },
+                {
+                  "from_type": "OA-AL2i1",
+                  "to_type": "T4b",
+                  "synapses": 809
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13725,10 +15583,33 @@
             "measured_synapses": 2906,
             "measured_edges": 1333,
             "measured_synapses_superclass_coarse": 439005,
+            "type_pair_support": {
+              "n_type_pairs": 20,
+              "n_pairs_with_synapses": 9,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "OA-ASM1",
+                  "to_type": "LPLC2",
+                  "synapses": 644
+                },
+                {
+                  "from_type": "OA-AL2i2",
+                  "to_type": "LPLC1",
+                  "synapses": 459
+                },
+                {
+                  "from_type": "OA-AL2i1",
+                  "to_type": "LPLC1",
+                  "synapses": 405
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -13988,6 +15869,29 @@
             "measured_synapses": 11609,
             "measured_edges": 1338,
             "measured_synapses_superclass_coarse": 11619,
+            "type_pair_support": {
+              "n_type_pairs": 1204,
+              "n_pairs_with_synapses": 102,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SApp09,SApp22",
+                  "to_type": "CvN6",
+                  "synapses": 1519
+                },
+                {
+                  "from_type": "SApp08",
+                  "to_type": "GNG647",
+                  "synapses": 918
+                },
+                {
+                  "from_type": "SApp09,SApp22",
+                  "to_type": "CvN5",
+                  "synapses": 892
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -13999,6 +15903,29 @@
             "measured_synapses": 2711,
             "measured_edges": 277,
             "measured_synapses_superclass_coarse": 0,
+            "type_pair_support": {
+              "n_type_pairs": 7353,
+              "n_pairs_with_synapses": 22,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SApp08",
+                  "to_type": "GNG647",
+                  "synapses": 918
+                },
+                {
+                  "from_type": "SApp08",
+                  "to_type": "GNG283",
+                  "synapses": 521
+                },
+                {
+                  "from_type": "SApp08",
+                  "to_type": "GNG653",
+                  "synapses": 418
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14010,6 +15937,29 @@
             "measured_synapses": 790,
             "measured_edges": 136,
             "measured_synapses_superclass_coarse": 5117,
+            "type_pair_support": {
+              "n_type_pairs": 258,
+              "n_pairs_with_synapses": 35,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "aPhM4",
+                  "to_type": "MNx01",
+                  "synapses": 299
+                },
+                {
+                  "from_type": "aPhM2a",
+                  "to_type": "MNx01",
+                  "synapses": 105
+                },
+                {
+                  "from_type": "aPhM3",
+                  "to_type": "MNx03",
+                  "synapses": 45
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14021,10 +15971,33 @@
             "measured_synapses": 466,
             "measured_edges": 95,
             "measured_synapses_superclass_coarse": 5117,
+            "type_pair_support": {
+              "n_type_pairs": 1462,
+              "n_pairs_with_synapses": 27,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "JO-FV",
+                  "to_type": "GNG651",
+                  "synapses": 112
+                },
+                {
+                  "from_type": "JO-mz",
+                  "to_type": "GNG651",
+                  "synapses": 100
+                },
+                {
+                  "from_type": "JO-DP",
+                  "to_type": "CvN6",
+                  "synapses": 40
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -14169,6 +16142,29 @@
             "measured_synapses": 288,
             "measured_edges": 61,
             "measured_synapses_superclass_coarse": 0,
+            "type_pair_support": {
+              "n_type_pairs": 27990,
+              "n_pairs_with_synapses": 5,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "ANXXX202",
+                  "to_type": "DMS",
+                  "synapses": 129
+                },
+                {
+                  "from_type": "ANXXX202",
+                  "to_type": "CAPA",
+                  "synapses": 110
+                },
+                {
+                  "from_type": "ANXXX202",
+                  "to_type": "PI3",
+                  "synapses": 21
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14180,10 +16176,33 @@
             "measured_synapses": 149,
             "measured_edges": 44,
             "measured_synapses_superclass_coarse": 265,
+            "type_pair_support": {
+              "n_type_pairs": 280,
+              "n_pairs_with_synapses": 6,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SAxx01",
+                  "to_type": "CAPA",
+                  "synapses": 103
+                },
+                {
+                  "from_type": "SAxx01",
+                  "to_type": "DMS",
+                  "synapses": 20
+                },
+                {
+                  "from_type": "SAxx01",
+                  "to_type": "IPC",
+                  "synapses": 11
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -14384,6 +16403,29 @@
             "measured_synapses": 13162,
             "measured_edges": 1704,
             "measured_synapses_superclass_coarse": 13059,
+            "type_pair_support": {
+              "n_type_pairs": 11196,
+              "n_pairs_with_synapses": 367,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "IN10B011",
+                  "to_type": "LK",
+                  "synapses": 2044
+                },
+                {
+                  "from_type": "INXXX183",
+                  "to_type": "LK",
+                  "synapses": 1654
+                },
+                {
+                  "from_type": "INXXX386",
+                  "to_type": "LK",
+                  "synapses": 1344
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14395,6 +16437,29 @@
             "measured_synapses": 5263,
             "measured_edges": 390,
             "measured_synapses_superclass_coarse": 5621,
+            "type_pair_support": {
+              "n_type_pairs": 1908,
+              "n_pairs_with_synapses": 103,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNp58",
+                  "to_type": "LK",
+                  "synapses": 2295
+                },
+                {
+                  "from_type": "DNp48",
+                  "to_type": "LK",
+                  "synapses": 655
+                },
+                {
+                  "from_type": "DNg80",
+                  "to_type": "LK",
+                  "synapses": 443
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14406,6 +16471,29 @@
             "measured_synapses": 207,
             "measured_edges": 125,
             "measured_synapses_superclass_coarse": 198,
+            "type_pair_support": {
+              "n_type_pairs": 11196,
+              "n_pairs_with_synapses": 90,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "FMRFa_Tv",
+                  "to_type": "IN05B003",
+                  "synapses": 19
+                },
+                {
+                  "from_type": "FMRFa_Tv",
+                  "to_type": "IN06B001",
+                  "synapses": 19
+                },
+                {
+                  "from_type": "LK",
+                  "to_type": "INXXX336",
+                  "synapses": 13
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14417,6 +16505,29 @@
             "measured_synapses": 54,
             "measured_edges": 37,
             "measured_synapses_superclass_coarse": 55,
+            "type_pair_support": {
+              "n_type_pairs": 336,
+              "n_pairs_with_synapses": 18,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LK",
+                  "to_type": "MNad69",
+                  "synapses": 9
+                },
+                {
+                  "from_type": "LK",
+                  "to_type": "MNad18,MNad27",
+                  "synapses": 6
+                },
+                {
+                  "from_type": "LK",
+                  "to_type": "MNad07",
+                  "synapses": 6
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14428,10 +16539,33 @@
             "measured_synapses": 35,
             "measured_edges": 28,
             "measured_synapses_superclass_coarse": 41,
+            "type_pair_support": {
+              "n_type_pairs": 336,
+              "n_pairs_with_synapses": 13,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "MNad18,MNad27",
+                  "to_type": "LK",
+                  "synapses": 8
+                },
+                {
+                  "from_type": "MNad17",
+                  "to_type": "LK",
+                  "synapses": 7
+                },
+                {
+                  "from_type": "MNad03",
+                  "to_type": "LK",
+                  "synapses": 5
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -14655,6 +16789,29 @@
             "measured_synapses": 4724,
             "measured_edges": 562,
             "measured_synapses_superclass_coarse": 4769,
+            "type_pair_support": {
+              "n_type_pairs": 2385,
+              "n_pairs_with_synapses": 261,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNg33",
+                  "to_type": "EA27X006",
+                  "synapses": 498
+                },
+                {
+                  "from_type": "DNge053",
+                  "to_type": "EA06B010",
+                  "synapses": 479
+                },
+                {
+                  "from_type": "DNp08",
+                  "to_type": "EA06B010",
+                  "synapses": 332
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14666,6 +16823,29 @@
             "measured_synapses": 6304,
             "measured_edges": 1903,
             "measured_synapses_superclass_coarse": 6268,
+            "type_pair_support": {
+              "n_type_pairs": 13995,
+              "n_pairs_with_synapses": 940,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "GFC2",
+                  "synapses": 626
+                },
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "IN18B032",
+                  "synapses": 326
+                },
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "IN07B030",
+                  "synapses": 323
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14677,6 +16857,29 @@
             "measured_synapses": 1259,
             "measured_edges": 67,
             "measured_synapses_superclass_coarse": 3067,
+            "type_pair_support": {
+              "n_type_pairs": 420,
+              "n_pairs_with_synapses": 29,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "MNad42",
+                  "synapses": 251
+                },
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "MNad41",
+                  "synapses": 219
+                },
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "MNwm36",
+                  "synapses": 198
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14688,6 +16891,24 @@
             "measured_synapses": 631,
             "measured_edges": 15,
             "measured_synapses_superclass_coarse": 6268,
+            "type_pair_support": {
+              "n_type_pairs": 20,
+              "n_pairs_with_synapses": 2,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "GFC2",
+                  "synapses": 626
+                },
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "GFC3",
+                  "synapses": 5
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14699,6 +16920,29 @@
             "measured_synapses": 7377,
             "measured_edges": 1488,
             "measured_synapses_superclass_coarse": 7227,
+            "type_pair_support": {
+              "n_type_pairs": 13995,
+              "n_pairs_with_synapses": 707,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "IN06B059",
+                  "to_type": "EA06B010",
+                  "synapses": 352
+                },
+                {
+                  "from_type": "IN06B080",
+                  "to_type": "EA06B010",
+                  "synapses": 338
+                },
+                {
+                  "from_type": "IN06B072",
+                  "to_type": "EA06B010",
+                  "synapses": 267
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14710,10 +16954,28 @@
             "measured_synapses": 126,
             "measured_edges": 17,
             "measured_synapses_superclass_coarse": 7227,
+            "type_pair_support": {
+              "n_type_pairs": 20,
+              "n_pairs_with_synapses": 2,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "GFC2",
+                  "to_type": "EA06B010",
+                  "synapses": 125
+                },
+                {
+                  "from_type": "GFC3",
+                  "to_type": "EA06B010",
+                  "synapses": 1
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
@@ -14902,6 +17164,19 @@
             "measured_synapses": 2,
             "measured_edges": 2,
             "measured_synapses_superclass_coarse": 104,
+            "type_pair_support": {
+              "n_type_pairs": 145,
+              "n_pairs_with_synapses": 1,
+              "support_tier": "FRAGILE",
+              "top_pairs": [
+                {
+                  "from_type": "VP2+Z_lvPN",
+                  "to_type": "GNG656",
+                  "synapses": 2
+                }
+              ]
+            },
+            "support_tier": "FRAGILE",
             "contradicted": false
           },
           {
@@ -14913,6 +17188,29 @@
             "measured_synapses": 26,
             "measured_edges": 18,
             "measured_synapses_superclass_coarse": 26,
+            "type_pair_support": {
+              "n_type_pairs": 477,
+              "n_pairs_with_synapses": 8,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "GNG656",
+                  "to_type": "DNg26",
+                  "synapses": 10
+                },
+                {
+                  "from_type": "GNG656",
+                  "to_type": "DNg93",
+                  "synapses": 5
+                },
+                {
+                  "from_type": "GNG656",
+                  "to_type": "DNg74_a",
+                  "synapses": 3
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14924,6 +17222,29 @@
             "measured_synapses": 73,
             "measured_edges": 26,
             "measured_synapses_superclass_coarse": 73,
+            "type_pair_support": {
+              "n_type_pairs": 477,
+              "n_pairs_with_synapses": 16,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNp68",
+                  "to_type": "GNG656",
+                  "synapses": 30
+                },
+                {
+                  "from_type": "DNge150",
+                  "to_type": "GNG656",
+                  "synapses": 9
+                },
+                {
+                  "from_type": "DNp58",
+                  "to_type": "GNG656",
+                  "synapses": 6
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -14935,10 +17256,28 @@
             "measured_synapses": 7,
             "measured_edges": 6,
             "measured_synapses_superclass_coarse": 11,
+            "type_pair_support": {
+              "n_type_pairs": 10,
+              "n_pairs_with_synapses": 2,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "GNG656",
+                  "to_type": "CAPA",
+                  "synapses": 6
+                },
+                {
+                  "from_type": "GNG656",
+                  "to_type": "Hugin-RG",
+                  "synapses": 1
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -15185,6 +17524,29 @@
             "measured_synapses": 3323,
             "measured_edges": 1594,
             "measured_synapses_superclass_coarse": 46,
+            "type_pair_support": {
+              "n_type_pairs": 114,
+              "n_pairs_with_synapses": 73,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "ME_unclear",
+                  "to_type": "TmY5a",
+                  "synapses": 197
+                },
+                {
+                  "from_type": "ME_unclear",
+                  "to_type": "Tm4",
+                  "synapses": 187
+                },
+                {
+                  "from_type": "ME_unclear",
+                  "to_type": "TmY18",
+                  "synapses": 151
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -15196,6 +17558,29 @@
             "measured_synapses": 1131,
             "measured_edges": 298,
             "measured_synapses_superclass_coarse": 95,
+            "type_pair_support": {
+              "n_type_pairs": 90,
+              "n_pairs_with_synapses": 19,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LC10_unclear",
+                  "to_type": "LC10a",
+                  "synapses": 615
+                },
+                {
+                  "from_type": "LC10_unclear",
+                  "to_type": "LC10d",
+                  "synapses": 333
+                },
+                {
+                  "from_type": "LC10_unclear",
+                  "to_type": "LC10_unclear",
+                  "synapses": 50
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -15207,6 +17592,29 @@
             "measured_synapses": 30,
             "measured_edges": 14,
             "measured_synapses_superclass_coarse": 0,
+            "type_pair_support": {
+              "n_type_pairs": 10,
+              "n_pairs_with_synapses": 5,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "ME_unclear",
+                  "to_type": "OA-ASM1",
+                  "synapses": 18
+                },
+                {
+                  "from_type": "ME_unclear",
+                  "to_type": "OA-AL2i1",
+                  "synapses": 9
+                },
+                {
+                  "from_type": "ME_unclear",
+                  "to_type": "OA-AL2i2",
+                  "synapses": 1
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -15218,6 +17626,29 @@
             "measured_synapses": 5222,
             "measured_edges": 2105,
             "measured_synapses_superclass_coarse": 121,
+            "type_pair_support": {
+              "n_type_pairs": 114,
+              "n_pairs_with_synapses": 93,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "Tm20",
+                  "to_type": "ME_unclear",
+                  "synapses": 406
+                },
+                {
+                  "from_type": "Mi4",
+                  "to_type": "ME_unclear",
+                  "synapses": 380
+                },
+                {
+                  "from_type": "TmY10",
+                  "to_type": "ME_unclear",
+                  "synapses": 252
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -15229,6 +17660,29 @@
             "measured_synapses": 661,
             "measured_edges": 220,
             "measured_synapses_superclass_coarse": 50,
+            "type_pair_support": {
+              "n_type_pairs": 90,
+              "n_pairs_with_synapses": 19,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LC10a",
+                  "to_type": "LC10_unclear",
+                  "synapses": 428
+                },
+                {
+                  "from_type": "LC10d",
+                  "to_type": "LC10_unclear",
+                  "synapses": 57
+                },
+                {
+                  "from_type": "LC10_unclear",
+                  "to_type": "LC10_unclear",
+                  "synapses": 50
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -15240,6 +17694,29 @@
             "measured_synapses": 532,
             "measured_edges": 216,
             "measured_synapses_superclass_coarse": 121,
+            "type_pair_support": {
+              "n_type_pairs": 16,
+              "n_pairs_with_synapses": 10,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "T4c",
+                  "to_type": "ME_unclear",
+                  "synapses": 152
+                },
+                {
+                  "from_type": "T4b",
+                  "to_type": "ME_unclear",
+                  "synapses": 144
+                },
+                {
+                  "from_type": "T5a",
+                  "to_type": "LC10_unclear",
+                  "synapses": 69
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -15251,10 +17728,33 @@
             "measured_synapses": 9,
             "measured_edges": 7,
             "measured_synapses_superclass_coarse": 46,
+            "type_pair_support": {
+              "n_type_pairs": 16,
+              "n_pairs_with_synapses": 5,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LC10_unclear",
+                  "to_type": "T5d",
+                  "synapses": 5
+                },
+                {
+                  "from_type": "LC10_unclear",
+                  "to_type": "T4c",
+                  "synapses": 1
+                },
+                {
+                  "from_type": "LC10_unclear",
+                  "to_type": "T5b",
+                  "synapses": 1
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": {
           "rois": [
             {
@@ -15553,6 +18053,29 @@
             "measured_synapses": 123,
             "measured_edges": 47,
             "measured_synapses_superclass_coarse": 104,
+            "type_pair_support": {
+              "n_type_pairs": 477,
+              "n_pairs_with_synapses": 22,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNge150",
+                  "to_type": "DNg28",
+                  "synapses": 34
+                },
+                {
+                  "from_type": "DNpe007",
+                  "to_type": "DNg28",
+                  "synapses": 23
+                },
+                {
+                  "from_type": "DNg28",
+                  "to_type": "DNg28",
+                  "synapses": 19
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -15564,6 +18087,29 @@
             "measured_synapses": 62,
             "measured_edges": 34,
             "measured_synapses_superclass_coarse": 44,
+            "type_pair_support": {
+              "n_type_pairs": 477,
+              "n_pairs_with_synapses": 23,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNg28",
+                  "to_type": "DNg28",
+                  "synapses": 19
+                },
+                {
+                  "from_type": "DNg28",
+                  "to_type": "DNg102",
+                  "synapses": 10
+                },
+                {
+                  "from_type": "DNg28",
+                  "to_type": "DNge047",
+                  "synapses": 4
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -15575,6 +18121,29 @@
             "measured_synapses": 12,
             "measured_edges": 8,
             "measured_synapses_superclass_coarse": 12,
+            "type_pair_support": {
+              "n_type_pairs": 43,
+              "n_pairs_with_synapses": 5,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "MNx04",
+                  "to_type": "DNg28",
+                  "synapses": 4
+                },
+                {
+                  "from_type": "MN4a",
+                  "to_type": "DNg28",
+                  "synapses": 3
+                },
+                {
+                  "from_type": "MN1",
+                  "to_type": "DNg28",
+                  "synapses": 2
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -15586,6 +18155,29 @@
             "measured_synapses": 11,
             "measured_edges": 8,
             "measured_synapses_superclass_coarse": 11,
+            "type_pair_support": {
+              "n_type_pairs": 43,
+              "n_pairs_with_synapses": 5,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNg28",
+                  "to_type": "MN13",
+                  "synapses": 6
+                },
+                {
+                  "from_type": "DNg28",
+                  "to_type": "MNx03",
+                  "synapses": 2
+                },
+                {
+                  "from_type": "DNg28",
+                  "to_type": "MNx01",
+                  "synapses": 1
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           },
           {
@@ -15597,6 +18189,19 @@
             "measured_synapses": 16,
             "measured_edges": 3,
             "measured_synapses_superclass_coarse": 16,
+            "type_pair_support": {
+              "n_type_pairs": 4,
+              "n_pairs_with_synapses": 1,
+              "support_tier": "FRAGILE",
+              "top_pairs": [
+                {
+                  "from_type": "LN-DN2",
+                  "to_type": "DNg28",
+                  "synapses": 16
+                }
+              ]
+            },
+            "support_tier": "FRAGILE",
             "contradicted": false
           },
           {
@@ -15608,6 +18213,19 @@
             "measured_synapses": 3,
             "measured_edges": 2,
             "measured_synapses_superclass_coarse": 5,
+            "type_pair_support": {
+              "n_type_pairs": 18,
+              "n_pairs_with_synapses": 1,
+              "support_tier": "FRAGILE",
+              "top_pairs": [
+                {
+                  "from_type": "DNg28",
+                  "to_type": "PhG3",
+                  "synapses": 3
+                }
+              ]
+            },
+            "support_tier": "FRAGILE",
             "contradicted": false
           },
           {
@@ -15619,10 +18237,28 @@
             "measured_synapses": 5,
             "measured_edges": 3,
             "measured_synapses_superclass_coarse": 253,
+            "type_pair_support": {
+              "n_type_pairs": 9,
+              "n_pairs_with_synapses": 2,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNg28",
+                  "to_type": "OA-VPM4",
+                  "synapses": 4
+                },
+                {
+                  "from_type": "DNg28",
+                  "to_type": "OA-VUMa4",
+                  "synapses": 1
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
             "contradicted": false
           }
         ],
-        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
         "anchors_file": "malecns_anchors.json"
       }
