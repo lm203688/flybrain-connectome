@@ -1,0 +1,267 @@
+{
+  "rows": [
+    {
+      "arm": "textbook_random",
+      "unit": "textbook_random",
+      "N": 60,
+      "density": 1.0,
+      "task": "parity_d3",
+      "score": 0.8766666666666667
+    },
+    {
+      "arm": "textbook_random",
+      "unit": "textbook_random",
+      "N": 60,
+      "density": 1.0,
+      "task": "noisy_parity_d3",
+      "score": 0.5011666666666666
+    },
+    {
+      "arm": "textbook_random",
+      "unit": "textbook_random",
+      "N": 60,
+      "density": 1.0,
+      "task": "logistic_r3.7",
+      "score": 8.324798331309471e-05
+    },
+    {
+      "arm": "textbook_random",
+      "unit": "textbook_random",
+      "N": 60,
+      "density": 1.0,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.02546216476678769
+    },
+    {
+      "arm": "bio_motif",
+      "unit": "bio_motif",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "parity_d3",
+      "score": 0.8766666666666667
+    },
+    {
+      "arm": "bio_motif",
+      "unit": "bio_motif",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "noisy_parity_d3",
+      "score": 0.4952500000000001
+    },
+    {
+      "arm": "bio_motif",
+      "unit": "bio_motif",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "logistic_r3.7",
+      "score": 9.328543509706134e-05
+    },
+    {
+      "arm": "bio_motif",
+      "unit": "bio_motif",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.012384418816236082
+    },
+    {
+      "arm": "random_matched",
+      "unit": "random_matched",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "parity_d3",
+      "score": 0.8766666666666667
+    },
+    {
+      "arm": "random_matched",
+      "unit": "random_matched",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "noisy_parity_d3",
+      "score": 0.5035833333333334
+    },
+    {
+      "arm": "random_matched",
+      "unit": "random_matched",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "logistic_r3.7",
+      "score": 8.294535787290794e-05
+    },
+    {
+      "arm": "random_matched",
+      "unit": "random_matched",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.014594847223243588
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "wing_flight_steering_unit",
+      "N": 60,
+      "density": 0.22,
+      "task": "parity_d3",
+      "score": 0.8766666666666667
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "wing_flight_steering_unit",
+      "N": 60,
+      "density": 0.22,
+      "task": "noisy_parity_d3",
+      "score": 0.4996666666666667
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "wing_flight_steering_unit",
+      "N": 60,
+      "density": 0.22,
+      "task": "logistic_r3.7",
+      "score": 9.759302890862639e-05
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "wing_flight_steering_unit",
+      "N": 60,
+      "density": 0.22,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.015312147052638605
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "mushroom_body_lateral_horn_reciprocal_unit",
+      "N": 60,
+      "density": 0.395,
+      "task": "parity_d3",
+      "score": 0.8766666666666667
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "mushroom_body_lateral_horn_reciprocal_unit",
+      "N": 60,
+      "density": 0.395,
+      "task": "noisy_parity_d3",
+      "score": 0.50225
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "mushroom_body_lateral_horn_reciprocal_unit",
+      "N": 60,
+      "density": 0.395,
+      "task": "logistic_r3.7",
+      "score": 8.990670815635956e-05
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "mushroom_body_lateral_horn_reciprocal_unit",
+      "N": 60,
+      "density": 0.395,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.015337944811352408
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "antennal_lobe_central_complex_feedback_unit",
+      "N": 60,
+      "density": 0.275,
+      "task": "parity_d3",
+      "score": 0.8766666666666667
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "antennal_lobe_central_complex_feedback_unit",
+      "N": 60,
+      "density": 0.275,
+      "task": "noisy_parity_d3",
+      "score": 0.5005833333333334
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "antennal_lobe_central_complex_feedback_unit",
+      "N": 60,
+      "density": 0.275,
+      "task": "logistic_r3.7",
+      "score": 0.00010448096690979113
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "antennal_lobe_central_complex_feedback_unit",
+      "N": 60,
+      "density": 0.275,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.013745802021935611
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "gustatory_centrifugal_unit",
+      "N": 60,
+      "density": 0.2125,
+      "task": "parity_d3",
+      "score": 0.8766666666666667
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "gustatory_centrifugal_unit",
+      "N": 60,
+      "density": 0.2125,
+      "task": "noisy_parity_d3",
+      "score": 0.49899999999999994
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "gustatory_centrifugal_unit",
+      "N": 60,
+      "density": 0.2125,
+      "task": "logistic_r3.7",
+      "score": 0.00010210752058132314
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "gustatory_centrifugal_unit",
+      "N": 60,
+      "density": 0.2125,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.013412113316210426
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "central_complex_steering_unit",
+      "N": 60,
+      "density": 0.4675,
+      "task": "parity_d3",
+      "score": 0.8766666666666667
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "central_complex_steering_unit",
+      "N": 60,
+      "density": 0.4675,
+      "task": "noisy_parity_d3",
+      "score": 0.5056666666666667
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "central_complex_steering_unit",
+      "N": 60,
+      "density": 0.4675,
+      "task": "logistic_r3.7",
+      "score": 9.141318815600366e-05
+    },
+    {
+      "arm": "unit_composed",
+      "unit": "central_complex_steering_unit",
+      "N": 60,
+      "density": 0.4675,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.0174285734477018
+    }
+  ],
+  "elapsed_s": 8.194551229476929,
+  "args": {
+    "quick": false,
+    "n_nodes": 60,
+    "n_seeds": null,
+    "out": null
+  }
+}

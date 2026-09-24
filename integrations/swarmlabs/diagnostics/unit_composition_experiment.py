@@ -56,13 +56,20 @@ from synthetic_bio_topology import design_organism, load_motifs  # noqa: E402
 # --------------------------------------------------------------------------- #
 # Unit-composed topology builder
 # --------------------------------------------------------------------------- #
-def build_unit_topology(unit: dict, total_N: int, seed: int = 42) -> tuple:
+def build_unit_topology(unit: dict, total_N: int, seed: int = 42,
+                        noise_scale: float = 0.5) -> tuple:
     """Map one functional unit onto an N×N weight matrix.
 
     - each member gets nodes proportional to count_ratio
     - each internal_wiring edge connects ALL source-member nodes to ALL
-      target-member nodes with the same base weight (dense uniform pattern)
+      target-member nodes with the base weight plus Gaussian perturbation
     - self-loops (from==to) are intra-member loops with the original weight
+
+    Why noise_scale: dense uniform blocks (weight=w) are RANK-1, so a W
+    made only of uniform blocks has singular rank ≤ #edges (~3-7), which
+    collapses ESN dynamics — that's why the v2.5.0 initial test showed
+    identical scores across arms. Adding Gaussian noise restores
+    full-rank dynamics while preserving the block STRUCTURE.
 
     Returns (W, member_ranges, edge_count) where member_ranges maps
     member role -> (start, end) node-index slice.
@@ -83,6 +90,7 @@ def build_unit_topology(unit: dict, total_N: int, seed: int = 42) -> tuple:
         ranges[role_m["role"]] = (offset, offset + cnt)
         offset += cnt
 
+    rng = np.random.default_rng(seed)
     edges_list = unit.get("internal_wiring", [])
     edges_placed = 0
     for e in edges_list:
@@ -92,8 +100,11 @@ def build_unit_topology(unit: dict, total_N: int, seed: int = 42) -> tuple:
         s_lo, s_hi = ranges[s_role]
         t_lo, t_hi = ranges[t_role]
         w = float(e.get("weight", 1.0))
-        # uniform fill between the two blocks (dense cell-level wiring)
-        W[s_lo:s_hi, t_lo:t_hi] += w
+        s_len = s_hi - s_lo
+        t_len = t_hi - t_lo
+        # base weight + Gaussian perturbation to break rank-1 collapse
+        perturbation = rng.normal(0, noise_scale, size=(s_len, t_len))
+        W[s_lo:s_hi, t_lo:t_hi] += w + perturbation
         edges_placed += 1
     return W, ranges, edges_placed
 
