@@ -29,7 +29,7 @@ before you quote it.
 
 | ✅ This project | ❌ Not this project |
 |---|---|
-| A connectome **query service** (44 tools over HTTP + MCP) | A spiking-neuron simulator |
+| A connectome **query service** (45 tools over HTTP + MCP) | A spiking-neuron simulator |
 | A **motif-extraction** pipeline (real fly → derived motif doc) | A repository of the raw 5.63 GB data |
 | A **synthetic topology generator** (bio-motifs → agent graphs) | A trained / fine-tuned model with weights |
 | **W3C PROV** provenance on every generated artifact | A claim that the "virtual organism" is alive |
@@ -207,7 +207,7 @@ flybrain-connectome/
 ├── pyproject.toml                  zero deps, `flybrain` console script
 ├── LICENSE · CITATION.cff · CHANGELOG.md
 ├── flybrain-connectome-mcp/
-│   ├── mcp_connectome/             query engine (core) + 44-tool MCP + HTTP API (:8799)
+│   ├── mcp_connectome/             query engine (core) + 45-tool MCP + HTTP API (:8799)
 │   ├── motifs/                     drop-in client + derived motif snapshot
 │   ├── synthetic_bio_topology.py   ★ C1 generator (motif → agent graph + config + PROV)
 │   ├── _verify.py                  end-to-end smoke test (70/70)
@@ -229,7 +229,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 | Endpoint | Auth | Purpose |
 |---|---|---|
 | `GET  /health` | none | liveness + version |
-| `GET  /tools`  | key  | list the 44 tools + descriptions |
+| `GET  /tools`  | key  | list the 45 tools + descriptions |
 | `POST /query`  | key  | `{"tool": <name>, "args": {...}}` → `{"ok": true, "result": ...}` |
 
 **Auth:** `Authorization: Bearer <key>` or `X-API-Key: <key>`. Keys come from
@@ -237,7 +237,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 server generates a temporary per-boot key and warns loudly — it never falls
 back to a key committed to source.
 
-**The 44 tools** (real names, do not invent — verified against `GET /tools`
+**The 45 tools** (real names, do not invent — verified against `GET /tools`
 by `scripts/check_docs_consistency.py`):
 
 *Real-connectome queries — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`:*
@@ -263,7 +263,7 @@ by `scripts/check_docs_consistency.py`):
 *Functional-unit composition library — the composable layer above neuron types:*
 
 `list_functional_units` · `get_functional_unit` ·
-`list_connection_types` · `compose_from_units`
+`list_connection_types` · `list_evidence_ledger` · `compose_from_units`
 
 ---
 
@@ -378,7 +378,7 @@ single neuron type does nothing on its own, and wiring two of them together mean
 nothing. What composes is a **function with a known interface**. So the library is
 split into two tiers, and the upper tier is the one you actually build from:
 
-- **97 functional units** — each is ONE function (phototransduction, action
+- **99 functional units** — each is ONE function (phototransduction, action
   selection, theta pacing, gliotransmission, sparse mushroom-body coding, ring-attractor
   heading, song timing, Mauthner escape, active electrolocation, camouflage, leech swim
   rhythm, infrared thermal imaging, climbing-fibre error teaching, sleep/wake switching …)
@@ -440,7 +440,7 @@ it is named after? `functional_units/malecns_anchors.json` (built by
 `scripts/build_malecns_anchors.py`) answers it, for the part where an answer is
 honest.
 
-- **Presence.** **31 of 97 units** have member populations that resolve to real
+- **Presence.** **33 of 99 units** have member populations that resolve to real
   annotated MaleCNS v1.0 cell types. Across the whole library that is
   **57 of 203 neuron populations** covering **105,717 real cells**: the `kc` role of
   the mushroom-body unit is 4,064 real Kenyon cells over 15 real KC types
@@ -556,7 +556,7 @@ which claims were retracted, are in [`CHANGELOG.md`](CHANGELOG.md).
 **Using it from an MCP client:** see [`docs/mcp_setup.md`](docs/mcp_setup.md).
 **Module variants, SwarmLabs integration, and the organism market (v1.1.0):**
 see [`docs/module_factory.md`](docs/module_factory.md).
-for client configs, the 44-tool reference, and troubleshooting.
+for client configs, the 45-tool reference, and troubleshooting.
 
 ---
 
