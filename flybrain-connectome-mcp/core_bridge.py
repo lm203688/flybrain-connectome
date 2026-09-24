@@ -35,7 +35,7 @@ from typing import Any
 # Advertised tool count on the full (core-installed) surface. Single source of
 # truth: Gate 8 asserts check_physical_tiering.TOTAL_TOOLS == this value, so the
 # two cannot drift.
-TOTAL_TOOLS = 44
+TOTAL_TOOLS = 45
 
 CORE_DEPENDENT_TOOLS = [
     "list_combination_rules", "validate_combination", "expand_organism",
