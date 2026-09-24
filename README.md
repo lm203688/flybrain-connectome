@@ -306,7 +306,7 @@ MLflow2PROV, and MIT Sloan provenance tooling.
 
 ## Blueprint & module library
 
-**25 blueprints** across three categories, composed from **183 modules**:
+**25 blueprints** across three categories, composed from **203 modules**:
 **10 cognitive-function modules** (sensory / memory / motor / integration / attention /
 working_memory / reward / punishment / habit / metacognition) + **170 cross-species
 neuron types** spanning cortical pyramidal (L2/3 CX1/CX5, L4b/L4c, L5 basal tuft, L6 reticulo-thalamic,
@@ -382,7 +382,7 @@ split into two tiers, and the upper tier is the one you actually build from:
   selection, theta pacing, gliotransmission, sparse mushroom-body coding, ring-attractor
   heading, song timing, Mauthner escape, active electrolocation, camouflage, leech swim
   rhythm, infrared thermal imaging, climbing-fibre error teaching, sleep/wake switching …)
-  delivered by a **group** of neuron populations (1–6 of them, taken from the 183-module
+  delivered by a **group** of neuron populations (1–6 of them, taken from the 203-module
   vocabulary) wired into an internal sub-circuit, and exposing **typed ports** (`light`
   in → `high_res` out; `candidates` + `value` in → `selected_action` out).
   Composition: 40 mammal-cortex-shaped + **16 cross-clade** (insect / bird / fish /
@@ -442,7 +442,7 @@ honest.
 
 - **Presence.** **19 of 85 units** have member populations that resolve to real
   annotated MaleCNS v1.0 cell types. Across the whole library that is
-  **37 of 183 neuron populations** covering **85,127 real cells**: the `kc` role of
+  **57 of 203 neuron populations** covering **105,717 real cells**: the `kc` role of
   the mushroom-body unit is 4,064 real Kenyon cells over 15 real KC types
   (`KCg-m`, `KCab-m`, `KCa'b'-ap2` …), its `input` role is 583 real antennal-lobe
   projection neurons over 145 types (`DA1_lPN`, `VM5d_adPN` …), its `gaba` role is
