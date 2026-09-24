@@ -11,7 +11,7 @@
     "macro": "population-level projection geometry"
   },
   "stats": {
-    "functional_units": 99,
+    "functional_units": 101,
     "connection_types": 66,
     "neural_members_referenced": 190,
     "systems": [
@@ -69,13 +69,13 @@
       "plasticity"
     ],
     "connection_types_used_by_units": 47,
-    "embodied_units": 33,
+    "embodied_units": 35,
     "embodied_populations_referenced": 57,
     "embodied_real_cells_referenced": 105717,
-    "structural_support_edges_measured": 129,
+    "structural_support_edges_measured": 138,
     "structural_support_edges_contradicted": 1,
     "structural_support_edges_fragile": 7,
-    "structural_support_edges_supported": 121,
+    "structural_support_edges_supported": 130,
     "support_resolution": "type-pair",
     "contradictions_acknowledged": 1
   },
