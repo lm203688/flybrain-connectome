@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.4.0` | the toolkit as a whole |
+| package | `2.5.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,82 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.5.0] — 2026-09-24
+
+**First engine-level experiment on the 101-unit library — 单元库回灌引擎 (G1).**
+
+Prior to v2.5.0, every diagnostic experiment ran on `design_organism`'s
+**module-rep layer** (4-10 representative nodes per module, density
+0.002-0.023). The 101 functional units in `functional_units/functional_units.json`
+were a data-only asset — never once evaluated as an ESN topology. Phase 3 of
+PROJECT_VISION.md explicitly logged this as the one remaining hypothesis worth
+testing:
+
+> The negative result is about the **module-rep design space**; whether
+> cell-level densification flips the sign is the only untested direction.
+
+v2.5.0 introduces the first unit-composed topology experiment: each of 5
+embodied units is expanded into a 60-node W matrix using its
+`members.count_ratio` and `internal_wiring`, then evaluated on the same
+ESN delay-line and fault-isolation metrics as prior phases.
+
+### Added
+
+- **`integrations/swarmlabs/diagnostics/unit_composition_experiment.py`** —
+  four-arm experiment (textbook random / bio_motif / random_matched /
+  unit_composed) on `r2_score(delay=3,5)` and `fault_isolation`. --quick
+  0.4s, full 1.9s, N=60, 30 seeds.
+- **`UNIT_COMPOSITION_REPORT.md`** — results, honest verdict, and next
+  directions.
+
+### Results (N=60, 30 seeds, delay=3)
+
+| Topology | Density | R² |
+|---|---|---|
+| textbook_random | 1.000 | 0.999 |
+| **central_complex_steering_unit** | 0.468 | **0.926** |
+| random_matched | 0.008 | 0.860 |
+| mushroom_body_LH_reciprocal_unit | 0.395 | 0.650 |
+| bio_motif (module_rep) | 0.008 | 0.427 |
+| wing_flight_steering_unit | 0.220 | 0.404 |
+| antennal_lobe_CC_feedback_unit | 0.275 | 0.067 |
+| gustatory_centrifugal_unit | 0.212 | 0.053 |
+
+**unit_composed wins over bio_motif**: r2 2/5, success 2/5,
+fault_isolation 1/5. Mean ratio 0.98× (median ~ tied).
+
+### Verdict (honest)
+
+- **Unit-composed layer does not systematically beat bio_motif.** Only 2/5
+  units outperform; `central_complex_steering_unit` (r2=0.926) is the clear
+  winner, matching textbook_random within 7%.
+- **The denser-is-better causal chain is not universal.** Unit density
+  0.21-0.47 (~25-60× denser than module_rep) is necessary but not
+  sufficient — 3 of 5 units underperform bio_motif despite higher density.
+- **Task mismatch is real**: delay-line is a memory task;
+  `antennal_lobe` (perception-navigation) and `gustatory` (centrifugal
+  feedback) are structurally misaligned with a memory benchmark. Their
+  poor scores likely reflect task mismatch, not unit quality.
+
+### What this does NOT claim
+
+- **Does not claim "unit library beats biology"** — 5 units median ≈ bio_motif.
+- **Does not claim computational advantage** — delay=5 collapses for all
+  non-textbook topologies.
+- **Does not claim structural stability advantage** — fault_isolation
+  median is not significantly above bio_motif.
+
+### Next
+
+- **G2 (deferred)**: standard ESN benchmark suite (parity, noisy-parity,
+  binary addition) to test units on task families beyond delay-line.
+- **v2.5.1 candidate**: sparse sampling inside `internal_wiring` blocks
+  (current block-fill at density 0.22-0.47 may collapse recurrent capacity).
+- **v2.5.2 candidate**: multi-unit `compose_from_units` organism topologies
+  (currently only single-unit expansion is tested).
 
 ---
 
