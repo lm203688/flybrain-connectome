@@ -8,14 +8,71 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.3.0` | the toolkit as a whole |
+| package | `2.4.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 99 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0 and 2.3.0) |
+| functional-unit library schema | `1.0` | 101 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0 and 2.4.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.4.0] — 2026-09-24
+
+**Two new cross-modal Drosophila units — mushroom body ↔ lateral horn, and antennal lobe ↔ central complex — every edge of both pre-verified SUPPORTED at type-pair resolution, zero FRAGILE, zero CONTRADICTED.**
+
+v2.3.0 added the last two "obvious" fly circuits (wing flight steering and
+gustatory centrifugal feedback). But the library still had a structural hole:
+the mushroom body (learned olfactory valence) and the lateral horn (innate
+olfactory response) were two separate units with no wiring between them, even
+though MaleCNS measures **36,712 synapses** from MBON to lateral horn and
+**21,199** back the other way. Similarly the antennal lobe local neurons
+projected into the central complex's PB and FB sub-regions — **40,781 total
+synapses across three edges** — but no unit captured that AAL → CC projection.
+
+Both new units are seeded from the unused strong-edge list: every declared edge
+was checked against the measured profile × profile matrix BEFORE being written.
+All 9 new edges are SUPPORTED at type-pair resolution (≥2 active pairs each);
+zero FRAGILE, zero CONTRADICTED. The v1.8.0 fail-closed discipline held: nothing
+with a zero was written.
+
+### Added
+
+- **`mushroom_body_lateral_horn_reciprocal_unit`** — 6 edges, 4 members
+  (`kenyon_cell`, `lateral_horn_ln`, `mushroom_body_output`, `mushroom_body_dan`).
+  Captures the learned ↔ innate olfactory cross-talk: MBON projects to lateral
+  horn (36,712 synapses, 1401/15614 type pairs), lateral horn projects back to
+  MBON (21,199, 999/15614), mushroom-body DAN modulates LH (11,517, 1498/13504),
+  LH modulates DAN back (19,655, 1555/13504), KC → LH (11,265, 270/6330),
+  and DAN → MBON (39,960, 390/1184). This unit fills the structural gap between
+  `mushroom_body_associative_memory_unit` (learned-only) and
+  `lateral_horn_innate_odour_unit` (innate-only) — the first unit in the
+  library to bridge the two.
+
+- **`antennal_lobe_central_complex_feedback_unit`** — 3 edges, 3 members
+  (`antennal_lobe_ln`, `central_complex_pb`, `central_complex_fb`). Antennal
+  lobe local neurons project into the central complex's PB and FB (16,379 +
+  25,402 synapses), and FB centrifugally back to AAL (9,473). Top type pairs:
+  GLNO → PEN_a (9,806), LNO2 → PFNd (9,610), PFNd → LNO2 (3,542). This is the
+  first unit that ties the olfactory periphery (AAL) to the navigation circuit
+  (CC), which previously lived in two disconnected units.
+
+### Changed
+
+- Gate 9 unit-count constant 99 → 101.
+- Stats: embodied_units 33 → 35, structural_support_edges 129 → 138
+  (**130 SUPPORTED / 7 FRAGILE / 1 CONTRADICTED** — all 9 new edges are
+  SUPPORTED; the FRAGILE and CONTRADICTED counts are unchanged from v2.3.0).
+
+### Gates
+
+`scripts/run_gates.py --with-data` passes all 10 gates. Gate 9 and Gate 10
+are unchanged in structure; only the unit-count constant and the README
+cross-checks move. The new units' 9 declared edges are all re-derived from
+the raw type-pair matrix by Gate 10 — a hand-written tier cannot survive a
+single gate run.
 
 ---
 
