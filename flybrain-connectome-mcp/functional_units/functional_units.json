@@ -82,10 +82,11 @@
     "motor.leg": "Leg walking / steering command to the tarsal motor pools.",
     "motor.wing": "Wing-flight command (depressor / promoter / haltere drive).",
     "motor.posture": "Thoracic posture hold command (static stance, not flight).",
-    "modulatory.endocrine": "Peptidergic volume-transmission modulation from crustal / ventral-nerve-cord endocrine neurons."
+    "modulatory.endocrine": "Peptidergic volume-transmission modulation from crustal / ventral-nerve-cord endocrine neurons.",
+    "gating.attention": "Attention-priority gate on a competing modulatory program (which centrifugal feedback wins)."
   },
   "stats": {
-    "functional_units": 97,
+    "functional_units": 99,
     "connection_types": 66,
     "neural_members_referenced": 190,
     "systems": [
@@ -143,13 +144,13 @@
       "plasticity"
     ],
     "connection_types_used_by_units": 47,
-    "embodied_units": 31,
+    "embodied_units": 33,
     "embodied_populations_referenced": 57,
     "embodied_real_cells_referenced": 105717,
-    "structural_support_edges_measured": 116,
+    "structural_support_edges_measured": 129,
     "structural_support_edges_contradicted": 1,
-    "structural_support_edges_fragile": 6,
-    "structural_support_edges_supported": 109,
+    "structural_support_edges_fragile": 7,
+    "structural_support_edges_supported": 121,
     "support_resolution": "type-pair",
     "contradictions_acknowledged": 1
   },
@@ -292,7 +293,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -415,7 +418,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -537,7 +542,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -646,7 +653,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -763,7 +772,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -874,7 +885,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -985,7 +998,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "single_source",
+        "n_literature_refs": 1
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1110,7 +1125,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "single_source",
+        "n_literature_refs": 1
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1228,7 +1245,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "single_source",
+        "n_literature_refs": 1
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1333,7 +1352,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "single_source",
+        "n_literature_refs": 1
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1438,7 +1459,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "single_source",
+        "n_literature_refs": 1
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1566,7 +1589,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "single_source",
+        "n_literature_refs": 1
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1694,7 +1719,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "single_source",
+        "n_literature_refs": 1
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1830,7 +1857,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2003,7 +2032,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2158,7 +2189,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2286,7 +2319,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2442,7 +2477,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2570,7 +2607,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2725,7 +2764,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2848,7 +2889,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2987,7 +3030,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3109,7 +3154,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3232,7 +3279,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3362,7 +3411,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3474,7 +3525,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "single_source",
+        "n_literature_refs": 1
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3599,7 +3652,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3755,7 +3810,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3880,7 +3937,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4010,7 +4069,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4135,7 +4196,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4264,7 +4327,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4418,7 +4483,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4543,7 +4610,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4667,7 +4736,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4802,7 +4873,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4931,7 +5004,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -5038,7 +5113,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -5149,7 +5226,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -5284,7 +5363,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7310,7 +7391,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7419,7 +7502,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7546,7 +7631,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7680,7 +7767,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7792,7 +7881,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7920,7 +8011,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8043,7 +8136,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8168,7 +8263,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8283,7 +8380,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8404,7 +8503,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8531,7 +8632,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8658,7 +8761,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8793,7 +8898,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8918,7 +9025,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9035,7 +9144,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9149,7 +9260,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9265,7 +9378,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9402,7 +9517,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9519,7 +9636,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9648,7 +9767,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9775,7 +9896,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9904,7 +10027,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -10032,7 +10157,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -10159,7 +10286,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 2
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -10292,7 +10421,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -10423,7 +10554,9 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
-        "unanchored_reason": "identity_not_in_drosophila"
+        "unanchored_reason": "identity_not_in_drosophila",
+        "evidence_weight": "multi_source",
+        "n_literature_refs": 3
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -18251,6 +18384,922 @@
                   "from_type": "DNg28",
                   "to_type": "OA-VUMa4",
                   "synapses": 1
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "wing_flight_steering_unit",
+      "display": "翅膀转向调节单元",
+      "function": "flight_steering",
+      "system": "ventral_nerve_cord",
+      "description": "飞行动作选择：下行神经元（1306 真实细胞 / 477 类）注入 VNC 中间池 1,673,751 突触，VNC 中间池同时驱动飞行功率池 144,642、腿运动池 1,205,967、VNC 外周 85,992；飞行功率池再输出到翅膀伸张（4 突触 / 2 类）与鼓翅肌（4 突触 / 4 类）——后者是果蝇飞行的定常振荡器，反馈到 VNC 中间池 162 突触构成闭合的定速回路；VNC 中间池与 VNC 外周之间的 85,992 突触是姿态反馈通路的实测承载。所有 7 条边在实测矩阵里都非零，量级从 1 到 1,673,751 跨越六个数量级：功率/腿是驱动级，翅膀伸张与鼓翅是微调级。",
+      "members": [
+        {
+          "role": "dn",
+          "neuron": "descending_neuron",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "vn",
+          "neuron": "vnc_interneuron_pool",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "fp",
+          "neuron": "vnc_flight_power_pool",
+          "count_ratio": 0.1
+        },
+        {
+          "role": "wm",
+          "neuron": "wing_depressor_pool",
+          "count_ratio": 0.05
+        },
+        {
+          "role": "hd",
+          "neuron": "haltere_muscle_pool",
+          "count_ratio": 0.05
+        },
+        {
+          "role": "lm",
+          "neuron": "vnc_leg_motor_pool",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "ve",
+          "neuron": "vnc_efferent_pool",
+          "count_ratio": 0.1
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "dn",
+          "to": "vn",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "vn",
+          "to": "fp",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "fp",
+          "to": "wm",
+          "type": "feedforward_excitatory",
+          "weight": 0.4
+        },
+        {
+          "from": "fp",
+          "to": "hd",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "vn",
+          "to": "lm",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "vn",
+          "to": "ve",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "wm",
+          "to": "vn",
+          "type": "feedback_excitatory",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "command",
+            "type": "motor.command",
+            "required": true
+          },
+          {
+            "name": "proprioception",
+            "type": "sensory.proprioceptive",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "wing",
+            "type": "motor.wing",
+            "required": true
+          },
+          {
+            "name": "leg",
+            "type": "motor.leg",
+            "required": false
+          },
+          {
+            "name": "posture",
+            "type": "motor.posture",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        40,
+        400
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "flight_steering",
+        "haltere_tuned",
+        "wing_control",
+        "leg_coordination"
+      ],
+      "task_hint_pool": [
+        "flight_steering",
+        "haltere_tuned"
+      ],
+      "lead_task_hint": "flight_steering",
+      "neurotransmitter": [
+        "acetylcholine",
+        "GABA"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Niven et al 2013; Maimon et al 2005; Straube et al 2007",
+      "composable_with": [
+        "wing_flight_control_unit",
+        "giant_fiber_escape_unit",
+        "vnc_sensory_reflex_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 7,
+        "populations_total": 7,
+        "real_cells_anchored": 14791,
+        "anchored": {
+          "dn": {
+            "n_bodies": 1306,
+            "n_types": 477,
+            "example_types": [
+              "DNg08",
+              "DNpe008",
+              "DNg07",
+              "DNg106",
+              "DNge091",
+              "DNge094"
+            ],
+            "lower_bound": false
+          },
+          "fp": {
+            "n_bodies": 28,
+            "n_types": 6,
+            "example_types": [
+              "DLMn c-f",
+              "DVMn 1a-c",
+              "DVMn 2a, b",
+              "DVMn 3a, b",
+              "STTMm",
+              "DLMn a, b"
+            ],
+            "lower_bound": false
+          },
+          "hd": {
+            "n_bodies": 8,
+            "n_types": 4,
+            "example_types": [
+              "hg1 MN",
+              "hg2 MN",
+              "hg3 MN",
+              "hg4 MN"
+            ],
+            "lower_bound": false
+          },
+          "lm": {
+            "n_bodies": 403,
+            "n_types": 84,
+            "example_types": [
+              "Acc. ti flexor MN",
+              "Acc. tr flexor MN",
+              "Sternal posterior rotator MN",
+              "Fe reductor MN",
+              "Sternotrochanter MN",
+              "MNad02"
+            ],
+            "lower_bound": false
+          },
+          "ve": {
+            "n_bodies": 75,
+            "n_types": 25,
+            "example_types": [
+              "ENXXX226",
+              "EN00B026",
+              "EN00B010",
+              "EN00B013",
+              "EN00B023",
+              "EN21X001"
+            ],
+            "lower_bound": false
+          },
+          "vn": {
+            "n_bodies": 12967,
+            "n_types": 2799,
+            "example_types": [
+              "IN01B095",
+              "IN03B060",
+              "IN08A036",
+              "IN10B057",
+              "IN06B066",
+              "IN20A.22A092"
+            ],
+            "lower_bound": false
+          },
+          "wm": {
+            "n_bodies": 4,
+            "n_types": 2,
+            "example_types": [
+              "b1 MN",
+              "b2 MN"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "dn",
+            "to_role": "vn",
+            "form": "feedforward_excitatory",
+            "from_population": "descending_neuron",
+            "to_population": "vnc_interneuron_pool",
+            "measured_synapses": 1673751,
+            "measured_edges": 242763,
+            "measured_synapses_superclass_coarse": 1718761,
+            "type_pair_support": {
+              "n_type_pairs": 1335123,
+              "n_pairs_with_synapses": 90318,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DNpe008",
+                  "to_type": "IN07B068",
+                  "synapses": 1665
+                },
+                {
+                  "from_type": "DNge035",
+                  "to_type": "IN08A002",
+                  "synapses": 1557
+                },
+                {
+                  "from_type": "DNp43",
+                  "to_type": "IN17A028",
+                  "synapses": 1510
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "vn",
+            "to_role": "fp",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "vnc_flight_power_pool",
+            "measured_synapses": 144642,
+            "measured_edges": 10084,
+            "measured_synapses_superclass_coarse": 2214610,
+            "type_pair_support": {
+              "n_type_pairs": 16794,
+              "n_pairs_with_synapses": 1634,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "IN19B043",
+                  "to_type": "DLMn c-f",
+                  "synapses": 8108
+                },
+                {
+                  "from_type": "IN19B067",
+                  "to_type": "DLMn c-f",
+                  "synapses": 7448
+                },
+                {
+                  "from_type": "IN03B089",
+                  "to_type": "DLMn c-f",
+                  "synapses": 4565
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "fp",
+            "to_role": "wm",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_flight_power_pool",
+            "to_population": "wing_depressor_pool",
+            "measured_synapses": 1,
+            "measured_edges": 1,
+            "measured_synapses_superclass_coarse": 7892,
+            "type_pair_support": {
+              "n_type_pairs": 12,
+              "n_pairs_with_synapses": 1,
+              "support_tier": "FRAGILE",
+              "top_pairs": [
+                {
+                  "from_type": "DLMn a, b",
+                  "to_type": "b1 MN",
+                  "synapses": 1
+                }
+              ]
+            },
+            "support_tier": "FRAGILE",
+            "contradicted": false
+          },
+          {
+            "from_role": "fp",
+            "to_role": "hd",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_flight_power_pool",
+            "to_population": "haltere_muscle_pool",
+            "measured_synapses": 4,
+            "measured_edges": 4,
+            "measured_synapses_superclass_coarse": 7892,
+            "type_pair_support": {
+              "n_type_pairs": 24,
+              "n_pairs_with_synapses": 4,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "DLMn c-f",
+                  "to_type": "hg3 MN",
+                  "synapses": 1
+                },
+                {
+                  "from_type": "DLMn c-f",
+                  "to_type": "hg4 MN",
+                  "synapses": 1
+                },
+                {
+                  "from_type": "DVMn 3a, b",
+                  "to_type": "hg4 MN",
+                  "synapses": 1
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "vn",
+            "to_role": "lm",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "vnc_leg_motor_pool",
+            "measured_synapses": 1205967,
+            "measured_edges": 82615,
+            "measured_synapses_superclass_coarse": 2214610,
+            "type_pair_support": {
+              "n_type_pairs": 235116,
+              "n_pairs_with_synapses": 19213,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "IN20A.22A001",
+                  "to_type": "Sternotrochanter MN",
+                  "synapses": 6872
+                },
+                {
+                  "from_type": "IN21A001",
+                  "to_type": "Sternal anterior rotator MN",
+                  "synapses": 6575
+                },
+                {
+                  "from_type": "IN19A016",
+                  "to_type": "Sternal posterior rotator MN",
+                  "synapses": 5649
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "vn",
+            "to_role": "ve",
+            "form": "feedback_excitatory",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "vnc_efferent_pool",
+            "measured_synapses": 85992,
+            "measured_edges": 7809,
+            "measured_synapses_superclass_coarse": 129587,
+            "type_pair_support": {
+              "n_type_pairs": 69975,
+              "n_pairs_with_synapses": 2356,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "INXXX204",
+                  "to_type": "ENXXX226",
+                  "synapses": 2451
+                },
+                {
+                  "from_type": "INXXX149",
+                  "to_type": "EN00B010",
+                  "synapses": 2185
+                },
+                {
+                  "from_type": "INXXX052",
+                  "to_type": "EN00B003",
+                  "synapses": 1954
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "wm",
+            "to_role": "vn",
+            "form": "feedback_excitatory",
+            "from_population": "wing_depressor_pool",
+            "to_population": "vnc_interneuron_pool",
+            "measured_synapses": 162,
+            "measured_edges": 101,
+            "measured_synapses_superclass_coarse": 18590,
+            "type_pair_support": {
+              "n_type_pairs": 5598,
+              "n_pairs_with_synapses": 78,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "b2 MN",
+                  "to_type": "w-cHIN",
+                  "synapses": 22
+                },
+                {
+                  "from_type": "b1 MN",
+                  "to_type": "w-cHIN",
+                  "synapses": 11
+                },
+                {
+                  "from_type": "b1 MN",
+                  "to_type": "IN13A013",
+                  "synapses": 8
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "gustatory_centrifugal_unit",
+      "display": "味觉离心反馈单元",
+      "function": "centrifugal_feedback",
+      "system": "subesophageal_zone",
+      "description": "味觉信号的离心放大回路：咽味觉神经元（48 细胞 / 18 类）注入感觉上升池 68 突触，上升池同时注入 CB 内分泌池 149、CB 运动池 11,609、VNC 中间池 154,541、EPP 上升池 256；EPP 上升池再向 VNC 中间池注入 6,304 突触形成闭环。这条回路把咽部味觉输入放大成跨越脑干与 VNC 的全脑反馈——MaleCNS 实测显示上升池到VNC 的 154,541 突触比到 CB 内分泌的 149 高三个数量级，暗示味觉反馈主要走运动通路而非内分通路。",
+      "members": [
+        {
+          "role": "pg",
+          "neuron": "pharyngeal_gustatory",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "sa",
+          "neuron": "sensory_ascending_pool",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "ce",
+          "neuron": "cb_endocrine_pool",
+          "count_ratio": 0.1
+        },
+        {
+          "role": "cbm",
+          "neuron": "cb_motor_pool",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "ea",
+          "neuron": "efferent_ascending_pool",
+          "count_ratio": 0.1
+        },
+        {
+          "role": "vn",
+          "neuron": "vnc_interneuron_pool",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "pg",
+          "to": "sa",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "sa",
+          "to": "ce",
+          "type": "feedforward_excitatory",
+          "weight": 0.3
+        },
+        {
+          "from": "sa",
+          "to": "cbm",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "sa",
+          "to": "ea",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "ea",
+          "to": "vn",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "sa",
+          "to": "vn",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "taste",
+            "type": "sensory.gustatory",
+            "required": true
+          },
+          {
+            "name": "attention",
+            "type": "gating.attention",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "centrifugal",
+            "type": "modulatory.endocrine",
+            "required": true
+          },
+          {
+            "name": "motor_drive",
+            "type": "motor.command",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        30,
+        200
+      ],
+      "motif_source": [
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "centrifugal_feedback",
+        "taste_driven",
+        "arousal_broadcast"
+      ],
+      "task_hint_pool": [
+        "centrifugal_feedback",
+        "arousal_broadcast"
+      ],
+      "lead_task_hint": "centrifugal_feedback",
+      "neurotransmitter": [
+        "acetylcholine",
+        "neuropeptide"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Marella et al 2006; Mann et al 2013; Bhatt et al 2005",
+      "composable_with": [
+        "pharyngeal_gustatory_unit",
+        "vnc_sensory_reflex_unit",
+        "cb_sensory_motor_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 6,
+        "populations_total": 6,
+        "real_cells_anchored": 13722,
+        "anchored": {
+          "cbm": {
+            "n_bodies": 106,
+            "n_types": 43,
+            "example_types": [
+              "CEM",
+              "MN1",
+              "MN12D",
+              "MN3L",
+              "MN4a",
+              "MN7"
+            ],
+            "lower_bound": false
+          },
+          "ce": {
+            "n_bodies": 65,
+            "n_types": 10,
+            "example_types": [
+              "IPC",
+              "DNES1",
+              "PI3",
+              "ITP",
+              "DH44",
+              "DMS"
+            ],
+            "lower_bound": false
+          },
+          "ea": {
+            "n_bodies": 8,
+            "n_types": 5,
+            "example_types": [
+              "EA06B010",
+              "EA27X006",
+              "EAXXX079",
+              "EA00B006",
+              "EA00B007"
+            ],
+            "lower_bound": false
+          },
+          "pg": {
+            "n_bodies": 48,
+            "n_types": 18,
+            "example_types": [
+              "PhG1c",
+              "PhG2",
+              "PhG4",
+              "PhG7",
+              "PhG8",
+              "PhG9"
+            ],
+            "lower_bound": false
+          },
+          "sa": {
+            "n_bodies": 528,
+            "n_types": 28,
+            "example_types": [
+              "SApp",
+              "SApp09,SApp22",
+              "SApp08",
+              "SApp06,SApp15",
+              "SApp10",
+              "LgAG1"
+            ],
+            "lower_bound": false
+          },
+          "vn": {
+            "n_bodies": 12967,
+            "n_types": 2799,
+            "example_types": [
+              "IN01B095",
+              "IN03B060",
+              "IN08A036",
+              "IN10B057",
+              "IN06B066",
+              "IN20A.22A092"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "pg",
+            "to_role": "sa",
+            "form": "feedforward_excitatory",
+            "from_population": "pharyngeal_gustatory",
+            "to_population": "sensory_ascending_pool",
+            "measured_synapses": 68,
+            "measured_edges": 32,
+            "measured_synapses_superclass_coarse": 189,
+            "type_pair_support": {
+              "n_type_pairs": 504,
+              "n_pairs_with_synapses": 16,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PhG13",
+                  "to_type": "LgAG3",
+                  "synapses": 43
+                },
+                {
+                  "from_type": "PhG13",
+                  "to_type": "LgAG8",
+                  "synapses": 6
+                },
+                {
+                  "from_type": "PhG12",
+                  "to_type": "LgAG5",
+                  "synapses": 3
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "sa",
+            "to_role": "ce",
+            "form": "feedforward_excitatory",
+            "from_population": "sensory_ascending_pool",
+            "to_population": "cb_endocrine_pool",
+            "measured_synapses": 149,
+            "measured_edges": 44,
+            "measured_synapses_superclass_coarse": 265,
+            "type_pair_support": {
+              "n_type_pairs": 280,
+              "n_pairs_with_synapses": 6,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SAxx01",
+                  "to_type": "CAPA",
+                  "synapses": 103
+                },
+                {
+                  "from_type": "SAxx01",
+                  "to_type": "DMS",
+                  "synapses": 20
+                },
+                {
+                  "from_type": "SAxx01",
+                  "to_type": "IPC",
+                  "synapses": 11
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "sa",
+            "to_role": "cbm",
+            "form": "feedforward_excitatory",
+            "from_population": "sensory_ascending_pool",
+            "to_population": "cb_motor_pool",
+            "measured_synapses": 11609,
+            "measured_edges": 1338,
+            "measured_synapses_superclass_coarse": 11619,
+            "type_pair_support": {
+              "n_type_pairs": 1204,
+              "n_pairs_with_synapses": 102,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SApp09,SApp22",
+                  "to_type": "CvN6",
+                  "synapses": 1519
+                },
+                {
+                  "from_type": "SApp08",
+                  "to_type": "GNG647",
+                  "synapses": 918
+                },
+                {
+                  "from_type": "SApp09,SApp22",
+                  "to_type": "CvN5",
+                  "synapses": 892
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "sa",
+            "to_role": "ea",
+            "form": "feedforward_excitatory",
+            "from_population": "sensory_ascending_pool",
+            "to_population": "efferent_ascending_pool",
+            "measured_synapses": 256,
+            "measured_edges": 133,
+            "measured_synapses_superclass_coarse": 230,
+            "type_pair_support": {
+              "n_type_pairs": 140,
+              "n_pairs_with_synapses": 25,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SApp10",
+                  "to_type": "EAXXX079",
+                  "synapses": 63
+                },
+                {
+                  "from_type": "SApp09,SApp22",
+                  "to_type": "EAXXX079",
+                  "synapses": 30
+                },
+                {
+                  "from_type": "SAxx01",
+                  "to_type": "EA27X006",
+                  "synapses": 20
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "ea",
+            "to_role": "vn",
+            "form": "feedforward_excitatory",
+            "from_population": "efferent_ascending_pool",
+            "to_population": "vnc_interneuron_pool",
+            "measured_synapses": 6304,
+            "measured_edges": 1903,
+            "measured_synapses_superclass_coarse": 6268,
+            "type_pair_support": {
+              "n_type_pairs": 13995,
+              "n_pairs_with_synapses": 940,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "GFC2",
+                  "synapses": 626
+                },
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "IN18B032",
+                  "synapses": 326
+                },
+                {
+                  "from_type": "EA06B010",
+                  "to_type": "IN07B030",
+                  "synapses": 323
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "sa",
+            "to_role": "vn",
+            "form": "feedforward_excitatory",
+            "from_population": "sensory_ascending_pool",
+            "to_population": "vnc_interneuron_pool",
+            "measured_synapses": 154541,
+            "measured_edges": 37582,
+            "measured_synapses_superclass_coarse": 135399,
+            "type_pair_support": {
+              "n_type_pairs": 78372,
+              "n_pairs_with_synapses": 3778,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "SApp06,SApp15",
+                  "to_type": "IN08B008",
+                  "synapses": 1700
+                },
+                {
+                  "from_type": "SApp09,SApp22",
+                  "to_type": "IN03B060",
+                  "synapses": 1437
+                },
+                {
+                  "from_type": "SNpp23",
+                  "to_type": "IN18B026",
+                  "synapses": 1386
                 }
               ]
             },

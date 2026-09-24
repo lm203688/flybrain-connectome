@@ -1,7 +1,7 @@
 """gen_functional_units.py -- author the two composition libraries.
 
 Writes (single source of truth, stdlib-only JSON):
-    flybrain-connectome-mcp/functional_units/functional_units.json    (97 units)
+    flybrain-connectome-mcp/functional_units/functional_units.json    (99 units)
     flybrain-connectome-mcp/functional_units/connection_types.json    (66 types)
 
 CLADE COVERAGE (v1.4.1)
@@ -1080,6 +1080,29 @@ def _load_anchors() -> dict:
     return json.loads(ANCHORS_FILE.read_text(encoding="utf-8"))
 
 
+def _evidence_weight(unit: dict) -> tuple:
+    """Derive `provenance.evidence_weight` for UNANCHORED units from the count
+    of `;`-separated entries in `biological_reference`.
+
+    Three-tier enum (never hand-typed):
+      single_source  — exactly 1 citation; a claim resting on one paper
+      multi_source   — 2-3 citations; consensus from independent groups
+      textbook       — >=4 citations; the sort of entry that appears in a
+                       textbook chapter
+
+    Anchored units do NOT carry this field: their evidence is the connectome,
+    not the citation count.
+    """
+    refs = [r.strip() for r in (unit.get("biological_reference") or "").split(";")
+            if r.strip()]
+    n = len(refs)
+    if n <= 1:
+        return "single_source", n
+    if n <= 3:
+        return "multi_source", n
+    return "textbook", n
+
+
 def _embody(unit: dict, anchors: dict) -> None:
     """Attach `embodiment` to one unit, in place.
 
@@ -1158,6 +1181,9 @@ def _embody(unit: dict, anchors: dict) -> None:
         _unanchored_basis(unit, anchors))
     if not anchored:
         unit["provenance"]["unanchored_reason"] = _unanchored_reason(unit, anchors)
+        weight, n_refs = _evidence_weight(unit)
+        unit["provenance"]["evidence_weight"] = weight
+        unit["provenance"]["n_literature_refs"] = n_refs
 
 
 def _unanchored_reason(unit: dict, anchors: dict) -> str:
@@ -1946,6 +1972,9 @@ PORT_TYPES.update({
     "motor.posture":           "Thoracic posture hold command (static stance, not flight).",
     "modulatory.endocrine":    "Peptidergic volume-transmission modulation from "
                                "crustal / ventral-nerve-cord endocrine neurons.",
+    # ---------------- v2.3.0 additions ------------------------------------ #
+    "gating.attention":        "Attention-priority gate on a competing modulatory "
+                               "program (which centrifugal feedback wins).",
 })
 
 
@@ -2797,6 +2826,77 @@ FUNCTIONAL_UNITS += [
       "Bhatt et al 2005",
       ["drosophila"],
       ("pharyngeal_gustatory_unit", "octopamine_arousal_unit",
+       "cb_sensory_motor_unit")),
+
+    # ---------- WING FLIGHT STEERING (1, v2.3.0) ---------- #
+    U("wing_flight_steering_unit", "翅膀转向调节单元", "flight_steering",
+      "ventral_nerve_cord",
+      "飞行动作选择：下行神经元（1306 真实细胞 / 477 类）注入 VNC 中间池 1,673,751 突触，"
+      "VNC 中间池同时驱动飞行功率池 144,642、腿运动池 1,205,967、VNC 外周 85,992；"
+      "飞行功率池再输出到翅膀伸张（4 突触 / 2 类）与鼓翅肌（4 突触 / 4 类）——后者是"
+      "果蝇飞行的定常振荡器，反馈到 VNC 中间池 162 突触构成闭合的定速回路；VNC 中间池"
+      "与 VNC 外周之间的 85,992 突触是姿态反馈通路的实测承载。所有 7 条边在实测矩阵"
+      "里都非零，量级从 1 到 1,673,751 跨越六个数量级：功率/腿是驱动级，翅膀伸张与"
+      "鼓翅是微调级。",
+      [("dn", "descending_neuron", 0.20),
+       ("vn", "vnc_interneuron_pool", 0.35),
+       ("fp", "vnc_flight_power_pool", 0.10),
+       ("wm", "wing_depressor_pool", 0.05),
+       ("hd", "haltere_muscle_pool", 0.05),
+       ("lm", "vnc_leg_motor_pool", 0.15),
+       ("ve", "vnc_efferent_pool", 0.10)],
+      [("dn", "vn", "feedforward_excitatory", 1.0),
+       ("vn", "fp", "feedforward_excitatory", 1.0),
+       ("fp", "wm", "feedforward_excitatory", 0.4),
+       ("fp", "hd", "feedforward_excitatory", 0.6),
+       ("vn", "lm", "feedforward_excitatory", 0.8),
+       ("vn", "ve", "feedback_excitatory", 0.5),
+       ("wm", "vn", "feedback_excitatory", 0.3)],
+      [("command", "motor.command", True),
+       ("proprioception", "sensory.proprioceptive", True)],
+      [("wing", "motor.wing", True),
+       ("leg", "motor.leg", False),
+       ("posture", "motor.posture", False)],
+      (40, 400), ["flight_steering", "haltere_tuned", "wing_control",
+                  "leg_coordination"],
+      ["flight_steering", "haltere_tuned"], "flight_steering",
+      ["acetylcholine", "GABA"], "Niven et al 2013; Maimon et al 2005; "
+      "Straube et al 2007",
+      ["drosophila"],
+      ("wing_flight_control_unit", "giant_fiber_escape_unit",
+       "vnc_sensory_reflex_unit")),
+
+    # ---------- GUSTATORY CENTRIFUGAL FEEDBACK (1, v2.3.0) ---------- #
+    U("gustatory_centrifugal_unit", "味觉离心反馈单元", "centrifugal_feedback",
+      "subesophageal_zone",
+      "味觉信号的离心放大回路：咽味觉神经元（48 细胞 / 18 类）注入感觉上升池 68 突触，"
+      "上升池同时注入 CB 内分泌池 149、CB 运动池 11,609、VNC 中间池 154,541、"
+      "EPP 上升池 256；EPP 上升池再向 VNC 中间池注入 6,304 突触形成闭环。这条回路"
+      "把咽部味觉输入放大成跨越脑干与 VNC 的全脑反馈——MaleCNS 实测显示上升池到"
+      "VNC 的 154,541 突触比到 CB 内分泌的 149 高三个数量级，暗示味觉反馈主要走"
+      "运动通路而非内分通路。",
+      [("pg", "pharyngeal_gustatory", 0.15),
+       ("sa", "sensory_ascending_pool", 0.25),
+       ("ce", "cb_endocrine_pool", 0.10),
+       ("cbm", "cb_motor_pool", 0.15),
+       ("ea", "efferent_ascending_pool", 0.10),
+       ("vn", "vnc_interneuron_pool", 0.25)],
+      [("pg", "sa", "feedforward_excitatory", 0.6),
+       ("sa", "ce", "feedforward_excitatory", 0.3),
+       ("sa", "cbm", "feedforward_excitatory", 1.0),
+       ("sa", "ea", "feedforward_excitatory", 0.5),
+       ("ea", "vn", "feedforward_excitatory", 0.7),
+       ("sa", "vn", "feedforward_excitatory", 0.9)],
+      [("taste", "sensory.gustatory", True),
+       ("attention", "gating.attention", False)],
+      [("centrifugal", "modulatory.endocrine", True),
+       ("motor_drive", "motor.command", False)],
+      (30, 200), ["centrifugal_feedback", "taste_driven", "arousal_broadcast"],
+      ["centrifugal_feedback", "arousal_broadcast"], "centrifugal_feedback",
+      ["acetylcholine", "neuropeptide"], "Marella et al 2006; Mann et al 2013; "
+      "Bhatt et al 2005",
+      ["drosophila"],
+      ("pharyngeal_gustatory_unit", "vnc_sensory_reflex_unit",
        "cb_sensory_motor_unit")),
 ]
 

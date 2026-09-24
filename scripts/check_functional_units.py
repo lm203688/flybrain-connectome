@@ -24,7 +24,7 @@ What this gate proves:
   5. FAIL-CLOSED PROOF (defect injection): twelve deliberately broken inputs must
      each make the composer return ok=False. A validator that cannot go red is
      not a validator -- so this gate re-injects the defects every run.
-  6. Coverage: 97 units / 66 connection types / all 6 families actually wired /
+  6. Coverage: 99 units / 66 connection types / all 6 families actually wired /
      >= 34 anatomical systems / the v1.4.1 and v1.6.0 clades present / every
      v1.4.1 and v1.6.0 connection form actually wired by >= 1 unit or chain.
 
@@ -265,7 +265,7 @@ def main() -> int:
               + " error(s)")
 
     # ---------------------------------------------------------------- 6
-    check("unit count is 97", len(units) == 97, str(len(units)))
+    check("unit count is 99", len(units) == 99, str(len(units)))
     check("connection-type count is 66", len(conns) == 66, str(len(conns)))
     used = {w["type"] for u in units for w in u["internal_wiring"]}
     fams = {c["family"] for c in conns}
@@ -327,6 +327,42 @@ def main() -> int:
           "%d/%d of MODULE_PROFILES" % (len(mem), len(profiles)))
     check("library is honestly marked as NOT connectome-extracted",
           all(u["provenance"]["extracted_from_malecns"] is False for u in units), "")
+
+    # --- evidence ledger aggregation must match the per-unit blocks ---------
+    # The evidence ledger is a view over each unit's embodiment.structural_support.
+    # Recompute it here independently of functional_units.list_evidence_ledger()
+    # so a drift between the two cannot slip through Gate 9.
+    fu_mod = _load(MCP / "functional_units.py", "fu_gate_ledger")
+    ledger = fu_mod.list_evidence_ledger()
+    recomputed = {"SUPPORTED": 0, "FRAGILE": 0, "CONTRADICTED": 0}
+    emb_units = 0
+    for u in units:
+        if not u["provenance"].get("embodied_in_malecns"):
+            continue
+        emb_units += 1
+        for s in u["embodiment"]["structural_support"]:
+            tier = s.get("support_tier") or ("CONTRADICTED" if s.get("contradicted") else "SUPPORTED")
+            if tier in recomputed:
+                recomputed[tier] += 1
+    check("evidence_ledger summary matches per-unit structural_support",
+          ledger["summary"]["SUPPORTED"] == recomputed["SUPPORTED"]
+          and ledger["summary"]["FRAGILE"] == recomputed["FRAGILE"]
+          and ledger["summary"]["CONTRADICTED"] == recomputed["CONTRADICTED"]
+          and ledger["summary"]["total_declared_edges"] == sum(recomputed.values())
+          and ledger["summary"]["embodied_units"] == emb_units,
+          "ledger=%s recomputed=%s embodied_units=%d"
+          % (ledger["summary"], recomputed, emb_units))
+    # An entry's tier in the ledger must agree with the entry's own support_tier
+    bad_tier = [e for t, entries in ledger["tiers"].items() for e in entries
+                if e["contradicted"] and t != "CONTRADICTED"]
+    check("no SUPPORTED/FRAGILE ledger entry is actually contradicted",
+          not bad_tier, str(bad_tier[:3]))
+    # every entry must resolve to a real embodied unit
+    embodied_names = {u["name"] for u in units if u["provenance"]["embodied_in_malecns"]}
+    orphan = [e for t, entries in ledger["tiers"].items() for e in entries
+              if e["unit"] not in embodied_names]
+    check("every evidence_ledger entry references an embodied unit",
+          not orphan, str([e["unit"] for e in orphan[:3]]))
 
     # ---------------------------------------------------------------- 7
     # Docs cross-check: the README is the doc of record, so it must state the

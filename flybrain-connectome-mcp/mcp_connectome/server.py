@@ -217,6 +217,18 @@ TOOLS = [
         },
     },
     {
+        "name": "list_evidence_ledger",
+        "description": "把整个功能单元库的声明边汇总成「证据账本」，按 support_tier 分组：SUPPORTED(≥2 类型对支持) / FRAGILE(恰 1 类型对) / CONTRADICTED(0 突触，已登记的矛盾)。这是回答「全库哪些边脆弱」的一等公民查询面——不用手动遍历 97 个单元。可选 only 参数只返回某一档。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "only": {"type": "string",
+                         "description": "仅返回该档，如 FRAGILE",
+                         "enum": ["SUPPORTED", "FRAGILE", "CONTRADICTED"]},
+            },
+        },
+    },
+    {
         "name": "list_connection_types",
         "description": "列出 66 种连接件（最小可组合连接单位 = 一种连接形式，带端口类型约束、符号、扇出、时延与可塑性标记）。分 6 族：micro（点对点突触位点）/ circuit（多神经元回路）/ modulatory（弥散·容积·逆行）/ electrical（电突触·电场·胶质）/ plasticity（可塑性规则）/ macro（群体投射几何）。",
         "inputSchema": {
@@ -1113,6 +1125,14 @@ def _get_functional_unit(args):
     return u
 
 
+def _list_evidence_ledger(args):
+    try:
+        fu = _fu_module()
+    except Exception as exc:
+        return {"status": "unit_library_unavailable", "error": str(exc)}
+    return fu.list_evidence_ledger(only=args.get("only"))
+
+
 def _list_connection_types(args):
     try:
         fu = _fu_module()
@@ -1290,6 +1310,8 @@ def handle_call(name, args):
         return json.dumps(_list_functional_units(args), ensure_ascii=False)
     if name == "get_functional_unit":
         return json.dumps(_get_functional_unit(args), ensure_ascii=False)
+    if name == "list_evidence_ledger":
+        return json.dumps(_list_evidence_ledger(args), ensure_ascii=False)
     if name == "list_connection_types":
         return json.dumps(_list_connection_types(args), ensure_ascii=False)
     if name == "compose_from_units":
@@ -1373,7 +1395,7 @@ def main():
             resp = {"jsonrpc": "2.0", "id": rid, "result": {
                 "protocolVersion": PROTOCOL_VERSION,
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "drosophila-connectome", "version": "2.2.0"},
+                "serverInfo": {"name": "drosophila-connectome", "version": "2.3.0"},
             }}
         elif method == "notifications/initialized":
             continue
