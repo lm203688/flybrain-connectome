@@ -106,7 +106,7 @@ real cells over 4,872 types) and carries the measured connectivity backbone: the
 complete 27x27 superclass matrix, cross-checked against `connectivity_stats.json`
 (124,177,617 synapses / 25,582,938 edges -- both sources agree). Each declared unit
 edge therefore carries the measured synapse count between its populations' actual
-cell types. 19 of the 85 units have `provenance.embodied_in_malecns: true`; the other
+cell types. 26 of the 92 units have `provenance.embodied_in_malecns: true`; the other
 66 do not resolve to fly cells and say so. A measured count of ZERO is a recorded
 contradiction (currently one, in `central_complex_steering_unit`), never a pass.
 `extracted_from_malecns` stays false everywhere: presence and non-contradiction are
