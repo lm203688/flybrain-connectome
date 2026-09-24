@@ -522,6 +522,61 @@ DEMOS = {
 }
 
 
+def list_evidence_ledger(only: str | None = None) -> dict:
+    """Aggregate every declared edge across all embodied units into one ledger,
+    grouped by `support_tier` (SUPPORTED / FRAGILE / CONTRADICTED).
+
+    This is the first-class query surface for evidence — before v2.3.0 the same
+    information was buried inside each unit's `embodiment.structural_support`
+    block, so answering "which edges are FRAGILE across the whole library?"
+    meant iterating 97 units by hand.
+
+    `only` optionally filters to a single tier ("SUPPORTED" | "FRAGILE" |
+    "CONTRADICTED"). Deterministic: units by name, edges within a unit by
+    (from_population, to_population).
+    """
+    doc = load_units()
+    tiers = {"SUPPORTED": [], "FRAGILE": [], "CONTRADICTED": []}
+    for u in doc["units"]:
+        if not u.get("provenance", {}).get("embodied_in_malecns"):
+            continue
+        for s in u["embodiment"]["structural_support"]:
+            tier = s.get("support_tier") or (
+                "CONTRADICTED" if s.get("contradicted") else "SUPPORTED")
+            if tier not in tiers:
+                continue
+            tps = s.get("type_pair_support", {})
+            tiers[tier].append({
+                "unit": u["name"],
+                "from_population": s["from_population"],
+                "to_population": s["to_population"],
+                "from_role": s.get("from_role"),
+                "to_role": s.get("to_role"),
+                "form": s.get("form"),
+                "measured_synapses": s["measured_synapses"],
+                "n_type_pairs": tps.get("n_type_pairs"),
+                "n_pairs_with_synapses": tps.get("n_pairs_with_synapses"),
+                "top_pairs": tps.get("top_pairs", [])[:3],
+                "contradicted": s.get("contradicted", False),
+            })
+    for t in tiers.values():
+        t.sort(key=lambda e: (e["unit"], e["from_population"], e["to_population"]))
+    buckets = tiers
+    summary = {k: len(v) for k, v in tiers.items()}
+    summary["total_declared_edges"] = sum(summary.values())
+    summary["embodied_units"] = len({e["unit"] for k in tiers for e in tiers[k]})
+    if only:
+        key = only.upper()
+        if key in tiers:
+            buckets = {key: tiers[key]}
+    return {
+        "summary": summary,
+        "tiers": buckets,
+        "library_schema_version": doc["schema_version"],
+        "generated_utc": datetime.now(timezone.utc).strftime("%Y-%m-%dT%H:%M:%SZ"),
+    }
+
+
 def stats() -> dict:
     u = load_units()
     c = load_connection_types()
@@ -546,8 +601,16 @@ def _cli() -> int:
     ap.add_argument("--demo", nargs="?", const="all", metavar="NAME",
                     help="mammal | insect | electrosensory | swim | all (default)")
     ap.add_argument("--stats", action="store_true")
+    ap.add_argument("--evidence-ledger", nargs="?", const="__ALL__", default=None,
+                    metavar="TIER",
+                    help="aggregate all declared edges into SUPPORTED/FRAGILE/CONTRADICTED ledger")
     a = ap.parse_args()
 
+    if a.evidence_ledger is not None:
+        only = None if a.evidence_ledger == "__ALL__" else a.evidence_ledger
+        print(json.dumps(list_evidence_ledger(only=only),
+                         ensure_ascii=False, indent=2))
+        return 0
     if a.stats:
         print(json.dumps(stats(), ensure_ascii=False, indent=2)); return 0
     if a.list:
