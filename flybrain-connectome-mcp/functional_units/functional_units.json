@@ -76,12 +76,18 @@
     "cerebellar.climbing": "Climbing-fibre teaching signal (error / complex spike).",
     "reafference.tactile": "Self-generated tactile reafference from active sensing.",
     "modulatory.octopamine": "Octopaminergic diffuse modulation (invertebrate arousal / effort / gain-set; invertebrate analogue of norepinephrine).",
-    "sensory.gustatory": "Taste signal from proboscis or pharyngeal gustatory neurons."
+    "sensory.gustatory": "Taste signal from proboscis or pharyngeal gustatory neurons.",
+    "sensory.mechanovibratory": "Airborne vibration / wind signal from a Johnston organ or other mechanosensory appendage.",
+    "sensory.proprioceptive": "Joint-angle / body-position signal from stretch receptors along the thoracic and leg musculature.",
+    "motor.leg": "Leg walking / steering command to the tarsal motor pools.",
+    "motor.wing": "Wing-flight command (depressor / promoter / haltere drive).",
+    "motor.posture": "Thoracic posture hold command (static stance, not flight).",
+    "modulatory.endocrine": "Peptidergic volume-transmission modulation from crustal / ventral-nerve-cord endocrine neurons."
   },
   "stats": {
-    "functional_units": 85,
+    "functional_units": 92,
     "connection_types": 66,
-    "neural_members_referenced": 170,
+    "neural_members_referenced": 185,
     "systems": [
       "antennal_lobe",
       "antennal_mechanosensory",
@@ -91,6 +97,7 @@
       "ascidian_larva",
       "barrel_cortex",
       "basal_ganglia",
+      "brain",
       "brainstem",
       "buccal_ganglion",
       "central_complex",
@@ -136,10 +143,10 @@
       "plasticity"
     ],
     "connection_types_used_by_units": 47,
-    "embodied_units": 19,
-    "embodied_populations_referenced": 37,
-    "embodied_real_cells_referenced": 85127,
-    "structural_support_edges_measured": 57,
+    "embodied_units": 26,
+    "embodied_populations_referenced": 52,
+    "embodied_real_cells_referenced": 105677,
+    "structural_support_edges_measured": 87,
     "structural_support_edges_contradicted": 1,
     "contradictions_acknowledged": 1
   },
@@ -12508,6 +12515,1671 @@
             "measured_synapses": 5,
             "measured_edges": 5,
             "measured_synapses_superclass_coarse": 1785104,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "vnc_sensory_reflex_unit",
+      "display": "腹神经索感觉反射单元",
+      "function": "local_reflex",
+      "system": "ventral_nerve_cord",
+      "description": "VNC 感觉池（5,605 真实细胞 / 171 类）→ VNC 中间神经元（12,967 细胞 / 2,799 类）是本项目实测最强边，1,836,902 突触；中间神经元回返 339,844，升/降感觉池各补 154,541 与 6,846，闭成本段反射弧。",
+      "members": [
+        {
+          "role": "sens",
+          "neuron": "vnc_sensory_pool",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "inter",
+          "neuron": "vnc_interneuron_pool",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "asc",
+          "neuron": "sensory_ascending_pool",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "desc",
+          "neuron": "sensory_descending_pool",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "sens",
+          "to": "inter",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "inter",
+          "to": "sens",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "asc",
+          "to": "inter",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "inter",
+          "to": "asc",
+          "type": "feedback_inhibitory",
+          "weight": 0.4
+        },
+        {
+          "from": "desc",
+          "to": "inter",
+          "type": "feedforward_excitatory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "touch",
+            "type": "sensory.somatosensory",
+            "required": true
+          },
+          {
+            "name": "proprio",
+            "type": "sensory.proprioceptive",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "reflex",
+            "type": "motor.command",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        100,
+        15000
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedback_inhibitory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "local_reflex",
+        "sensory_motor_loop",
+        "segmental_process"
+      ],
+      "task_hint_pool": [
+        "local_reflex",
+        "segmental_process"
+      ],
+      "lead_task_hint": "local_reflex",
+      "neurotransmitter": [
+        "acetylcholine",
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Dorkenwald et al 2024; Gershow et al 2001",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 4,
+        "populations_total": 4,
+        "real_cells_anchored": 19112,
+        "anchored": {
+          "asc": {
+            "n_bodies": 528,
+            "n_types": 28,
+            "example_types": [
+              "SApp",
+              "SApp09,SApp22",
+              "SApp08",
+              "SApp06,SApp15",
+              "SApp10",
+              "LgAG1"
+            ],
+            "lower_bound": false
+          },
+          "desc": {
+            "n_bodies": 12,
+            "n_types": 4,
+            "example_types": [
+              "DNx02",
+              "LN-DN2",
+              "DNx01",
+              "LN-DN1"
+            ],
+            "lower_bound": false
+          },
+          "inter": {
+            "n_bodies": 12967,
+            "n_types": 2799,
+            "example_types": [
+              "IN01B095",
+              "IN03B060",
+              "IN08A036",
+              "IN10B057",
+              "IN06B066",
+              "IN20A.22A092"
+            ],
+            "lower_bound": false
+          },
+          "sens": {
+            "n_bodies": 5605,
+            "n_types": 171,
+            "example_types": [
+              "SNta29",
+              "SNta02,SNta09",
+              "SNta37",
+              "SNxx03",
+              "LgLG3",
+              "SNta20"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "sens",
+            "to_role": "inter",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_sensory_pool",
+            "to_population": "vnc_interneuron_pool",
+            "measured_synapses": 1836902,
+            "measured_edges": 331294,
+            "measured_synapses_superclass_coarse": 1968053,
+            "contradicted": false
+          },
+          {
+            "from_role": "inter",
+            "to_role": "sens",
+            "form": "feedback_excitatory",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "vnc_sensory_pool",
+            "measured_synapses": 339844,
+            "measured_edges": 66022,
+            "measured_synapses_superclass_coarse": 365870,
+            "contradicted": false
+          },
+          {
+            "from_role": "asc",
+            "to_role": "inter",
+            "form": "feedforward_excitatory",
+            "from_population": "sensory_ascending_pool",
+            "to_population": "vnc_interneuron_pool",
+            "measured_synapses": 154541,
+            "measured_edges": 37582,
+            "measured_synapses_superclass_coarse": 135399,
+            "contradicted": false
+          },
+          {
+            "from_role": "inter",
+            "to_role": "asc",
+            "form": "feedback_inhibitory",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "sensory_ascending_pool",
+            "measured_synapses": 35473,
+            "measured_edges": 5579,
+            "measured_synapses_superclass_coarse": 31364,
+            "contradicted": false
+          },
+          {
+            "from_role": "desc",
+            "to_role": "inter",
+            "form": "feedforward_excitatory",
+            "from_population": "sensory_descending_pool",
+            "to_population": "vnc_interneuron_pool",
+            "measured_synapses": 6846,
+            "measured_edges": 1188,
+            "measured_synapses_superclass_coarse": 6663,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "leg_motor_pool_unit",
+      "display": "腿运动池单元",
+      "function": "leg_drive",
+      "system": "ventral_nerve_cord",
+      "description": "VNC 中间神经元把步态命令送进 TTMn 腿运动池（403 真实细胞 / 84 类），实测 1,205,967 突触；VNC 感觉与上升感觉池各补 30,913 与 7,991 的足端反馈，运动池回返 11,587 闭环。",
+      "members": [
+        {
+          "role": "inter",
+          "neuron": "vnc_interneuron_pool",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "sens",
+          "neuron": "vnc_sensory_pool",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "asc",
+          "neuron": "sensory_ascending_pool",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "leg",
+          "neuron": "vnc_leg_motor_pool",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "effer",
+          "neuron": "vnc_efferent_pool",
+          "count_ratio": 0.1
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "inter",
+          "to": "leg",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "sens",
+          "to": "leg",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "asc",
+          "to": "leg",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "leg",
+          "to": "inter",
+          "type": "feedback_excitatory",
+          "weight": 0.4
+        },
+        {
+          "from": "effer",
+          "to": "leg",
+          "type": "feedforward_excitatory",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "touch",
+            "type": "sensory.somatosensory",
+            "required": true
+          },
+          {
+            "name": "proprio",
+            "type": "sensory.proprioceptive",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "step",
+            "type": "motor.leg",
+            "required": true
+          },
+          {
+            "name": "steer",
+            "type": "motor.leg",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        50,
+        500
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "leg_drive",
+        "steering",
+        "locomotion"
+      ],
+      "task_hint_pool": [
+        "leg_drive",
+        "steering"
+      ],
+      "lead_task_hint": "leg_drive",
+      "neurotransmitter": [
+        "acetylcholine"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Dorkenwald et al 2024; Pypaert et al 2014",
+      "composable_with": [
+        "vnc_sensory_reflex_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 5,
+        "populations_total": 5,
+        "real_cells_anchored": 19578,
+        "anchored": {
+          "asc": {
+            "n_bodies": 528,
+            "n_types": 28,
+            "example_types": [
+              "SApp",
+              "SApp09,SApp22",
+              "SApp08",
+              "SApp06,SApp15",
+              "SApp10",
+              "LgAG1"
+            ],
+            "lower_bound": false
+          },
+          "effer": {
+            "n_bodies": 75,
+            "n_types": 25,
+            "example_types": [
+              "ENXXX226",
+              "EN00B026",
+              "EN00B010",
+              "EN00B013",
+              "EN00B023",
+              "EN21X001"
+            ],
+            "lower_bound": false
+          },
+          "inter": {
+            "n_bodies": 12967,
+            "n_types": 2799,
+            "example_types": [
+              "IN01B095",
+              "IN03B060",
+              "IN08A036",
+              "IN10B057",
+              "IN06B066",
+              "IN20A.22A092"
+            ],
+            "lower_bound": false
+          },
+          "leg": {
+            "n_bodies": 403,
+            "n_types": 84,
+            "example_types": [
+              "Acc. ti flexor MN",
+              "Acc. tr flexor MN",
+              "Sternal posterior rotator MN",
+              "Fe reductor MN",
+              "Sternotrochanter MN",
+              "MNad02"
+            ],
+            "lower_bound": false
+          },
+          "sens": {
+            "n_bodies": 5605,
+            "n_types": 171,
+            "example_types": [
+              "SNta29",
+              "SNta02,SNta09",
+              "SNta37",
+              "SNxx03",
+              "LgLG3",
+              "SNta20"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "inter",
+            "to_role": "leg",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "vnc_leg_motor_pool",
+            "measured_synapses": 1205967,
+            "measured_edges": 82615,
+            "measured_synapses_superclass_coarse": 2214610,
+            "contradicted": false
+          },
+          {
+            "from_role": "sens",
+            "to_role": "leg",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_sensory_pool",
+            "to_population": "vnc_leg_motor_pool",
+            "measured_synapses": 30913,
+            "measured_edges": 5291,
+            "measured_synapses_superclass_coarse": 58254,
+            "contradicted": false
+          },
+          {
+            "from_role": "asc",
+            "to_role": "leg",
+            "form": "feedforward_excitatory",
+            "from_population": "sensory_ascending_pool",
+            "to_population": "vnc_leg_motor_pool",
+            "measured_synapses": 7991,
+            "measured_edges": 1426,
+            "measured_synapses_superclass_coarse": 18593,
+            "contradicted": false
+          },
+          {
+            "from_role": "leg",
+            "to_role": "inter",
+            "form": "feedback_excitatory",
+            "from_population": "vnc_leg_motor_pool",
+            "to_population": "vnc_interneuron_pool",
+            "measured_synapses": 11587,
+            "measured_edges": 4519,
+            "measured_synapses_superclass_coarse": 18590,
+            "contradicted": false
+          },
+          {
+            "from_role": "effer",
+            "to_role": "leg",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_efferent_pool",
+            "to_population": "vnc_leg_motor_pool",
+            "measured_synapses": 204,
+            "measured_edges": 141,
+            "measured_synapses_superclass_coarse": 807,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "wing_flight_control_unit",
+      "display": "翅膀飞行控制单元",
+      "function": "flight_power",
+      "system": "ventral_nerve_cord",
+      "description": "VNC 中间神经元同时驱四群胸肌运动池：胸促肌 141,428、飞行动力 144,642、翅抑肌 43,027、平衡棒肌 84,547 突触；促肌与平衡棒肌各回返 747 与 429 做时序校准。",
+      "members": [
+        {
+          "role": "inter",
+          "neuron": "vnc_interneuron_pool",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "promoter",
+          "neuron": "pleural_promotor_pool",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "power",
+          "neuron": "vnc_flight_power_pool",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "dep",
+          "neuron": "wing_depressor_pool",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "hal",
+          "neuron": "haltere_muscle_pool",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "inter",
+          "to": "promoter",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "inter",
+          "to": "power",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "inter",
+          "to": "dep",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "inter",
+          "to": "hal",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "promoter",
+          "to": "inter",
+          "type": "feedback_excitatory",
+          "weight": 0.4
+        },
+        {
+          "from": "hal",
+          "to": "inter",
+          "type": "feedback_excitatory",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "posture_cmd",
+            "type": "motor.posture",
+            "required": true
+          },
+          {
+            "name": "balance",
+            "type": "sensory.vestibular",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "wing_cmd",
+            "type": "motor.wing",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        10,
+        100
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "flight_power",
+        "wing_timing",
+        "haltere_balance"
+      ],
+      "task_hint_pool": [
+        "flight_power",
+        "haltere_balance"
+      ],
+      "lead_task_hint": "flight_power",
+      "neurotransmitter": [
+        "acetylcholine"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Dickinson et al 2000; Dorkenwald et al 2024",
+      "composable_with": [
+        "giant_fiber_escape_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 5,
+        "populations_total": 5,
+        "real_cells_anchored": 13029,
+        "anchored": {
+          "dep": {
+            "n_bodies": 4,
+            "n_types": 2,
+            "example_types": [
+              "b1 MN",
+              "b2 MN"
+            ],
+            "lower_bound": false
+          },
+          "hal": {
+            "n_bodies": 8,
+            "n_types": 4,
+            "example_types": [
+              "hg1 MN",
+              "hg2 MN",
+              "hg3 MN",
+              "hg4 MN"
+            ],
+            "lower_bound": false
+          },
+          "inter": {
+            "n_bodies": 12967,
+            "n_types": 2799,
+            "example_types": [
+              "IN01B095",
+              "IN03B060",
+              "IN08A036",
+              "IN10B057",
+              "IN06B066",
+              "IN20A.22A092"
+            ],
+            "lower_bound": false
+          },
+          "power": {
+            "n_bodies": 28,
+            "n_types": 6,
+            "example_types": [
+              "DLMn c-f",
+              "DVMn 1a-c",
+              "DVMn 2a, b",
+              "DVMn 3a, b",
+              "STTMm",
+              "DLMn a, b"
+            ],
+            "lower_bound": false
+          },
+          "promoter": {
+            "n_bodies": 22,
+            "n_types": 2,
+            "example_types": [
+              "Pleural remotor/abductor MN",
+              "Tergopleural/Pleural promotor MN"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "inter",
+            "to_role": "promoter",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "pleural_promotor_pool",
+            "measured_synapses": 141428,
+            "measured_edges": 8344,
+            "measured_synapses_superclass_coarse": 2214610,
+            "contradicted": false
+          },
+          {
+            "from_role": "inter",
+            "to_role": "power",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "vnc_flight_power_pool",
+            "measured_synapses": 144642,
+            "measured_edges": 10084,
+            "measured_synapses_superclass_coarse": 2214610,
+            "contradicted": false
+          },
+          {
+            "from_role": "inter",
+            "to_role": "dep",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "wing_depressor_pool",
+            "measured_synapses": 43027,
+            "measured_edges": 1716,
+            "measured_synapses_superclass_coarse": 2214610,
+            "contradicted": false
+          },
+          {
+            "from_role": "inter",
+            "to_role": "hal",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "haltere_muscle_pool",
+            "measured_synapses": 84547,
+            "measured_edges": 4417,
+            "measured_synapses_superclass_coarse": 2214610,
+            "contradicted": false
+          },
+          {
+            "from_role": "promoter",
+            "to_role": "inter",
+            "form": "feedback_excitatory",
+            "from_population": "pleural_promotor_pool",
+            "to_population": "vnc_interneuron_pool",
+            "measured_synapses": 747,
+            "measured_edges": 556,
+            "measured_synapses_superclass_coarse": 18590,
+            "contradicted": false
+          },
+          {
+            "from_role": "hal",
+            "to_role": "inter",
+            "form": "feedback_excitatory",
+            "from_population": "haltere_muscle_pool",
+            "to_population": "vnc_interneuron_pool",
+            "measured_synapses": 429,
+            "measured_edges": 225,
+            "measured_synapses_superclass_coarse": 18590,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "johnston_organ_wind_unit",
+      "display": "约翰斯顿器风感单元",
+      "function": "wind_detect",
+      "system": "antennal_mechanosensory",
+      "description": "触角 JO 机械感受神经元（672 真实细胞 / 34 类）把气流感同时送进听觉中枢（48,207 突触）与下行神经元（46,595），并稀疏耦合到求偶 pIP（1,655）与巨纤维（709）——风向、风强与求偶声走同一输入。",
+      "members": [
+        {
+          "role": "jo",
+          "neuron": "johnston_organ_mechano",
+          "count_ratio": 0.35
+        },
+        {
+          "role": "ammc",
+          "neuron": "auditory_ammc",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "pip",
+          "neuron": "courtship_pip",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "dn",
+          "neuron": "descending_neuron",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "gf",
+          "neuron": "escape_giant_fiber",
+          "count_ratio": 0.1
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "jo",
+          "to": "ammc",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "jo",
+          "to": "dn",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "jo",
+          "to": "pip",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "jo",
+          "to": "gf",
+          "type": "feedforward_excitatory",
+          "weight": 0.4
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "wind",
+            "type": "sensory.mechanovibratory",
+            "required": true
+          },
+          {
+            "name": "song",
+            "type": "sensory.auditory",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "wind_alarm",
+            "type": "motor.command",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        100,
+        500
+      ],
+      "motif_source": [
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "wind_detect",
+        "escape_trigger",
+        "social_detect"
+      ],
+      "task_hint_pool": [
+        "wind_detect",
+        "social_detect"
+      ],
+      "lead_task_hint": "wind_detect",
+      "neurotransmitter": [
+        "acetylcholine"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Wilson & Dickinson 2010; Dorkenwald et al 2024",
+      "composable_with": [
+        "auditory_song_reception_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 5,
+        "populations_total": 5,
+        "real_cells_anchored": 2192,
+        "anchored": {
+          "ammc": {
+            "n_bodies": 208,
+            "n_types": 40,
+            "example_types": [
+              "AMMC005",
+              "AMMC025",
+              "AMMC019",
+              "AMMC020",
+              "AMMC026",
+              "AMMC035"
+            ],
+            "lower_bound": false
+          },
+          "dn": {
+            "n_bodies": 1306,
+            "n_types": 477,
+            "example_types": [
+              "DNg08",
+              "DNpe008",
+              "DNg07",
+              "DNg106",
+              "DNge091",
+              "DNge094"
+            ],
+            "lower_bound": false
+          },
+          "gf": {
+            "n_bodies": 2,
+            "n_types": 1,
+            "example_types": [
+              "DNp01"
+            ],
+            "lower_bound": false
+          },
+          "jo": {
+            "n_bodies": 672,
+            "n_types": 34,
+            "example_types": [
+              "JO-unclear",
+              "JO-FV",
+              "JO-EV1",
+              "JO-EV3",
+              "JO-ED2_a",
+              "JO-EV2"
+            ],
+            "lower_bound": false
+          },
+          "pip": {
+            "n_bodies": 4,
+            "n_types": 2,
+            "example_types": [
+              "pIP1",
+              "pIP10"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "jo",
+            "to_role": "ammc",
+            "form": "feedforward_excitatory",
+            "from_population": "johnston_organ_mechano",
+            "to_population": "auditory_ammc",
+            "measured_synapses": 48207,
+            "measured_edges": 7859,
+            "measured_synapses_superclass_coarse": 1785104,
+            "contradicted": false
+          },
+          {
+            "from_role": "jo",
+            "to_role": "dn",
+            "form": "feedforward_excitatory",
+            "from_population": "johnston_organ_mechano",
+            "to_population": "descending_neuron",
+            "measured_synapses": 46595,
+            "measured_edges": 7741,
+            "measured_synapses_superclass_coarse": 138543,
+            "contradicted": false
+          },
+          {
+            "from_role": "jo",
+            "to_role": "pip",
+            "form": "feedforward_excitatory",
+            "from_population": "johnston_organ_mechano",
+            "to_population": "courtship_pip",
+            "measured_synapses": 1655,
+            "measured_edges": 79,
+            "measured_synapses_superclass_coarse": 138543,
+            "contradicted": false
+          },
+          {
+            "from_role": "jo",
+            "to_role": "gf",
+            "form": "feedforward_excitatory",
+            "from_population": "johnston_organ_mechano",
+            "to_population": "escape_giant_fiber",
+            "measured_synapses": 709,
+            "measured_edges": 28,
+            "measured_synapses_superclass_coarse": 138543,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "oa_visual_modulation_unit",
+      "display": "八胺视觉离心调节单元",
+      "function": "visual_gain",
+      "system": "optic_lobe",
+      "description": "少量八胺离心神经元（16 真实细胞 / 5 类）容积式调制整个视叶：中神经 56,231、LC 8,729、T4/T5 6,600、LPLC 2,906 突触——觉醒状态把视觉增益一次性拉满。",
+      "members": [
+        {
+          "role": "oa",
+          "neuron": "oa_visual_centrifugal_pool",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "med",
+          "neuron": "ol_medulla_intrinsic",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "lc",
+          "neuron": "ol_visual_lc",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "t45",
+          "neuron": "ol_motion_detector_t45",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "lplc",
+          "neuron": "looming_lplc",
+          "count_ratio": 0.15
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "oa",
+          "to": "med",
+          "type": "modulatory_diffuse",
+          "weight": 1.0
+        },
+        {
+          "from": "oa",
+          "to": "lc",
+          "type": "modulatory_diffuse",
+          "weight": 0.7
+        },
+        {
+          "from": "oa",
+          "to": "t45",
+          "type": "modulatory_diffuse",
+          "weight": 0.8
+        },
+        {
+          "from": "oa",
+          "to": "lplc",
+          "type": "modulatory_diffuse",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "arousal",
+            "type": "modulatory.octopamine",
+            "required": true
+          }
+        ],
+        "out": [
+          {
+            "name": "gain_set",
+            "type": "modulatory.octopamine",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        20,
+        100
+      ],
+      "motif_source": [
+        "modulatory_diffuse"
+      ],
+      "capability": [
+        "visual_gain",
+        "attention_visual",
+        "arousal_link"
+      ],
+      "task_hint_pool": [
+        "visual_gain",
+        "arousal_link"
+      ],
+      "lead_task_hint": "visual_gain",
+      "neurotransmitter": [
+        "octopamine"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Pan & Clandinin 2007; Dorkenwald et al 2024",
+      "composable_with": [
+        "octopamine_arousal_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 5,
+        "populations_total": 5,
+        "real_cells_anchored": 55323,
+        "anchored": {
+          "lc": {
+            "n_bodies": 4164,
+            "n_types": 45,
+            "example_types": [
+              "LC12",
+              "LC17",
+              "LC10a",
+              "LC9",
+              "LC10d",
+              "LC18"
+            ],
+            "lower_bound": false
+          },
+          "lplc": {
+            "n_bodies": 417,
+            "n_types": 4,
+            "example_types": [
+              "LPLC2",
+              "LPLC1",
+              "LPLC4",
+              "LPLC_unclear"
+            ],
+            "lower_bound": false
+          },
+          "med": {
+            "n_bodies": 37146,
+            "n_types": 57,
+            "example_types": [
+              "Tm3",
+              "Tm1",
+              "Mi9",
+              "Mi1",
+              "Mi4",
+              "Tm9"
+            ],
+            "lower_bound": false
+          },
+          "oa": {
+            "n_bodies": 16,
+            "n_types": 5,
+            "example_types": [
+              "OA-AL2i2",
+              "OA-AL2i3",
+              "OA-ASM1",
+              "OA-AL2i1",
+              "OA-AL2i4"
+            ],
+            "lower_bound": false
+          },
+          "t45": {
+            "n_bodies": 13580,
+            "n_types": 8,
+            "example_types": [
+              "T4c",
+              "T5c",
+              "T5b",
+              "T4d",
+              "T4b",
+              "T4a"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "oa",
+            "to_role": "med",
+            "form": "modulatory_diffuse",
+            "from_population": "oa_visual_centrifugal_pool",
+            "to_population": "ol_medulla_intrinsic",
+            "measured_synapses": 56231,
+            "measured_edges": 32588,
+            "measured_synapses_superclass_coarse": 1469897,
+            "contradicted": false
+          },
+          {
+            "from_role": "oa",
+            "to_role": "lc",
+            "form": "modulatory_diffuse",
+            "from_population": "oa_visual_centrifugal_pool",
+            "to_population": "ol_visual_lc",
+            "measured_synapses": 8729,
+            "measured_edges": 5534,
+            "measured_synapses_superclass_coarse": 439005,
+            "contradicted": false
+          },
+          {
+            "from_role": "oa",
+            "to_role": "t45",
+            "form": "modulatory_diffuse",
+            "from_population": "oa_visual_centrifugal_pool",
+            "to_population": "ol_motion_detector_t45",
+            "measured_synapses": 6600,
+            "measured_edges": 5007,
+            "measured_synapses_superclass_coarse": 1469897,
+            "contradicted": false
+          },
+          {
+            "from_role": "oa",
+            "to_role": "lplc",
+            "form": "modulatory_diffuse",
+            "from_population": "oa_visual_centrifugal_pool",
+            "to_population": "looming_lplc",
+            "measured_synapses": 2906,
+            "measured_edges": 1333,
+            "measured_synapses_superclass_coarse": 439005,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": {
+          "rois": [
+            {
+              "roi": "AME(L)",
+              "synapses": 16073,
+              "tbar_synapses": 2659
+            },
+            {
+              "roi": "AME(R)",
+              "synapses": 47711,
+              "tbar_synapses": 8041
+            },
+            {
+              "roi": "LA(L)",
+              "synapses": 811749,
+              "tbar_synapses": 237067
+            },
+            {
+              "roi": "LA(R)",
+              "synapses": 1037059,
+              "tbar_synapses": 288703
+            },
+            {
+              "roi": "ME(L)",
+              "synapses": 28398255,
+              "tbar_synapses": 4268320
+            },
+            {
+              "roi": "ME(R)",
+              "synapses": 27365057,
+              "tbar_synapses": 4141576
+            },
+            {
+              "roi": "LO(L)",
+              "synapses": 14970636,
+              "tbar_synapses": 2002472
+            },
+            {
+              "roi": "LO(R)",
+              "synapses": 14427068,
+              "tbar_synapses": 1942110
+            },
+            {
+              "roi": "LOP(L)",
+              "synapses": 6027458,
+              "tbar_synapses": 863019
+            },
+            {
+              "roi": "LOP(R)",
+              "synapses": 6144193,
+              "tbar_synapses": 879665
+            }
+          ],
+          "total_synapses": 99245259
+        },
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "cb_sensory_motor_unit",
+      "display": "脑-胸部感觉运动汇聚单元",
+      "function": "posture_set",
+      "system": "brain",
+      "description": "四类感觉（上升感觉 11,609、VNC 感觉 2,711、吻部机械 790、JO 机械 466 突触）在胸胸部运动核汇聚，是姿态设定的输入侧最完整的实测汇聚点。",
+      "members": [
+        {
+          "role": "asc",
+          "neuron": "sensory_ascending_pool",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "vns",
+          "neuron": "vnc_sensory_pool",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "prob",
+          "neuron": "proboscis_mechano_pool",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "jo",
+          "neuron": "johnston_organ_mechano",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "cbm",
+          "neuron": "cb_motor_pool",
+          "count_ratio": 0.2
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "asc",
+          "to": "cbm",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "vns",
+          "to": "cbm",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "prob",
+          "to": "cbm",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "jo",
+          "to": "cbm",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "touch",
+            "type": "sensory.somatosensory",
+            "required": true
+          },
+          {
+            "name": "wind",
+            "type": "sensory.mechanovibratory",
+            "required": false
+          },
+          {
+            "name": "feed",
+            "type": "sensory.gustatory",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "posture_cmd",
+            "type": "motor.posture",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        50,
+        300
+      ],
+      "motif_source": [
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "convergent_gather",
+        "posture_set",
+        "sensory_gather"
+      ],
+      "task_hint_pool": [
+        "posture_set",
+        "convergent_gather"
+      ],
+      "lead_task_hint": "posture_set",
+      "neurotransmitter": [
+        "acetylcholine",
+        "glutamate"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Dorkenwald et al 2024; Gershow et al 2001",
+      "composable_with": [
+        "wing_flight_control_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 5,
+        "populations_total": 5,
+        "real_cells_anchored": 6950,
+        "anchored": {
+          "asc": {
+            "n_bodies": 528,
+            "n_types": 28,
+            "example_types": [
+              "SApp",
+              "SApp09,SApp22",
+              "SApp08",
+              "SApp06,SApp15",
+              "SApp10",
+              "LgAG1"
+            ],
+            "lower_bound": false
+          },
+          "cbm": {
+            "n_bodies": 106,
+            "n_types": 43,
+            "example_types": [
+              "CEM",
+              "MN1",
+              "MN12D",
+              "MN3L",
+              "MN4a",
+              "MN7"
+            ],
+            "lower_bound": false
+          },
+          "jo": {
+            "n_bodies": 672,
+            "n_types": 34,
+            "example_types": [
+              "JO-unclear",
+              "JO-FV",
+              "JO-EV1",
+              "JO-EV3",
+              "JO-ED2_a",
+              "JO-EV2"
+            ],
+            "lower_bound": false
+          },
+          "prob": {
+            "n_bodies": 39,
+            "n_types": 6,
+            "example_types": [
+              "aPhM1",
+              "aPhM2a",
+              "aPhM3",
+              "aPhM5",
+              "aPhM2b",
+              "aPhM4"
+            ],
+            "lower_bound": false
+          },
+          "vns": {
+            "n_bodies": 5605,
+            "n_types": 171,
+            "example_types": [
+              "SNta29",
+              "SNta02,SNta09",
+              "SNta37",
+              "SNxx03",
+              "LgLG3",
+              "SNta20"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "asc",
+            "to_role": "cbm",
+            "form": "feedforward_excitatory",
+            "from_population": "sensory_ascending_pool",
+            "to_population": "cb_motor_pool",
+            "measured_synapses": 11609,
+            "measured_edges": 1338,
+            "measured_synapses_superclass_coarse": 11619,
+            "contradicted": false
+          },
+          {
+            "from_role": "vns",
+            "to_role": "cbm",
+            "form": "feedforward_excitatory",
+            "from_population": "vnc_sensory_pool",
+            "to_population": "cb_motor_pool",
+            "measured_synapses": 2711,
+            "measured_edges": 277,
+            "measured_synapses_superclass_coarse": 0,
+            "contradicted": false
+          },
+          {
+            "from_role": "prob",
+            "to_role": "cbm",
+            "form": "feedforward_excitatory",
+            "from_population": "proboscis_mechano_pool",
+            "to_population": "cb_motor_pool",
+            "measured_synapses": 790,
+            "measured_edges": 136,
+            "measured_synapses_superclass_coarse": 5117,
+            "contradicted": false
+          },
+          {
+            "from_role": "jo",
+            "to_role": "cbm",
+            "form": "feedforward_excitatory",
+            "from_population": "johnston_organ_mechano",
+            "to_population": "cb_motor_pool",
+            "measured_synapses": 466,
+            "measured_edges": 95,
+            "measured_synapses_superclass_coarse": 5117,
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "cell-type set (both endpoints anchored; zero measured synapses = contradiction)",
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "cb_endocrine_modulation_unit",
+      "display": "脑内分泌调节池单元",
+      "function": "peptide_release",
+      "system": "brain",
+      "description": "VNC 中间神经元与上升感觉池各自少量地驱动胸部内分泌池（65 真实细胞 / 10 类，实测 288 与 149 突触）——肽类容积传递的状态调制，非突触点对点。",
+      "members": [
+        {
+          "role": "vni",
+          "neuron": "vnc_interneuron_pool",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "asc",
+          "neuron": "sensory_ascending_pool",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "cbe",
+          "neuron": "cb_endocrine_pool",
+          "count_ratio": 0.5
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "vni",
+          "to": "cbe",
+          "type": "modulatory_diffuse",
+          "weight": 1.0
+        },
+        {
+          "from": "asc",
+          "to": "cbe",
+          "type": "modulatory_diffuse",
+          "weight": 0.7
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "state",
+            "type": "arousal.state",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "peptide",
+            "type": "modulatory.endocrine",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        20,
+        100
+      ],
+      "motif_source": [
+        "modulatory_diffuse"
+      ],
+      "capability": [
+        "endocrine_release",
+        "state_modulate",
+        "peptide_burst"
+      ],
+      "task_hint_pool": [
+        "endocrine_release",
+        "state_modulate"
+      ],
+      "lead_task_hint": "peptide_release",
+      "neurotransmitter": [
+        "neuropeptide"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Dorkenwald et al 2024; Bhatt et al 2005",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 3,
+        "populations_total": 3,
+        "real_cells_anchored": 13560,
+        "anchored": {
+          "asc": {
+            "n_bodies": 528,
+            "n_types": 28,
+            "example_types": [
+              "SApp",
+              "SApp09,SApp22",
+              "SApp08",
+              "SApp06,SApp15",
+              "SApp10",
+              "LgAG1"
+            ],
+            "lower_bound": false
+          },
+          "cbe": {
+            "n_bodies": 65,
+            "n_types": 10,
+            "example_types": [
+              "IPC",
+              "DNES1",
+              "PI3",
+              "ITP",
+              "DH44",
+              "DMS"
+            ],
+            "lower_bound": false
+          },
+          "vni": {
+            "n_bodies": 12967,
+            "n_types": 2799,
+            "example_types": [
+              "IN01B095",
+              "IN03B060",
+              "IN08A036",
+              "IN10B057",
+              "IN06B066",
+              "IN20A.22A092"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "vni",
+            "to_role": "cbe",
+            "form": "modulatory_diffuse",
+            "from_population": "vnc_interneuron_pool",
+            "to_population": "cb_endocrine_pool",
+            "measured_synapses": 288,
+            "measured_edges": 61,
+            "measured_synapses_superclass_coarse": 0,
+            "contradicted": false
+          },
+          {
+            "from_role": "asc",
+            "to_role": "cbe",
+            "form": "modulatory_diffuse",
+            "from_population": "sensory_ascending_pool",
+            "to_population": "cb_endocrine_pool",
+            "measured_synapses": 149,
+            "measured_edges": 44,
+            "measured_synapses_superclass_coarse": 265,
             "contradicted": false
           }
         ],

@@ -378,7 +378,7 @@ single neuron type does nothing on its own, and wiring two of them together mean
 nothing. What composes is a **function with a known interface**. So the library is
 split into two tiers, and the upper tier is the one you actually build from:
 
-- **85 functional units** — each is ONE function (phototransduction, action
+- **92 functional units** — each is ONE function (phototransduction, action
   selection, theta pacing, gliotransmission, sparse mushroom-body coding, ring-attractor
   heading, song timing, Mauthner escape, active electrolocation, camouflage, leech swim
   rhythm, infrared thermal imaging, climbing-fibre error teaching, sleep/wake switching …)
@@ -440,7 +440,7 @@ it is named after? `functional_units/malecns_anchors.json` (built by
 `scripts/build_malecns_anchors.py`) answers it, for the part where an answer is
 honest.
 
-- **Presence.** **19 of 85 units** have member populations that resolve to real
+- **Presence.** **26 of 92 units** have member populations that resolve to real
   annotated MaleCNS v1.0 cell types. Across the whole library that is
   **57 of 203 neuron populations** covering **105,717 real cells**: the `kc` role of
   the mushroom-body unit is 4,064 real Kenyon cells over 15 real KC types
