@@ -8,13 +8,50 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.10.0` | the toolkit as a whole |
+| package | `2.0.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 85 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0 and 1.9.0) |
+| functional-unit library schema | `1.0` | 92 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0 and 2.0.0) |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.0.0] — 2026-09-24
+
+**VNC + peripheral embodied units: +7 fully-embodied units (85 → 92, 19 → 26 embodied).**
+
+v1.10.0 anchored 20 new VNC / peripheral neuron populations but wired none of them
+into a functional unit — they were vocabulary with no circuit. This release turns them
+into units. The batch is strictly measured: every declared edge was looked up in the
+profile×profile synapse matrix **before** being written (30 declared edges, 30 non-zero
+measured counts, **zero** new contradictions). The single registered contradiction
+(`central_complex_steering_unit` `nod → fb` = 0 synapses) is untouched and still counted.
+
+### Added
+
+- **7 embodied functional units** (85 → 92 units, 19 → 26 embodied):
+  | unit | members | measured edges | strongest edge (synapses) |
+  |---|---|---|---|
+  | `vnc_sensory_reflex_unit` | 4 | 5 | 1,836,902 (VNC sensory → VNC interneuron) |
+  | `leg_motor_pool_unit` | 5 | 5 | 1,205,967 (interneuron → leg motor pool) |
+  | `wing_flight_control_unit` | 5 | 6 | 144,642 (interneuron → flight power) |
+  | `johnston_organ_wind_unit` | 5 | 4 | 48,207 (JO → AMMC) |
+  | `oa_visual_modulation_unit` | 5 | 4 | 56,231 (OA → medulla) |
+  | `cb_sensory_motor_unit` | 5 | 4 | 11,609 (ascending → CB motor) |
+  | `cb_endocrine_modulation_unit` | 3 | 2 | 288 (interneuron → CB endocrine) |
+- **6 new port types** (`gen_functional_units.py`): `sensory.mechanovibratory`,
+  `sensory.proprioceptive`, `motor.leg`, `motor.wing`, `motor.posture`,
+  `modulatory.endocrine` (72 → 78).
+
+### Changed
+
+- **Package version**: 1.10.0 → 2.0.0 (first minor-major bump; the unit library schema
+  itself stays at 1.0 — only its contents grew).
+- **Structural support edges**: 57 → 87 measured, contradictions still 1.
+- **Unit-count gate** (`check_functional_units.py`): 85 → 92.
+- **Docs**: README and `docs/mcp_setup.md` cross-checks updated to 26 of 92 / 57 of 203.
 
 ---
 
