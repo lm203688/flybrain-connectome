@@ -3065,6 +3065,232 @@ MODULE_PROFILES = {
         "species_source": ["drosophila"], "allen_class": "",
         "biological_reference": "Marella et al 2006; Mann et al 2013"
     },
+    # ---------------- v1.10.0: VNC + peripheral neuron-profile densification ----
+    # 20 neuron populations newly anchored to real MaleCNS v1.0 superclasses
+    # (vnc_motor, vnc_efferent, vnc_sensory, visual_centrifugal, cb_sensory,
+    # vnc_intrinsic, cb_motor, cb_endocrine, vnc_endocrine, sensory_ascending,
+    # efferent_ascending, cb_efferent, visual_projection_tbc,
+    # efferent_descending, sensory_descending).
+    "vnc_leg_motor_pool": {
+        "reservoir_density": 0.25, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "VNC leg and abdominal motor neurons (MNad* leg, MNhl/MNml/MNnm "
+                       "body-wall, Fe reductor, Acc. tibiae, Ster sternal): the motor "
+                       "output stage of all leg and abdomen behaviour.",
+        "capability": ["motor_output", "locomotion", "posture"],
+        "task_hint_pool": ["motor_output", "locomotion", "posture"],
+        "lead_task_hint": "motor_output",
+        "neurotransmitter": "glutamate", "brain_region": "ventral_nerve_cord",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Baek et al 2021; Dorkenwald et al 2024"
+    },
+    "haltere_muscle_pool": {
+        "reservoir_density": 0.25, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Haltere muscle motor neurons hg1-4: drive the gyroscopic "
+                       "halteres, a dedicated flight-stabilization channel.",
+        "capability": ["motor_output", "flight_stabilize"],
+        "task_hint_pool": ["motor_output", "flight_stabilize"],
+        "lead_task_hint": "motor_output",
+        "neurotransmitter": "glutamate", "brain_region": "ventral_nerve_cord",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "wing_depressor_pool": {
+        "reservoir_density": 0.25, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Wing depressor motor neurons b1/b2: paired with the wing "
+                       "flexor for the ~200 Hz wing-beat oscillation.",
+        "capability": ["motor_output", "flight_oscillate"],
+        "task_hint_pool": ["motor_output", "flight_oscillate"],
+        "lead_task_hint": "motor_output",
+        "neurotransmitter": "glutamate", "brain_region": "ventral_nerve_cord",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "pleural_promotor_pool": {
+        "reservoir_density": 0.25, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Tergopleural / pleural promotor motor neurons: thoracic "
+                       "axial posturing and wing-steering base.",
+        "capability": ["motor_output", "posture", "wing_steer"],
+        "task_hint_pool": ["motor_output", "posture", "wing_steer"],
+        "lead_task_hint": "motor_output",
+        "neurotransmitter": "glutamate", "brain_region": "ventral_nerve_cord",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "vnc_flight_power_pool": {
+        "reservoir_density": 0.25, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Flight power motor neurons DLMn/DVMn/STTMm: dorsal longitudinal "
+                       "and dorsal ventral muscles powering the wing stroke.",
+        "capability": ["motor_output", "flight_power"],
+        "task_hint_pool": ["motor_output", "flight_power"],
+        "lead_task_hint": "motor_output",
+        "neurotransmitter": "glutamate", "brain_region": "ventral_nerve_cord",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "vnc_efferent_pool": {
+        "reservoir_density": 0.3, "recurrent_pct": 0.15, "has_inhibition": False,
+        "description": "VNC efferent / intermediate-motor neurons (EN*, EA*): "
+                       "sensory-to-motor gating interneurons of the ventral nerve cord.",
+        "capability": ["motor_gating", "relay"],
+        "task_hint_pool": ["motor_gating", "relay"],
+        "lead_task_hint": "motor_gating",
+        "neurotransmitter": "gaba", "brain_region": "ventral_nerve_cord",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "vnc_sensory_pool": {
+        "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "All VNC-resident sensory neurons (mechanoreceptors, chordotonal "
+                       "organs, stretch receptors of abdomen / thorax): segmental input.",
+        "capability": ["sensory_transduce", "proprioception"],
+        "task_hint_pool": ["sensory_transduce", "proprioception"],
+        "lead_task_hint": "sensory_transduce",
+        "neurotransmitter": "acetylcholine", "brain_region": "ventral_nerve_cord",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "oa_visual_centrifugal_pool": {
+        "reservoir_density": 0.3, "recurrent_pct": 0.2, "has_inhibition": False,
+        "description": "Octopaminergic centrifugal neurons (OA-AL2i*, OA-ASM*) projecting "
+                       "back to the optic lobe: the visual arousal / attention channel.",
+        "capability": ["arousal_modulate", "visual_attention"],
+        "task_hint_pool": ["arousal_modulate", "visual_attention"],
+        "lead_task_hint": "arousal_modulate",
+        "neurotransmitter": "octopamine", "brain_region": "optic_lobe",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Suver et al 2012; Dorkenwald et al 2024"
+    },
+    "johnston_organ_mechano": {
+        "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Johnston organ mechanoreceptors on the flagellum (JO-A..F, JO-E): "
+                       "wind detection and antenna position sense.",
+        "capability": ["sensory_transduce", "wind_detect", "antenna_sense"],
+        "task_hint_pool": ["sensory_transduce", "wind_detect", "antenna_sense"],
+        "lead_task_hint": "sensory_transduce",
+        "neurotransmitter": "acetylcholine", "brain_region": "antenna",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Kamikouchi et al 2006; Dorkenwald et al 2024"
+    },
+    "proboscis_mechano_pool": {
+        "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Proboscis / labellar mechanosensory neurons (aPhM, Mn_, Lab): "
+                       "mouthpart touch and feeding tactile input.",
+        "capability": ["sensory_transduce", "feed_tactile"],
+        "task_hint_pool": ["sensory_transduce", "feed_tactile"],
+        "lead_task_hint": "sensory_transduce",
+        "neurotransmitter": "acetylcholine", "brain_region": "subesophageal_zone",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "vnc_interneuron_pool": {
+        "reservoir_density": 0.35, "recurrent_pct": 0.25, "has_inhibition": True,
+        "description": "VNC intrinsic interneurons (the bulk of the ventral nerve cord): "
+                       "local pattern generators and sensory-motor integration.",
+        "capability": ["integration", "pattern_generate"],
+        "task_hint_pool": ["integration", "pattern_generate"],
+        "lead_task_hint": "integration",
+        "neurotransmitter": "gaba", "brain_region": "ventral_nerve_cord",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "cb_motor_pool": {
+        "reservoir_density": 0.25, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Central-brain motor neurons (the small cb_motor superclass): "
+                       "brain-internal effector output.",
+        "capability": ["motor_output", "brain_effector"],
+        "task_hint_pool": ["motor_output", "brain_effector"],
+        "lead_task_hint": "motor_output",
+        "neurotransmitter": "glutamate", "brain_region": "brain",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "cb_endocrine_pool": {
+        "reservoir_density": 0.1, "recurrent_pct": 0.0, "has_inhibition": False,
+        "description": "Central-brain endocrine neurons (corpus cardiacum / corpus "
+                       "allatum inputs): neurohormone release into the haemolymph.",
+        "capability": ["endocrine_release", "homeostatic_signal"],
+        "task_hint_pool": ["endocrine_release", "homeostatic_signal"],
+        "lead_task_hint": "endocrine_release",
+        "neurotransmitter": "neuropeptide", "brain_region": "brain",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "vnc_endocrine_pool": {
+        "reservoir_density": 0.1, "recurrent_pct": 0.0, "has_inhibition": False,
+        "description": "Ventral nerve cord endocrine neurons: segmental neurohormone "
+                       "release.",
+        "capability": ["endocrine_release", "homeostatic_signal"],
+        "task_hint_pool": ["endocrine_release", "homeostatic_signal"],
+        "lead_task_hint": "endocrine_release",
+        "neurotransmitter": "neuropeptide", "brain_region": "ventral_nerve_cord",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "sensory_ascending_pool": {
+        "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Sensory ascending neurons: carry segmental / peripheral sensory "
+                       "information up to brain centres.",
+        "capability": ["sensory_relay", "ascending_path"],
+        "task_hint_pool": ["sensory_relay", "ascending_path"],
+        "lead_task_hint": "sensory_relay",
+        "neurotransmitter": "acetylcholine", "brain_region": "ventral_nerve_cord",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "efferent_ascending_pool": {
+        "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Efferent ascending neurons: brain-to-VNC motor copies / "
+                       "corollary discharge.",
+        "capability": ["corollary_discharge", "efferent_copy"],
+        "task_hint_pool": ["corollary_discharge", "efferent_copy"],
+        "lead_task_hint": "corollary_discharge",
+        "neurotransmitter": "gaba", "brain_region": "brain",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "cb_efferent_pool": {
+        "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Central-brain efferent neurons: a small brain output class.",
+        "capability": ["brain_output", "efferent"],
+        "task_hint_pool": ["brain_output", "efferent"],
+        "lead_task_hint": "brain_output",
+        "neurotransmitter": "gaba", "brain_region": "brain",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "visual_projection_tbc_pool": {
+        "reservoir_density": 0.3, "recurrent_pct": 0.1, "has_inhibition": False,
+        "description": "Visual projection neurons still to be classified (visual_"
+                       "projection_tbc): the residual optic-flow projection channel.",
+        "capability": ["visual_projection", "feature_project"],
+        "task_hint_pool": ["visual_projection", "feature_project"],
+        "lead_task_hint": "visual_projection",
+        "neurotransmitter": "acetylcholine", "brain_region": "optic_lobe",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "efferent_descending_pool": {
+        "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Efferent descending neurons: motor commands from brain to VNC "
+                       "(a subclass of the descending stream).",
+        "capability": ["descending_command", "motor_command"],
+        "task_hint_pool": ["descending_command", "motor_command"],
+        "lead_task_hint": "descending_command",
+        "neurotransmitter": "gaba", "brain_region": "brain",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
+    "sensory_descending_pool": {
+        "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Sensory descending neurons: descending neurons carrying "
+                       "sensory-state information back down the cord.",
+        "capability": ["sensory_descend", "state_signal"],
+        "task_hint_pool": ["sensory_descend", "state_signal"],
+        "lead_task_hint": "sensory_descend",
+        "neurotransmitter": "acetylcholine", "brain_region": "brain",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
 }# default profile assignment: round-robin so all 10 types are represented
 DEFAULT_PROFILE_CYCLE = ("sensory", "memory", "motor", "integration",
                          "attention", "working_memory",

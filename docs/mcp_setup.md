@@ -100,9 +100,9 @@ cortex; 10 Drosophila-shaped (optic lobe, giant-fiber escape, male courtship &
 song, lateral horn, v1.8.0)) + 66 connection types
 (connection forms, constrained on port types).
 
-**Embodiment layer (v1.7.0, densified v1.8.0, completed v1.9.0)** -- `functional_units/malecns_anchors.json`. It anchors
-37 of the 183 neuron populations to real annotated MaleCNS v1.0 cell types (85,127
-real cells over 1,666 types) and carries the measured connectivity backbone: the
+**Embodiment layer (v1.7.0, densified v1.8.0, completed v1.9.0, v1.10.0 profile expansion)** -- `functional_units/malecns_anchors.json`. It anchors
+57 of the 203 neuron populations to real annotated MaleCNS v1.0 cell types (105,717
+real cells over 4,872 types) and carries the measured connectivity backbone: the
 complete 27x27 superclass matrix, cross-checked against `connectivity_stats.json`
 (124,177,617 synapses / 25,582,938 edges -- both sources agree). Each declared unit
 edge therefore carries the measured synapse count between its populations' actual
