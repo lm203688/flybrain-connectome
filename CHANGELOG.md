@@ -8,14 +8,95 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.2.0` | the toolkit as a whole |
+| package | `2.3.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 97 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0 and 2.1.0) |
-| functional-unit **embodiment block** | `1.1` | adds `support_tier` + `type_pair_support` per declared edge and `provenance.unanchored_reason` (2.2.0) |
+| functional-unit library schema | `1.0` | 99 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0 and 2.3.0) |
+| functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.3.0] — 2026-09-24
+
+**Evidence becomes a first-class query surface, unanchored units get a machine-checkable literature-weight tier, and two fly circuits ship with every declared edge already measured.**
+
+v2.2.0 put the type-pair support tier on every edge, but a reader who wanted to
+ask "which edges across the whole library are FRAGILE?" still had to walk 97
+units by hand. v2.3.0 turns that question into a one-tool call, and adds the
+last piece the evidence-layer was missing for the 66 units the connectome can't
+reach.
+
+### Added
+
+- **`list_evidence_ledger` MCP tool** (45th tool in the public registry).
+  Returns every declared edge across all 33 embodied units, grouped by
+  `support_tier` (`SUPPORTED` / `FRAGILE` / `CONTRADICTED`), with per-edge
+  `measured_synapses`, `n_type_pairs`, `n_pairs_with_synapses` and the top-3
+  strongest type pairs. Optional `only` filter for a single tier. Also exposed
+  on the CLI as `functional_units.py --evidence-ledger [TIER]`.
+- **`provenance.evidence_weight`** on every unanchored unit. Three-value enum
+  re-derived from the citation count in `biological_reference`:
+  `single_source` (1 citation), `multi_source` (2-3), `textbook` (>=4).
+  Embodied units carry no such field — their evidence is the connectome, not
+  the citation count. Measured distribution over the 66 unanchored units:
+  **8 `single_source` + 58 `multi_source` + 0 `textbook`**. The empty
+  `textbook` bucket is honest state, not a bug: no unit in the current library
+  actually has >=4 sources.
+- **Two new Drosophila units** with every declared edge pre-verified against
+  the measured profile matrix:
+  - `wing_flight_steering_unit` — 7 edges, haltere/VNC power/pool to
+    depressor/haltere, with descending → VNC-interneuron at 1,673,751 synapses
+    and VNC → leg motor at 1,205,967. 1 FRAGILE edge (`fp→wm`, 1 pair of 12).
+  - `gustatory_centrifugal_unit` — 6 edges, pharyngeal gustatory to sensory
+    ascending pool with centrifugal feedback through CB endocrine, CB motor,
+    EPP ascending and VNC interneuron. All SUPPORTED.
+- **`gating.attention` port type** for the centrifugal-feedback attention
+  gate (80 → 81 ports).
+
+### Changed
+
+- Gate 9 unit-count constant 97 → 99.
+- `TOTAL_TOOLS` in `core_bridge.py` and `check_physical_tiering.py` bumped
+  44 → 45; `check_mcp_tools.py` gets a smoke-test entry for the new tool.
+- **New Gate 10 checks**: evidence_weight must re-derive from citations
+  (2 checks, 3 injections: non-enum value, valid enum that doesn't
+  re-derive, and embodied units carrying the field at all).
+- **New Gate 9 checks**: ledger summary re-derives from per-unit
+  `structural_support`, no SUPPORTED/FRAGILE entry is actually contradicted,
+  every ledger entry references an embodied unit (3 checks).
+- Stats: embodied_units 31 → 33, structural_support_edges 116 → 129
+  (**121 SUPPORTED / 7 FRAGILE / 1 CONTRADICTED** — the 6th FRAGILE is the
+  new `fp→wm` edge, not a regression of an existing one).
+
+### Probed and rejected (fail-closed, not written)
+
+Two candidate fly units were ruled out because their declared wiring hit a
+zero-measured profile edge, and by the v1.8.0 discipline a zero edge is not
+written:
+
+- `feeding_preference_unit` — `proboscis_mechano_pool → sensory_ascending_pool`
+  measures 0, and `cb_endocrine_pool → cb_motor_pool` also measures 0. The
+  proboscis → SA → CB cascade is not supported by the connectome as drawn;
+  the CB cascade is only supported when the ascending pool, not the endocrine
+  pool, drives the motor pool.
+- `thermotaxis_preference_unit` — `cb_motor_pool → vnc_leg_motor_pool` = 0 and
+  `vnc_endocrine_pool → efferent_descending_pool` = 0. The endocrine-to-descending
+  bridge the literature implies is not visible in the anchor set at this
+  resolution.
+
+Neither of these was "moved" or "re-wired" to force it through — both are
+recorded here as candidate circuits the current anchor layer cannot yet
+support, so a future anchor expansion knows which edges would be worth
+re-probing.
+
+### Gates
+
+`scripts/run_gates.py --with-data` passes all 10 gates. Gate 9 gains three
+checks (ledger aggregation, non-contradiction of SUPPORTED/FRAGILE entries,
+ledger membership); Gate 10 goes 43 → 45 checks with 9 → 12 injections.
 
 ---
 
