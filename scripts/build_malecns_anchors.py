@@ -224,6 +224,86 @@ TYPE_RULES: list[dict] = [
      "superclass": ["cb_sensory"],
      "note": "Pharyngeal (PhG) sensory neurons: taste / feeding input from the "
              "proboscis / cibarial region."},
+    # ---------------- v1.10.0: VNC + peripheral neuron-profile densification ----
+    # 20 neuron populations newly anchored to real MaleCNS v1.0 superclasses.
+    {"profile": "vnc_leg_motor_pool", "type_re": r"^MN(a[dg]|n[mnl]|m[lh]|w|m)|^Fe |^Acc\.|^Ster",
+     "superclass": ["vnc_motor"],
+     "note": "VNC leg/abdominal motor neurons (MNad* leg, MNhl/MNml/MNnm body-wall, "
+             "Fe reductor, Acc. tibiae, Ster sternal): motor output of leg and "
+             "abdomen behaviour."},
+    {"profile": "haltere_muscle_pool", "type_re": r"^hg[1-4]",
+     "superclass": ["vnc_motor"],
+     "note": "Haltere muscle motor neurons hg1-4: drive the gyroscopic halteres, "
+             "a dedicated flight-stabilization channel."},
+    {"profile": "wing_depressor_pool", "type_re": r"^b[12]",
+     "superclass": ["vnc_motor"],
+     "note": "Wing depressor motor neurons b1/b2: paired with the wing flexor for "
+             "the ~200 Hz wing-beat depression."},
+    {"profile": "pleural_promotor_pool", "type_re": r"^Tergop|^Pleu",
+     "superclass": ["vnc_motor"],
+     "note": "Tergopleural / pleural promotor motor neurons: thoracic axial "
+             "posturing and wing-steering base."},
+    {"profile": "vnc_flight_power_pool", "type_re": r"^DLMn|^DVMn|^STTMm",
+     "superclass": ["vnc_motor"],
+     "note": "Flight power motor neurons DLMn/DVMn/STTMm: dorsal longitudinal and "
+             "dorsal ventral muscles powering the wing stroke."},
+    {"profile": "vnc_efferent_pool", "type_re": r"^E[AN]",
+     "superclass": ["vnc_efferent"],
+     "note": "VNC efferent / intermediate-motor neurons (EN*, EA*): sensory-to-"
+             "motor gating interneurons of the ventral nerve cord."},
+    {"profile": "vnc_sensory_pool", "type_re": r".+",
+     "superclass": ["vnc_sensory"],
+     "note": "All VNC-resident sensory neurons (mechanoreceptors, chordotonal "
+             "organs, stretch receptors of abdomen / thorax): segmental input."},
+    {"profile": "oa_visual_centrifugal_pool", "type_re": r"^OA-",
+     "superclass": ["visual_centrifugal"],
+     "note": "Octopaminergic centrifugal neurons (OA-AL2i*, OA-ASM*) projecting "
+             "back to the optic lobe: the visual arousal / attention channel."},
+    {"profile": "johnston_organ_mechano", "type_re": r"^JO-",
+     "superclass": ["cb_sensory"],
+     "note": "Johnston organ mechanoreceptors on the flagellum (JO-A..F, JO-E): "
+             "wind detection and antenna position sense."},
+    {"profile": "proboscis_mechano_pool", "type_re": r"^a?PhM|^Mn_|^Lab",
+     "superclass": ["cb_sensory"],
+     "note": "Proboscis / labellar mechanosensory neurons (aPhM, Mn_, Lab): "
+             "mouthpart touch and feeding tactile input."},
+    {"profile": "vnc_interneuron_pool", "type_re": r".+",
+     "superclass": ["vnc_intrinsic"],
+     "note": "VNC intrinsic interneurons (the bulk of the ventral nerve cord): "
+             "local pattern generators and sensory-motor integration."},
+    {"profile": "cb_motor_pool", "type_re": r".+",
+     "superclass": ["cb_motor"],
+     "note": "Central-brain motor neurons (cb_motor superclass): brain-internal "
+             "effector output."},
+    {"profile": "cb_endocrine_pool", "type_re": r".+",
+     "superclass": ["cb_endocrine"],
+     "note": "Central-brain endocrine neurons (corpus cardiacum / allatum inputs): "
+             "neurohormone release into the haemolymph."},
+    {"profile": "vnc_endocrine_pool", "type_re": r".+",
+     "superclass": ["vnc_endocrine"],
+     "note": "Ventral nerve cord endocrine neurons: segmental neurohormone release."},
+    {"profile": "sensory_ascending_pool", "type_re": r".+",
+     "superclass": ["sensory_ascending"],
+     "note": "Sensory ascending neurons: carry segmental / peripheral sensory "
+             "information up to brain centres."},
+    {"profile": "efferent_ascending_pool", "type_re": r".+",
+     "superclass": ["efferent_ascending"],
+     "note": "Efferent ascending neurons: brain-to-VNC motor copies / corollary "
+             "discharge."},
+    {"profile": "cb_efferent_pool", "type_re": r".+",
+     "superclass": ["cb_efferent"],
+     "note": "Central-brain efferent neurons: a small brain output class."},
+    {"profile": "visual_projection_tbc_pool", "type_re": r".+",
+     "superclass": ["visual_projection_tbc"],
+     "note": "Visual projection neurons still to be classified (visual_projection_"
+             "tbc): the residual optic-flow projection channel."},
+    {"profile": "efferent_descending_pool", "type_re": r".+",
+     "superclass": ["efferent_descending"],
+     "note": "Efferent descending neurons: motor commands from brain to VNC."},
+    {"profile": "sensory_descending_pool", "type_re": r".+",
+     "superclass": ["sensory_descending"],
+     "note": "Sensory descending neurons: descending neurons carrying sensory-"
+             "state information back down the cord."},
 ]
 
 # Profiles that ARE a fly cell class but whose real counterpart could not be
