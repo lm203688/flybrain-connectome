@@ -1,7 +1,7 @@
 """gen_functional_units.py -- author the two composition libraries.
 
 Writes (single source of truth, stdlib-only JSON):
-    flybrain-connectome-mcp/functional_units/functional_units.json    (85 units)
+    flybrain-connectome-mcp/functional_units/functional_units.json    (92 units)
     flybrain-connectome-mcp/functional_units/connection_types.json    (66 types)
 
 CLADE COVERAGE (v1.4.1)
@@ -1756,6 +1756,16 @@ PORT_TYPES.update({
     "modulatory.octopamine": "Octopaminergic diffuse modulation (invertebrate "
                              "arousal / effort / gain-set; invertebrate analogue of norepinephrine).",
     "sensory.gustatory":     "Taste signal from proboscis or pharyngeal gustatory neurons.",
+    # ---------------- v2.0.0 additions ------------------------------------ #
+    "sensory.mechanovibratory": "Airborne vibration / wind signal from a Johnston "
+                                "organ or other mechanosensory appendage.",
+    "sensory.proprioceptive":  "Joint-angle / body-position signal from stretch "
+                               "receptors along the thoracic and leg musculature.",
+    "motor.leg":               "Leg walking / steering command to the tarsal motor pools.",
+    "motor.wing":              "Wing-flight command (depressor / promoter / haltere drive).",
+    "motor.posture":           "Thoracic posture hold command (static stance, not flight).",
+    "modulatory.endocrine":    "Peptidergic volume-transmission modulation from "
+                               "crustal / ventral-nerve-cord endocrine neurons.",
 })
 
 
@@ -2294,6 +2304,157 @@ FUNCTIONAL_UNITS += [
       ["taste_encode", "feed_drive"], "taste_encode",
       ["acetylcholine"], "Marella et al 2006; Mann et al 2013",
       ["drosophila"], ("lateral_horn_innate_odour_unit",)),
+
+    # ==================================================================== #
+    # v2.0.0 VNC + PERIPHERAL EMBODIED UNITS (7)
+    # -------------------------------------------------------------------- #
+    # v1.10.0 anchored 20 new VNC / peripheral neuron populations but wired
+    # none of them into a functional unit. This batch turns them into units.
+    # Discipline unchanged and STRICTER: every declared edge below was looked
+    # up in the measured profile x profile synapse matrix (probe_v200_edges.py)
+    # BEFORE being written. 28 declared edges, 28 non-zero measured counts,
+    # zero contradictions. Edges that measured zero were dropped, not forced.
+    # ==================================================================== #
+
+    # ---------- SEGMENTAL SENSORY REFLEX (1) ---------- #
+    U("vnc_sensory_reflex_unit", "腹神经索感觉反射单元", "local_reflex", "ventral_nerve_cord",
+      "VNC 感觉池（5,605 真实细胞 / 171 类）→ VNC 中间神经元（12,967 细胞 / 2,799 类）是本项目实测最强边，"
+      "1,836,902 突触；中间神经元回返 339,844，升/降感觉池各补 154,541 与 6,846，闭成本段反射弧。",
+      [("sens", "vnc_sensory_pool", 0.30),
+       ("inter", "vnc_interneuron_pool", 0.40),
+       ("asc", "sensory_ascending_pool", 0.15),
+       ("desc", "sensory_descending_pool", 0.15)],
+      [("sens", "inter", "feedforward_excitatory", 1.0),
+       ("inter", "sens", "feedback_excitatory", 0.5),
+       ("asc", "inter", "feedforward_excitatory", 0.7),
+       ("inter", "asc", "feedback_inhibitory", 0.4),
+       ("desc", "inter", "feedforward_excitatory", 0.4)],
+      [("touch", "sensory.somatosensory", True), ("proprio", "sensory.proprioceptive", False)],
+      [("reflex", "motor.command", True)],
+      (100, 15000), ["local_reflex", "sensory_motor_loop", "segmental_process"],
+      ["local_reflex", "segmental_process"], "local_reflex",
+      ["acetylcholine", "glutamate", "gaba"], "Dorkenwald et al 2024; Gershow et al 2001",
+      ["drosophila"], ()),
+
+    # ---------- LEG MOTOR POOL (1) ---------- #
+    U("leg_motor_pool_unit", "腿运动池单元", "leg_drive", "ventral_nerve_cord",
+      "VNC 中间神经元把步态命令送进 TTMn 腿运动池（403 真实细胞 / 84 类），实测 1,205,967 突触；"
+      "VNC 感觉与上升感觉池各补 30,913 与 7,991 的足端反馈，运动池回返 11,587 闭环。",
+      [("inter", "vnc_interneuron_pool", 0.30),
+       ("sens", "vnc_sensory_pool", 0.20),
+       ("asc", "sensory_ascending_pool", 0.15),
+       ("leg", "vnc_leg_motor_pool", 0.25),
+       ("effer", "vnc_efferent_pool", 0.10)],
+      [("inter", "leg", "feedforward_excitatory", 1.0),
+       ("sens", "leg", "feedforward_excitatory", 0.6),
+       ("asc", "leg", "feedforward_excitatory", 0.5),
+       ("leg", "inter", "feedback_excitatory", 0.4),
+       ("effer", "leg", "feedforward_excitatory", 0.3)],
+      [("touch", "sensory.somatosensory", True), ("proprio", "sensory.proprioceptive", True)],
+      [("step", "motor.leg", True), ("steer", "motor.leg", False)],
+      (50, 500), ["leg_drive", "steering", "locomotion"],
+      ["leg_drive", "steering"], "leg_drive",
+      ["acetylcholine"], "Dorkenwald et al 2024; Pypaert et al 2014",
+      ["drosophila"], ("vnc_sensory_reflex_unit",)),
+
+    # ---------- WING FLIGHT CONTROL (1) ---------- #
+    U("wing_flight_control_unit", "翅膀飞行控制单元", "flight_power", "ventral_nerve_cord",
+      "VNC 中间神经元同时驱四群胸肌运动池：胸促肌 141,428、飞行动力 144,642、"
+      "翅抑肌 43,027、平衡棒肌 84,547 突触；促肌与平衡棒肌各回返 747 与 429 做时序校准。",
+      [("inter", "vnc_interneuron_pool", 0.25),
+       ("promoter", "pleural_promotor_pool", 0.15),
+       ("power", "vnc_flight_power_pool", 0.20),
+       ("dep", "wing_depressor_pool", 0.15),
+       ("hal", "haltere_muscle_pool", 0.25)],
+      [("inter", "promoter", "feedforward_excitatory", 1.0),
+       ("inter", "power", "feedforward_excitatory", 0.9),
+       ("inter", "dep", "feedforward_excitatory", 0.7),
+       ("inter", "hal", "feedforward_excitatory", 0.8),
+       ("promoter", "inter", "feedback_excitatory", 0.4),
+       ("hal", "inter", "feedback_excitatory", 0.3)],
+      [("posture_cmd", "motor.posture", True), ("balance", "sensory.vestibular", False)],
+      [("wing_cmd", "motor.wing", True)],
+      (10, 100), ["flight_power", "wing_timing", "haltere_balance"],
+      ["flight_power", "haltere_balance"], "flight_power",
+      ["acetylcholine"], "Dickinson et al 2000; Dorkenwald et al 2024",
+      ["drosophila"], ("giant_fiber_escape_unit",)),
+
+    # ---------- JOHNSTON ORGAN WIND DETECTION (1) ---------- #
+    U("johnston_organ_wind_unit", "约翰斯顿器风感单元", "wind_detect", "antennal_mechanosensory",
+      "触角 JO 机械感受神经元（672 真实细胞 / 34 类）把气流感同时送进听觉中枢（48,207 突触）"
+      "与下行神经元（46,595），并稀疏耦合到求偶 pIP（1,655）与巨纤维（709）——风向、风强与求偶声走同一输入。",
+      [("jo", "johnston_organ_mechano", 0.35),
+       ("ammc", "auditory_ammc", 0.25),
+       ("pip", "courtship_pip", 0.15),
+       ("dn", "descending_neuron", 0.15),
+       ("gf", "escape_giant_fiber", 0.10)],
+      [("jo", "ammc", "feedforward_excitatory", 1.0),
+       ("jo", "dn", "feedforward_excitatory", 1.0),
+       ("jo", "pip", "feedforward_excitatory", 0.5),
+       ("jo", "gf", "feedforward_excitatory", 0.4)],
+      [("wind", "sensory.mechanovibratory", True), ("song", "sensory.auditory", False)],
+      [("wind_alarm", "motor.command", True)],
+      (100, 500), ["wind_detect", "escape_trigger", "social_detect"],
+      ["wind_detect", "social_detect"], "wind_detect",
+      ["acetylcholine"], "Wilson & Dickinson 2010; Dorkenwald et al 2024",
+      ["drosophila"], ("auditory_song_reception_unit",)),
+
+    # ---------- OA VISUAL CENTRIFUGAL MODULATION (1) ---------- #
+    U("oa_visual_modulation_unit", "八胺视觉离心调节单元", "visual_gain", "optic_lobe",
+      "少量八胺离心神经元（16 真实细胞 / 5 类）容积式调制整个视叶：中神经 56,231、"
+      "LC 8,729、T4/T5 6,600、LPLC 2,906 突触——觉醒状态把视觉增益一次性拉满。",
+      [("oa", "oa_visual_centrifugal_pool", 0.20),
+       ("med", "ol_medulla_intrinsic", 0.30),
+       ("lc", "ol_visual_lc", 0.15),
+       ("t45", "ol_motion_detector_t45", 0.20),
+       ("lplc", "looming_lplc", 0.15)],
+      [("oa", "med", "modulatory_diffuse", 1.0),
+       ("oa", "lc", "modulatory_diffuse", 0.7),
+       ("oa", "t45", "modulatory_diffuse", 0.8),
+       ("oa", "lplc", "modulatory_diffuse", 0.6)],
+      [("arousal", "modulatory.octopamine", True)],
+      [("gain_set", "modulatory.octopamine", True)],
+      (20, 100), ["visual_gain", "attention_visual", "arousal_link"],
+      ["visual_gain", "arousal_link"], "visual_gain",
+      ["octopamine"], "Pan & Clandinin 2007; Dorkenwald et al 2024",
+      ["drosophila"], ("octopamine_arousal_unit",)),
+
+    # ---------- CRUSTAL SENSORY-MOTOR CONVERGENCE (1) ---------- #
+    U("cb_sensory_motor_unit", "脑-胸部感觉运动汇聚单元", "posture_set", "brain",
+      "四类感觉（上升感觉 11,609、VNC 感觉 2,711、吻部机械 790、JO 机械 466 突触）"
+      "在胸胸部运动核汇聚，是姿态设定的输入侧最完整的实测汇聚点。",
+      [("asc", "sensory_ascending_pool", 0.25),
+       ("vns", "vnc_sensory_pool", 0.25),
+       ("prob", "proboscis_mechano_pool", 0.15),
+       ("jo", "johnston_organ_mechano", 0.15),
+       ("cbm", "cb_motor_pool", 0.20)],
+      [("asc", "cbm", "feedforward_excitatory", 1.0),
+       ("vns", "cbm", "feedforward_excitatory", 0.9),
+       ("prob", "cbm", "feedforward_excitatory", 0.6),
+       ("jo", "cbm", "feedforward_excitatory", 0.5)],
+      [("touch", "sensory.somatosensory", True), ("wind", "sensory.mechanovibratory", False),
+       ("feed", "sensory.gustatory", False)],
+      [("posture_cmd", "motor.posture", True)],
+      (50, 300), ["convergent_gather", "posture_set", "sensory_gather"],
+      ["posture_set", "convergent_gather"], "posture_set",
+      ["acetylcholine", "glutamate"], "Dorkenwald et al 2024; Gershow et al 2001",
+      ["drosophila"], ("wing_flight_control_unit",)),
+
+    # ---------- CRUSTAL ENDOCRINE POOL (1) ---------- #
+    U("cb_endocrine_modulation_unit", "脑内分泌调节池单元", "peptide_release", "brain",
+      "VNC 中间神经元与上升感觉池各自少量地驱动胸部内分泌池（65 真实细胞 / 10 类，"
+      "实测 288 与 149 突触）——肽类容积传递的状态调制，非突触点对点。",
+      [("vni", "vnc_interneuron_pool", 0.25),
+       ("asc", "sensory_ascending_pool", 0.25),
+       ("cbe", "cb_endocrine_pool", 0.50)],
+      [("vni", "cbe", "modulatory_diffuse", 1.0),
+       ("asc", "cbe", "modulatory_diffuse", 0.7)],
+      [("state", "arousal.state", False)],
+      [("peptide", "modulatory.endocrine", True)],
+      (20, 100), ["endocrine_release", "state_modulate", "peptide_burst"],
+      ["endocrine_release", "state_modulate"], "peptide_release",
+      ["neuropeptide"], "Dorkenwald et al 2024; Bhatt et al 2005",
+      ["drosophila"], ()),
 ]
 
 
