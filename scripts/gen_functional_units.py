@@ -1,7 +1,7 @@
 """gen_functional_units.py -- author the two composition libraries.
 
 Writes (single source of truth, stdlib-only JSON):
-    flybrain-connectome-mcp/functional_units/functional_units.json    (92 units)
+    flybrain-connectome-mcp/functional_units/functional_units.json    (97 units)
     flybrain-connectome-mcp/functional_units/connection_types.json    (66 types)
 
 CLADE COVERAGE (v1.4.1)
@@ -2453,8 +2453,171 @@ FUNCTIONAL_UNITS += [
       [("peptide", "modulatory.endocrine", True)],
       (20, 100), ["endocrine_release", "state_modulate", "peptide_burst"],
       ["endocrine_release", "state_modulate"], "peptide_release",
-      ["neuropeptide"], "Dorkenwald et al 2024; Bhatt et al 2005",
+       ["neuropeptide"], "Dorkenwald et al 2024; Bhatt et al 2005",
       ["drosophila"], ()),
+
+    # ------------------------------------------------------------------ #
+    # v2.1.0 -- the last five anchored populations that had no unit yet
+    # (VNC/crustal endocrine, the two efferent "E" pools, the central
+    # complex efferent cell, the TBC centrifugal projection). Same
+    # fail-closed discipline as v1.8.0 / v2.0.0: every wiring edge below
+    # was looked up in the measured profile x profile synapse matrix
+    # BEFORE it was written. One planned edge measured zero and was
+    # dropped, not forced: pharyngeal_gustatory -> efferent_descending_
+    # pool = 0 synapses, so buccal_efferent_feedback_unit closes its
+    # return loop through cb_motor_pool instead (both directions non-
+    # zero: 11 out, 12 back).
+    # ------------------------------------------------------------------ #
+
+    # ---------- VNC ENDOCRINE POOL (1) ---------- #
+    U("vnc_endocrine_modulation_unit", "腹神经索内分泌调节单元", "neurohormone_release",
+      "ventral_nerve_cord",
+      "VNC 内分泌池仅 22 真实细胞 / 4 类（LK、CAPA_a、CAPA_b、FMRFa_Tv），却是整条索体的"
+      "神经激素发射口：VNC 中间神经元（12,967 细胞）实测 13,162 突触下行驱动它，下行神经元"
+      "（1,306 细胞）再补 5,263；内分泌池经容积传递回返中间神经元 207、向腿运动池（403 细胞）"
+      "外溢 54，腿运动池回测 35 突触闭环。突触量级极小，作用形式是肽类弥漫而非点对点。",
+      [("endo", "vnc_endocrine_pool", 0.10),
+       ("vni", "vnc_interneuron_pool", 0.50),
+       ("dn", "descending_neuron", 0.25),
+       ("leg", "vnc_leg_motor_pool", 0.15)],
+      [("vni", "endo", "feedforward_excitatory", 1.0),
+       ("dn", "endo", "feedforward_excitatory", 0.7),
+       ("endo", "vni", "volume_transmission", 0.6),
+       ("endo", "leg", "volume_transmission", 0.5),
+       ("leg", "endo", "feedback_excitatory", 0.3)],
+      [("touch", "sensory.somatosensory", True),
+       ("proprio", "sensory.proprioceptive", False),
+       ("state", "arousal.state", False)],
+      [("peptide", "modulatory.endocrine", True),
+       ("leg_mod", "motor.leg", False)],
+      (100, 15000), ["peptide_release", "neurohormone_diffuse", "state_modulate",
+                     "segmental_gate"],
+      ["neurohormone_diffuse", "state_modulate"], "peptide_release",
+      ["neuropeptide"], "Dorkenwald et al 2024; Bhatt et al 2005; Roder et al 2006",
+      ["drosophila"],
+      ("vnc_sensory_reflex_unit", "leg_motor_pool_unit",
+       "cb_endocrine_modulation_unit")),
+
+    # ---------- EFFERENT ASCENDING COMMAND BUS (1) ---------- #
+    U("efferent_command_bus_unit", "外周上升指挥总线单元", "distributed_command",
+      "brainstem",
+      "EPP 上升外周池只有 8 真实细胞 / 5 类，却是脑到腹索的指挥总线：下行神经元（1,306 细胞）"
+      "实测 4,724 突触注入它，它再扇出到 VNC 中间神经元（12,967 细胞）6,304、腿运动池 1,259、"
+      "巨纤维前体 GFC（34 细胞）631；中间神经元回返 7,377、GFC 回返 126，构成一条"
+      "「命令—确认」双向闭环，并把逃逸系统挂在同一条总线上。",
+      [("bus", "efferent_ascending_pool", 0.08),
+       ("dn", "descending_neuron", 0.30),
+       ("vni", "vnc_interneuron_pool", 0.42),
+       ("leg", "vnc_leg_motor_pool", 0.12),
+       ("gfc", "escape_vnc_gfc", 0.08)],
+      [("dn", "bus", "feedforward_excitatory", 1.0),
+       ("bus", "vni", "feedforward_excitatory", 0.9),
+       ("bus", "leg", "feedforward_excitatory", 0.7),
+       ("bus", "gfc", "feedforward_excitatory", 0.6),
+       ("vni", "bus", "feedback_excitatory", 0.8),
+       ("gfc", "bus", "feedback_excitatory", 0.3)],
+      [("cmd", "motor.command", True), ("escape", "motor.escape", False)],
+      [("leg_cmd", "motor.leg", True),
+       ("wing_cmd", "motor.wing", False),
+       ("escape_cmd", "motor.escape", False)],
+      (100, 15000), ["divergent_command", "command_reciprocal", "escape_coupling",
+                     "bimanual_relay"],
+      ["divergent_command", "escape_coupling"], "distributed_command",
+      ["acetylcholine", "gaba"], "Dorkenwald et al 2024; Gershow et al 2001",
+      ["drosophila"],
+      ("giant_fiber_escape_unit", "leg_motor_pool_unit",
+       "central_complex_steering_unit")),
+
+    # ---------- CENTRAL COMPLEX EFFERENT (1) ---------- #
+    U("cb_efferent_command_unit", "中央复合体外周下命令单元", "command_issue",
+      "central_complex",
+      "中央复合体外周池只有 4 真实细胞 / 1 类，是这块脑区唯一的下行出口：嗅觉投射 PN"
+      "（583 细胞）实测 2 突触输入它，它输出到下行政令神经元 26 突触、被回接 73，"
+      "并向 CB 内分泌池（65 细胞）溢出 7 突触给状态打标记。规模最小的一档，但处在路径最顶端。",
+      [("ef", "cb_efferent_pool", 0.10),
+       ("dn", "descending_neuron", 0.45),
+       ("alp", "antennal_lobe_pn", 0.25),
+       ("cbe", "cb_endocrine_pool", 0.20)],
+      [("alp", "ef", "feedforward_excitatory", 0.4),
+       ("ef", "dn", "feedforward_excitatory", 1.0),
+       ("dn", "ef", "feedback_excitatory", 0.6),
+       ("ef", "cbe", "modulatory_diffuse", 0.3)],
+      [("odour", "olfactory.sparse_code", True),
+       ("heading", "navigation.heading", False)],
+      [("command", "motor.command", True),
+       ("state_peptide", "modulatory.endocrine", False)],
+      (20, 300), ["command_issue", "goal_bearing_transfer", "reciprocal_gate",
+                  "state_tagging"],
+      ["command_issue", "goal_bearing_transfer"], "command_issue",
+      ["acetylcholine", "neuropeptide"], "Dorkenwald et al 2024; Tan et al 2015",
+      ["drosophila", "locust"],
+      ("central_complex_steering_unit", "lateral_horn_innate_odour_unit",
+       "cb_sensory_motor_unit")),
+
+    # ---------- CENTRIFUGAL VISUAL FEEDBACK (1) ---------- #
+    U("centrifugal_visual_feedback_unit", "离心视觉反馈单元", "visual_gain_feedback",
+      "optic_lobe",
+      "TBC 离心池只有 2 真实细胞 / 2 类，却是整条视网膜增益调节的离心通路：它把中枢信号回灌到"
+      "视叶内生神经元（37,146 细胞）实测 3,323 突触、LC（4,164 细胞）1,131、八胺离心池"
+      "（16 细胞）30、T4/T5（13,580 细胞）9；内生回传 5,222、LC 回传 661、T4/T5 回传 532，"
+      "双向边全部实测非零，是典型的双向增益环而非单向广播。",
+      [("tbc", "visual_projection_tbc_pool", 0.02),
+       ("med", "ol_medulla_intrinsic", 0.55),
+       ("lc", "ol_visual_lc", 0.18),
+       ("t45", "ol_motion_detector_t45", 0.22),
+       ("oa", "oa_visual_centrifugal_pool", 0.03)],
+      [("tbc", "med", "feedforward_excitatory", 0.8),
+       ("tbc", "lc", "feedforward_excitatory", 0.6),
+       ("tbc", "oa", "feedforward_excitatory", 0.3),
+       ("med", "tbc", "feedback_excitatory", 1.0),
+       ("lc", "tbc", "feedback_excitatory", 0.5),
+       ("t45", "tbc", "feedforward_excitatory", 0.4),
+       ("tbc", "t45", "feedback_excitatory", 0.2)],
+      [("motion", "sensory.visual.motion", True),
+       ("irradiance", "sensory.visual.irradiance", False)],
+      [("gain", "modulatory.acetylcholine", True),
+       ("t45_gain", "modulatory.acetylcholine", False)],
+      (200, 40000), ["centrifugal_feedback", "gain_control", "bidirectional_loop",
+                     "contrast_set"],
+      ["centrifugal_feedback", "gain_control"], "visual_gain_feedback",
+      ["acetylcholine", "gaba"], "Dorkenwald et al 2024; Watanabe & Singh 2003",
+      ["drosophila"],
+      ("oa_visual_modulation_unit", "elementary_motion_detection_unit",
+       "looming_detection_unit")),
+
+    # ---------- EFFERENT DESCENDING / BUCCAL (1) ---------- #
+    U("buccal_efferent_feedback_unit", "咽下外周反哺单元", "ingestive_feedback",
+      "subesophageal_zone",
+      "EPP 下降外周池只有 4 真实细胞 / 1 类，是口腔—腹部行为之间的下行反馈枢纽：下行神经元"
+      "注入 123 突触并被回接 62，CB 运动池（106 细胞）与它双向互馈 11 与 12，感觉下降池"
+      "（12 细胞）再输入 16；输出侧驱动咽味觉神经元（48 细胞）3 突触、八胺 VUM（17 细胞）"
+      "5 突触。每条边都在实测矩阵里，但量级都 <=123 突触，属精细调节而非驱动级。",
+      [("ed", "efferent_descending_pool", 0.10),
+       ("dn", "descending_neuron", 0.30),
+       ("cbm", "cb_motor_pool", 0.15),
+       ("sdesc", "sensory_descending_pool", 0.15),
+       ("pg", "pharyngeal_gustatory", 0.20),
+       ("oa", "octopamine_vum", 0.10)],
+      [("dn", "ed", "feedforward_excitatory", 1.0),
+       ("ed", "dn", "feedback_excitatory", 0.6),
+       ("cbm", "ed", "feedback_excitatory", 0.5),
+       ("ed", "cbm", "feedforward_excitatory", 0.5),
+       ("sdesc", "ed", "feedforward_excitatory", 0.4),
+       ("ed", "pg", "feedforward_excitatory", 0.4),
+       ("ed", "oa", "modulatory_diffuse", 0.3)],
+      [("taste", "sensory.gustatory", True),
+       ("touch", "sensory.somatosensory", False),
+       ("hunger", "gating.hunger", False)],
+      [("feeding", "motor.feeding", True),
+       ("octopamine", "modulatory.octopamine", False)],
+      (20, 300), ["ingestive_feedback", "reciprocal_gate", "satiety_tag",
+                  "diffuse_arousal"],
+      ["ingestive_feedback", "satiety_tag"], "ingestive_feedback",
+      ["acetylcholine", "octopamine"], "Dorkenwald et al 2024; Gershow et al 2001; "
+      "Bhatt et al 2005",
+      ["drosophila"],
+      ("pharyngeal_gustatory_unit", "octopamine_arousal_unit",
+       "cb_sensory_motor_unit")),
 ]
 
 
