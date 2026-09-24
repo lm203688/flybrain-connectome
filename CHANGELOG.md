@@ -8,13 +8,53 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.0.0` | the toolkit as a whole |
+| package | `2.1.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 92 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0 and 2.0.0) |
+| functional-unit library schema | `1.0` | 97 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0 and 2.1.0) |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.1.0] — 2026-09-24
+
+**Last five anchored populations wired: +5 fully-embodied units (92 → 97, 26 → 31 embodied), zero unanchored anchored populations left.**
+
+After v2.0.0 five anchored populations still had no unit at all — the vocabulary
+still had unwired circuit. This release closes the gap. Same measured discipline as
+before: every declared edge was looked up in the profile×profile synapse matrix
+**before** it was written. 29 declared edges, 29 non-zero measured counts, **zero**
+new contradictions. One planned edge measured zero and was **dropped, not forced**:
+`pharyngeal_gustatory → efferent_descending_pool` = 0 synapses, so
+`buccal_efferent_feedback_unit` closes its return loop through `cb_motor_pool`
+instead (11 out / 12 back, both directions non-zero). The single registered
+contradiction (`central_complex_steering_unit` `nod → fb` = 0) is untouched.
+
+### Added
+
+- **5 embodied functional units** (92 → 97 units, 26 → 31 embodied):
+  | unit | members | edges | strongest edge (synapses) |
+  |---|---|---|---|
+  | `vnc_endocrine_modulation_unit` | 4 | 5 | 13,162 (VNC interneuron → VNC endocrine) |
+  | `efferent_command_bus_unit` | 5 | 6 | 7,377 (VNC interneuron → EPP ascending) |
+  | `centrifugal_visual_feedback_unit` | 5 | 7 | 5,222 (medulla → TBC centrifugal) |
+  | `buccal_efferent_feedback_unit` | 6 | 7 | 123 (descending neuron → EPP descending) |
+  | `cb_efferent_command_unit` | 4 | 4 | 73 (descending neuron → CB efferent) |
+- **`embodied_populations_referenced`: 52 → 57** — every anchored population is now
+  used by at least one unit. The anchors artifact itself is unchanged (same digest,
+  105,717 cells / 4,872 types), so this release is wiring only, no new anchoring.
+
+### Changed
+
+- **Structural support edges**: 87 → 116 measured, contradictions still 1.
+- **Unit-count gate** (`check_functional_units.py`): 92 → 97.
+- **Docs**: README and `docs/mcp_setup.md` cross-checks updated to 31 of 97 /
+  57 of 203; the stale `82 functional units` string in `docs/mcp_setup.md` (left over
+  from the v1.9.0 era) is corrected as well.
+- **Package version**: 2.0.0 → 2.1.0. Port-type vocabulary (80) and connection types
+  (66) unchanged — this batch needed no new vocabulary, only circuit.
 
 ---
 

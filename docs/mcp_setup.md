@@ -92,13 +92,15 @@ reads the data):
 `get_multiplier_metrics`
 
 **Functional-unit composition library** — offline, Tier-1, stdlib-only. This is
-the layer that actually composes: 82 functional units (a function delivered by a
-group of neuron populations, with typed ports -- 16 of them cross-clade: insect,
-bird, fish, cephalopod; 16 more from the rhythm/state/error batch: annelid,
-ascidian, mollusc, pit viper, frog, cerebellum, brainstem, hippocampus, barrel
-cortex; 10 Drosophila-shaped (optic lobe, giant-fiber escape, male courtship &
-song, lateral horn, v1.8.0)) + 66 connection types
-(connection forms, constrained on port types).
+the layer that actually composes: 97 functional units (each ONE function,
+delivered by a group of neuron populations with typed ports) + 66 connection
+types (connection forms, constrained on port types). The unit list grew in
+batches: 10 cognitive, 16 cross-clade (insect, bird, fish, cephalopod),
+16 rhythm/state/error (annelid, ascidian, mollusc, pit viper, frog, cerebellum,
+brainstem, hippocampus, barrel cortex), then Drosophila-shaped batches
+v1.8.0–v2.1.0 (optic lobe, giant-fiber escape, male courtship & song, lateral
+horn, feeding & grooming, ventral nerve cord, the efferent "E" pools, endocrine
+release, centrifugal visual feedback).
 
 **Embodiment layer (v1.7.0, densified v1.8.0, completed v1.9.0, v1.10.0 profile expansion)** -- `functional_units/malecns_anchors.json`. It anchors
 57 of the 203 neuron populations to real annotated MaleCNS v1.0 cell types (105,717
@@ -106,11 +108,12 @@ real cells over 4,872 types) and carries the measured connectivity backbone: the
 complete 27x27 superclass matrix, cross-checked against `connectivity_stats.json`
 (124,177,617 synapses / 25,582,938 edges -- both sources agree). Each declared unit
 edge therefore carries the measured synapse count between its populations' actual
-cell types. 26 of the 92 units have `provenance.embodied_in_malecns: true`; the other
-66 do not resolve to fly cells and say so. A measured count of ZERO is a recorded
-contradiction (currently one, in `central_complex_steering_unit`), never a pass.
-`extracted_from_malecns` stays false everywhere: presence and non-contradiction are
-checked, the declared microcircuit and connection form are not.
+cell types. 31 of the 97 units have `provenance.embodied_in_malecns: true`; the other
+66 do not resolve to fly cells and say so. All 57 anchored populations are now
+referenced by at least one unit (v2.1.0 wired the last five). A measured count of
+ZERO is a recorded contradiction (currently one, in `central_complex_steering_unit`),
+never a pass. `extracted_from_malecns` stays false everywhere: presence and
+non-contradiction are checked, the declared microcircuit and connection form are not.
 
 `list_functional_units` · `get_functional_unit` ·
 `list_connection_types` · `compose_from_units`

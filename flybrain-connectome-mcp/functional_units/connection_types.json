@@ -11,9 +11,9 @@
     "macro": "population-level projection geometry"
   },
   "stats": {
-    "functional_units": 92,
+    "functional_units": 97,
     "connection_types": 66,
-    "neural_members_referenced": 185,
+    "neural_members_referenced": 190,
     "systems": [
       "antennal_lobe",
       "antennal_mechanosensory",
@@ -69,10 +69,10 @@
       "plasticity"
     ],
     "connection_types_used_by_units": 47,
-    "embodied_units": 26,
-    "embodied_populations_referenced": 52,
-    "embodied_real_cells_referenced": 105677,
-    "structural_support_edges_measured": 87,
+    "embodied_units": 31,
+    "embodied_populations_referenced": 57,
+    "embodied_real_cells_referenced": 105717,
+    "structural_support_edges_measured": 116,
     "structural_support_edges_contradicted": 1,
     "contradictions_acknowledged": 1
   },
