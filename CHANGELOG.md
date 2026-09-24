@@ -8,13 +8,63 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `1.9.0` | the toolkit as a whole |
+| package | `1.10.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
 | functional-unit library schema | `1.0` | 85 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0 and 1.9.0) |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [1.10.0] — 2026-09-24
+
+**VNC + peripheral neuron-profile densification: +20 anchored neuron populations (183 → 203 modules).**
+
+The previous expansion (v1.8.0/v1.9.0) anchored fly *brain* and *optic-lobe* populations
+but left the **ventral nerve cord** and several peripheral superclasses almost entirely
+unrepresented in the vocabulary. This release fills that gap by adding 20 neuron-profile
+entries, each one mapped to a real MaleCNS v1.0 superclass so the build's fail-closed
+anchor check (a rule that matches zero real cells is rejected) passes for every new rule.
+This is the batch that brings the profile vocabulary to the **203** the v1.9.0 work was
+aiming for; functional units are deliberately unchanged at **85 (19 embodied)** so the
+"19/85 units" invariant holds.
+
+### Added
+
+- **20 MODULE_PROFILES** (`synthetic_bio_topology.py`, vocabulary 183 → 203):
+  `vnc_leg_motor_pool`, `haltere_muscle_pool`, `wing_depressor_pool`,
+  `pleural_promotor_pool`, `vnc_flight_power_pool`, `vnc_efferent_pool`,
+  `vnc_sensory_pool`, `oa_visual_centrifugal_pool`, `johnston_organ_mechano`,
+  `proboscis_mechano_pool`, `vnc_interneuron_pool`, `cb_motor_pool`,
+  `cb_endocrine_pool`, `vnc_endocrine_pool`, `sensory_ascending_pool`,
+  `efferent_ascending_pool`, `cb_efferent_pool`, `visual_projection_tbc_pool`,
+  `efferent_descending_pool`, `sensory_descending_pool`.
+- **20 MODULE_REGISTRY entries** (`module_registry.py`, registry 192 → 212) —
+  one `ModuleSpec` per new profile, preserving the registry ⊇ profiles invariant.
+- **20 TYPE_RULES** (`build_malecns_anchors.py`, 37 → 57 anchored profiles), each
+  carrying a `note` and a regex that matches >0 real cells.
+
+### Changed
+
+- Anchored profiles **37 → 57**; anchored real cells **85,127 → 105,717**;
+  anchored cell types **1,666 → 4,872** (the VNC-intrinsic catch-all alone resolves
+  2,799 types / 12,967 cells).
+- Package version 1.9.0 → 1.10.0 across `pyproject.toml`, `flybrain_cli.py`,
+  `mcp_connectome/server.py`, `mcp_connectome/api_server.py`.
+- README / `docs/mcp_setup.md` cross-checks: `37 of 183 / 85,127` →
+  `57 of 203 / 105,717`.
+
+### Honesty notes
+
+- These are **vocabulary + anchoring** additions only — no new functional units were
+  declared, so no new "presence + non-contradiction" edge claims were invented. The
+  catch-all rules (`vnc_sensory_pool`, `vnc_interneuron_pool`, …) deliberately tag whole
+  superclasses; they are honest population anchors, not microcircuit claims.
+- The `203` figure is the real, measured vocabulary size after this batch — the earlier
+  "203" quoted from memory was stale (v1.9.0 actually shipped at 183); this release makes
+  it true and re-verified.
 
 ---
 
