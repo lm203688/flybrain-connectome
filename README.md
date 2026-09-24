@@ -465,6 +465,23 @@ honest.
   1,924,544, PN → lateral horn measures 391,155, giant fiber → TTMn measures
   the famous 90 (over the real mixed electrical-chemical synapse), pC1 → pIP
   measures 1,973, AMMC → pIP measures 90.
+- **Support tier at type-pair resolution (v2.2.0).** The profile-level count is
+  still the contradiction gate, but it is no longer the whole verdict: every
+  declared edge is additionally walked across the **4,872×4,872 anchored
+  type-pair matrix**, counting how many individual `(from_type, to_type)` pairs
+  carry real synapses. That separates a pathway spread over many cell types from
+  a profile-level non-zero carried by one lucky pair, and it surfaced **six
+  FRAGILE edges** that the cell-type-set verdict had treated as fine: `giant_fiber_escape_unit`
+  `GF → TTMn` (4 pairs, 1 live: `DNp01 → TTMn` = 90) and `GF → PSI` (1 pair:
+  `DNp01 → PSI` = 16); `auditory_song_reception_unit` `AMMC → aSP` (240 pairs, 1
+  live: `AMMC012 → aSP10A_b` = 19); `cb_efferent_command_unit` `PN → CB-efferent`
+  (145 pairs, 1 live: `VP2+Z_lvPN → GNG656` = 2); and both edges of
+  `buccal_efferent_feedback_unit` (`LN-DN2 → DNg28` = 16, `DNg28 → PhG3` = 3).
+  **109 edges are SUPPORTED** (≥2 live pairs), **6 FRAGILE** (exactly 1),
+  **1 CONTRADICTED**. FRAGILE is a *new honesty tier*, not a new contradiction —
+  those edges do have measured support, they just should not be cited as strong
+  evidence, and Gate 10 re-derives every tier from the raw matrix so a hand-written
+  tier cannot survive.
 - **Falsification, not confirmation.** A nonzero count means only that the
   declared edge is *not contradicted* at cell-type-set resolution; it says nothing
   about whether the declared connection FORM is the one the fly uses. A zero count
@@ -479,13 +496,25 @@ honest.
   skipped: 131 are non-Drosophila (bird song system, fish Mauthner and
   electroreception, cephalopod vertical lobe, mammalian cortical classes), 5 could
   not be resolved narrowly enough to defend, and 10 are abstract cognitive modules
-  with no single cell class.
+  with no single cell class. Every unanchored **unit** now also carries a
+  machine-checkable `provenance.unanchored_reason` from a three-value enum
+  (`taxon_no_malecns_data` / `identity_not_in_drosophila` /
+  `abstract_module_no_cell_type`), derived from the profile classification rather
+  than asserted by hand, so a reader never has to guess why a unit has no anchor:
+  all **66** currently fall under `identity_not_in_drosophila` — 58 of them
+  reference only non-Drosophila cell classes, and 8 mix those with the 5
+  profiles too broad to resolve (`interneuron_kcn`, `interneuron_lamp`,
+  `interneuron_npf`, `interneuron_nph`, `olfactory_receptor`). No unanchored
+  unit's members are all abstract modules or all in-species-without-data, which
+  is why the other two enum values are present but currently unpopulated — Gate 10
+  proves each unit's reason is what the classification would derive, so a
+  hand-typed reason cannot survive.
 
 **Honest boundary.** These units are curated from comparative-neuroscience
 literature with a named reference each (`provenance.extracted_from_malecns` is
-`false` for all 82) — they are NOT extracted from MaleCNS v1.0, unlike the three
+`false` for all 97) — they are NOT extracted from MaleCNS v1.0, unlike the three
 original fly motifs. Member ratios are composition weights, not measured cell
-counts. `provenance.embodied_in_malecns` marks the 16 units whose populations *do*
+counts. `provenance.embodied_in_malecns` marks the 31 units whose populations *do*
 resolve to real annotated cells. Embodiment proves the parts exist and that a
 declared edge is not contradicted; it does not prove the declared microcircuit or
 its connection form. Treat the layer as a composable scaffold with literature
@@ -498,8 +527,9 @@ Machine-readable equivalents: `list_functional_units`, `get_functional_unit`,
 member neuron does not exist in the vocabulary, or if the composer stops
 rejecting malformed wiring). The embodiment layer is rebuilt with
 `python scripts/build_malecns_anchors.py` and locked by `scripts/check_embodiment.py`
-(Gate 10, which recomputes every measured count from the matrices, re-injects six
-defects every run, and refuses to let an unacknowledged contradiction ship).
+(Gate 10, which recomputes every measured count from the matrices, re-derives every
+support tier from the raw type-pair matrix, re-injects nine defects every run, and
+refuses to let an unacknowledged contradiction or a hand-typed reason ship).
 
 ---
 
