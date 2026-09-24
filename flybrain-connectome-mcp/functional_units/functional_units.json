@@ -86,7 +86,7 @@
     "gating.attention": "Attention-priority gate on a competing modulatory program (which centrifugal feedback wins)."
   },
   "stats": {
-    "functional_units": 99,
+    "functional_units": 101,
     "connection_types": 66,
     "neural_members_referenced": 190,
     "systems": [
@@ -144,13 +144,13 @@
       "plasticity"
     ],
     "connection_types_used_by_units": 47,
-    "embodied_units": 33,
+    "embodied_units": 35,
     "embodied_populations_referenced": 57,
     "embodied_real_cells_referenced": 105717,
-    "structural_support_edges_measured": 129,
+    "structural_support_edges_measured": 138,
     "structural_support_edges_contradicted": 1,
     "structural_support_edges_fragile": 7,
-    "structural_support_edges_supported": 121,
+    "structural_support_edges_supported": 130,
     "support_resolution": "type-pair",
     "contradictions_acknowledged": 1
   },
@@ -19309,6 +19309,768 @@
         ],
         "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
         "regions": null,
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "mushroom_body_lateral_horn_reciprocal_unit",
+      "display": "蘑菇体-侧角往返单元",
+      "function": "cross_modal_integrate",
+      "system": "mushroom_body",
+      "description": "学得的蘑菇体与先天的侧角之间存在双向投影——MaleCNS 实测 mushroom_body_output→lateral_horn_ln 36,712 突触、lateral_horn_ln→mushroom_body_output 21,199、mushroom_body_dan→lateral_horn_ln 11,517、lateral_horn_ln→mushroom_body_dan 19,655、kenyon_cell→lateral_horn_ln 11,265；再叠上加味通路mushroom_body_dan→mushroom_body_output 39,960。六条边全部在类型对层面 SUPPORTED（最少 270/6330 对、最多 1555/13504 对）。这个单元填补了此前只有单向 mushroom_body_associative_memory_unit 与lateral_horn_innate_odour_unit、没有跨模态整合的缺口：气味在蘑菇体被赋效价之后回写到侧角的先天通道，侧角再把信息素类别信号反哺给多巴胺神经元。",
+      "members": [
+        {
+          "role": "kc",
+          "neuron": "kenyon_cell",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "lh",
+          "neuron": "lateral_horn_ln",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "mbon",
+          "neuron": "mushroom_body_output",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "dan",
+          "neuron": "mushroom_body_dan",
+          "count_ratio": 0.25
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "dan",
+          "to": "mbon",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "mbon",
+          "to": "lh",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "lh",
+          "to": "mbon",
+          "type": "feedback_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "dan",
+          "to": "lh",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "lh",
+          "to": "dan",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "kc",
+          "to": "lh",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "sparse_code",
+            "type": "olfactory.sparse_code",
+            "required": true
+          },
+          {
+            "name": "value_in",
+            "type": "modulatory.dopamine",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "learned_valence",
+            "type": "olfactory.learned_valence",
+            "required": true
+          },
+          {
+            "name": "innate_valence",
+            "type": "olfactory.learned_valence",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        1000,
+        2000
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "cross_modal_integrate",
+        "learned_innate_mix",
+        "valence_transfer"
+      ],
+      "task_hint_pool": [
+        "cross_modal_integrate",
+        "learned_innate_mix",
+        "valence_transfer",
+        "mb_lh_reciprocal"
+      ],
+      "lead_task_hint": "cross_modal_integrate",
+      "neurotransmitter": [
+        "acetylcholine",
+        "dopamine",
+        "gaba"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Aso et al 2014; Dolan et al 2019; Kaur et al 2021",
+      "composable_with": [
+        "mushroom_body_associative_memory_unit",
+        "lateral_horn_innate_odour_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 4,
+        "populations_total": 4,
+        "real_cells_anchored": 6543,
+        "anchored": {
+          "dan": {
+            "n_bodies": 354,
+            "n_types": 32,
+            "example_types": [
+              "PAM08",
+              "PAM01",
+              "PAM04",
+              "PAM06",
+              "PAM12",
+              "PAM05"
+            ],
+            "lower_bound": false
+          },
+          "kc": {
+            "n_bodies": 4064,
+            "n_types": 15,
+            "example_types": [
+              "KCg-m",
+              "KCab-s",
+              "KCab-m",
+              "KCab-c",
+              "KCa'b'-ap2",
+              "KCg-d"
+            ],
+            "lower_bound": false
+          },
+          "lh": {
+            "n_bodies": 2028,
+            "n_types": 422,
+            "example_types": [
+              "LHPV6a1",
+              "LHPV5b1",
+              "LHAV2c1",
+              "LHAV4a4",
+              "LHPV5b2",
+              "LHAV4d1"
+            ],
+            "lower_bound": false
+          },
+          "mbon": {
+            "n_bodies": 97,
+            "n_types": 37,
+            "example_types": [
+              "MBON10",
+              "MBON07",
+              "MBON09",
+              "MBON12",
+              "MBON14",
+              "MBON15"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "dan",
+            "to_role": "mbon",
+            "form": "feedforward_excitatory",
+            "from_population": "mushroom_body_dan",
+            "to_population": "mushroom_body_output",
+            "measured_synapses": 39960,
+            "measured_edges": 3195,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 1184,
+              "n_pairs_with_synapses": 390,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PAM06",
+                  "to_type": "MBON03",
+                  "synapses": 3296
+                },
+                {
+                  "from_type": "PAM10",
+                  "to_type": "MBON06",
+                  "synapses": 3274
+                },
+                {
+                  "from_type": "PPL101",
+                  "to_type": "MBON11",
+                  "synapses": 2311
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "mbon",
+            "to_role": "lh",
+            "form": "feedforward_excitatory",
+            "from_population": "mushroom_body_output",
+            "to_population": "lateral_horn_ln",
+            "measured_synapses": 36712,
+            "measured_edges": 4033,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 15614,
+              "n_pairs_with_synapses": 1401,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "MBON01",
+                  "to_type": "LH002m",
+                  "synapses": 970
+                },
+                {
+                  "from_type": "MBON12",
+                  "to_type": "LH002m",
+                  "synapses": 854
+                },
+                {
+                  "from_type": "MBON01",
+                  "to_type": "LHCENT3",
+                  "synapses": 698
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "lh",
+            "to_role": "mbon",
+            "form": "feedback_excitatory",
+            "from_population": "lateral_horn_ln",
+            "to_population": "mushroom_body_output",
+            "measured_synapses": 21199,
+            "measured_edges": 2537,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 15614,
+              "n_pairs_with_synapses": 999,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LHPV9b1",
+                  "to_type": "MBON31",
+                  "synapses": 961
+                },
+                {
+                  "from_type": "LHPV9b1",
+                  "to_type": "MBON32",
+                  "synapses": 838
+                },
+                {
+                  "from_type": "LHMB1",
+                  "to_type": "MBON31",
+                  "synapses": 754
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "dan",
+            "to_role": "lh",
+            "form": "feedforward_excitatory",
+            "from_population": "mushroom_body_dan",
+            "to_population": "lateral_horn_ln",
+            "measured_synapses": 11517,
+            "measured_edges": 4104,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 13504,
+              "n_pairs_with_synapses": 1498,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PPL107",
+                  "to_type": "LHPV10d1",
+                  "synapses": 221
+                },
+                {
+                  "from_type": "PPL202",
+                  "to_type": "LHAV2b2_a",
+                  "synapses": 202
+                },
+                {
+                  "from_type": "PPM1201",
+                  "to_type": "LHAV2b2_a",
+                  "synapses": 141
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "lh",
+            "to_role": "dan",
+            "form": "feedback_excitatory",
+            "from_population": "lateral_horn_ln",
+            "to_population": "mushroom_body_dan",
+            "measured_synapses": 19655,
+            "measured_edges": 5504,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 13504,
+              "n_pairs_with_synapses": 1555,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LHCENT3",
+                  "to_type": "PPL201",
+                  "synapses": 613
+                },
+                {
+                  "from_type": "LHMB1",
+                  "to_type": "PPL105",
+                  "synapses": 292
+                },
+                {
+                  "from_type": "LHPV10d1",
+                  "to_type": "PPL107",
+                  "synapses": 252
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "kc",
+            "to_role": "lh",
+            "form": "feedforward_excitatory",
+            "from_population": "kenyon_cell",
+            "to_population": "lateral_horn_ln",
+            "measured_synapses": 11265,
+            "measured_edges": 6192,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 6330,
+              "n_pairs_with_synapses": 270,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "LHPV3c1",
+                  "synapses": 1581
+                },
+                {
+                  "from_type": "KCab-s",
+                  "to_type": "LHPV12a1",
+                  "synapses": 1475
+                },
+                {
+                  "from_type": "KCab-m",
+                  "to_type": "LHPV12a1",
+                  "synapses": 950
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
+        "regions": {
+          "rois": [
+            {
+              "roi": "CA(L)",
+              "synapses": 495052,
+              "tbar_synapses": 63065
+            },
+            {
+              "roi": "CA(R)",
+              "synapses": 532379,
+              "tbar_synapses": 71181
+            },
+            {
+              "roi": "PED(L)",
+              "synapses": 117772,
+              "tbar_synapses": 27912
+            },
+            {
+              "roi": "PED(R)",
+              "synapses": 128963,
+              "tbar_synapses": 29934
+            },
+            {
+              "roi": "aL(L)",
+              "synapses": 254760,
+              "tbar_synapses": 59886
+            },
+            {
+              "roi": "aL(R)",
+              "synapses": 295084,
+              "tbar_synapses": 70007
+            },
+            {
+              "roi": "a'L(L)",
+              "synapses": 133684,
+              "tbar_synapses": 27181
+            },
+            {
+              "roi": "a'L(R)",
+              "synapses": 179812,
+              "tbar_synapses": 33771
+            },
+            {
+              "roi": "bL(L)",
+              "synapses": 238885,
+              "tbar_synapses": 56287
+            },
+            {
+              "roi": "bL(R)",
+              "synapses": 229527,
+              "tbar_synapses": 49337
+            },
+            {
+              "roi": "b'L(L)",
+              "synapses": 285643,
+              "tbar_synapses": 61986
+            },
+            {
+              "roi": "b'L(R)",
+              "synapses": 254569,
+              "tbar_synapses": 52256
+            },
+            {
+              "roi": "gL(L)",
+              "synapses": 878358,
+              "tbar_synapses": 184946
+            },
+            {
+              "roi": "gL(R)",
+              "synapses": 807815,
+              "tbar_synapses": 173166
+            }
+          ],
+          "total_synapses": 4832303
+        },
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "antennal_lobe_central_complex_feedback_unit",
+      "display": "触角叶-中央复合体反馈单元",
+      "function": "aal_cc_projection",
+      "system": "central_complex",
+      "description": "触角叶的局部神经元（GLNO/LNO 类，16 个真实细胞 / 5 类）直接向中央复合体脑桥与蘑菇体样脑桥发出双向投影——MaleCNS 实测 antennal_lobe_ln→central_complex_pb 16,379 突触（GLNO→PEN_a 单类型对 9,806 突触，占 60%）、antennal_lobe_ln→central_complex_fb 25,402（LNO2→PFNd 单类型对 9,610）、central_complex_fb→antennal_lobe_ln 9,473（PFNd→LNO2 反行 3,542）——三条边在类型对层面全部 SUPPORTED（6/355、13/185、11/185），零 FRAGILE、零 CONTRADICTED。这条通路把气味身份写进中央复合体的头向参考系，同时让中央复合体把当前航向反哺回触角叶的局部环路，是嗅觉驱动导航的解剖学证据；此前 antennal_lobe_glomerular_unit 与 central_complex_heading_unit 各管一段，没有单元把两者连起来。",
+      "members": [
+        {
+          "role": "ln",
+          "neuron": "antennal_lobe_ln",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "pb",
+          "neuron": "central_complex_pb",
+          "count_ratio": 0.4
+        },
+        {
+          "role": "fb",
+          "neuron": "central_complex_fb",
+          "count_ratio": 0.35
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "ln",
+          "to": "pb",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "ln",
+          "to": "fb",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "fb",
+          "to": "ln",
+          "type": "feedback_excitatory",
+          "weight": 0.7
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "odour_in",
+            "type": "sensory.olfactory",
+            "required": true
+          },
+          {
+            "name": "heading_in",
+            "type": "navigation.heading",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "heading_set",
+            "type": "navigation.heading",
+            "required": true
+          },
+          {
+            "name": "steering_out",
+            "type": "navigation.steering",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        20,
+        300
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory"
+      ],
+      "capability": [
+        "olfactory_to_navigation",
+        "centrifugal_feedback",
+        "heading_set"
+      ],
+      "task_hint_pool": [
+        "olfactory_to_navigation",
+        "heading_set",
+        "centrifugal_feedback",
+        "aal_cc_projection"
+      ],
+      "lead_task_hint": "olfactory_to_navigation",
+      "neurotransmitter": [
+        "acetylcholine",
+        "gaba",
+        "glutamate"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Tse et al 2022; Pohl et al 2015; Dorkenwald et al 2022",
+      "composable_with": [
+        "antennal_lobe_glomerular_unit",
+        "central_complex_heading_unit",
+        "central_complex_steering_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 3,
+        "populations_total": 3,
+        "real_cells_anchored": 1305,
+        "anchored": {
+          "fb": {
+            "n_bodies": 1038,
+            "n_types": 37,
+            "example_types": [
+              "PFNp_b",
+              "PFNp_a",
+              "PFNa",
+              "FS4A",
+              "FC2C",
+              "FS2"
+            ],
+            "lower_bound": false
+          },
+          "ln": {
+            "n_bodies": 16,
+            "n_types": 5,
+            "example_types": [
+              "GLNO",
+              "LN60",
+              "LNO1",
+              "LNO2",
+              "LNOa"
+            ],
+            "lower_bound": true
+          },
+          "pb": {
+            "n_bodies": 251,
+            "n_types": 71,
+            "example_types": [
+              "PEN_b(PEN2)",
+              "PEN_a(PEN1)",
+              "IB004_a",
+              "IB002",
+              "IB054",
+              "IB032"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "ln",
+            "to_role": "pb",
+            "form": "feedforward_excitatory",
+            "from_population": "antennal_lobe_ln",
+            "to_population": "central_complex_pb",
+            "measured_synapses": 16379,
+            "measured_edges": 92,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 355,
+              "n_pairs_with_synapses": 6,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "GLNO",
+                  "to_type": "PEN_a(PEN1)",
+                  "synapses": 9806
+                },
+                {
+                  "from_type": "GLNO",
+                  "to_type": "PEN_b(PEN2)",
+                  "synapses": 6565
+                },
+                {
+                  "from_type": "LNO2",
+                  "to_type": "PEN_b(PEN2)",
+                  "synapses": 5
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "ln",
+            "to_role": "fb",
+            "form": "feedforward_excitatory",
+            "from_population": "antennal_lobe_ln",
+            "to_population": "central_complex_fb",
+            "measured_synapses": 25402,
+            "measured_edges": 261,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 185,
+              "n_pairs_with_synapses": 13,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LNO2",
+                  "to_type": "PFNd",
+                  "synapses": 9610
+                },
+                {
+                  "from_type": "LNOa",
+                  "to_type": "PFNa",
+                  "synapses": 8698
+                },
+                {
+                  "from_type": "LNO1",
+                  "to_type": "PFNv",
+                  "synapses": 3989
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "fb",
+            "to_role": "ln",
+            "form": "feedback_excitatory",
+            "from_population": "central_complex_fb",
+            "to_population": "antennal_lobe_ln",
+            "measured_synapses": 9473,
+            "measured_edges": 254,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 185,
+              "n_pairs_with_synapses": 11,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PFNd",
+                  "to_type": "LNO2",
+                  "synapses": 3542
+                },
+                {
+                  "from_type": "PFNv",
+                  "to_type": "LNO1",
+                  "synapses": 2764
+                },
+                {
+                  "from_type": "PFNa",
+                  "to_type": "LNOa",
+                  "synapses": 2642
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
+        "regions": {
+          "rois": [
+            {
+              "roi": "EB",
+              "synapses": 921449,
+              "tbar_synapses": 186469
+            },
+            {
+              "roi": "PB",
+              "synapses": 398413,
+              "tbar_synapses": 51265
+            },
+            {
+              "roi": "FB",
+              "synapses": 2917059,
+              "tbar_synapses": 460038
+            },
+            {
+              "roi": "NO",
+              "synapses": 241539,
+              "tbar_synapses": 42043
+            }
+          ],
+          "total_synapses": 4478460
+        },
         "anchors_file": "malecns_anchors.json"
       }
     }
