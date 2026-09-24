@@ -102,18 +102,23 @@ v1.8.0–v2.1.0 (optic lobe, giant-fiber escape, male courtship & song, lateral
 horn, feeding & grooming, ventral nerve cord, the efferent "E" pools, endocrine
 release, centrifugal visual feedback).
 
-**Embodiment layer (v1.7.0, densified v1.8.0, completed v1.9.0, v1.10.0 profile expansion)** -- `functional_units/malecns_anchors.json`. It anchors
-57 of the 203 neuron populations to real annotated MaleCNS v1.0 cell types (105,717
-real cells over 4,872 types) and carries the measured connectivity backbone: the
-complete 27x27 superclass matrix, cross-checked against `connectivity_stats.json`
-(124,177,617 synapses / 25,582,938 edges -- both sources agree). Each declared unit
-edge therefore carries the measured synapse count between its populations' actual
-cell types. 31 of the 97 units have `provenance.embodied_in_malecns: true`; the other
-66 do not resolve to fly cells and say so. All 57 anchored populations are now
-referenced by at least one unit (v2.1.0 wired the last five). A measured count of
-ZERO is a recorded contradiction (currently one, in `central_complex_steering_unit`),
-never a pass. `extracted_from_malecns` stays false everywhere: presence and
-non-contradiction are checked, the declared microcircuit and connection form are not.
+**Embodiment layer (v1.7.0, densified v1.8.0, completed v1.9.0, v1.10.0 profile
+expansion, v2.2.0 type-pair tier)** -- `functional_units/malecns_anchors.json`. It
+anchors 57 of the 203 neuron populations to real annotated MaleCNS v1.0 cell types
+(105,717 real cells over 4,872 types) and carries the measured connectivity
+backbone: the complete 27x27 superclass matrix, cross-checked against
+`connectivity_stats.json` (124,177,617 synapses / 25,582,938 edges -- both sources
+agree). Each declared unit edge therefore carries the measured synapse count
+between its populations' actual cell types, **plus a support tier re-derived from
+the 4,872x4,872 type-pair matrix**: 109 edges are SUPPORTED (>=2 live type pairs),
+6 FRAGILE (exactly one live pair carrying the whole profile-level non-zero), 1
+CONTRADICTED. 31 of the 97 units have `provenance.embodied_in_malecns: true`; the
+other 66 do not resolve to fly cells and each carries a machine-checkable
+`provenance.unanchored_reason`. All 57 anchored populations are now referenced by
+at least one unit (v2.1.0 wired the last five). A measured count of ZERO is a
+recorded contradiction (currently one, in `central_complex_steering_unit`), never a
+pass. `extracted_from_malecns` stays false everywhere: presence and non-contradiction
+are checked, the declared microcircuit and connection form are not.
 
 `list_functional_units` · `get_functional_unit` ·
 `list_connection_types` · `compose_from_units`

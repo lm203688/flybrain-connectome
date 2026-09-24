@@ -1083,13 +1083,22 @@ def _load_anchors() -> dict:
 def _embody(unit: dict, anchors: dict) -> None:
     """Attach `embodiment` to one unit, in place.
 
-    `structural_support` is measured at CELL-TYPE-SET resolution: for each
-    declared internal edge whose endpoints both anchor, it records the real
-    synapse count between the two populations' actual cell-type sets (summed over
-    the type-level matrix). A zero count is a contradiction. The coarser
-    superclass count is kept alongside for context but is not the verdict -- 11 of
-    the 14 anchored profiles share one superclass, so superclass resolution cannot
-    tell two different edges apart.
+    `structural_support` is measured at THREE resolutions, from coarsest to
+    finest, because each one falsifies a different claim:
+
+    1. SUPERCLASS-SET (context only): the coarsest cut -- 11 of the 14 anchored
+       profiles share one superclass, so it cannot tell two edges apart.
+    2. CELL-TYPE-SET (the contradiction gate): sum the real synapses between the
+       two populations' actual cell-type sets. Zero = contradiction.
+    3. TYPE-PAIR (support tier): iterate every (from_type, to_type) pair across
+       the two populations and count how many pairs carry real synapses.
+       SUPPORTED = >=2 pairs, FRAGILE = exactly 1, CONTRADICTED = 0.
+       FRAGILE is NOT a contradiction -- the edge has real support, but it rests
+       on a single type pair, so the profile-level verdict is brittle and should
+       not be cited as strong evidence.
+
+    The declared wiring and the connection FORM are never verified: MaleCNS v1.0
+    annotates synapses, not connection forms.
     """
     pa = anchors["profile_anchors"]
     pidx = anchors["profile_matrix"]["index"]
@@ -1112,12 +1121,15 @@ def _embody(unit: dict, anchors: dict) -> None:
         for s1 in anchored[w["from"]]["superclasses"]:
             for s2 in anchored[w["to"]]["superclasses"]:
                 coarse = max(coarse, ssyn[sidx[s1]][sidx[s2]])
+        pair = _type_pair_support(anchors, p1, p2)
         support.append({
             "from_role": w["from"], "to_role": w["to"], "form": w["type"],
             "from_population": p1, "to_population": p2,
             "measured_synapses": measured,
             "measured_edges": anchors["profile_matrix"]["edges"][pidx[p1]][pidx[p2]],
             "measured_synapses_superclass_coarse": coarse,
+            "type_pair_support": pair,
+            "support_tier": pair["support_tier"],
             "contradicted": measured == 0,
         })
 
@@ -1131,8 +1143,10 @@ def _embody(unit: dict, anchors: dict) -> None:
                          **({"caveat": a["caveat"]} if a.get("caveat") else {})}
                      for r, a in sorted(anchored.items())},
         "structural_support": support,
-        "support_resolution": ("cell-type set (both endpoints anchored; zero measured "
-                               "synapses = contradiction)") if support else None,
+        "support_resolution": ("type-pair (per-pair synapse lookup over the "
+                               "4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/"
+                               "CONTRADICTED tier) nested on cell-type-set and "
+                               "superclass-set totals") if support else None,
         "regions": anchors["regions"]["systems"].get(unit["system"]),
         "anchors_file": ANCHORS_FILE.name,
     }
@@ -1141,8 +1155,126 @@ def _embody(unit: dict, anchors: dict) -> None:
         "member populations matched to real annotated MaleCNS v1.0 cell types; "
         "declared wiring and connection FORM NOT verified against the connectome"
         if anchored else
-        "no member population resolves to a MaleCNS v1.0 cell type "
-        "(non-Drosophila taxon or mammalian-shaped cell class)")
+        _unanchored_basis(unit, anchors))
+    if not anchored:
+        unit["provenance"]["unanchored_reason"] = _unanchored_reason(unit, anchors)
+
+
+def _unanchored_reason(unit: dict, anchors: dict) -> str:
+    """Machine-checkable reason why a unit carries no anchor.
+
+    Three causes, derived from the profile classification already in the anchor
+    artifact so nothing is asserted by hand:
+    - identity_not_in_drosophila   a member profile is a cell class that MaleCNS
+                                   cannot contain (e.g. thalamic_reticular, retinal_gc)
+    - abstract_module_no_cell_type a member profile is a cognitive abstraction
+                                   (attention, working_memory, reward) with no cell type
+    - taxon_no_malecns_data        members are ordinary neuron types, but from a
+                                   species the MaleCNS v1.0 dataset does not cover
+    """
+    cls = anchors["profile_classification"]
+    not_do = set(cls.get("identity_not_drosophila", []))
+    abstract = set(cls.get("abstract_cognitive_module", []))
+    for m in unit["members"]:
+        if m["neuron"] in not_do:
+            return "identity_not_in_drosophila"
+    for m in unit["members"]:
+        if m["neuron"] in abstract:
+            return "abstract_module_no_cell_type"
+    return "taxon_no_malecns_data"
+
+
+_UNANCHORED_BASIS = {
+    "identity_not_in_drosophila": (
+        "a member population is a cell class MaleCNS v1.0 cannot contain "
+        "(mammalian-only type, not annotatable in an insect brain)"),
+    "abstract_module_no_cell_type": (
+        "a member population is a cognitive abstraction with no cell type at any "
+        "organism -- the unit is a schema, not an anatomy"),
+    "taxon_no_malecns_data": (
+        "members are ordinary neuron types, but from a species the MaleCNS v1.0 "
+        "dataset does not cover, so no anchor exists to check"),
+}
+
+
+def _unanchored_basis(unit: dict, anchors: dict) -> str:
+    return _UNANCHORED_BASIS[_unanchored_reason(unit, anchors)]
+
+
+def _type_pair_index(anchors: dict) -> dict:
+    """Parse the sparse anchored_type_matrix once into {(i, j): (syn, edges)}."""
+    cache = anchors.setdefault("_tm_pairs", None)
+    if cache is not None:
+        return cache
+    pairs = {}
+    for i, row in enumerate(anchors["anchored_type_matrix"]["rows"]):
+        if not row:
+            continue
+        for tok in row.split(","):
+            j_s, syn_s, ed_s = tok.split(":")
+            pairs[(i, int(j_s))] = (int(syn_s), int(ed_s))
+    anchors["_tm_pairs"] = pairs
+    return pairs
+
+
+def _type_index(anchors: dict) -> dict:
+    """Deterministic type name -> row index (sorted dedup of every anchored type).
+
+    Rebuilds the exact `tnames` ordering that build_malecns_anchors.py used
+    (`tnames = sorted(anchored_types)`), which is why a re-derivation from the
+    artifact alone is sufficient -- no side channel is needed.
+    """
+    cache = anchors.setdefault("_t_index", None)
+    if cache is not None:
+        return cache
+    names = set()
+    for a in anchors["profile_anchors"].values():
+        for t in a["types"]:
+            names.add(t["type"])
+    index = {n: i for i, n in enumerate(sorted(names))}
+    anchors["_t_index"] = index
+    return index
+
+
+def _type_pair_support(anchors: dict, p1: str, p2: str) -> dict:
+    """Per-type-pair support for one declared edge between two anchored profiles.
+
+    Every (from_type, to_type) pair across the two populations' cell-type sets is
+    looked up in the real type-level synapse matrix. This is the resolution at
+    which the artifact can actually distinguish "a genuine pathway spread over
+    many cell types" from "a profile-level non-zero carried by one lucky pair".
+    """
+    pa = anchors["profile_anchors"]
+    a1, a2 = pa.get(p1), pa.get(p2)
+    if not a1 or not a2:
+        return {"n_type_pairs": 0, "n_pairs_with_synapses": 0,
+                "support_tier": "UNRESOLVED", "top_pairs": [],
+                "note": "an endpoint population is not anchored"}
+    t_index = _type_index(anchors)
+    pairs = _type_pair_index(anchors)
+    t1 = [t["type"] for t in a1["types"] if t["type"] in t_index]
+    t2 = [t["type"] for t in a2["types"] if t["type"] in t_index]
+    hits = []
+    for x in t1:
+        xi = t_index[x]
+        for y in t2:
+            v = pairs.get((xi, t_index[y]))
+            if v and v[0] > 0:
+                hits.append((v[0], x, y))
+    hits.sort(key=lambda r: r[0], reverse=True)
+    if not hits:
+        tier = "CONTRADICTED"
+    elif len(hits) == 1:
+        tier = "FRAGILE"
+    else:
+        tier = "SUPPORTED"
+    return {
+        "n_type_pairs": len(t1) * len(t2),
+        "n_pairs_with_synapses": len(hits),
+        "support_tier": tier,
+        "top_pairs": [{"from_type": x, "to_type": y, "synapses": s}
+                      for s, x, y in hits[:3]],
+    }
 
 
 def embodied_units() -> tuple[list, dict]:
@@ -1273,6 +1405,51 @@ def main() -> int:
             problems.append("acknowledged contradiction(s) no longer detected: %s -- "
                             "remove them from ACKNOWLEDGED_CONTRADICTIONS" % gone)
 
+    # 4.5 support tier: the type-pair verdict must agree with the profile verdict
+    tier_counts = {"SUPPORTED": 0, "FRAGILE": 0, "CONTRADICTED": 0, "UNRESOLVED": 0}
+    for n, s in support_edges:
+        tier = s.get("support_tier")
+        if tier not in tier_counts:
+            problems.append("unit %s edge %s->%s: unknown support_tier %r"
+                            % (n, s["from_role"], s["to_role"], tier))
+            continue
+        tier_counts[tier] += 1
+        pp = s.get("type_pair_support", {})
+        if pp.get("support_tier") != tier:
+            problems.append("unit %s edge %s->%s: support_tier %r disagrees with "
+                            "type_pair_support.support_tier %r"
+                            % (n, s["from_role"], s["to_role"], tier,
+                               pp.get("support_tier")))
+        if tier == "CONTRADICTED" and not s["contradicted"]:
+            problems.append("unit %s edge %s->%s: tier CONTRADICTED but profile "
+                            "measured non-zero" % (n, s["from_role"], s["to_role"]))
+        if tier != "CONTRADICTED" and s["contradicted"]:
+            problems.append("unit %s edge %s->%s: profile measured 0 but tier is %r"
+                            % (n, s["from_role"], s["to_role"], tier))
+        if tier == "SUPPORTED" and pp.get("n_pairs_with_synapses", 0) < 2:
+            problems.append("unit %s edge %s->%s: SUPPORTED needs >=2 type pairs with "
+                            "synapses" % (n, s["from_role"], s["to_role"]))
+        if tier == "FRAGILE" and pp.get("n_pairs_with_synapses", 0) != 1:
+            problems.append("unit %s edge %s->%s: FRAGILE needs exactly 1 type pair "
+                            "with synapses" % (n, s["from_role"], s["to_role"]))
+
+    # 4.6 unanchored reason must be one of the enum and must be present on every
+    #     unanchored unit (gap-3 honesty: a reader must not have to guess why)
+    for u in FUNCTIONAL_UNITS:
+        embodied = u["provenance"]["embodied_in_malecns"]
+        reason = u["provenance"].get("unanchored_reason")
+        if embodied:
+            if reason is not None:
+                problems.append("unit %s is embodied but carries unanchored_reason %r"
+                                % (u["name"], reason))
+            continue
+        if reason not in _UNANCHORED_BASIS:
+            problems.append("unit %s: unanchored_reason %r is not one of %s"
+                            % (u["name"], reason, sorted(_UNANCHORED_BASIS)))
+        if u["provenance"].get("embodiment_basis") != _UNANCHORED_BASIS[reason]:
+            problems.append("unit %s: embodiment_basis is not derived from "
+                            "unanchored_reason %r" % (u["name"], reason))
+
     if problems:
         print("REFUSING TO WRITE -- %d problem(s):" % len(problems))
         for p in problems:
@@ -1295,6 +1472,9 @@ def main() -> int:
             anchors["profile_anchors"][n]["n_bodies"] for n in anchored_populations),
         "structural_support_edges_measured": len(support_edges),
         "structural_support_edges_contradicted": len(measured_contradictions),
+        "structural_support_edges_fragile": tier_counts["FRAGILE"],
+        "structural_support_edges_supported": tier_counts["SUPPORTED"],
+        "support_resolution": "type-pair",
         "contradictions_acknowledged": len(acknowledged),
     }
 

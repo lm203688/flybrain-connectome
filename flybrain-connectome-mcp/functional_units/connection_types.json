@@ -74,6 +74,9 @@
     "embodied_real_cells_referenced": 105717,
     "structural_support_edges_measured": 116,
     "structural_support_edges_contradicted": 1,
+    "structural_support_edges_fragile": 6,
+    "structural_support_edges_supported": 109,
+    "support_resolution": "type-pair",
     "contradictions_acknowledged": 1
   },
   "connection_types": [

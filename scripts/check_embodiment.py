@@ -252,6 +252,110 @@ def run_checks(units_doc, anchors, readme_text):
     check(r, "coarse superclass counts re-derive from the superclass matrix",
           not bad_coarse, str(bad_coarse) if bad_coarse else "ok")
 
+    # --- type-pair resolution: re-derive the tier from the real matrix ----
+    # A stored tier is only believed if re-walking every (from_type, to_type) pair
+    # across the two populations' cell-type sets reproduces it from the anchored
+    # type matrix. This is the resolution at which the artifact can tell "a
+    # pathway spread over many cell types" from "one lucky pair carrying a
+    # profile-level non-zero".
+    tm_rows = anchors["anchored_type_matrix"]["rows"]
+    tm_pairs = {}
+    for i, row in enumerate(tm_rows):
+        if not row:
+            continue
+        for tok in row.split(","):
+            j_s, syn_s, ed_s = tok.split(":")
+            tm_pairs[(i, int(j_s))] = (int(syn_s), int(ed_s))
+    t_names = sorted({t["type"] for a in pa.values() for t in a["types"]})
+    t_index = {n: i for i, n in enumerate(t_names)}
+
+    bad_tier, bad_cnt, bad_reconcile, bad_top = [], [], [], []
+    tier_counts = {"SUPPORTED": 0, "FRAGILE": 0, "CONTRADICTED": 0}
+    for u in units:
+        for s in u["embodiment"]["structural_support"]:
+            p1, p2 = s["from_population"], s["to_population"]
+            t1 = [t["type"] for t in pa[p1]["types"] if t["type"] in t_index]
+            t2 = [t["type"] for t in pa[p2]["types"] if t["type"] in t_index]
+            hits = []
+            for x in t1:
+                for y in t2:
+                    v = tm_pairs.get((t_index[x], t_index[y]))
+                    if v and v[0] > 0:
+                        hits.append((v[0], x, y))
+            hits.sort(key=lambda r_: r_[0], reverse=True)
+            if not hits:
+                expect_tier = "CONTRADICTED"
+            elif len(hits) == 1:
+                expect_tier = "FRAGILE"
+            else:
+                expect_tier = "SUPPORTED"
+            got = s.get("support_tier")
+            tier_counts[got] = tier_counts.get(got, 0) + 1
+            if got != expect_tier:
+                bad_tier.append("%s %s->%s got %s want %s"
+                                % (u["name"], s["from_role"], s["to_role"], got, expect_tier))
+            pp = s.get("type_pair_support", {})
+            if pp.get("n_type_pairs") != len(t1) * len(t2):
+                bad_cnt.append("%s %s->%s" % (u["name"], s["from_role"], s["to_role"]))
+            if pp.get("n_pairs_with_synapses") != len(hits):
+                bad_reconcile.append("%s %s->%s stored %s measured %d"
+                                     % (u["name"], s["from_role"], s["to_role"],
+                                        pp.get("n_pairs_with_synapses"), len(hits)))
+            if pp.get("top_pairs") != [{"from_type": x, "to_type": y, "synapses": sv}
+                                        for sv, x, y in hits[:3]]:
+                bad_top.append("%s %s->%s" % (u["name"], s["from_role"], s["to_role"]))
+            if got == "CONTRADICTED" and not s["contradicted"]:
+                bad_reconcile.append("%s %s->%s tier CONTRA but profile non-zero"
+                                     % (u["name"], s["from_role"], s["to_role"]))
+    check(r, "support_tier re-derives from the type-level matrix for every edge",
+          not bad_tier, str(bad_tier) if bad_tier else "ok")
+    check(r, "type_pair_support.n_type_pairs equals the |A x B| pair count",
+          not bad_cnt, str(bad_cnt) if bad_cnt else "ok")
+    check(r, "type_pair_support pair hits re-derive from the type matrix",
+          not bad_reconcile, str(bad_reconcile) if bad_reconcile else "ok")
+    check(r, "type_pair_support.top_pairs re-derive (top 3 by synapses)",
+          not bad_top, str(bad_top) if bad_top else "ok")
+    check(r, "support tier breaks down as SUPPORTED/FRAGILE/CONTRADICTED over %d edges"
+          % len([s for u in units for s in u["embodiment"]["structural_support"]]),
+          all(v >= 0 for v in tier_counts.values()),
+          "SUPPORTED=%d FRAGILE=%d CONTRADICTED=%d"
+          % (tier_counts["SUPPORTED"], tier_counts["FRAGILE"], tier_counts["CONTRADICTED"]))
+
+    # --- every unanchored unit carries an enum reason ---------------------
+    # The reason must be reproducible from the classification, not hand-typed:
+    # re-run the derivation rule and require an exact match.
+    not_do = set(cls.get("identity_not_drosophila", []))
+    abstract_cls = set(cls.get("abstract_cognitive_module", []))
+
+    def expect_reason(unit):
+        if any(m["neuron"] in not_do for m in unit["members"]):
+            return "identity_not_in_drosophila"
+        if any(m["neuron"] in abstract_cls for m in unit["members"]):
+            return "abstract_module_no_cell_type"
+        return "taxon_no_malecns_data"
+
+    bad_reason, reason_counts = [], {}
+    for u in units:
+        embodied = u["provenance"]["embodied_in_malecns"]
+        reason = u["provenance"].get("unanchored_reason")
+        if embodied:
+            if reason is not None:
+                bad_reason.append(u["name"] + " embodied but carries reason " + str(reason))
+            continue
+        reason_counts[reason] = reason_counts.get(reason, 0) + 1
+        if reason not in ("taxon_no_malecns_data", "identity_not_in_drosophila",
+                          "abstract_module_no_cell_type"):
+            bad_reason.append(u["name"] + ": unknown reason " + str(reason))
+        elif reason != expect_reason(u):
+            bad_reason.append("%s: reason %r does not re-derive (want %r)"
+                              % (u["name"], reason, expect_reason(u)))
+    check(r, "every unanchored unit carries an enum unanchored_reason (and embodied units carry none)",
+          not bad_reason, str(bad_reason) if bad_reason else "ok")
+    check(r, "unanchored reasons re-derive from the profile classification",
+          not [b for b in bad_reason if "does not re-derive" in b],
+          ", ".join("%s=%d" % (str(k), v) for k, v in sorted(reason_counts.items(), key=lambda kv: str(kv[0])))
+          if reason_counts else "no unanchored units")
+
     # --- C. contradictions are all acknowledged ---------------------------
     src = units_doc["embodiment_source"]
     measured = sorted(
@@ -365,6 +469,41 @@ def injections(units_doc, anchors):
             continue
         break
     out.append(("a declared-edge count is nudged away from the matrix", u, a))
+
+    # type-pair tier must not be writable by hand: relabelling a FRAGILE edge as
+    # SUPPORTED has to fail the re-derivation check.
+    a = copy.deepcopy(anchors)
+    u = copy.deepcopy(units_doc)
+    for unit in u["units"]:
+        for s in unit["embodiment"]["structural_support"]:
+            if s.get("support_tier") == "FRAGILE":
+                s["support_tier"] = "SUPPORTED"
+                s["type_pair_support"]["support_tier"] = "SUPPORTED"
+                s["type_pair_support"]["n_pairs_with_synapses"] = 2
+                break
+        else:
+            continue
+        break
+    out.append(("a FRAGILE edge is relabelled SUPPORTED", u, a))
+
+    # an unanchored unit with an out-of-enum reason is exactly the gap-3 failure
+    a = copy.deepcopy(anchors)
+    u = copy.deepcopy(units_doc)
+    for unit in u["units"]:
+        if not unit["provenance"]["embodied_in_malecns"]:
+            unit["provenance"]["unanchored_reason"] = "too-much-effort"
+            break
+    out.append(("an unanchored unit carries a non-enum reason", u, a))
+
+    # a plausible enum value pasted from another unit is just as bad: the reason
+    # must RE-DERIVE from the classification, not merely be in the enum
+    a = copy.deepcopy(anchors)
+    u = copy.deepcopy(units_doc)
+    for unit in u["units"]:
+        if not unit["provenance"]["embodied_in_malecns"]:
+            unit["provenance"]["unanchored_reason"] = "abstract_module_no_cell_type"
+            break
+    out.append(("an unanchored unit's reason does not re-derive from the classification", u, a))
 
     return out
 
