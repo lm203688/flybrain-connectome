@@ -356,6 +356,46 @@ def run_checks(units_doc, anchors, readme_text):
           ", ".join("%s=%d" % (str(k), v) for k, v in sorted(reason_counts.items(), key=lambda kv: str(kv[0])))
           if reason_counts else "no unanchored units")
 
+    # --- B2. evidence_weight re-derives from citation count --------------
+    # A unit that is unanchored cannot lean on the connectome; its evidence
+    # weight is a function of how many independent sources its
+    # `biological_reference` field cites. Recompute here so a hand-edited
+    # value in the artifact cannot slip through.
+    def _expect_weight(u):
+        refs = [x.strip() for x in (u.get("biological_reference") or "").split(";")
+                if x.strip()]
+        n = len(refs)
+        if n <= 1:
+            return "single_source", n
+        if n <= 3:
+            return "multi_source", n
+        return "textbook", n
+
+    bad_weight, weight_counts = [], {}
+    for u in units:
+        embodied = u["provenance"]["embodied_in_malecns"]
+        weight = u["provenance"].get("evidence_weight")
+        n_refs = u["provenance"].get("n_literature_refs")
+        if embodied:
+            if weight is not None or n_refs is not None:
+                bad_weight.append("%s embodied but carries evidence_weight=%r n_refs=%r"
+                                  % (u["name"], weight, n_refs))
+            continue
+        weight_counts[weight] = weight_counts.get(weight, 0) + 1
+        exp_w, exp_n = _expect_weight(u)
+        if weight not in ("single_source", "multi_source", "textbook"):
+            bad_weight.append("%s: unknown evidence_weight %r" % (u["name"], weight))
+        elif weight != exp_w:
+            bad_weight.append("%s: weight %r does not re-derive (want %r; n_refs=%d)"
+                              % (u["name"], weight, exp_w, n_refs))
+        if n_refs != exp_n:
+            bad_weight.append("%s: n_literature_refs %r != cited %d" % (u["name"], n_refs, exp_n))
+    check(r, "every unanchored unit carries a re-derivable evidence_weight (and embodied units carry none)",
+          not bad_weight, str(bad_weight[:3]) if bad_weight else "ok")
+    check(r, "unanchored evidence_weight distribution is non-empty per declared tier used",
+          all(v > 0 for v in weight_counts.values()),
+          ", ".join("%s=%d" % (k, v) for k, v in sorted(weight_counts.items(), key=lambda kv: str(kv[0]))))
+
     # --- C. contradictions are all acknowledged ---------------------------
     src = units_doc["embodiment_source"]
     measured = sorted(
@@ -504,6 +544,39 @@ def injections(units_doc, anchors):
             unit["provenance"]["unanchored_reason"] = "abstract_module_no_cell_type"
             break
     out.append(("an unanchored unit's reason does not re-derive from the classification", u, a))
+
+    # an out-of-enum evidence_weight is trivially caught
+    a = copy.deepcopy(anchors)
+    u = copy.deepcopy(units_doc)
+    for unit in u["units"]:
+        if not unit["provenance"]["embodied_in_malecns"]:
+            unit["provenance"]["evidence_weight"] = "peer-reviewed-journal"
+            break
+    out.append(("an unanchored unit carries a non-enum evidence_weight", u, a))
+
+    # the more interesting case: a valid enum value that DOES NOT re-derive from
+    # the citation count in biological_reference
+    a = copy.deepcopy(anchors)
+    u = copy.deepcopy(units_doc)
+    for unit in u["units"]:
+        if not unit["provenance"]["embodied_in_malecns"]:
+            if unit["provenance"]["evidence_weight"] == "single_source":
+                unit["provenance"]["evidence_weight"] = "textbook"
+            else:
+                unit["provenance"]["evidence_weight"] = "single_source"
+            break
+    out.append(("an unanchored unit's evidence_weight does not re-derive from citations", u, a))
+
+    # embodied units must never carry an evidence_weight: their evidence is the
+    # connectome, not a citation count
+    a = copy.deepcopy(anchors)
+    u = copy.deepcopy(units_doc)
+    for unit in u["units"]:
+        if unit["provenance"]["embodied_in_malecns"]:
+            unit["provenance"]["evidence_weight"] = "multi_source"
+            unit["provenance"]["n_literature_refs"] = 2
+            break
+    out.append(("an embodied unit carries an evidence_weight", u, a))
 
     return out
 
