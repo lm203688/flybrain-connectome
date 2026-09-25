@@ -38,6 +38,8 @@
     "modulatory.histamine": "Histaminergic diffuse modulation.",
     "modulatory.orexin": "Orexinergic arousal-stability modulation.",
     "glial.support": "Astrocytic metabolic / gliotransmitter support.",
+    "sensory.*": "Wildcard: any sensory port (used by relay units).",
+    "modulatory.*": "Wildcard: any modulatory port (used by relay units).",
     "*": "Wildcard: any port type (used by generic forms).",
     "sensory.skylight_compass": "Polarised-light / sun-compass heading cue (insect central complex).",
     "sensory.electric.ampullary": "Low-frequency passive electric-field signal (prey bioelectric field).",
@@ -4151,6 +4153,16 @@
             "name": "arousal_out",
             "type": "arousal.state",
             "required": true
+          },
+          {
+            "name": "orexin_out",
+            "type": "modulatory.orexin",
+            "required": true
+          },
+          {
+            "name": "histamine_out",
+            "type": "modulatory.histamine",
+            "required": true
           }
         ]
       },
@@ -6122,6 +6134,11 @@
           {
             "name": "learned_valence",
             "type": "olfactory.learned_valence",
+            "required": true
+          },
+          {
+            "name": "memory_trace",
+            "type": "memory.associative",
             "required": true
           }
         ]

@@ -8,14 +8,62 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.8.0` | the toolkit as a whole |
+| package | `2.9.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 103 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0 and 2.8.0) |
+| functional-unit library schema | `1.0` | 103 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0 and 2.9.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.9.0] — 2026-09-25
+
+**Port-type library closed out: 4 orphan port_types wired to their
+semantically-correct units + 2 missing wildcard port_types registered.**
+
+Every one of the 83 port types in `PORT_TYPES` is now either referenced by
+at least one unit's `ports.in`/`ports.out` list, or is the generic `*`
+wildcard used by `CONNECTION_TYPES.from_port`/`to_port` constraints.
+There are no more "dead" port types that describe a semantic the library
+claims to support but no unit actually uses.
+
+- `hypothalamic_arousal_unit` gains two out-ports (`modulatory.orexin` +
+  `modulatory.histamine`) alongside its existing `arousal.state` out-port.
+  The unit already produces these two transmitters (Saper 2005, de Lecea
+  1998) — the ports were simply missing from the schema.
+- `mushroom_body_associative_memory_unit` gains a third out-port
+  (`memory.associative`) — the recurrently stored trace that KC-MBON-
+  DAN plasticity actually writes to. Previously the unit only exposed
+  the learned valence, not the memory trace itself.
+- `PORT_TYPES` now explicitly registers `sensory.*` and `modulatory.*`
+  as wildcard families, closing the gap where `thalamocortical_relay_unit`
+  used them without the schema declaring them.
+
+Counts: units 103 (unchanged), embodied 37 (unchanged), declared edges
+157 (unchanged), tier 149/7/1 (unchanged). Port types 81 → **83**, port
+types used by units 79 → **82** (only the generic `*` wildcard remains
+not referenced directly by any unit, which is by design — it is the
+permissive form used by 122 of the 132 `CONNECTION_TYPES.from_port`/
+`to_port` constraints).
+
+### Added
+
+- **2 port types** in `PORT_TYPES`: `sensory.*` (wildcard for any sensory
+  port), `modulatory.*` (wildcard for any modulatory port).
+- **3 port usages** in units:
+  - `hypothalamic_arousal_unit.ports.out += [orexin_out, histamine_out]`
+  - `mushroom_body_associative_memory_unit.ports.out += [memory_trace]`
+
+### Verified
+
+- 10/10 gates PASS with `--with-data`.
+- No new edges introduced (pure schema-side change, no unit topology
+  touched, no support_tier changes).
+- All 157 declared edges still SUPPORTED/FRAGILE/CONTRADICTED at the
+  same counts (149/7/1) — port additions don't affect edge anchoring.
 
 ---
 
