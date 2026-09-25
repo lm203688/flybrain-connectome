@@ -2970,6 +2970,96 @@ FUNCTIONAL_UNITS += [
       ["drosophila"],
       ("antennal_lobe_glomerular_unit", "central_complex_heading_unit",
        "central_complex_steering_unit")),
+
+    # ==================================================================== #
+    # v2.8.0 DROSOPHILA UNITS — MOTION FEEDBACK + DOPAMINE AROUSAL (2)
+    # -------------------------------------------------------------------- #
+    # Both units are seeded from SUPPORTED profile-pairs in the unused-edge
+    # list from tmp/probe_v270_candidates.py. Every internal edge is
+    # SUPPORTED at type-pair resolution (0 FRAGILE, 0 CONTRADICTED).
+    # ==================================================================== #
+
+    # ---------- MEDULLA CENTRIPETAL GAIN (1, v2.8.0) ---------- #
+    U("medulla_centripetal_gain_unit", "髓质离心增益单元", "visual_gain_control",
+      "optic_lobe",
+      "T4/T5 方向选择性细胞向 Tm 家族与 LPi 抑制柱发出离心反馈，与 Tm→T4/T5 的顺向驱动形成完整的离心回路；"
+      "整个回路再汇聚到 LPLC 大场单元做趋近检测——MaleCNS 实测 lamina→medulla 1,883,036 突触（L2→Tm2 单类型对 "
+      "221,186）、t45→medulla 480,306（T5a→TmY20 46,394）、t45→lpi 953,115（T5c→LPi34 92,944）、"
+      "medulla→looming 324,426（Tm5Y→LPLC2 27,058）、t45→looming 68,768、lpi→looming 37,769，"
+      "六条主边在类型对层面全部 SUPPORTED（最少 31/32 对、最多 303/855 对），另加 Tm→T4/T5、Tm→LPi、LPi→Tm "
+      "三条已存在于 elementary_motion_detection_unit 的边作为完整回路的支撑。九条边合计 ~4.7M 突触、"
+      "零 FRAGILE、零 CONTRADICTED。这个单元填补了 visual 通路的一个结构缺口：compound_lamina_relay_unit 到 "
+      "elementary_motion_detection_unit 之间没有 lam→medulla 的直连，"
+      "elementary_motion_detection_unit 与 looming_detection_unit 之间也没有 lpi→looming 的直连——"
+      "现在把这两段缝起来，且把 T4/T5→Tm 的离心反馈作为独立结构记录下来（此前只在 literature 里，"
+      "没有单元把它作为 wiring 建模）。",
+      [("lamina", "ol_lamina_monopolar", 0.20),
+       ("medulla", "ol_medulla_intrinsic", 0.30),
+       ("t45", "ol_motion_detector_t45", 0.25),
+       ("lpi", "ol_lpi", 0.15),
+       ("looming", "looming_lplc", 0.10)],
+      [("lamina", "medulla", "feedforward_excitatory", 1.0),
+       ("medulla", "t45", "feedforward_excitatory", 0.9),
+       ("t45", "medulla", "feedback_excitatory", 0.7),
+       ("t45", "lpi", "feedforward_excitatory", 0.8),
+       ("medulla", "lpi", "feedforward_excitatory", 0.6),
+       ("lpi", "medulla", "lateral_inhibitory", 0.5),
+       ("t45", "looming", "feedforward_excitatory", 0.9),
+       ("medulla", "looming", "feedforward_excitatory", 0.7),
+       ("lpi", "looming", "feedforward_excitatory", 0.6)],
+      [("lamina_in", "sensory.visual", True),
+       ("gain_modulation", "modulatory.endocrine", False)],
+      [("motion_out", "sensory.visual.motion", True),
+       ("looming_cmd", "sensory.visual", True)],
+      (200, 5000), ["visual_gain_control", "centrifugal_feedback", "loom_integrate"],
+      ["visual_gain_control", "looming_detect", "centrifugal_feedback",
+       "medulla_centripetal_gain"], "visual_gain_control",
+      ["acetylcholine", "gaba", "glutamate"],
+      "Maisak et al 2013; Mauss et al 2015; Borst & Heisenberg 2012; "
+      "Pfeiffer et al 2020",
+      ["drosophila"],
+      ("compound_lamina_relay_unit", "elementary_motion_detection_unit",
+       "lobula_plate_optic_flow_unit", "looming_detection_unit")),
+
+    # ---------- MUSHROOM BODY DOPAMINE AROUSAL (1, v2.8.0) ---------- #
+    U("mushroom_body_dopamine_arousal_unit", "蘑菇体多巴胺觉醒单元",
+      "neuromodulatory_hub", "mushroom_body",
+      "多巴胺能觉醒中枢：Kenyon 细胞、DAN 多巴胺能神经元、MBON 输出、APL 多巴胺调控与 OA-VUM 章鱼胺"
+      "调节器构成一张全向互馈的觉醒调制网——MaleCNS 实测 kc→dan 281,864 突触（KCg-m→PAM08 单类型对 "
+      "29,697）、dan→kc 213 对 216k、kc→mbon 302,591、mbon→dan 637k、apl→dan 567、apl→kc 204,202、"
+      "dan→mbon 212k、dan→oa_vum 5,431、oa_vum→mbon 70,538、oa_vum→kc 39,112，十条边在类型对层面"
+      "全部 SUPPORTED（最少 15/15 对、最多 443/1184 对），零 FRAGILE、零 CONTRADICTED。这个单元把"
+      "mushroom_body_associative_memory_unit（学习）与 octopamine_arousal_broadcast 概念之间"
+      "没有连接的那层调制器补齐：DAN 既是记忆的调制器，也是 KC↔MBON 的时钟；APL 是 KC 的强多巴胺"
+      "调节器，OA-VUM 再把觉醒信号广播到 MBON 与触角叶 PN 通路。",
+      [("kc", "kenyon_cell", 0.30),
+       ("dan", "mushroom_body_dan", 0.30),
+       ("mbon", "mushroom_body_output", 0.20),
+       ("apl", "mushroom_body_apl", 0.10),
+       ("oa", "octopamine_vum", 0.10)],
+      [("kc", "dan", "feedforward_excitatory", 0.9),
+       ("dan", "kc", "feedback_excitatory", 0.7),
+       ("kc", "mbon", "feedforward_excitatory", 1.0),
+       ("mbon", "dan", "feedback_excitatory", 0.5),
+       ("apl", "dan", "modulatory_gated_plasticity", 0.8),
+       ("apl", "kc", "modulatory_gated_plasticity", 1.0),
+       ("dan", "mbon", "feedforward_excitatory", 0.7),
+       ("dan", "oa", "feedforward_excitatory", 0.6),
+       ("oa", "mbon", "modulatory_gated_plasticity", 0.8),
+       ("oa", "kc", "modulatory_gated_plasticity", 0.6)],
+      [("sparse_code", "olfactory.sparse_code", True),
+       ("arousal", "modulatory.endocrine", False)],
+      [("learned_valence", "olfactory.learned_valence", True),
+       ("arousal_state", "modulatory.dopamine", True)],
+      (1000, 2000), ["neuromodulatory_hub", "dopamine_modulation", "arousal_state"],
+      ["neuromodulatory_hub", "dopamine_modulation", "arousal_state",
+       "mb_dopamine_arousal"], "neuromodulatory_hub",
+      ["dopamine", "octopamine", "acetylcholine", "gaba"],
+      "Aso et al 2014; Tanaka et al 2008; Schulze et al 2018; "
+      "Cazalet & Wang 2020",
+      ["drosophila"],
+      ("mushroom_body_associative_memory_unit", "mushroom_body_lateral_horn_reciprocal_unit",
+       "lateral_horn_innate_odour_unit")),
 ]
 
 
