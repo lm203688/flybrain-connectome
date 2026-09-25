@@ -1,0 +1,346 @@
+{
+  "rows": [
+    {
+      "arm": "textbook_random",
+      "unit": "textbook_random",
+      "N": 60,
+      "density": 1.0,
+      "task": "parity_d3",
+      "score": 0.8758888888888889,
+      "higher_better": true
+    },
+    {
+      "arm": "textbook_random",
+      "unit": "textbook_random",
+      "N": 60,
+      "density": 1.0,
+      "task": "noisy_parity_d3",
+      "score": 0.49677777777777776,
+      "higher_better": true
+    },
+    {
+      "arm": "textbook_random",
+      "unit": "textbook_random",
+      "N": 60,
+      "density": 1.0,
+      "task": "logistic_r3.7",
+      "score": 8.051324390332677e-05,
+      "higher_better": false
+    },
+    {
+      "arm": "textbook_random",
+      "unit": "textbook_random",
+      "N": 60,
+      "density": 1.0,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.02543248568508984,
+      "higher_better": true
+    },
+    {
+      "arm": "textbook_random",
+      "unit": "textbook_random",
+      "N": 60,
+      "density": 1.0,
+      "task": "narma10",
+      "score": 0.05515596728012899,
+      "higher_better": false
+    },
+    {
+      "arm": "bio_motif",
+      "unit": "bio_motif",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "parity_d3",
+      "score": 0.8758888888888889,
+      "higher_better": true
+    },
+    {
+      "arm": "bio_motif",
+      "unit": "bio_motif",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "noisy_parity_d3",
+      "score": 0.48977777777777776,
+      "higher_better": true
+    },
+    {
+      "arm": "bio_motif",
+      "unit": "bio_motif",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "logistic_r3.7",
+      "score": 8.798173045093583e-05,
+      "higher_better": false
+    },
+    {
+      "arm": "bio_motif",
+      "unit": "bio_motif",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.013310101905176548,
+      "higher_better": true
+    },
+    {
+      "arm": "bio_motif",
+      "unit": "bio_motif",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "narma10",
+      "score": 0.07488258573050928,
+      "higher_better": false
+    },
+    {
+      "arm": "random_matched",
+      "unit": "random_matched",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "parity_d3",
+      "score": 0.8758888888888889,
+      "higher_better": true
+    },
+    {
+      "arm": "random_matched",
+      "unit": "random_matched",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "noisy_parity_d3",
+      "score": 0.5031111111111112,
+      "higher_better": true
+    },
+    {
+      "arm": "random_matched",
+      "unit": "random_matched",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "logistic_r3.7",
+      "score": 7.78767865580917e-05,
+      "higher_better": false
+    },
+    {
+      "arm": "random_matched",
+      "unit": "random_matched",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.015261519405304812,
+      "higher_better": true
+    },
+    {
+      "arm": "random_matched",
+      "unit": "random_matched",
+      "N": 65,
+      "density": 0.00757396449704142,
+      "task": "narma10",
+      "score": 0.060773565246989056,
+      "higher_better": false
+    },
+    {
+      "arm": "single_unit_best",
+      "unit": "central_complex_steering_unit",
+      "N": 60,
+      "density": 0.4675,
+      "task": "parity_d3",
+      "score": 0.8758888888888889,
+      "higher_better": true
+    },
+    {
+      "arm": "single_unit_best",
+      "unit": "central_complex_steering_unit",
+      "N": 60,
+      "density": 0.4675,
+      "task": "noisy_parity_d3",
+      "score": 0.5049999999999999,
+      "higher_better": true
+    },
+    {
+      "arm": "single_unit_best",
+      "unit": "central_complex_steering_unit",
+      "N": 60,
+      "density": 0.4675,
+      "task": "logistic_r3.7",
+      "score": 9.246304968227187e-05,
+      "higher_better": false
+    },
+    {
+      "arm": "single_unit_best",
+      "unit": "central_complex_steering_unit",
+      "N": 60,
+      "density": 0.4675,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.01821178496124726,
+      "higher_better": true
+    },
+    {
+      "arm": "single_unit_best",
+      "unit": "central_complex_steering_unit",
+      "N": 60,
+      "density": 0.4675,
+      "task": "narma10",
+      "score": 0.060299136669891874,
+      "higher_better": false
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "olfactory_to_steering",
+      "N": 60,
+      "density": 0.49916666666666665,
+      "task": "parity_d3",
+      "score": 0.8758888888888889,
+      "higher_better": true
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "olfactory_to_steering",
+      "N": 60,
+      "density": 0.49916666666666665,
+      "task": "noisy_parity_d3",
+      "score": 0.5008888888888889,
+      "higher_better": true
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "olfactory_to_steering",
+      "N": 60,
+      "density": 0.49916666666666665,
+      "task": "logistic_r3.7",
+      "score": 9.107416380594537e-05,
+      "higher_better": false
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "olfactory_to_steering",
+      "N": 60,
+      "density": 0.49916666666666665,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.015171931065688964,
+      "higher_better": true
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "olfactory_to_steering",
+      "N": 60,
+      "density": 0.49916666666666665,
+      "task": "narma10",
+      "score": 0.06573847469185053,
+      "higher_better": false
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "visual_to_escape",
+      "N": 60,
+      "density": 0.3080555555555556,
+      "task": "parity_d3",
+      "score": 0.8758888888888889,
+      "higher_better": true
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "visual_to_escape",
+      "N": 60,
+      "density": 0.3080555555555556,
+      "task": "noisy_parity_d3",
+      "score": 0.4997777777777779,
+      "higher_better": true
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "visual_to_escape",
+      "N": 60,
+      "density": 0.3080555555555556,
+      "task": "logistic_r3.7",
+      "score": 9.603600705100709e-05,
+      "higher_better": false
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "visual_to_escape",
+      "N": 60,
+      "density": 0.3080555555555556,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.014980998149361378,
+      "higher_better": true
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "visual_to_escape",
+      "N": 60,
+      "density": 0.3080555555555556,
+      "task": "narma10",
+      "score": 0.06647485063606792,
+      "higher_better": false
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "gustatory_to_motion",
+      "N": 60,
+      "density": 0.10972222222222222,
+      "task": "parity_d3",
+      "score": 0.8758888888888889,
+      "higher_better": true
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "gustatory_to_motion",
+      "N": 60,
+      "density": 0.10972222222222222,
+      "task": "noisy_parity_d3",
+      "score": 0.49755555555555553,
+      "higher_better": true
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "gustatory_to_motion",
+      "N": 60,
+      "density": 0.10972222222222222,
+      "task": "logistic_r3.7",
+      "score": 0.00010475836181847099,
+      "higher_better": false
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "gustatory_to_motion",
+      "N": 60,
+      "density": 0.10972222222222222,
+      "task": "double_pole_p0.9_m0.5",
+      "score": 0.013703617670145184,
+      "higher_better": true
+    },
+    {
+      "arm": "multi_unit_composed",
+      "unit": "gustatory_to_motion",
+      "N": 60,
+      "density": 0.10972222222222222,
+      "task": "narma10",
+      "score": 0.0868346394985145,
+      "higher_better": false
+    }
+  ],
+  "elapsed_s": 4.891512155532837,
+  "args": {
+    "quick": false,
+    "n_nodes": 60,
+    "n_seeds": null,
+    "out": null
+  },
+  "composition_specs": {
+    "olfactory_to_steering": {
+      "n_units": 4,
+      "n_cross_edges": 3,
+      "validation_ok": true,
+      "validation_errors": []
+    },
+    "visual_to_escape": {
+      "n_units": 5,
+      "n_cross_edges": 3,
+      "validation_ok": true,
+      "validation_errors": []
+    },
+    "gustatory_to_motion": {
+      "n_units": 2,
+      "n_cross_edges": 1,
+      "validation_ok": true,
+      "validation_errors": []
+    }
+  }
+}
