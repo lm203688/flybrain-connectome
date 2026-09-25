@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.6.0` | the toolkit as a whole |
+| package | `2.7.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -19,7 +19,91 @@ The **schema version** is versioned separately from the **package version**:
 
 ---
 
-## [2.6.0] — 2026-09-24
+## [2.7.0] — 2026-09-25
+
+**Multi-unit composed-organism ESN benchmark + v2.5.0 delay-line rerun.**
+
+v2.5.0 first put the 101-unit library through the ESN pipeline. v2.6.0
+added an external benchmark suite (4 tasks) and fixed a rank-collapse bug
+in the unit-W builder that had polluted v2.5.0's numbers. v2.7.0 closes
+the loop by:
+
+1. **Rerunning v2.5.0's delay-line experiment with the rank-fix applied.**
+   The v2.5.0 conclusion ("unit_composed median ≈ bio_motif, mean ratio
+   0.98×") was **contaminated** — rank=3/60 collapsed ESN dynamics to a
+   3-D subspace. After fix, mean ratio jumps to **1.65×** and 4/5 units
+   win on R² (vs 2/5 pre-fix). The v2.5.0 "cell-level densification
+   isn't the answer" verdict is **retracted** — the real cause was rank.
+2. **Multi-unit composed-organism benchmark.** For the first time,
+   `compose_from_units` output is put through the ESN pipeline. Three
+   validated multi-unit chains (olfactory→steering 4-unit, visual→escape
+   5-unit, gustatory→motion 2-unit) beat `bio_motif` on 3 of 5 tasks
+   (noisy_parity 3/3, double_pole 3/3, NARMA-10 2/3).
+
+### Added
+
+- **`integrations/swarmlabs/diagnostics/multi_unit_benchmark_experiment.py`**
+  — composes 3 validated multi-unit organisms and runs 5 tasks (parity,
+  noisy_parity, logistic, double_pole, NARMA-10). --quick 1.7s, full 4.9s
+  at N=60, 15 seeds, 7 arms.
+- **`integrations/swarmlabs/diagnostics/MULTI_UNIT_BENCHMARK_REPORT.md`**
+  — method + results + honest boundaries.
+- **NARMA-10 task** in the multi-unit experiment — 10-tap nonlinear
+  dynamical system (a standard ESN memory-depth benchmark). v2.6.0's
+  4-task suite had 2/4 tasks degenerate; NARMA-10 is the 3rd task with
+  real discriminating power.
+- **Rerun of v2.5.0 delay-line with rank fix** — new authoritative
+  `unit_composition_results.json`.
+
+### Fixed
+
+- v2.5.0's `unit_composition_results.json` was written with the
+  rank-collapse bug. Rerunning `unit_composition_experiment.py --n-nodes 60`
+  (which now inherits the rank fix from v2.6.0) overwrites it with the
+  corrected numbers.
+
+### Results (N=60, 15 seeds)
+
+| Task | Direction | Bio motif | Textbook | Single best | Multi-unit wins |
+|---|---|---|---|---|---|
+| parity_d3 | acc ↑ | 0.8759 | 0.8759 | 0.8759 | **退化 0/3** |
+| **noisy_parity_d3** | acc ↑ | 0.4898 | 0.4968 | 0.5050 | **3/3** (1.016–1.023×) |
+| logistic_r3.7 | MSE ↓ | 0.0001 | 0.0001 | 0.0001 | **退化 0/3** |
+| double_pole | MSE ↓ | **0.0133** | 0.0254 | 0.0182 | **3/3** (1.030–1.140×) |
+| **NARMA-10** | MSE ↓ | 0.0749 | **0.0552** | 0.0603 | **2/3** (0.878–0.888×) |
+
+**Honest verdict:**
+- Multi-unit compositions beat `bio_motif` on 3 of 5 tasks, tie on 1,
+  lose on 1 — first evidence that composed organisms beat the module_rep
+  baseline systematically.
+- `visual_to_escape` (5-unit chain) is the only composition that wins on
+  all 3 discriminating tasks — the visual processing cascade may encode
+  ESN-relevant temporal dynamics that no other single or small chain
+  captures.
+- Textbook random still wins on noisy_parity and NARMA-10. Multi-unit
+  compositions do **not** match textbook random — consistent with the
+  v2.6.0 finding that "超越生物学" is not a performance story.
+
+### Retracted (from v2.5.0)
+
+- "Unit-composed median ≈ bio_motif (mean ratio 0.98×)." **Retracted.**
+  The v2.5.0 rank=3/60 collapse hid the true picture. With rank fix
+  applied, unit-composed mean ratio vs bio_motif on delay=3 is **1.65×**.
+- "Cell-level densification isn't the answer." **Retracted.** Density was
+  not the problem — rank was. After the rank fix, unit-composed density
+  (0.21–0.47) combined with rank 45/60 is enough to beat bio_motif on
+  delay-line R².
+
+### Not changed
+
+- The 101 units, 66 connection types, 81 port types, 57/203 anchored
+  profiles — no changes to the unit library itself in v2.7.0. This is
+  a diagnostics-only release.
+- The `bio_motif` baseline is still the v1.x module_rep-level design.
+  It is unchanged.
+- Schema versions (1.0, 1.2, 1.2.1) unchanged.
+
+
 
 **External ESN benchmark suite + methodological fix to unit W rank (G2 单元库外部锚点).**
 
