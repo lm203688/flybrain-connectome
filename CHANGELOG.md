@@ -8,14 +8,96 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.9.0` | the toolkit as a whole |
+| package | `2.10.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 103 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0 and 2.9.0) |
+| functional-unit library schema | `1.0` | 103 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0 and 2.10.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.10.0] — 2026-09-25
+
+**Statistical-significance experiment + v2.9.0 downstream consumers.**
+
+### Main change: significance experiment + retraction of v2.7.0 claims
+
+`integrations/swarmlabs/diagnostics/multi_unit_significance_experiment.py`
+runs each task per-seed (n_seeds=15 by default, 30 for full mode) with 4
+independent statistical tests — Welch's t-test, Mann-Whitney U, 5000-sample
+bootstrap 95% CI, and Cohen's d — to answer the user's core question:
+"did multi-unit composition actually improve over bio_motif, or did the
+earlier win/loss counts just happen to line up on 5 seeds?"
+
+**Verdict**: of 15 comparisons of 3 multi_unit_composed organisms vs
+bio_motif on 5 tasks, only **1 is a real_gain** (p<0.05 AND |d|≥0.5):
+
+- `olfactory_to_steering_composed` on **NARMA-10** — ΔMSE = −0.0097
+  (−13.7%), 95% CI [−0.017, −0.002], Cohen's d = −0.93 (large effect),
+  MWU p = 0.025.
+
+**Retracted from v2.7.0 `MULTI_UNIT_BENCHMARK_REPORT.md`**:
+
+- "noisy_parity 3/3 全胜 bio_motif" — with n_seeds=15, all 3 multi_unit
+  organisms are within trend_loss/indistinguishable of bio_motif (p =
+  0.38–0.68). The n_seeds=5 win was a small-sample artifact.
+- "double_pole 反向 bio_motif 全胜" — with n_seeds=15, bio_motif is
+  actually BETTER (3/3 trend_loss, all d ≥ 0.27). Retracted.
+
+The v2.7.0 report is not deleted (historical record preserved); the
+`SIGNIFICANCE_REPORT.md` in the same directory explicitly retracts the
+two claims and points to the corrected data.
+
+### Methodological fixes to task functions
+
+Each of the 5 benchmark task functions (`task_binary_parity`,
+`task_noisy_parity`, `task_logistic_predict`, `task_double_pole`,
+`task_narma10`) gains an optional `seed_offset: int = 0` parameter so the
+significance runner can force truly independent RNG streams per seed.
+Backward-compatible: default `seed_offset=0` reproduces the original
+seed sequence.
+
+### Downstream consumers for v2.9.0 new OUT ports
+
+The 3 new OUT ports added in v2.9.0 (`modulatory.orexin`,
+`modulatory.histamine`, `memory.associative`) had no downstream IN
+consumers, so they were un-composable in `compose_from_units`. This
+patch adds 3 matching IN ports to semantically-correct units:
+
+- `antennal_lobe_glomerular_unit` gains `histamine_in`
+  (`modulatory.histamine`) — classical literature: histaminergic arousal
+  modulates sensory gain at the olfactory periphery (Hayashi-Tsutsushime
+  2008).
+- `central_complex_steering_unit` gains `orexin_in`
+  (`modulatory.orexin`) — orexin/arousal gating of motor preparation.
+- `central_complex_steering_unit` gains `assoc_mem_in`
+  (`memory.associative`) — associative memory readout steering the
+  turn command, complementary to the existing `valence_in`.
+
+All 3 are pure schema-side changes — no new edges, no count_ratio
+touch, no unit additions. Ports referenced count stays at 82/83 (the
+new IN ports reference existing port_types, they don't add new ones).
+
+### Documentation
+
+- `integrations/swarmlabs/diagnostics/SIGNIFICANCE_REPORT.md` — new,
+  documents the significance results and explicitly retracts the two
+  v2.7.0 over-claims.
+- `integrations/swarmlabs/diagnostics/CONNECTION_TYPES_AUDIT.md` —
+  new, categorises the 19 unused CONNECTION_TYPES into 4 buckets
+  (anatomical precision / multi-unit topology / unit-shape / new-unit
+  needed) and concludes **0 are schema defects** — the 19/66 gap is
+  vocabulary completeness, not incompleteness.
+- `integrations/swarmlabs/diagnostics/test_stacking.py` and
+  `TEST_STACKING_REPORT.md` — carried forward unchanged from v2.9.1.
+
+### Gate status
+
+10/10 gates PASS with `--with-data` on commit HEAD. No new gate, no
+assertion injection, no count_ratio reshuffling.
 
 ---
 
