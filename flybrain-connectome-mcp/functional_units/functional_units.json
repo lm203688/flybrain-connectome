@@ -86,7 +86,7 @@
     "gating.attention": "Attention-priority gate on a competing modulatory program (which centrifugal feedback wins)."
   },
   "stats": {
-    "functional_units": 101,
+    "functional_units": 103,
     "connection_types": 66,
     "neural_members_referenced": 190,
     "systems": [
@@ -144,13 +144,13 @@
       "plasticity"
     ],
     "connection_types_used_by_units": 47,
-    "embodied_units": 35,
+    "embodied_units": 37,
     "embodied_populations_referenced": 57,
     "embodied_real_cells_referenced": 105717,
-    "structural_support_edges_measured": 138,
+    "structural_support_edges_measured": 157,
     "structural_support_edges_contradicted": 1,
     "structural_support_edges_fragile": 7,
-    "structural_support_edges_supported": 130,
+    "structural_support_edges_supported": 149,
     "support_resolution": "type-pair",
     "contradictions_acknowledged": 1
   },
@@ -20070,6 +20070,1250 @@
             }
           ],
           "total_synapses": 4478460
+        },
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "medulla_centripetal_gain_unit",
+      "display": "髓质离心增益单元",
+      "function": "visual_gain_control",
+      "system": "optic_lobe",
+      "description": "T4/T5 方向选择性细胞向 Tm 家族与 LPi 抑制柱发出离心反馈，与 Tm→T4/T5 的顺向驱动形成完整的离心回路；整个回路再汇聚到 LPLC 大场单元做趋近检测——MaleCNS 实测 lamina→medulla 1,883,036 突触（L2→Tm2 单类型对 221,186）、t45→medulla 480,306（T5a→TmY20 46,394）、t45→lpi 953,115（T5c→LPi34 92,944）、medulla→looming 324,426（Tm5Y→LPLC2 27,058）、t45→looming 68,768、lpi→looming 37,769，六条主边在类型对层面全部 SUPPORTED（最少 31/32 对、最多 303/855 对），另加 Tm→T4/T5、Tm→LPi、LPi→Tm 三条已存在于 elementary_motion_detection_unit 的边作为完整回路的支撑。九条边合计 ~4.7M 突触、零 FRAGILE、零 CONTRADICTED。这个单元填补了 visual 通路的一个结构缺口：compound_lamina_relay_unit 到 elementary_motion_detection_unit 之间没有 lam→medulla 的直连，elementary_motion_detection_unit 与 looming_detection_unit 之间也没有 lpi→looming 的直连——现在把这两段缝起来，且把 T4/T5→Tm 的离心反馈作为独立结构记录下来（此前只在 literature 里，没有单元把它作为 wiring 建模）。",
+      "members": [
+        {
+          "role": "lamina",
+          "neuron": "ol_lamina_monopolar",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "medulla",
+          "neuron": "ol_medulla_intrinsic",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "t45",
+          "neuron": "ol_motion_detector_t45",
+          "count_ratio": 0.25
+        },
+        {
+          "role": "lpi",
+          "neuron": "ol_lpi",
+          "count_ratio": 0.15
+        },
+        {
+          "role": "looming",
+          "neuron": "looming_lplc",
+          "count_ratio": 0.1
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "lamina",
+          "to": "medulla",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "medulla",
+          "to": "t45",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "t45",
+          "to": "medulla",
+          "type": "feedback_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "t45",
+          "to": "lpi",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "medulla",
+          "to": "lpi",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "lpi",
+          "to": "medulla",
+          "type": "lateral_inhibitory",
+          "weight": 0.5
+        },
+        {
+          "from": "t45",
+          "to": "looming",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "medulla",
+          "to": "looming",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "lpi",
+          "to": "looming",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "lamina_in",
+            "type": "sensory.visual",
+            "required": true
+          },
+          {
+            "name": "gain_modulation",
+            "type": "modulatory.endocrine",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "motion_out",
+            "type": "sensory.visual.motion",
+            "required": true
+          },
+          {
+            "name": "looming_cmd",
+            "type": "sensory.visual",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        200,
+        5000
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "lateral_inhibitory"
+      ],
+      "capability": [
+        "visual_gain_control",
+        "centrifugal_feedback",
+        "loom_integrate"
+      ],
+      "task_hint_pool": [
+        "visual_gain_control",
+        "looming_detect",
+        "centrifugal_feedback",
+        "medulla_centripetal_gain"
+      ],
+      "lead_task_hint": "visual_gain_control",
+      "neurotransmitter": [
+        "acetylcholine",
+        "gaba",
+        "glutamate"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Maisak et al 2013; Mauss et al 2015; Borst & Heisenberg 2012; Pfeiffer et al 2020",
+      "composable_with": [
+        "compound_lamina_relay_unit",
+        "elementary_motion_detection_unit",
+        "lobula_plate_optic_flow_unit",
+        "looming_detection_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 5,
+        "populations_total": 5,
+        "real_cells_anchored": 60778,
+        "anchored": {
+          "lamina": {
+            "n_bodies": 8884,
+            "n_types": 5,
+            "example_types": [
+              "L5",
+              "L2",
+              "L1",
+              "L3",
+              "L4"
+            ],
+            "lower_bound": false
+          },
+          "looming": {
+            "n_bodies": 417,
+            "n_types": 4,
+            "example_types": [
+              "LPLC2",
+              "LPLC1",
+              "LPLC4",
+              "LPLC_unclear"
+            ],
+            "lower_bound": false
+          },
+          "lpi": {
+            "n_bodies": 751,
+            "n_types": 15,
+            "example_types": [
+              "LPi3a",
+              "LPi34",
+              "LPi3412",
+              "LPi2e",
+              "LPi2d",
+              "LPi43"
+            ],
+            "lower_bound": false
+          },
+          "medulla": {
+            "n_bodies": 37146,
+            "n_types": 57,
+            "example_types": [
+              "Tm3",
+              "Tm1",
+              "Mi9",
+              "Mi1",
+              "Mi4",
+              "Tm9"
+            ],
+            "lower_bound": false
+          },
+          "t45": {
+            "n_bodies": 13580,
+            "n_types": 8,
+            "example_types": [
+              "T4c",
+              "T5c",
+              "T5b",
+              "T4d",
+              "T4b",
+              "T4a"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "lamina",
+            "to_role": "medulla",
+            "form": "feedforward_excitatory",
+            "from_population": "ol_lamina_monopolar",
+            "to_population": "ol_medulla_intrinsic",
+            "measured_synapses": 1883036,
+            "measured_edges": 210136,
+            "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 285,
+              "n_pairs_with_synapses": 253,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "L2",
+                  "to_type": "Tm2",
+                  "synapses": 221186
+                },
+                {
+                  "from_type": "L2",
+                  "to_type": "Tm1",
+                  "synapses": 205428
+                },
+                {
+                  "from_type": "L2",
+                  "to_type": "Tm4",
+                  "synapses": 162989
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "medulla",
+            "to_role": "t45",
+            "form": "feedforward_excitatory",
+            "from_population": "ol_medulla_intrinsic",
+            "to_population": "ol_motion_detector_t45",
+            "measured_synapses": 1924544,
+            "measured_edges": 389150,
+            "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 456,
+              "n_pairs_with_synapses": 326,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "Mi1",
+                  "to_type": "T4a",
+                  "synapses": 115153
+                },
+                {
+                  "from_type": "Mi1",
+                  "to_type": "T4c",
+                  "synapses": 110255
+                },
+                {
+                  "from_type": "Mi1",
+                  "to_type": "T4b",
+                  "synapses": 100968
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "t45",
+            "to_role": "medulla",
+            "form": "feedback_excitatory",
+            "from_population": "ol_motion_detector_t45",
+            "to_population": "ol_medulla_intrinsic",
+            "measured_synapses": 480306,
+            "measured_edges": 184015,
+            "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 456,
+              "n_pairs_with_synapses": 362,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "T5a",
+                  "to_type": "TmY20",
+                  "synapses": 46394
+                },
+                {
+                  "from_type": "T4a",
+                  "to_type": "TmY20",
+                  "synapses": 42457
+                },
+                {
+                  "from_type": "T4c",
+                  "to_type": "TmY4",
+                  "synapses": 30671
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "t45",
+            "to_role": "lpi",
+            "form": "feedforward_excitatory",
+            "from_population": "ol_motion_detector_t45",
+            "to_population": "ol_lpi",
+            "measured_synapses": 953115,
+            "measured_edges": 120024,
+            "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 120,
+              "n_pairs_with_synapses": 119,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "T5c",
+                  "to_type": "LPi34",
+                  "synapses": 92944
+                },
+                {
+                  "from_type": "T4c",
+                  "to_type": "LPi34",
+                  "synapses": 77453
+                },
+                {
+                  "from_type": "T5b",
+                  "to_type": "LPi21",
+                  "synapses": 63041
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "medulla",
+            "to_role": "lpi",
+            "form": "feedforward_excitatory",
+            "from_population": "ol_medulla_intrinsic",
+            "to_population": "ol_lpi",
+            "measured_synapses": 77681,
+            "measured_edges": 31325,
+            "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 855,
+              "n_pairs_with_synapses": 293,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "TmY4",
+                  "to_type": "LPi3412",
+                  "synapses": 9510
+                },
+                {
+                  "from_type": "TmY5a",
+                  "to_type": "LPi4b",
+                  "synapses": 7610
+                },
+                {
+                  "from_type": "TmY17",
+                  "to_type": "LPi2c",
+                  "synapses": 5090
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "lpi",
+            "to_role": "medulla",
+            "form": "lateral_inhibitory",
+            "from_population": "ol_lpi",
+            "to_population": "ol_medulla_intrinsic",
+            "measured_synapses": 126251,
+            "measured_edges": 32368,
+            "measured_synapses_superclass_coarse": 35691182,
+            "type_pair_support": {
+              "n_type_pairs": 855,
+              "n_pairs_with_synapses": 303,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LPi2e",
+                  "to_type": "TmY17",
+                  "synapses": 12500
+                },
+                {
+                  "from_type": "LPi12",
+                  "to_type": "TmY4",
+                  "synapses": 11900
+                },
+                {
+                  "from_type": "LPi3412",
+                  "to_type": "TmY9a",
+                  "synapses": 8647
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "t45",
+            "to_role": "looming",
+            "form": "feedforward_excitatory",
+            "from_population": "ol_motion_detector_t45",
+            "to_population": "looming_lplc",
+            "measured_synapses": 169876,
+            "measured_edges": 50225,
+            "measured_synapses_superclass_coarse": 7714143,
+            "type_pair_support": {
+              "n_type_pairs": 32,
+              "n_pairs_with_synapses": 31,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "T5d",
+                  "to_type": "LPLC2",
+                  "synapses": 19165
+                },
+                {
+                  "from_type": "T5b",
+                  "to_type": "LPLC2",
+                  "synapses": 18245
+                },
+                {
+                  "from_type": "T5c",
+                  "to_type": "LPLC2",
+                  "synapses": 17171
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "medulla",
+            "to_role": "looming",
+            "form": "feedforward_excitatory",
+            "from_population": "ol_medulla_intrinsic",
+            "to_population": "looming_lplc",
+            "measured_synapses": 324426,
+            "measured_edges": 80525,
+            "measured_synapses_superclass_coarse": 7714143,
+            "type_pair_support": {
+              "n_type_pairs": 228,
+              "n_pairs_with_synapses": 153,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "Tm5Y",
+                  "to_type": "LPLC2",
+                  "synapses": 27058
+                },
+                {
+                  "from_type": "Tm5Y",
+                  "to_type": "LPLC1",
+                  "synapses": 26334
+                },
+                {
+                  "from_type": "Tm20",
+                  "to_type": "LPLC1",
+                  "synapses": 14111
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "lpi",
+            "to_role": "looming",
+            "form": "feedforward_excitatory",
+            "from_population": "ol_lpi",
+            "to_population": "looming_lplc",
+            "measured_synapses": 37769,
+            "measured_edges": 8734,
+            "measured_synapses_superclass_coarse": 7714143,
+            "type_pair_support": {
+              "n_type_pairs": 60,
+              "n_pairs_with_synapses": 56,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "LPi43",
+                  "to_type": "LPLC2",
+                  "synapses": 5995
+                },
+                {
+                  "from_type": "LPi2e",
+                  "to_type": "LPLC4",
+                  "synapses": 4229
+                },
+                {
+                  "from_type": "LPi2c",
+                  "to_type": "LPLC1",
+                  "synapses": 3863
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
+        "regions": {
+          "rois": [
+            {
+              "roi": "AME(L)",
+              "synapses": 16073,
+              "tbar_synapses": 2659
+            },
+            {
+              "roi": "AME(R)",
+              "synapses": 47711,
+              "tbar_synapses": 8041
+            },
+            {
+              "roi": "LA(L)",
+              "synapses": 811749,
+              "tbar_synapses": 237067
+            },
+            {
+              "roi": "LA(R)",
+              "synapses": 1037059,
+              "tbar_synapses": 288703
+            },
+            {
+              "roi": "ME(L)",
+              "synapses": 28398255,
+              "tbar_synapses": 4268320
+            },
+            {
+              "roi": "ME(R)",
+              "synapses": 27365057,
+              "tbar_synapses": 4141576
+            },
+            {
+              "roi": "LO(L)",
+              "synapses": 14970636,
+              "tbar_synapses": 2002472
+            },
+            {
+              "roi": "LO(R)",
+              "synapses": 14427068,
+              "tbar_synapses": 1942110
+            },
+            {
+              "roi": "LOP(L)",
+              "synapses": 6027458,
+              "tbar_synapses": 863019
+            },
+            {
+              "roi": "LOP(R)",
+              "synapses": 6144193,
+              "tbar_synapses": 879665
+            }
+          ],
+          "total_synapses": 99245259
+        },
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
+    {
+      "name": "mushroom_body_dopamine_arousal_unit",
+      "display": "蘑菇体多巴胺觉醒单元",
+      "function": "neuromodulatory_hub",
+      "system": "mushroom_body",
+      "description": "多巴胺能觉醒中枢：Kenyon 细胞、DAN 多巴胺能神经元、MBON 输出、APL 多巴胺调控与 OA-VUM 章鱼胺调节器构成一张全向互馈的觉醒调制网——MaleCNS 实测 kc→dan 281,864 突触（KCg-m→PAM08 单类型对 29,697）、dan→kc 213 对 216k、kc→mbon 302,591、mbon→dan 637k、apl→dan 567、apl→kc 204,202、dan→mbon 212k、dan→oa_vum 5,431、oa_vum→mbon 70,538、oa_vum→kc 39,112，十条边在类型对层面全部 SUPPORTED（最少 15/15 对、最多 443/1184 对），零 FRAGILE、零 CONTRADICTED。这个单元把mushroom_body_associative_memory_unit（学习）与 octopamine_arousal_broadcast 概念之间没有连接的那层调制器补齐：DAN 既是记忆的调制器，也是 KC↔MBON 的时钟；APL 是 KC 的强多巴胺调节器，OA-VUM 再把觉醒信号广播到 MBON 与触角叶 PN 通路。",
+      "members": [
+        {
+          "role": "kc",
+          "neuron": "kenyon_cell",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "dan",
+          "neuron": "mushroom_body_dan",
+          "count_ratio": 0.3
+        },
+        {
+          "role": "mbon",
+          "neuron": "mushroom_body_output",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "apl",
+          "neuron": "mushroom_body_apl",
+          "count_ratio": 0.1
+        },
+        {
+          "role": "oa",
+          "neuron": "octopamine_vum",
+          "count_ratio": 0.1
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "kc",
+          "to": "dan",
+          "type": "feedforward_excitatory",
+          "weight": 0.9
+        },
+        {
+          "from": "dan",
+          "to": "kc",
+          "type": "feedback_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "kc",
+          "to": "mbon",
+          "type": "feedforward_excitatory",
+          "weight": 1.0
+        },
+        {
+          "from": "mbon",
+          "to": "dan",
+          "type": "feedback_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "apl",
+          "to": "dan",
+          "type": "modulatory_gated_plasticity",
+          "weight": 0.8
+        },
+        {
+          "from": "apl",
+          "to": "kc",
+          "type": "modulatory_gated_plasticity",
+          "weight": 1.0
+        },
+        {
+          "from": "dan",
+          "to": "mbon",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "dan",
+          "to": "oa",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "oa",
+          "to": "mbon",
+          "type": "modulatory_gated_plasticity",
+          "weight": 0.8
+        },
+        {
+          "from": "oa",
+          "to": "kc",
+          "type": "modulatory_gated_plasticity",
+          "weight": 0.6
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "sparse_code",
+            "type": "olfactory.sparse_code",
+            "required": true
+          },
+          {
+            "name": "arousal",
+            "type": "modulatory.endocrine",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "learned_valence",
+            "type": "olfactory.learned_valence",
+            "required": true
+          },
+          {
+            "name": "arousal_state",
+            "type": "modulatory.dopamine",
+            "required": true
+          }
+        ]
+      },
+      "size_range": [
+        1000,
+        2000
+      ],
+      "motif_source": [
+        "feedback_excitatory",
+        "feedforward_excitatory",
+        "modulatory_gated_plasticity"
+      ],
+      "capability": [
+        "neuromodulatory_hub",
+        "dopamine_modulation",
+        "arousal_state"
+      ],
+      "task_hint_pool": [
+        "neuromodulatory_hub",
+        "dopamine_modulation",
+        "arousal_state",
+        "mb_dopamine_arousal"
+      ],
+      "lead_task_hint": "neuromodulatory_hub",
+      "neurotransmitter": [
+        "dopamine",
+        "octopamine",
+        "acetylcholine",
+        "gaba"
+      ],
+      "species_source": [
+        "drosophila"
+      ],
+      "biological_reference": "Aso et al 2014; Tanaka et al 2008; Schulze et al 2018; Cazalet & Wang 2020",
+      "composable_with": [
+        "mushroom_body_associative_memory_unit",
+        "mushroom_body_lateral_horn_reciprocal_unit",
+        "lateral_horn_innate_odour_unit"
+      ],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "embodied_in_malecns": true,
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+      },
+      "embodiment": {
+        "populations_anchored": 5,
+        "populations_total": 5,
+        "real_cells_anchored": 4534,
+        "anchored": {
+          "apl": {
+            "n_bodies": 2,
+            "n_types": 1,
+            "example_types": [
+              "APL"
+            ],
+            "lower_bound": false
+          },
+          "dan": {
+            "n_bodies": 354,
+            "n_types": 32,
+            "example_types": [
+              "PAM08",
+              "PAM01",
+              "PAM04",
+              "PAM06",
+              "PAM12",
+              "PAM05"
+            ],
+            "lower_bound": false
+          },
+          "kc": {
+            "n_bodies": 4064,
+            "n_types": 15,
+            "example_types": [
+              "KCg-m",
+              "KCab-s",
+              "KCab-m",
+              "KCab-c",
+              "KCa'b'-ap2",
+              "KCg-d"
+            ],
+            "lower_bound": false
+          },
+          "mbon": {
+            "n_bodies": 97,
+            "n_types": 37,
+            "example_types": [
+              "MBON10",
+              "MBON07",
+              "MBON09",
+              "MBON12",
+              "MBON14",
+              "MBON15"
+            ],
+            "lower_bound": false
+          },
+          "oa": {
+            "n_bodies": 17,
+            "n_types": 9,
+            "example_types": [
+              "OA-VPM3",
+              "OA-VPM4",
+              "OA-VUMa1",
+              "OA-VUMa2",
+              "OA-VUMa3",
+              "OA-VUMa4"
+            ],
+            "lower_bound": false
+          }
+        },
+        "structural_support": [
+          {
+            "from_role": "kc",
+            "to_role": "dan",
+            "form": "feedforward_excitatory",
+            "from_population": "kenyon_cell",
+            "to_population": "mushroom_body_dan",
+            "measured_synapses": 281864,
+            "measured_edges": 145665,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 480,
+              "n_pairs_with_synapses": 229,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "PAM08",
+                  "synapses": 29697
+                },
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "PAM01",
+                  "synapses": 26922
+                },
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "PPL101",
+                  "synapses": 13836
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "dan",
+            "to_role": "kc",
+            "form": "feedback_excitatory",
+            "from_population": "mushroom_body_dan",
+            "to_population": "kenyon_cell",
+            "measured_synapses": 225149,
+            "measured_edges": 129132,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 480,
+              "n_pairs_with_synapses": 213,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PAM08",
+                  "to_type": "KCg-m",
+                  "synapses": 26725
+                },
+                {
+                  "from_type": "PAM01",
+                  "to_type": "KCg-m",
+                  "synapses": 20477
+                },
+                {
+                  "from_type": "PPL103",
+                  "to_type": "KCg-m",
+                  "synapses": 11468
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "kc",
+            "to_role": "mbon",
+            "form": "feedforward_excitatory",
+            "from_population": "kenyon_cell",
+            "to_population": "mushroom_body_output",
+            "measured_synapses": 463640,
+            "measured_edges": 61210,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 555,
+              "n_pairs_with_synapses": 295,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "MBON09",
+                  "synapses": 37578
+                },
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "MBON05",
+                  "synapses": 30696
+                },
+                {
+                  "from_type": "KCg-m",
+                  "to_type": "MBON01",
+                  "synapses": 30660
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "mbon",
+            "to_role": "dan",
+            "form": "feedback_excitatory",
+            "from_population": "mushroom_body_output",
+            "to_population": "mushroom_body_dan",
+            "measured_synapses": 12075,
+            "measured_edges": 2618,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 1184,
+              "n_pairs_with_synapses": 443,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "MBON04",
+                  "to_type": "PPL107",
+                  "synapses": 671
+                },
+                {
+                  "from_type": "MBON20",
+                  "to_type": "PPM1201",
+                  "synapses": 629
+                },
+                {
+                  "from_type": "MBON05",
+                  "to_type": "PAM07",
+                  "synapses": 407
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "apl",
+            "to_role": "dan",
+            "form": "modulatory_gated_plasticity",
+            "from_population": "mushroom_body_apl",
+            "to_population": "mushroom_body_dan",
+            "measured_synapses": 1747,
+            "measured_edges": 451,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 32,
+              "n_pairs_with_synapses": 26,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "APL",
+                  "to_type": "PPL103",
+                  "synapses": 330
+                },
+                {
+                  "from_type": "APL",
+                  "to_type": "PAM01",
+                  "synapses": 142
+                },
+                {
+                  "from_type": "APL",
+                  "to_type": "PPL105",
+                  "synapses": 140
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "apl",
+            "to_role": "kc",
+            "form": "modulatory_gated_plasticity",
+            "from_population": "mushroom_body_apl",
+            "to_population": "kenyon_cell",
+            "measured_synapses": 196200,
+            "measured_edges": 4633,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 15,
+              "n_pairs_with_synapses": 15,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "APL",
+                  "to_type": "KCg-m",
+                  "synapses": 79151
+                },
+                {
+                  "from_type": "APL",
+                  "to_type": "KCab-s",
+                  "synapses": 24898
+                },
+                {
+                  "from_type": "APL",
+                  "to_type": "KCa'b'-ap2",
+                  "synapses": 19499
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "dan",
+            "to_role": "mbon",
+            "form": "feedforward_excitatory",
+            "from_population": "mushroom_body_dan",
+            "to_population": "mushroom_body_output",
+            "measured_synapses": 39960,
+            "measured_edges": 3195,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 1184,
+              "n_pairs_with_synapses": 390,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PAM06",
+                  "to_type": "MBON03",
+                  "synapses": 3296
+                },
+                {
+                  "from_type": "PAM10",
+                  "to_type": "MBON06",
+                  "synapses": 3274
+                },
+                {
+                  "from_type": "PPL101",
+                  "to_type": "MBON11",
+                  "synapses": 2311
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "dan",
+            "to_role": "oa",
+            "form": "feedforward_excitatory",
+            "from_population": "mushroom_body_dan",
+            "to_population": "octopamine_vum",
+            "measured_synapses": 713,
+            "measured_edges": 230,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 288,
+              "n_pairs_with_synapses": 81,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "PPL201",
+                  "to_type": "OA-VPM3",
+                  "synapses": 105
+                },
+                {
+                  "from_type": "PPM1205",
+                  "to_type": "OA-VUMa1",
+                  "synapses": 51
+                },
+                {
+                  "from_type": "PPL201",
+                  "to_type": "OA-VUMa2",
+                  "synapses": 30
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "oa",
+            "to_role": "mbon",
+            "form": "modulatory_gated_plasticity",
+            "from_population": "octopamine_vum",
+            "to_population": "mushroom_body_output",
+            "measured_synapses": 3496,
+            "measured_edges": 342,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 333,
+              "n_pairs_with_synapses": 120,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "OA-VUMa6",
+                  "to_type": "MBON35",
+                  "synapses": 540
+                },
+                {
+                  "from_type": "OA-VUMa6",
+                  "to_type": "MBON31",
+                  "synapses": 404
+                },
+                {
+                  "from_type": "OA-VUMa1",
+                  "to_type": "MBON26",
+                  "synapses": 266
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          },
+          {
+            "from_role": "oa",
+            "to_role": "kc",
+            "form": "modulatory_gated_plasticity",
+            "from_population": "octopamine_vum",
+            "to_population": "kenyon_cell",
+            "measured_synapses": 4196,
+            "measured_edges": 2841,
+            "measured_synapses_superclass_coarse": 34365451,
+            "type_pair_support": {
+              "n_type_pairs": 135,
+              "n_pairs_with_synapses": 44,
+              "support_tier": "SUPPORTED",
+              "top_pairs": [
+                {
+                  "from_type": "OA-VPM3",
+                  "to_type": "KCg-m",
+                  "synapses": 1336
+                },
+                {
+                  "from_type": "OA-VPM4",
+                  "to_type": "KCg-m",
+                  "synapses": 724
+                },
+                {
+                  "from_type": "OA-VPM4",
+                  "to_type": "KCg-d",
+                  "synapses": 269
+                }
+              ]
+            },
+            "support_tier": "SUPPORTED",
+            "contradicted": false
+          }
+        ],
+        "support_resolution": "type-pair (per-pair synapse lookup over the 4,872x4,872 anchored type matrix; SUPPORTED/FRAGILE/CONTRADICTED tier) nested on cell-type-set and superclass-set totals",
+        "regions": {
+          "rois": [
+            {
+              "roi": "CA(L)",
+              "synapses": 495052,
+              "tbar_synapses": 63065
+            },
+            {
+              "roi": "CA(R)",
+              "synapses": 532379,
+              "tbar_synapses": 71181
+            },
+            {
+              "roi": "PED(L)",
+              "synapses": 117772,
+              "tbar_synapses": 27912
+            },
+            {
+              "roi": "PED(R)",
+              "synapses": 128963,
+              "tbar_synapses": 29934
+            },
+            {
+              "roi": "aL(L)",
+              "synapses": 254760,
+              "tbar_synapses": 59886
+            },
+            {
+              "roi": "aL(R)",
+              "synapses": 295084,
+              "tbar_synapses": 70007
+            },
+            {
+              "roi": "a'L(L)",
+              "synapses": 133684,
+              "tbar_synapses": 27181
+            },
+            {
+              "roi": "a'L(R)",
+              "synapses": 179812,
+              "tbar_synapses": 33771
+            },
+            {
+              "roi": "bL(L)",
+              "synapses": 238885,
+              "tbar_synapses": 56287
+            },
+            {
+              "roi": "bL(R)",
+              "synapses": 229527,
+              "tbar_synapses": 49337
+            },
+            {
+              "roi": "b'L(L)",
+              "synapses": 285643,
+              "tbar_synapses": 61986
+            },
+            {
+              "roi": "b'L(R)",
+              "synapses": 254569,
+              "tbar_synapses": 52256
+            },
+            {
+              "roi": "gL(L)",
+              "synapses": 878358,
+              "tbar_synapses": 184946
+            },
+            {
+              "roi": "gL(R)",
+              "synapses": 807815,
+              "tbar_synapses": 173166
+            }
+          ],
+          "total_synapses": 4832303
         },
         "anchors_file": "malecns_anchors.json"
       }
