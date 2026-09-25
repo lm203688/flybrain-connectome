@@ -112,7 +112,7 @@ agree). Each declared unit edge therefore carries the measured synapse count
 between its populations' actual cell types, **plus a support tier re-derived from
 the 4,872x4,872 type-pair matrix**: 109 edges are SUPPORTED (>=2 live type pairs),
 6 FRAGILE (exactly one live pair carrying the whole profile-level non-zero), 1
-CONTRADICTED. 35 of the 101 units have `provenance.embodied_in_malecns: true`; the
+CONTRADICTED. 37 of the 103 units have `provenance.embodied_in_malecns: true`; the
 other 66 do not resolve to fly cells and each carries a machine-checkable
 `provenance.unanchored_reason`. All 57 anchored populations are now referenced by
 at least one unit (v2.1.0 wired the last five). A measured count of ZERO is a
