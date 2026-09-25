@@ -6,7 +6,7 @@
       "N": 60,
       "density": 1.0,
       "task": "parity_d3",
-      "score": 0.8758888888888889,
+      "score": 0.8800000000000001,
       "higher_better": true
     },
     {
@@ -15,7 +15,7 @@
       "N": 60,
       "density": 1.0,
       "task": "noisy_parity_d3",
-      "score": 0.49677777777777776,
+      "score": 0.48933333333333334,
       "higher_better": true
     },
     {
@@ -24,7 +24,7 @@
       "N": 60,
       "density": 1.0,
       "task": "logistic_r3.7",
-      "score": 8.051324390332677e-05,
+      "score": 9.461474943721992e-05,
       "higher_better": false
     },
     {
@@ -33,7 +33,7 @@
       "N": 60,
       "density": 1.0,
       "task": "double_pole_p0.9_m0.5",
-      "score": 0.02543248568508984,
+      "score": 0.02306005240044011,
       "higher_better": true
     },
     {
@@ -42,7 +42,7 @@
       "N": 60,
       "density": 1.0,
       "task": "narma10",
-      "score": 0.05515596728012899,
+      "score": 0.053858433249104075,
       "higher_better": false
     },
     {
@@ -51,7 +51,7 @@
       "N": 65,
       "density": 0.00757396449704142,
       "task": "parity_d3",
-      "score": 0.8758888888888889,
+      "score": 0.8800000000000001,
       "higher_better": true
     },
     {
@@ -60,7 +60,7 @@
       "N": 65,
       "density": 0.00757396449704142,
       "task": "noisy_parity_d3",
-      "score": 0.48977777777777776,
+      "score": 0.483,
       "higher_better": true
     },
     {
@@ -69,7 +69,7 @@
       "N": 65,
       "density": 0.00757396449704142,
       "task": "logistic_r3.7",
-      "score": 8.798173045093583e-05,
+      "score": 8.359638579886026e-05,
       "higher_better": false
     },
     {
@@ -78,7 +78,7 @@
       "N": 65,
       "density": 0.00757396449704142,
       "task": "double_pole_p0.9_m0.5",
-      "score": 0.013310101905176548,
+      "score": 0.012496812571756413,
       "higher_better": true
     },
     {
@@ -87,7 +87,7 @@
       "N": 65,
       "density": 0.00757396449704142,
       "task": "narma10",
-      "score": 0.07488258573050928,
+      "score": 0.06927640173327748,
       "higher_better": false
     },
     {
@@ -96,7 +96,7 @@
       "N": 65,
       "density": 0.00757396449704142,
       "task": "parity_d3",
-      "score": 0.8758888888888889,
+      "score": 0.8800000000000001,
       "higher_better": true
     },
     {
@@ -105,7 +105,7 @@
       "N": 65,
       "density": 0.00757396449704142,
       "task": "noisy_parity_d3",
-      "score": 0.5031111111111112,
+      "score": 0.5010000000000001,
       "higher_better": true
     },
     {
@@ -114,7 +114,7 @@
       "N": 65,
       "density": 0.00757396449704142,
       "task": "logistic_r3.7",
-      "score": 7.78767865580917e-05,
+      "score": 7.870151988150662e-05,
       "higher_better": false
     },
     {
@@ -123,7 +123,7 @@
       "N": 65,
       "density": 0.00757396449704142,
       "task": "double_pole_p0.9_m0.5",
-      "score": 0.015261519405304812,
+      "score": 0.014881675749995295,
       "higher_better": true
     },
     {
@@ -132,7 +132,7 @@
       "N": 65,
       "density": 0.00757396449704142,
       "task": "narma10",
-      "score": 0.060773565246989056,
+      "score": 0.05955032289516654,
       "higher_better": false
     },
     {
@@ -141,7 +141,7 @@
       "N": 60,
       "density": 0.4675,
       "task": "parity_d3",
-      "score": 0.8758888888888889,
+      "score": 0.8800000000000001,
       "higher_better": true
     },
     {
@@ -150,7 +150,7 @@
       "N": 60,
       "density": 0.4675,
       "task": "noisy_parity_d3",
-      "score": 0.5049999999999999,
+      "score": 0.497,
       "higher_better": true
     },
     {
@@ -159,7 +159,7 @@
       "N": 60,
       "density": 0.4675,
       "task": "logistic_r3.7",
-      "score": 9.246304968227187e-05,
+      "score": 0.00012129511120846179,
       "higher_better": false
     },
     {
@@ -168,7 +168,7 @@
       "N": 60,
       "density": 0.4675,
       "task": "double_pole_p0.9_m0.5",
-      "score": 0.01821178496124726,
+      "score": 0.01816905021559223,
       "higher_better": true
     },
     {
@@ -177,7 +177,7 @@
       "N": 60,
       "density": 0.4675,
       "task": "narma10",
-      "score": 0.060299136669891874,
+      "score": 0.06102665680584899,
       "higher_better": false
     },
     {
@@ -186,7 +186,7 @@
       "N": 60,
       "density": 0.49916666666666665,
       "task": "parity_d3",
-      "score": 0.8758888888888889,
+      "score": 0.8800000000000001,
       "higher_better": true
     },
     {
@@ -195,7 +195,7 @@
       "N": 60,
       "density": 0.49916666666666665,
       "task": "noisy_parity_d3",
-      "score": 0.5008888888888889,
+      "score": 0.4996666666666667,
       "higher_better": true
     },
     {
@@ -204,7 +204,7 @@
       "N": 60,
       "density": 0.49916666666666665,
       "task": "logistic_r3.7",
-      "score": 9.107416380594537e-05,
+      "score": 0.00011347547155037384,
       "higher_better": false
     },
     {
@@ -213,7 +213,7 @@
       "N": 60,
       "density": 0.49916666666666665,
       "task": "double_pole_p0.9_m0.5",
-      "score": 0.015171931065688964,
+      "score": 0.0150396811205528,
       "higher_better": true
     },
     {
@@ -222,7 +222,7 @@
       "N": 60,
       "density": 0.49916666666666665,
       "task": "narma10",
-      "score": 0.06573847469185053,
+      "score": 0.06266568385556973,
       "higher_better": false
     },
     {
@@ -231,7 +231,7 @@
       "N": 60,
       "density": 0.3080555555555556,
       "task": "parity_d3",
-      "score": 0.8758888888888889,
+      "score": 0.8800000000000001,
       "higher_better": true
     },
     {
@@ -240,7 +240,7 @@
       "N": 60,
       "density": 0.3080555555555556,
       "task": "noisy_parity_d3",
-      "score": 0.4997777777777779,
+      "score": 0.4956666666666667,
       "higher_better": true
     },
     {
@@ -249,7 +249,7 @@
       "N": 60,
       "density": 0.3080555555555556,
       "task": "logistic_r3.7",
-      "score": 9.603600705100709e-05,
+      "score": 0.00012477225010698248,
       "higher_better": false
     },
     {
@@ -258,7 +258,7 @@
       "N": 60,
       "density": 0.3080555555555556,
       "task": "double_pole_p0.9_m0.5",
-      "score": 0.014980998149361378,
+      "score": 0.0150044107087938,
       "higher_better": true
     },
     {
@@ -267,7 +267,7 @@
       "N": 60,
       "density": 0.3080555555555556,
       "task": "narma10",
-      "score": 0.06647485063606792,
+      "score": 0.06645446787641082,
       "higher_better": false
     },
     {
@@ -276,7 +276,7 @@
       "N": 60,
       "density": 0.10972222222222222,
       "task": "parity_d3",
-      "score": 0.8758888888888889,
+      "score": 0.8800000000000001,
       "higher_better": true
     },
     {
@@ -285,7 +285,7 @@
       "N": 60,
       "density": 0.10972222222222222,
       "task": "noisy_parity_d3",
-      "score": 0.49755555555555553,
+      "score": 0.49400000000000005,
       "higher_better": true
     },
     {
@@ -294,7 +294,7 @@
       "N": 60,
       "density": 0.10972222222222222,
       "task": "logistic_r3.7",
-      "score": 0.00010475836181847099,
+      "score": 9.630435434702891e-05,
       "higher_better": false
     },
     {
@@ -303,7 +303,7 @@
       "N": 60,
       "density": 0.10972222222222222,
       "task": "double_pole_p0.9_m0.5",
-      "score": 0.013703617670145184,
+      "score": 0.015141017894225589,
       "higher_better": true
     },
     {
@@ -312,13 +312,13 @@
       "N": 60,
       "density": 0.10972222222222222,
       "task": "narma10",
-      "score": 0.0868346394985145,
+      "score": 0.08310108605948553,
       "higher_better": false
     }
   ],
-  "elapsed_s": 4.891512155532837,
+  "elapsed_s": 2.273219347000122,
   "args": {
-    "quick": false,
+    "quick": true,
     "n_nodes": 60,
     "n_seeds": null,
     "out": null
