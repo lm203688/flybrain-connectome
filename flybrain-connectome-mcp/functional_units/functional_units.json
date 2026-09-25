@@ -5445,6 +5445,11 @@
             "name": "odour",
             "type": "sensory.olfactory",
             "required": true
+          },
+          {
+            "name": "histamine_in",
+            "type": "modulatory.histamine",
+            "required": false
           }
         ],
         "out": [
@@ -6845,6 +6850,16 @@
           {
             "name": "valence_in",
             "type": "olfactory.learned_valence",
+            "required": false
+          },
+          {
+            "name": "orexin_in",
+            "type": "modulatory.orexin",
+            "required": false
+          },
+          {
+            "name": "assoc_mem_in",
+            "type": "memory.associative",
             "required": false
           }
         ],
