@@ -8,14 +8,70 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.7.0` | the toolkit as a whole |
+| package | `2.8.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 101 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0 and 2.4.0) |
+| functional-unit library schema | `1.0` | 103 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0 and 2.8.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.8.0] — 2026-09-25
+
+**Two new drosophila-native fly units — motion feedback + dopamine arousal —
+all edges SUPPORTED.**
+
+Two of the last major structural gaps in the fly-side library are now
+wired. Both units are seeded from the SUPPORTED-unused edge list in
+`tmp/probe_v270_candidates.py` (all edges SUPPORTED at type-pair
+resolution, 0 FRAGILE, 0 CONTRADICTED). This is the cleanest batch
+since v1.8.0's fail-closed discipline upgrade.
+
+- `medulla_centripetal_gain_unit` — 5 members, 9 edges, ~4.7M synapses.
+  Captures the T4/T5 → Tm centrifugal feedback loop + LPi → LPLC looming
+  convergence, filling gaps between `compound_lamina_relay_unit` (which
+  stops at Lamina) and `elementary_motion_detection_unit` (which starts
+  inside medulla without lam→medulla), and between
+  `elementary_motion_detection_unit` and `looming_detection_unit`
+  (which had no direct lpi→looming edge).
+- `mushroom_body_dopamine_arousal_unit` — 5 members, 10 edges, ~1.4M
+  synapses. The DAN-centered neuromodulatory hub: KC↔DAN↔MBON loop with
+  APL (dopamine modulator) and OA-VUM (octopamine arousal broadcaster)
+  as the two modulatory arms. Fills the gap between
+  `mushroom_body_associative_memory_unit` (learning) and any arousal
+  unit — the two were never wired together.
+
+Counts: units 101→103, embodied 35→37, declared edges 138→157
+(130 SUPPORTED / 7 FRAGILE / 1 CONTRADICTED → **149 SUPPORTED / 7
+FRAGILE / 1 CONTRADICTED** — all 19 new edges are SUPPORTED, the
+pre-existing CONTRADICTED edge in `central_complex_steering_unit` is
+unchanged).
+
+### Added
+
+- **2 fly units** in `scripts/gen_functional_units.py`:
+  - `medulla_centripetal_gain_unit` (optic_lobe / visual_gain_control)
+  - `mushroom_body_dopamine_arousal_unit` (mushroom_body / neuromodulatory_hub)
+- **`tmp/probe_v280_units.py`** / **`tmp/probe_v280_more.py`** /
+  **`tmp/probe_v280_final.py`** — three probes that found the SUPPORTED
+  edge sets for both units and rejected the initial sleep-wake /
+  octopamine-arousal draft (7/11 CONTRADICTED at SLMV/OA-VUM edges,
+  correctly rejected per fail-closed).
+
+### Verified
+
+- All 19 new edges SUPPORTED at type-pair resolution:
+  - `medulla_centripetal_gain_unit`: 9/9 SUPPORTED (31-362 active pairs
+    per edge, 12.6M total synapses measured)
+  - `mushroom_body_dopamine_arousal_unit`: 10/10 SUPPORTED (15-443
+    active pairs per edge, 1.4M total synapses measured)
+- 0 FRAGILE and 0 CONTRADICTED among the 19 new edges — cleanest
+  fly-side batch since v1.8.0.
+- 10/10 gates PASS with `--with-data` (including the fail-closed
+  injections in Gates 9 and 10).
 
 ---
 
@@ -96,7 +152,7 @@ the loop by:
 
 ### Not changed
 
-- The 101 units, 66 connection types, 81 port types, 57/203 anchored
+- The 103 units, 66 connection types, 81 port types, 57/203 anchored
   profiles — no changes to the unit library itself in v2.7.0. This is
   a diagnostics-only release.
 - The `bio_motif` baseline is still the v1.x module_rep-level design.
