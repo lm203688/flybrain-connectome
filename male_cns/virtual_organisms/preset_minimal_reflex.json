@@ -3,7 +3,7 @@
   "organism": {
     "schema_version": "1.2.1",
     "kind": "virtual_organism",
-    "generated_utc": "2026-09-24T14:38:27.172937+00:00",
+    "generated_utc": "2026-09-25T02:13:42.148808+00:00",
     "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
     "spec": {
       "n_modules": 2,
@@ -52,7 +52,7 @@
         ],
         "note": "Cross-module edge ratio upper bound. Lower = more isolated. Set by design intent; verified by _verify.py stability check."
       },
-      "generated_utc": "2026-09-24T14:38:27.172967+00:00",
+      "generated_utc": "2026-09-25T02:13:42.148837+00:00",
       "schema_version": "1.2.0"
     },
     "module_profiles": {
@@ -257,8 +257,8 @@
       },
       "dataprov:metadata": {
         "version": "3.0",
-        "created": "2026-09-24T14:38:27.173006Z",
-        "lastModified": "2026-09-24T14:38:27.173293Z",
+        "created": "2026-09-25T02:13:42.148886Z",
+        "lastModified": "2026-09-25T02:13:42.149249Z",
         "rootEntityId": "flybrain_organism",
         "description": "Virtual organism synthesized from MaleCNS v1.0 motifs; blueprints: fast_reflex",
         "initialSource": "https://flycellatlas.org/male_cns",
@@ -284,16 +284,16 @@
       },
       "activity": {
         "activity:step_1": {
-          "prov:startedAtTime": "2026-09-24T14:38:27.173021+00:00",
+          "prov:startedAtTime": "2026-09-25T02:13:42.148900+00:00",
           "dataprov:operation": "blueprint_motif_extraction",
-          "prov:endedAtTime": "2026-09-24T14:38:28.173028+00:00",
+          "prov:endedAtTime": "2026-09-25T02:13:43.148909+00:00",
           "dataprov:arguments": "--blueprint=fast_reflex --motif=none --motif-body=None --is-bio-prior=False",
           "dataprov:drl": 4
         },
         "activity:step_2": {
-          "prov:startedAtTime": "2026-09-24T14:38:28.173238+00:00",
+          "prov:startedAtTime": "2026-09-25T02:13:43.149181+00:00",
           "dataprov:operation": "virtual_organism_synthesis",
-          "prov:endedAtTime": "2026-09-24T14:38:30.173242+00:00",
+          "prov:endedAtTime": "2026-09-25T02:13:45.149188+00:00",
           "dataprov:arguments": "--n-modules=2 --blueprint=fast_reflex",
           "dataprov:drl": 6
         }
