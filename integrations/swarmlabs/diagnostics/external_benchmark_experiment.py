@@ -92,12 +92,17 @@ def mse(a, b):
 # --------------------------------------------------------------------------- #
 # Task 1: binary parity — XOR of last 3 input bits
 # --------------------------------------------------------------------------- #
-def task_binary_parity(W, T=1500, n_seeds=5, alpha=1e-3):
-    """XOR of 3-bit window. Higher accuracy is better."""
+def task_binary_parity(W, T=1500, n_seeds=5, alpha=1e-3, seed_offset=0):
+    """XOR of 3-bit window. Higher accuracy is better.
+
+    seed_offset: additive base seed, so callers (e.g. significance runner)
+    can force independent RNG streams across repeats of the same task.
+    """
     delay = 3
     accs = []
     for s in range(n_seeds):
-        rng = np.random.default_rng(20260925 + s * 17)
+        base = 20260925 + seed_offset
+        rng = np.random.default_rng(base + s * 17)
         bits = (rng.random(T + delay) > 0.5).astype(float)
         # X_t = bits[t], target y_t = XOR(bits[t], bits[t-1], bits[t-2])
         X = bits[:-1].reshape(-1, 1)                       # length T-1
@@ -108,7 +113,7 @@ def task_binary_parity(W, T=1500, n_seeds=5, alpha=1e-3):
         # reservoir on full X, then align: S[i-delay] predicts y[i]
         # we want S[t] to predict y[t+delay], so use S[:-delay] against y[delay:]
         # equivalently: use y[delay:] as target and S[:-delay] as source
-        S = run_reservoir_full(W, X, seed=20260925 + s * 101)
+        S = run_reservoir_full(W, X, seed=base + s * 101)
         if S is None:
             continue
         # aligned pair: source S[:len(y)-delay], target y[delay:]
@@ -129,12 +134,13 @@ def task_binary_parity(W, T=1500, n_seeds=5, alpha=1e-3):
 # --------------------------------------------------------------------------- #
 # Task 2: noisy parity — same as parity but input has Gaussian noise
 # --------------------------------------------------------------------------- #
-def task_noisy_parity(W, T=1500, n_seeds=5, noise_std=0.4, alpha=1e-3):
+def task_noisy_parity(W, T=1500, n_seeds=5, noise_std=0.4, alpha=1e-3, seed_offset=0):
     """Noisy parity — noise injection tests robustness."""
     delay = 3
     accs = []
     for s in range(n_seeds):
-        rng = np.random.default_rng(20260925 + s * 31)
+        base = 20260925 + seed_offset
+        rng = np.random.default_rng(base + s * 31)
         raw = (rng.random(T + delay) > 0.5).astype(float) * 2 - 1
         noisy = raw + rng.normal(0, noise_std, size=T + delay)
         X = noisy[:-1].reshape(-1, 1)
@@ -142,7 +148,7 @@ def task_noisy_parity(W, T=1500, n_seeds=5, noise_std=0.4, alpha=1e-3):
         y = np.zeros(len(noisy) - 1)
         for i in range(delay - 1, len(noisy) - 1):
             y[i] = np.sign(noisy[i]) * np.sign(noisy[i - 1]) * np.sign(noisy[i - 2])
-        S = run_reservoir_full(W, X, seed=20260925 + s * 101)
+        S = run_reservoir_full(W, X, seed=base + s * 101)
         if S is None:
             continue
         y_aligned = y[delay:]
@@ -161,13 +167,14 @@ def task_noisy_parity(W, T=1500, n_seeds=5, noise_std=0.4, alpha=1e-3):
 # --------------------------------------------------------------------------- #
 # Task 3: logistic map prediction (chaotic time series)
 # --------------------------------------------------------------------------- #
-def task_logistic_predict(W, T=1500, n_seeds=5, alpha=1e-3, r=3.7):
+def task_logistic_predict(W, T=1500, n_seeds=5, alpha=1e-3, r=3.7, seed_offset=0):
     """Predict x_{t+1} from current x via chaotic logistic map (standard form).
     x_{t+1} = r * x_t * (1 - x_t), r=3.7 chaotic.
     Lower MSE is better; textbook random target typically 0.02-0.1."""
     mses = []
     for s in range(n_seeds):
-        rng = np.random.default_rng(20260925 + s * 43)
+        base = 20260925 + seed_offset
+        rng = np.random.default_rng(base + s * 43)
         x = np.zeros(T + 2)
         x[0] = rng.random() * 0.9 + 0.05
         for t in range(1, T + 2):
@@ -175,7 +182,7 @@ def task_logistic_predict(W, T=1500, n_seeds=5, alpha=1e-3, r=3.7):
         # X_t = x[t], y_t = x[t+1]
         X = x[:-1].reshape(-1, 1)
         y = x[1:]  # shifted by 1
-        S = run_reservoir_full(W, X, seed=20260925 + s * 101)
+        S = run_reservoir_full(W, X, seed=base + s * 101)
         if S is None:
             continue
         # S[t] is the state after processing X[t] = x[t], so S[t] ↔ y[t] = x[t+1]
@@ -192,7 +199,7 @@ def task_logistic_predict(W, T=1500, n_seeds=5, alpha=1e-3, r=3.7):
 # --------------------------------------------------------------------------- #
 # Task 4: double-pole LP filter identification
 # --------------------------------------------------------------------------- #
-def task_double_pole(W, T=1500, n_seeds=5, alpha=1e-3, r1=0.9, r2=-0.5):
+def task_double_pole(W, T=1500, n_seeds=5, alpha=1e-3, r1=0.9, r2=-0.5, seed_offset=0):
     """Identify a stable 2nd-order recurrence with two poles r1, r2:
         y[t] = -(r1+r2) * y[t-1] + r1*r2 * y[t-2] + x[t]
     For r1=0.9, r2=-0.5 this becomes y[t] = 0.4*y[t-1] + 0.45*y[t-2] + x[t],
@@ -201,7 +208,8 @@ def task_double_pole(W, T=1500, n_seeds=5, alpha=1e-3, r1=0.9, r2=-0.5):
     a2 = r1 * r2
     mses = []
     for s in range(n_seeds):
-        rng = np.random.default_rng(20260925 + s * 59)
+        base = 20260925 + seed_offset
+        rng = np.random.default_rng(base + s * 59)
         x_in = rng.normal(0, 1, T)
         y = np.zeros(T)
         for t in range(2, T):
@@ -213,7 +221,7 @@ def task_double_pole(W, T=1500, n_seeds=5, alpha=1e-3, r1=0.9, r2=-0.5):
         X[:, 2] = x_in[2:]
         # target: y[2:]
         y_target = y[2:]
-        S = run_reservoir_full(W, X, seed=20260925 + s * 101)
+        S = run_reservoir_full(W, X, seed=base + s * 101)
         if S is None:
             continue
         cut = int(len(S) * 0.6)
