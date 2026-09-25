@@ -54,7 +54,7 @@ from external_benchmark_experiment import (  # noqa: E402
 # --------------------------------------------------------------------------- #
 # New task: NARMA-10 (nonlinear dynamics, memory-dependent)
 # --------------------------------------------------------------------------- #
-def task_narma10(W, T=1500, n_seeds=5, alpha=1e-3):
+def task_narma10(W, T=1500, n_seeds=5, alpha=1e-3, seed_offset=0):
     """NARMA-10 nonlinear dynamical system — 10-tap delayed nonlinear mapping.
 
     y[t] = 0.3*y[t-1] - 0.05*y[t-1]*x[t+1]*x[t+2] + x[t] + 1.5*x[t]
@@ -63,10 +63,13 @@ def task_narma10(W, T=1500, n_seeds=5, alpha=1e-3):
     Standard benchmark for reservoir memory depth. The nonlinearity couples
     the current output to future inputs, so the reservoir must store recent
     x values (up to t+2 ahead) to predict y[t]. Lower MSE is better.
+
+    seed_offset: additive base seed for independent RNG streams.
     """
     mses = []
     for s in range(n_seeds):
-        rng = np.random.default_rng(20260925 + s * 101)
+        base = 20260925 + seed_offset
+        rng = np.random.default_rng(base + s * 101)
         # x_in[i] corresponds to the input at reservoir time i
         x_in = rng.uniform(-2, 2, T + 10)
         # y_out[i] is the target at reservoir time i
@@ -76,7 +79,7 @@ def task_narma10(W, T=1500, n_seeds=5, alpha=1e-3):
                         - 0.05 * y_out[i - 1] * x_in[i + 1] * x_in[i + 2]
                         + x_in[i] + 1.5 * x_in[i])
         X = x_in[:T].reshape(-1, 1)  # input at reservoir time t is x_in[t]
-        S = run_reservoir_full(W, X, seed=20260925 + s * 7)
+        S = run_reservoir_full(W, X, seed=base + s * 7)
         if S is None:
             continue
         cut = int(len(S) * 0.6)
