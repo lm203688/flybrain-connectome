@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.13.0` | the toolkit as a whole |
+| package | `2.14.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,47 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.14.0] — 2026-09-26
+
+### 项目"效果增益"结论元分析
+
+新增 `diagnostic_meta_analyzer.py` + `claims_audit.json` + `CLAIMS_LEDGER.md`：
+跨 v2.10.0-v2.13.0 累计 4 个结果 JSON，抽取 103 条对比 / 94 条含统计，
+按 SIGNIFICANCE_REPORT 标准统一分类（real/trend/no_effect/indistinguishable）
+并做 Bonferroni 多重比较校正。
+
+**核心统计**：
+- 6 real_gain / 6 real_loss（含 v2.12 元数据不一致的 4 条降级）
+- **仅 5 条 Bonferroni 存活**（全部来自 v2.10.0 n_seeds=50）
+  - 3 real_gain：textbook_random / random_matched / single_unit_best
+    在 NARMA-10 上均显著优于 bio_motif（d=−0.60 到 −1.40）
+  - 2 real_loss：textbook_random / single_unit_best 在 double_pole 上
+    显著劣于 bio_motif（d=+0.57 到 +1.72）
+- **样本偏差教训第 4 次验证**：v2.12.0 的 4 条 REAL_GAIN（n=5,
+  d≈1.5, p=0.008-0.018）在 Bonferroni α=0.0021 下全部不通过
+- **诚实登记 v2.12.0 元数据不一致**：TOPOLOGY_CAPACITY_REPORT 叙述
+  "n_seeds=10 完整跑"但结果 JSON 实际是 n_seeds=5；
+  已在本版本报告顶部加诚实性注记
+
+**元结论**（由 4 次撤回事件总结的 5 条元规则）：
+1. n_seeds≥15 是最低门槛
+2. Bonferroni 校正是发表级硬约束
+3. |d|≥0.5 + p<0.05 双阈值缺一不可
+4. 单任务结论不能推广
+5. 方法学 bug 比结论错更严重
+
+### 文件
+
+- New: `integrations/swarmlabs/diagnostics/diagnostic_meta_analyzer.py`
+- New: `integrations/swarmlabs/diagnostics/claims_audit.json`
+- New: `integrations/swarmlabs/diagnostics/CLAIMS_LEDGER.md`
+- Modified: `integrations/swarmlabs/diagnostics/TOPOLOGY_CAPACITY_REPORT.md`
+  （顶部加元数据不一致注记）
+- 版本升级 2.13.0 → 2.14.0 in pyproject.toml / flybrain_cli.py /
+  mcp_connectome/server.py / mcp_connectome/api_server.py
 
 ---
 
