@@ -1,10 +1,10 @@
-# v2.14.0 Claims Ledger — 项目"效果增益"结论元分析
+# v2.15.0 Claims Ledger — 项目"效果增益"结论元分析
 
-> **定位**：从 v2.5.0 到 v2.13.0 累计 9 轮实验，产生了 103 条对比、
-> 94 条含统计检验、5 条严格 Bonferroni 存活、4 次样本偏差撤回。
+> **定位**：从 v2.5.0 到 v2.15.0 累计 10 轮实验，产生了 119 条对比、
+> 110 条含统计检验、**7 条严格 Bonferroni 存活**、5 次样本偏差撤回。
 > 这份 ledger 是项目**诚实性护城河**的单一权威来源，供审计 / 引用 / 争议判定使用。
 
-**机器可读版本**：`claims_audit.json`（由 `diagnostic_meta_analyzer.py` 从 4 个结果 JSON 自动生成）
+**机器可读版本**：`claims_audit.json`（由 `diagnostic_meta_analyzer.py` 从 5 个结果 JSON 自动生成）
 
 ---
 
@@ -31,11 +31,16 @@
 | v2.11.0 | connectivity_topology_efficiency | 9 | 15 | *ranking only* | *ranking only* | — | — |
 | v2.12.0 | topology_capacity | 48 | **5** ⚠️ | 2 | 2 | — | — |
 | v2.13.0 | tree_fanout_variants | 16 | 10 | 1 | 1 | — | — |
-| **合计** | | **103** | | **6** | **6** | **27** | **58** |
+| **v2.15.0** | **tree_fanout_variants_n50** | **16** | **50** | **2** | **0** | — | — |
+| **合计** | | **119** | | **7** | **5** | **27** | **68** |
 
-**Bonferroni 校正后仅剩 5 条**：
-- 3 条 real_gain（全部来自 v2.10.0 n=50，NARMA-10 上）
-- 2 条 real_loss（全部来自 v2.10.0 n=50，double_pole 上）
+**Bonferroni 校正后 7 条**：
+- 3 条 real_gain（v2.10.0 n=50，NARMA-10 上：textbook_random / random_matched /
+  single_unit_best 全 > bio_motif）
+- 2 条 real_loss（v2.10.0 n=50，double_pole 上：textbook_random / single_unit_best
+  全 < bio_motif）
+- **2 条 real_gain（v2.15.0 n=50，NARMA-10 上：extended_chain 显著 WORSE vs
+  tree_fanout_ref at N=60 和 N=200）**
 
 **v2.12.0 的 4 条 real_gain/real_loss 全部未通过 Bonferroni**（因 n_seeds=5，
 α=0.05/24=0.0021，它们 p=0.008-0.018 均超阈值 4-9×）。**样本偏差教训第 4 次验证**。
@@ -118,9 +123,37 @@ TOPOLOGY_CAPACITY_REPORT.md 叙述"n_seeds=10 完整跑"，但 `topology_capacit
 - **wide_tree_fanout 收敛膨胀 23×**（新扩容不稳定因子：OUT port 复用到 3+ 下游）
 - **样本偏差教训第 3 次**：quick 版 d=+1.398 WINNER 在 n=10 后缩到 d=+0.330（效应量缩水 4×）
 
+**⚠️ v2.15.0 后续验证**：本节 4 个方向性结论中 **3 个被 v2.15.0 n=50 撤回**
+（with_inhibition、wide_tree_fanout conv 膨胀、"OUT port 复用是新不稳定因子"）。
+只有 extended_chain WORSE 被 v2.15.0 确认。详见 TREE_FANOUT_N50_CONFIRMATION_REPORT.md。
+
+### v2.15.0 · tree_fanout_variants_n50（n_seeds=50，5 变体 × N=60/200）
+
+**P0 确认实验**：v2.13.0 后 5 倍样本量验证 4 个方向性信号。
+
+| 对比 | metric | d | p | verdict | Bonferroni α=0.00625 |
+|------|--------|---|---|---------|---------------------|
+| extended_chain N=60 vs ref | NARMA-10 | −0.560 | 0.0051 | **real_gain** (chain 更差) | ✅ **通过** |
+| extended_chain N=200 vs ref | NARMA-10 | −0.928 | 3e-06 | **real_gain** (chain 更差) | ✅ **通过** |
+| with_inhibition N=60 vs ref | NARMA-10 | +0.077 | 0.698 | no_effect | ❌ |
+| with_inhibition N=200 vs ref | NARMA-10 | −0.137 | 0.494 | no_effect | ❌ |
+| with_feedback N=60 vs ref | NARMA-10 | −0.078 | 0.695 | no_effect | ❌ |
+| with_feedback N=200 vs ref | NARMA-10 | −0.189 | 0.345 | no_effect | ❌ |
+| wide_5_downstream N=60 vs ref | NARMA-10 | +0.227 | 0.256 | no_effect | ❌ |
+| wide_5_downstream N=200 vs ref | NARMA-10 | −0.123 | 0.539 | no_effect | ❌ |
+
+**核心发现**：
+- ✅ **extended_chain WORSE 是发表级证据**（N=60 和 N=200 双尺寸都通过 Bonferroni）
+- ❌ **with_inhibition 方向完全撤回**：d 从 v2.13.0 的 +0.33 缩到 +0.077（**4.3×**）
+- ❌ **wide_tree_fanout conv 膨胀撤回**：v2.13.0 说膨胀 23×，n=50 实测 Δ 仅 +0.4%
+- ⚠️ **with_feedback 是真正稳健的变体**（MSE +2.6%, conv +1.7% 双维度 <5%）
+- **没有任何变体在 NARMA-10 上显著超越 ref**——tree_fanout_ref 是组合拓扑局部最优
+
+**样本偏差教训第 5 次**：v2.13.0 n=10 的 4 个方向性结论中 3 个被 n=50 撤回。
+
 ---
 
-## 四、样本偏差教训完整链路（4 次撤回）
+## 四、样本偏差教训完整链路（5 次撤回）
 
 | 撤回事件 | 原声明 | 撤回原因 | 证据强度变化 |
 |----------|--------|----------|--------------|
@@ -129,13 +162,15 @@ TOPOLOGY_CAPACITY_REPORT.md 叙述"n_seeds=10 完整跑"，但 `topology_capacit
 | **v2.10.0 olfactory NARMA-10** | real_gain (p=0.025, d=−0.93) | n=15 → 50 后 p=0.143 d=−0.302 | d 缩水 3× |
 | **v2.12.0 tree/hierarchical vs gustatory** | real_gain (d≈1.5, p<0.02) | n=5 Bonferroni α=0.0042 未通过 | 效应量级不足以定案 |
 | **v2.13.0 with_inhibition quick WINNER** | real_gain (d=+1.4, p=0.027) | n=5 → 10 后 d=+0.33 p=0.460 | d 缩水 4× |
+| **v2.15.0 with_inhibition 撤回** | trend_gain (d=+0.33, p=0.46) | n=10 → 50 后 d=+0.077 p=0.698 | d 缩水 4.3× |
 
-**共同模式**：**n_seeds≤5 的 d≈1.5 REAL_GAIN 全部是样本偏差幻觉**。
-**判定规则**：**只有 n_seeds≥15 + Bonferroni 存活的对比才进 ledger 主表**。
+**共同模式**：**n_seeds≤10 的 d≈0.3-1.5 REAL_GAIN / TREND_GAIN 全部是样本偏差幻觉**。
+**判定规则**：**只有 n_seeds≥20 + Bonferroni 存活的对比才进 ledger 主表**
+（v2.14.0 的 n_seeds≥15 门槛已被 v2.15.0 证明不足）。
 
 ---
 
-## 五、通过严格 Bonferroni 校正的 5 条证据
+## 五、通过严格 Bonferroni 校正的 7 条证据
 
 按效应量排序：
 
@@ -146,15 +181,19 @@ TOPOLOGY_CAPACITY_REPORT.md 叙述"n_seeds=10 完整跑"，但 `topology_capacit
 | 3 | single_unit_best vs bio_motif | NARMA-10 | 0.0603 vs 0.0666 | 0.0016 | −0.630 | 50 |
 | 4 | random_matched vs bio_motif | NARMA-10 | 0.0602 vs 0.0666 | 0.0024 | −0.607 | 50 |
 | 5 | single_unit_best vs bio_motif | double_pole | 0.0184 vs 0.0131 | 0.0042 | +0.573 | 50 |
+| 6 | extended_chain vs tree_fanout_ref (N=60) | NARMA-10 | 0.0676 vs 0.0616 | 0.0051 | −0.560 | 50 |
+| 7 | extended_chain vs tree_fanout_ref (N=200) | NARMA-10 | 0.0701 vs 0.0588 | 0.000003 | −0.928 | 50 |
 
-**唯一"发表级"结论**：
+**"发表级"结论**：
 
 1. **NARMA-10（序列预测）上，生物结构 bio_motif 输给所有非生物结构**（3 个对照全部显著赢）
 2. **double_pole（memory/振荡）上，bio_motif 显著赢**（2 个对照全部显著输）
 3. **noisy_parity / logistic 上 bio_motif 与非生物结构无差异**
+4. **组合层：tree_fanout + 下游链式延展（extended_chain）显著 WORSE**（双尺寸通过 Bonferroni）
 
 **这是本项目"计算 vs 生物"结论的最强证据**——**生物不是万能的**，
 在通用学习（NARMA-10）上输给随机；但在特定 memory 任务（double_pole）上占优。
+**组合层复现**：树状广播 + 链式延展混合拓扑显著不如纯树状广播。
 
 ---
 
@@ -187,13 +226,19 @@ TOPOLOGY_CAPACITY_REPORT.md 叙述"n_seeds=10 完整跑"，但 `topology_capacit
 
 ## 七、元结论：什么样的证据才能站得住
 
-**5 条元规则**（由 4 次撤回事件总结）：
+**5 条元规则**（由 5 次撤回事件总结）：
 
-1. **n_seeds≥15 是最低门槛**（v2.7.0 → v2.10.0 反复验证）
+1. **n_seeds≥20 是最低门槛**（v2.7.0 → v2.15.0 反复验证；v2.14.0 的
+   n_seeds≥15 门槛被 v2.15.0 证明不足）
 2. **Bonferroni 校正是发表级硬约束**（v2.12.0 4 条 real_gain 全被剔除）
 3. **|d|≥0.5 + p<0.05 双阈值缺一不可**（v2.13.0 d=0.33 就算 p=0.46 也不能算"趋势"）
 4. **单任务结论不能推广**（v2.5.0 只看 delay-line 就宣称 memory，被 v2.6.0 推翻）
 5. **方法学 bug 比结论错更严重**（v2.5.0 rank bug 让整批结论失效）
+
+**新元规则（v2.15.0 补充）**：
+> **"n=10 的 d=+0.33 不是趋势，是幻觉"**——n_seeds=10 的中等效应量在 n_seeds=50
+> 下几乎总是缩水到 <0.15。任何 n_seeds<20 的 d<0.6 REAL_GAIN 都视为**探索性**，
+> 不作为方向性结论推广。
 
 ### 项目诚实边界声明
 
