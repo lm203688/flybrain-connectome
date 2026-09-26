@@ -3,7 +3,16 @@
 **日期**：2026-09-26
 **版本**：flybrain-connectome v2.12.0
 **脚本**：`integrations/swarmlabs/diagnostics/topology_capacity_experiment.py`
-**数据**：`topology_capacity_results.json`（10 seeds × 2 sizes × 7 compositions）
+**数据**：`topology_capacity_results.json`（**n_seeds=5** × 2 sizes × 7 compositions）
+
+> ⚠️ **v2.14.0 元分析注记（CLAIMS_LEDGER.md）**：
+> 本报告初稿叙述为"n_seeds=10 完整跑"，但结果 JSON 的
+> `n_seeds_per_metric=5` 且所有对比的 `n_a=5`，**实际只入库了 quick 版数据**。
+> 报告的方向性结论（tree_fanout 稳健、converging_funnel 退化、
+> hierarchical/reciprocal 收敛膨胀）在 n=5 数据上仍成立，但**所有 REAL_GAIN
+> 均不通过 Bonferroni 校正**（α=0.0042，实际 p=0.008-0.018）。
+> 详见 CLAIMS_LEDGER.md "v2.12.0 元数据不一致" 段。
+
 
 ---
 
