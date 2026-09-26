@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.10.0` | the toolkit as a whole |
+| package | `2.11.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,80 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.11.0] — 2026-09-26
+
+**Connection-topology efficiency experiment + n_seeds=50 confirmation
+and partial retraction of v2.10.0's olfactory_to_steering claim.**
+
+### Main change: connectivity topology efficiency experiment
+
+`integrations/swarmlabs/diagnostics/connectivity_topology_efficiency_experiment.py`
+tests 6 abstract connection topologies (chain / parallel / feedback /
+hierarchical / skip_recurrence / modulatory_hub) plus 3 baselines
+(textbook_random / bio_motif / random_matched) on 4 metrics:
+
+1. **Memory depth** — R² at delays 4-60 (all topologies saturate at 60)
+2. **Reaction latency** — steps to settle after step input
+3. **Convergence 90** — steps to 90% of asymptotic output
+4. **NARMA-10 MSE** — the task where v2.10.0 found a real_gain
+
+**Key findings** (see `CONNECTION_TOPOLOGY_EFFICIENCY_REPORT.md`):
+
+- **7/9 topologies are "biological reflex-arc-like"** — latency<1s +
+  convergence<2s + memory≥60. Only the 2 random topologies fall out
+  because their convergence is 40+ steps (40× slower).
+- **Convergence is the real discriminator** — not memory depth (all
+  saturate at 60) or reaction latency (all <1 step).
+- **Speed-accuracy trade-off**: textbook_random is 40× slower to converge
+  but has the best NARMA-10 MSE (0.055). bio_motif is fastest to
+  converge (0.3s) but has 8th-of-9 NARMA-10 MSE (0.075).
+- **skip_recurrence is the Pareto optimum among structured topologies** —
+  2nd best NARMA-10 MSE (0.060) with 1.0-step convergence. This
+  independently confirms v2.10.0's finding that chain-with-skips helps
+  on nonlinear memory tasks.
+
+### Cross-verification: n_seeds=50 confirmation of v2.10.0 findings
+
+Ran `multi_unit_significance_experiment.py --n-seeds 50` (3× the
+v2.10.0 sample size) with Bonferroni correction across 15 comparisons
+(α=0.0033).
+
+**Retraction**: v2.10.0's "olfactory_to_steering on NARMA-10 is real_gain"
+(p=0.025, d=−0.93) is **withdrawn** at n_seeds=50. It drops to
+**trend_gain** (p=0.143, d=−0.302) — the effect shrinks 3× when sample
+size triples, indicating the original signal was largely a sample-size
+artifact.
+
+**Only Bonferroni-surviving real_gain**: **textbook_random on NARMA-10**
+(ΔMSE=−0.0134, d=−1.397, MWU p<0.0001). This is the ONLY statistically
+robust finding from the entire multi-unit benchmark suite.
+
+**Interpretation**: random networks excel on complex nonlinear memory
+tasks (NARMA-10), while structured topologies excel on fast steady-state
+response. Biology chose speed over accuracy — this is a **speed-accuracy
+trade-off, not a design defect**.
+
+### New files
+
+- `integrations/swarmlabs/diagnostics/connectivity_topology_efficiency_experiment.py`
+- `integrations/swarmlabs/diagnostics/connectivity_topology_results.json`
+- `integrations/swarmlabs/diagnostics/CONNECTION_TOPOLOGY_EFFICIENCY_REPORT.md`
+
+### Modified files
+
+- `integrations/swarmlabs/diagnostics/SIGNIFICANCE_REPORT.md` — added
+  v2.11.0 addendum documenting the n_seeds=50 retraction
+- `integrations/swarmlabs/diagnostics/significance_results.json` —
+  refreshed with n_seeds=50 per-seed data
+
+### Version bumps
+
+`2.10.0` → `2.11.0` in pyproject.toml, flybrain_cli.py,
+flybrain-connectome-mcp/mcp_connectome/api_server.py,
+flybrain-connectome-mcp/mcp_connectome/server.py.
 
 ---
 

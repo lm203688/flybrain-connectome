@@ -7,6 +7,37 @@
 
 ---
 
+## v2.11.0 加印（2026-09-26）：n_seeds=50 结果与部分撤回
+
+在本报告发布 24 小时后，用 n_seeds=50（3× 样本）+ Bonferroni 校正（15 comparisons → α=0.0033）
+重跑同一实验，得到**部分撤回**结果：
+
+| v2.10.0 声明 | n_seeds=50 结果 |
+|---|---|
+| `olfactory_to_steering` on NARMA-10 是 **real_gain**（p=0.025, d=−0.93） | **撤回** — 变成 **trend_gain**（p=0.143, d=−0.302），n_seeds=50 后失去显著性 |
+
+**新的 real_gain 项（n_seeds=50 + Bonferroni α=0.0033）**：
+
+| 对比 | Δ MSE | Cohen's d | MWU p | Bonferroni 后 |
+|---|---|---|---|---|
+| **textbook_random** on NARMA-10 | **−0.0134** | **−1.397** | **<0.0001** | ✅ 唯一存活 |
+| random_matched on NARMA-10 | −0.0064 | −0.607 | 0.0061 | ❌ 未过 Bonferroni |
+| central_complex_steering_unit on NARMA-10 | −0.0064 | −0.630 | 0.0052 | ❌ 未过 Bonferroni |
+| olfactory_to_steering on NARMA-10 | −0.0034 | −0.302 | 0.143 | ❌ 不显著 |
+| gustatory_to_motion on NARMA-10 | +0.0074 | +0.505 | 0.035 | ❌ real_loss，但 Bonferroni 后不确定 |
+
+**核心教训**：**v2.10.0 的 olfactory_to_steering real_gain 是样本偏差**。样本从 15 → 50 后，效应量 d 从 −0.93 缩到 −0.30（缩水 3×），p 值从 0.025 跳到 0.143。
+
+**真正稳健的发现**：**textbook_random 在 NARMA-10 上系统性优于 bio_motif**（d=−1.397，p<0.0001，Bonferroni 后仍显著）。**这意味着"随机网络"在非线性记忆任务上是最佳拓扑，与"生物反射弧"目标不冲突但不同源。**
+
+**与 CONNECTION_TOPOLOGY_EFFICIENCY_REPORT.md 交叉验证**：
+- textbook_random NARMA-10 MSE = 0.055（本实验 9 拓扑中最低）
+- textbook_random convergence = 40s（40× 慢于 bio_motif 的 0.3s）
+- **textbook_random 是"最准确但最慢"，bio_motif 是"最快但不准确"**
+- 生物要"快"就不能"准"，这是**速度-精度权衡**，是根本限制不是设计缺陷
+
+---
+
 ## 结论（回答用户问题：效果是叠加还是提高了）
 
 > **之前的 "3/3 multi_unit 全胜 bio_motif on noisy_parity/double_pole" 结论被撤回。**

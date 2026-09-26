@@ -1,0 +1,438 @@
+{
+  "args": {
+    "quick": false,
+    "n_nodes": 60,
+    "n_seeds": 15,
+    "out": null
+  },
+  "n_nodes": 60,
+  "n_seeds": 15,
+  "elapsed_s": 5.254766464233398,
+  "results": {
+    "feedforward_chain": {
+      "memory_curve": {
+        "4": 0.9999644423359875,
+        "8": 0.9999638278223163,
+        "12": 0.9999643169932749,
+        "16": 0.9999701358824373,
+        "20": 0.9999706238766872,
+        "30": 0.9999734996175585,
+        "40": 0.9999793999164869,
+        "60": 0.9999782147905661
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.26666666666666666,
+      "convergence_90": 1.0,
+      "narma10_mse": 0.06838013813299612,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    "feedforward_parallel": {
+      "memory_curve": {
+        "4": 0.9999709340791773,
+        "8": 0.9999712117254985,
+        "12": 0.9999684730387169,
+        "16": 0.9999738869712854,
+        "20": 0.9999755437434386,
+        "30": 0.9999783987829425,
+        "40": 0.9999827476803916,
+        "60": 0.9999822955158614
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.3333333333333333,
+      "convergence_90": 0.6666666666666666,
+      "narma10_mse": 0.07173096193808391,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    "feedback_loop": {
+      "memory_curve": {
+        "4": 0.999965320189603,
+        "8": 0.9999656134593509,
+        "12": 0.9999661473862694,
+        "16": 0.999971981160584,
+        "20": 0.9999719950235413,
+        "30": 0.9999747117417073,
+        "40": 0.9999798018923675,
+        "60": 0.9999796405719734
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.2,
+      "convergence_90": 0.8666666666666667,
+      "narma10_mse": 0.06637224444598794,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    "hierarchical": {
+      "memory_curve": {
+        "4": 0.9999674311040384,
+        "8": 0.9999691005297362,
+        "12": 0.9999667503351896,
+        "16": 0.9999711726909148,
+        "20": 0.9999751045505982,
+        "30": 0.9999768075075341,
+        "40": 0.9999813954662363,
+        "60": 0.9999814117189775
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.2,
+      "convergence_90": 0.8666666666666667,
+      "narma10_mse": 0.07118611006222929,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    "skip_recurrence": {
+      "memory_curve": {
+        "4": 0.9999558010376969,
+        "8": 0.9999568412787824,
+        "12": 0.9999574312981123,
+        "16": 0.9999613792268836,
+        "20": 0.99996621473977,
+        "30": 0.9999702815703858,
+        "40": 0.9999737416962777,
+        "60": 0.9999731340419445
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.3333333333333333,
+      "convergence_90": 0.9333333333333333,
+      "narma10_mse": 0.06001875896963396,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    "modulatory_hub": {
+      "memory_curve": {
+        "4": 0.9999703329058051,
+        "8": 0.99997113179506,
+        "12": 0.9999698250895588,
+        "16": 0.999971817487022,
+        "20": 0.9999754584862283,
+        "30": 0.999977637942444,
+        "40": 0.9999825313106881,
+        "60": 0.9999819339308107
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.2,
+      "convergence_90": 0.7333333333333333,
+      "narma10_mse": 0.0987993957339126,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    "textbook_random": {
+      "memory_curve": {
+        "4": 0.999942134796057,
+        "8": 0.9999454037828394,
+        "12": 0.9999508853266307,
+        "16": 0.9999488477882004,
+        "20": 0.9999563106403049,
+        "30": 0.9999524033526138,
+        "40": 0.9999551431175363,
+        "60": 0.9999604079501928
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.2,
+      "convergence_90": 13.4,
+      "narma10_mse": 0.05515596728012899,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 1,
+        "total": 7,
+        "class": "partial_reflex"
+      }
+    },
+    "bio_motif": {
+      "memory_curve": {
+        "4": 0.9999715583571586,
+        "8": 0.9999702667330239,
+        "12": 0.9999758352824433,
+        "16": 0.9999765425990288,
+        "20": 0.9999778528638742,
+        "30": 0.9999795344193856,
+        "40": 0.9999811673784035,
+        "60": 0.9999803174548864
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.0,
+      "convergence_90": 0.26666666666666666,
+      "narma10_mse": 0.07488258573050928,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    "random_matched": {
+      "memory_curve": {
+        "4": 0.9999648913073538,
+        "8": 0.9999648744690333,
+        "12": 0.9999671212213479,
+        "16": 0.9999712313046161,
+        "20": 0.9999730185573271,
+        "30": 0.9999723376096625,
+        "40": 0.9999750170954568,
+        "60": 0.9999761954945253
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.0,
+      "convergence_90": 13.8,
+      "narma10_mse": 0.060773565246989056,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 1,
+        "total": 7,
+        "class": "partial_reflex"
+      }
+    }
+  },
+  "ranking": [
+    {
+      "label": "skip_recurrence",
+      "memory_curve": {
+        "4": 0.9999558010376969,
+        "8": 0.9999568412787824,
+        "12": 0.9999574312981123,
+        "16": 0.9999613792268836,
+        "20": 0.99996621473977,
+        "30": 0.9999702815703858,
+        "40": 0.9999737416962777,
+        "60": 0.9999731340419445
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.3333333333333333,
+      "convergence_90": 0.9333333333333333,
+      "narma10_mse": 0.06001875896963396,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    {
+      "label": "feedback_loop",
+      "memory_curve": {
+        "4": 0.999965320189603,
+        "8": 0.9999656134593509,
+        "12": 0.9999661473862694,
+        "16": 0.999971981160584,
+        "20": 0.9999719950235413,
+        "30": 0.9999747117417073,
+        "40": 0.9999798018923675,
+        "60": 0.9999796405719734
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.2,
+      "convergence_90": 0.8666666666666667,
+      "narma10_mse": 0.06637224444598794,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    {
+      "label": "feedforward_chain",
+      "memory_curve": {
+        "4": 0.9999644423359875,
+        "8": 0.9999638278223163,
+        "12": 0.9999643169932749,
+        "16": 0.9999701358824373,
+        "20": 0.9999706238766872,
+        "30": 0.9999734996175585,
+        "40": 0.9999793999164869,
+        "60": 0.9999782147905661
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.26666666666666666,
+      "convergence_90": 1.0,
+      "narma10_mse": 0.06838013813299612,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    {
+      "label": "hierarchical",
+      "memory_curve": {
+        "4": 0.9999674311040384,
+        "8": 0.9999691005297362,
+        "12": 0.9999667503351896,
+        "16": 0.9999711726909148,
+        "20": 0.9999751045505982,
+        "30": 0.9999768075075341,
+        "40": 0.9999813954662363,
+        "60": 0.9999814117189775
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.2,
+      "convergence_90": 0.8666666666666667,
+      "narma10_mse": 0.07118611006222929,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    {
+      "label": "feedforward_parallel",
+      "memory_curve": {
+        "4": 0.9999709340791773,
+        "8": 0.9999712117254985,
+        "12": 0.9999684730387169,
+        "16": 0.9999738869712854,
+        "20": 0.9999755437434386,
+        "30": 0.9999783987829425,
+        "40": 0.9999827476803916,
+        "60": 0.9999822955158614
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.3333333333333333,
+      "convergence_90": 0.6666666666666666,
+      "narma10_mse": 0.07173096193808391,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    {
+      "label": "bio_motif",
+      "memory_curve": {
+        "4": 0.9999715583571586,
+        "8": 0.9999702667330239,
+        "12": 0.9999758352824433,
+        "16": 0.9999765425990288,
+        "20": 0.9999778528638742,
+        "30": 0.9999795344193856,
+        "40": 0.9999811673784035,
+        "60": 0.9999803174548864
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.0,
+      "convergence_90": 0.26666666666666666,
+      "narma10_mse": 0.07488258573050928,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    {
+      "label": "modulatory_hub",
+      "memory_curve": {
+        "4": 0.9999703329058051,
+        "8": 0.99997113179506,
+        "12": 0.9999698250895588,
+        "16": 0.999971817487022,
+        "20": 0.9999754584862283,
+        "30": 0.999977637942444,
+        "40": 0.9999825313106881,
+        "60": 0.9999819339308107
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.2,
+      "convergence_90": 0.7333333333333333,
+      "narma10_mse": 0.0987993957339126,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 3,
+        "total": 9,
+        "class": "biological_reflex_like"
+      }
+    },
+    {
+      "label": "textbook_random",
+      "memory_curve": {
+        "4": 0.999942134796057,
+        "8": 0.9999454037828394,
+        "12": 0.9999508853266307,
+        "16": 0.9999488477882004,
+        "20": 0.9999563106403049,
+        "30": 0.9999524033526138,
+        "40": 0.9999551431175363,
+        "60": 0.9999604079501928
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.2,
+      "convergence_90": 13.4,
+      "narma10_mse": 0.05515596728012899,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 1,
+        "total": 7,
+        "class": "partial_reflex"
+      }
+    },
+    {
+      "label": "random_matched",
+      "memory_curve": {
+        "4": 0.9999648913073538,
+        "8": 0.9999648744690333,
+        "12": 0.9999671212213479,
+        "16": 0.9999712313046161,
+        "20": 0.9999730185573271,
+        "30": 0.9999723376096625,
+        "40": 0.9999750170954568,
+        "60": 0.9999761954945253
+      },
+      "effective_memory_depth": 60,
+      "reaction_latency": 0.0,
+      "convergence_90": 13.8,
+      "narma10_mse": 0.060773565246989056,
+      "scores": {
+        "latency_score": 3,
+        "memory_score": 3,
+        "convergence_score": 1,
+        "total": 7,
+        "class": "partial_reflex"
+      }
+    }
+  ]
+}
