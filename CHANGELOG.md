@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.14.0` | the toolkit as a whole |
+| package | `2.15.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,58 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.15.0] — 2026-09-27
+
+### P0 确认实验：tree_fanout_with_inhibition n_seeds=50
+
+执行 CLAIMS_LEDGER.md 唯一 P0 优先级——用 5 倍样本量（n=10→50）验证
+v2.13.0 4 个方向性信号。为支持该 CLI，`tree_fanout_variants_experiment.py`
+新增 `--n-seeds` 参数（向后兼容 `--quick` 与默认 n=10）。
+
+**总耗时**：38 分钟，5 变体 × 2 尺寸 × 50 seeds × 2 度量。
+
+### 关键发现
+
+1. **✅ extended_chain WORSE 是发表级证据**（n=50 Bonferroni α=0.00625 通过）
+   - N=60: d=−0.560, p=0.0051
+   - N=200: d=−0.928, p=3e-06
+   - **本项目第 3-4 个发表级 Bonferroni 结论**
+2. **❌ with_inhibition 方向完全撤回**（样本偏差教训第 5 次）
+   - n=10 d=+0.33 → n=50 d=+0.077（效应量缩水 4.3×）
+   - v2.13.0 "inhibition 是最有希望的组合" 声明撤销
+3. **❌ wide_tree_fanout conv 膨胀撤回**
+   - v2.13.0 说 conv 膨胀 23×（OUT port 复用是"新扩容不稳定因子"）
+   - n=50 实测 conv Δ 仅 +0.4%（完全稳健）
+4. **⚠️ with_feedback 是真正稳健的变体**
+   - MSE +2.6%, conv +1.7% 双维度都 <5% 变化
+   - 对照：inhibition conv +237%（严重退化），ref conv +31%
+5. **没有任何变体在 NARMA-10 上显著超越 tree_fanout_ref**
+   - tree_fanout_ref（3 边基础结构）是组合拓扑局部最优
+
+### Ledger 更新
+
+- CLAIMS_LEDGER.md 更新到 v2.15.0 状态
+- Bonferroni 存活数从 5 → 7（+2 条 extended_chain WORSE）
+- 样本偏差教训链路从 4 次 → 5 次
+- 元规则 1 修正：**n_seeds≥20 是最低门槛**（v2.14.0 的 n≥15 不足）
+- diagnostic_meta_analyzer.py 支持 v2.15.0 数据源
+
+### 文件
+
+- New: `integrations/swarmlabs/diagnostics/TREE_FANOUT_N50_CONFIRMATION_REPORT.md`
+- New: `integrations/swarmlabs/diagnostics/tree_fanout_variants_n50_results.json`
+- Modified: `integrations/swarmlabs/diagnostics/tree_fanout_variants_experiment.py`
+  （新增 `--n-seeds` CLI 参数）
+- Modified: `integrations/swarmlabs/diagnostics/diagnostic_meta_analyzer.py`
+  （SOURCES 加 v2.15.0 源；by_version 加 v2.15.0 桶）
+- Modified: `integrations/swarmlabs/diagnostics/claims_audit.json`
+  （119 rows，7 Bonferroni survivors）
+- Modified: `integrations/swarmlabs/diagnostics/CLAIMS_LEDGER.md`
+- 版本升级 2.14.0 → 2.15.0 in pyproject.toml / flybrain_cli.py /
+  mcp_connectome/server.py / mcp_connectome/api_server.py
 
 ---
 
