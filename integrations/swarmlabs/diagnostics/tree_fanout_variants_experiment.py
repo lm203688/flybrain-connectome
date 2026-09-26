@@ -411,10 +411,15 @@ def main():
     ap = argparse.ArgumentParser()
     ap.add_argument("--quick", action="store_true",
                     help="n_seeds=5 instead of 10")
+    ap.add_argument("--n-seeds", type=int, default=None,
+                    help="override n_seeds (default 10; --quick sets to 5)")
     ap.add_argument("--sizes", default="60,200")
     ap.add_argument("--out", default=None)
     args = ap.parse_args()
-    n_seeds = 5 if args.quick else 10
+    if args.n_seeds is not None:
+        n_seeds = args.n_seeds
+    else:
+        n_seeds = 5 if args.quick else 10
     sizes = tuple(int(x) for x in args.sizes.split(","))
 
     print("=" * 72)
