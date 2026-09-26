@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.12.0` | the toolkit as a whole |
+| package | `2.13.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,85 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.13.0] — 2026-09-26
+
+**Tree-fanout variants experiment: 4 minimal incremental variants of the
+sole-scaling-robust composed topology from v2.12.0. Third retraction of
+a preliminary n_seeds=5 WINNER claim.**
+
+### Main change: 4 tree-fanout variants + reference
+
+`integrations/swarmlabs/diagnostics/tree_fanout_variants_experiment.py`
+extends v2.12.0's `tree_fanout` (1 hub → 3 downstream, the only composed
+topology robust under N=60→200 scaling) with 4 minimal-increment
+variants:
+
+| Variant | Structure | Edges |
+|---------|-----------|-------|
+| tree_fanout_ref | 1 hub → 3 downstream | 3 |
+| tree_fanout_with_inhibition | + L2/3 → inhibitory_gain → CC lateral | 5 |
+| tree_fanout_with_feedback | + steering.turn_cmd → hypothalamic.sleep_pressure | 4 |
+| tree_fanout_extended_chain | + olfactory branch chains to MB sparse → MB associative | 6 |
+| wide_tree_fanout_5_downstream | 1 hub 3 OUT → 5 downstream (reuse arousal_out) | 5 |
+
+All pass strict `compose_from_units` validation. `tree_fanout_with_feedback`
+produces the expected feedback-cycle warning.
+
+### Double-axis: N=60 vs N=200, n_seeds=10, Welch's t + Cohen's d
+
+| Variant | MSE@60 | MSE@200 | MSE Δ | conv@60 | conv@200 | conv Δ | Robust |
+|---------|--------|---------|-------|---------|---------|--------|--------|
+| tree_fanout_with_inhibition | **0.0596** | **0.0627** | +5.2% | **0.3** | **0.4** | +33% | ✅ |
+| tree_fanout_with_feedback | 0.0614 | 0.0664 | +8.3% | 1.1 | 0.8 | +27% | ✅ |
+| tree_fanout_ref | 0.0621 | 0.0636 | +2.4% | 20.7 | 20.5 | +1% | ✅ |
+| wide_tree_fanout_5_downstream | 0.0592 | 0.0645 | +8.9% | 0.9 | 20.6 | **+2188%** | ❌ |
+| tree_fanout_extended_chain | 0.0675 | **0.0780** | +15.5% | 0.7 | 0.7 | 0% | WORSE (p=0.037) |
+
+**Key findings** (see `TREE_FANOUT_VARIANTS_REPORT.md`):
+
+1. **Quick-run (n_seeds=5) WINNER retracted at n_seeds=10**:
+   tree_fanout_with_inhibition vs ref at N=60 went from d=+1.398 p=0.027
+   to d=+0.330 p=0.460. Effect size shrinks 4×. Third confirmation of
+   v2.10.0 / v2.11.0 lesson: "n_seeds=5 d≈1.5 REAL_GAIN" is not a real
+   finding.
+
+2. **tree_fanout_with_inhibition is the fastest+most accurate composed
+   topology** in absolute terms — MSE 0.0596 (8% better than
+   textbook_random 0.055 from v2.11.0), convergence 0.3-0.4 steps
+   (70× faster than tree_fanout_ref 20.7 steps). But Welch t vs ref is
+   NOT significant (p=0.460). Directional, not proved.
+
+3. **wide_tree_fanout reveals a new scaling-unstability factor**: when
+   an OUT port is reused for 3+ downstream, convergence explodes 23× on
+   N=60→200 (0.9→20.6 steps). First exception to v2.12.0's "fan-out
+   topologies scale safely" claim.
+
+4. **tree_fanout_extended_chain is significantly WORSE at N=200**
+   (d=−0.931, p=0.037): tree + downstream chain extension does not
+   scale. This also explains v2.12.0's hierarchical_pipeline regression.
+
+5. **Adding edges (in any direction) always accelerates convergence** —
+   from 20.7 steps to 0.3-20.6 steps. Structural sparsity of
+   tree_fanout_ref (only 3 edges) is the source of its slow-convergence
+   + high-memory profile.
+
+### Retraction
+
+The quick-run (n_seeds=5) WINNER claim
+`tree_fanout_with_inhibition vs tree_fanout_ref [N=60, d=+1.398, p=0.027]`
+is retracted in the report. Effect collapses to d=+0.330 p=0.460 at
+n_seeds=10. Sample bias, not a real effect.
+
+### Files added / changed
+
+- **New**: `integrations/swarmlabs/diagnostics/tree_fanout_variants_experiment.py`
+- **New**: `integrations/swarmlabs/diagnostics/tree_fanout_variants_results.json`
+- **New**: `integrations/swarmlabs/diagnostics/TREE_FANOUT_VARIANTS_REPORT.md`
+- Version 2.12.0 → 2.13.0 in pyproject.toml, flybrain_cli.py,
+  mcp_connectome/server.py, mcp_connectome/api_server.py
 
 ---
 
