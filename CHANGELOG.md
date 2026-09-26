@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.11.0` | the toolkit as a whole |
+| package | `2.12.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,88 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.12.0] — 2026-09-26
+
+**Composed-topology × reservoir-capacity experiment: 4 non-chain composed
+topologies + N=60/200 double-axis test. Retracts 2 preliminary REAL_GAIN
+claims from the small-N sample.**
+
+### Main change: 4 new non-chain composed topologies
+
+`integrations/swarmlabs/diagnostics/topology_capacity_experiment.py`
+adds 4 non-chain composed topologies to the 3 pre-existing chain
+compositions (olfactory_to_steering / visual_to_escape /
+gustatory_to_motion):
+
+| Composition | Shape | Units | Edges | Biological reference |
+|-------------|-------|-------|-------|----------------------|
+| tree_fanout | 1 hub → 3 downstream | 4 | 3 | Hypothalamus broadcasting orexin/histamine/arousal |
+| converging_funnel | 3 sensory → 1 integrator | 4 | 3 | Visual/olfactory/gustatory convergence onto cortex |
+| hierarchical_pipeline | 3 layers: sensory→intermediate→motor | 5 | 5 | Multimodal integration + CC steering |
+| reciprocal_feedback | Bidirectional / loop | 4 | 5 | Central complex bidirectional + MB learning loop |
+
+All 7 compositions pass `compose_from_units` strict validation
+(`validation.ok=True`), port-type matches and connection-type constraints
+satisfied.
+
+### Double-axis experiment: N=60 vs N=200, 10 seeds per metric
+
+Metrics: memory_depth (delay 4-60), convergence_90, reaction_latency,
+NARMA-10 MSE. Significance: Welch's t + Cohen's d.
+
+**Key findings** (see `TOPOLOGY_CAPACITY_REPORT.md`):
+
+1. **Memory depth still saturates at 60** for every topology at both
+   N=60 and N=200 — confirms v2.11.0 finding that memory depth is not a
+   discriminating metric in this regime. NARMA-10 is the only signal.
+
+2. **tree_fanout is the only composition robust to scaling** — MSE
+   0.0621 (N=60) → 0.0636 (N=200), essentially flat. Reciprocal_feedback
+   is nearly as stable (0.0642 → 0.0661). Every other composition
+   regresses 9-22% on NARMA-10 when scaled from N=60 to N=200.
+
+3. **Reciprocal_feedback and hierarchical_pipeline converge 3-50× slower
+   at N=200** (20.7→60.4 and 0.8→40.5 steps), while tree_fanout stays
+   flat (20.7→20.5). **tree_fanout is the only topology that is both
+   accuracy-stable AND speed-stable under scaling** — the closest
+   analogue to a biological reflex arc with fan-out.
+
+4. **Converging_funnel is the only composition that regresses
+   catastrophically with scale** (0.0689 → 0.0839, worst of all at
+   N=200). Multi-input-funnel shapes do not scale — matches the
+   observation that real brains distribute integration rather than
+   funneling it.
+
+5. **Speed-accuracy trade-off confirmed for the second time** — N=200
+   best MSE (tree_fanout 0.0636) still 15% worse than v2.11.0's
+   textbook_random (0.055). Scaling cannot break the biological
+   constraint that "fast" comes with "less accurate".
+
+### Retraction of 2 preliminary REAL_GAIN claims
+
+Initial small-sample run (N=60, n_seeds=10) flagged:
+
+| Comparison | d | p | N=200 result |
+|-----------|-----|------|-------------|
+| tree_fanout vs gustatory_to_motion (NARMA-10) | +1.668 | 0.008 | d=+0.380 p=0.55 — effect lost |
+| hierarchical_pipeline vs gustatory_to_motion (NARMA-10) | +1.503 | 0.018 | d=−0.464 p=0.46 — effect lost |
+
+Both are trivial comparisons against the 2-unit / 1-edge
+gustatory_to_motion (the weakest chain baseline), not evidence that
+non-chain shapes are intrinsically better than chain shapes. Retracted
+in the report; the honest conclusion is "no significant
+non-chain vs chain advantage in NARMA-10".
+
+### Files added / changed
+
+- **New**: `integrations/swarmlabs/diagnostics/topology_capacity_experiment.py`
+- **New**: `integrations/swarmlabs/diagnostics/topology_capacity_results.json`
+- **New**: `integrations/swarmlabs/diagnostics/TOPOLOGY_CAPACITY_REPORT.md`
+- Version 2.11.0 → 2.12.0 in pyproject.toml, flybrain_cli.py,
+  mcp_connectome/server.py, mcp_connectome/api_server.py
 
 ---
 
