@@ -54,6 +54,12 @@ SOURCES = [
         "kind": "comparisons",
         "experiment": "tree_fanout_variants",
     },
+    {
+        "version": "2.15.0",
+        "file": "tree_fanout_variants_n50_results.json",
+        "kind": "comparisons",
+        "experiment": "tree_fanout_variants_n50",
+    },
 ]
 
 REAL_P, REAL_D = 0.05, 0.5
@@ -157,8 +163,9 @@ def load_topology_capacity():
     return rows
 
 
-def load_tree_fanout():
-    src = HERE / "tree_fanout_variants_results.json"
+def load_tree_fanout(version="2.13.0", experiment="tree_fanout_variants",
+                     file_name="tree_fanout_variants_results.json"):
+    src = HERE / file_name
     d = json.loads(src.read_text(encoding="utf-8"))
     n_seeds = d.get("n_seeds", 10)
     rows = []
@@ -166,8 +173,8 @@ def load_tree_fanout():
         metric = c.get("metric") or ""
         hb = metric != "narma10"
         rows.append(_row(
-            version="2.13.0",
-            experiment="tree_fanout_variants",
+            version=version,
+            experiment=experiment,
             metric=metric,
             a=c.get("variant"),
             b=c.get("reference"),
@@ -238,7 +245,9 @@ def main():
             if "capacity" in src["experiment"]:
                 all_rows.extend(load_topology_capacity())
             else:
-                all_rows.extend(load_tree_fanout())
+                all_rows.extend(load_tree_fanout(version=src["version"],
+                                                 experiment=src["experiment"],
+                                                 file_name=src["file"]))
         elif src["kind"] == "ranking":
             all_rows.extend(load_connectivity_topology_ranking())
 
@@ -266,7 +275,7 @@ def main():
         "bonferroni_survivors": count(lambda r: r.get("survives_bonferroni")),
         "by_version": {
             v: count(lambda r, v=v: r["version"] == v)
-            for v in ["2.10.0", "2.11.0", "2.12.0", "2.13.0"]
+            for v in ["2.10.0", "2.11.0", "2.12.0", "2.13.0", "2.15.0"]
         },
         # 关键诚实性检查：每个实验的 n_seeds 实际取值
         "n_seeds_per_experiment": {},
