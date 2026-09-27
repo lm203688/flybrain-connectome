@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.16.0` | the toolkit as a whole |
+| package | `2.17.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,78 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.17.0] — 2026-09-27
+
+### 跨单元协作涌现：项目首个跨单元层级正向证据
+
+项目 17 个版本以来所有实验全部围绕「单单元 + 拓扑变体」——v2.5 单元
+回灌、v2.11 效率、v2.12 组合扩容、v2.13/2.15 tree_fanout 变体。**跨
+单元组合（把 3-9 个功能单元合成一个整机）是否产生单单元没有的能力**，
+此前从未验证过——这是核心目标「像生物一样复杂」的 C 维度真缺。
+
+v2.17.0 新增 `cross_unit_collaboration_experiment.py`，用 `functional_
+units.DEMOS` 里 4 个跨单元组合（insect / mammal / electrosensory /
+swim）对照其 22 个成员单元单独运行的均值，NARMA-10 + convergence_90
+双指标 Welch's t + Cohen's d，Bonferroni α = 0.05/8 = 0.00625，双阈值
+判据 |d|≥0.5 AND p<0.00625。
+
+**关键发现（n_seeds=50 完全确认，51 秒全量）**：
+
+1. **Bonferroni 存活 1/8**：**mammal × narma10** d=+0.54, p<0.0001,
+   组合 MSE=0.0576 vs 9 成员均值=0.0637（**相对改善 9.6%**）——**首
+   次跨单元 emergent 提效证据**。mammal = 丘脑 + 皮层 + 基底节 + 小脑
+   + 皮层下中枢的 9 单元大组合。
+2. **仅 NARMA-10 涌现，convergence 无涌现**——跨单元组合提升**复杂
+   非线性能力**，但**不提升反应速度**。所有 4 组合的 conv90 均无涌
+   现（|d|<0.3），与 v2.15「更多边=更差」结论一致。
+3. **涌现有规模门槛**——3-6 单元组合（insect / electro / swim）不涌现，
+   只有 9 单元组合（mammal）涌现。呼应生物「简单反射链 vs 高级认知
+   环路」的区别。
+4. **样本偏差第 6 次**——n=20 → n=50 对比：insect / mammal / electro /
+   swim 的 conv90 方向**全部翻转**（如 insect conv90 从 emergent=−4.58
+   → +6.94）。mammal narma10 d 从 +0.62 → +0.54（缩水 13%，仍过阈值）。
+   n_seeds≥50 对跨单元比较是**硬要求**。
+
+**新增文件**
+- `integrations/swarmlabs/diagnostics/cross_unit_collaboration_experiment.py`
+  （约 300 行，含 per-seed `measure_convergence_90` 实现、Bonferroni 校正）
+- `integrations/swarmlabs/diagnostics/cross_unit_collaboration_quick.json`
+  （n=5 可行性验证）
+- `integrations/swarmlabs/diagnostics/cross_unit_collaboration_results.json`
+  （n=20 默认）
+- `integrations/swarmlabs/diagnostics/cross_unit_collaboration_n50_results.json`
+  （n=50 完全确认）
+- `integrations/swarmlabs/diagnostics/CROSS_UNIT_COLLABORATION_REPORT.md`
+
+**技术坑**：N=60 下 `measure_memory_depth` 全部饱和在 60（延拓上限），
+方差=0，任何 t 检验都 NaN/0——memory 被从显著性比较中排除，只比较
+NARMA-10 + convergence_90。为支持 per-seed convergence，本轮实现了
+`_measure_convergence_90_per_seed`（上游 `measure_convergence_90` 只
+返回均值，不返回 per-seed）。
+
+**诚实边界**：
+- 只有 1/8 Bonferroni 存活——**不能宣称「跨单元组合普遍提效」**
+- 仅 NARMA-10 涌现——**不能宣称「反应速度也提效」**（R 维度继续被
+  否定）
+- 仅 mammal 涌现——**不能推广**到 insect / electro / swim
+- 只测 N=60——**未做尺寸扩容**（未来可扩展到 N=200）
+- d=+0.54 刚过 0.5 阈值——**不算稳健**
+
+**对核心目标「像生物一样复杂 + 快速反应」**：
+- **C 复杂度**：✅ **首次跨单元正向证据**（17 版本里第一个）
+- **R 反应速度**：❌ 继续被否定（所有 conv90 无涌现）
+
+**版本升级 2.16.0 → 2.17.0**：
+- pyproject.toml
+- flybrain_cli.py
+- flybrain-connectome-mcp/mcp_connectome/server.py
+- flybrain-connectome-mcp/mcp_connectome/api_server.py
+- integrations/swarmlabs/diagnostics/topology_visualizer.py
+
+**门禁**：10/10 PASS（含 `--with-data`）
 
 ---
 
