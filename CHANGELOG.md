@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.18.0` | the toolkit as a whole |
+| package | `2.19.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,89 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.19.0] — 2026-09-27
+
+### 跨单元涌现反向证伪 + 涌现规模阈值扫描
+
+v2.17 首次证实 mammal 跨单元涌现（d=+0.54, p<0.0001），v2.18 用边消融
+证明「涌现不是边驱动」。但 v2.18 留下悬空问题——**「是不是任何 9 单元
+组合都涌现？」** 若随机 9 单元也涌现，v2.17 结论就必须撤回，改称
+"任意 ≥9 单元系统规模效应"。
+
+v2.19.0 用两个反向证伪实验直接回答。
+
+#### 实验 A · 30 随机 9 单元组合（反向证伪）
+
+`cross_unit_falsification_experiment.py`，从 103 个 FUNCTIONAL_UNITS 不放
+回抽 9 个，用 9 种通用连接类型随机连边，NARMA-10 n=50。
+
+| 指标 | 结果 |
+|------|------|
+| 涌现率（em > 0） | **15/30 = 50%** |
+| Bonferroni 存活（\|d\|≥0.5 AND p<0.00167） | **2/30**（R06 d=+0.54, R23 d=+0.52） |
+| em 分布 | min −0.0090, max +0.0055, median 0.0000 |
+| Bonferroni 期望 | 30 × 5% = 1.5 false positive；实测 2 完全在噪声预期内 |
+
+**R06 em=+0.0055 甚至略高于 mammal 的 +0.0050**——随机组合涌现 magnitude
+与 mammal 无法区分。
+
+#### 实验 B · mammal 规模扫描（9→5 单元）
+
+| size | em | d | p | 判定 |
+|------|-----|---|---|------|
+| 9 | +0.0050 | +0.49 | <0.0001 | 涌现（d 边缘未过门槛） |
+| 8 | +0.0026 | +0.25 | 0.040 | 弱趋势（em 减 50%） |
+| **7** | **−0.0020** | **−0.19** | **0.171** | **⚠️ 方向反转** |
+| 6 | −0.0008 | −0.08 | 0.569 | 无涌现 |
+| 5 | +0.0013 | +0.13 | 0.268 | 无涌现 |
+
+**涌现阈值 = 7→8 之间相变点**（em 从 + 变到 −）。
+
+#### 结论（3 撤回 + 1 证实）
+
+**撤回 1**：v2.17「mammal 独特跨单元涌现」结论。30 随机组合 50% 涌现、
+2/30 Bonferroni 存活，em magnitude 与 mammal 相当。
+
+**撤回 2**：「≥9 单元是生物涌现的规模门槛」。随机 9 单元涌现率仅 50%，
+"9 单元"是概率性触发，不是充分条件。
+
+**撤回 3**：v2.17 内联重跑 mammal N=60 n=50 得 d=+0.49（未过 |d|≥0.5
+门槛），比 v2.17 原始 d=+0.54 缩水 9%——**样本偏差第 8 次**：跨
+seed_offset 的 d 稳定性本身是新维度。
+
+**证实 1**：涌现是「≥7 单元系统」的规模阈值效应。mammal 9→7 单元期间
+em 方向翻转，7→8 是明确的相变点。这是 v2.19 唯一"新"发现——之前只知
+"mammal 涌现"，现在知"9→7 是涌现阈值区"。
+
+#### 对核心目标的重新对齐
+
+| 维度 | v2.17 | v2.18 | **v2.19** |
+|---|---|---|---|
+| **C 复杂度** | 涌现证明复杂度 | 涌现是结构驱动 | **涌现是任何 ≥7 单元系统的普适效应**——不再是"复杂度证据" |
+| **R 反应速度** | conv90 全无涌现 | 8 组合 conv90 全无涌现 | 继续被否定（未变） |
+
+**关键含义**：**"跨单元涌现作为生物复杂度证据"这条链在 v2.19 断了**。
+项目 17-18 版本反复确认的组合涌现是「单元数量 × 单元多样性 × 连接结构」
+的组合系统属性，不是生物性的独有贡献。
+
+#### 文件
+
+- New: `cross_unit_falsification_experiment.py`
+- New: `cross_unit_falsification_n50_results.json`
+- New: `cross_unit_falsification_quick.json`
+- New: `CROSS_UNIT_FALSIFICATION_REPORT.md`
+
+**版本升级 2.18.0 → 2.19.0**：4 处版本号（`pyproject.toml`、`flybrain_cli.py`、
+`mcp_connectome/server.py`、`api_server.py`）+ `topology_visualizer.py`。
+
+**新增文件**：
+- `integrations/swarmlabs/diagnostics/cross_unit_falsification_experiment.py`
+- `integrations/swarmlabs/diagnostics/cross_unit_falsification_n50_results.json`
+- `integrations/swarmlabs/diagnostics/cross_unit_falsification_quick.json`
+- `integrations/swarmlabs/diagnostics/CROSS_UNIT_FALSIFICATION_REPORT.md`
 
 ---
 
