@@ -1,0 +1,20 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 480 320" width="100%" height="100%" style="font-family: system-ui, -apple-system, sans-serif;">
+<defs><marker id="ah" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse"><path d="M0,0 L10,5 L0,10 z" fill="#334155"/></marker></defs>
+<rect x="0" y="0" width="480" height="320" fill="#f8fafc"/>
+<line x1="240.0" y1="86.0" x2="240.0" y2="100.7" stroke="#334155" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="240.0" y1="152.7" x2="240.0" y2="167.3" stroke="#334155" stroke-width="1.6" marker-end="url(#ah)"/>
+<line x1="240.0" y1="219.3" x2="240.0" y2="234.0" stroke="#334155" stroke-width="1.6" marker-end="url(#ah)"/>
+<circle cx="240.0" cy="60.0" r="26" fill="#7aa6d9" stroke="#0f172a" stroke-width="1.5" opacity="0.85"/>
+<text x="240.0" y="57.0" text-anchor="middle" font-size="10" fill="#0f172a" font-weight="600">AL-GLM</text>
+<text x="240.0" y="70.0" text-anchor="middle" font-size="10" fill="#0f172a" font-weight="600">(drosophi</text>
+<circle cx="240.0" cy="126.7" r="26" fill="#7aa6d9" stroke="#0f172a" stroke-width="1.5" opacity="0.85"/>
+<text x="240.0" y="123.7" text-anchor="middle" font-size="10" fill="#0f172a" font-weight="600">MB-SC</text>
+<text x="240.0" y="136.7" text-anchor="middle" font-size="10" fill="#0f172a" font-weight="600">(drosophi</text>
+<circle cx="240.0" cy="193.3" r="26" fill="#7aa6d9" stroke="#0f172a" stroke-width="1.5" opacity="0.85"/>
+<text x="240.0" y="190.3" text-anchor="middle" font-size="10" fill="#0f172a" font-weight="600">MB-AM</text>
+<text x="240.0" y="203.3" text-anchor="middle" font-size="10" fill="#0f172a" font-weight="600">(drosophi</text>
+<circle cx="240.0" cy="260.0" r="26" fill="#7aa6d9" stroke="#0f172a" stroke-width="1.5" opacity="0.85"/>
+<text x="240.0" y="257.0" text-anchor="middle" font-size="10" fill="#0f172a" font-weight="600">CC-Steer</text>
+<text x="240.0" y="270.0" text-anchor="middle" font-size="10" fill="#0f172a" font-weight="600">(drosophi</text>
+<text x="12" y="20" font-size="13" fill="#0f172a" font-weight="700">olfactory_to_steering</text>
+</svg>
