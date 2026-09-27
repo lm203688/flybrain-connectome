@@ -1,0 +1,1208 @@
+{
+  "config": {
+    "N": 60,
+    "n_seeds": 5,
+    "quick": true,
+    "compositions": [
+      "insect",
+      "mammal",
+      "electrosensory",
+      "swim"
+    ]
+  },
+  "meta": [
+    {
+      "kind": "composition",
+      "name": "insect",
+      "member_units": [
+        "antennal_lobe_glomerular_unit",
+        "mushroom_body_sparse_code_unit",
+        "mushroom_body_associative_memory_unit",
+        "central_complex_heading_unit",
+        "central_complex_steering_unit",
+        "insect_clock_pacemaker_unit"
+      ],
+      "validation_ok": true,
+      "errors": [],
+      "n_nodes": 6,
+      "n_edges": 6,
+      "N": 60,
+      "n_seeds": 5,
+      "status": "ok",
+      "edges_placed": 6,
+      "narma10_mean": 0.06684301475286385,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.04722552314772383,
+          0.0782854472685615,
+          0.05525611792801106,
+          0.06433883089405673,
+          0.0891091545259661
+        ],
+        "conv90": [
+          1.0,
+          2.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "elapsed_s": 0.22
+    },
+    {
+      "kind": "composition",
+      "name": "mammal",
+      "member_units": [
+        "retinal_phototransduction_unit",
+        "visual_thalamic_relay_unit",
+        "cortical_l4_input_unit",
+        "cortical_l23_association_unit",
+        "cortical_l5_output_unit",
+        "basal_ganglia_selection_unit",
+        "dopaminergic_value_unit",
+        "cerebellar_cortical_unit",
+        "motor_thalamic_relay_unit"
+      ],
+      "validation_ok": true,
+      "errors": [],
+      "n_nodes": 9,
+      "n_edges": 10,
+      "N": 60,
+      "n_seeds": 5,
+      "status": "ok",
+      "edges_placed": 10,
+      "narma10_mean": 0.06001931885625071,
+      "conv90_mean": 40.4,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.04200496981124589,
+          0.06822139553002385,
+          0.06008299640197421,
+          0.060826415743565364,
+          0.06896081679444423
+        ],
+        "conv90": [
+          1.0,
+          200.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "elapsed_s": 0.19
+    },
+    {
+      "kind": "composition",
+      "name": "electrosensory",
+      "member_units": [
+        "electric_organ_discharge_unit",
+        "electrosensory_electrolocation_unit",
+        "passive_electroreception_unit",
+        "startle_escape_command_unit"
+      ],
+      "validation_ok": true,
+      "errors": [],
+      "n_nodes": 4,
+      "n_edges": 3,
+      "N": 60,
+      "n_seeds": 5,
+      "status": "ok",
+      "edges_placed": 3,
+      "narma10_mean": 0.06350579712181617,
+      "conv90_mean": 40.4,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.05044787124141161,
+          0.0649152659012955,
+          0.06213396003103632,
+          0.072834584274092,
+          0.06719730416124543
+        ],
+        "conv90": [
+          1.0,
+          200.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "composition",
+      "name": "swim",
+      "member_units": [
+        "leech_swim_cpg_unit",
+        "ascidian_larval_escape_swim_unit",
+        "frog_escape_swim_unit"
+      ],
+      "validation_ok": true,
+      "errors": [],
+      "n_nodes": 3,
+      "n_edges": 3,
+      "N": 60,
+      "n_seeds": 5,
+      "status": "ok",
+      "edges_placed": 3,
+      "narma10_mean": 0.07006144389156302,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.06696285196186326,
+          0.07366382227434606,
+          0.06193883627152308,
+          0.059776813129253495,
+          0.08796489582082917
+        ],
+        "conv90": [
+          1.0,
+          2.0,
+          0.0,
+          1.0,
+          1.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "antennal_lobe_glomerular_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.06063689254565444,
+      "conv90_mean": 0.8,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.05398349717990827,
+          0.05433542824930251,
+          0.07279243338161344,
+          0.07135327212595122,
+          0.050719831791496785
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "ascidian_larval_escape_swim_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.06119469147218073,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.05461966398502953,
+          0.05885694178034208,
+          0.07155991511365468,
+          0.07030693860971109,
+          0.05062999787216624
+        ],
+        "conv90": [
+          3.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "basal_ganglia_selection_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 7,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 7,
+      "narma10_mean": 0.06471423473135257,
+      "conv90_mean": 0.6,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.06436775535826131,
+          0.06277782742988446,
+          0.07312041587035191,
+          0.06998129237209011,
+          0.053323882626175094
+        ],
+        "conv90": [
+          1.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "central_complex_heading_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.07169755766865149,
+      "conv90_mean": 41.2,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.06533829057627427,
+          0.06781849608400567,
+          0.0909726020659329,
+          0.08111861317934309,
+          0.05323978643770148
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          2.0,
+          200.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "central_complex_steering_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.059076494922348066,
+      "conv90_mean": 1.2,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.05577111065108968,
+          0.051228356413989,
+          0.07116122353716456,
+          0.06340776399850288,
+          0.05381402001099422
+        ],
+        "conv90": [
+          3.0,
+          0.0,
+          2.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "cerebellar_cortical_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 7,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 7,
+      "narma10_mean": 0.06257547130758431,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.056353333073486715,
+          0.0537411948470508,
+          0.08193244880928162,
+          0.06986516823873243,
+          0.050985211569370026
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "cortical_l23_association_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 7,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 7,
+      "narma10_mean": 0.0627602363704027,
+      "conv90_mean": 0.8,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.0642505520316079,
+          0.061464618528837674,
+          0.07999942388796025,
+          0.060260096170348894,
+          0.04782649123325884
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          0.0,
+          2.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "cortical_l4_input_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 5,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 5,
+      "narma10_mean": 0.06418085803871117,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.06805733923681181,
+          0.05112855904030469,
+          0.09218543900664423,
+          0.05534681755663068,
+          0.054186135353164425
+        ],
+        "conv90": [
+          3.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "cortical_l5_output_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 6,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 6,
+      "narma10_mean": 0.0644596382226013,
+      "conv90_mean": 0.4,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.0671321974687049,
+          0.04726443028848108,
+          0.0891125242346359,
+          0.06939957403255163,
+          0.04938946508863295
+        ],
+        "conv90": [
+          1.0,
+          0.0,
+          0.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "dopaminergic_value_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 5,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 5,
+      "narma10_mean": 0.05500441152156743,
+      "conv90_mean": 0.8,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.05784917781238678,
+          0.04317130504848043,
+          0.06676013537850632,
+          0.05505774331357826,
+          0.052183696054885376
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          1.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.19
+    },
+    {
+      "kind": "baseline",
+      "name": "electric_organ_discharge_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.06370346272075819,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.058540601384913946,
+          0.05879014960419717,
+          0.07514040588990221,
+          0.07233417334163575,
+          0.0537119833831418
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.19
+    },
+    {
+      "kind": "baseline",
+      "name": "electrosensory_electrolocation_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.06742735075576158,
+      "conv90_mean": 0.6,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.06469369562154166,
+          0.057570124785451614,
+          0.08382028336582054,
+          0.07564287173626634,
+          0.0554097782697277
+        ],
+        "conv90": [
+          1.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.26
+    },
+    {
+      "kind": "baseline",
+      "name": "frog_escape_swim_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.07317835914512758,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.05782456860306625,
+          0.07650317232818836,
+          0.09083984913740752,
+          0.09037292061998216,
+          0.050351285036993654
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.28
+    },
+    {
+      "kind": "baseline",
+      "name": "insect_clock_pacemaker_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.06860354826780604,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.06855995253928188,
+          0.06531705416750265,
+          0.09343651061191224,
+          0.06538381279296147,
+          0.050320411227371936
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.24
+    },
+    {
+      "kind": "baseline",
+      "name": "leech_swim_cpg_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.0716031106299532,
+      "conv90_mean": 1.2,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.06725295693245843,
+          0.06541363950885144,
+          0.10019457448751273,
+          0.06802541925178879,
+          0.05712896296915467
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          2.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.21
+    },
+    {
+      "kind": "baseline",
+      "name": "motor_thalamic_relay_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.06101148610342435,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.05169029858922514,
+          0.05896971125755987,
+          0.08054025329709158,
+          0.06396267492888728,
+          0.04989449244435791
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.23
+    },
+    {
+      "kind": "baseline",
+      "name": "mushroom_body_associative_memory_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.06723105369764577,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.06852048906880492,
+          0.04955977681847274,
+          0.0873910944784616,
+          0.08063493625752166,
+          0.0500489718649679
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.25
+    },
+    {
+      "kind": "baseline",
+      "name": "mushroom_body_sparse_code_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.0624897004237837,
+      "conv90_mean": 1.2,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.058680553942304335,
+          0.055182279961034954,
+          0.08608113741807256,
+          0.06405403441553514,
+          0.04845049638197154
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          2.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.19
+    },
+    {
+      "kind": "baseline",
+      "name": "passive_electroreception_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 3,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 3,
+      "narma10_mean": 0.06775954843897888,
+      "conv90_mean": 0.8,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.05181385491191256,
+          0.05872543422602314,
+          0.09131187044631822,
+          0.08225560155453497,
+          0.05469098105610549
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          0.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "retinal_phototransduction_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.07417437459328065,
+      "conv90_mean": 40.4,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.07966971385492784,
+          0.06497082764931299,
+          0.07909753535230782,
+          0.08803040918838638,
+          0.05910338692146824
+        ],
+        "conv90": [
+          200.0,
+          1.0,
+          1.0,
+          0.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    },
+    {
+      "kind": "baseline",
+      "name": "startle_escape_command_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 4,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 4,
+      "narma10_mean": 0.06322370669892687,
+      "conv90_mean": 1.0,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.049322436887881474,
+          0.053510199770831005,
+          0.08382661867271574,
+          0.07659195846327586,
+          0.05286731969993024
+        ],
+        "conv90": [
+          2.0,
+          0.0,
+          2.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.19
+    },
+    {
+      "kind": "baseline",
+      "name": "visual_thalamic_relay_unit",
+      "validation_ok": true,
+      "n_nodes": 1,
+      "n_edges": 2,
+      "N": 60,
+      "n_seeds": 5,
+      "edges_placed": 2,
+      "narma10_mean": 0.0642603104593982,
+      "conv90_mean": 1.2,
+      "memory_mean": 60.0,
+      "per_seed": {
+        "narma10": [
+          0.061798532012886924,
+          0.0571626508089379,
+          0.08672710153895231,
+          0.06531830195859395,
+          0.05029496597761992
+        ],
+        "conv90": [
+          3.0,
+          0.0,
+          2.0,
+          1.0,
+          0.0
+        ],
+        "memory": [
+          60.0,
+          60.0,
+          60.0,
+          60.0,
+          60.0
+        ]
+      },
+      "status": "ok",
+      "elapsed_s": 0.18
+    }
+  ],
+  "emergence": {
+    "alpha_bonferroni": 0.00625,
+    "n_comparisons": 8,
+    "metrics_used": [
+      "narma10",
+      "conv90"
+    ],
+    "results": [
+      {
+        "t": 0.2367239249313819,
+        "p": 0.8128709730169437,
+        "d": -0.13629983848981117,
+        "mean_a": 0.06684301475286385,
+        "mean_b": 0.06495587458764825,
+        "n_a": 5,
+        "n_b": 30,
+        "composition": "insect",
+        "metric": "narma10",
+        "n_composed_seeds": 5,
+        "n_baseline_pooled": 30,
+        "n_baseline_units": 6,
+        "mean_composed": 0.06684301475286385,
+        "mean_baseline": 0.06495587458764825,
+        "emergent_score": -0.0018871401652156006,
+        "direction": "no_emergence",
+        "alpha_bonf": 0.00625,
+        "bonferroni_survives": false
+      },
+      {
+        "t": -1.0140705714994775,
+        "p": 0.31054907912814,
+        "d": 0.19771847959461558,
+        "mean_a": 1.0,
+        "mean_b": 7.733333333333333,
+        "n_a": 5,
+        "n_b": 30,
+        "composition": "insect",
+        "metric": "conv90",
+        "n_composed_seeds": 5,
+        "n_baseline_pooled": 30,
+        "n_baseline_units": 6,
+        "mean_composed": 1.0,
+        "mean_baseline": 7.733333333333333,
+        "emergent_score": 6.733333333333333,
+        "direction": "emergent",
+        "alpha_bonf": 0.00625,
+        "bonferroni_survives": false
+      },
+      {
+        "t": -0.703258899207027,
+        "p": 0.48189441947499123,
+        "d": 0.2945726997350952,
+        "mean_a": 0.06001931885625071,
+        "mean_b": 0.06368233570536919,
+        "n_a": 5,
+        "n_b": 45,
+        "composition": "mammal",
+        "metric": "narma10",
+        "n_composed_seeds": 5,
+        "n_baseline_pooled": 45,
+        "n_baseline_units": 9,
+        "mean_composed": 0.06001931885625071,
+        "mean_baseline": 0.06368233570536919,
+        "emergent_score": 0.003663016849118475,
+        "direction": "emergent",
+        "alpha_bonf": 0.00625,
+        "bonferroni_survives": false
+      },
+      {
+        "t": 0.8757010483823878,
+        "p": 0.38119257527249983,
+        "d": -0.9162174113247533,
+        "mean_a": 40.4,
+        "mean_b": 5.2444444444444445,
+        "n_a": 5,
+        "n_b": 45,
+        "composition": "mammal",
+        "metric": "conv90",
+        "n_composed_seeds": 5,
+        "n_baseline_pooled": 45,
+        "n_baseline_units": 9,
+        "mean_composed": 40.4,
+        "mean_baseline": 5.2444444444444445,
+        "emergent_score": -35.15555555555555,
+        "direction": "no_emergence",
+        "alpha_bonf": 0.00625,
+        "bonferroni_survives": false
+      },
+      {
+        "t": -0.4271145890849456,
+        "p": 0.669295867296362,
+        "d": 0.1623113178083962,
+        "mean_a": 0.06350579712181617,
+        "mean_b": 0.06552851715360639,
+        "n_a": 5,
+        "n_b": 20,
+        "composition": "electrosensory",
+        "metric": "narma10",
+        "n_composed_seeds": 5,
+        "n_baseline_pooled": 20,
+        "n_baseline_units": 4,
+        "mean_composed": 0.06350579712181617,
+        "mean_baseline": 0.06552851715360639,
+        "emergent_score": 0.002022720031790215,
+        "direction": "emergent",
+        "alpha_bonf": 0.00625,
+        "bonferroni_survives": false
+      },
+      {
+        "t": 0.9911989472717843,
+        "p": 0.3215884445272943,
+        "d": -1.062680853539605,
+        "mean_a": 40.4,
+        "mean_b": 0.85,
+        "n_a": 5,
+        "n_b": 20,
+        "composition": "electrosensory",
+        "metric": "conv90",
+        "n_composed_seeds": 5,
+        "n_baseline_pooled": 20,
+        "n_baseline_units": 4,
+        "mean_composed": 40.4,
+        "mean_baseline": 0.85,
+        "emergent_score": -39.55,
+        "direction": "no_emergence",
+        "alpha_bonf": 0.00625,
+        "bonferroni_survives": false
+      },
+      {
+        "t": 0.21851941594043456,
+        "p": 0.8270244320958346,
+        "d": -0.09702661469788008,
+        "mean_a": 0.07006144389156302,
+        "mean_b": 0.06865872041575384,
+        "n_a": 5,
+        "n_b": 15,
+        "composition": "swim",
+        "metric": "narma10",
+        "n_composed_seeds": 5,
+        "n_baseline_pooled": 15,
+        "n_baseline_units": 3,
+        "mean_composed": 0.07006144389156302,
+        "mean_baseline": 0.06865872041575384,
+        "emergent_score": -0.0014027234758091783,
+        "direction": "no_emergence",
+        "alpha_bonf": 0.00625,
+        "bonferroni_survives": false
+      },
+      {
+        "t": -0.1568584375162367,
+        "p": 0.8753564163456786,
+        "d": 0.06500270850261591,
+        "mean_a": 1.0,
+        "mean_b": 1.0666666666666667,
+        "n_a": 5,
+        "n_b": 15,
+        "composition": "swim",
+        "metric": "conv90",
+        "n_composed_seeds": 5,
+        "n_baseline_pooled": 15,
+        "n_baseline_units": 3,
+        "mean_composed": 1.0,
+        "mean_baseline": 1.0666666666666667,
+        "emergent_score": 0.06666666666666665,
+        "direction": "emergent",
+        "alpha_bonf": 0.00625,
+        "bonferroni_survives": false
+      }
+    ]
+  },
+  "elapsed_total_s": 5.23
+}
