@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.15.0` | the toolkit as a whole |
+| package | `2.16.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,57 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.16.0] — 2026-09-27
+
+### 组合拓扑可视化：12 拓扑全景 dashboard
+
+补齐项目最实用的能力缺口：**v2.7-v2.15 累计 9 轮实验产生的 12 种
+组合拓扑、119 条对比、7 条 Bonferroni 存活证据，此前都只以表格形式
+存在，没有一张图能让人一眼看懂"组合拓扑空间到底长什么样"**。
+
+v2.16.0 新增零依赖可视化器：
+
+**新增文件**
+- `integrations/swarmlabs/diagnostics/topology_visualizer.py`（约 500 行，
+  stdlib + networkx 3.6.1，手写 SVG 生成器，无 matplotlib/graphviz）
+- `integrations/swarmlabs/diagnostics/topology_overview.html`（41 KB 单文件
+  dashboard，可直接打开，含 12 张内联 SVG + 性能数据 + Bonferroni 判定）
+- `integrations/swarmlabs/diagnostics/svg_*.svg`（12 张独立 SVG）
+- `integrations/swarmlabs/diagnostics/TOPOLOGY_VISUALIZATION_REPORT.md`
+
+**分类算法**：从图的 DAG 结构反向推断布局类型（结构优先，名字兜底）：
+- linear chain：无环、无分支、最长路径占所有节点（3 种）
+- tree_fanout：单根 out_degree≥3，其余节点为叶（4 种）
+- funnel：单汇 in_degree≥3，多源（1 种）
+- hierarchical：DAG、最长路径≥4 节点（1 种）
+- reciprocal：有强连通循环（2 种）
+- wide_fanout：单节点 out_degree≥4（OUT port 复用）（1 种）
+
+**关键洞察（拓扑维度）**：
+- 拓扑复杂度 vs 表现明确反相关：4-5 条边是最优区间
+- 只有"树状为骨架 + 附加边"的组合在扩容下稳定；纯 funnel/hierarchical/
+  reciprocal 都退化
+- 生物"最优"重新定义：**不是"多"，而是"简洁"**——tree_fanout_ref
+  （3 边最小结构）是所有组合中 NARMA-10 MSE 最低的
+- 唯一 Bonferroni 存活的组合对比是 tree_fanout_extended_chain 相对
+  tree_fanout_ref 在 N=60 与 N=200 上 WORSE（v2.15.0 已发表级证据）
+
+**已知限制（诚实登记）**：
+- 无单元级可视化（只到"单元节点"粒度，不含内部神经元群/微回路）
+- 无连接件可视化（边只画箭头，不含 66 种 CONNECTION_TYPES 区分）
+- 无版本 diff 图（不能一图看 v2.13.0 vs v2.15.0 差异）
+- 静态图（无交互缩放/点击展开）
+
+**版本升级 2.15.0 → 2.16.0**：
+- pyproject.toml
+- flybrain_cli.py
+- flybrain-connectome-mcp/mcp_connectome/server.py
+- flybrain-connectome-mcp/mcp_connectome/api_server.py
+
+**门禁**：10/10 PASS（含 `--with-data`）
 
 ---
 
