@@ -1395,7 +1395,7 @@ def main():
             resp = {"jsonrpc": "2.0", "id": rid, "result": {
                 "protocolVersion": PROTOCOL_VERSION,
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "drosophila-connectome", "version": "2.17.0"},
+                "serverInfo": {"name": "drosophila-connectome", "version": "2.18.0"},
             }}
         elif method == "notifications/initialized":
             continue

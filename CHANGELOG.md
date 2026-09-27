@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.17.0` | the toolkit as a whole |
+| package | `2.18.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -19,7 +19,83 @@ The **schema version** is versioned separately from the **package version**:
 
 ---
 
-## [2.17.0] — 2026-09-27
+## [2.18.0] — 2026-09-27
+
+### 跨单元涌现的规模与机制：N=200 扩容 + 边消融实验
+
+v2.17.0 首次证实 mammal × NARMA-10 涌现（d=+0.54, p<0.0001）——但只回答
+「是否涌现」，没有回答「为什么涌现」。v2.18.0 用两个实验把这个问题的两
+面补齐：**跨 N 尺度稳定性**（N=60→200 涌现是否 scale）与**边消融机制**
+（10 条边逐条移除，找关键边）。
+
+#### 实验 A · N=200 scale check
+
+复用 `cross_unit_collaboration_experiment.py --N 200 --n-seeds 50`。
+
+| 组合 | 指标 | N=60 v2.17 em / d / p | **N=200 v2.18 em / d / p** |
+|------|------|-----------------------|---------------------------|
+| **mammal** | **narma10** | +0.0061 / +0.54 / <0.0001 ✅ | **+0.0072 / +0.47 / <0.0001** ⚠️ |
+| mammal | conv90 | +6.94 / +0.13 / 0.30 | +12.40 / +0.17 / 0.18 |
+| insect | narma10 | −0.0019 / +0.01 / 0.93 | −0.0004 / −0.03 / 0.86 |
+| electro | narma10 | +0.0019 / +0.28 / 0.034 | +0.0042 / +0.29 / 0.018 |
+| swim | narma10 | −0.0014 / −0.09 / 0.59 | +0.0005 / +0.03 / 0.87 |
+
+**Bonferroni 严格判定 0/8 存活**：mammal p<0.0001 但 d=0.47 未过 |d|≥0.5
+门槛。方向 100% 稳定、p 值稳定，但 **d 值从 0.54 → 0.47 缩 13%**。
+
+**样本偏差第 7 次**：即便 n=50、方向稳定、p<0.0001，**换 N 尺度 d 仍会
+缩水**。跨尺度硬证据门槛：\|Δd\| ≤ 0.10（本例 \|Δd\|=0.07 接近阈值）。
+
+#### 实验 B · Edge ablation（10 边 one-ablation-at-a-time）
+
+新增 `cross_unit_edge_ablation_experiment.py`，对 mammal 10 条边逐条移除，
+测剩余 9 单元组合的涌现强度 vs 原 full mammal em=+0.0061。
+
+**关键判定（n_seeds=50, N=60）**：
+
+- **0/10 边 CRITICAL_STRONG**（去掉后涌现不消失）
+- **0/10 边 CRITICAL_MODERATE**（去掉后涌现不掉一半以上）
+- **10/10 边都保持涌现**（全部 em 为正）
+- **5/10 边去掉后涌现反而更强**（em > +0.0061）：E00, E01, E04, E05, E07
+
+最弱边：E02（L4→L2/3 皮层内上升）em=+0.0042（掉最多但仍涌现）。
+最强"负作用"边：E07（L5→小脑 divergent_fanout）去掉后 em=+0.0082
+（比 full 高 34%）——divergent_fanout 类边轻微拖累 NARMA-10 涌现。
+
+#### 核心机制结论
+
+**涌现不是"边驱动"，是"多单元系统结构驱动"**。10 条边全部移除任一条涌现
+不消失，说明 emergent 能力不来自任何单点连接。这与 v2.17 之前的
+"更多边=更差"结论一致——**组合拓扑不是提效路径**，涌现更像"复杂性相变"
+（≥9 单元触发），而不是"连接拓扑功能"。
+
+#### 对核心目标（C 复杂度 + R 反应速度）
+
+- **C 复杂度**：从 v2.17 的"存在性证据"推进到 v2.18 的"机制性证据"
+  ——涌现来自"多单元系统结构"这个事实本身，不来自任何具体边。
+- **R 反应速度**：N=200 conv90 全部无涌现，8 组合 × conv90 = 0 存活。
+  R 维度继续被否定（与 v2.11 ESN 能耗 0/7、SNN 0/24 一致）。
+
+#### 文件
+
+- **新增** `integrations/swarmlabs/diagnostics/cross_unit_edge_ablation_experiment.py`（~320 行）
+- **新增** `cross_unit_edge_ablation_n50_results.json`、`cross_unit_edge_ablation_quick.json`
+- **更新** `cross_unit_collaboration_n50_results.json`（N=60 → N=200 覆盖）
+- **新增** `CROSS_UNIT_SCALE_AND_ABLATION_REPORT.md`（含实验 A + B + 机制解读）
+
+#### 诚实边界
+
+1. N=200 mammal d=0.47 未过 |d|≥0.5，Bonferroni 严格判定未存活。
+2. 边消融只测 mammal 一个组合（其他 3 组合无涌现，边消融无意义）。
+3. 只做 one-ablation-at-a-time，未测多边联合消融。
+4. NARMA-10 是单一任务，涌现可能在其他任务不同。
+5. ESN 权重是随机构建的，不模拟真实神经元生物化学细节。
+
+**版本升级 2.17.0 → 2.18.0**：4 处版本号（`pyproject.toml`、`flybrain_cli.py`、
+`mcp_connectome/server.py`、`mcp_connectome/api_server.py`）+
+`topology_visualizer.py` 内部注释同步。
+
+
 
 ### 跨单元协作涌现：项目首个跨单元层级正向证据
 
