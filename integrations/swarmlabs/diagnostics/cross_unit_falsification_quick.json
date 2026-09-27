@@ -1,0 +1,393 @@
+{
+  "version": "2.19.0",
+  "experiment": "cross_unit_falsification",
+  "generated_at": "2026-09-27T22:37:27+0800",
+  "config": {
+    "n_random": 5,
+    "n_units_per_comp": 9,
+    "n_seeds": 5,
+    "N": 60,
+    "metric": "narma10",
+    "sizes": [
+      9,
+      8,
+      7,
+      6,
+      5
+    ],
+    "conn_types_pool": [
+      "feedforward_excitatory",
+      "feedforward_inhibitory",
+      "feedback_excitatory",
+      "feedback_inhibitory",
+      "lateral_inhibitory",
+      "recurrent_excitatory",
+      "recurrent_inhibitory",
+      "divergent_fanout",
+      "convergent_fanin"
+    ],
+    "baseline_pool_n": 45,
+    "baseline_pool_mean": 0.06331441825244663,
+    "baseline_per_unit_mean": {
+      "retinal_phototransduction_unit": 0.0713899828345836,
+      "visual_thalamic_relay_unit": 0.06627594900427687,
+      "cortical_l4_input_unit": 0.06309106204152863,
+      "cortical_l23_association_unit": 0.06481698821602408,
+      "cortical_l5_output_unit": 0.05885985977695853,
+      "basal_ganglia_selection_unit": 0.0627830785159576,
+      "dopaminergic_value_unit": 0.05594473207351893,
+      "cerebellar_cortical_unit": 0.05856981785639983,
+      "motor_thalamic_relay_unit": 0.06809829395277159
+    }
+  },
+  "experiment_A": {
+    "summary": {
+      "n_random": 5,
+      "n_ok": 5,
+      "n_fail": 0,
+      "n_emergent": 2,
+      "emergent_rate": 0.4,
+      "n_bonferroni_survives": 0,
+      "bonferroni_survive_rate": 0.0,
+      "em_mean": -0.001952791166842284,
+      "em_min": -0.005997880698011382,
+      "em_max": 0.0025455045603717877,
+      "em_median": -0.001777518966008862,
+      "alpha_bonferroni": 0.0016666666666666668,
+      "verdict": "RANDOM_ALSO_EMERGENT"
+    },
+    "raw": {
+      "combos": [
+        {
+          "idx": 0,
+          "units": [
+            "hypothalamic_arousal_unit",
+            "frog_tectal_prey_capture_unit",
+            "antennal_lobe_glomerular_unit",
+            "cortical_l5_output_unit",
+            "visual_thalamic_relay_unit",
+            "frog_escape_swim_unit",
+            "electrosensory_electrolocation_unit",
+            "birdsong_hvc_timing_unit",
+            "wing_flight_control_unit"
+          ],
+          "n_edges_spec": 9,
+          "n_nodes": 9,
+          "n_edges_organism": 9,
+          "validation_ok": true,
+          "status": "ok",
+          "edges_placed": 9,
+          "mse_mean": 0.06509193721845549,
+          "mse_per_seed": [
+            0.04980824650967362,
+            0.061249983700972725,
+            0.04909783316762821,
+            0.09737051220743274,
+            0.06793311050657018
+          ],
+          "emergence": -0.001777518966008862,
+          "welch_p": 0.8431928795896275,
+          "welch_d": -0.1415099721889569,
+          "elapsed_s": 0.04
+        },
+        {
+          "idx": 1,
+          "units": [
+            "buccal_feeding_cpg_unit",
+            "compound_lamina_relay_unit",
+            "sleep_wake_flipflop_unit",
+            "cortical_l23_association_unit",
+            "retinal_motion_onset_unit",
+            "cerebellar_purkinje_ltd_unit",
+            "gustatory_centrifugal_unit",
+            "striatal_direct_pathway_unit",
+            "hypothalamic_arousal_unit"
+          ],
+          "n_edges_spec": 9,
+          "n_nodes": 9,
+          "n_edges_organism": 9,
+          "validation_ok": true,
+          "status": "ok",
+          "edges_placed": 9,
+          "mse_mean": 0.06263985574399974,
+          "mse_per_seed": [
+            0.046789691958262554,
+            0.06835673689766414,
+            0.0506924588617577,
+            0.07256527715685776,
+            0.07479511384545655
+          ],
+          "emergence": 0.0006745625084468854,
+          "welch_p": 0.9113219609206518,
+          "welch_d": 0.057128990893676054,
+          "elapsed_s": 0.04
+        },
+        {
+          "idx": 2,
+          "units": [
+            "cephalopod_vertical_lobe_learning_unit",
+            "spinal_cpg_unit",
+            "cortical_inhibitory_gain_unit",
+            "locus_coeruleus_arousal_unit",
+            "gamma_spindle_loop_unit",
+            "circadian_clock_unit",
+            "retinal_direction_selective_unit",
+            "pit_viper_strike_unit",
+            "giant_fiber_escape_unit"
+          ],
+          "n_edges_spec": 9,
+          "n_nodes": 9,
+          "n_edges_organism": 9,
+          "validation_ok": true,
+          "status": "ok",
+          "edges_placed": 9,
+          "mse_mean": 0.06076891369207484,
+          "mse_per_seed": [
+            0.05299664357821918,
+            0.05784527173189299,
+            0.05404100180896021,
+            0.06789100735215153,
+            0.07107064398915029
+          ],
+          "emergence": 0.0025455045603717877,
+          "welch_p": 0.5320432290102342,
+          "welch_d": 0.22235913538532287,
+          "elapsed_s": 0.04
+        },
+        {
+          "idx": 3,
+          "units": [
+            "vestibulo_ocular_reflex_unit",
+            "pit_viper_strike_unit",
+            "cortical_l5_output_unit",
+            "basal_ganglia_selection_unit",
+            "elementary_motion_detection_unit",
+            "johnston_organ_wind_unit",
+            "retinal_irradiance_unit",
+            "buccal_feeding_cpg_unit",
+            "auditory_thalamic_relay_unit"
+          ],
+          "n_edges_spec": 9,
+          "n_nodes": 9,
+          "n_edges_organism": 9,
+          "validation_ok": true,
+          "status": "ok",
+          "edges_placed": 9,
+          "mse_mean": 0.06931229895045801,
+          "mse_per_seed": [
+            0.051753867226411066,
+            0.0701788885217362,
+            0.06511785205258581,
+            0.08640462429187844,
+            0.07310626265967848
+          ],
+          "emergence": -0.005997880698011382,
+          "welch_p": 0.30857806674953214,
+          "welch_d": -0.5094776898453879,
+          "elapsed_s": 0.04
+        },
+        {
+          "idx": 4,
+          "units": [
+            "serotonergic_mood_unit",
+            "somatosensory_dorsalhorn_unit",
+            "cholinergic_arousal_unit",
+            "retinal_motion_onset_unit",
+            "antennal_lobe_central_complex_feedback_unit",
+            "startle_escape_command_unit",
+            "frog_tectal_prey_capture_unit",
+            "cochlear_amplification_unit",
+            "hippocampal_spatial_map_unit"
+          ],
+          "n_edges_spec": 9,
+          "n_nodes": 9,
+          "n_edges_organism": 9,
+          "validation_ok": true,
+          "status": "ok",
+          "edges_placed": 9,
+          "mse_mean": 0.06852304149145648,
+          "mse_per_seed": [
+            0.04665906309355856,
+            0.0806515328667887,
+            0.05790189199192904,
+            0.0720507053858398,
+            0.08535201411916632
+          ],
+          "emergence": -0.005208623239009849,
+          "welch_p": 0.4813553614344399,
+          "welch_d": -0.42969312125484155,
+          "elapsed_s": 0.04
+        }
+      ],
+      "elapsed_s": 0.24
+    }
+  },
+  "experiment_B": {
+    "summary": {
+      "alpha_bonferroni": 0.01,
+      "entries": [
+        {
+          "size": 9,
+          "mse_mean": 0.06001931885625071,
+          "emergence": 0.003295099396195919,
+          "welch_d": 0.28334050569938046,
+          "welch_p": 0.5233603110637417,
+          "bonferroni_survives": false,
+          "direction": "emergent"
+        },
+        {
+          "size": 8,
+          "mse_mean": 0.06139272093420495,
+          "emergence": 0.001921697318241683,
+          "welch_d": 0.1627215822707084,
+          "welch_p": 0.7514091805796408,
+          "bonferroni_survives": false,
+          "direction": "emergent"
+        },
+        {
+          "size": 7,
+          "mse_mean": 0.06518759270181876,
+          "emergence": -0.001873174449372128,
+          "welch_d": -0.16314103530669843,
+          "welch_p": 0.662995756882826,
+          "bonferroni_survives": false,
+          "direction": "no_emergence"
+        },
+        {
+          "size": 6,
+          "mse_mean": 0.06300090152124398,
+          "emergence": 0.0003135167312026538,
+          "welch_d": 0.0260814288637621,
+          "welch_p": 0.9642271883449989,
+          "bonferroni_survives": false,
+          "direction": "emergent"
+        },
+        {
+          "size": 5,
+          "mse_mean": 0.06376341274886523,
+          "emergence": -0.0004489944964185949,
+          "welch_d": -0.037985133777282576,
+          "welch_p": 0.9414716127885958,
+          "bonferroni_survives": false,
+          "direction": "no_emergence"
+        }
+      ],
+      "emergence_threshold_size": 7
+    },
+    "raw": {
+      "sweep": [
+        {
+          "size": 9,
+          "units": [
+            "retinal_phototransduction_unit",
+            "visual_thalamic_relay_unit",
+            "cortical_l4_input_unit",
+            "cortical_l23_association_unit",
+            "cortical_l5_output_unit",
+            "basal_ganglia_selection_unit",
+            "dopaminergic_value_unit",
+            "cerebellar_cortical_unit",
+            "motor_thalamic_relay_unit"
+          ],
+          "n_edges_spec": 10,
+          "n_edges_spec_dropped": 0,
+          "validation_ok": true,
+          "status": "ok",
+          "edges_placed": 10,
+          "mse_mean": 0.06001931885625071,
+          "emergence": 0.003295099396195919,
+          "welch_p": 0.5233603110637417,
+          "welch_d": 0.28334050569938046,
+          "elapsed_s": 0.04
+        },
+        {
+          "size": 8,
+          "units": [
+            "retinal_phototransduction_unit",
+            "visual_thalamic_relay_unit",
+            "cortical_l4_input_unit",
+            "cortical_l23_association_unit",
+            "cortical_l5_output_unit",
+            "basal_ganglia_selection_unit",
+            "dopaminergic_value_unit",
+            "cerebellar_cortical_unit"
+          ],
+          "n_edges_spec": 7,
+          "n_edges_spec_dropped": 3,
+          "validation_ok": true,
+          "status": "ok",
+          "edges_placed": 7,
+          "mse_mean": 0.06139272093420495,
+          "emergence": 0.001921697318241683,
+          "welch_p": 0.7514091805796408,
+          "welch_d": 0.1627215822707084,
+          "elapsed_s": 0.04
+        },
+        {
+          "size": 7,
+          "units": [
+            "retinal_phototransduction_unit",
+            "visual_thalamic_relay_unit",
+            "cortical_l4_input_unit",
+            "cortical_l5_output_unit",
+            "basal_ganglia_selection_unit",
+            "dopaminergic_value_unit",
+            "cerebellar_cortical_unit"
+          ],
+          "n_edges_spec": 5,
+          "n_edges_spec_dropped": 5,
+          "validation_ok": true,
+          "status": "ok",
+          "edges_placed": 5,
+          "mse_mean": 0.06518759270181876,
+          "emergence": -0.001873174449372128,
+          "welch_p": 0.662995756882826,
+          "welch_d": -0.16314103530669843,
+          "elapsed_s": 0.04
+        },
+        {
+          "size": 6,
+          "units": [
+            "retinal_phototransduction_unit",
+            "visual_thalamic_relay_unit",
+            "cortical_l4_input_unit",
+            "cortical_l5_output_unit",
+            "basal_ganglia_selection_unit",
+            "dopaminergic_value_unit"
+          ],
+          "n_edges_spec": 4,
+          "n_edges_spec_dropped": 6,
+          "validation_ok": true,
+          "status": "ok",
+          "edges_placed": 4,
+          "mse_mean": 0.06300090152124398,
+          "emergence": 0.0003135167312026538,
+          "welch_p": 0.9642271883449989,
+          "welch_d": 0.0260814288637621,
+          "elapsed_s": 0.04
+        },
+        {
+          "size": 5,
+          "units": [
+            "retinal_phototransduction_unit",
+            "cortical_l4_input_unit",
+            "cortical_l23_association_unit",
+            "cortical_l5_output_unit",
+            "dopaminergic_value_unit"
+          ],
+          "n_edges_spec": 2,
+          "n_edges_spec_dropped": 8,
+          "validation_ok": true,
+          "status": "ok",
+          "edges_placed": 2,
+          "mse_mean": 0.06376341274886523,
+          "emergence": -0.0004489944964185949,
+          "welch_p": 0.9414716127885958,
+          "welch_d": -0.037985133777282576,
+          "elapsed_s": 0.04
+        }
+      ],
+      "elapsed_s": 0.25
+    }
+  }
+}
