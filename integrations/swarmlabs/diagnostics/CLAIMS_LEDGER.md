@@ -1,7 +1,8 @@
-# v2.15.0 Claims Ledger — 项目"效果增益"结论元分析
+# Claims Ledger — 项目"效果增益"结论元分析
 
-> **定位**：从 v2.5.0 到 v2.15.0 累计 10 轮实验，产生了 119 条对比、
-> 110 条含统计检验、**7 条严格 Bonferroni 存活**、5 次样本偏差撤回。
+> **定位**：从 v2.5.0 到 v2.20.0 累计 15 轮实验，产生了 178 条对比、
+> 110 条含统计检验、**8 条严格 Bonferroni 存活**、9 次样本偏差撤回。
+> v2.17-v2.20 引入跨单元涌现研究链，最终撤回 v2.17 首次声称的"mammal 独特涌现"。
 > 这份 ledger 是项目**诚实性护城河**的单一权威来源，供审计 / 引用 / 争议判定使用。
 
 **机器可读版本**：`claims_audit.json`（由 `diagnostic_meta_analyzer.py` 从 5 个结果 JSON 自动生成）
@@ -32,15 +33,21 @@
 | v2.12.0 | topology_capacity | 48 | **5** ⚠️ | 2 | 2 | — | — |
 | v2.13.0 | tree_fanout_variants | 16 | 10 | 1 | 1 | — | — |
 | **v2.15.0** | **tree_fanout_variants_n50** | **16** | **50** | **2** | **0** | — | — |
-| **合计** | | **119** | | **7** | **5** | **27** | **68** |
+| **v2.17.0** | **cross_unit_collaboration** | **8** | **50** | **1** (mammal NARMA-10, 后被 v2.19 撤回) | — | — | — |
+| **v2.18.0** | **edge_ablation + N=200 scale** | **11** | **50** | 0 | — | 1 (mammal d=0.47 未过 \|d\|≥0.5) | — |
+| **v2.19.0** | **falsification (N=60 30 random)** | **30+4** | **50** | 2 (都是随机) | — | — | — |
+| **v2.20.0** | **falsification_v2 (N=200 30 + conv90 30)** | **60** | **50** | 1 (idx=23 d=+0.60) | 3 (随机显著 WORSE) | — | — |
+| **合计** | | **178** | | **9** (含撤回 1) | **3** | **27** | **68** |
 
-**Bonferroni 校正后 7 条**：
+**Bonferroni 校正后 8 条**（含 v2.20 新增 1 条）：
 - 3 条 real_gain（v2.10.0 n=50，NARMA-10 上：textbook_random / random_matched /
   single_unit_best 全 > bio_motif）
 - 2 条 real_loss（v2.10.0 n=50，double_pole 上：textbook_random / single_unit_best
   全 < bio_motif）
 - **2 条 real_gain（v2.15.0 n=50，NARMA-10 上：extended_chain 显著 WORSE vs
   tree_fanout_ref at N=60 和 N=200）**
+- **1 条 real_gain（v2.20.0 n=50，NARMA-10 N=200 上：random idx=23 9 单元组合涌现，
+  em=+0.0093 d=+0.60 超过 mammal em=+0.0072 d=+0.47）**
 
 **v2.12.0 的 4 条 real_gain/real_loss 全部未通过 Bonferroni**（因 n_seeds=5，
 α=0.05/24=0.0021，它们 p=0.008-0.018 均超阈值 4-9×）。**样本偏差教训第 4 次验证**。
@@ -153,7 +160,7 @@ TOPOLOGY_CAPACITY_REPORT.md 叙述"n_seeds=10 完整跑"，但 `topology_capacit
 
 ---
 
-## 四、样本偏差教训完整链路（5 次撤回）
+## 四、样本偏差教训完整链路（9 次撤回）
 
 | 撤回事件 | 原声明 | 撤回原因 | 证据强度变化 |
 |----------|--------|----------|--------------|
@@ -163,16 +170,55 @@ TOPOLOGY_CAPACITY_REPORT.md 叙述"n_seeds=10 完整跑"，但 `topology_capacit
 | **v2.12.0 tree/hierarchical vs gustatory** | real_gain (d≈1.5, p<0.02) | n=5 Bonferroni α=0.0042 未通过 | 效应量级不足以定案 |
 | **v2.13.0 with_inhibition quick WINNER** | real_gain (d=+1.4, p=0.027) | n=5 → 10 后 d=+0.33 p=0.460 | d 缩水 4× |
 | **v2.15.0 with_inhibition 撤回** | trend_gain (d=+0.33, p=0.46) | n=10 → 50 后 d=+0.077 p=0.698 | d 缩水 4.3× |
+| **v2.18.0 N=200 mammal 缩水** | v2.17 d=+0.54 Bonferroni 存活 | N=60 → 200 后 d=+0.47 (未过 \|d\|≥0.5) | 跨 N 缩 13% |
+| **v2.19.0 mammal 独特涌现撤回** | "mammal 跨单元涌现是生物独特" | 30 随机 9 单元 50% 涌现，em magnitude 相当 | 生物学贡献 = 0 |
+| **v2.19.0 seed_offset 缩水** | v2.17 d=+0.54 (跨 seed_offset) | 内联重跑 mammal N=60 d=+0.49 | 缩水 9%，临界 \|d\| 不稳定 |
 
-**共同模式**：**n_seeds≤10 的 d≈0.3-1.5 REAL_GAIN / TREND_GAIN 全部是样本偏差幻觉**。
-**判定规则**：**只有 n_seeds≥20 + Bonferroni 存活的对比才进 ledger 主表**
-（v2.14.0 的 n_seeds≥15 门槛已被 v2.15.0 证明不足）。
+**共同模式**：
+- **n_seeds≤10 的 d≈0.3-1.5 REAL_GAIN / TREND_GAIN 全部是样本偏差幻觉**（v2.5-v2.15 前 6 次）
+- **跨 N、跨 seed_offset 的临界 \|d\| 也极不稳定**（v2.18-v2.19 第 7-9 次）
+- **判定规则**：**只有 n_seeds≥50 + Bonferroni 存活的对比才进 ledger 主表**
 
 ---
 
-## 五、通过严格 Bonferroni 校正的 7 条证据
+## 4b、跨单元涌现研究链（v2.17-v2.20）— 项目诚实边界核心章节
+
+**研究目标**：验证"生物连接组的多单元组合是否产生单单元没有的涌现能力"。
+
+**最终结论**：**否**——跨单元涌现是 ≥9 单元系统的规模效应 + sequence prediction 任务的组合属性，**生物学贡献为 0**，反应速度涌现几乎不存在。
+
+### 演进链
+
+| 版本 | 实验 | 结论 |
+|------|------|------|
+| v2.17.0 | 4 组合 × 3 度量 (NARMA-10/conv90/memory) | mammal NARMA-10 d=+0.54 Bonferroni 存活 → **首次声称"生物涌现"** |
+| v2.18.0 | N=200 scale + edge ablation | mammal N=200 d=+0.47（未过阈值）；0/10 边 CRITICAL → **涌现是结构驱动非边驱动** |
+| v2.19.0 | 30 random 9-unit reverse (N=60) | 50% 涌现，2/30 Bonferroni 存活，em 相当 → **撤回 v2.17** |
+| **v2.20.0** | **N=200 + conv90 双反向** | N=200 涌现率 43%，最强随机 em=+0.0093 超过 mammal em=+0.0072；conv90 涌现率仅 23% → **任务依赖性** |
+
+### 最终定性
+
+- **涌现是"≥9 单元 + sequence prediction"的组合属性**，不是"生物性"
+- **conv90 (反应速度) 涌现几乎不存在**（23% 涌现率、0/30 Bonferroni 存活）
+- **规模扫描**：mammal 9→7 单元期间 em 方向翻转，7→8 是相变点（v2.19）
+- **R 维度（反应速度）涌现不存在**：跨版本 v2.17-v2.20 稳定
+
+### 对元结论的修正
+
+v2.19 曾断言"涌现是规模效应"。v2.20 修正为：
+
+> **涌现是"任务依赖 + 规模效应"的组合**——只在 sequence prediction 任务上，
+> ≥9 单元系统会涌现；其他任务（如反应速度）不涌现。
+> 生物学贡献为 0（跨 N=60/200、跨 mammal/random 稳定）。
+
+---
+
+
+## 五、通过严格 Bonferroni 校正的证据（含跨单元）
 
 按效应量排序：
+
+### 5a. 单元级 / 组合拓扑（v2.10-v2.15）
 
 | # | 对比 | metric | mean_a vs mean_b | p | d | n |
 |---|------|--------|-----------------|---|---|---|
@@ -195,11 +241,33 @@ TOPOLOGY_CAPACITY_REPORT.md 叙述"n_seeds=10 完整跑"，但 `topology_capacit
 在通用学习（NARMA-10）上输给随机；但在特定 memory 任务（double_pole）上占优。
 **组合层复现**：树状广播 + 链式延展混合拓扑显著不如纯树状广播。
 
+### 5b. 跨单元涌现（v2.17-v2.20）
+
+| # | 对比 | metric | mean_a vs mean_b | p | d | n | 版本 |
+|---|------|--------|-----------------|---|---|---|------|
+| 8 | random idx=23 vs mammal 9-unit baseline | NARMA-10 N=200 | 0.0590 vs 0.06835 | 1.7e-5 | +0.60 | 50 | v2.20.0 |
+
+**关键背景**：
+
+- v2.17.0 首次声称 mammal 组合涌现 (d=+0.54 Bonferroni 存活)，**已在 v2.19 撤回**
+  （30 随机 9 单元 50% 涌现，em magnitude 相当）
+- v2.18.0 边消融证实 0/10 边 CRITICAL → 涌现是"多单元系统结构驱动"，非"边驱动"
+- v2.20.0 N=200 尺度下随机 em 最大值 (+0.0093) **超过 mammal em** (+0.0072, d=+0.47 未过阈值)
+- v2.20.0 conv90（反应速度）度量上随机涌现率仅 23% 且 0/30 Bonferroni 存活
+
+**跨单元涌现核心结论**：
+
+1. **"生物独特涌现"不存在**——随机 9 单元组合涌现 magnitude 与 mammal 相当甚至更强
+2. **涌现是"任务依赖 + 规模效应"**——只在 sequence prediction (NARMA-10) 上存在，
+   conv90 (反应速度) 上几乎不存在（23% 涌现率、0 Bonferroni 存活）
+3. **R 维度（反应速度）涌现不存在**——跨 v2.17-v2.20 全部 4 版本稳定
+4. **"涌现"作为生物复杂度证据"这条链彻底断了**（v2.17-v2.20）
+
 ---
 
 ## 六、项目"计算力 / 结构"结论诚实版
 
-### 站得住的（5 条 Bonferroni 存活 + 6 条方向性）
+### 站得住的（8 条 Bonferroni 存活 + 6 条方向性）
 
 - **bio_motif 在 NARMA-10 上不如随机**（1.4 SD，n=50）
 - **bio_motif 在 memory 任务（double_pole）上显著占优**（1.7 SD，n=50）
@@ -207,14 +275,20 @@ TOPOLOGY_CAPACITY_REPORT.md 叙述"n_seeds=10 完整跑"，但 `topology_capacit
 - **skip_recurrence 是"结构化拓扑 NARMA-10 帕累托最优"**（v2.11.0）
 - **加边（无论抑制/反馈/链式延展）都加速收敛**（v2.13.0）
 - **OUT port 复用到 3+ 下游时，扩容会崩溃**（v2.13.0 wide_tree_fanout）
+- **extended_chain 显著 WORSE**（v2.15.0 n=50 双尺寸 Bonferroni 存活）
+- **随机 9 单元组合涌现 ≥ mammal 涌现**（v2.20.0 d=+0.60 存活，em 更大）
 
-### 不站得住的（5 条撤回 / 3 条降级）
+### 不站得住的（9 条撤回 / 3 条降级）
 
 - ~~v2.5.0 delay-line memory 结论~~ — rank bug
 - ~~v2.7.0 3/3 multi_unit 全胜 noisy_parity/double_pole~~ — 样本偏差
 - ~~v2.10.0 olfactory_to_steering NARMA-10 real_gain~~ — n=15→50 缩水 3×
 - ~~v2.12.0 tree_fanout/hierarchical vs gustatory_to_motion real_gain~~ — n=5 Bonferroni 失败
 - ~~v2.13.0 with_inhibition quick WINNER~~ — n=5→10 缩水 4×
+- ~~v2.17.0 mammal 跨单元涌现 d=+0.54~~ — v2.19 随机 50% 涌现、em 相当
+- ~~v2.18.0 N=200 mammal d=+0.47 存活~~ — v2.20 随机 em=+0.0093 > mammal em=+0.0072
+- ~~v2.17-v2.19 mammal 独特涌现~~ — 生物学贡献 = 0
+- ~~v2.19 "涌现是规模效应" 过度概括~~ — v2.20 修正为"任务依赖 + 规模效应"
 
 ### 未确认的（需要 n_seeds=50）
 
