@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.19.0` | the toolkit as a whole |
+| package | `2.20.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,72 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.20.0] — 2026-09-28
+
+### 跨单元涌现反向实验 v2：N=200 尺度 + conv90 度量
+
+v2.19 在 N=60 上反向证伪 v2.17 的"mammal 独特涌现"，但留下两个未回答
+问题：(1) N=200 尺度下随机 9 单元涌现率是否仍 50%？(2) 涌现只在 narma10
+上还是也存在于 conv90？v2.20 用两个反向实验直接回答。
+
+#### Experiment C · N=200 narma10 反向
+
+| 指标 | 结果 |
+|------|------|
+| 涌现率 | **13/30 = 43%**（比 v2.19 N=60 的 50% 略降） |
+| Bonferroni 存活（\|d\|≥0.5 AND p<0.00167） | **4/30** |
+| 存活方向分解 | **1 em+ (idx=23 d=+0.60 em=+0.0093)** + 3 em−（显著 WORSE） |
+| em 最大值 | +0.0093（超过 v2.18 mammal N=200 em=+0.0072） |
+
+**关键**：v2.20 最强随机组合 em=+0.0093 d=+0.60 **超过 mammal em=+0.0072 d=+0.47**——
+**N=200 下 mammal 独特涌现依然无法复活**。
+
+#### Experiment D · N=60 conv90 反向
+
+| 指标 | 结果 |
+|------|------|
+| 涌现率 | **7/30 = 23%**（比 narma10 的 43% 低 20 个百分点） |
+| Bonferroni 存活 | **0/30** |
+| em 分布 | [−19.90, +8.12] median −3.86 |
+
+**关键**：conv90（反应速度）上涌现几乎不存在——**R 维度涌现不存在**跨版本
+稳定（v2.17-v2.20 全部 4 版本）。
+
+#### 跨版本对比
+
+| 版本 | 组合 | N | 涌现率 | Bonferroni | max em |
+|------|------|---|--------|-----------|--------|
+| v2.17 | mammal | 60 | — | 1/1 (d=+0.54) | +0.0061 |
+| v2.18 | mammal | 200 | — | 0/1 (d=+0.47) | +0.0072 |
+| v2.19 | 30 random | 60 | 50% | 2/30 | +0.0055 |
+| **v2.20 C** | **30 random** | **200** | **43%** | **4/30 (1 em+)** | **+0.0093** |
+| **v2.20 D** | **30 random** | **60** | **23%** | **0/30** | +8.12 |
+
+#### 核心结论
+
+1. **N=200 尺度下 v2.17 结论完全无法复活**——随机 em 更大
+2. **涌现是"任务依赖 + 规模效应"的组合**——不是纯规模（修正 v2.19 过度概括）
+3. **R 维度涌现不存在**——反应速度涌现跨版本稳定不涌现
+4. **样本偏差第 9 次**：跨 N、跨 seed_offset、跨组合的 d 值都在 0.47-0.60 波动
+
+#### 新增文件
+
+- `cross_unit_falsification_v2_experiment.py`（Experiment C + D）
+- `cross_unit_falsification_v2_results.json`（原始数据）
+- `CROSS_UNIT_FALSIFICATION_V2_REPORT.md`（详细报告）
+
+#### 版本升级
+
+4 处版本号（`pyproject.toml`、`flybrain_cli.py`、
+`flybrain-connectome-mcp/mcp_connectome/server.py`、
+`flybrain-connectome-mcp/mcp_connectome/api_server.py`）
++ `topology_visualizer.py` 3 处版本字符串 → `2.19.0 → 2.20.0`。
+
+CLAIMS_LEDGER.md 新增 section 4b（跨单元涌现链 v2.17-v2.20）、
+更新元分析表（+60 对比 → 178 总计）、8 条 Bonferroni 存活、9 条撤回。
 
 ---
 
