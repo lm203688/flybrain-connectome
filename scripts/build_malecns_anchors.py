@@ -304,6 +304,21 @@ TYPE_RULES: list[dict] = [
      "superclass": ["sensory_descending"],
      "note": "Sensory descending neurons: descending neurons carrying sensory-"
              "state information back down the cord."},
+    # ---------------- v1.22.0: ascending_neuron superclass densification ----
+    # The dataset's `ascending_neuron` superclass (1,846 bodies, 567 types)
+    # is DISJOINT from `sensory_ascending` (537) and `efferent_ascending` (8) --
+    # each neuron body sits in exactly one superclass, so this pool is the
+    # remaining "ascending" channel that neither sensory- nor efferent-
+    # ascending captures. Its type names (AN01-AN23 A/B, IN/vMS/dMS variants)
+    # are a distinct numbering system, not a sub-class of the other two.
+    {"profile": "ascending_neuron_pool", "type_re": r".+",
+     "superclass": ["ascending_neuron"],
+     "note": "Ascending neurons (AN01-AN23 A/B families plus IN / vMS / dMS "
+             "variants): the general ascending channel from VNC / peripheral "
+             "segments up to brain centres. A separate superclass from "
+             "sensory_ascending (which this pool does NOT duplicate) and "
+             "efferent_ascending; the dataset's own type prefix AN is the "
+             "distinctive marker."},
 ]
 
 # Profiles that ARE a fly cell class but whose real counterpart could not be
