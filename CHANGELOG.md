@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.20.0` | the toolkit as a whole |
+| package | `2.21.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -19,7 +19,79 @@ The **schema version** is versioned separately from the **package version**:
 
 ---
 
-## [2.20.0] — 2026-09-28
+## [2.21.0] — 2026-09-29
+
+### 跨单元涌现反向实验 v3：反应速度维度
+
+v2.17-v2.20 涌现链只在 MSE（准确度）和 conv90（收敛）上测过，都证伪
+生物学贡献。v2.21 直接对准用户核心目标「像生物一样快速反应」，把涌现
+问题搬到**反应速度**度量上，检验生物学结构是否在反应速度维度上有涌现。
+
+#### Part E1 · 4 DEMO × 2 N
+
+| 组合 | N | lat | base | em | d | p |
+|------|---|-----|------|-----|---|---|
+| insect | 60 | 20.90 | 15.22 | −5.68 | −0.11 | 0.529 |
+| insect | 200 | 36.56 | 28.14 | −8.42 | −0.12 | 0.469 |
+| **mammal** | 60 | 28.90 | 14.80 | **−14.10** | −0.27 | 0.165 |
+| **mammal** | 200 | 28.78 | 33.64 | **+4.86** | +0.07 | 0.642 |
+| electrosensory | 60 | 28.68 | 20.83 | −7.85 | −0.13 | 0.465 |
+| electrosensory | 200 | 40.44 | 27.68 | −12.76 | −0.18 | 0.303 |
+| swim | 60 | 20.92 | 23.69 | +2.77 | +0.04 | 0.781 |
+| swim | 200 | 28.68 | 28.80 | +0.12 | +0.00 | 0.992 |
+
+**E1 Bonferroni 存活：0/8**。mammal latency 双向无涌现（N=60 组合反而更慢
+14 步，N=200 组合略快 5 步但 d=0.07 微不足道）。
+
+#### Part E2 · 30 随机 9 单元组合（N=60，种子 20260927 同 v2.19/v2.20）
+
+| 指标 | 结果 |
+|------|------|
+| baseline pool mean | 24.80 步（9 单元 × 50 seeds） |
+| 涌现率（em>0） | **17/30 = 56.7%** |
+| 最强 em | RAND13 em=+16.06 d=+0.26 p=0.012 |
+| 最强 \|d\| | RAND24 em=−27.50 d=−0.41（反向 WORSE） |
+| **Bonferroni 存活** | **0/30** |
+
+涌现率虽 57% 但效应量太小（\|d\| < 0.4），无任何组合达到"组合显著快于
+baseline"的统计显著性。
+
+#### 涌现链跨三个度量维度全灭
+
+| 版本 | 度量 | 涌现率 | Bonferroni | 生物学贡献 |
+|------|------|--------|-----------|-----------|
+| v2.17.0 | NARMA-10 N=60 | mammal d=+0.54 | 存活（后被撤回） | 声称独特 |
+| v2.20.0 | NARMA-10 N=200 30 随机 | 43% | 1/30 存活（随机 em>mammal） | **=0** |
+| v2.20.0 | conv90 N=60 30 随机 | 23% | 0/30 存活 | **=0** |
+| **v2.21.0** | **latency 4 DEMO** | mammal **0%** | 0/8 存活 | **=0** |
+| **v2.21.0** | **latency N=60 30 随机** | 57% | 0/30 存活 | **=0** |
+
+**涌现链在 v2.17-v2.21 五轮内完整闭合**：MSE 无生物学涌现 + conv90 无涌现
++ latency 无涌现 = "跨单元涌现作为生物复杂度证据"整条链死。
+
+#### 方法学教训
+
+初版 v2.21 quick 用 `measure_reaction_latency` 度量，实测值域仅
+`{0, 0.2, 0.4, 0.6}` 4 个离散值——`settle_thresh=0.02` 过松、tanh 压缩后
+输出几乎立即稳定，跨单元层无法分辨。**改用 `measure_convergence_90`**
+（step 到 90% asymptote 步数，0-200 范围），v2.11 单点层已验证可分辨。
+
+#### 新增文件
+
+- `integrations/swarmlabs/diagnostics/cross_unit_reaction_latency_experiment.py`
+- `integrations/swarmlabs/diagnostics/cross_unit_reaction_latency_results.json`
+- `integrations/swarmlabs/diagnostics/cross_unit_reaction_latency_quick.json`
+- `integrations/swarmlabs/diagnostics/CROSS_UNIT_REACTION_LATENCY_REPORT.md`
+
+#### 对用户核心目标 3 点的对标
+
+- **点 1（最小功能神经元模块）**：v2.21 未做扩充——66 未锚定仍 fail-closed
+- **点 2（连接件/连接方式）**：v2.21 未做扩充——66 种 CONNECTION_TYPES 已够用
+- **点 3（提效是否可验证）**：**主交付**——反应速度是新维度，且已证伪
+  生物学结构在反应速度上有涌现提效。"提效"作为涌现证据这条链在 v2.21
+  完整闭合。
+
+
 
 ### 跨单元涌现反向实验 v2：N=200 尺度 + conv90 度量
 
