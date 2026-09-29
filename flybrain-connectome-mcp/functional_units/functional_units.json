@@ -159,10 +159,10 @@
   "embodiment_source": {
     "file": "malecns_anchors.json",
     "schema_version": "1.0",
-    "sha256": "27a167aa82e2c7cac4fcbe3da8bdd39d6f1ae766b4cb27b926222fccd2415214",
-    "anchored_profiles": 57,
-    "anchored_real_cells": 105717,
-    "anchored_types": 4872,
+    "sha256": "6d3a2325ca310de4b3f70fddd1d009335138c635b125593c475e492cda1472c5",
+    "anchored_profiles": 58,
+    "anchored_real_cells": 107558,
+    "anchored_types": 5413,
     "measured_synapses_neuron_subgraph": 124177617,
     "measured_edges_neuron_subgraph": 25582938,
     "scope": "Presence + non-contradiction only. A matched population proves the parts exist in the real connectome; a nonzero measured pathway proves the declared edge is not contradicted at cell-type resolution. Neither proves the declared microcircuit or connection form. Declared edges measured at ZERO synapses are listed in `contradicted_edges` and are UNSUPPORTED, not supported.",
@@ -188,10 +188,10 @@
   "units": [
     {
       "name": "retinal_phototransduction_unit",
-      "display": "视网膜光转导单元",
+      "display": "\u89c6\u7f51\u819c\u5149\u8f6c\u5bfc\u5355\u5143",
       "function": "phototransduction",
       "system": "sensory",
-      "description": "锥体/杆体双极细胞把光强转为分级电位，经水平细胞做增益控制后由 midget 节细胞输出高分辨率空间信号。",
+      "description": "\u9525\u4f53/\u6746\u4f53\u53cc\u6781\u7ec6\u80de\u628a\u5149\u5f3a\u8f6c\u4e3a\u5206\u7ea7\u7535\u4f4d\uff0c\u7ecf\u6c34\u5e73\u7ec6\u80de\u505a\u589e\u76ca\u63a7\u5236\u540e\u7531 midget \u8282\u7ec6\u80de\u8f93\u51fa\u9ad8\u5206\u8fa8\u7387\u7a7a\u95f4\u4fe1\u53f7\u3002",
       "members": [
         {
           "role": "cone_bp",
@@ -312,10 +312,10 @@
     },
     {
       "name": "retinal_direction_selective_unit",
-      "display": "视网膜方向选择单元",
+      "display": "\u89c6\u7f51\u819c\u65b9\u5411\u9009\u62e9\u5355\u5143",
       "function": "direction_selectivity",
       "system": "sensory",
-      "description": "星爆无长突细胞的延迟抑制与双极细胞兴奋相遇，只对特定运动方向放电。",
+      "description": "\u661f\u7206\u65e0\u957f\u7a81\u7ec6\u80de\u7684\u5ef6\u8fdf\u6291\u5236\u4e0e\u53cc\u6781\u7ec6\u80de\u5174\u594b\u76f8\u9047\uff0c\u53ea\u5bf9\u7279\u5b9a\u8fd0\u52a8\u65b9\u5411\u653e\u7535\u3002",
       "members": [
         {
           "role": "bp",
@@ -437,10 +437,10 @@
     },
     {
       "name": "retinal_motion_onset_unit",
-      "display": "视网膜运动起始单元",
+      "display": "\u89c6\u7f51\u819c\u8fd0\u52a8\u8d77\u59cb\u5355\u5143",
       "function": "motion_onset",
       "system": "sensory",
-      "description": "ACL2 胆碱能无长突细胞在运动起始瞬间发放，给下游一个『有新事件』的突兀信号。",
+      "description": "ACL2 \u80c6\u78b1\u80fd\u65e0\u957f\u7a81\u7ec6\u80de\u5728\u8fd0\u52a8\u8d77\u59cb\u77ac\u95f4\u53d1\u653e\uff0c\u7ed9\u4e0b\u6e38\u4e00\u4e2a\u300e\u6709\u65b0\u4e8b\u4ef6\u300f\u7684\u7a81\u5140\u4fe1\u53f7\u3002",
       "members": [
         {
           "role": "bp",
@@ -561,10 +561,10 @@
     },
     {
       "name": "retinal_irradiance_unit",
-      "display": "视网膜辐照度单元",
+      "display": "\u89c6\u7f51\u819c\u8f90\u7167\u5ea6\u5355\u5143",
       "function": "irradiance_sensing",
       "system": "sensory",
-      "description": "内在光敏节细胞直接被光驱动并缓慢持续放电，把环境亮度传给昼夜节律系统，不经图像通道。",
+      "description": "\u5185\u5728\u5149\u654f\u8282\u7ec6\u80de\u76f4\u63a5\u88ab\u5149\u9a71\u52a8\u5e76\u7f13\u6162\u6301\u7eed\u653e\u7535\uff0c\u628a\u73af\u5883\u4eae\u5ea6\u4f20\u7ed9\u663c\u591c\u8282\u5f8b\u7cfb\u7edf\uff0c\u4e0d\u7ecf\u56fe\u50cf\u901a\u9053\u3002",
       "members": [
         {
           "role": "iprgc",
@@ -672,10 +672,10 @@
     },
     {
       "name": "olfactory_transduction_unit",
-      "display": "嗅觉转导单元",
+      "display": "\u55c5\u89c9\u8f6c\u5bfc\u5355\u5143",
       "function": "olfaction",
       "system": "sensory",
-      "description": "嗅感觉神经元表达单一受体，经局部抑制性中间神经元做增益归一化后输出气味身份信号。",
+      "description": "\u55c5\u611f\u89c9\u795e\u7ecf\u5143\u8868\u8fbe\u5355\u4e00\u53d7\u4f53\uff0c\u7ecf\u5c40\u90e8\u6291\u5236\u6027\u4e2d\u95f4\u795e\u7ecf\u5143\u505a\u589e\u76ca\u5f52\u4e00\u5316\u540e\u8f93\u51fa\u6c14\u5473\u8eab\u4efd\u4fe1\u53f7\u3002",
       "members": [
         {
           "role": "osn",
@@ -791,10 +791,10 @@
     },
     {
       "name": "cochlear_amplification_unit",
-      "display": "耳蜗放大单元",
+      "display": "\u8033\u8717\u653e\u5927\u5355\u5143",
       "function": "cochlear_amplification",
       "system": "sensory",
-      "description": "外毛细胞的电致运动放大基底膜的微弱振动，是一段主动的机械增益级而非被动换能。",
+      "description": "\u5916\u6bdb\u7ec6\u80de\u7684\u7535\u81f4\u8fd0\u52a8\u653e\u5927\u57fa\u5e95\u819c\u7684\u5fae\u5f31\u632f\u52a8\uff0c\u662f\u4e00\u6bb5\u4e3b\u52a8\u7684\u673a\u68b0\u589e\u76ca\u7ea7\u800c\u975e\u88ab\u52a8\u6362\u80fd\u3002",
       "members": [
         {
           "role": "ohc",
@@ -904,10 +904,10 @@
     },
     {
       "name": "vestibular_transduction_unit",
-      "display": "前庭转导单元",
+      "display": "\u524d\u5ead\u8f6c\u5bfc\u5355\u5143",
       "function": "vestibular_sensing",
       "system": "sensory",
-      "description": "毛细胞把头部加速度转为放电，经前庭小脑叶做重力参考后再送往运动系统。",
+      "description": "\u6bdb\u7ec6\u80de\u628a\u5934\u90e8\u52a0\u901f\u5ea6\u8f6c\u4e3a\u653e\u7535\uff0c\u7ecf\u524d\u5ead\u5c0f\u8111\u53f6\u505a\u91cd\u529b\u53c2\u8003\u540e\u518d\u9001\u5f80\u8fd0\u52a8\u7cfb\u7edf\u3002",
       "members": [
         {
           "role": "hair",
@@ -1017,10 +1017,10 @@
     },
     {
       "name": "somatosensory_dorsalhorn_unit",
-      "display": "躯体感觉背角单元",
+      "display": "\u8eaf\u4f53\u611f\u89c9\u80cc\u89d2\u5355\u5143",
       "function": "somatosensation",
       "system": "sensory",
-      "description": "痛觉与触觉传入在背角被甘氨酸能/回返性中间神经元预筛，形成门控式上行信号。",
+      "description": "\u75db\u89c9\u4e0e\u89e6\u89c9\u4f20\u5165\u5728\u80cc\u89d2\u88ab\u7518\u6c28\u9178\u80fd/\u56de\u8fd4\u6027\u4e2d\u95f4\u795e\u7ecf\u5143\u9884\u7b5b\uff0c\u5f62\u6210\u95e8\u63a7\u5f0f\u4e0a\u884c\u4fe1\u53f7\u3002",
       "members": [
         {
           "role": "nociceptor",
@@ -1144,10 +1144,10 @@
     },
     {
       "name": "thalamocortical_relay_unit",
-      "display": "丘脑皮层中继单元",
+      "display": "\u4e18\u8111\u76ae\u5c42\u4e2d\u7ee7\u5355\u5143",
       "function": "thalamic_relay",
       "system": "thalamus",
-      "description": "中继细胞把上行信号送皮层，网状核形成局部抑制回路控制『门开多大』，是皮层的准入关口。",
+      "description": "\u4e2d\u7ee7\u7ec6\u80de\u628a\u4e0a\u884c\u4fe1\u53f7\u9001\u76ae\u5c42\uff0c\u7f51\u72b6\u6838\u5f62\u6210\u5c40\u90e8\u6291\u5236\u56de\u8def\u63a7\u5236\u300e\u95e8\u5f00\u591a\u5927\u300f\uff0c\u662f\u76ae\u5c42\u7684\u51c6\u5165\u5173\u53e3\u3002",
       "members": [
         {
           "role": "relay",
@@ -1264,10 +1264,10 @@
     },
     {
       "name": "visual_thalamic_relay_unit",
-      "display": "视觉丘脑中继单元",
+      "display": "\u89c6\u89c9\u4e18\u8111\u4e2d\u7ee7\u5355\u5143",
       "function": "visual_relay",
       "system": "thalamus",
-      "description": "外膝体把视网膜信号按通道分流送往 V1，网状核调节中继增益与同步。",
+      "description": "\u5916\u819d\u4f53\u628a\u89c6\u7f51\u819c\u4fe1\u53f7\u6309\u901a\u9053\u5206\u6d41\u9001\u5f80 V1\uff0c\u7f51\u72b6\u6838\u8c03\u8282\u4e2d\u7ee7\u589e\u76ca\u4e0e\u540c\u6b65\u3002",
       "members": [
         {
           "role": "relay",
@@ -1371,10 +1371,10 @@
     },
     {
       "name": "auditory_thalamic_relay_unit",
-      "display": "听觉丘脑中继单元",
+      "display": "\u542c\u89c9\u4e18\u8111\u4e2d\u7ee7\u5355\u5143",
       "function": "auditory_relay",
       "system": "thalamus",
-      "description": "内侧膝状体按频率拓扑转发听觉信号，并由皮层下行反馈塑形。",
+      "description": "\u5185\u4fa7\u819d\u72b6\u4f53\u6309\u9891\u7387\u62d3\u6251\u8f6c\u53d1\u542c\u89c9\u4fe1\u53f7\uff0c\u5e76\u7531\u76ae\u5c42\u4e0b\u884c\u53cd\u9988\u5851\u5f62\u3002",
       "members": [
         {
           "role": "relay",
@@ -1478,10 +1478,10 @@
     },
     {
       "name": "somatosensory_thalamic_relay_unit",
-      "display": "体感丘脑中继单元",
+      "display": "\u4f53\u611f\u4e18\u8111\u4e2d\u7ee7\u5355\u5143",
       "function": "somatosensory_relay",
       "system": "thalamus",
-      "description": "VPL/VPM 分别中继躯干与面部的触觉/本体感觉，是体感拓扑映射的入口。",
+      "description": "VPL/VPM \u5206\u522b\u4e2d\u7ee7\u8eaf\u5e72\u4e0e\u9762\u90e8\u7684\u89e6\u89c9/\u672c\u4f53\u611f\u89c9\uff0c\u662f\u4f53\u611f\u62d3\u6251\u6620\u5c04\u7684\u5165\u53e3\u3002",
       "members": [
         {
           "role": "vpl",
@@ -1608,10 +1608,10 @@
     },
     {
       "name": "motor_thalamic_relay_unit",
-      "display": "运动丘脑中继单元",
+      "display": "\u8fd0\u52a8\u4e18\u8111\u4e2d\u7ee7\u5355\u5143",
       "function": "motor_relay",
       "system": "thalamus",
-      "description": "VA/VL 把基底神经节与小脑的输出转给运动皮层，构成两条并行运动通路的共同出口。",
+      "description": "VA/VL \u628a\u57fa\u5e95\u795e\u7ecf\u8282\u4e0e\u5c0f\u8111\u7684\u8f93\u51fa\u8f6c\u7ed9\u8fd0\u52a8\u76ae\u5c42\uff0c\u6784\u6210\u4e24\u6761\u5e76\u884c\u8fd0\u52a8\u901a\u8def\u7684\u5171\u540c\u51fa\u53e3\u3002",
       "members": [
         {
           "role": "va",
@@ -1738,10 +1738,10 @@
     },
     {
       "name": "cortical_l4_input_unit",
-      "display": "皮层 L4 输入单元",
+      "display": "\u76ae\u5c42 L4 \u8f93\u5165\u5355\u5143",
       "function": "cortical_input",
       "system": "cortex",
-      "description": "第 4 层接受丘脑输入并立刻被 PV/SST 中间神经元做前馈抑制，把持续输入变成稀疏的时间窗响应。",
+      "description": "\u7b2c 4 \u5c42\u63a5\u53d7\u4e18\u8111\u8f93\u5165\u5e76\u7acb\u523b\u88ab PV/SST \u4e2d\u95f4\u795e\u7ecf\u5143\u505a\u524d\u9988\u6291\u5236\uff0c\u628a\u6301\u7eed\u8f93\u5165\u53d8\u6210\u7a00\u758f\u7684\u65f6\u95f4\u7a97\u54cd\u5e94\u3002",
       "members": [
         {
           "role": "main",
@@ -1876,10 +1876,10 @@
     },
     {
       "name": "cortical_l23_association_unit",
-      "display": "皮层 L2/3 联合单元",
+      "display": "\u76ae\u5c42 L2/3 \u8054\u5408\u5355\u5143",
       "function": "cortical_association",
       "system": "cortex",
-      "description": "第 2/3 层在皮层内横向联合，VIP 去抑制让 SST 松开树突，形成可切换的关联态。",
+      "description": "\u7b2c 2/3 \u5c42\u5728\u76ae\u5c42\u5185\u6a2a\u5411\u8054\u5408\uff0cVIP \u53bb\u6291\u5236\u8ba9 SST \u677e\u5f00\u6811\u7a81\uff0c\u5f62\u6210\u53ef\u5207\u6362\u7684\u5173\u8054\u6001\u3002",
       "members": [
         {
           "role": "main",
@@ -2051,10 +2051,10 @@
     },
     {
       "name": "cortical_l5_output_unit",
-      "display": "皮层 L5 输出单元",
+      "display": "\u76ae\u5c42 L5 \u8f93\u51fa\u5355\u5143",
       "function": "cortical_output",
       "system": "cortex",
-      "description": "第 5 层是皮层唯一的皮层下出口，粗树突细胞同时投向多个下游并带 KCN 型适应调控持续输出。",
+      "description": "\u7b2c 5 \u5c42\u662f\u76ae\u5c42\u552f\u4e00\u7684\u76ae\u5c42\u4e0b\u51fa\u53e3\uff0c\u7c97\u6811\u7a81\u7ec6\u80de\u540c\u65f6\u6295\u5411\u591a\u4e2a\u4e0b\u6e38\u5e76\u5e26 KCN \u578b\u9002\u5e94\u8c03\u63a7\u6301\u7eed\u8f93\u51fa\u3002",
       "members": [
         {
           "role": "main",
@@ -2208,10 +2208,10 @@
     },
     {
       "name": "cortical_l6_feedback_unit",
-      "display": "皮层 L6 反馈单元",
+      "display": "\u76ae\u5c42 L6 \u53cd\u9988\u5355\u5143",
       "function": "cortical_feedback",
       "system": "cortex",
-      "description": "第 6 层双投射细胞把皮层状态回送丘脑，其中一类专门调丘脑中继增益、另一类回皮层内其他层。",
+      "description": "\u7b2c 6 \u5c42\u53cc\u6295\u5c04\u7ec6\u80de\u628a\u76ae\u5c42\u72b6\u6001\u56de\u9001\u4e18\u8111\uff0c\u5176\u4e2d\u4e00\u7c7b\u4e13\u95e8\u8c03\u4e18\u8111\u4e2d\u7ee7\u589e\u76ca\u3001\u53e6\u4e00\u7c7b\u56de\u76ae\u5c42\u5185\u5176\u4ed6\u5c42\u3002",
       "members": [
         {
           "role": "it",
@@ -2338,10 +2338,10 @@
     },
     {
       "name": "cortical_inhibitory_gain_unit",
-      "display": "皮层抑制增益单元",
+      "display": "\u76ae\u5c42\u6291\u5236\u589e\u76ca\u5355\u5143",
       "function": "inhibitory_gain_control",
       "system": "cortex",
-      "description": "PV/SST/VIP/chandelier/basket/NPH 六类中间神经元分工——胞体、树突、轴突起始段各有一个刹车位点，合起来是皮层增益控制器。",
+      "description": "PV/SST/VIP/chandelier/basket/NPH \u516d\u7c7b\u4e2d\u95f4\u795e\u7ecf\u5143\u5206\u5de5\u2014\u2014\u80de\u4f53\u3001\u6811\u7a81\u3001\u8f74\u7a81\u8d77\u59cb\u6bb5\u5404\u6709\u4e00\u4e2a\u5239\u8f66\u4f4d\u70b9\uff0c\u5408\u8d77\u6765\u662f\u76ae\u5c42\u589e\u76ca\u63a7\u5236\u5668\u3002",
       "members": [
         {
           "role": "pv",
@@ -2496,10 +2496,10 @@
     },
     {
       "name": "cortical_highorder_integration_unit",
-      "display": "高阶皮层整合单元",
+      "display": "\u9ad8\u9636\u76ae\u5c42\u6574\u5408\u5355\u5143",
       "function": "multimodal_integration",
       "system": "cortex",
-      "description": "第 7 层与长程抑制细胞构成跨模态汇聚区，把来自不同通道的信号在同一群体内做高阶绑定。",
+      "description": "\u7b2c 7 \u5c42\u4e0e\u957f\u7a0b\u6291\u5236\u7ec6\u80de\u6784\u6210\u8de8\u6a21\u6001\u6c47\u805a\u533a\uff0c\u628a\u6765\u81ea\u4e0d\u540c\u901a\u9053\u7684\u4fe1\u53f7\u5728\u540c\u4e00\u7fa4\u4f53\u5185\u505a\u9ad8\u9636\u7ed1\u5b9a\u3002",
       "members": [
         {
           "role": "main",
@@ -2626,10 +2626,10 @@
     },
     {
       "name": "cerebellar_cortical_unit",
-      "display": "小脑皮层单元",
+      "display": "\u5c0f\u8111\u76ae\u5c42\u5355\u5143",
       "function": "cerebellar_processing",
       "system": "cerebellum",
-      "description": "苔藓纤维把输入扩到海量颗粒细胞，浦肯野细胞汇聚后经星形/篮状细胞做侧抑制，是『超稀疏展开 + 强收敛』的经典结构。",
+      "description": "\u82d4\u85d3\u7ea4\u7ef4\u628a\u8f93\u5165\u6269\u5230\u6d77\u91cf\u9897\u7c92\u7ec6\u80de\uff0c\u6d66\u80af\u91ce\u7ec6\u80de\u6c47\u805a\u540e\u7ecf\u661f\u5f62/\u7bee\u72b6\u7ec6\u80de\u505a\u4fa7\u6291\u5236\uff0c\u662f\u300e\u8d85\u7a00\u758f\u5c55\u5f00 + \u5f3a\u6536\u655b\u300f\u7684\u7ecf\u5178\u7ed3\u6784\u3002",
       "members": [
         {
           "role": "granule",
@@ -2783,10 +2783,10 @@
     },
     {
       "name": "cerebellar_error_teaching_unit",
-      "display": "小脑误差教学单元",
+      "display": "\u5c0f\u8111\u8bef\u5dee\u6559\u5b66\u5355\u5143",
       "function": "error_teaching",
       "system": "cerebellum",
-      "description": "下橄榄的攀爬纤维把运动误差以强全或无信号送到浦肯野细胞，触发 LTD 修正颗粒-浦肯野权重，是监督学习的生理实现。",
+      "description": "\u4e0b\u6a44\u6984\u7684\u6500\u722c\u7ea4\u7ef4\u628a\u8fd0\u52a8\u8bef\u5dee\u4ee5\u5f3a\u5168\u6216\u65e0\u4fe1\u53f7\u9001\u5230\u6d66\u80af\u91ce\u7ec6\u80de\uff0c\u89e6\u53d1 LTD \u4fee\u6b63\u9897\u7c92-\u6d66\u80af\u91ce\u6743\u91cd\uff0c\u662f\u76d1\u7763\u5b66\u4e60\u7684\u751f\u7406\u5b9e\u73b0\u3002",
       "members": [
         {
           "role": "olive",
@@ -2908,10 +2908,10 @@
     },
     {
       "name": "hippocampal_trisynaptic_unit",
-      "display": "海马三突触回路单元",
+      "display": "\u6d77\u9a6c\u4e09\u7a81\u89e6\u56de\u8def\u5355\u5143",
       "function": "episodic_memory",
       "system": "hippocampus",
-      "description": "内嗅→齿状回→CA3→CA1 三站：齿状回做模式分离、CA3 做自联想、CA1 做输出比较，是情景记忆的最小环。",
+      "description": "\u5185\u55c5\u2192\u9f7f\u72b6\u56de\u2192CA3\u2192CA1 \u4e09\u7ad9\uff1a\u9f7f\u72b6\u56de\u505a\u6a21\u5f0f\u5206\u79bb\u3001CA3 \u505a\u81ea\u8054\u60f3\u3001CA1 \u505a\u8f93\u51fa\u6bd4\u8f83\uff0c\u662f\u60c5\u666f\u8bb0\u5fc6\u7684\u6700\u5c0f\u73af\u3002",
       "members": [
         {
           "role": "dg",
@@ -3049,10 +3049,10 @@
     },
     {
       "name": "hippocampal_ca2_autoassoc_unit",
-      "display": "海马 CA2 自联想单元",
+      "display": "\u6d77\u9a6c CA2 \u81ea\u8054\u60f3\u5355\u5143",
       "function": "social_stress_memory",
       "system": "hippocampus",
-      "description": "CA2 缺少典型三突触输入但接收 CA4/CA3 汇入，参与社会记忆与应激响应的特殊亚区。",
+      "description": "CA2 \u7f3a\u5c11\u5178\u578b\u4e09\u7a81\u89e6\u8f93\u5165\u4f46\u63a5\u6536 CA4/CA3 \u6c47\u5165\uff0c\u53c2\u4e0e\u793e\u4f1a\u8bb0\u5fc6\u4e0e\u5e94\u6fc0\u54cd\u5e94\u7684\u7279\u6b8a\u4e9a\u533a\u3002",
       "members": [
         {
           "role": "ca2",
@@ -3173,10 +3173,10 @@
     },
     {
       "name": "hippocampal_output_unit",
-      "display": "海马输出单元",
+      "display": "\u6d77\u9a6c\u8f93\u51fa\u5355\u5143",
       "function": "memory_readout",
       "system": "hippocampus",
-      "description": "下托整合 CA1 与内嗅的输入并决定往哪个皮层区回送记忆，是记忆读出的路由级。",
+      "description": "\u4e0b\u6258\u6574\u5408 CA1 \u4e0e\u5185\u55c5\u7684\u8f93\u5165\u5e76\u51b3\u5b9a\u5f80\u54ea\u4e2a\u76ae\u5c42\u533a\u56de\u9001\u8bb0\u5fc6\uff0c\u662f\u8bb0\u5fc6\u8bfb\u51fa\u7684\u8def\u7531\u7ea7\u3002",
       "members": [
         {
           "role": "sub",
@@ -3298,10 +3298,10 @@
     },
     {
       "name": "entorhinal_spatial_map_unit",
-      "display": "内嗅空间地图单元",
+      "display": "\u5185\u55c5\u7a7a\u95f4\u5730\u56fe\u5355\u5143",
       "function": "spatial_map",
       "system": "entorhinal",
-      "description": "网格细胞的六边形周期放电与位置/头向细胞共同构成自定位坐标系，是空间记忆的度量基。",
+      "description": "\u7f51\u683c\u7ec6\u80de\u7684\u516d\u8fb9\u5f62\u5468\u671f\u653e\u7535\u4e0e\u4f4d\u7f6e/\u5934\u5411\u7ec6\u80de\u5171\u540c\u6784\u6210\u81ea\u5b9a\u4f4d\u5750\u6807\u7cfb\uff0c\u662f\u7a7a\u95f4\u8bb0\u5fc6\u7684\u5ea6\u91cf\u57fa\u3002",
       "members": [
         {
           "role": "grid",
@@ -3430,10 +3430,10 @@
     },
     {
       "name": "striatal_direct_pathway_unit",
-      "display": "纹状体直接通路单元",
+      "display": "\u7eb9\u72b6\u4f53\u76f4\u63a5\u901a\u8def\u5355\u5143",
       "function": "action_facilitation",
       "system": "basal_ganglia",
-      "description": "D1 型 MSN 在 dopamine 到达时被易化，抑制苍白球内侧部，从而松开一个动作的刹车。",
+      "description": "D1 \u578b MSN \u5728 dopamine \u5230\u8fbe\u65f6\u88ab\u6613\u5316\uff0c\u6291\u5236\u82cd\u767d\u7403\u5185\u4fa7\u90e8\uff0c\u4ece\u800c\u677e\u5f00\u4e00\u4e2a\u52a8\u4f5c\u7684\u5239\u8f66\u3002",
       "members": [
         {
           "role": "d1",
@@ -3544,10 +3544,10 @@
     },
     {
       "name": "striatal_indirect_pathway_unit",
-      "display": "纹状体间接通路单元",
+      "display": "\u7eb9\u72b6\u4f53\u95f4\u63a5\u901a\u8def\u5355\u5143",
       "function": "action_suppression",
       "system": "basal_ganglia",
-      "description": "D2 型 MSN 在 dopamine 缺席时活跃，经 STN 兴奋 GPi，给不该做的动作加刹车。",
+      "description": "D2 \u578b MSN \u5728 dopamine \u7f3a\u5e2d\u65f6\u6d3b\u8dc3\uff0c\u7ecf STN \u5174\u594b GPi\uff0c\u7ed9\u4e0d\u8be5\u505a\u7684\u52a8\u4f5c\u52a0\u5239\u8f66\u3002",
       "members": [
         {
           "role": "d2",
@@ -3671,10 +3671,10 @@
     },
     {
       "name": "basal_ganglia_selection_unit",
-      "display": "基底神经节动作选择单元",
+      "display": "\u57fa\u5e95\u795e\u7ecf\u8282\u52a8\u4f5c\u9009\u62e9\u5355\u5143",
       "function": "action_selection",
       "system": "basal_ganglia",
-      "description": "直接/间接双通路相互竞争，多巴胺同时调节两侧增益——净输出是对候选动作的赢者通吃式选择。",
+      "description": "\u76f4\u63a5/\u95f4\u63a5\u53cc\u901a\u8def\u76f8\u4e92\u7ade\u4e89\uff0c\u591a\u5df4\u80fa\u540c\u65f6\u8c03\u8282\u4e24\u4fa7\u589e\u76ca\u2014\u2014\u51c0\u8f93\u51fa\u662f\u5bf9\u5019\u9009\u52a8\u4f5c\u7684\u8d62\u8005\u901a\u5403\u5f0f\u9009\u62e9\u3002",
       "members": [
         {
           "role": "d1",
@@ -3829,10 +3829,10 @@
     },
     {
       "name": "amygdala_fear_unit",
-      "display": "杏仁核恐惧单元",
+      "display": "\u674f\u4ec1\u6838\u6050\u60e7\u5355\u5143",
       "function": "threat_learning",
       "system": "limbic",
-      "description": "外侧杏仁核接收感觉输入，基底外侧核做威胁关联学习，输出条件性恐惧反应。",
+      "description": "\u5916\u4fa7\u674f\u4ec1\u6838\u63a5\u6536\u611f\u89c9\u8f93\u5165\uff0c\u57fa\u5e95\u5916\u4fa7\u6838\u505a\u5a01\u80c1\u5173\u8054\u5b66\u4e60\uff0c\u8f93\u51fa\u6761\u4ef6\u6027\u6050\u60e7\u53cd\u5e94\u3002",
       "members": [
         {
           "role": "la",
@@ -3956,10 +3956,10 @@
     },
     {
       "name": "septo_hippocampal_theta_unit",
-      "display": "隔-海马 theta 节律单元",
+      "display": "\u9694-\u6d77\u9a6c theta \u8282\u5f8b\u5355\u5143",
       "function": "theta_rhythm",
       "system": "limbic",
-      "description": "隔核与斜角带胆碱能细胞给海马提供 theta 节律驱动，是记忆编码与检索的时间基准。",
+      "description": "\u9694\u6838\u4e0e\u659c\u89d2\u5e26\u80c6\u78b1\u80fd\u7ec6\u80de\u7ed9\u6d77\u9a6c\u63d0\u4f9b theta \u8282\u5f8b\u9a71\u52a8\uff0c\u662f\u8bb0\u5fc6\u7f16\u7801\u4e0e\u68c0\u7d22\u7684\u65f6\u95f4\u57fa\u51c6\u3002",
       "members": [
         {
           "role": "septum",
@@ -4088,10 +4088,10 @@
     },
     {
       "name": "hypothalamic_arousal_unit",
-      "display": "下丘脑觉醒单元",
+      "display": "\u4e0b\u4e18\u8111\u89c9\u9192\u5355\u5143",
       "function": "arousal_stability",
       "system": "hypothalamus",
-      "description": "食欲素、组胺、去甲肾上腺素三路共同维持清醒稳定：食欲素缺失导致状态切换不稳（发作性睡病）。",
+      "description": "\u98df\u6b32\u7d20\u3001\u7ec4\u80fa\u3001\u53bb\u7532\u80be\u4e0a\u817a\u7d20\u4e09\u8def\u5171\u540c\u7ef4\u6301\u6e05\u9192\u7a33\u5b9a\uff1a\u98df\u6b32\u7d20\u7f3a\u5931\u5bfc\u81f4\u72b6\u6001\u5207\u6362\u4e0d\u7a33\uff08\u53d1\u4f5c\u6027\u7761\u75c5\uff09\u3002",
       "members": [
         {
           "role": "orexin",
@@ -4225,10 +4225,10 @@
     },
     {
       "name": "spinal_reflex_arc_unit",
-      "display": "脊髓反射弧单元",
+      "display": "\u810a\u9ad3\u53cd\u5c04\u5f27\u5355\u5143",
       "function": "reflex_arc",
       "system": "spinal_cord",
-      "description": "感觉传入→中间神经元→运动神经元的两站式最短回路，可在无脑参与下完成保护性动作。",
+      "description": "\u611f\u89c9\u4f20\u5165\u2192\u4e2d\u95f4\u795e\u7ecf\u5143\u2192\u8fd0\u52a8\u795e\u7ecf\u5143\u7684\u4e24\u7ad9\u5f0f\u6700\u77ed\u56de\u8def\uff0c\u53ef\u5728\u65e0\u8111\u53c2\u4e0e\u4e0b\u5b8c\u6210\u4fdd\u62a4\u6027\u52a8\u4f5c\u3002",
       "members": [
         {
           "role": "sensory",
@@ -4356,10 +4356,10 @@
     },
     {
       "name": "spinal_cpg_unit",
-      "display": "脊髓中枢模式发生器单元",
+      "display": "\u810a\u9ad3\u4e2d\u67a2\u6a21\u5f0f\u53d1\u751f\u5668\u5355\u5143",
       "function": "rhythmic_pattern",
       "system": "spinal_cord",
-      "description": "半中心 Ihp 与连合 Icc 中间神经元组成互抑制振荡器，产生交替节律（行走/游动/呼吸共用同一原理）。",
+      "description": "\u534a\u4e2d\u5fc3 Ihp \u4e0e\u8fde\u5408 Icc \u4e2d\u95f4\u795e\u7ecf\u5143\u7ec4\u6210\u4e92\u6291\u5236\u632f\u8361\u5668\uff0c\u4ea7\u751f\u4ea4\u66ff\u8282\u5f8b\uff08\u884c\u8d70/\u6e38\u52a8/\u547c\u5438\u5171\u7528\u540c\u4e00\u539f\u7406\uff09\u3002",
       "members": [
         {
           "role": "half_center",
@@ -4512,10 +4512,10 @@
     },
     {
       "name": "gamma_spindle_loop_unit",
-      "display": "γ-肌梭环路单元",
+      "display": "\u03b3-\u808c\u68ad\u73af\u8def\u5355\u5143",
       "function": "spindle_servo",
       "system": "spinal_cord",
-      "description": "γ 运动神经元设定肌梭灵敏度，α 运动神经元输出力，Ia 反馈构成伺服回路实时校准收缩。",
+      "description": "\u03b3 \u8fd0\u52a8\u795e\u7ecf\u5143\u8bbe\u5b9a\u808c\u68ad\u7075\u654f\u5ea6\uff0c\u03b1 \u8fd0\u52a8\u795e\u7ecf\u5143\u8f93\u51fa\u529b\uff0cIa \u53cd\u9988\u6784\u6210\u4f3a\u670d\u56de\u8def\u5b9e\u65f6\u6821\u51c6\u6536\u7f29\u3002",
       "members": [
         {
           "role": "gamma",
@@ -4639,10 +4639,10 @@
     },
     {
       "name": "red_nucleus_coordination_unit",
-      "display": "红核运动协调单元",
+      "display": "\u7ea2\u6838\u8fd0\u52a8\u534f\u8c03\u5355\u5143",
       "function": "motor_coordination",
       "system": "brainstem",
-      "description": "红核把小脑输出的时序信息转为对 α 运动神经元的直接驱动，协调多关节动作的时序与幅度。",
+      "description": "\u7ea2\u6838\u628a\u5c0f\u8111\u8f93\u51fa\u7684\u65f6\u5e8f\u4fe1\u606f\u8f6c\u4e3a\u5bf9 \u03b1 \u8fd0\u52a8\u795e\u7ecf\u5143\u7684\u76f4\u63a5\u9a71\u52a8\uff0c\u534f\u8c03\u591a\u5173\u8282\u52a8\u4f5c\u7684\u65f6\u5e8f\u4e0e\u5e45\u5ea6\u3002",
       "members": [
         {
           "role": "rn",
@@ -4765,10 +4765,10 @@
     },
     {
       "name": "dopaminergic_value_unit",
-      "display": "多巴胺价值单元",
+      "display": "\u591a\u5df4\u80fa\u4ef7\u503c\u5355\u5143",
       "function": "value_broadcast",
       "system": "neuromodulatory",
-      "description": "中脑多巴胺群体（A9/A11/VMC/VTA/SNc）把奖赏预测误差广播到纹状体与皮层，是全脑的学习率旋钮。",
+      "description": "\u4e2d\u8111\u591a\u5df4\u80fa\u7fa4\u4f53\uff08A9/A11/VMC/VTA/SNc\uff09\u628a\u5956\u8d4f\u9884\u6d4b\u8bef\u5dee\u5e7f\u64ad\u5230\u7eb9\u72b6\u4f53\u4e0e\u76ae\u5c42\uff0c\u662f\u5168\u8111\u7684\u5b66\u4e60\u7387\u65cb\u94ae\u3002",
       "members": [
         {
           "role": "snc",
@@ -4902,10 +4902,10 @@
     },
     {
       "name": "serotonergic_mood_unit",
-      "display": "5-HT 情绪单元",
+      "display": "5-HT \u60c5\u7eea\u5355\u5143",
       "function": "mood_modulation",
       "system": "neuromodulatory",
-      "description": "背侧/腹侧/中缝三组 5-HT 群体分别调节情绪、奖赏与海马节律，是全局时间尺度上的『心情』底色。",
+      "description": "\u80cc\u4fa7/\u8179\u4fa7/\u4e2d\u7f1d\u4e09\u7ec4 5-HT \u7fa4\u4f53\u5206\u522b\u8c03\u8282\u60c5\u7eea\u3001\u5956\u8d4f\u4e0e\u6d77\u9a6c\u8282\u5f8b\uff0c\u662f\u5168\u5c40\u65f6\u95f4\u5c3a\u5ea6\u4e0a\u7684\u300e\u5fc3\u60c5\u300f\u5e95\u8272\u3002",
       "members": [
         {
           "role": "dorsal",
@@ -5033,10 +5033,10 @@
     },
     {
       "name": "cholinergic_arousal_unit",
-      "display": "胆碱能觉醒单元",
+      "display": "\u80c6\u78b1\u80fd\u89c9\u9192\u5355\u5143",
       "function": "cholinergic_arousal",
       "system": "neuromodulatory",
-      "description": "基底前脑与斜角带胆碱能细胞调节皮层兴奋性与丘脑同步，是注意与觉醒的共同杠杆。",
+      "description": "\u57fa\u5e95\u524d\u8111\u4e0e\u659c\u89d2\u5e26\u80c6\u78b1\u80fd\u7ec6\u80de\u8c03\u8282\u76ae\u5c42\u5174\u594b\u6027\u4e0e\u4e18\u8111\u540c\u6b65\uff0c\u662f\u6ce8\u610f\u4e0e\u89c9\u9192\u7684\u5171\u540c\u6760\u6746\u3002",
       "members": [
         {
           "role": "mt",
@@ -5142,10 +5142,10 @@
     },
     {
       "name": "circadian_clock_unit",
-      "display": "昼夜节律单元",
+      "display": "\u663c\u591c\u8282\u5f8b\u5355\u5143",
       "function": "circadian_rhythm",
       "system": "neuromodulatory",
-      "description": "松果体在暗期分泌褪黑素，视网膜辐照度信号是它的授时输入，构成约 24 小时的内源振荡。",
+      "description": "\u677e\u679c\u4f53\u5728\u6697\u671f\u5206\u6ccc\u892a\u9ed1\u7d20\uff0c\u89c6\u7f51\u819c\u8f90\u7167\u5ea6\u4fe1\u53f7\u662f\u5b83\u7684\u6388\u65f6\u8f93\u5165\uff0c\u6784\u6210\u7ea6 24 \u5c0f\u65f6\u7684\u5185\u6e90\u632f\u8361\u3002",
       "members": [
         {
           "role": "pineal",
@@ -5255,10 +5255,10 @@
     },
     {
       "name": "astrocyte_tripartite_unit",
-      "display": "星形胶质三方单元",
+      "display": "\u661f\u5f62\u80f6\u8d28\u4e09\u65b9\u5355\u5143",
       "function": "gliotransmission",
       "system": "glia",
-      "description": "星形胶质细胞包绕突触、感知活动并以钙波回送慢调节信号，是神经元之外的一条独立慢通道。",
+      "description": "\u661f\u5f62\u80f6\u8d28\u7ec6\u80de\u5305\u7ed5\u7a81\u89e6\u3001\u611f\u77e5\u6d3b\u52a8\u5e76\u4ee5\u9499\u6ce2\u56de\u9001\u6162\u8c03\u8282\u4fe1\u53f7\uff0c\u662f\u795e\u7ecf\u5143\u4e4b\u5916\u7684\u4e00\u6761\u72ec\u7acb\u6162\u901a\u9053\u3002",
       "members": [
         {
           "role": "astro",
@@ -5392,10 +5392,10 @@
     },
     {
       "name": "antennal_lobe_glomerular_unit",
-      "display": "触角叶球状体单元",
+      "display": "\u89e6\u89d2\u53f6\u7403\u72b6\u4f53\u5355\u5143",
       "function": "odour_encode",
       "system": "antennal_lobe",
-      "description": "感受神经元投射到球状体，局部中间神经元做跨球归一化，投射神经元把气味通道送进蘑菇体和高位侧角。",
+      "description": "\u611f\u53d7\u795e\u7ecf\u5143\u6295\u5c04\u5230\u7403\u72b6\u4f53\uff0c\u5c40\u90e8\u4e2d\u95f4\u795e\u7ecf\u5143\u505a\u8de8\u7403\u5f52\u4e00\u5316\uff0c\u6295\u5c04\u795e\u7ecf\u5143\u628a\u6c14\u5473\u901a\u9053\u9001\u8fdb\u8611\u83c7\u4f53\u548c\u9ad8\u4f4d\u4fa7\u89d2\u3002",
       "members": [
         {
           "role": "orn",
@@ -5705,10 +5705,10 @@
     },
     {
       "name": "mushroom_body_sparse_code_unit",
-      "display": "蘑菇体稀疏编码单元",
+      "display": "\u8611\u83c7\u4f53\u7a00\u758f\u7f16\u7801\u5355\u5143",
       "function": "sparse_encode",
       "system": "mushroom_body",
-      "description": "投射神经元在约两千个 Kenyon 细胞上随机展开，单个 APL 神经元全局回抑制把活动压到约 5%，得到高维稀疏气味码。",
+      "description": "\u6295\u5c04\u795e\u7ecf\u5143\u5728\u7ea6\u4e24\u5343\u4e2a Kenyon \u7ec6\u80de\u4e0a\u968f\u673a\u5c55\u5f00\uff0c\u5355\u4e2a APL \u795e\u7ecf\u5143\u5168\u5c40\u56de\u6291\u5236\u628a\u6d3b\u52a8\u538b\u5230\u7ea6 5%\uff0c\u5f97\u5230\u9ad8\u7ef4\u7a00\u758f\u6c14\u5473\u7801\u3002",
       "members": [
         {
           "role": "kc",
@@ -6070,10 +6070,10 @@
     },
     {
       "name": "mushroom_body_associative_memory_unit",
-      "display": "蘑菇体联想记忆单元",
+      "display": "\u8611\u83c7\u4f53\u8054\u60f3\u8bb0\u5fc6\u5355\u5143",
       "function": "associative_learn",
       "system": "mushroom_body",
-      "description": "多巴胺能神经元把奖赏/惩罚送到 Kenyon 细胞输出突触上做门控，只有气味与效价同时出现时权重才变，读出由 MBON 完成。",
+      "description": "\u591a\u5df4\u80fa\u80fd\u795e\u7ecf\u5143\u628a\u5956\u8d4f/\u60e9\u7f5a\u9001\u5230 Kenyon \u7ec6\u80de\u8f93\u51fa\u7a81\u89e6\u4e0a\u505a\u95e8\u63a7\uff0c\u53ea\u6709\u6c14\u5473\u4e0e\u6548\u4ef7\u540c\u65f6\u51fa\u73b0\u65f6\u6743\u91cd\u624d\u53d8\uff0c\u8bfb\u51fa\u7531 MBON \u5b8c\u6210\u3002",
       "members": [
         {
           "role": "kc",
@@ -6462,10 +6462,10 @@
     },
     {
       "name": "central_complex_heading_unit",
-      "display": "中央复合体头向单元",
+      "display": "\u4e2d\u592e\u590d\u5408\u4f53\u5934\u5411\u5355\u5143",
       "function": "heading_track",
       "system": "central_complex",
-      "description": "脑桥与椭球体构成环形吸引子，环神经元整形出单个活动峰，峰的位置就是当前朝向，给出不依赖视觉瞬时输入的方位记忆。",
+      "description": "\u8111\u6865\u4e0e\u692d\u7403\u4f53\u6784\u6210\u73af\u5f62\u5438\u5f15\u5b50\uff0c\u73af\u795e\u7ecf\u5143\u6574\u5f62\u51fa\u5355\u4e2a\u6d3b\u52a8\u5cf0\uff0c\u5cf0\u7684\u4f4d\u7f6e\u5c31\u662f\u5f53\u524d\u671d\u5411\uff0c\u7ed9\u51fa\u4e0d\u4f9d\u8d56\u89c6\u89c9\u77ac\u65f6\u8f93\u5165\u7684\u65b9\u4f4d\u8bb0\u5fc6\u3002",
       "members": [
         {
           "role": "pb",
@@ -6788,10 +6788,10 @@
     },
     {
       "name": "central_complex_steering_unit",
-      "display": "中央复合体转向单元",
+      "display": "\u4e2d\u592e\u590d\u5408\u4f53\u8f6c\u5411\u5355\u5143",
       "function": "steering",
       "system": "central_complex",
-      "description": "扇形体的分层目标图把当前朝向与期望朝向的差转成转向量，结节提供自身速度门控，下行神经元把指令送进腹神经索。",
+      "description": "\u6247\u5f62\u4f53\u7684\u5206\u5c42\u76ee\u6807\u56fe\u628a\u5f53\u524d\u671d\u5411\u4e0e\u671f\u671b\u671d\u5411\u7684\u5dee\u8f6c\u6210\u8f6c\u5411\u91cf\uff0c\u7ed3\u8282\u63d0\u4f9b\u81ea\u8eab\u901f\u5ea6\u95e8\u63a7\uff0c\u4e0b\u884c\u795e\u7ecf\u5143\u628a\u6307\u4ee4\u9001\u8fdb\u8179\u795e\u7ecf\u7d22\u3002",
       "members": [
         {
           "role": "fb",
@@ -7112,10 +7112,10 @@
     },
     {
       "name": "insect_clock_pacemaker_unit",
-      "display": "昆虫生物钟起搏单元",
+      "display": "\u6606\u866b\u751f\u7269\u949f\u8d77\u640f\u5355\u5143",
       "function": "circadian_pace",
       "system": "circadian",
-      "description": "小腹侧侧神经元以 PDF 肽与电耦合把昼夜相位分发给侧神经元网络，松果体作为跨物种的褪黑素效应端被一并纳入。",
+      "description": "\u5c0f\u8179\u4fa7\u4fa7\u795e\u7ecf\u5143\u4ee5 PDF \u80bd\u4e0e\u7535\u8026\u5408\u628a\u663c\u591c\u76f8\u4f4d\u5206\u53d1\u7ed9\u4fa7\u795e\u7ecf\u5143\u7f51\u7edc\uff0c\u677e\u679c\u4f53\u4f5c\u4e3a\u8de8\u7269\u79cd\u7684\u892a\u9ed1\u7d20\u6548\u5e94\u7aef\u88ab\u4e00\u5e76\u7eb3\u5165\u3002",
       "members": [
         {
           "role": "pacemaker",
@@ -7321,10 +7321,10 @@
     },
     {
       "name": "birdsong_hvc_timing_unit",
-      "display": "鸣唱时序链单元",
+      "display": "\u9e23\u5531\u65f6\u5e8f\u94fe\u5355\u5143",
       "function": "sequence_generate",
       "system": "song_system",
-      "description": "HVC 用链式激活把静态前运动指令展开成毫秒级时序，每个神经元在音节的一个极短时间窗内爆发，为下游提供节拍。",
+      "description": "HVC \u7528\u94fe\u5f0f\u6fc0\u6d3b\u628a\u9759\u6001\u524d\u8fd0\u52a8\u6307\u4ee4\u5c55\u5f00\u6210\u6beb\u79d2\u7ea7\u65f6\u5e8f\uff0c\u6bcf\u4e2a\u795e\u7ecf\u5143\u5728\u97f3\u8282\u7684\u4e00\u4e2a\u6781\u77ed\u65f6\u95f4\u7a97\u5185\u7206\u53d1\uff0c\u4e3a\u4e0b\u6e38\u63d0\u4f9b\u8282\u62cd\u3002",
       "members": [
         {
           "role": "hvc",
@@ -7440,10 +7440,10 @@
     },
     {
       "name": "birdsong_ra_motor_unit",
-      "display": "发声运动输出单元",
+      "display": "\u53d1\u58f0\u8fd0\u52a8\u8f93\u51fa\u5355\u5143",
       "function": "vocal_motor",
       "system": "song_system",
-      "description": "RA 把来自 HVC 的时序窗转成对鸣管运动神经元与呼吸运动神经元的爆发式驱动，音节与呼吸必须严格配准。",
+      "description": "RA \u628a\u6765\u81ea HVC \u7684\u65f6\u5e8f\u7a97\u8f6c\u6210\u5bf9\u9e23\u7ba1\u8fd0\u52a8\u795e\u7ecf\u5143\u4e0e\u547c\u5438\u8fd0\u52a8\u795e\u7ecf\u5143\u7684\u7206\u53d1\u5f0f\u9a71\u52a8\uff0c\u97f3\u8282\u4e0e\u547c\u5438\u5fc5\u987b\u4e25\u683c\u914d\u51c6\u3002",
       "members": [
         {
           "role": "ra",
@@ -7551,10 +7551,10 @@
     },
     {
       "name": "birdsong_basal_ganglia_learning_unit",
-      "display": "发声学习回路单元",
+      "display": "\u53d1\u58f0\u5b66\u4e60\u56de\u8def\u5355\u5143",
       "function": "motor_learning",
       "system": "song_system",
-      "description": "前脑通路 Area X 到 DLM 到 LMAN 的基底神经节环路，用听觉误差与多巴胺能价值信号把探索性变异筛选成稳定音节。",
+      "description": "\u524d\u8111\u901a\u8def Area X \u5230 DLM \u5230 LMAN \u7684\u57fa\u5e95\u795e\u7ecf\u8282\u73af\u8def\uff0c\u7528\u542c\u89c9\u8bef\u5dee\u4e0e\u591a\u5df4\u80fa\u80fd\u4ef7\u503c\u4fe1\u53f7\u628a\u63a2\u7d22\u6027\u53d8\u5f02\u7b5b\u9009\u6210\u7a33\u5b9a\u97f3\u8282\u3002",
       "members": [
         {
           "role": "x",
@@ -7680,10 +7680,10 @@
     },
     {
       "name": "startle_escape_command_unit",
-      "display": "逃逸启动指令单元",
+      "display": "\u9003\u9038\u542f\u52a8\u6307\u4ee4\u5355\u5143",
       "function": "escape_trigger",
       "system": "startle_circuit",
-      "description": "侧线或听觉的突然输入经电化学混合突触在亚毫秒内点燃 Mauthner 细胞，单个指令神经元全部或无地召集对侧网状脊髓池，形成 C 型逃逸。",
+      "description": "\u4fa7\u7ebf\u6216\u542c\u89c9\u7684\u7a81\u7136\u8f93\u5165\u7ecf\u7535\u5316\u5b66\u6df7\u5408\u7a81\u89e6\u5728\u4e9a\u6beb\u79d2\u5185\u70b9\u71c3 Mauthner \u7ec6\u80de\uff0c\u5355\u4e2a\u6307\u4ee4\u795e\u7ecf\u5143\u5168\u90e8\u6216\u65e0\u5730\u53ec\u96c6\u5bf9\u4fa7\u7f51\u72b6\u810a\u9ad3\u6c60\uff0c\u5f62\u6210 C \u578b\u9003\u9038\u3002",
       "members": [
         {
           "role": "m",
@@ -7816,10 +7816,10 @@
     },
     {
       "name": "passive_electroreception_unit",
-      "display": "被动电感受单元",
+      "display": "\u88ab\u52a8\u7535\u611f\u53d7\u5355\u5143",
       "function": "passive_electrolocate",
       "system": "electrosensory",
-      "description": "壶腹型感受器探测猎物肌肉与鳃产生的低频弱电场，电感受侧线叶把三叉神经输入变成方向性猎物向量。",
+      "description": "\u58f6\u8179\u578b\u611f\u53d7\u5668\u63a2\u6d4b\u730e\u7269\u808c\u8089\u4e0e\u9cc3\u4ea7\u751f\u7684\u4f4e\u9891\u5f31\u7535\u573a\uff0c\u7535\u611f\u53d7\u4fa7\u7ebf\u53f6\u628a\u4e09\u53c9\u795e\u7ecf\u8f93\u5165\u53d8\u6210\u65b9\u5411\u6027\u730e\u7269\u5411\u91cf\u3002",
       "members": [
         {
           "role": "amp",
@@ -7930,10 +7930,10 @@
     },
     {
       "name": "electrosensory_electrolocation_unit",
-      "display": "主动电定位单元",
+      "display": "\u4e3b\u52a8\u7535\u5b9a\u4f4d\u5355\u5143",
       "function": "active_electrolocate",
       "system": "electrosensory",
-      "description": "结节型感受器读取自身电器官放电被物体扭曲后的振幅与相位，传出副本先把自身电场分量减掉，剩下的才是外部目标。",
+      "description": "\u7ed3\u8282\u578b\u611f\u53d7\u5668\u8bfb\u53d6\u81ea\u8eab\u7535\u5668\u5b98\u653e\u7535\u88ab\u7269\u4f53\u626d\u66f2\u540e\u7684\u632f\u5e45\u4e0e\u76f8\u4f4d\uff0c\u4f20\u51fa\u526f\u672c\u5148\u628a\u81ea\u8eab\u7535\u573a\u5206\u91cf\u51cf\u6389\uff0c\u5269\u4e0b\u7684\u624d\u662f\u5916\u90e8\u76ee\u6807\u3002",
       "members": [
         {
           "role": "tub",
@@ -8060,10 +8060,10 @@
     },
     {
       "name": "electric_organ_discharge_unit",
-      "display": "电器官放电起搏单元",
+      "display": "\u7535\u5668\u5b98\u653e\u7535\u8d77\u640f\u5355\u5143",
       "function": "pacemaking",
       "system": "electrosensory",
-      "description": "起搏核自主节律发放，经中继核与脊髓运动神经元驱动电器官，同时把传出副本并行送给电感受通路用于抵消。",
+      "description": "\u8d77\u640f\u6838\u81ea\u4e3b\u8282\u5f8b\u53d1\u653e\uff0c\u7ecf\u4e2d\u7ee7\u6838\u4e0e\u810a\u9ad3\u8fd0\u52a8\u795e\u7ecf\u5143\u9a71\u52a8\u7535\u5668\u5b98\uff0c\u540c\u65f6\u628a\u4f20\u51fa\u526f\u672c\u5e76\u884c\u9001\u7ed9\u7535\u611f\u53d7\u901a\u8def\u7528\u4e8e\u62b5\u6d88\u3002",
       "members": [
         {
           "role": "pm",
@@ -8185,10 +8185,10 @@
     },
     {
       "name": "cephalopod_vertical_lobe_learning_unit",
-      "display": "头足类垂直叶学习单元",
+      "display": "\u5934\u8db3\u7c7b\u5782\u76f4\u53f6\u5b66\u4e60\u5355\u5143",
       "function": "associative_learn",
       "system": "vertical_lobe",
-      "description": "小细胞把视觉/触觉/化学触觉汇聚进垂直叶，无长突细胞连续数次发放后对大型细胞输出突触产生持续增强，学习规则是反复激活而非成对 STDP。",
+      "description": "\u5c0f\u7ec6\u80de\u628a\u89c6\u89c9/\u89e6\u89c9/\u5316\u5b66\u89e6\u89c9\u6c47\u805a\u8fdb\u5782\u76f4\u53f6\uff0c\u65e0\u957f\u7a81\u7ec6\u80de\u8fde\u7eed\u6570\u6b21\u53d1\u653e\u540e\u5bf9\u5927\u578b\u7ec6\u80de\u8f93\u51fa\u7a81\u89e6\u4ea7\u751f\u6301\u7eed\u589e\u5f3a\uff0c\u5b66\u4e60\u89c4\u5219\u662f\u53cd\u590d\u6fc0\u6d3b\u800c\u975e\u6210\u5bf9 STDP\u3002",
       "members": [
         {
           "role": "sa",
@@ -8312,10 +8312,10 @@
     },
     {
       "name": "cephalopod_chromatophore_control_unit",
-      "display": "色素细胞控制单元",
+      "display": "\u8272\u7d20\u7ec6\u80de\u63a7\u5236\u5355\u5143",
       "function": "camouflage",
       "system": "chromatophore",
-      "description": "额上叶高层指令经色素细胞运动神经元控制放射肌，把色素囊撑开或收拢，在不到一秒内铺出整片皮肤图案。",
+      "description": "\u989d\u4e0a\u53f6\u9ad8\u5c42\u6307\u4ee4\u7ecf\u8272\u7d20\u7ec6\u80de\u8fd0\u52a8\u795e\u7ecf\u5143\u63a7\u5236\u653e\u5c04\u808c\uff0c\u628a\u8272\u7d20\u56ca\u6491\u5f00\u6216\u6536\u62e2\uff0c\u5728\u4e0d\u5230\u4e00\u79d2\u5185\u94fa\u51fa\u6574\u7247\u76ae\u80a4\u56fe\u6848\u3002",
       "members": [
         {
           "role": "cmd",
@@ -8429,10 +8429,10 @@
     },
     {
       "name": "cephalopod_arm_motor_unit",
-      "display": "腕运动单元",
+      "display": "\u8155\u8fd0\u52a8\u5355\u5143",
       "function": "arm_control",
       "system": "arm_cord",
-      "description": "腕的神经索自带运动神经元与感觉传入，脑只下达粗略高层指令，精细运动与本体感觉闭环都在腕内本地完成。",
+      "description": "\u8155\u7684\u795e\u7ecf\u7d22\u81ea\u5e26\u8fd0\u52a8\u795e\u7ecf\u5143\u4e0e\u611f\u89c9\u4f20\u5165\uff0c\u8111\u53ea\u4e0b\u8fbe\u7c97\u7565\u9ad8\u5c42\u6307\u4ee4\uff0c\u7cbe\u7ec6\u8fd0\u52a8\u4e0e\u672c\u4f53\u611f\u89c9\u95ed\u73af\u90fd\u5728\u8155\u5185\u672c\u5730\u5b8c\u6210\u3002",
       "members": [
         {
           "role": "mn",
@@ -8552,10 +8552,10 @@
     },
     {
       "name": "leech_swim_cpg_unit",
-      "display": "水蛭游泳节律单元",
+      "display": "\u6c34\u86ed\u6e38\u6cf3\u8282\u5f8b\u5355\u5143",
       "function": "rhythm_generate",
       "system": "leech_ganglion",
-      "description": "体壁运动神经元与一对互相抑制的 CPG 中间神经元构成半中心振荡器，靠交互抑制加适应交替释放，不需要任何细胞自身是节律性的。",
+      "description": "\u4f53\u58c1\u8fd0\u52a8\u795e\u7ecf\u5143\u4e0e\u4e00\u5bf9\u4e92\u76f8\u6291\u5236\u7684 CPG \u4e2d\u95f4\u795e\u7ecf\u5143\u6784\u6210\u534a\u4e2d\u5fc3\u632f\u8361\u5668\uff0c\u9760\u4ea4\u4e92\u6291\u5236\u52a0\u9002\u5e94\u4ea4\u66ff\u91ca\u653e\uff0c\u4e0d\u9700\u8981\u4efb\u4f55\u7ec6\u80de\u81ea\u8eab\u662f\u8282\u5f8b\u6027\u7684\u3002",
       "members": [
         {
           "role": "cpg",
@@ -8681,10 +8681,10 @@
     },
     {
       "name": "ascidian_larval_escape_swim_unit",
-      "display": "海鞘幼虫逃逸游泳单元",
+      "display": "\u6d77\u9798\u5e7c\u866b\u9003\u9038\u6e38\u6cf3\u5355\u5143",
       "function": "escape_swim",
       "system": "ascidian_larva",
-      "description": "幼虫眼点感光细胞把阴影信号交给一小群运动神经元，两侧交替发放驱动尾肌摆动，持续不到一秒的逃逸游泳完全由外周回路完成。",
+      "description": "\u5e7c\u866b\u773c\u70b9\u611f\u5149\u7ec6\u80de\u628a\u9634\u5f71\u4fe1\u53f7\u4ea4\u7ed9\u4e00\u5c0f\u7fa4\u8fd0\u52a8\u795e\u7ecf\u5143\uff0c\u4e24\u4fa7\u4ea4\u66ff\u53d1\u653e\u9a71\u52a8\u5c3e\u808c\u6446\u52a8\uff0c\u6301\u7eed\u4e0d\u5230\u4e00\u79d2\u7684\u9003\u9038\u6e38\u6cf3\u5b8c\u5168\u7531\u5916\u5468\u56de\u8def\u5b8c\u6210\u3002",
       "members": [
         {
           "role": "eye",
@@ -8810,10 +8810,10 @@
     },
     {
       "name": "aplysia_gill_withdrawal_unit",
-      "display": "海兔缩鳃反射单元",
+      "display": "\u6d77\u5154\u7f29\u9cc3\u53cd\u5c04\u5355\u5143",
       "function": "reflex_plasticity",
       "system": "aplysia_ganglion",
-      "description": "触觉直接驱动缩鳃运动神经元，可被血清素能中间神经元突触前易化放大（敏感化），也可被重复刺激压低（习惯化）——同一突触上并存两种相反的记忆。",
+      "description": "\u89e6\u89c9\u76f4\u63a5\u9a71\u52a8\u7f29\u9cc3\u8fd0\u52a8\u795e\u7ecf\u5143\uff0c\u53ef\u88ab\u8840\u6e05\u7d20\u80fd\u4e2d\u95f4\u795e\u7ecf\u5143\u7a81\u89e6\u524d\u6613\u5316\u653e\u5927\uff08\u654f\u611f\u5316\uff09\uff0c\u4e5f\u53ef\u88ab\u91cd\u590d\u523a\u6fc0\u538b\u4f4e\uff08\u4e60\u60ef\u5316\uff09\u2014\u2014\u540c\u4e00\u7a81\u89e6\u4e0a\u5e76\u5b58\u4e24\u79cd\u76f8\u53cd\u7684\u8bb0\u5fc6\u3002",
       "members": [
         {
           "role": "sens",
@@ -8947,10 +8947,10 @@
     },
     {
       "name": "buccal_feeding_cpg_unit",
-      "display": "口球喂食节律单元",
+      "display": "\u53e3\u7403\u5582\u98df\u8282\u5f8b\u5355\u5143",
       "function": "feeding_rhythm",
       "system": "buccal_ganglion",
-      "description": "口球神经节内的 CPG 用相互兴奋加半中心交替，产生咀嚼-吞咽的固定相位序列，饥饿状态只改变节律快慢而不改变相位关系。",
+      "description": "\u53e3\u7403\u795e\u7ecf\u8282\u5185\u7684 CPG \u7528\u76f8\u4e92\u5174\u594b\u52a0\u534a\u4e2d\u5fc3\u4ea4\u66ff\uff0c\u4ea7\u751f\u5480\u56bc-\u541e\u54bd\u7684\u56fa\u5b9a\u76f8\u4f4d\u5e8f\u5217\uff0c\u9965\u997f\u72b6\u6001\u53ea\u6539\u53d8\u8282\u5f8b\u5feb\u6162\u800c\u4e0d\u6539\u53d8\u76f8\u4f4d\u5173\u7cfb\u3002",
       "members": [
         {
           "role": "cpg",
@@ -9074,10 +9074,10 @@
     },
     {
       "name": "trigeminal_infrared_map_unit",
-      "display": "三叉红外热图单元",
+      "display": "\u4e09\u53c9\u7ea2\u5916\u70ed\u56fe\u5355\u5143",
       "function": "thermal_imaging",
       "system": "infrared_pit",
-      "description": "颊窝器的三叉神经传入在中脑顶盖铺成一张与视网膜图配准的热图，侧抑制把物体边缘锐化，得到不依赖光照的目标方位。",
+      "description": "\u988a\u7a9d\u5668\u7684\u4e09\u53c9\u795e\u7ecf\u4f20\u5165\u5728\u4e2d\u8111\u9876\u76d6\u94fa\u6210\u4e00\u5f20\u4e0e\u89c6\u7f51\u819c\u56fe\u914d\u51c6\u7684\u70ed\u56fe\uff0c\u4fa7\u6291\u5236\u628a\u7269\u4f53\u8fb9\u7f18\u9510\u5316\uff0c\u5f97\u5230\u4e0d\u4f9d\u8d56\u5149\u7167\u7684\u76ee\u6807\u65b9\u4f4d\u3002",
       "members": [
         {
           "role": "aff",
@@ -9193,10 +9193,10 @@
     },
     {
       "name": "pit_viper_strike_unit",
-      "display": "蝮蛇弹道袭击单元",
+      "display": "\u876e\u86c7\u5f39\u9053\u88ad\u51fb\u5355\u5143",
       "function": "strike",
       "system": "infrared_pit",
-      "description": "红外图与视觉图在同一顶盖神经元上配准，任一模态都能把目标锁进袭击坐标，运动池被全部或无地召集完成弹道出击。",
+      "description": "\u7ea2\u5916\u56fe\u4e0e\u89c6\u89c9\u56fe\u5728\u540c\u4e00\u9876\u76d6\u795e\u7ecf\u5143\u4e0a\u914d\u51c6\uff0c\u4efb\u4e00\u6a21\u6001\u90fd\u80fd\u628a\u76ee\u6807\u9501\u8fdb\u88ad\u51fb\u5750\u6807\uff0c\u8fd0\u52a8\u6c60\u88ab\u5168\u90e8\u6216\u65e0\u5730\u53ec\u96c6\u5b8c\u6210\u5f39\u9053\u51fa\u51fb\u3002",
       "members": [
         {
           "role": "mm",
@@ -9309,10 +9309,10 @@
     },
     {
       "name": "frog_tectal_prey_capture_unit",
-      "display": "蛙顶盖捕食释放单元",
+      "display": "\u86d9\u9876\u76d6\u6355\u98df\u91ca\u653e\u5355\u5143",
       "function": "prey_capture",
       "system": "optic_tectum",
-      "description": "顶盖 T5 类神经元只对移动的小目标放电，一旦越过阈值就以命令神经元方式整段释放舌肌弹射，是「刺激-固定动作模式」的经典实例。",
+      "description": "\u9876\u76d6 T5 \u7c7b\u795e\u7ecf\u5143\u53ea\u5bf9\u79fb\u52a8\u7684\u5c0f\u76ee\u6807\u653e\u7535\uff0c\u4e00\u65e6\u8d8a\u8fc7\u9608\u503c\u5c31\u4ee5\u547d\u4ee4\u795e\u7ecf\u5143\u65b9\u5f0f\u6574\u6bb5\u91ca\u653e\u820c\u808c\u5f39\u5c04\uff0c\u662f\u300c\u523a\u6fc0-\u56fa\u5b9a\u52a8\u4f5c\u6a21\u5f0f\u300d\u7684\u7ecf\u5178\u5b9e\u4f8b\u3002",
       "members": [
         {
           "role": "det",
@@ -9427,10 +9427,10 @@
     },
     {
       "name": "frog_escape_swim_unit",
-      "display": "蛙逃逸游泳单元",
+      "display": "\u86d9\u9003\u9038\u6e38\u6cf3\u5355\u5143",
       "function": "escape_swim",
       "system": "reticulospinal",
-      "description": "视觉威胁经网状脊髓神经元一次性召集轴向运动池，对侧甘氨酸能抑制保证左右不同时收缩，形成方向明确的逃逸游泳。",
+      "description": "\u89c6\u89c9\u5a01\u80c1\u7ecf\u7f51\u72b6\u810a\u9ad3\u795e\u7ecf\u5143\u4e00\u6b21\u6027\u53ec\u96c6\u8f74\u5411\u8fd0\u52a8\u6c60\uff0c\u5bf9\u4fa7\u7518\u6c28\u9178\u80fd\u6291\u5236\u4fdd\u8bc1\u5de6\u53f3\u4e0d\u540c\u65f6\u6536\u7f29\uff0c\u5f62\u6210\u65b9\u5411\u660e\u786e\u7684\u9003\u9038\u6e38\u6cf3\u3002",
       "members": [
         {
           "role": "rs",
@@ -9566,10 +9566,10 @@
     },
     {
       "name": "cerebellar_climbing_fibre_teaching_unit",
-      "display": "小脑攀爬纤维误差教学单元",
+      "display": "\u5c0f\u8111\u6500\u722c\u7ea4\u7ef4\u8bef\u5dee\u6559\u5b66\u5355\u5143",
       "function": "error_teaching",
       "system": "olivocerebellar",
-      "description": "下橄榄把运动误差编码成攀爬纤维的复杂spike，一对一地送到浦肯野细胞；这是全库唯一的监督式教学通路，误差信号本身不带目标值只带方向。",
+      "description": "\u4e0b\u6a44\u6984\u628a\u8fd0\u52a8\u8bef\u5dee\u7f16\u7801\u6210\u6500\u722c\u7ea4\u7ef4\u7684\u590d\u6742spike\uff0c\u4e00\u5bf9\u4e00\u5730\u9001\u5230\u6d66\u80af\u91ce\u7ec6\u80de\uff1b\u8fd9\u662f\u5168\u5e93\u552f\u4e00\u7684\u76d1\u7763\u5f0f\u6559\u5b66\u901a\u8def\uff0c\u8bef\u5dee\u4fe1\u53f7\u672c\u8eab\u4e0d\u5e26\u76ee\u6807\u503c\u53ea\u5e26\u65b9\u5411\u3002",
       "members": [
         {
           "role": "cf",
@@ -9685,10 +9685,10 @@
     },
     {
       "name": "cerebellar_purkinje_ltd_unit",
-      "display": "浦肯野细胞 LTD 微区单元",
+      "display": "\u6d66\u80af\u91ce\u7ec6\u80de LTD \u5fae\u533a\u5355\u5143",
       "function": "predictive_learn",
       "system": "cerebellum",
-      "description": "颗粒细胞展开成平行纤维与攀爬纤维教学信号在同一浦肯野细胞上符合，只有同时到达才产生 LTD；高尔基与星状细胞把活动限制在微区内。",
+      "description": "\u9897\u7c92\u7ec6\u80de\u5c55\u5f00\u6210\u5e73\u884c\u7ea4\u7ef4\u4e0e\u6500\u722c\u7ea4\u7ef4\u6559\u5b66\u4fe1\u53f7\u5728\u540c\u4e00\u6d66\u80af\u91ce\u7ec6\u80de\u4e0a\u7b26\u5408\uff0c\u53ea\u6709\u540c\u65f6\u5230\u8fbe\u624d\u4ea7\u751f LTD\uff1b\u9ad8\u5c14\u57fa\u4e0e\u661f\u72b6\u7ec6\u80de\u628a\u6d3b\u52a8\u9650\u5236\u5728\u5fae\u533a\u5185\u3002",
       "members": [
         {
           "role": "gr",
@@ -9816,10 +9816,10 @@
     },
     {
       "name": "vestibulo_ocular_reflex_unit",
-      "display": "前庭眼动适应单元",
+      "display": "\u524d\u5ead\u773c\u52a8\u9002\u5e94\u5355\u5143",
       "function": "gaze_stabilize",
       "system": "vestibular",
-      "description": "前庭毛细胞把头部角加速度经前庭核送到眼外肌，延迟极短；长期配戴棱镜时同一回路借小脑教学信号慢慢重标定，是适应而非反射改变。",
+      "description": "\u524d\u5ead\u6bdb\u7ec6\u80de\u628a\u5934\u90e8\u89d2\u52a0\u901f\u5ea6\u7ecf\u524d\u5ead\u6838\u9001\u5230\u773c\u5916\u808c\uff0c\u5ef6\u8fdf\u6781\u77ed\uff1b\u957f\u671f\u914d\u6234\u68f1\u955c\u65f6\u540c\u4e00\u56de\u8def\u501f\u5c0f\u8111\u6559\u5b66\u4fe1\u53f7\u6162\u6162\u91cd\u6807\u5b9a\uff0c\u662f\u9002\u5e94\u800c\u975e\u53cd\u5c04\u6539\u53d8\u3002",
       "members": [
         {
           "role": "hair",
@@ -9945,10 +9945,10 @@
     },
     {
       "name": "respiratory_rhythm_cpg_unit",
-      "display": "呼吸节律起搏单元",
+      "display": "\u547c\u5438\u8282\u5f8b\u8d77\u640f\u5355\u5143",
       "function": "breathing_rhythm",
       "system": "respiratory",
-      "description": "前包钦格复合体用平台电位加抑制性反弹产生吸气-呼气两相节律，膈运动神经元被全量募集，节律快慢受血气和觉醒状态调制。",
+      "description": "\u524d\u5305\u94a6\u683c\u590d\u5408\u4f53\u7528\u5e73\u53f0\u7535\u4f4d\u52a0\u6291\u5236\u6027\u53cd\u5f39\u4ea7\u751f\u5438\u6c14-\u547c\u6c14\u4e24\u76f8\u8282\u5f8b\uff0c\u8188\u8fd0\u52a8\u795e\u7ecf\u5143\u88ab\u5168\u91cf\u52df\u96c6\uff0c\u8282\u5f8b\u5feb\u6162\u53d7\u8840\u6c14\u548c\u89c9\u9192\u72b6\u6001\u8c03\u5236\u3002",
       "members": [
         {
           "role": "pre",
@@ -10076,10 +10076,10 @@
     },
     {
       "name": "sleep_wake_flipflop_unit",
-      "display": "睡眠觉醒双稳态单元",
+      "display": "\u7761\u7720\u89c9\u9192\u53cc\u7a33\u6001\u5355\u5143",
       "function": "state_switch",
       "system": "arousal_switch",
-      "description": "促睡眠的 VLPO 与促觉醒的蓝斑互相抑制构成双稳态开关，食欲素提供单侧偏置把开关按在清醒一侧；整个系统不允许停在中间态。",
+      "description": "\u4fc3\u7761\u7720\u7684 VLPO \u4e0e\u4fc3\u89c9\u9192\u7684\u84dd\u6591\u4e92\u76f8\u6291\u5236\u6784\u6210\u53cc\u7a33\u6001\u5f00\u5173\uff0c\u98df\u6b32\u7d20\u63d0\u4f9b\u5355\u4fa7\u504f\u7f6e\u628a\u5f00\u5173\u6309\u5728\u6e05\u9192\u4e00\u4fa7\uff1b\u6574\u4e2a\u7cfb\u7edf\u4e0d\u5141\u8bb8\u505c\u5728\u4e2d\u95f4\u6001\u3002",
       "members": [
         {
           "role": "vlpo",
@@ -10206,10 +10206,10 @@
     },
     {
       "name": "locus_coeruleus_arousal_unit",
-      "display": "蓝斑去甲肾上腺素唤醒单元",
+      "display": "\u84dd\u6591\u53bb\u7532\u80be\u4e0a\u817a\u7d20\u5524\u9192\u5355\u5143",
       "function": "global_arousal",
       "system": "locus_coeruleus",
-      "description": "蓝斑把显著性信号转成一束弥散去甲肾上腺素，同时经星形胶质细胞的钙波做慢时间尺度的扩散；这不是点对点传递而是全局增益重设。",
+      "description": "\u84dd\u6591\u628a\u663e\u8457\u6027\u4fe1\u53f7\u8f6c\u6210\u4e00\u675f\u5f25\u6563\u53bb\u7532\u80be\u4e0a\u817a\u7d20\uff0c\u540c\u65f6\u7ecf\u661f\u5f62\u80f6\u8d28\u7ec6\u80de\u7684\u9499\u6ce2\u505a\u6162\u65f6\u95f4\u5c3a\u5ea6\u7684\u6269\u6563\uff1b\u8fd9\u4e0d\u662f\u70b9\u5bf9\u70b9\u4f20\u9012\u800c\u662f\u5168\u5c40\u589e\u76ca\u91cd\u8bbe\u3002",
       "members": [
         {
           "role": "ne",
@@ -10335,10 +10335,10 @@
     },
     {
       "name": "hippocampal_spatial_map_unit",
-      "display": "海马空间地图单元",
+      "display": "\u6d77\u9a6c\u7a7a\u95f4\u5730\u56fe\u5355\u5143",
       "function": "spatial_map",
       "system": "hippocampus",
-      "description": "网格细胞提供多尺度度量，头方向细胞提供朝向，位置细胞把两者与 theta 节律的相位进动结合，形成随体重写的位置码。",
+      "description": "\u7f51\u683c\u7ec6\u80de\u63d0\u4f9b\u591a\u5c3a\u5ea6\u5ea6\u91cf\uff0c\u5934\u65b9\u5411\u7ec6\u80de\u63d0\u4f9b\u671d\u5411\uff0c\u4f4d\u7f6e\u7ec6\u80de\u628a\u4e24\u8005\u4e0e theta \u8282\u5f8b\u7684\u76f8\u4f4d\u8fdb\u52a8\u7ed3\u5408\uff0c\u5f62\u6210\u968f\u4f53\u91cd\u5199\u7684\u4f4d\u7f6e\u7801\u3002",
       "members": [
         {
           "role": "place",
@@ -10470,10 +10470,10 @@
     },
     {
       "name": "barrel_cortex_whisking_unit",
-      "display": "桶状皮层主动触觉单元",
+      "display": "\u6876\u72b6\u76ae\u5c42\u4e3b\u52a8\u89e6\u89c9\u5355\u5143",
       "function": "active_touch",
       "system": "barrel_cortex",
-      "description": "胡须运动神经元主动扫动，丘脑中继把每个毛囊的偏转送回同名桶状柱；运动指令的副本与触觉再传入在皮层内比对，主动触碰才可被识别为自己产生的。",
+      "description": "\u80e1\u987b\u8fd0\u52a8\u795e\u7ecf\u5143\u4e3b\u52a8\u626b\u52a8\uff0c\u4e18\u8111\u4e2d\u7ee7\u628a\u6bcf\u4e2a\u6bdb\u56ca\u7684\u504f\u8f6c\u9001\u56de\u540c\u540d\u6876\u72b6\u67f1\uff1b\u8fd0\u52a8\u6307\u4ee4\u7684\u526f\u672c\u4e0e\u89e6\u89c9\u518d\u4f20\u5165\u5728\u76ae\u5c42\u5185\u6bd4\u5bf9\uff0c\u4e3b\u52a8\u89e6\u78b0\u624d\u53ef\u88ab\u8bc6\u522b\u4e3a\u81ea\u5df1\u4ea7\u751f\u7684\u3002",
       "members": [
         {
           "role": "barrel",
@@ -10603,10 +10603,10 @@
     },
     {
       "name": "compound_lamina_relay_unit",
-      "display": "复眼-板层输入中继单元",
+      "display": "\u590d\u773c-\u677f\u5c42\u8f93\u5165\u4e2d\u7ee7\u5355\u5143",
       "function": "photoreception",
       "system": "optic_lobe",
-      "description": "R1-R6 把每个小眼的亮度/运动通道送入同名板层柱做高通滤波，R7/R8 色觉通道绕过板层直达髓质；两条通道并行，进髓质前互不污染。",
+      "description": "R1-R6 \u628a\u6bcf\u4e2a\u5c0f\u773c\u7684\u4eae\u5ea6/\u8fd0\u52a8\u901a\u9053\u9001\u5165\u540c\u540d\u677f\u5c42\u67f1\u505a\u9ad8\u901a\u6ee4\u6ce2\uff0cR7/R8 \u8272\u89c9\u901a\u9053\u7ed5\u8fc7\u677f\u5c42\u76f4\u8fbe\u9ad3\u8d28\uff1b\u4e24\u6761\u901a\u9053\u5e76\u884c\uff0c\u8fdb\u9ad3\u8d28\u524d\u4e92\u4e0d\u6c61\u67d3\u3002",
       "members": [
         {
           "role": "r1r6",
@@ -10867,10 +10867,10 @@
     },
     {
       "name": "medulla_colour_pathway_unit",
-      "display": "髓质色觉通路单元",
+      "display": "\u9ad3\u8d28\u8272\u89c9\u901a\u8def\u5355\u5143",
       "function": "colour_encode",
       "system": "optic_lobe",
-      "description": "R7/R8 直接靶向髓质，经 Tm/Y 与 Dm 系列神经元把紫外/蓝色小目标转成色觉特征；与运动通道分车间计算。",
+      "description": "R7/R8 \u76f4\u63a5\u9776\u5411\u9ad3\u8d28\uff0c\u7ecf Tm/Y \u4e0e Dm \u7cfb\u5217\u795e\u7ecf\u5143\u628a\u7d2b\u5916/\u84dd\u8272\u5c0f\u76ee\u6807\u8f6c\u6210\u8272\u89c9\u7279\u5f81\uff1b\u4e0e\u8fd0\u52a8\u901a\u9053\u5206\u8f66\u95f4\u8ba1\u7b97\u3002",
       "members": [
         {
           "role": "r7r8",
@@ -11071,10 +11071,10 @@
     },
     {
       "name": "elementary_motion_detection_unit",
-      "display": "初级运动检测单元",
+      "display": "\u521d\u7ea7\u8fd0\u52a8\u68c0\u6d4b\u5355\u5143",
       "function": "motion_detect",
       "system": "optic_lobe",
-      "description": "髓质柱状细胞把 ON/OFF 信号分开，T4/T5 四个方向亚型与 LPi 抑制性柱间连接一起完成初级方向检测——果蝇版的 Barlow-Levick。",
+      "description": "\u9ad3\u8d28\u67f1\u72b6\u7ec6\u80de\u628a ON/OFF \u4fe1\u53f7\u5206\u5f00\uff0cT4/T5 \u56db\u4e2a\u65b9\u5411\u4e9a\u578b\u4e0e LPi \u6291\u5236\u6027\u67f1\u95f4\u8fde\u63a5\u4e00\u8d77\u5b8c\u6210\u521d\u7ea7\u65b9\u5411\u68c0\u6d4b\u2014\u2014\u679c\u8747\u7248\u7684 Barlow-Levick\u3002",
       "members": [
         {
           "role": "medulla",
@@ -11374,10 +11374,10 @@
     },
     {
       "name": "lobula_plate_optic_flow_unit",
-      "display": "视叶板光流整合单元",
+      "display": "\u89c6\u53f6\u677f\u5149\u6d41\u6574\u5408\u5355\u5143",
       "function": "optic_flow",
       "system": "optic_lobe",
-      "description": "上万个 T4/T5 收敛到几十个切向细胞，LPi 柱间抑制把方向对立面压掉，HS/VS 输出的是整场光流与航向偏差估计。",
+      "description": "\u4e0a\u4e07\u4e2a T4/T5 \u6536\u655b\u5230\u51e0\u5341\u4e2a\u5207\u5411\u7ec6\u80de\uff0cLPi \u67f1\u95f4\u6291\u5236\u628a\u65b9\u5411\u5bf9\u7acb\u9762\u538b\u6389\uff0cHS/VS \u8f93\u51fa\u7684\u662f\u6574\u573a\u5149\u6d41\u4e0e\u822a\u5411\u504f\u5dee\u4f30\u8ba1\u3002",
       "members": [
         {
           "role": "t45",
@@ -11638,10 +11638,10 @@
     },
     {
       "name": "visual_target_detection_unit",
-      "display": "视觉目标检测单元",
+      "display": "\u89c6\u89c9\u76ee\u6807\u68c0\u6d4b\u5355\u5143",
       "function": "target_detect",
       "system": "optic_lobe",
-      "description": "髓质柱状细胞把特征汇聚到 LC 系列，LC 按特征分类（小目标/扩张/朝向）后直接驱动下行神经元——果蝇的『看见并分类』发生在视叶内。",
+      "description": "\u9ad3\u8d28\u67f1\u72b6\u7ec6\u80de\u628a\u7279\u5f81\u6c47\u805a\u5230 LC \u7cfb\u5217\uff0cLC \u6309\u7279\u5f81\u5206\u7c7b\uff08\u5c0f\u76ee\u6807/\u6269\u5f20/\u671d\u5411\uff09\u540e\u76f4\u63a5\u9a71\u52a8\u4e0b\u884c\u795e\u7ecf\u5143\u2014\u2014\u679c\u8747\u7684\u300e\u770b\u89c1\u5e76\u5206\u7c7b\u300f\u53d1\u751f\u5728\u89c6\u53f6\u5185\u3002",
       "members": [
         {
           "role": "medulla",
@@ -11899,10 +11899,10 @@
     },
     {
       "name": "giant_fiber_escape_unit",
-      "display": "巨纤维逃逸单元",
+      "display": "\u5de8\u7ea4\u7ef4\u9003\u9038\u5355\u5143",
       "function": "escape_reflex",
       "system": "ventral_nerve_cord",
-      "description": "巨纤维 DNp01 以混合电-化学突触直驱跳肌运动神经元 TTMn（快路径），经 PSI 与 GFC 中继驱 DLM/转肌（强直路径）；全回路延迟以毫秒计。",
+      "description": "\u5de8\u7ea4\u7ef4 DNp01 \u4ee5\u6df7\u5408\u7535-\u5316\u5b66\u7a81\u89e6\u76f4\u9a71\u8df3\u808c\u8fd0\u52a8\u795e\u7ecf\u5143 TTMn\uff08\u5feb\u8def\u5f84\uff09\uff0c\u7ecf PSI \u4e0e GFC \u4e2d\u7ee7\u9a71 DLM/\u8f6c\u808c\uff08\u5f3a\u76f4\u8def\u5f84\uff09\uff1b\u5168\u56de\u8def\u5ef6\u8fdf\u4ee5\u6beb\u79d2\u8ba1\u3002",
       "members": [
         {
           "role": "gf",
@@ -12213,10 +12213,10 @@
     },
     {
       "name": "auditory_song_reception_unit",
-      "display": "求偶歌接收单元",
+      "display": "\u6c42\u5076\u6b4c\u63a5\u6536\u5355\u5143",
       "function": "song_reception",
       "system": "antennal_mechanosensory",
-      "description": "JO 机械感受经听觉神经进入 AMMC，AMMC 把近场声音（求偶歌本身）的特征送到 pIP 与 aSP——雄蝇在听自己该不该唱。",
+      "description": "JO \u673a\u68b0\u611f\u53d7\u7ecf\u542c\u89c9\u795e\u7ecf\u8fdb\u5165 AMMC\uff0cAMMC \u628a\u8fd1\u573a\u58f0\u97f3\uff08\u6c42\u5076\u6b4c\u672c\u8eab\uff09\u7684\u7279\u5f81\u9001\u5230 pIP \u4e0e aSP\u2014\u2014\u96c4\u8747\u5728\u542c\u81ea\u5df1\u8be5\u4e0d\u8be5\u5531\u3002",
       "members": [
         {
           "role": "ammc",
@@ -12406,10 +12406,10 @@
     },
     {
       "name": "courtship_decision_unit",
-      "display": "求偶决策单元",
+      "display": "\u6c42\u5076\u51b3\u7b56\u5355\u5143",
       "function": "courtship_decision",
       "system": "lateral_protocerebrum",
-      "description": "pC1 整合信息素与歌声输入，与 vpo 互馈放大决策，aSP 的攻击驱动与之竞争，胜出的决策经 pIP 下行到腹神经索——求偶还是打架在这里分岔。",
+      "description": "pC1 \u6574\u5408\u4fe1\u606f\u7d20\u4e0e\u6b4c\u58f0\u8f93\u5165\uff0c\u4e0e vpo \u4e92\u9988\u653e\u5927\u51b3\u7b56\uff0caSP \u7684\u653b\u51fb\u9a71\u52a8\u4e0e\u4e4b\u7ade\u4e89\uff0c\u80dc\u51fa\u7684\u51b3\u7b56\u7ecf pIP \u4e0b\u884c\u5230\u8179\u795e\u7ecf\u7d22\u2014\u2014\u6c42\u5076\u8fd8\u662f\u6253\u67b6\u5728\u8fd9\u91cc\u5206\u5c94\u3002",
       "members": [
         {
           "role": "pc1",
@@ -12752,10 +12752,10 @@
     },
     {
       "name": "courtship_song_pattern_unit",
-      "display": "求偶歌曲模式生成单元",
+      "display": "\u6c42\u5076\u6b4c\u66f2\u6a21\u5f0f\u751f\u6210\u5355\u5143",
       "function": "song_pattern",
       "system": "ventral_nerve_cord",
-      "description": "pIP 下行信号触发 vMS/vPR 歌曲网络，网络靠强自激与脉冲模式开关生成脉冲歌与正弦歌的节律，直接驱动翅肌。",
+      "description": "pIP \u4e0b\u884c\u4fe1\u53f7\u89e6\u53d1 vMS/vPR \u6b4c\u66f2\u7f51\u7edc\uff0c\u7f51\u7edc\u9760\u5f3a\u81ea\u6fc0\u4e0e\u8109\u51b2\u6a21\u5f0f\u5f00\u5173\u751f\u6210\u8109\u51b2\u6b4c\u4e0e\u6b63\u5f26\u6b4c\u7684\u8282\u5f8b\uff0c\u76f4\u63a5\u9a71\u52a8\u7fc5\u808c\u3002",
       "members": [
         {
           "role": "pip",
@@ -12936,10 +12936,10 @@
     },
     {
       "name": "lateral_horn_innate_odour_unit",
-      "display": "侧角先天嗅觉单元",
+      "display": "\u4fa7\u89d2\u5148\u5929\u55c5\u89c9\u5355\u5143",
       "function": "innate_odour",
       "system": "lateral_horn",
-      "description": "投射神经元把球状体模式并行送进侧角，侧角家族按信息素/利它素类别硬连线赋值并直接驱动下行神经元——不经蘑菇体学习就能闻到就该躲/该追。",
+      "description": "\u6295\u5c04\u795e\u7ecf\u5143\u628a\u7403\u72b6\u4f53\u6a21\u5f0f\u5e76\u884c\u9001\u8fdb\u4fa7\u89d2\uff0c\u4fa7\u89d2\u5bb6\u65cf\u6309\u4fe1\u606f\u7d20/\u5229\u5b83\u7d20\u7c7b\u522b\u786c\u8fde\u7ebf\u8d4b\u503c\u5e76\u76f4\u63a5\u9a71\u52a8\u4e0b\u884c\u795e\u7ecf\u5143\u2014\u2014\u4e0d\u7ecf\u8611\u83c7\u4f53\u5b66\u4e60\u5c31\u80fd\u95fb\u5230\u5c31\u8be5\u8eb2/\u8be5\u8ffd\u3002",
       "members": [
         {
           "role": "pn",
@@ -13158,10 +13158,10 @@
     },
     {
       "name": "octopamine_arousal_unit",
-      "display": "八胺觉醒调节单元",
+      "display": "\u516b\u80fa\u89c9\u9192\u8c03\u8282\u5355\u5143",
       "function": "arousal_modulate",
       "system": "modulatory",
-      "description": "OA-VUM/OA-VPM 少量（MaleCNS 里 17 个真实细胞 / 9 类）广泛投射，把觉醒-努力设定跨域写到蘑菇体、下行神经元与侧角；无自循环、纯扩散调制。",
+      "description": "OA-VUM/OA-VPM \u5c11\u91cf\uff08MaleCNS \u91cc 17 \u4e2a\u771f\u5b9e\u7ec6\u80de / 9 \u7c7b\uff09\u5e7f\u6cdb\u6295\u5c04\uff0c\u628a\u89c9\u9192-\u52aa\u529b\u8bbe\u5b9a\u8de8\u57df\u5199\u5230\u8611\u83c7\u4f53\u3001\u4e0b\u884c\u795e\u7ecf\u5143\u4e0e\u4fa7\u89d2\uff1b\u65e0\u81ea\u5faa\u73af\u3001\u7eaf\u6269\u6563\u8c03\u5236\u3002",
       "members": [
         {
           "role": "vum",
@@ -13488,10 +13488,10 @@
     },
     {
       "name": "looming_detection_unit",
-      "display": "碰撞逼近检测单元",
+      "display": "\u78b0\u649e\u903c\u8fd1\u68c0\u6d4b\u5355\u5143",
       "function": "looming_detect",
       "system": "optic_lobe",
-      "description": "T4/T5 方向检测把扩张型光流汇聚到 LPLC1/2/4，LPLC 直驱下行神经元触发逃逸——MaleCNS 实测 LPLC→DN 突触数 63,290，是本项目最强单条视觉-运动边。",
+      "description": "T4/T5 \u65b9\u5411\u68c0\u6d4b\u628a\u6269\u5f20\u578b\u5149\u6d41\u6c47\u805a\u5230 LPLC1/2/4\uff0cLPLC \u76f4\u9a71\u4e0b\u884c\u795e\u7ecf\u5143\u89e6\u53d1\u9003\u9038\u2014\u2014MaleCNS \u5b9e\u6d4b LPLC\u2192DN \u7a81\u89e6\u6570 63,290\uff0c\u662f\u672c\u9879\u76ee\u6700\u5f3a\u5355\u6761\u89c6\u89c9-\u8fd0\u52a8\u8fb9\u3002",
       "members": [
         {
           "role": "medulla",
@@ -13812,10 +13812,10 @@
     },
     {
       "name": "pharyngeal_gustatory_unit",
-      "display": "咽味觉食欲单元",
+      "display": "\u54bd\u5473\u89c9\u98df\u6b32\u5355\u5143",
       "function": "taste_encode",
       "system": "subesophageal_zone",
-      "description": "PhG 味觉神经元（48 真实细胞 / 18 类）把吻部味觉信号送入下行神经元并微弱耦合到侧角；MaleCNS 实测 PhG→DN 1,024 突触，PhG→LH 5 突触（稀疏但存在，可能是先天味-信息素整合的边缘通道）。",
+      "description": "PhG \u5473\u89c9\u795e\u7ecf\u5143\uff0848 \u771f\u5b9e\u7ec6\u80de / 18 \u7c7b\uff09\u628a\u543b\u90e8\u5473\u89c9\u4fe1\u53f7\u9001\u5165\u4e0b\u884c\u795e\u7ecf\u5143\u5e76\u5fae\u5f31\u8026\u5408\u5230\u4fa7\u89d2\uff1bMaleCNS \u5b9e\u6d4b PhG\u2192DN 1,024 \u7a81\u89e6\uff0cPhG\u2192LH 5 \u7a81\u89e6\uff08\u7a00\u758f\u4f46\u5b58\u5728\uff0c\u53ef\u80fd\u662f\u5148\u5929\u5473-\u4fe1\u606f\u7d20\u6574\u5408\u7684\u8fb9\u7f18\u901a\u9053\uff09\u3002",
       "members": [
         {
           "role": "phar",
@@ -14019,10 +14019,10 @@
     },
     {
       "name": "vnc_sensory_reflex_unit",
-      "display": "腹神经索感觉反射单元",
+      "display": "\u8179\u795e\u7ecf\u7d22\u611f\u89c9\u53cd\u5c04\u5355\u5143",
       "function": "local_reflex",
       "system": "ventral_nerve_cord",
-      "description": "VNC 感觉池（5,605 真实细胞 / 171 类）→ VNC 中间神经元（12,967 细胞 / 2,799 类）是本项目实测最强边，1,836,902 突触；中间神经元回返 339,844，升/降感觉池各补 154,541 与 6,846，闭成本段反射弧。",
+      "description": "VNC \u611f\u89c9\u6c60\uff085,605 \u771f\u5b9e\u7ec6\u80de / 171 \u7c7b\uff09\u2192 VNC \u4e2d\u95f4\u795e\u7ecf\u5143\uff0812,967 \u7ec6\u80de / 2,799 \u7c7b\uff09\u662f\u672c\u9879\u76ee\u5b9e\u6d4b\u6700\u5f3a\u8fb9\uff0c1,836,902 \u7a81\u89e6\uff1b\u4e2d\u95f4\u795e\u7ecf\u5143\u56de\u8fd4 339,844\uff0c\u5347/\u964d\u611f\u89c9\u6c60\u5404\u8865 154,541 \u4e0e 6,846\uff0c\u95ed\u6210\u672c\u6bb5\u53cd\u5c04\u5f27\u3002",
       "members": [
         {
           "role": "sens",
@@ -14369,10 +14369,10 @@
     },
     {
       "name": "leg_motor_pool_unit",
-      "display": "腿运动池单元",
+      "display": "\u817f\u8fd0\u52a8\u6c60\u5355\u5143",
       "function": "leg_drive",
       "system": "ventral_nerve_cord",
-      "description": "VNC 中间神经元把步态命令送进 TTMn 腿运动池（403 真实细胞 / 84 类），实测 1,205,967 突触；VNC 感觉与上升感觉池各补 30,913 与 7,991 的足端反馈，运动池回返 11,587 闭环。",
+      "description": "VNC \u4e2d\u95f4\u795e\u7ecf\u5143\u628a\u6b65\u6001\u547d\u4ee4\u9001\u8fdb TTMn \u817f\u8fd0\u52a8\u6c60\uff08403 \u771f\u5b9e\u7ec6\u80de / 84 \u7c7b\uff09\uff0c\u5b9e\u6d4b 1,205,967 \u7a81\u89e6\uff1bVNC \u611f\u89c9\u4e0e\u4e0a\u5347\u611f\u89c9\u6c60\u5404\u8865 30,913 \u4e0e 7,991 \u7684\u8db3\u7aef\u53cd\u9988\uff0c\u8fd0\u52a8\u6c60\u56de\u8fd4 11,587 \u95ed\u73af\u3002",
       "members": [
         {
           "role": "inter",
@@ -14743,10 +14743,10 @@
     },
     {
       "name": "wing_flight_control_unit",
-      "display": "翅膀飞行控制单元",
+      "display": "\u7fc5\u8180\u98de\u884c\u63a7\u5236\u5355\u5143",
       "function": "flight_power",
       "system": "ventral_nerve_cord",
-      "description": "VNC 中间神经元同时驱四群胸肌运动池：胸促肌 141,428、飞行动力 144,642、翅抑肌 43,027、平衡棒肌 84,547 突触；促肌与平衡棒肌各回返 747 与 429 做时序校准。",
+      "description": "VNC \u4e2d\u95f4\u795e\u7ecf\u5143\u540c\u65f6\u9a71\u56db\u7fa4\u80f8\u808c\u8fd0\u52a8\u6c60\uff1a\u80f8\u4fc3\u808c 141,428\u3001\u98de\u884c\u52a8\u529b 144,642\u3001\u7fc5\u6291\u808c 43,027\u3001\u5e73\u8861\u68d2\u808c 84,547 \u7a81\u89e6\uff1b\u4fc3\u808c\u4e0e\u5e73\u8861\u68d2\u808c\u5404\u56de\u8fd4 747 \u4e0e 429 \u505a\u65f6\u5e8f\u6821\u51c6\u3002",
       "members": [
         {
           "role": "inter",
@@ -15142,10 +15142,10 @@
     },
     {
       "name": "johnston_organ_wind_unit",
-      "display": "约翰斯顿器风感单元",
+      "display": "\u7ea6\u7ff0\u65af\u987f\u5668\u98ce\u611f\u5355\u5143",
       "function": "wind_detect",
       "system": "antennal_mechanosensory",
-      "description": "触角 JO 机械感受神经元（672 真实细胞 / 34 类）把气流感同时送进听觉中枢（48,207 突触）与下行神经元（46,595），并稀疏耦合到求偶 pIP（1,655）与巨纤维（709）——风向、风强与求偶声走同一输入。",
+      "description": "\u89e6\u89d2 JO \u673a\u68b0\u611f\u53d7\u795e\u7ecf\u5143\uff08672 \u771f\u5b9e\u7ec6\u80de / 34 \u7c7b\uff09\u628a\u6c14\u6d41\u611f\u540c\u65f6\u9001\u8fdb\u542c\u89c9\u4e2d\u67a2\uff0848,207 \u7a81\u89e6\uff09\u4e0e\u4e0b\u884c\u795e\u7ecf\u5143\uff0846,595\uff09\uff0c\u5e76\u7a00\u758f\u8026\u5408\u5230\u6c42\u5076 pIP\uff081,655\uff09\u4e0e\u5de8\u7ea4\u7ef4\uff08709\uff09\u2014\u2014\u98ce\u5411\u3001\u98ce\u5f3a\u4e0e\u6c42\u5076\u58f0\u8d70\u540c\u4e00\u8f93\u5165\u3002",
       "members": [
         {
           "role": "jo",
@@ -15461,10 +15461,10 @@
     },
     {
       "name": "oa_visual_modulation_unit",
-      "display": "八胺视觉离心调节单元",
+      "display": "\u516b\u80fa\u89c6\u89c9\u79bb\u5fc3\u8c03\u8282\u5355\u5143",
       "function": "visual_gain",
       "system": "optic_lobe",
-      "description": "少量八胺离心神经元（16 真实细胞 / 5 类）容积式调制整个视叶：中神经 56,231、LC 8,729、T4/T5 6,600、LPLC 2,906 突触——觉醒状态把视觉增益一次性拉满。",
+      "description": "\u5c11\u91cf\u516b\u80fa\u79bb\u5fc3\u795e\u7ecf\u5143\uff0816 \u771f\u5b9e\u7ec6\u80de / 5 \u7c7b\uff09\u5bb9\u79ef\u5f0f\u8c03\u5236\u6574\u4e2a\u89c6\u53f6\uff1a\u4e2d\u795e\u7ecf 56,231\u3001LC 8,729\u3001T4/T5 6,600\u3001LPLC 2,906 \u7a81\u89e6\u2014\u2014\u89c9\u9192\u72b6\u6001\u628a\u89c6\u89c9\u589e\u76ca\u4e00\u6b21\u6027\u62c9\u6ee1\u3002",
       "members": [
         {
           "role": "oa",
@@ -15835,10 +15835,10 @@
     },
     {
       "name": "cb_sensory_motor_unit",
-      "display": "脑-胸部感觉运动汇聚单元",
+      "display": "\u8111-\u80f8\u90e8\u611f\u89c9\u8fd0\u52a8\u6c47\u805a\u5355\u5143",
       "function": "posture_set",
       "system": "brain",
-      "description": "四类感觉（上升感觉 11,609、VNC 感觉 2,711、吻部机械 790、JO 机械 466 突触）在胸胸部运动核汇聚，是姿态设定的输入侧最完整的实测汇聚点。",
+      "description": "\u56db\u7c7b\u611f\u89c9\uff08\u4e0a\u5347\u611f\u89c9 11,609\u3001VNC \u611f\u89c9 2,711\u3001\u543b\u90e8\u673a\u68b0 790\u3001JO \u673a\u68b0 466 \u7a81\u89e6\uff09\u5728\u80f8\u80f8\u90e8\u8fd0\u52a8\u6838\u6c47\u805a\uff0c\u662f\u59ff\u6001\u8bbe\u5b9a\u7684\u8f93\u5165\u4fa7\u6700\u5b8c\u6574\u7684\u5b9e\u6d4b\u6c47\u805a\u70b9\u3002",
       "members": [
         {
           "role": "asc",
@@ -16169,10 +16169,10 @@
     },
     {
       "name": "cb_endocrine_modulation_unit",
-      "display": "脑内分泌调节池单元",
+      "display": "\u8111\u5185\u5206\u6ccc\u8c03\u8282\u6c60\u5355\u5143",
       "function": "peptide_release",
       "system": "brain",
-      "description": "VNC 中间神经元与上升感觉池各自少量地驱动胸部内分泌池（65 真实细胞 / 10 类，实测 288 与 149 突触）——肽类容积传递的状态调制，非突触点对点。",
+      "description": "VNC \u4e2d\u95f4\u795e\u7ecf\u5143\u4e0e\u4e0a\u5347\u611f\u89c9\u6c60\u5404\u81ea\u5c11\u91cf\u5730\u9a71\u52a8\u80f8\u90e8\u5185\u5206\u6ccc\u6c60\uff0865 \u771f\u5b9e\u7ec6\u80de / 10 \u7c7b\uff0c\u5b9e\u6d4b 288 \u4e0e 149 \u7a81\u89e6\uff09\u2014\u2014\u80bd\u7c7b\u5bb9\u79ef\u4f20\u9012\u7684\u72b6\u6001\u8c03\u5236\uff0c\u975e\u7a81\u89e6\u70b9\u5bf9\u70b9\u3002",
       "members": [
         {
           "role": "vni",
@@ -16374,10 +16374,10 @@
     },
     {
       "name": "vnc_endocrine_modulation_unit",
-      "display": "腹神经索内分泌调节单元",
+      "display": "\u8179\u795e\u7ecf\u7d22\u5185\u5206\u6ccc\u8c03\u8282\u5355\u5143",
       "function": "neurohormone_release",
       "system": "ventral_nerve_cord",
-      "description": "VNC 内分泌池仅 22 真实细胞 / 4 类（LK、CAPA_a、CAPA_b、FMRFa_Tv），却是整条索体的神经激素发射口：VNC 中间神经元（12,967 细胞）实测 13,162 突触下行驱动它，下行神经元（1,306 细胞）再补 5,263；内分泌池经容积传递回返中间神经元 207、向腿运动池（403 细胞）外溢 54，腿运动池回测 35 突触闭环。突触量级极小，作用形式是肽类弥漫而非点对点。",
+      "description": "VNC \u5185\u5206\u6ccc\u6c60\u4ec5 22 \u771f\u5b9e\u7ec6\u80de / 4 \u7c7b\uff08LK\u3001CAPA_a\u3001CAPA_b\u3001FMRFa_Tv\uff09\uff0c\u5374\u662f\u6574\u6761\u7d22\u4f53\u7684\u795e\u7ecf\u6fc0\u7d20\u53d1\u5c04\u53e3\uff1aVNC \u4e2d\u95f4\u795e\u7ecf\u5143\uff0812,967 \u7ec6\u80de\uff09\u5b9e\u6d4b 13,162 \u7a81\u89e6\u4e0b\u884c\u9a71\u52a8\u5b83\uff0c\u4e0b\u884c\u795e\u7ecf\u5143\uff081,306 \u7ec6\u80de\uff09\u518d\u8865 5,263\uff1b\u5185\u5206\u6ccc\u6c60\u7ecf\u5bb9\u79ef\u4f20\u9012\u56de\u8fd4\u4e2d\u95f4\u795e\u7ecf\u5143 207\u3001\u5411\u817f\u8fd0\u52a8\u6c60\uff08403 \u7ec6\u80de\uff09\u5916\u6ea2 54\uff0c\u817f\u8fd0\u52a8\u6c60\u56de\u6d4b 35 \u7a81\u89e6\u95ed\u73af\u3002\u7a81\u89e6\u91cf\u7ea7\u6781\u5c0f\uff0c\u4f5c\u7528\u5f62\u5f0f\u662f\u80bd\u7c7b\u5f25\u6f2b\u800c\u975e\u70b9\u5bf9\u70b9\u3002",
       "members": [
         {
           "role": "endo",
@@ -16737,10 +16737,10 @@
     },
     {
       "name": "efferent_command_bus_unit",
-      "display": "外周上升指挥总线单元",
+      "display": "\u5916\u5468\u4e0a\u5347\u6307\u6325\u603b\u7ebf\u5355\u5143",
       "function": "distributed_command",
       "system": "brainstem",
-      "description": "EPP 上升外周池只有 8 真实细胞 / 5 类，却是脑到腹索的指挥总线：下行神经元（1,306 细胞）实测 4,724 突触注入它，它再扇出到 VNC 中间神经元（12,967 细胞）6,304、腿运动池 1,259、巨纤维前体 GFC（34 细胞）631；中间神经元回返 7,377、GFC 回返 126，构成一条「命令—确认」双向闭环，并把逃逸系统挂在同一条总线上。",
+      "description": "EPP \u4e0a\u5347\u5916\u5468\u6c60\u53ea\u6709 8 \u771f\u5b9e\u7ec6\u80de / 5 \u7c7b\uff0c\u5374\u662f\u8111\u5230\u8179\u7d22\u7684\u6307\u6325\u603b\u7ebf\uff1a\u4e0b\u884c\u795e\u7ecf\u5143\uff081,306 \u7ec6\u80de\uff09\u5b9e\u6d4b 4,724 \u7a81\u89e6\u6ce8\u5165\u5b83\uff0c\u5b83\u518d\u6247\u51fa\u5230 VNC \u4e2d\u95f4\u795e\u7ecf\u5143\uff0812,967 \u7ec6\u80de\uff096,304\u3001\u817f\u8fd0\u52a8\u6c60 1,259\u3001\u5de8\u7ea4\u7ef4\u524d\u4f53 GFC\uff0834 \u7ec6\u80de\uff09631\uff1b\u4e2d\u95f4\u795e\u7ecf\u5143\u56de\u8fd4 7,377\u3001GFC \u56de\u8fd4 126\uff0c\u6784\u6210\u4e00\u6761\u300c\u547d\u4ee4\u2014\u786e\u8ba4\u300d\u53cc\u5411\u95ed\u73af\uff0c\u5e76\u628a\u9003\u9038\u7cfb\u7edf\u6302\u5728\u540c\u4e00\u6761\u603b\u7ebf\u4e0a\u3002",
       "members": [
         {
           "role": "bus",
@@ -17147,10 +17147,10 @@
     },
     {
       "name": "cb_efferent_command_unit",
-      "display": "中央复合体外周下命令单元",
+      "display": "\u4e2d\u592e\u590d\u5408\u4f53\u5916\u5468\u4e0b\u547d\u4ee4\u5355\u5143",
       "function": "command_issue",
       "system": "central_complex",
-      "description": "中央复合体外周池只有 4 真实细胞 / 1 类，是这块脑区唯一的下行出口：嗅觉投射 PN（583 细胞）实测 2 突触输入它，它输出到下行政令神经元 26 突触、被回接 73，并向 CB 内分泌池（65 细胞）溢出 7 突触给状态打标记。规模最小的一档，但处在路径最顶端。",
+      "description": "\u4e2d\u592e\u590d\u5408\u4f53\u5916\u5468\u6c60\u53ea\u6709 4 \u771f\u5b9e\u7ec6\u80de / 1 \u7c7b\uff0c\u662f\u8fd9\u5757\u8111\u533a\u552f\u4e00\u7684\u4e0b\u884c\u51fa\u53e3\uff1a\u55c5\u89c9\u6295\u5c04 PN\uff08583 \u7ec6\u80de\uff09\u5b9e\u6d4b 2 \u7a81\u89e6\u8f93\u5165\u5b83\uff0c\u5b83\u8f93\u51fa\u5230\u4e0b\u884c\u653f\u4ee4\u795e\u7ecf\u5143 26 \u7a81\u89e6\u3001\u88ab\u56de\u63a5 73\uff0c\u5e76\u5411 CB \u5185\u5206\u6ccc\u6c60\uff0865 \u7ec6\u80de\uff09\u6ea2\u51fa 7 \u7a81\u89e6\u7ed9\u72b6\u6001\u6253\u6807\u8bb0\u3002\u89c4\u6a21\u6700\u5c0f\u7684\u4e00\u6863\uff0c\u4f46\u5904\u5728\u8def\u5f84\u6700\u9876\u7aef\u3002",
       "members": [
         {
           "role": "ef",
@@ -17473,10 +17473,10 @@
     },
     {
       "name": "centrifugal_visual_feedback_unit",
-      "display": "离心视觉反馈单元",
+      "display": "\u79bb\u5fc3\u89c6\u89c9\u53cd\u9988\u5355\u5143",
       "function": "visual_gain_feedback",
       "system": "optic_lobe",
-      "description": "TBC 离心池只有 2 真实细胞 / 2 类，却是整条视网膜增益调节的离心通路：它把中枢信号回灌到视叶内生神经元（37,146 细胞）实测 3,323 突触、LC（4,164 细胞）1,131、八胺离心池（16 细胞）30、T4/T5（13,580 细胞）9；内生回传 5,222、LC 回传 661、T4/T5 回传 532，双向边全部实测非零，是典型的双向增益环而非单向广播。",
+      "description": "TBC \u79bb\u5fc3\u6c60\u53ea\u6709 2 \u771f\u5b9e\u7ec6\u80de / 2 \u7c7b\uff0c\u5374\u662f\u6574\u6761\u89c6\u7f51\u819c\u589e\u76ca\u8c03\u8282\u7684\u79bb\u5fc3\u901a\u8def\uff1a\u5b83\u628a\u4e2d\u67a2\u4fe1\u53f7\u56de\u704c\u5230\u89c6\u53f6\u5185\u751f\u795e\u7ecf\u5143\uff0837,146 \u7ec6\u80de\uff09\u5b9e\u6d4b 3,323 \u7a81\u89e6\u3001LC\uff084,164 \u7ec6\u80de\uff091,131\u3001\u516b\u80fa\u79bb\u5fc3\u6c60\uff0816 \u7ec6\u80de\uff0930\u3001T4/T5\uff0813,580 \u7ec6\u80de\uff099\uff1b\u5185\u751f\u56de\u4f20 5,222\u3001LC \u56de\u4f20 661\u3001T4/T5 \u56de\u4f20 532\uff0c\u53cc\u5411\u8fb9\u5168\u90e8\u5b9e\u6d4b\u975e\u96f6\uff0c\u662f\u5178\u578b\u7684\u53cc\u5411\u589e\u76ca\u73af\u800c\u975e\u5355\u5411\u5e7f\u64ad\u3002",
       "members": [
         {
           "role": "tbc",
@@ -17980,10 +17980,10 @@
     },
     {
       "name": "buccal_efferent_feedback_unit",
-      "display": "咽下外周反哺单元",
+      "display": "\u54bd\u4e0b\u5916\u5468\u53cd\u54fa\u5355\u5143",
       "function": "ingestive_feedback",
       "system": "subesophageal_zone",
-      "description": "EPP 下降外周池只有 4 真实细胞 / 1 类，是口腔—腹部行为之间的下行反馈枢纽：下行神经元注入 123 突触并被回接 62，CB 运动池（106 细胞）与它双向互馈 11 与 12，感觉下降池（12 细胞）再输入 16；输出侧驱动咽味觉神经元（48 细胞）3 突触、八胺 VUM（17 细胞）5 突触。每条边都在实测矩阵里，但量级都 <=123 突触，属精细调节而非驱动级。",
+      "description": "EPP \u4e0b\u964d\u5916\u5468\u6c60\u53ea\u6709 4 \u771f\u5b9e\u7ec6\u80de / 1 \u7c7b\uff0c\u662f\u53e3\u8154\u2014\u8179\u90e8\u884c\u4e3a\u4e4b\u95f4\u7684\u4e0b\u884c\u53cd\u9988\u67a2\u7ebd\uff1a\u4e0b\u884c\u795e\u7ecf\u5143\u6ce8\u5165 123 \u7a81\u89e6\u5e76\u88ab\u56de\u63a5 62\uff0cCB \u8fd0\u52a8\u6c60\uff08106 \u7ec6\u80de\uff09\u4e0e\u5b83\u53cc\u5411\u4e92\u9988 11 \u4e0e 12\uff0c\u611f\u89c9\u4e0b\u964d\u6c60\uff0812 \u7ec6\u80de\uff09\u518d\u8f93\u5165 16\uff1b\u8f93\u51fa\u4fa7\u9a71\u52a8\u54bd\u5473\u89c9\u795e\u7ecf\u5143\uff0848 \u7ec6\u80de\uff093 \u7a81\u89e6\u3001\u516b\u80fa VUM\uff0817 \u7ec6\u80de\uff095 \u7a81\u89e6\u3002\u6bcf\u6761\u8fb9\u90fd\u5728\u5b9e\u6d4b\u77e9\u9635\u91cc\uff0c\u4f46\u91cf\u7ea7\u90fd <=123 \u7a81\u89e6\uff0c\u5c5e\u7cbe\u7ec6\u8c03\u8282\u800c\u975e\u9a71\u52a8\u7ea7\u3002",
       "members": [
         {
           "role": "ed",
@@ -18430,10 +18430,10 @@
     },
     {
       "name": "wing_flight_steering_unit",
-      "display": "翅膀转向调节单元",
+      "display": "\u7fc5\u8180\u8f6c\u5411\u8c03\u8282\u5355\u5143",
       "function": "flight_steering",
       "system": "ventral_nerve_cord",
-      "description": "飞行动作选择：下行神经元（1306 真实细胞 / 477 类）注入 VNC 中间池 1,673,751 突触，VNC 中间池同时驱动飞行功率池 144,642、腿运动池 1,205,967、VNC 外周 85,992；飞行功率池再输出到翅膀伸张（4 突触 / 2 类）与鼓翅肌（4 突触 / 4 类）——后者是果蝇飞行的定常振荡器，反馈到 VNC 中间池 162 突触构成闭合的定速回路；VNC 中间池与 VNC 外周之间的 85,992 突触是姿态反馈通路的实测承载。所有 7 条边在实测矩阵里都非零，量级从 1 到 1,673,751 跨越六个数量级：功率/腿是驱动级，翅膀伸张与鼓翅是微调级。",
+      "description": "\u98de\u884c\u52a8\u4f5c\u9009\u62e9\uff1a\u4e0b\u884c\u795e\u7ecf\u5143\uff081306 \u771f\u5b9e\u7ec6\u80de / 477 \u7c7b\uff09\u6ce8\u5165 VNC \u4e2d\u95f4\u6c60 1,673,751 \u7a81\u89e6\uff0cVNC \u4e2d\u95f4\u6c60\u540c\u65f6\u9a71\u52a8\u98de\u884c\u529f\u7387\u6c60 144,642\u3001\u817f\u8fd0\u52a8\u6c60 1,205,967\u3001VNC \u5916\u5468 85,992\uff1b\u98de\u884c\u529f\u7387\u6c60\u518d\u8f93\u51fa\u5230\u7fc5\u8180\u4f38\u5f20\uff084 \u7a81\u89e6 / 2 \u7c7b\uff09\u4e0e\u9f13\u7fc5\u808c\uff084 \u7a81\u89e6 / 4 \u7c7b\uff09\u2014\u2014\u540e\u8005\u662f\u679c\u8747\u98de\u884c\u7684\u5b9a\u5e38\u632f\u8361\u5668\uff0c\u53cd\u9988\u5230 VNC \u4e2d\u95f4\u6c60 162 \u7a81\u89e6\u6784\u6210\u95ed\u5408\u7684\u5b9a\u901f\u56de\u8def\uff1bVNC \u4e2d\u95f4\u6c60\u4e0e VNC \u5916\u5468\u4e4b\u95f4\u7684 85,992 \u7a81\u89e6\u662f\u59ff\u6001\u53cd\u9988\u901a\u8def\u7684\u5b9e\u6d4b\u627f\u8f7d\u3002\u6240\u6709 7 \u6761\u8fb9\u5728\u5b9e\u6d4b\u77e9\u9635\u91cc\u90fd\u975e\u96f6\uff0c\u91cf\u7ea7\u4ece 1 \u5230 1,673,751 \u8de8\u8d8a\u516d\u4e2a\u6570\u91cf\u7ea7\uff1a\u529f\u7387/\u817f\u662f\u9a71\u52a8\u7ea7\uff0c\u7fc5\u8180\u4f38\u5f20\u4e0e\u9f13\u7fc5\u662f\u5fae\u8c03\u7ea7\u3002",
       "members": [
         {
           "role": "dn",
@@ -18913,10 +18913,10 @@
     },
     {
       "name": "gustatory_centrifugal_unit",
-      "display": "味觉离心反馈单元",
+      "display": "\u5473\u89c9\u79bb\u5fc3\u53cd\u9988\u5355\u5143",
       "function": "centrifugal_feedback",
       "system": "subesophageal_zone",
-      "description": "味觉信号的离心放大回路：咽味觉神经元（48 细胞 / 18 类）注入感觉上升池 68 突触，上升池同时注入 CB 内分泌池 149、CB 运动池 11,609、VNC 中间池 154,541、EPP 上升池 256；EPP 上升池再向 VNC 中间池注入 6,304 突触形成闭环。这条回路把咽部味觉输入放大成跨越脑干与 VNC 的全脑反馈——MaleCNS 实测显示上升池到VNC 的 154,541 突触比到 CB 内分泌的 149 高三个数量级，暗示味觉反馈主要走运动通路而非内分通路。",
+      "description": "\u5473\u89c9\u4fe1\u53f7\u7684\u79bb\u5fc3\u653e\u5927\u56de\u8def\uff1a\u54bd\u5473\u89c9\u795e\u7ecf\u5143\uff0848 \u7ec6\u80de / 18 \u7c7b\uff09\u6ce8\u5165\u611f\u89c9\u4e0a\u5347\u6c60 68 \u7a81\u89e6\uff0c\u4e0a\u5347\u6c60\u540c\u65f6\u6ce8\u5165 CB \u5185\u5206\u6ccc\u6c60 149\u3001CB \u8fd0\u52a8\u6c60 11,609\u3001VNC \u4e2d\u95f4\u6c60 154,541\u3001EPP \u4e0a\u5347\u6c60 256\uff1bEPP \u4e0a\u5347\u6c60\u518d\u5411 VNC \u4e2d\u95f4\u6c60\u6ce8\u5165 6,304 \u7a81\u89e6\u5f62\u6210\u95ed\u73af\u3002\u8fd9\u6761\u56de\u8def\u628a\u54bd\u90e8\u5473\u89c9\u8f93\u5165\u653e\u5927\u6210\u8de8\u8d8a\u8111\u5e72\u4e0e VNC \u7684\u5168\u8111\u53cd\u9988\u2014\u2014MaleCNS \u5b9e\u6d4b\u663e\u793a\u4e0a\u5347\u6c60\u5230VNC \u7684 154,541 \u7a81\u89e6\u6bd4\u5230 CB \u5185\u5206\u6ccc\u7684 149 \u9ad8\u4e09\u4e2a\u6570\u91cf\u7ea7\uff0c\u6697\u793a\u5473\u89c9\u53cd\u9988\u4e3b\u8981\u8d70\u8fd0\u52a8\u901a\u8def\u800c\u975e\u5185\u5206\u901a\u8def\u3002",
       "members": [
         {
           "role": "pg",
@@ -19346,10 +19346,10 @@
     },
     {
       "name": "mushroom_body_lateral_horn_reciprocal_unit",
-      "display": "蘑菇体-侧角往返单元",
+      "display": "\u8611\u83c7\u4f53-\u4fa7\u89d2\u5f80\u8fd4\u5355\u5143",
       "function": "cross_modal_integrate",
       "system": "mushroom_body",
-      "description": "学得的蘑菇体与先天的侧角之间存在双向投影——MaleCNS 实测 mushroom_body_output→lateral_horn_ln 36,712 突触、lateral_horn_ln→mushroom_body_output 21,199、mushroom_body_dan→lateral_horn_ln 11,517、lateral_horn_ln→mushroom_body_dan 19,655、kenyon_cell→lateral_horn_ln 11,265；再叠上加味通路mushroom_body_dan→mushroom_body_output 39,960。六条边全部在类型对层面 SUPPORTED（最少 270/6330 对、最多 1555/13504 对）。这个单元填补了此前只有单向 mushroom_body_associative_memory_unit 与lateral_horn_innate_odour_unit、没有跨模态整合的缺口：气味在蘑菇体被赋效价之后回写到侧角的先天通道，侧角再把信息素类别信号反哺给多巴胺神经元。",
+      "description": "\u5b66\u5f97\u7684\u8611\u83c7\u4f53\u4e0e\u5148\u5929\u7684\u4fa7\u89d2\u4e4b\u95f4\u5b58\u5728\u53cc\u5411\u6295\u5f71\u2014\u2014MaleCNS \u5b9e\u6d4b mushroom_body_output\u2192lateral_horn_ln 36,712 \u7a81\u89e6\u3001lateral_horn_ln\u2192mushroom_body_output 21,199\u3001mushroom_body_dan\u2192lateral_horn_ln 11,517\u3001lateral_horn_ln\u2192mushroom_body_dan 19,655\u3001kenyon_cell\u2192lateral_horn_ln 11,265\uff1b\u518d\u53e0\u4e0a\u52a0\u5473\u901a\u8defmushroom_body_dan\u2192mushroom_body_output 39,960\u3002\u516d\u6761\u8fb9\u5168\u90e8\u5728\u7c7b\u578b\u5bf9\u5c42\u9762 SUPPORTED\uff08\u6700\u5c11 270/6330 \u5bf9\u3001\u6700\u591a 1555/13504 \u5bf9\uff09\u3002\u8fd9\u4e2a\u5355\u5143\u586b\u8865\u4e86\u6b64\u524d\u53ea\u6709\u5355\u5411 mushroom_body_associative_memory_unit \u4e0elateral_horn_innate_odour_unit\u3001\u6ca1\u6709\u8de8\u6a21\u6001\u6574\u5408\u7684\u7f3a\u53e3\uff1a\u6c14\u5473\u5728\u8611\u83c7\u4f53\u88ab\u8d4b\u6548\u4ef7\u4e4b\u540e\u56de\u5199\u5230\u4fa7\u89d2\u7684\u5148\u5929\u901a\u9053\uff0c\u4fa7\u89d2\u518d\u628a\u4fe1\u606f\u7d20\u7c7b\u522b\u4fe1\u53f7\u53cd\u54fa\u7ed9\u591a\u5df4\u80fa\u795e\u7ecf\u5143\u3002",
       "members": [
         {
           "role": "kc",
@@ -19821,10 +19821,10 @@
     },
     {
       "name": "antennal_lobe_central_complex_feedback_unit",
-      "display": "触角叶-中央复合体反馈单元",
+      "display": "\u89e6\u89d2\u53f6-\u4e2d\u592e\u590d\u5408\u4f53\u53cd\u9988\u5355\u5143",
       "function": "aal_cc_projection",
       "system": "central_complex",
-      "description": "触角叶的局部神经元（GLNO/LNO 类，16 个真实细胞 / 5 类）直接向中央复合体脑桥与蘑菇体样脑桥发出双向投影——MaleCNS 实测 antennal_lobe_ln→central_complex_pb 16,379 突触（GLNO→PEN_a 单类型对 9,806 突触，占 60%）、antennal_lobe_ln→central_complex_fb 25,402（LNO2→PFNd 单类型对 9,610）、central_complex_fb→antennal_lobe_ln 9,473（PFNd→LNO2 反行 3,542）——三条边在类型对层面全部 SUPPORTED（6/355、13/185、11/185），零 FRAGILE、零 CONTRADICTED。这条通路把气味身份写进中央复合体的头向参考系，同时让中央复合体把当前航向反哺回触角叶的局部环路，是嗅觉驱动导航的解剖学证据；此前 antennal_lobe_glomerular_unit 与 central_complex_heading_unit 各管一段，没有单元把两者连起来。",
+      "description": "\u89e6\u89d2\u53f6\u7684\u5c40\u90e8\u795e\u7ecf\u5143\uff08GLNO/LNO \u7c7b\uff0c16 \u4e2a\u771f\u5b9e\u7ec6\u80de / 5 \u7c7b\uff09\u76f4\u63a5\u5411\u4e2d\u592e\u590d\u5408\u4f53\u8111\u6865\u4e0e\u8611\u83c7\u4f53\u6837\u8111\u6865\u53d1\u51fa\u53cc\u5411\u6295\u5f71\u2014\u2014MaleCNS \u5b9e\u6d4b antennal_lobe_ln\u2192central_complex_pb 16,379 \u7a81\u89e6\uff08GLNO\u2192PEN_a \u5355\u7c7b\u578b\u5bf9 9,806 \u7a81\u89e6\uff0c\u5360 60%\uff09\u3001antennal_lobe_ln\u2192central_complex_fb 25,402\uff08LNO2\u2192PFNd \u5355\u7c7b\u578b\u5bf9 9,610\uff09\u3001central_complex_fb\u2192antennal_lobe_ln 9,473\uff08PFNd\u2192LNO2 \u53cd\u884c 3,542\uff09\u2014\u2014\u4e09\u6761\u8fb9\u5728\u7c7b\u578b\u5bf9\u5c42\u9762\u5168\u90e8 SUPPORTED\uff086/355\u300113/185\u300111/185\uff09\uff0c\u96f6 FRAGILE\u3001\u96f6 CONTRADICTED\u3002\u8fd9\u6761\u901a\u8def\u628a\u6c14\u5473\u8eab\u4efd\u5199\u8fdb\u4e2d\u592e\u590d\u5408\u4f53\u7684\u5934\u5411\u53c2\u8003\u7cfb\uff0c\u540c\u65f6\u8ba9\u4e2d\u592e\u590d\u5408\u4f53\u628a\u5f53\u524d\u822a\u5411\u53cd\u54fa\u56de\u89e6\u89d2\u53f6\u7684\u5c40\u90e8\u73af\u8def\uff0c\u662f\u55c5\u89c9\u9a71\u52a8\u5bfc\u822a\u7684\u89e3\u5256\u5b66\u8bc1\u636e\uff1b\u6b64\u524d antennal_lobe_glomerular_unit \u4e0e central_complex_heading_unit \u5404\u7ba1\u4e00\u6bb5\uff0c\u6ca1\u6709\u5355\u5143\u628a\u4e24\u8005\u8fde\u8d77\u6765\u3002",
       "members": [
         {
           "role": "ln",
@@ -20108,10 +20108,10 @@
     },
     {
       "name": "medulla_centripetal_gain_unit",
-      "display": "髓质离心增益单元",
+      "display": "\u9ad3\u8d28\u79bb\u5fc3\u589e\u76ca\u5355\u5143",
       "function": "visual_gain_control",
       "system": "optic_lobe",
-      "description": "T4/T5 方向选择性细胞向 Tm 家族与 LPi 抑制柱发出离心反馈，与 Tm→T4/T5 的顺向驱动形成完整的离心回路；整个回路再汇聚到 LPLC 大场单元做趋近检测——MaleCNS 实测 lamina→medulla 1,883,036 突触（L2→Tm2 单类型对 221,186）、t45→medulla 480,306（T5a→TmY20 46,394）、t45→lpi 953,115（T5c→LPi34 92,944）、medulla→looming 324,426（Tm5Y→LPLC2 27,058）、t45→looming 68,768、lpi→looming 37,769，六条主边在类型对层面全部 SUPPORTED（最少 31/32 对、最多 303/855 对），另加 Tm→T4/T5、Tm→LPi、LPi→Tm 三条已存在于 elementary_motion_detection_unit 的边作为完整回路的支撑。九条边合计 ~4.7M 突触、零 FRAGILE、零 CONTRADICTED。这个单元填补了 visual 通路的一个结构缺口：compound_lamina_relay_unit 到 elementary_motion_detection_unit 之间没有 lam→medulla 的直连，elementary_motion_detection_unit 与 looming_detection_unit 之间也没有 lpi→looming 的直连——现在把这两段缝起来，且把 T4/T5→Tm 的离心反馈作为独立结构记录下来（此前只在 literature 里，没有单元把它作为 wiring 建模）。",
+      "description": "T4/T5 \u65b9\u5411\u9009\u62e9\u6027\u7ec6\u80de\u5411 Tm \u5bb6\u65cf\u4e0e LPi \u6291\u5236\u67f1\u53d1\u51fa\u79bb\u5fc3\u53cd\u9988\uff0c\u4e0e Tm\u2192T4/T5 \u7684\u987a\u5411\u9a71\u52a8\u5f62\u6210\u5b8c\u6574\u7684\u79bb\u5fc3\u56de\u8def\uff1b\u6574\u4e2a\u56de\u8def\u518d\u6c47\u805a\u5230 LPLC \u5927\u573a\u5355\u5143\u505a\u8d8b\u8fd1\u68c0\u6d4b\u2014\u2014MaleCNS \u5b9e\u6d4b lamina\u2192medulla 1,883,036 \u7a81\u89e6\uff08L2\u2192Tm2 \u5355\u7c7b\u578b\u5bf9 221,186\uff09\u3001t45\u2192medulla 480,306\uff08T5a\u2192TmY20 46,394\uff09\u3001t45\u2192lpi 953,115\uff08T5c\u2192LPi34 92,944\uff09\u3001medulla\u2192looming 324,426\uff08Tm5Y\u2192LPLC2 27,058\uff09\u3001t45\u2192looming 68,768\u3001lpi\u2192looming 37,769\uff0c\u516d\u6761\u4e3b\u8fb9\u5728\u7c7b\u578b\u5bf9\u5c42\u9762\u5168\u90e8 SUPPORTED\uff08\u6700\u5c11 31/32 \u5bf9\u3001\u6700\u591a 303/855 \u5bf9\uff09\uff0c\u53e6\u52a0 Tm\u2192T4/T5\u3001Tm\u2192LPi\u3001LPi\u2192Tm \u4e09\u6761\u5df2\u5b58\u5728\u4e8e elementary_motion_detection_unit \u7684\u8fb9\u4f5c\u4e3a\u5b8c\u6574\u56de\u8def\u7684\u652f\u6491\u3002\u4e5d\u6761\u8fb9\u5408\u8ba1 ~4.7M \u7a81\u89e6\u3001\u96f6 FRAGILE\u3001\u96f6 CONTRADICTED\u3002\u8fd9\u4e2a\u5355\u5143\u586b\u8865\u4e86 visual \u901a\u8def\u7684\u4e00\u4e2a\u7ed3\u6784\u7f3a\u53e3\uff1acompound_lamina_relay_unit \u5230 elementary_motion_detection_unit \u4e4b\u95f4\u6ca1\u6709 lam\u2192medulla \u7684\u76f4\u8fde\uff0celementary_motion_detection_unit \u4e0e looming_detection_unit \u4e4b\u95f4\u4e5f\u6ca1\u6709 lpi\u2192looming \u7684\u76f4\u8fde\u2014\u2014\u73b0\u5728\u628a\u8fd9\u4e24\u6bb5\u7f1d\u8d77\u6765\uff0c\u4e14\u628a T4/T5\u2192Tm \u7684\u79bb\u5fc3\u53cd\u9988\u4f5c\u4e3a\u72ec\u7acb\u7ed3\u6784\u8bb0\u5f55\u4e0b\u6765\uff08\u6b64\u524d\u53ea\u5728 literature \u91cc\uff0c\u6ca1\u6709\u5355\u5143\u628a\u5b83\u4f5c\u4e3a wiring \u5efa\u6a21\uff09\u3002",
       "members": [
         {
           "role": "lamina",
@@ -20701,10 +20701,10 @@
     },
     {
       "name": "mushroom_body_dopamine_arousal_unit",
-      "display": "蘑菇体多巴胺觉醒单元",
+      "display": "\u8611\u83c7\u4f53\u591a\u5df4\u80fa\u89c9\u9192\u5355\u5143",
       "function": "neuromodulatory_hub",
       "system": "mushroom_body",
-      "description": "多巴胺能觉醒中枢：Kenyon 细胞、DAN 多巴胺能神经元、MBON 输出、APL 多巴胺调控与 OA-VUM 章鱼胺调节器构成一张全向互馈的觉醒调制网——MaleCNS 实测 kc→dan 281,864 突触（KCg-m→PAM08 单类型对 29,697）、dan→kc 213 对 216k、kc→mbon 302,591、mbon→dan 637k、apl→dan 567、apl→kc 204,202、dan→mbon 212k、dan→oa_vum 5,431、oa_vum→mbon 70,538、oa_vum→kc 39,112，十条边在类型对层面全部 SUPPORTED（最少 15/15 对、最多 443/1184 对），零 FRAGILE、零 CONTRADICTED。这个单元把mushroom_body_associative_memory_unit（学习）与 octopamine_arousal_broadcast 概念之间没有连接的那层调制器补齐：DAN 既是记忆的调制器，也是 KC↔MBON 的时钟；APL 是 KC 的强多巴胺调节器，OA-VUM 再把觉醒信号广播到 MBON 与触角叶 PN 通路。",
+      "description": "\u591a\u5df4\u80fa\u80fd\u89c9\u9192\u4e2d\u67a2\uff1aKenyon \u7ec6\u80de\u3001DAN \u591a\u5df4\u80fa\u80fd\u795e\u7ecf\u5143\u3001MBON \u8f93\u51fa\u3001APL \u591a\u5df4\u80fa\u8c03\u63a7\u4e0e OA-VUM \u7ae0\u9c7c\u80fa\u8c03\u8282\u5668\u6784\u6210\u4e00\u5f20\u5168\u5411\u4e92\u9988\u7684\u89c9\u9192\u8c03\u5236\u7f51\u2014\u2014MaleCNS \u5b9e\u6d4b kc\u2192dan 281,864 \u7a81\u89e6\uff08KCg-m\u2192PAM08 \u5355\u7c7b\u578b\u5bf9 29,697\uff09\u3001dan\u2192kc 213 \u5bf9 216k\u3001kc\u2192mbon 302,591\u3001mbon\u2192dan 637k\u3001apl\u2192dan 567\u3001apl\u2192kc 204,202\u3001dan\u2192mbon 212k\u3001dan\u2192oa_vum 5,431\u3001oa_vum\u2192mbon 70,538\u3001oa_vum\u2192kc 39,112\uff0c\u5341\u6761\u8fb9\u5728\u7c7b\u578b\u5bf9\u5c42\u9762\u5168\u90e8 SUPPORTED\uff08\u6700\u5c11 15/15 \u5bf9\u3001\u6700\u591a 443/1184 \u5bf9\uff09\uff0c\u96f6 FRAGILE\u3001\u96f6 CONTRADICTED\u3002\u8fd9\u4e2a\u5355\u5143\u628amushroom_body_associative_memory_unit\uff08\u5b66\u4e60\uff09\u4e0e octopamine_arousal_broadcast \u6982\u5ff5\u4e4b\u95f4\u6ca1\u6709\u8fde\u63a5\u7684\u90a3\u5c42\u8c03\u5236\u5668\u8865\u9f50\uff1aDAN \u65e2\u662f\u8bb0\u5fc6\u7684\u8c03\u5236\u5668\uff0c\u4e5f\u662f KC\u2194MBON \u7684\u65f6\u949f\uff1bAPL \u662f KC \u7684\u5f3a\u591a\u5df4\u80fa\u8c03\u8282\u5668\uff0cOA-VUM \u518d\u628a\u89c9\u9192\u4fe1\u53f7\u5e7f\u64ad\u5230 MBON \u4e0e\u89e6\u89d2\u53f6 PN \u901a\u8def\u3002",
       "members": [
         {
           "role": "kc",
