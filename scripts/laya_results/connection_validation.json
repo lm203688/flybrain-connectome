@@ -1,0 +1,527 @@
+[
+  {
+    "name": "autapse_recurrent",
+    "family": "micro",
+    "description": "A population connects to itself with gain < 1; local persistence with decay.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.739,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8199,
+        "conf": 0.8199
+      },
+      "evidence_strength": {
+        "score": 2.8641,
+        "conf": 0.1534
+      }
+    },
+    "literature_p": 0.8199,
+    "evidence_score": 2.8641,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "coincidence_detection",
+    "family": "plasticity",
+    "description": "The synapse only changes when two inputs arrive together; a single click does nothing.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.705,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8181,
+        "conf": 0.8181
+      },
+      "evidence_strength": {
+        "score": 2.8123,
+        "conf": 0.157
+      }
+    },
+    "literature_p": 0.8181,
+    "evidence_score": 2.8123,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "command_neuron_recruitment",
+    "family": "macro",
+    "description": "One identified command neuron, once past threshold, recruits an entire downstream population.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.761,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8163,
+        "conf": 0.8163
+      },
+      "evidence_strength": {
+        "score": 3.1107,
+        "conf": 0.2012
+      }
+    },
+    "literature_p": 0.8163,
+    "evidence_score": 3.1107,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "convergent_fanin",
+    "family": "macro",
+    "description": "Many sources converge onto one target; the target sees an integrated summary.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.685,
+    "answers": {
+      "literature_supported": {
+        "p": 0.809,
+        "conf": 0.809
+      },
+      "evidence_strength": {
+        "score": 2.9396,
+        "conf": 0.0902
+      }
+    },
+    "literature_p": 0.809,
+    "evidence_score": 2.9396,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "SUPPORTED",
+    "jev_evidence_score": 5,
+    "agreement": "agree"
+  },
+  {
+    "name": "corollary_discharge",
+    "family": "macro",
+    "description": "A copy of a motor command is routed to a sensory/predictor unit alongside the sensory input.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.721,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8249,
+        "conf": 0.8249
+      },
+      "evidence_strength": {
+        "score": 3.0735,
+        "conf": 0.0997
+      }
+    },
+    "literature_p": 0.8249,
+    "evidence_score": 3.0735,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "SUPPORTED",
+    "jev_evidence_score": 5,
+    "agreement": "agree"
+  },
+  {
+    "name": "divergent_fanout",
+    "family": "macro",
+    "description": "One source drives many independent downstream populations; broadcast without convergence.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.738,
+    "answers": {
+      "literature_supported": {
+        "p": 0.7998,
+        "conf": 0.7998
+      },
+      "evidence_strength": {
+        "score": 2.7842,
+        "conf": 0.0813
+      }
+    },
+    "literature_p": 0.7998,
+    "evidence_score": 2.7842,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "SUPPORTED",
+    "jev_evidence_score": 5,
+    "agreement": "agree"
+  },
+  {
+    "name": "efference_copy_cancellation",
+    "family": "circuit",
+    "description": "A copy of the motor command is sent ahead to sensory areas and subtracted from incoming signals.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.776,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8468,
+        "conf": 0.8468
+      },
+      "evidence_strength": {
+        "score": 3.1724,
+        "conf": 0.0908
+      }
+    },
+    "literature_p": 0.8468,
+    "evidence_score": 3.1724,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "SUPPORTED",
+    "jev_evidence_score": 5,
+    "agreement": "agree"
+  },
+  {
+    "name": "gliotransmission_calcium_wave",
+    "family": "electrical",
+    "description": "Calcium wave propagates through the astrocytic syncytium, carrying a slow modulatory signal.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.701,
+    "answers": {
+      "literature_supported": {
+        "p": 0.7908,
+        "conf": 0.7908
+      },
+      "evidence_strength": {
+        "score": 2.7639,
+        "conf": 0.1323
+      }
+    },
+    "literature_p": 0.7908,
+    "evidence_score": 2.7639,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "global_broadcast",
+    "family": "macro",
+    "description": "A command reaches every unit in the organism; used for reset, halt, or mode-switch.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.777,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8258,
+        "conf": 0.8258
+      },
+      "evidence_strength": {
+        "score": 2.5518,
+        "conf": 0.2006
+      }
+    },
+    "literature_p": 0.8258,
+    "evidence_score": 2.5518,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 3,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "grid_phase_precession",
+    "family": "circuit",
+    "description": "A theta-rhythm reference makes a spatial cell's firing phase advance linearly with position.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.683,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8054,
+        "conf": 0.8054
+      },
+      "evidence_strength": {
+        "score": 2.8744,
+        "conf": 0.0817
+      }
+    },
+    "literature_p": 0.8054,
+    "evidence_score": 2.8744,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "SUPPORTED",
+    "jev_evidence_score": 5,
+    "agreement": "agree"
+  },
+  {
+    "name": "half_center_oscillation",
+    "family": "circuit",
+    "description": "Two reciprocally inhibitory pools plus adaptation: whichever is released from inhibition fires.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.742,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8019,
+        "conf": 0.8019
+      },
+      "evidence_strength": {
+        "score": 3.1167,
+        "conf": 0.0848
+      }
+    },
+    "literature_p": 0.8019,
+    "evidence_score": 3.1167,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "SUPPORTED",
+    "jev_evidence_score": 5,
+    "agreement": "agree"
+  },
+  {
+    "name": "homeostatic_scaling",
+    "family": "plasticity",
+    "description": "Slow multiplicative rescaling of all weights to hold a firing-rate set-point constant.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.765,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8312,
+        "conf": 0.8312
+      },
+      "evidence_strength": {
+        "score": 3.0527,
+        "conf": 0.107
+      }
+    },
+    "literature_p": 0.8312,
+    "evidence_score": 3.0527,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "SUPPORTED",
+    "jev_evidence_score": 5,
+    "agreement": "agree"
+  },
+  {
+    "name": "loop_relay_chain",
+    "family": "circuit",
+    "description": "Strictly ordered series of relays; each stage passes a transformed copy to the next.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.703,
+    "answers": {
+      "literature_supported": {
+        "p": 0.7493,
+        "conf": 0.7493
+      },
+      "evidence_strength": {
+        "score": 1.7286,
+        "conf": 0.1865
+      }
+    },
+    "literature_p": 0.7493,
+    "evidence_score": 1.7286,
+    "evidence_label": "speculative",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "WEAK",
+    "jev_evidence_score": 1,
+    "agreement": "disagree"
+  },
+  {
+    "name": "mixed_electrical_chemical_synapse",
+    "family": "electrical",
+    "description": "A contact carrying both a gap-junction conductance and a chemical component.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.699,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8469,
+        "conf": 0.8469
+      },
+      "evidence_strength": {
+        "score": 2.8283,
+        "conf": 0.114
+      }
+    },
+    "literature_p": 0.8469,
+    "evidence_score": 2.8283,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "modulatory_gated_plasticity",
+    "family": "plasticity",
+    "description": "A synapse whose weight changes only when a third, modulatory neuron is also active.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.675,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8291,
+        "conf": 0.8291
+      },
+      "evidence_strength": {
+        "score": 2.8962,
+        "conf": 0.1292
+      }
+    },
+    "literature_p": 0.8291,
+    "evidence_score": 2.8962,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "neural_chain_sequence",
+    "family": "circuit",
+    "description": "A synfire-like chain in which each element activates the next after a fixed delay.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.745,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8152,
+        "conf": 0.8152
+      },
+      "evidence_strength": {
+        "score": 2.953,
+        "conf": 0.1207
+      }
+    },
+    "literature_p": 0.8152,
+    "evidence_score": 2.953,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "plateau_potential_bistability",
+    "family": "electrical",
+    "description": "A brief input pushes the cell onto a sustained depolarised plateau that persists until inhibited.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 1.063,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8253,
+        "conf": 0.8253
+      },
+      "evidence_strength": {
+        "score": 3.1034,
+        "conf": 0.1914
+      }
+    },
+    "literature_p": 0.8253,
+    "evidence_score": 3.1034,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "sparse_expansion_projection",
+    "family": "macro",
+    "description": "A few input channels fan out onto a very large population of which only a sparse subset fires.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.597,
+    "answers": {
+      "literature_supported": {
+        "p": 0.7951,
+        "conf": 0.7951
+      },
+      "evidence_strength": {
+        "score": 2.5999,
+        "conf": 0.134
+      }
+    },
+    "literature_p": 0.7951,
+    "evidence_score": 2.5999,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "state_gating_modulation",
+    "family": "modulatory",
+    "description": "A global state variable (arousal, phase) multiplies whole-pathway throughput.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.73,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8507,
+        "conf": 0.8507
+      },
+      "evidence_strength": {
+        "score": 3.2071,
+        "conf": 0.2323
+      }
+    },
+    "literature_p": 0.8507,
+    "evidence_score": 3.2071,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "state_switch_bistable",
+    "family": "macro",
+    "description": "Two mutually inhibitory populations with a slow external bias: the circuit flips state.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.81,
+    "answers": {
+      "literature_supported": {
+        "p": 0.8256,
+        "conf": 0.8256
+      },
+      "evidence_strength": {
+        "score": 2.9822,
+        "conf": 0.1715
+      }
+    },
+    "literature_p": 0.8256,
+    "evidence_score": 2.9822,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "PARTIAL",
+    "jev_evidence_score": 4,
+    "agreement": "partial_agree"
+  },
+  {
+    "name": "winner_take_all",
+    "family": "circuit",
+    "description": "Global inhibitory pool lets the strongest unit suppress the rest; competitive selection.",
+    "laya_status": "ok",
+    "laya_elapsed_s": 0.733,
+    "answers": {
+      "literature_supported": {
+        "p": 0.7714,
+        "conf": 0.7714
+      },
+      "evidence_strength": {
+        "score": 3.0232,
+        "conf": 0.0848
+      }
+    },
+    "literature_p": 0.7714,
+    "evidence_score": 3.0232,
+    "evidence_label": "preliminary",
+    "verdict": "unknown",
+    "error": null,
+    "jev_verdict": "SUPPORTED",
+    "jev_evidence_score": 5,
+    "agreement": "agree"
+  }
+]
