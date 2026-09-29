@@ -97,7 +97,8 @@
         "release_probability": 0.3,
         "quantal_size": 1.0
       },
-      "biological_reference": "Gray 1959; Peters & Palay 1991"
+      "biological_reference": "Gray 1959; Peters & Palay 1991",
+      "abstraction_only": false
     },
     {
       "name": "axo_somatic",
@@ -115,7 +116,8 @@
       "parameters": {
         "shunt_gain": 0.9
       },
-      "biological_reference": "Freund & Katona 2007"
+      "biological_reference": "Freund & Katona 2007",
+      "abstraction_only": false
     },
     {
       "name": "axo_axonic",
@@ -133,7 +135,8 @@
       "parameters": {
         "spike_block_probability": 0.7
       },
-      "biological_reference": "chandelier cells, Szabadics 2006"
+      "biological_reference": "chandelier cells, Szabadics 2006",
+      "abstraction_only": false
     },
     {
       "name": "dendro_dendritic",
@@ -151,7 +154,8 @@
       "parameters": {
         "crosstalk_gain": 0.4
       },
-      "biological_reference": "Shepherd 2004"
+      "biological_reference": "Shepherd 2004",
+      "abstraction_only": false
     },
     {
       "name": "axo_dendrite_reciprocal",
@@ -170,7 +174,8 @@
         "exc_gain": 0.6,
         "inh_gain": 0.5
       },
-      "biological_reference": "Rall et al 1966; olfactory bulb mitral/granule pair"
+      "biological_reference": "Rall et al 1966; olfactory bulb mitral/granule pair",
+      "abstraction_only": false
     },
     {
       "name": "pre_presynaptic_inhibition",
@@ -188,7 +193,8 @@
       "parameters": {
         "release_suppression": 0.5
       },
-      "biological_reference": "axo-axonic GABA-B"
+      "biological_reference": "axo-axonic GABA-B",
+      "abstraction_only": false
     },
     {
       "name": "pre_presynaptic_excitation",
@@ -206,7 +212,8 @@
       "parameters": {
         "release_facilitation": 0.4
       },
-      "biological_reference": "nicotinic presynaptic facilitation"
+      "biological_reference": "nicotinic presynaptic facilitation",
+      "abstraction_only": false
     },
     {
       "name": "dendritic_excitatory_synapse",
@@ -224,7 +231,8 @@
       "parameters": {
         "branch_gain": 1.2
       },
-      "biological_reference": "Larkum 2013"
+      "biological_reference": "Larkum 2013",
+      "abstraction_only": false
     },
     {
       "name": "dendritic_inhibitory_synapse",
@@ -242,7 +250,8 @@
       "parameters": {
         "branch_veto": 0.8
       },
-      "biological_reference": "Miles 1990"
+      "biological_reference": "Miles 1990",
+      "abstraction_only": false
     },
     {
       "name": "autapse_recurrent",
@@ -260,7 +269,17 @@
       "parameters": {
         "self_gain": 0.35
       },
-      "biological_reference": "Bekkers 2003; cortical autapses"
+      "biological_reference": "Bekkers 2003; cortical autapses",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.78,
+        "computational_p": 0.89,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "feedforward_excitatory",
@@ -278,7 +297,8 @@
       "parameters": {
         "stage_gain": 1.1
       },
-      "biological_reference": "canonical cortical FF drive"
+      "biological_reference": "canonical cortical FF drive",
+      "abstraction_only": false
     },
     {
       "name": "feedforward_inhibitory",
@@ -296,7 +316,8 @@
       "parameters": {
         "window_ms": 15
       },
-      "biological_reference": "Pouille & Scanziani 2001"
+      "biological_reference": "Pouille & Scanziani 2001",
+      "abstraction_only": false
     },
     {
       "name": "feedforward_gating",
@@ -315,7 +336,8 @@
         "gate_open": 1.0,
         "gate_closed": 0.0
       },
-      "biological_reference": "attention gating"
+      "biological_reference": "attention gating",
+      "abstraction_only": false
     },
     {
       "name": "feedback_excitatory",
@@ -333,7 +355,8 @@
       "parameters": {
         "feedback_gain": 0.7
       },
-      "biological_reference": "corticothalamic feedback"
+      "biological_reference": "corticothalamic feedback",
+      "abstraction_only": false
     },
     {
       "name": "feedback_inhibitory",
@@ -351,7 +374,8 @@
       "parameters": {
         "feedback_gain": 0.6
       },
-      "biological_reference": "predictive coding"
+      "biological_reference": "predictive coding",
+      "abstraction_only": false
     },
     {
       "name": "lateral_inhibitory",
@@ -369,7 +393,8 @@
       "parameters": {
         "inhibition_radius": 3
       },
-      "biological_reference": "Hartline & Ratliff 1958 (Limulus)"
+      "biological_reference": "Hartline & Ratliff 1958 (Limulus)",
+      "abstraction_only": false
     },
     {
       "name": "lateral_feedback",
@@ -387,7 +412,8 @@
       "parameters": {
         "resonance_gain": 0.5
       },
-      "biological_reference": "cortical lateral connectivity"
+      "biological_reference": "cortical lateral connectivity",
+      "abstraction_only": false
     },
     {
       "name": "mutual_inhibitory",
@@ -405,7 +431,8 @@
       "parameters": {
         "balance": 1.0
       },
-      "biological_reference": "half-centre oscillator"
+      "biological_reference": "half-centre oscillator",
+      "abstraction_only": false
     },
     {
       "name": "recurrent_excitatory",
@@ -423,7 +450,8 @@
       "parameters": {
         "loop_gain": 0.85
       },
-      "biological_reference": "Hopfield 1982; persistent activity"
+      "biological_reference": "Hopfield 1982; persistent activity",
+      "abstraction_only": false
     },
     {
       "name": "recurrent_inhibitory",
@@ -441,7 +469,8 @@
       "parameters": {
         "loop_gain": 0.8
       },
-      "biological_reference": "interneuron-stabilised networks"
+      "biological_reference": "interneuron-stabilised networks",
+      "abstraction_only": false
     },
     {
       "name": "disinhibition",
@@ -459,7 +488,8 @@
       "parameters": {
         "release_gain": 0.9
       },
-      "biological_reference": "VIP -> SST -> pyramidal (cortex)"
+      "biological_reference": "VIP -> SST -> pyramidal (cortex)",
+      "abstraction_only": false
     },
     {
       "name": "shunting_inhibition",
@@ -477,7 +507,8 @@
       "parameters": {
         "conductance_gain": 1.5
       },
-      "biological_reference": "Carandini & Heeger 2012"
+      "biological_reference": "Carandini & Heeger 2012",
+      "abstraction_only": false
     },
     {
       "name": "contrast_inhibition",
@@ -495,7 +526,8 @@
       "parameters": {
         "normalisation_exponent": 2.0
       },
-      "biological_reference": "Heeger 1992"
+      "biological_reference": "Heeger 1992",
+      "abstraction_only": false
     },
     {
       "name": "winner_take_all",
@@ -514,7 +546,17 @@
         "k_winners": 1,
         "inhibition_slope": 2.0
       },
-      "biological_reference": "Maass 2000 (WTA circuits)"
+      "biological_reference": "Maass 2000 (WTA circuits)",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.95,
+        "computational_p": 0.97,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "loop_relay_chain",
@@ -533,7 +575,17 @@
         "max_stages": 8,
         "per_stage_loss": 0.1
       },
-      "biological_reference": "sensory relay chains"
+      "biological_reference": "sensory relay chains",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.36,
+        "computational_p": 0.55,
+        "evidence_score": 1,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "modulatory_diffuse",
@@ -554,7 +606,8 @@
           1.8
         ]
       },
-      "biological_reference": "neuromodulatory systems"
+      "biological_reference": "neuromodulatory systems",
+      "abstraction_only": false
     },
     {
       "name": "neuromodulatory_axon",
@@ -572,7 +625,8 @@
       "parameters": {
         "varicosity_count": 12
       },
-      "biological_reference": "Descarries 1998"
+      "biological_reference": "Descarries 1998",
+      "abstraction_only": false
     },
     {
       "name": "volume_transmission",
@@ -591,7 +645,8 @@
         "diffusion_radius": 50.0,
         "decay_tau": 400.0
       },
-      "biological_reference": "Fuxe 2010; Agnati 1995"
+      "biological_reference": "Fuxe 2010; Agnati 1995",
+      "abstraction_only": false
     },
     {
       "name": "short_range_volume",
@@ -609,7 +664,8 @@
       "parameters": {
         "diffusion_radius": 8.0
       },
-      "biological_reference": "Sahlender 2014"
+      "biological_reference": "Sahlender 2014",
+      "abstraction_only": false
     },
     {
       "name": "retrograde_messenger",
@@ -628,7 +684,8 @@
         "messenger": "endocannabinoid",
         "effect": "suppress_release"
       },
-      "biological_reference": "endocannabinoid system (Wilson & Nicoll 2001)"
+      "biological_reference": "endocannabinoid system (Wilson & Nicoll 2001)",
+      "abstraction_only": false
     },
     {
       "name": "state_gating_modulation",
@@ -646,7 +703,17 @@
       "parameters": {
         "state_gain_curve": "sigmoid"
       },
-      "biological_reference": "state-dependent gating"
+      "biological_reference": "state-dependent gating",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.82,
+        "computational_p": 0.86,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "gap_junction_sync",
@@ -664,7 +731,8 @@
       "parameters": {
         "coupling_conductance": 0.2
       },
-      "biological_reference": "connective connexin coupling"
+      "biological_reference": "connective connexin coupling",
+      "abstraction_only": false
     },
     {
       "name": "gap_junction_inhibitory",
@@ -682,7 +750,8 @@
       "parameters": {
         "coupling_conductance": 0.15
       },
-      "biological_reference": "GABAergic gap junctions"
+      "biological_reference": "GABAergic gap junctions",
+      "abstraction_only": false
     },
     {
       "name": "ephaptic_coupling",
@@ -700,7 +769,8 @@
       "parameters": {
         "field_gain": 0.05
       },
-      "biological_reference": "ephaptic coupling (Anastassiou 2011)"
+      "biological_reference": "ephaptic coupling (Anastassiou 2011)",
+      "abstraction_only": false
     },
     {
       "name": "astrocyte_neuron_tripartite",
@@ -718,7 +788,8 @@
       "parameters": {
         "response_tau": 2000.0
       },
-      "biological_reference": "Araque 1999 tripartite synapse"
+      "biological_reference": "Araque 1999 tripartite synapse",
+      "abstraction_only": false
     },
     {
       "name": "gliotransmission_calcium_wave",
@@ -736,7 +807,17 @@
       "parameters": {
         "wave_speed_um_s": 20.0
       },
-      "biological_reference": "Cornell-Bell 1990 calcium waves"
+      "biological_reference": "Cornell-Bell 1990 calcium waves",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.94,
+        "computational_p": 0.88,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "stdp_rule",
@@ -757,7 +838,8 @@
         "tau_plus": 20.0,
         "tau_minus": 20.0
       },
-      "biological_reference": "Bi & Poo 1998"
+      "biological_reference": "Bi & Poo 1998",
+      "abstraction_only": false
     },
     {
       "name": "ltp_ltd",
@@ -776,7 +858,8 @@
         "ltd_threshold_hz": 1.0,
         "ltp_threshold_hz": 20.0
       },
-      "biological_reference": "Bliss & Lomo 1973"
+      "biological_reference": "Bliss & Lomo 1973",
+      "abstraction_only": false
     },
     {
       "name": "short_term_plasticity",
@@ -795,7 +878,8 @@
         "facilitation_tau": 200.0,
         "depression_tau": 800.0
       },
-      "biological_reference": "Zucker & Regehr 2002"
+      "biological_reference": "Zucker & Regehr 2002",
+      "abstraction_only": false
     },
     {
       "name": "dendritic_computation",
@@ -814,7 +898,8 @@
         "nmda_threshold": 3,
         "plateau_ms": 300
       },
-      "biological_reference": "London & Hausser 2005"
+      "biological_reference": "London & Hausser 2005",
+      "abstraction_only": false
     },
     {
       "name": "homeostatic_scaling",
@@ -833,7 +918,17 @@
         "target_rate_hz": 5.0,
         "scaling_tau_hours": 24.0
       },
-      "biological_reference": "Turrigiano 1998"
+      "biological_reference": "Turrigiano 1998",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.97,
+        "computational_p": 0.96,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "topographic_mapping",
@@ -852,7 +947,8 @@
         "jitter_sigma": 0.1,
         "dimensions": 2
       },
-      "biological_reference": "retinotopy / somatotopy"
+      "biological_reference": "retinotopy / somatotopy",
+      "abstraction_only": false
     },
     {
       "name": "temporal_coherence",
@@ -873,7 +969,8 @@
           80.0
         ]
       },
-      "biological_reference": "Singer & Gray 1995"
+      "biological_reference": "Singer & Gray 1995",
+      "abstraction_only": false
     },
     {
       "name": "inhibitory_hub",
@@ -891,7 +988,8 @@
       "parameters": {
         "hub_fanout": "dominant"
       },
-      "biological_reference": "MaleCNS v1.0 APL (fan-out 102,263)"
+      "biological_reference": "MaleCNS v1.0 APL (fan-out 102,263)",
+      "abstraction_only": false
     },
     {
       "name": "reservoir_smallworld",
@@ -910,7 +1008,8 @@
         "clustering": 0.35,
         "path_length": 2.4
       },
-      "biological_reference": "MaleCNS v1.0 ol_intrinsic reservoir"
+      "biological_reference": "MaleCNS v1.0 ol_intrinsic reservoir",
+      "abstraction_only": false
     },
     {
       "name": "recurrent_feedback",
@@ -928,7 +1027,8 @@
       "parameters": {
         "loop_delay_ms": 80
       },
-      "biological_reference": "MaleCNS v1.0 recurrent feedback motif"
+      "biological_reference": "MaleCNS v1.0 recurrent feedback motif",
+      "abstraction_only": false
     },
     {
       "name": "divergent_fanout",
@@ -946,7 +1046,17 @@
       "parameters": {
         "fanout_targets": 16
       },
-      "biological_reference": "divergent projection systems"
+      "biological_reference": "divergent projection systems",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.89,
+        "computational_p": 0.82,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "convergent_fanin",
@@ -964,7 +1074,17 @@
       "parameters": {
         "fanin_sources": 16
       },
-      "biological_reference": "convergent sensory convergence"
+      "biological_reference": "convergent sensory convergence",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.87,
+        "computational_p": 0.83,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "corollary_discharge",
@@ -982,7 +1102,17 @@
       "parameters": {
         "copy_gain": 1.0
       },
-      "biological_reference": "efference copy (von Holst & Mittelstaedt 1950)"
+      "biological_reference": "efference copy (von Holst & Mittelstaedt 1950)",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.96,
+        "computational_p": 0.94,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "global_broadcast",
@@ -1000,7 +1130,17 @@
       "parameters": {
         "coverage": "all_units"
       },
-      "biological_reference": "neuromodulatory global broadcast"
+      "biological_reference": "neuromodulatory global broadcast",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.5,
+        "computational_p": 0.6,
+        "evidence_score": 3,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "sparse_expansion_projection",
@@ -1019,7 +1159,17 @@
         "expansion_factor": 50,
         "active_fraction": 0.05
       },
-      "biological_reference": "Turner et al 2008; Caron et al 2013"
+      "biological_reference": "Turner et al 2008; Caron et al 2013",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.8,
+        "computational_p": 0.85,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "global_inhibitory_gain_control",
@@ -1037,7 +1187,8 @@
       "parameters": {
         "divisive_gain": 0.7
       },
-      "biological_reference": "Wilson & Laurent 2005; Papadopoulou et al 2011"
+      "biological_reference": "Wilson & Laurent 2005; Papadopoulou et al 2011",
+      "abstraction_only": false
     },
     {
       "name": "neural_chain_sequence",
@@ -1056,7 +1207,17 @@
         "chain_length": 8,
         "jitter_ms": 5
       },
-      "biological_reference": "Long et al 2010; Picardo et al 2016"
+      "biological_reference": "Long et al 2010; Picardo et al 2016",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.89,
+        "computational_p": 0.95,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "efference_copy_cancellation",
@@ -1074,7 +1235,17 @@
       "parameters": {
         "cancellation_gain": 0.9
       },
-      "biological_reference": "Bell 1981; Crapse & Sommer 2008"
+      "biological_reference": "Bell 1981; Crapse & Sommer 2008",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.96,
+        "computational_p": 0.95,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "mixed_electrical_chemical_synapse",
@@ -1092,7 +1263,17 @@
       "parameters": {
         "electrical_fraction": 0.5
       },
-      "biological_reference": "Korn & Faber 2005; Pereda 2014"
+      "biological_reference": "Korn & Faber 2005; Pereda 2014",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.73,
+        "computational_p": 0.82,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "modulatory_gated_plasticity",
@@ -1111,7 +1292,17 @@
         "gating_threshold": 0.5,
         "learning_rate": 0.01
       },
-      "biological_reference": "Aso et al 2014; Cognigni et al 2018"
+      "biological_reference": "Aso et al 2014; Cognigni et al 2018",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.87,
+        "computational_p": 0.91,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "repetitive_activation_lts",
@@ -1130,7 +1321,8 @@
         "pulses_required": 5,
         "decay_minutes": 30
       },
-      "biological_reference": "Shomrat et al 2008; Hochner 2012"
+      "biological_reference": "Shomrat et al 2008; Hochner 2012",
+      "abstraction_only": false
     },
     {
       "name": "command_neuron_recruitment",
@@ -1149,7 +1341,17 @@
         "threshold": 0.8,
         "all_or_none": true
       },
-      "biological_reference": "Korn & Faber 2005; Eaton et al 2001"
+      "biological_reference": "Korn & Faber 2005; Eaton et al 2001",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.8,
+        "computational_p": 0.73,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "half_center_oscillation",
@@ -1168,7 +1370,17 @@
         "adaptation_time_constant": 0.8,
         "escape_threshold": 0.4
       },
-      "biological_reference": "Marder & Calabrese 1996; Friesen 1989; Kristan et al 2005"
+      "biological_reference": "Marder & Calabrese 1996; Friesen 1989; Kristan et al 2005",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.93,
+        "computational_p": 0.96,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "plateau_potential_bistability",
@@ -1187,7 +1399,17 @@
         "plateau_duration_ms": 800,
         "reset_threshold": 0.2
       },
-      "biological_reference": "Kiehn 1991; Ramirez et al 2016"
+      "biological_reference": "Kiehn 1991; Ramirez et al 2016",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.81,
+        "computational_p": 0.83,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "serotonergic_presynaptic_facilitation",
@@ -1206,7 +1428,8 @@
         "release_gain": 2.0,
         "camp_dependent": true
       },
-      "biological_reference": "Castellucci & Kandel 1976; Kandel 2001"
+      "biological_reference": "Castellucci & Kandel 1976; Kandel 2001",
+      "abstraction_only": false
     },
     {
       "name": "short_term_habituation",
@@ -1225,7 +1448,8 @@
         "depression_per_pulse": 0.15,
         "recovery_minutes": 10
       },
-      "biological_reference": "Castellucci et al 1970; Rankin et al 2009"
+      "biological_reference": "Castellucci et al 1970; Rankin et al 2009",
+      "abstraction_only": false
     },
     {
       "name": "coincidence_detection",
@@ -1244,7 +1468,17 @@
         "coincidence_window_ms": 20,
         "ltd_depth": 0.6
       },
-      "biological_reference": "Ito & Kano 1982; Ito 1984; De Zeeuw et al 2011"
+      "biological_reference": "Ito & Kano 1982; Ito 1984; De Zeeuw et al 2011",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.85,
+        "computational_p": 0.91,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "state_switch_bistable",
@@ -1263,7 +1497,17 @@
         "hysteresis": 0.3,
         "flip_threshold": 0.55
       },
-      "biological_reference": "Saper et al 2005; Saper et al 2010"
+      "biological_reference": "Saper et al 2005; Saper et al 2010",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "computational_p": 0.93,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "grid_phase_precession",
@@ -1282,7 +1526,17 @@
         "precession_slope": 0.3,
         "theta_ref_hz": 8
       },
-      "biological_reference": "O'Keefe & Recce 1993; Hafting et al 2005; Burgess et al 2007"
+      "biological_reference": "O'Keefe & Recce 1993; Hafting et al 2005; Burgess et al 2007",
+      "abstraction_only": true,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.93,
+        "computational_p": 0.94,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-29T15:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "thermal_cross_modal_convergence",
@@ -1301,7 +1555,8 @@
         "registration_tolerance_deg": 5,
         "gain_visual": 0.6
       },
-      "biological_reference": "Hartline et al 2011; Gracheva et al 2010; Newman & Hartline 1982"
+      "biological_reference": "Hartline et al 2011; Gracheva et al 2010; Newman & Hartline 1982",
+      "abstraction_only": false
     }
   ]
 }
