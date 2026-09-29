@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.21.0` | the toolkit as a whole |
+| package | `2.22.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,75 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.22.0] — 2026-09-29
+
+### MaleCNS 真实脑区锚定扩充：ascending_neuron_pool
+
+v2.21 涌现链已彻底闭合。v2.22 转向用户核心目标 3 点第 1 点
+「最小功能神经元模块扩展全了吗」，扩充 MODULE_PROFILES 的锚定覆盖。
+
+#### 摸底结论
+
+摸底 body-annotations 27 superclass 分布，发现 `ascending_neuron` superclass
+（1,846 bodies / 567 types）**完全未被锚定**，且与现有 `sensory_ascending_pool`
+（537 bodies）和 `efferent_ascending_pool`（8 bodies）**零重叠**——每个 bodyId
+只属于一个 superclass。AN01-AN23 A/B 命名是独立编号系统，不是其他两个
+sub-class。
+
+其他 145 unanchored 是 pyramidal_l23, retinal_gc, dopaminergic_vta,
+leech_*, aplysia_*, frog_tectum 等跨物种神经元类型学模板，**不可能锚到果蝇**。
+
+#### 新增锚定
+
+| Profile | Superclass | Cells | Types |
+|---------|-----------|-------|-------|
+| **ascending_neuron_pool** | ascending_neuron | **1,841** | **567** |
+
+规则：`type_re=.+` + `superclass=["ascending_neuron"]`（与 pool 类惯例一致）。
+注：regex `^AN` 匹配 1,819 bodies / 553 types，但 superclass 已精确过滤，
+`.+` 覆盖全部 27 个非-AN 命名的 IN/vMS/dMS 变体。
+
+#### 锚定率变化
+
+| 指标 | v2.21.0 | v2.22.0 |
+|------|---------|---------|
+| anchored profiles | 57/203 (28.1%) | **58/204 (28.4%)** |
+| anchored real cells | 105,717 | **107,558** (+1,841) |
+| anchored types | 4,872 | **5,413** (+541) |
+| embodied units | 37/103 | 37/103（新 profile 未被 unit 引用） |
+
+#### 诚实边界
+
+- **扩充量小**：+1 profile 是摸底发现的实际上限，不是目标
+- **145 unanchored 无法扩充**：跨物种神经元类型学模板，果蝇大脑没有对应结构
+- **新 profile 未被 unit 引用**：`embodied_populations_referenced` 保持 57
+  （unit members 里的 neuron 必须在 profile_anchors 里才计入）；新增 unit
+  引用 ascending_neuron_pool 需未来做（ports/wiring/members 设计工作量大）
+- **ENS / *_tbc superclass 无法锚**：type 列为空，regex 无法匹配
+
+#### 修改文件
+
+- `flybrain-connectome-mcp/synthetic_bio_topology.py` — MODULE_PROFILES 新增
+  `ascending_neuron_pool`（capability: ascending_path / sensory_integrator /
+  proprioceptive）
+- `flybrain-connectome-mcp/module_registry.py` — MODULE_REGISTRY 新增对应
+  ModuleSpec（size_range=(1000, 2000), motif_source=feedforward_excitatory）
+- `scripts/build_malecns_anchors.py` — TYPE_RULES 新增 v1.22.0 段
+- `flybrain-connectome-mcp/functional_units/malecns_anchors.json` — 重新生成
+  （58 anchored profiles, 107,558 cells, 5,413 types）
+- `flybrain-connectome-mcp/functional_units/functional_units.json` — 更新
+  embodiment_source.sha256 / anchored_profiles / anchored_real_cells /
+  anchored_types
+- `README.md` — 更新 57→58 / 203→204 / 105,717→107,558 / 4,872→5,413
+- `.workbuddy/memory/MEMORY.md` — 更新定位段
+
+#### 门禁
+
+- **10/10 PASS**（--with-data）
+- Gate 10 45 checks 全过（107,558 anchored cells / 58 populations）
 
 ---
 
