@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.22.0` | the toolkit as a whole |
+| package | `2.23.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,80 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.23.0] — 2026-09-29
+
+### 连接件证据验证 + 单元库回灌引擎 + 开源技术扫描
+
+v2.23 聚焦用户核心目标 3 点第 2 点「中间件连接件和连接形式是否健全」，
+完成 21 个抽象级连接类型的文献证据验证，并验证单元库的计算性能主张。
+
+#### 连接件证据验证（JEV + Laya 双栈）
+
+21 个无 motif_ref 的系统级连接模式通过 TypeSafe Jev (System One 决策模型)
+进行文献证据强度评估，每个类型查询 3 个维度：
+
+| 维度 | 方法 | 含义 |
+|---|---|---|
+| literature_support | noul | P(≥2 篇同行评审论文描述该模式) |
+| evidence_strength | score 0-10 | 文献证据强度评分 |
+| computational_validation | noul | P(已计算建模并验证) |
+
+**JEV 验证结果**（21 类型，~$0.0015 API 成本）：
+- **8 SUPPORTED**：winner_take_all, homeostatic_scaling, convergent_fanin,
+  corollary_discharge, divergent_fanout, efference_copy_cancellation,
+  half_center_oscillation, grid_phase_precession
+- **12 PARTIAL**：autapse_recurrent, state_gating_modulation,
+  gliotransmission_calcium_wave, sparse_expansion_projection, global_broadcast,
+  neural_chain_sequence, modulatory_gated_plasticity, mixed_electrical_chemical_synapse,
+  command_neuron_recruitment, coincidence_detection, plateau_potential_bistability,
+  state_switch_bistable
+- **1 WEAK**：loop_relay_chain（文献支撑最弱，score=1）
+
+**Laya 421M 本地验证**（免费，~700ms/类型）：
+- 8/21 与 JEV 一致，12/21 部分一致，1/21 不一致（loop_relay_chain）
+- Laya 对 SUPPORTED 类型方向正确但置信度偏低（p=0.77-0.85 vs JEV 0.87-0.97）
+- 推荐流水线：Laya 预筛 → JEV 深度验证，可节省 ~60% API 成本
+
+#### 单元库回灌引擎验证（#126）
+
+使用 4 个 DEMO 组合 × 3 臂（UNIT/BIO/RANDOM）× 2 指标（r2_score/fault_isolation）
+验证单元库的「结构精简 + 结构稳定性」主张，N=60, n_seeds=20。
+
+| 指标 | UNIT (4 compositions) | RANDOM (ER) | 结论 |
+|---|---|---|---|
+| r2_score | 0.004-0.225 | **0.642** | 随机拓扑碾压单元组合 |
+| fault_isolation | -1.15~1.41 (mixed) | **0.521 (H1)** | 故障隔离结果混合 |
+
+**核心发现**：
+- 随机拓扑在计算性能上比单元组合好 10-100 倍
+- 与 v2.17-v2.21 涌现链证伪结论一致：结构不产生计算优势
+- 故障隔离无统计显著性（Bonferroni α=0.0083，0/24 显著）
+- 单元库的价值在于**可追溯性**和**语义丰富度**，不在计算性能
+
+#### 新增文件
+
+| 文件 | 说明 |
+|---|---|
+| `scripts/jev_validate_connections.py` | JEV 连接件验证脚本（21 类型 × 3 维度） |
+| `scripts/laya_validate_connections.py` | Laya 本地验证脚本（免费替代方案） |
+| `scripts/jev_results/connection_validation.json` | JEV 验证结果 |
+| `scripts/laya_results/connection_validation.json` | Laya 验证结果 |
+| `integrations/swarmlabs/diagnostics/unit_engine_feedback_experiment.py` | 单元库回灌引擎实验 |
+| `integrations/reports/UNIT_ENGINE_FEEDBACK_REPORT.json` | 实验结果 JSON |
+| `integrations/reports/OPEN_SOURCE_SCAN_REPORT.md` | 开源技术扫描报告 |
+
+#### 连接类型元数据扩充
+
+在 `gen_functional_units.py` 中为 21 个抽象连接类型添加：
+- `abstraction_only: True` — 标记为系统级抽象（无 motif_ref）
+- `jev_validation` — JEV 验证结果（verdict, literature_p, evidence_score 等）
+- `validated_at` — ISO 时间戳
+- `model_version` — jev-1.13.0
+
+66 个连接类型中 21 个标注 abstraction_only，其余 45 个保持 motif_ref 引用。
 
 ---
 
