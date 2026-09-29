@@ -1,0 +1,1157 @@
+[
+  {
+    "name": "autapse_recurrent",
+    "family": "micro",
+    "description": "A population connects to itself with gain < 1; local persistence with decay.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.687,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.78
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.21,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.06,
+          "1": 0.16,
+          "2": 0.04,
+          "3": 0.03,
+          "4": 0.04,
+          "5": 0.27,
+          "6": 0.4
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.89
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.78,
+    "computational_p": 0.89,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "coincidence_detection",
+    "family": "plasticity",
+    "description": "The synapse only changes when two inputs arrive together; a single click does nothing.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.574,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.85
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.8,
+        "confidence": 0.3,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.06,
+          "1": 0.11,
+          "2": 0.01,
+          "3": 0.01,
+          "4": 0.01,
+          "5": 0.15,
+          "6": 0.65
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.91
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.85,
+    "computational_p": 0.91,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.3
+  },
+  {
+    "name": "command_neuron_recruitment",
+    "family": "macro",
+    "description": "One identified command neuron, once past threshold, recruits an entire downstream population.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.596,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.8
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.63,
+        "confidence": 0.41,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.06,
+          "2": 0.04,
+          "3": 0.05,
+          "4": 0.12,
+          "5": 0.38,
+          "6": 0.32
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.73
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.8,
+    "computational_p": 0.73,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.41
+  },
+  {
+    "name": "convergent_fanin",
+    "family": "macro",
+    "description": "Many sources converge onto one target; the target sees an integrated summary.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.596,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.87
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.38,
+        "confidence": 0.64,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.05,
+          "2": 0.01,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.09,
+          "6": 0.8
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.83
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.87,
+    "computational_p": 0.83,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.64
+  },
+  {
+    "name": "corollary_discharge",
+    "family": "macro",
+    "description": "A copy of a motor command is routed to a sensory/predictor unit alongside the sensory input.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.609,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.84,
+        "confidence": 0.91,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.11,
+          "6": 0.89
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.94
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.96,
+    "computational_p": 0.94,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.91
+  },
+  {
+    "name": "divergent_fanout",
+    "family": "macro",
+    "description": "One source drives many independent downstream populations; broadcast without convergence.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.294,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.89
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.51,
+        "confidence": 0.71,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.03,
+          "2": 0.01,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.11,
+          "6": 0.81
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.82
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.89,
+    "computational_p": 0.82,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.71
+  },
+  {
+    "name": "efference_copy_cancellation",
+    "family": "circuit",
+    "description": "A copy of the motor command is sent ahead to sensory areas and subtracted from incoming signals.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.251,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.8,
+        "confidence": 0.88,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.16,
+          "6": 0.84
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.95
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.96,
+    "computational_p": 0.95,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.88
+  },
+  {
+    "name": "gliotransmission_calcium_wave",
+    "family": "electrical",
+    "description": "Calcium wave propagates through the astrocytic syncytium, carrying a slow modulatory signal.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.349,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.94
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.97,
+        "confidence": 0.77,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.01,
+          "4": 0.05,
+          "5": 0.72,
+          "6": 0.18
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.88
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.94,
+    "computational_p": 0.88,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.77
+  },
+  {
+    "name": "global_broadcast",
+    "family": "macro",
+    "description": "A command reaches every unit in the organism; used for reset, halt, or mode-switch.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.785,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.5
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.0,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.17,
+          "1": 0.31,
+          "2": 0.03,
+          "3": 0.03,
+          "4": 0.04,
+          "5": 0.16,
+          "6": 0.26
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.6
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "preliminary",
+    "literature_p": 0.5,
+    "computational_p": 0.6,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "grid_phase_precession",
+    "family": "circuit",
+    "description": "A theta-rhythm reference makes a spatial cell's firing phase advance linearly with position.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.812,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.23,
+        "confidence": 0.67,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.01,
+          "4": 0.06,
+          "5": 0.51,
+          "6": 0.4
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.94
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.93,
+    "computational_p": 0.94,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.67
+  },
+  {
+    "name": "half_center_oscillation",
+    "family": "circuit",
+    "description": "Two reciprocally inhibitory pools plus adaptation: whichever is released from inhibition fires.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.57,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.55,
+        "confidence": 0.74,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.01,
+          "4": 0.02,
+          "5": 0.22,
+          "6": 0.71
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.96
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.93,
+    "computational_p": 0.96,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.74
+  },
+  {
+    "name": "homeostatic_scaling",
+    "family": "plasticity",
+    "description": "Slow multiplicative rescaling of all weights to hold a firing-rate set-point constant.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.747,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.34,
+        "confidence": 0.72,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.03,
+          "5": 0.55,
+          "6": 0.42
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.96
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.97,
+    "computational_p": 0.96,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.72
+  },
+  {
+    "name": "loop_relay_chain",
+    "family": "circuit",
+    "description": "Strictly ordered series of relays; each stage passes a transformed copy to the next.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.606,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.36
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 1.61,
+        "confidence": 0.28,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.32,
+          "1": 0.43,
+          "2": 0.03,
+          "3": 0.03,
+          "4": 0.03,
+          "5": 0.05,
+          "6": 0.11
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.55
+      }
+    },
+    "evidence_score": 1,
+    "evidence_label": "speculative",
+    "literature_p": 0.36,
+    "computational_p": 0.55,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.28
+  },
+  {
+    "name": "mixed_electrical_chemical_synapse",
+    "family": "electrical",
+    "description": "A contact carrying both a gap-junction conductance and a chemical component.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.756,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.73
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.24,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.08,
+          "1": 0.11,
+          "2": 0.05,
+          "3": 0.03,
+          "4": 0.06,
+          "5": 0.29,
+          "6": 0.38
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.82
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.73,
+    "computational_p": 0.82,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "modulatory_gated_plasticity",
+    "family": "plasticity",
+    "description": "A synapse whose weight changes only when a third, modulatory neuron is also active.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.547,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.87
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.85,
+        "confidence": 0.33,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.07,
+          "2": 0.02,
+          "3": 0.02,
+          "4": 0.03,
+          "5": 0.35,
+          "6": 0.47
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.91
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.87,
+    "computational_p": 0.91,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.33
+  },
+  {
+    "name": "neural_chain_sequence",
+    "family": "circuit",
+    "description": "A synfire-like chain in which each element activates the next after a fixed delay.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.598,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.89
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.84,
+        "confidence": 0.32,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.06,
+          "2": 0.03,
+          "3": 0.04,
+          "4": 0.08,
+          "5": 0.39,
+          "6": 0.39
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.95
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.89,
+    "computational_p": 0.95,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.32
+  },
+  {
+    "name": "plateau_potential_bistability",
+    "family": "electrical",
+    "description": "A brief input pushes the cell onto a sustained depolarised plateau that persists until inhibited.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.822,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.81
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.45,
+        "confidence": 0.1,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.06,
+          "1": 0.1,
+          "2": 0.04,
+          "3": 0.03,
+          "4": 0.09,
+          "5": 0.24,
+          "6": 0.44
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.83
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.81,
+    "computational_p": 0.83,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.1
+  },
+  {
+    "name": "sparse_expansion_projection",
+    "family": "macro",
+    "description": "A few input channels fan out onto a very large population of which only a sparse subset fires.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.545,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.8
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.58,
+        "confidence": 0.34,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.09,
+          "2": 0.03,
+          "3": 0.04,
+          "4": 0.07,
+          "5": 0.38,
+          "6": 0.35
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.85
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.8,
+    "computational_p": 0.85,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.34
+  },
+  {
+    "name": "state_gating_modulation",
+    "family": "modulatory",
+    "description": "A global state variable (arousal, phase) multiplies whole-pathway throughput.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.638,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.82
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.95,
+        "confidence": 0.39,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.07,
+          "2": 0.01,
+          "3": 0.02,
+          "4": 0.03,
+          "5": 0.41,
+          "6": 0.44
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.86
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.82,
+    "computational_p": 0.86,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.39
+  },
+  {
+    "name": "state_switch_bistable",
+    "family": "macro",
+    "description": "Two mutually inhibitory populations with a slow external bias: the circuit flips state.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.608,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.89,
+        "confidence": 0.35,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.06,
+          "2": 0.02,
+          "3": 0.03,
+          "4": 0.06,
+          "5": 0.34,
+          "6": 0.46
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.93
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "computational_p": 0.93,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.35
+  },
+  {
+    "name": "winner_take_all",
+    "family": "circuit",
+    "description": "Global inhibitory pool lets the strongest unit suppress the rest; competitive selection.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.808,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.68,
+        "confidence": 0.81,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterized",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.18,
+          "6": 0.79
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.97
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.95,
+    "computational_p": 0.97,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterized",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.81
+  }
+]
