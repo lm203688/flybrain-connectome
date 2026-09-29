@@ -2049,6 +2049,53 @@ CONNECTION_TYPES += [
       "Hartline et al 2011; Gracheva et al 2010; Newman & Hartline 1982"),
 ]
 
+# ---------------------------------------------------------------------------
+# v2.23.0 — JEV-powered validation of abstraction-level connection types.
+# 21 system-level patterns lack a motif_ref because they describe circuit
+# architectures, not single-synapse anatomies.  We annotate them with:
+#   abstraction_only: True       (no single-synapse motif mapping exists)
+#   jev_validation: {            (TypeSafe Jev System One decision model)
+#     verdict, literature_p,     (noul: P(peer-reviewed in >=2 papers))
+#     computational_p,           (noul: P(published computational model))
+#     evidence_score,            (0-10 rubric)
+#     evidence_label,            (textbook|well_supported|preliminary|speculative)
+#     validated_at,              (ISO timestamp)
+#     model_version,             (jev-1.13.0)
+#   }
+# Cost: 21 calls × 3 questions ≈ $0.0010.  Full JSON: jev_results/.
+# ---------------------------------------------------------------------------
+_JEV_VALIDATION = {
+    "autapse_recurrent":               {"verdict": "PARTIAL",   "literature_p": 0.78, "computational_p": 0.89, "evidence_score": 4, "evidence_label": "preliminary"},
+    "coincidence_detection":           {"verdict": "PARTIAL",   "literature_p": 0.85, "computational_p": 0.91, "evidence_score": 4, "evidence_label": "preliminary"},
+    "command_neuron_recruitment":      {"verdict": "PARTIAL",   "literature_p": 0.80, "computational_p": 0.73, "evidence_score": 4, "evidence_label": "preliminary"},
+    "convergent_fanin":                {"verdict": "SUPPORTED", "literature_p": 0.87, "computational_p": 0.83, "evidence_score": 5, "evidence_label": "well_supported"},
+    "corollary_discharge":             {"verdict": "SUPPORTED", "literature_p": 0.96, "computational_p": 0.94, "evidence_score": 5, "evidence_label": "well_supported"},
+    "divergent_fanout":                {"verdict": "SUPPORTED", "literature_p": 0.89, "computational_p": 0.82, "evidence_score": 5, "evidence_label": "well_supported"},
+    "efference_copy_cancellation":     {"verdict": "SUPPORTED", "literature_p": 0.96, "computational_p": 0.95, "evidence_score": 5, "evidence_label": "well_supported"},
+    "gliotransmission_calcium_wave":   {"verdict": "PARTIAL",   "literature_p": 0.94, "computational_p": 0.88, "evidence_score": 4, "evidence_label": "preliminary"},
+    "global_broadcast":                {"verdict": "PARTIAL",   "literature_p": 0.50, "computational_p": 0.60, "evidence_score": 3, "evidence_label": "preliminary"},
+    "grid_phase_precession":           {"verdict": "SUPPORTED", "literature_p": 0.93, "computational_p": 0.94, "evidence_score": 5, "evidence_label": "well_supported"},
+    "half_center_oscillation":         {"verdict": "SUPPORTED", "literature_p": 0.93, "computational_p": 0.96, "evidence_score": 5, "evidence_label": "well_supported"},
+    "homeostatic_scaling":             {"verdict": "SUPPORTED", "literature_p": 0.97, "computational_p": 0.96, "evidence_score": 5, "evidence_label": "well_supported"},
+    "loop_relay_chain":                {"verdict": "WEAK",      "literature_p": 0.36, "computational_p": 0.55, "evidence_score": 1, "evidence_label": "speculative"},
+    "mixed_electrical_chemical_synapse": {"verdict": "PARTIAL", "literature_p": 0.73, "computational_p": 0.82, "evidence_score": 4, "evidence_label": "preliminary"},
+    "modulatory_gated_plasticity":     {"verdict": "PARTIAL",   "literature_p": 0.87, "computational_p": 0.91, "evidence_score": 4, "evidence_label": "preliminary"},
+    "neural_chain_sequence":           {"verdict": "PARTIAL",   "literature_p": 0.89, "computational_p": 0.95, "evidence_score": 4, "evidence_label": "preliminary"},
+    "plateau_potential_bistability":   {"verdict": "PARTIAL",   "literature_p": 0.81, "computational_p": 0.83, "evidence_score": 4, "evidence_label": "preliminary"},
+    "sparse_expansion_projection":     {"verdict": "PARTIAL",   "literature_p": 0.80, "computational_p": 0.85, "evidence_score": 4, "evidence_label": "preliminary"},
+    "state_gating_modulation":         {"verdict": "PARTIAL",   "literature_p": 0.82, "computational_p": 0.86, "evidence_score": 4, "evidence_label": "preliminary"},
+    "state_switch_bistable":           {"verdict": "PARTIAL",   "literature_p": 0.88, "computational_p": 0.93, "evidence_score": 4, "evidence_label": "preliminary"},
+    "winner_take_all":                 {"verdict": "SUPPORTED", "literature_p": 0.95, "computational_p": 0.97, "evidence_score": 5, "evidence_label": "well_supported"},
+}
+for _ct in CONNECTION_TYPES:
+    if _ct["name"] in _JEV_VALIDATION:
+        _ct["abstraction_only"] = True
+        _ct["jev_validation"] = dict(_JEV_VALIDATION[_ct["name"]],
+                                     validated_at="2026-09-29T15:40:00+08:00",
+                                     model_version="jev-1.13.0")
+    else:
+        _ct.setdefault("abstraction_only", False)
+
 
 FUNCTIONAL_UNITS += [
     # ============ SEGMENTAL / PERIPHERAL OSCILLATORS (4) ============ #
