@@ -306,7 +306,7 @@ MLflow2PROV, and MIT Sloan provenance tooling.
 
 ## Blueprint & module library
 
-**25 blueprints** across three categories, composed from **203 modules**:
+**25 blueprints** across three categories, composed from **204 modules**:
 **10 cognitive-function modules** (sensory / memory / motor / integration / attention /
 working_memory / reward / punishment / habit / metacognition) + **170 cross-species
 neuron types** spanning cortical pyramidal (L2/3 CX1/CX5, L4b/L4c, L5 basal tuft, L6 reticulo-thalamic,
@@ -382,7 +382,7 @@ split into two tiers, and the upper tier is the one you actually build from:
   selection, theta pacing, gliotransmission, sparse mushroom-body coding, ring-attractor
   heading, song timing, Mauthner escape, active electrolocation, camouflage, leech swim
   rhythm, infrared thermal imaging, climbing-fibre error teaching, sleep/wake switching …)
-  delivered by a **group** of neuron populations (1–6 of them, taken from the 203-module
+  delivered by a **group** of neuron populations (1–6 of them, taken from the 204-module
   vocabulary) wired into an internal sub-circuit, and exposing **typed ports** (`light`
   in → `high_res` out; `candidates` + `value` in → `selected_action` out).
   Composition: 40 mammal-cortex-shaped + **16 cross-clade** (insect / bird / fish /
@@ -442,7 +442,7 @@ honest.
 
 - **Presence.** **37 of 103 units** have member populations that resolve to real
   annotated MaleCNS v1.0 cell types. Across the whole library that is
-  **57 of 203 neuron populations** covering **105,717 real cells**: the `kc` role of
+  **58 of 204 neuron populations** covering **107,558 real cells**: the `kc` role of
   the mushroom-body unit is 4,064 real Kenyon cells over 15 real KC types
   (`KCg-m`, `KCab-m`, `KCa'b'-ap2` …), its `input` role is 583 real antennal-lobe
   projection neurons over 145 types (`DA1_lPN`, `VM5d_adPN` …), its `gaba` role is
@@ -467,7 +467,7 @@ honest.
   measures 1,973, AMMC → pIP measures 90.
 - **Support tier at type-pair resolution (v2.2.0).** The profile-level count is
   still the contradiction gate, but it is no longer the whole verdict: every
-  declared edge is additionally walked across the **4,872×4,872 anchored
+  declared edge is additionally walked across the **5,413×5,413 anchored
   type-pair matrix**, counting how many individual `(from_type, to_type)` pairs
   carry real synapses. That separates a pathway spread over many cell types from
   a profile-level non-zero carried by one lucky pair, and it surfaced **six
