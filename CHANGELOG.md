@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.23.0` | the toolkit as a whole |
+| package | `2.24.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,67 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.24.0] — 2026-09-30
+
+### 神经元单元证据健全 + JEV 全量验证
+
+v2.24 聚焦用户核心目标 3 点第 1 点「健全所有神经元单元」，
+为全部 103 个 functional units 增加 evidence_weight 分层和 JEV 文献验证。
+
+#### evidence_weight 四层体系
+
+之前 37 个 embodied 单元（从 MaleCNS v1.0 提取）缺少 evidence_weight 字段，
+因为它们的证据是连接组提取本身，不是文献引用。v2.24 增加 `connectome_derived`
+层级，使证据分层完整：
+
+| 层级 | 含义 | 数量 |
+|---|---|---|
+| `connectome_derived` | 证据来自 MaleCNS v1.0 连接组提取 | 37 |
+| `textbook` | ≥4 篇独立文献引用 | 0 |
+| `multi_source` | 2-3 篇独立文献引用 | 58 |
+| `single_source` | 1 篇文献引用 | 8 |
+
+#### JEV 全量验证（103 单元）
+
+使用 TypeSafe Jev System One 决策模型验证全部 103 个 functional units 的
+生物学声明，每个单元查询 3 个维度：
+
+- **literature_p** (noul): P(≥2 篇同行评审论文描述该模块)
+- **model_p** (noul): P(已发表的计算模型存在)
+- **evidence_score** (0-10): 文献证据强度评分
+
+**结果**：
+- **SUPPORTED**: 0/103（阈值 lit_p≥0.7 且 score≥6 太高）
+- **PARTIAL**: 88/103（85% — 大部分单元有证据但非教科书级）
+- **WEAK**: 15/103（15% — 过度声称的电路模块）
+
+**WEAK 单元（15 个）**：
+- 12 个 embodied 果蝇单元（vnc_sensory_reflex, leg_motor_pool, wing_flight_control 等）
+  — 细胞类型存在于连接组，但特定电路模块文献证据不足
+- 3 个跨物种单元（cortical_inhibitory_gain, cortical_highorder_integration, pit_viper_strike）
+
+**关键发现**：
+1. 0 SUPPORTED 说明 functional unit 级别的电路模块声明普遍高于文献支持
+2. 12 个 embodied 单元 WEAK 表明「细胞存在」≠「电路模块存在」
+3. 85% PARTIAL 说明大部分单元有合理文献基础，但需更严格的引用
+
+**成本**：103 调用 × 3 问题 ≈ $0.0075
+
+#### 修改文件
+
+- `scripts/gen_functional_units.py` — 增加 `connectome_derived` 层级 + `_JEV_UNIT_VALIDATION` 字典
+- `scripts/jev_validate_units.py` — 新增 JEV 单元验证脚本
+- `scripts/jev_results/unit_validation.json` — JEV 验证结果
+- `scripts/check_embodiment.py` — 更新 embodied 单元 evidence_weight 检查逻辑
+- `flybrain-connectome-mcp/functional_units/functional_units.json` — 重新生成
+- `pyproject.toml` / `server.py` / `api_server.py` / `flybrain_cli.py` / `topology_visualizer.py` — 版本号 2.23.0 → 2.24.0
+
+#### 门禁
+
+9/9 PASS（含 Gate 10 embodiment 检查更新）
 
 ---
 
