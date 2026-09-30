@@ -1,0 +1,2522 @@
+[
+  {
+    "name": "astrocyte_neuron_tripartite",
+    "family": "electrical",
+    "motif_ref": "astrocyte_neuron_tripartite",
+    "description": "Astrocyte senses synaptic activity and returns a slow modulatory signal.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.16,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.06,
+        "confidence": 0.53,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.03,
+          "2": 0.01,
+          "3": 0.01,
+          "4": 0.03,
+          "5": 0.46,
+          "6": 0.43
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.9
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.93,
+    "computational_p": 0.9,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.53
+  },
+  {
+    "name": "axo_axonic",
+    "family": "micro",
+    "motif_ref": "axo_axonic",
+    "description": "Axon terminal onto the axon initial segment; gates spike initiation without touching the soma.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.685,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.61,
+        "confidence": 0.77,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.01,
+          "4": 0.03,
+          "5": 0.24,
+          "6": 0.71
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.86
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.95,
+    "computational_p": 0.86,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.77
+  },
+  {
+    "name": "axo_dendrite_reciprocal",
+    "family": "micro",
+    "motif_ref": "axo_dendrite_reciprocal",
+    "description": "Reciprocal pair: one direction excitatory, the return direction inhibitory (olfactory-bulb style).",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.972,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.83
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.88,
+        "confidence": 0.35,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.04,
+          "2": 0.04,
+          "3": 0.03,
+          "4": 0.08,
+          "5": 0.29,
+          "6": 0.48
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.81
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.83,
+    "computational_p": 0.81,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.35
+  },
+  {
+    "name": "axo_dendritic",
+    "family": "micro",
+    "motif_ref": "axo_dendritic",
+    "description": "Axon terminal onto dendritic shaft/spine; the default cortical excitatory contact.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.612,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.99
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.98,
+        "confidence": 0.99,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.01,
+          "6": 0.99
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.94
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.99,
+    "computational_p": 0.94,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.99
+  },
+  {
+    "name": "axo_somatic",
+    "family": "micro",
+    "motif_ref": "axo_somatic",
+    "description": "Axon terminal onto soma; perisomatic, strongly shunting (basket-cell style).",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.482,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.93,
+        "confidence": 0.96,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.04,
+          "6": 0.96
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.93
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.98,
+    "computational_p": 0.93,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.96
+  },
+  {
+    "name": "contrast_inhibition",
+    "family": "circuit",
+    "motif_ref": "contrast_inhibition",
+    "description": "Inhibition proportional to local stimulus energy; normalises the population response.",
+    "jev_status": 200,
+    "jev_elapsed_s": 2.279,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.89
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.22,
+        "confidence": 0.54,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.03,
+          "2": 0.01,
+          "3": 0.01,
+          "4": 0.03,
+          "5": 0.32,
+          "6": 0.58
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.91
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.89,
+    "computational_p": 0.91,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.54
+  },
+  {
+    "name": "dendritic_computation",
+    "family": "plasticity",
+    "motif_ref": "dendritic_computation",
+    "description": "Non-linear dendritic integration (NMDA spikes, plateau potentials) as a local operator.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.605,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.43,
+        "confidence": 0.7,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.02,
+          "5": 0.51,
+          "6": 0.47
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.95
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.97,
+    "computational_p": 0.95,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.7
+  },
+  {
+    "name": "dendritic_excitatory_synapse",
+    "family": "micro",
+    "motif_ref": "dendritic_excitatory_synapse",
+    "description": "Excitatory contact placed on a specific dendritic branch; branch-local integration.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.497,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.78,
+        "confidence": 0.87,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.11,
+          "6": 0.86
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.91
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.96,
+    "computational_p": 0.91,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.87
+  },
+  {
+    "name": "dendritic_inhibitory_synapse",
+    "family": "micro",
+    "motif_ref": "dendritic_inhibitory_synapse",
+    "description": "Inhibitory contact on a dendritic branch; vetoes a branch without somatic shunting.",
+    "jev_status": 200,
+    "jev_elapsed_s": 2.524,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.42,
+        "confidence": 0.66,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.01,
+          "4": 0.03,
+          "5": 0.31,
+          "6": 0.61
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.89
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.93,
+    "computational_p": 0.89,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.66
+  },
+  {
+    "name": "dendro_dendritic",
+    "family": "micro",
+    "motif_ref": "dendro_dendritic",
+    "description": "Direct dendro-dendritic contact; allows subthreshold crosstalk and reciprocal pairs.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.587,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.37,
+        "confidence": 0.63,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.01,
+          "4": 0.05,
+          "5": 0.36,
+          "6": 0.55
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.84
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.93,
+    "computational_p": 0.84,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.63
+  },
+  {
+    "name": "disinhibition",
+    "family": "circuit",
+    "motif_ref": "disinhibition",
+    "description": "A -> interneuron -| target: exciting the interneuron releases the target.",
+    "jev_status": 200,
+    "jev_elapsed_s": 2.867,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.66,
+        "confidence": 0.8,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.1,
+          "6": 0.85
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.92
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.95,
+    "computational_p": 0.92,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.8
+  },
+  {
+    "name": "ephaptic_coupling",
+    "family": "electrical",
+    "motif_ref": "ephaptic_coupling",
+    "description": "Non-synaptic field coupling; activity in one fibre changes the excitability of a neighbour. Span is 'either', because a field does not respect a unit boundary -- an electric organ drives its own receptors across tissues.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.854,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.81
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.66,
+        "confidence": 0.56,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.06,
+          "2": 0.04,
+          "3": 0.04,
+          "4": 0.07,
+          "5": 0.57,
+          "6": 0.21
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.83
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.81,
+    "computational_p": 0.83,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.56
+  },
+  {
+    "name": "feedback_excitatory",
+    "family": "circuit",
+    "motif_ref": "feedback_excitatory",
+    "description": "Higher stage re-excites an earlier stage; sustains and amplifies a representation.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.637,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.86
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.08,
+        "confidence": 0.46,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.04,
+          "2": 0.01,
+          "3": 0.02,
+          "4": 0.05,
+          "5": 0.36,
+          "6": 0.5
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.91
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.86,
+    "computational_p": 0.91,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.46
+  },
+  {
+    "name": "feedback_inhibitory",
+    "family": "circuit",
+    "motif_ref": "feedback_inhibitory",
+    "description": "Higher stage returns inhibition to an earlier stage; predictive suppression.",
+    "jev_status": 200,
+    "jev_elapsed_s": 4.834,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.91
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.04,
+        "confidence": 0.44,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.06,
+          "2": 0.02,
+          "3": 0.02,
+          "4": 0.03,
+          "5": 0.32,
+          "6": 0.52
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.93
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.91,
+    "computational_p": 0.93,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.44
+  },
+  {
+    "name": "feedforward_excitatory",
+    "family": "circuit",
+    "motif_ref": "feedforward_excitatory",
+    "description": "A -> B -> C all excitatory; signal relayed and sharpened across stages.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.327,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.3,
+        "confidence": 0.59,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.03,
+          "2": 0.02,
+          "3": 0.01,
+          "4": 0.03,
+          "5": 0.22,
+          "6": 0.66
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.95
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.93,
+    "computational_p": 0.95,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.59
+  },
+  {
+    "name": "feedforward_gating",
+    "family": "circuit",
+    "motif_ref": "feedforward_gating",
+    "description": "A gating population multiplicatively admits or blocks a throughput path.",
+    "jev_status": 200,
+    "jev_elapsed_s": 2.78,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.76
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.23,
+        "confidence": 0.24,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.05,
+          "1": 0.1,
+          "2": 0.06,
+          "3": 0.05,
+          "4": 0.08,
+          "5": 0.4,
+          "6": 0.26
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.84
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.76,
+    "computational_p": 0.84,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.24
+  },
+  {
+    "name": "feedforward_inhibitory",
+    "family": "circuit",
+    "motif_ref": "feedforward_inhibitory",
+    "description": "Input excites both a target and an interneuron that inhibits the target; narrows the time window.",
+    "jev_status": 200,
+    "jev_elapsed_s": 2.433,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.81,
+        "confidence": 0.89,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.13,
+          "6": 0.86
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.96
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.97,
+    "computational_p": 0.96,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.89
+  },
+  {
+    "name": "gap_junction_inhibitory",
+    "family": "electrical",
+    "motif_ref": "gap_junction_inhibitory",
+    "description": "Gap junction onto an inhibitory population; synchronises the local brake.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.614,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.78
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.72,
+        "confidence": 0.53,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.05,
+          "2": 0.03,
+          "3": 0.03,
+          "4": 0.08,
+          "5": 0.53,
+          "6": 0.26
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.83
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.78,
+    "computational_p": 0.83,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.53
+  },
+  {
+    "name": "gap_junction_sync",
+    "family": "electrical",
+    "motif_ref": "gap_junction_sync",
+    "description": "Bidirectional electrotonic coupling; equalises membrane potential, zero delay.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.543,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.9,
+        "confidence": 0.94,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.05,
+          "6": 0.94
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.96
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.98,
+    "computational_p": 0.96,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.94
+  },
+  {
+    "name": "global_inhibitory_gain_control",
+    "family": "circuit",
+    "motif_ref": "inhibitory_hub",
+    "description": "One wide-field inhibitory cell sums the whole population and feeds back onto all of it, enforcing sparseness (APL onto Kenyon cells).",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.557,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.23,
+        "confidence": 0.55,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.01,
+          "4": 0.18,
+          "5": 0.36,
+          "6": 0.45
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.91
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.93,
+    "computational_p": 0.91,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.55
+  },
+  {
+    "name": "inhibitory_hub",
+    "family": "macro",
+    "motif_ref": "inhibitory_hub",
+    "description": "A single inhibitory hub broadcasts to a very large target set (MaleCNS-extracted).",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.943,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.62
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.37,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.17,
+          "1": 0.2,
+          "2": 0.05,
+          "3": 0.03,
+          "4": 0.05,
+          "5": 0.2,
+          "6": 0.3
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.7
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "preliminary",
+    "literature_p": 0.62,
+    "computational_p": 0.7,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "lateral_feedback",
+    "family": "circuit",
+    "motif_ref": "lateral_feedback",
+    "description": "Lateral partner both feeds forward and receives feedback; forms a resonant ring.",
+    "jev_status": 200,
+    "jev_elapsed_s": 2.44,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.76
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.25,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.09,
+          "1": 0.12,
+          "2": 0.04,
+          "3": 0.03,
+          "4": 0.05,
+          "5": 0.27,
+          "6": 0.4
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.82
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.76,
+    "computational_p": 0.82,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "lateral_inhibitory",
+    "family": "circuit",
+    "motif_ref": "lateral_inhibitory",
+    "description": "Neighbouring units inhibit each other; sharpens contrast and sparsifies the code.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.616,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.98
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.92,
+        "confidence": 0.95,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.05,
+          "6": 0.95
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.97
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.98,
+    "computational_p": 0.97,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.95
+  },
+  {
+    "name": "ltp_ltd",
+    "family": "plasticity",
+    "motif_ref": "ltp_ltd",
+    "description": "Sustained activity produces durable bidirectional weight change.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.81,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.83
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.75,
+        "confidence": 0.27,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.1,
+          "1": 0.1,
+          "2": 0.01,
+          "3": 0.01,
+          "4": 0.01,
+          "5": 0.08,
+          "6": 0.69
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.91
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.83,
+    "computational_p": 0.91,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.27
+  },
+  {
+    "name": "modulatory_diffuse",
+    "family": "modulatory",
+    "motif_ref": "modulatory_diffuse",
+    "description": "One modulatory source broadcasts a scalar gain over many targets; no point-to-point map.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.648,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.91
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.64,
+        "confidence": 0.79,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.09,
+          "6": 0.85
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.87
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.91,
+    "computational_p": 0.87,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.79
+  },
+  {
+    "name": "mutual_inhibitory",
+    "family": "circuit",
+    "motif_ref": "mutual_inhibitory",
+    "description": "Two populations inhibit each other; produces winner-take-all or alternation.",
+    "jev_status": 200,
+    "jev_elapsed_s": 4.513,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.81,
+        "confidence": 0.89,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.14,
+          "6": 0.86
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.98
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.97,
+    "computational_p": 0.98,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.89
+  },
+  {
+    "name": "neuromodulatory_axon",
+    "family": "modulatory",
+    "motif_ref": "neuromodulatory_axon",
+    "description": "Axon with en-passant varicosities releasing along its length, not at one terminal.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.61,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.94,
+        "confidence": 0.97,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.03,
+          "6": 0.97
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.83
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.97,
+    "computational_p": 0.83,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.97
+  },
+  {
+    "name": "pre_presynaptic_excitation",
+    "family": "micro",
+    "motif_ref": "pre_presynaptic_excitation",
+    "description": "Excitation applied to a presynaptic terminal; boosts release probability.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.0,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.8
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.64,
+        "confidence": 0.2,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.06,
+          "1": 0.07,
+          "2": 0.04,
+          "3": 0.03,
+          "4": 0.05,
+          "5": 0.35,
+          "6": 0.39999999999999997
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.76
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.8,
+    "computational_p": 0.76,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.2
+  },
+  {
+    "name": "pre_presynaptic_inhibition",
+    "family": "micro",
+    "motif_ref": "pre_presynaptic_inhibition",
+    "description": "Inhibition applied to a presynaptic terminal; attenuates release downstream.",
+    "jev_status": 200,
+    "jev_elapsed_s": 4.683,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.9,
+        "confidence": 0.94,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.06,
+          "6": 0.9400000000000001
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.9
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.97,
+    "computational_p": 0.9,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.94
+  },
+  {
+    "name": "recurrent_excitatory",
+    "family": "circuit",
+    "motif_ref": "recurrent_excitatory",
+    "description": "Population excites itself through a loop; attractor / persistent activity.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.567,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.81,
+        "confidence": 0.89,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.13,
+          "6": 0.86
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.97
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.97,
+    "computational_p": 0.97,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.89
+  },
+  {
+    "name": "recurrent_feedback",
+    "family": "macro",
+    "motif_ref": "recurrent_feedback",
+    "description": "Closed loop between two stages with a delay; the MaleCNS-extracted third original motif.",
+    "jev_status": 200,
+    "jev_elapsed_s": 3.918,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.6
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.15,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.28,
+          "1": 0.17,
+          "2": 0.03,
+          "3": 0.02,
+          "4": 0.03,
+          "5": 0.1,
+          "6": 0.37
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.82
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "preliminary",
+    "literature_p": 0.6,
+    "computational_p": 0.82,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "recurrent_inhibitory",
+    "family": "circuit",
+    "motif_ref": "recurrent_inhibitory",
+    "description": "Loop where inhibition dominates; keeps activity bounded and rhythmic.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.702,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.81,
+        "confidence": 0.89,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.12,
+          "6": 0.87
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.96
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.96,
+    "computational_p": 0.96,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.89
+  },
+  {
+    "name": "repetitive_activation_lts",
+    "family": "plasticity",
+    "motif_ref": "ltp_ltd",
+    "description": "A brief run of presynaptic spikes produces a lasting increase in release that outlives the train by many minutes -- the cephalopod vertical-lobe rule.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.607,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.84
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.99,
+        "confidence": 0.41,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.03,
+          "2": 0.02,
+          "3": 0.03,
+          "4": 0.16,
+          "5": 0.24,
+          "6": 0.49
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.78
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.84,
+    "computational_p": 0.78,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.41
+  },
+  {
+    "name": "reservoir_smallworld",
+    "family": "macro",
+    "motif_ref": "reservoir_smallworld",
+    "description": "High-clustering, short-path recurrent pool used as a random-feature reservoir (MaleCNS-extracted).",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.678,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.3
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 1.62,
+        "confidence": 0.05,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.45,
+          "1": 0.24,
+          "2": 0.06,
+          "3": 0.03,
+          "4": 0.04,
+          "5": 0.08,
+          "6": 0.1
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.68
+      }
+    },
+    "evidence_score": 1,
+    "evidence_label": "speculative",
+    "literature_p": 0.3,
+    "computational_p": 0.68,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.05
+  },
+  {
+    "name": "retrograde_messenger",
+    "family": "modulatory",
+    "motif_ref": "retrograde_messenger",
+    "description": "Postsynaptic cell releases a messenger that acts back on the presynaptic terminal.",
+    "jev_status": 200,
+    "jev_elapsed_s": 2.417,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.85,
+        "confidence": 0.91,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.09,
+          "6": 0.9
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.85
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.97,
+    "computational_p": 0.85,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.91
+  },
+  {
+    "name": "serotonergic_presynaptic_facilitation",
+    "family": "plasticity",
+    "motif_ref": "pre_presynaptic_excitation",
+    "description": "A modulatory terminal raises release probability in the sensory neuron without any postsynaptic depolarisation -- the mechanism of sensitisation in the Aplysia gill-withdrawal reflex, i.e. a memory stored presynaptically.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.597,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.92,
+        "confidence": 0.95,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.03,
+          "6": 0.96
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.89
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.96,
+    "computational_p": 0.89,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.95
+  },
+  {
+    "name": "short_range_volume",
+    "family": "modulatory",
+    "motif_ref": "short_range_volume",
+    "description": "Locally confined diffusion; a middle case between a synapse and full volume release.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.553,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.56
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.88,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.28,
+          "2": 0.05,
+          "3": 0.06,
+          "4": 0.09,
+          "5": 0.26,
+          "6": 0.11
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.66
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "preliminary",
+    "literature_p": 0.56,
+    "computational_p": 0.66,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "short_term_habituation",
+    "family": "plasticity",
+    "motif_ref": "short_term_plasticity",
+    "description": "Repeated activation of the same pathway depresses release, so the same stimulus produces a progressively smaller response and recovers in minutes -- the counterweight to presynaptic facilitation.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.537,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.83,
+        "confidence": 0.9,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.08,
+          "6": 0.9
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.92
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.95,
+    "computational_p": 0.92,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.9
+  },
+  {
+    "name": "short_term_plasticity",
+    "family": "plasticity",
+    "motif_ref": "short_term_plasticity",
+    "description": "Vesicle depletion / residual calcium give seconds-scale facilitation or depression.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.845,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.83,
+        "confidence": 0.9,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.07,
+          "6": 0.91
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.96
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.96,
+    "computational_p": 0.96,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.9
+  },
+  {
+    "name": "shunting_inhibition",
+    "family": "circuit",
+    "motif_ref": "shunting_inhibition",
+    "description": "Inhibition lowers input resistance rather than hyperpolarising; divisive gain control.",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.293,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.84,
+        "confidence": 0.91,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.1,
+          "6": 0.89
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.96
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.96,
+    "computational_p": 0.96,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.91
+  },
+  {
+    "name": "stdp_rule",
+    "family": "plasticity",
+    "motif_ref": "stdp_rule",
+    "description": "Pre-before-post potentiates, post-before-pre depresses; timing-based weight change.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.805,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.77,
+        "confidence": 0.87,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.09,
+          "6": 0.89
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.97
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.95,
+    "computational_p": 0.97,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.87
+  },
+  {
+    "name": "temporal_coherence",
+    "family": "macro",
+    "motif_ref": "temporal_coherence",
+    "description": "Co-active populations phase-align; binding by synchrony rather than by weight.",
+    "jev_status": 200,
+    "jev_elapsed_s": 3.049,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.67
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.44,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.09,
+          "1": 0.32,
+          "2": 0.01,
+          "3": 0.01,
+          "4": 0.02,
+          "5": 0.29,
+          "6": 0.26
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.86
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "preliminary",
+    "literature_p": 0.67,
+    "computational_p": 0.86,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "thermal_cross_modal_convergence",
+    "family": "macro",
+    "motif_ref": "topographic_mapping",
+    "description": "An infrared map and a visual map registered onto the same tectal neurons, so a warm target is localised in the same coordinates as a seen one and either modality can drive the strike (pit vipers; vampire bats).",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.152,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.78
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.68,
+        "confidence": 0.42,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.03,
+          "2": 0.06,
+          "3": 0.06,
+          "4": 0.15,
+          "5": 0.34,
+          "6": 0.34
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.48
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.78,
+    "computational_p": 0.48,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.42
+  },
+  {
+    "name": "topographic_mapping",
+    "family": "macro",
+    "motif_ref": "topographic_mapping",
+    "description": "Spatially ordered projection preserving neighbourhood relations across stages.",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.546,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.65,
+        "confidence": 0.79,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.02,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.06,
+          "6": 0.89
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.87
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.93,
+    "computational_p": 0.87,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.79
+  },
+  {
+    "name": "volume_transmission",
+    "family": "modulatory",
+    "motif_ref": "volume_transmission",
+    "description": "Transmitter diffuses through extracellular space and reaches non-synaptic receptors.",
+    "jev_status": 200,
+    "jev_elapsed_s": 5.415,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.94
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.73,
+        "confidence": 0.84,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1-2 preliminary papers",
+          "3": "3-5 papers, consensus forming",
+          "4": "5-10 papers, well-characterised",
+          "5": "10+ papers, cross-species consensus",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.01,
+          "5": 0.1,
+          "6": 0.87
+        }
+      },
+      "computational_validation": {
+        "type": "noul",
+        "noul": 0.87
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "well_supported",
+    "literature_p": 0.94,
+    "computational_p": 0.87,
+    "verdict": "SUPPORTED",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1-2 preliminary papers",
+      "3": "3-5 papers, consensus forming",
+      "4": "5-10 papers, well-characterised",
+      "5": "10+ papers, cross-species consensus",
+      "6": "Textbook entry"
+    },
+    "evidence_confidence": 0.84
+  }
+]
