@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.24.0` | the toolkit as a whole |
+| package | `2.25.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,87 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.25.0] — 2026-09-30
+
+### 66 个连接类型全量 JEV 验证 + 83 个 PORT_TYPES 生物分类
+
+v2.25 补齐 v2.23 遗留的两处缺口：（1）45 个带 motif_ref 的微观突触/电路
+类型（axo_dendritic、feedforward_excitatory、gap_junction_sync 等）从未做过
+JEV 文献验证；（2）83 个 PORT_TYPES 缺少机器可读的语义分类字段。
+
+#### 连接类型 JEV 验证（45 个 motif_ref 新增）
+
+在 v2.23 的 21 抽象类型之外，本轮对 45 个 motif_ref 类型独立跑 JEV 决策
+模型，输出 `jev_validation` 元数据。结果：
+
+| 家族 | 总数 | SUPPORTED | PARTIAL | WEAK |
+|---|---|---|---|---|
+| micro        | 9  | 7  | 2  | 0  |
+| circuit      | 14 | 12 | 2  | 0  |
+| modulatory   | 5  | 4  | 1  | 0  |
+| electrical   | 4  | 2  | 2  | 0  |
+| plasticity   | 7  | 5  | 2  | 0  |
+| macro        | 6  | 1  | 4  | 1  |
+| **合计**     | 45 | 31 | 13 | 1  |
+
+**唯一 WEAK**：`reservoir_smallworld`（lit=0.30, score=1）——小世界储备池
+属于 ESN 计算神经科学领域，不是经典神经解剖 motif，果蝇/脊椎动物文献里
+没有直接对应。这符合"它是抽象计算概念而非突触形式"的定位，与 `abstraction_only`
+未标记的 motif_ref 层级并不矛盾。
+
+**PARTIAL 13 个**主要分布在宏观和可塑性家族（`temporal_coherence`、
+`recurrent_feedback`、`ltp_ltd`、`short_range_volume` 等），表明这些 motif
+在特定物种/上下文有实证但缺乏跨物种共识。
+
+**66 个连接类型 verdict 汇总**：39 SUPPORTED / 25 PARTIAL / 2 WEAK
+（v2.23 抽象 8/12/1 + v2.25 motif 31/13/1）。
+
+#### PORT_TYPES 生物分类
+
+`functional_units.json` 新增 `port_types_classified` 字段，为每个 PORT_TYPE
+派生 `category` 字段（名字前缀 → 类别，非文献声明）：
+
+| 类别 | 数量 | 例 |
+|---|---|---|
+| `sensory_input`        | 21 | sensory.visual, sensory.vibrissa, olfactory.sparse_code |
+| `motor_output`         | 17 | motor.wing, motor.escape, motor.song |
+| `cortical_processing`  | 14 | cortex.association, hippocampal.engram, cerebellar.output |
+| `spatial_temporal`     | 12 | spatial.place_code, rhythm.theta, clock.phase |
+| `modulatory`           |  9 | modulatory.dopamine, modulatory.octopamine |
+| `state_regulatory`     |  8 | arousal.state, error.teaching, efference.copy |
+| `glial_support`        |  1 | glial.support |
+| `wildcard`             |  1 | * |
+
+类别字段是名字派生标签，不是文献验证结果——目的是让下游工具（可视化、
+拓扑生成器、诊断器）按功能路由 port，而不必解析字符串前缀。
+
+#### 修改文件
+
+- `scripts/jev_validate_motifs.py` — 新增（45 motif_ref 类型 JEV 验证脚本）
+- `scripts/jev_results/motif_validation.json` — 新增（45 结果）
+- `scripts/gen_functional_units.py` — 新增 `_MOTIF_JEV_VALIDATION` 字典
+  + `_classify_port_types()` 函数；66 个连接类型全量 JEV 验证；83 个
+  PORT_TYPES 分类元数据
+- `flybrain-connectome-mcp/functional_units/connection_types.json` — 重新
+  生成（66 个类型全部有 `jev_validation` 字段）
+- `flybrain-connectome-mcp/functional_units/functional_units.json` — 重新
+  生成（新增 `port_types_classified` 顶层字段）
+- `pyproject.toml` / `server.py` / `api_server.py` / `flybrain_cli.py` /
+  `topology_visualizer.py` — 版本号 2.24.0 → 2.25.0
+- `.workbuddy/memory/MEMORY.md` — 更新定位段
+- `.workbuddy/memory/2026-09-30.md` — 追加 v2.25.0 段
+- `CHANGELOG.md` — 本段
+
+#### 门禁
+
+- 10/10 全绿（含 `--with-data`）
+- 无 anchor 变化（204 modules / 58 anchored / 107,558 cells / 5,413 types
+  全部保持不变）
+- JEV 调用 45 次 × 3 问题 ≈ $0.002
+
 
 ---
 
