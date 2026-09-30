@@ -154,6 +154,62 @@ PORT_TYPES = {
 # Port types that are `in`-only / `out`-only semantics are NOT enforced here;
 # the composer checks direction, the unit declares which side a port lives on.
 
+# ---------------------------------------------------------------------------
+# v2.25.0 -- port_types_classified: assign every PORT_TYPE to a bio_evidence
+# category derived from its name prefix.  PORT_TYPES itself is a plain
+# name -> description dict, so we emit a parallel dict in the JSON that
+# carries {description, category} for each port.  Categories are:
+#   sensory_input      -- external-stimulus afferent channels (retina,
+#                         olfactory bulb, lateral line, whisker, ...)
+#   motor_output       -- descending command to muscles / organs
+#   modulatory         -- diffuse neuromodulatory / endocrine systems
+#   cortical_processing-- forebrain-style associative / memory circuits
+#   spatial_temporal   -- position / heading / clock / rhythm codes
+#   state_regulatory   -- arousal / gate / error / efference-copy signals
+#   glial_support      -- non-neuronal (astrocytic) modulation
+#   wildcard           -- the "*" or "family.*" match-all placeholders
+# The category is a name-derived label, not a literature-derived claim.
+# It lets downstream tools route ports by function without parsing names.
+# ---------------------------------------------------------------------------
+_PORT_CATEGORY_RULES = [
+    # Order matters: first match wins.  Longer / more specific prefixes first.
+    ("sensory.",         "sensory_input"),
+    ("olfactory.",       "sensory_input"),
+    ("motor.",           "motor_output"),
+    ("modulatory.",      "modulatory"),
+    ("cortex.",          "cortical_processing"),
+    ("cerebellar.",      "cortical_processing"),
+    ("hippocampal.",     "cortical_processing"),
+    ("basal_ganglia.",   "cortical_processing"),
+    ("limbic.",          "cortical_processing"),
+    ("spatial.",         "spatial_temporal"),
+    ("navigation.",      "spatial_temporal"),
+    ("clock.",           "spatial_temporal"),
+    ("memory.",          "spatial_temporal"),
+    ("rhythm.",          "spatial_temporal"),
+    ("thermal.",         "spatial_temporal"),
+    ("arousal.",         "state_regulatory"),
+    ("gating.",          "state_regulatory"),
+    ("error.",           "state_regulatory"),
+    ("efference.",       "state_regulatory"),
+    ("reafference.",     "state_regulatory"),
+    ("glial.",           "glial_support"),
+]
+
+
+def _classify_port_types():
+    """Return {port_name: {description, category}} for every PORT_TYPES entry."""
+    out = {}
+    for name, desc in PORT_TYPES.items():
+        cat = "wildcard"
+        if name != "*":
+            for prefix, category in _PORT_CATEGORY_RULES:
+                if name.startswith(prefix):
+                    cat = category
+                    break
+        out[name] = {"description": desc, "category": cat}
+    return out
+
 
 # ====================================================================== #
 # 1. CONNECTION TYPES -- 50 composable connection forms
@@ -1526,6 +1582,7 @@ def main() -> int:
                   "declared wiring and its connection FORM remain literature-derived -- "
                   "see `provenance.extracted_from_malecns` (false everywhere).",
         "port_types": PORT_TYPES,
+        "port_types_classified": _classify_port_types(),
         "stats": stats,
         "embodiment_source": {
             "file": ANCHORS_FILE.name,
@@ -2091,11 +2148,74 @@ _JEV_VALIDATION = {
     "state_switch_bistable":           {"verdict": "PARTIAL",   "literature_p": 0.88, "computational_p": 0.93, "evidence_score": 4, "evidence_label": "preliminary"},
     "winner_take_all":                 {"verdict": "SUPPORTED", "literature_p": 0.95, "computational_p": 0.97, "evidence_score": 5, "evidence_label": "well_supported"},
 }
+# ---------------------------------------------------------------------------
+# v2.25.0 — JEV-powered validation of the 45 motif_ref connection types.
+# These are the concrete synapse / circuit motifs (axo_dendritic,
+# feedforward_excitatory, gap_junction_sync, ...) that already carry a
+# motif_ref.  Independent JEV validation gives us a uniform machine-
+# readable evidence tier across all 66 connection types.
+# Cost: 45 calls × 3 questions ≈ $0.002.  Full JSON: jev_results/motif_*.
+# ---------------------------------------------------------------------------
+_MOTIF_JEV_VALIDATION = {
+    "astrocyte_neuron_tripartite":             {"verdict": "SUPPORTED", "literature_p": 0.93, "computational_p": 0.90, "evidence_score": 5, "evidence_label": "well_supported"},
+    "axo_axonic":                              {"verdict": "SUPPORTED", "literature_p": 0.95, "computational_p": 0.86, "evidence_score": 5, "evidence_label": "well_supported"},
+    "axo_dendrite_reciprocal":                 {"verdict": "PARTIAL",   "literature_p": 0.83, "computational_p": 0.81, "evidence_score": 4, "evidence_label": "preliminary"},
+    "axo_dendritic":                           {"verdict": "SUPPORTED", "literature_p": 0.99, "computational_p": 0.94, "evidence_score": 5, "evidence_label": "well_supported"},
+    "axo_somatic":                             {"verdict": "SUPPORTED", "literature_p": 0.98, "computational_p": 0.93, "evidence_score": 5, "evidence_label": "well_supported"},
+    "contrast_inhibition":                     {"verdict": "SUPPORTED", "literature_p": 0.89, "computational_p": 0.91, "evidence_score": 5, "evidence_label": "well_supported"},
+    "dendritic_computation":                   {"verdict": "SUPPORTED", "literature_p": 0.97, "computational_p": 0.95, "evidence_score": 5, "evidence_label": "well_supported"},
+    "dendritic_excitatory_synapse":            {"verdict": "SUPPORTED", "literature_p": 0.96, "computational_p": 0.91, "evidence_score": 5, "evidence_label": "well_supported"},
+    "dendritic_inhibitory_synapse":            {"verdict": "SUPPORTED", "literature_p": 0.93, "computational_p": 0.89, "evidence_score": 5, "evidence_label": "well_supported"},
+    "dendro_dendritic":                        {"verdict": "SUPPORTED", "literature_p": 0.93, "computational_p": 0.84, "evidence_score": 5, "evidence_label": "well_supported"},
+    "disinhibition":                           {"verdict": "SUPPORTED", "literature_p": 0.95, "computational_p": 0.92, "evidence_score": 5, "evidence_label": "well_supported"},
+    "ephaptic_coupling":                       {"verdict": "PARTIAL",   "literature_p": 0.81, "computational_p": 0.83, "evidence_score": 4, "evidence_label": "preliminary"},
+    "feedback_excitatory":                     {"verdict": "SUPPORTED", "literature_p": 0.86, "computational_p": 0.91, "evidence_score": 5, "evidence_label": "well_supported"},
+    "feedback_inhibitory":                     {"verdict": "SUPPORTED", "literature_p": 0.91, "computational_p": 0.93, "evidence_score": 5, "evidence_label": "well_supported"},
+    "feedforward_excitatory":                  {"verdict": "SUPPORTED", "literature_p": 0.93, "computational_p": 0.95, "evidence_score": 5, "evidence_label": "well_supported"},
+    "feedforward_gating":                      {"verdict": "PARTIAL",   "literature_p": 0.76, "computational_p": 0.84, "evidence_score": 4, "evidence_label": "preliminary"},
+    "feedforward_inhibitory":                  {"verdict": "SUPPORTED", "literature_p": 0.97, "computational_p": 0.96, "evidence_score": 5, "evidence_label": "well_supported"},
+    "gap_junction_inhibitory":                 {"verdict": "PARTIAL",   "literature_p": 0.78, "computational_p": 0.83, "evidence_score": 4, "evidence_label": "preliminary"},
+    "gap_junction_sync":                       {"verdict": "SUPPORTED", "literature_p": 0.98, "computational_p": 0.96, "evidence_score": 5, "evidence_label": "well_supported"},
+    "global_inhibitory_gain_control":          {"verdict": "SUPPORTED", "literature_p": 0.93, "computational_p": 0.91, "evidence_score": 5, "evidence_label": "well_supported"},
+    "inhibitory_hub":                          {"verdict": "PARTIAL",   "literature_p": 0.62, "computational_p": 0.70, "evidence_score": 3, "evidence_label": "preliminary"},
+    "lateral_feedback":                        {"verdict": "PARTIAL",   "literature_p": 0.76, "computational_p": 0.82, "evidence_score": 4, "evidence_label": "preliminary"},
+    "lateral_inhibitory":                      {"verdict": "SUPPORTED", "literature_p": 0.98, "computational_p": 0.97, "evidence_score": 5, "evidence_label": "well_supported"},
+    "ltp_ltd":                                 {"verdict": "PARTIAL",   "literature_p": 0.83, "computational_p": 0.91, "evidence_score": 4, "evidence_label": "preliminary"},
+    "modulatory_diffuse":                      {"verdict": "SUPPORTED", "literature_p": 0.91, "computational_p": 0.87, "evidence_score": 5, "evidence_label": "well_supported"},
+    "mutual_inhibitory":                       {"verdict": "SUPPORTED", "literature_p": 0.97, "computational_p": 0.98, "evidence_score": 5, "evidence_label": "well_supported"},
+    "neuromodulatory_axon":                    {"verdict": "SUPPORTED", "literature_p": 0.97, "computational_p": 0.83, "evidence_score": 5, "evidence_label": "well_supported"},
+    "pre_presynaptic_excitation":              {"verdict": "PARTIAL",   "literature_p": 0.80, "computational_p": 0.76, "evidence_score": 4, "evidence_label": "preliminary"},
+    "pre_presynaptic_inhibition":              {"verdict": "SUPPORTED", "literature_p": 0.97, "computational_p": 0.90, "evidence_score": 5, "evidence_label": "well_supported"},
+    "recurrent_excitatory":                    {"verdict": "SUPPORTED", "literature_p": 0.97, "computational_p": 0.97, "evidence_score": 5, "evidence_label": "well_supported"},
+    "recurrent_feedback":                      {"verdict": "PARTIAL",   "literature_p": 0.60, "computational_p": 0.82, "evidence_score": 3, "evidence_label": "preliminary"},
+    "recurrent_inhibitory":                    {"verdict": "SUPPORTED", "literature_p": 0.96, "computational_p": 0.96, "evidence_score": 5, "evidence_label": "well_supported"},
+    "repetitive_activation_lts":               {"verdict": "PARTIAL",   "literature_p": 0.84, "computational_p": 0.78, "evidence_score": 4, "evidence_label": "preliminary"},
+    "reservoir_smallworld":                    {"verdict": "WEAK",      "literature_p": 0.30, "computational_p": 0.68, "evidence_score": 1, "evidence_label": "speculative"},
+    "retrograde_messenger":                    {"verdict": "SUPPORTED", "literature_p": 0.97, "computational_p": 0.85, "evidence_score": 5, "evidence_label": "well_supported"},
+    "serotonergic_presynaptic_facilitation":   {"verdict": "SUPPORTED", "literature_p": 0.96, "computational_p": 0.89, "evidence_score": 5, "evidence_label": "well_supported"},
+    "short_range_volume":                      {"verdict": "PARTIAL",   "literature_p": 0.56, "computational_p": 0.66, "evidence_score": 2, "evidence_label": "preliminary"},
+    "short_term_habituation":                  {"verdict": "SUPPORTED", "literature_p": 0.95, "computational_p": 0.92, "evidence_score": 5, "evidence_label": "well_supported"},
+    "short_term_plasticity":                   {"verdict": "SUPPORTED", "literature_p": 0.96, "computational_p": 0.96, "evidence_score": 5, "evidence_label": "well_supported"},
+    "shunting_inhibition":                     {"verdict": "SUPPORTED", "literature_p": 0.96, "computational_p": 0.96, "evidence_score": 5, "evidence_label": "well_supported"},
+    "stdp_rule":                               {"verdict": "SUPPORTED", "literature_p": 0.95, "computational_p": 0.97, "evidence_score": 5, "evidence_label": "well_supported"},
+    "temporal_coherence":                      {"verdict": "PARTIAL",   "literature_p": 0.67, "computational_p": 0.86, "evidence_score": 3, "evidence_label": "preliminary"},
+    "thermal_cross_modal_convergence":         {"verdict": "PARTIAL",   "literature_p": 0.78, "computational_p": 0.48, "evidence_score": 4, "evidence_label": "preliminary"},
+    "topographic_mapping":                     {"verdict": "SUPPORTED", "literature_p": 0.93, "computational_p": 0.87, "evidence_score": 5, "evidence_label": "well_supported"},
+    "volume_transmission":                     {"verdict": "SUPPORTED", "literature_p": 0.94, "computational_p": 0.87, "evidence_score": 5, "evidence_label": "well_supported"},
+}
 for _ct in CONNECTION_TYPES:
-    if _ct["name"] in _JEV_VALIDATION:
+    _name = _ct["name"]
+    if _name in _JEV_VALIDATION:
+        # Abstraction-level pattern: no single-synapse motif mapping.
         _ct["abstraction_only"] = True
-        _ct["jev_validation"] = dict(_JEV_VALIDATION[_ct["name"]],
+        _ct["jev_validation"] = dict(_JEV_VALIDATION[_name],
                                      validated_at="2026-09-29T15:40:00+08:00",
+                                     model_version="jev-1.13.0")
+    elif _name in _MOTIF_JEV_VALIDATION:
+        # Motif-level synapse / circuit: has a motif_ref, now also JEV-scored.
+        _ct["abstraction_only"] = False
+        _ct["jev_validation"] = dict(_MOTIF_JEV_VALIDATION[_name],
+                                     validated_at="2026-09-30T22:40:00+08:00",
                                      model_version="jev-1.13.0")
     else:
         _ct.setdefault("abstraction_only", False)
