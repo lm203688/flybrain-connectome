@@ -87,6 +87,340 @@
     "modulatory.endocrine": "Peptidergic volume-transmission modulation from crustal / ventral-nerve-cord endocrine neurons.",
     "gating.attention": "Attention-priority gate on a competing modulatory program (which centrifugal feedback wins)."
   },
+  "port_types_classified": {
+    "sensory.visual": {
+      "description": "Photoreceptor-driven visual signal (retina -> thalamus).",
+      "category": "sensory_input"
+    },
+    "sensory.visual.motion": {
+      "description": "Direction/motion-selective visual signal.",
+      "category": "sensory_input"
+    },
+    "sensory.visual.irradiance": {
+      "description": "Slow luminance signal (circadian drive).",
+      "category": "sensory_input"
+    },
+    "sensory.olfactory": {
+      "description": "Odourant identity/intensity signal.",
+      "category": "sensory_input"
+    },
+    "sensory.auditory": {
+      "description": "Sound-frequency signal.",
+      "category": "sensory_input"
+    },
+    "sensory.vestibular": {
+      "description": "Head acceleration signal.",
+      "category": "sensory_input"
+    },
+    "sensory.somatosensory": {
+      "description": "Touch/proprioceptive signal.",
+      "category": "sensory_input"
+    },
+    "sensory.nociceptive": {
+      "description": "Noxious-stimulus signal.",
+      "category": "sensory_input"
+    },
+    "cortex.input": {
+      "description": "Cortical layer-4 style afferent input.",
+      "category": "cortical_processing"
+    },
+    "cortex.association": {
+      "description": "Higher-order intracortical association signal.",
+      "category": "cortical_processing"
+    },
+    "cortex.output": {
+      "description": "Cortical layer-5 style descending command.",
+      "category": "cortical_processing"
+    },
+    "cortex.feedback": {
+      "description": "Top-down corticofugal feedback.",
+      "category": "cortical_processing"
+    },
+    "cortex.interneuron": {
+      "description": "Local cortical inhibitory drive.",
+      "category": "cortical_processing"
+    },
+    "cerebellar.input": {
+      "description": "Mossy-fibre style cerebellar input.",
+      "category": "cortical_processing"
+    },
+    "cerebellar.output": {
+      "description": "Purkinje / deep-nucleus cerebellar output.",
+      "category": "cortical_processing"
+    },
+    "error.teaching": {
+      "description": "Climbing-fibre error / teaching signal.",
+      "category": "state_regulatory"
+    },
+    "hippocampal.input": {
+      "description": "Entorhinal cortical input to hippocampus.",
+      "category": "cortical_processing"
+    },
+    "hippocampal.engram": {
+      "description": "Recurrently stored memory trace.",
+      "category": "cortical_processing"
+    },
+    "hippocampal.output": {
+      "description": "Hippocampal output to cortex.",
+      "category": "cortical_processing"
+    },
+    "spatial.map": {
+      "description": "Self-locating spatial representation.",
+      "category": "spatial_temporal"
+    },
+    "basal_ganglia.value": {
+      "description": "Action-value / reward-prediction signal.",
+      "category": "cortical_processing"
+    },
+    "basal_ganglia.command": {
+      "description": "Selected-action disinhibitory command.",
+      "category": "cortical_processing"
+    },
+    "limbic.fear": {
+      "description": "Threat-conditioned affective signal.",
+      "category": "cortical_processing"
+    },
+    "rhythm.theta": {
+      "description": "Theta-band oscillatory drive.",
+      "category": "spatial_temporal"
+    },
+    "rhythm.circadian": {
+      "description": "Circadian phase signal.",
+      "category": "spatial_temporal"
+    },
+    "arousal.state": {
+      "description": "Wake/sleep arousal-state signal.",
+      "category": "state_regulatory"
+    },
+    "motor.command": {
+      "description": "Descending motor command.",
+      "category": "motor_output"
+    },
+    "motor.spindle": {
+      "description": "Muscle-spindle feedback.",
+      "category": "motor_output"
+    },
+    "modulatory.dopamine": {
+      "description": "Dopaminergic diffuse modulation.",
+      "category": "modulatory"
+    },
+    "modulatory.serotonin": {
+      "description": "Serotonergic diffuse modulation.",
+      "category": "modulatory"
+    },
+    "modulatory.acetylcholine": {
+      "description": "Cholinergic diffuse modulation.",
+      "category": "modulatory"
+    },
+    "modulatory.noradrenaline": {
+      "description": "Noradrenergic diffuse modulation.",
+      "category": "modulatory"
+    },
+    "modulatory.histamine": {
+      "description": "Histaminergic diffuse modulation.",
+      "category": "modulatory"
+    },
+    "modulatory.orexin": {
+      "description": "Orexinergic arousal-stability modulation.",
+      "category": "modulatory"
+    },
+    "glial.support": {
+      "description": "Astrocytic metabolic / gliotransmitter support.",
+      "category": "glial_support"
+    },
+    "sensory.*": {
+      "description": "Wildcard: any sensory port (used by relay units).",
+      "category": "sensory_input"
+    },
+    "modulatory.*": {
+      "description": "Wildcard: any modulatory port (used by relay units).",
+      "category": "modulatory"
+    },
+    "*": {
+      "description": "Wildcard: any port type (used by generic forms).",
+      "category": "wildcard"
+    },
+    "sensory.skylight_compass": {
+      "description": "Polarised-light / sun-compass heading cue (insect central complex).",
+      "category": "sensory_input"
+    },
+    "sensory.electric.ampullary": {
+      "description": "Low-frequency passive electric-field signal (prey bioelectric field).",
+      "category": "sensory_input"
+    },
+    "sensory.electric.tuberous": {
+      "description": "High-frequency active-electrolocation signal (own EOD amplitude + phase).",
+      "category": "sensory_input"
+    },
+    "sensory.lateral_line": {
+      "description": "Water-flow / pressure-wave signal from the lateral line.",
+      "category": "sensory_input"
+    },
+    "sensory.auditory.startle": {
+      "description": "Abrupt acoustic transient able to trigger a startle response.",
+      "category": "sensory_input"
+    },
+    "olfactory.sparse_code": {
+      "description": "Sparse high-dimensional odour code (mushroom-body Kenyon-cell output).",
+      "category": "sensory_input"
+    },
+    "olfactory.learned_valence": {
+      "description": "Learned appetitive/aversive value attached to an odour.",
+      "category": "sensory_input"
+    },
+    "navigation.heading": {
+      "description": "Angular head-direction (bearing) estimate.",
+      "category": "spatial_temporal"
+    },
+    "navigation.steering": {
+      "description": "Turn command that reduces the heading-to-goal error.",
+      "category": "spatial_temporal"
+    },
+    "navigation.ego_speed": {
+      "description": "Forward / self-motion speed estimate.",
+      "category": "spatial_temporal"
+    },
+    "clock.phase": {
+      "description": "Circadian phase signal.",
+      "category": "spatial_temporal"
+    },
+    "memory.associative": {
+      "description": "Recurrently stored associative memory trace.",
+      "category": "spatial_temporal"
+    },
+    "motor.song": {
+      "description": "Vocal-motor command (syllable timing and syringeal drive).",
+      "category": "motor_output"
+    },
+    "motor.escape": {
+      "description": "All-or-none escape motor command (C-start).",
+      "category": "motor_output"
+    },
+    "motor.chromatophore": {
+      "description": "Skin-pattern display command (chromatophore radial muscles).",
+      "category": "motor_output"
+    },
+    "motor.arm": {
+      "description": "Arm motion command issued from the arm nerve cord.",
+      "category": "motor_output"
+    },
+    "motor.eod": {
+      "description": "Electric-organ discharge command.",
+      "category": "motor_output"
+    },
+    "efference.copy": {
+      "description": "Efference copy / corollary discharge of a self-generated motor command.",
+      "category": "state_regulatory"
+    },
+    "sensory.infrared": {
+      "description": "Infrared (thermal-radiation) signal from a pit organ (trigeminal afferents).",
+      "category": "sensory_input"
+    },
+    "sensory.vibrissa": {
+      "description": "Mechanosensory signal from a single whisker follicle.",
+      "category": "sensory_input"
+    },
+    "thermal.vector": {
+      "description": "Bearing of a warm target derived from the infrared map.",
+      "category": "spatial_temporal"
+    },
+    "spatial.place_code": {
+      "description": "Population code for the animal's current position.",
+      "category": "spatial_temporal"
+    },
+    "motor.swim": {
+      "description": "Swim thrust command (segmental / axial musculature).",
+      "category": "motor_output"
+    },
+    "motor.feeding": {
+      "description": "Ingestive rhythm command (buccal mass protraction/retraction).",
+      "category": "motor_output"
+    },
+    "motor.respiration": {
+      "description": "Respiratory drive (diaphragmatic / buccal pump).",
+      "category": "motor_output"
+    },
+    "motor.eye": {
+      "description": "Extraocular muscle command (gaze stabilisation).",
+      "category": "motor_output"
+    },
+    "motor.strike": {
+      "description": "Ballistic strike command (tongue / fang projection).",
+      "category": "motor_output"
+    },
+    "motor.whisk": {
+      "description": "Whisker sweep command (follicle muscle drive).",
+      "category": "motor_output"
+    },
+    "motor.gill": {
+      "description": "Gill-withdrawal effector command.",
+      "category": "motor_output"
+    },
+    "rhythm.swim": {
+      "description": "Swim-rhythm phase (which half-cycle the oscillator is in).",
+      "category": "spatial_temporal"
+    },
+    "rhythm.respiratory": {
+      "description": "Respiratory-rhythm phase.",
+      "category": "spatial_temporal"
+    },
+    "arousal.sleep": {
+      "description": "Sleep-pressure / homeostatic sleep drive.",
+      "category": "state_regulatory"
+    },
+    "arousal.wake": {
+      "description": "Wake-promoting drive.",
+      "category": "state_regulatory"
+    },
+    "gating.hunger": {
+      "description": "Hunger-state gate on a competing motor programme.",
+      "category": "state_regulatory"
+    },
+    "cerebellar.climbing": {
+      "description": "Climbing-fibre teaching signal (error / complex spike).",
+      "category": "cortical_processing"
+    },
+    "reafference.tactile": {
+      "description": "Self-generated tactile reafference from active sensing.",
+      "category": "state_regulatory"
+    },
+    "modulatory.octopamine": {
+      "description": "Octopaminergic diffuse modulation (invertebrate arousal / effort / gain-set; invertebrate analogue of norepinephrine).",
+      "category": "modulatory"
+    },
+    "sensory.gustatory": {
+      "description": "Taste signal from proboscis or pharyngeal gustatory neurons.",
+      "category": "sensory_input"
+    },
+    "sensory.mechanovibratory": {
+      "description": "Airborne vibration / wind signal from a Johnston organ or other mechanosensory appendage.",
+      "category": "sensory_input"
+    },
+    "sensory.proprioceptive": {
+      "description": "Joint-angle / body-position signal from stretch receptors along the thoracic and leg musculature.",
+      "category": "sensory_input"
+    },
+    "motor.leg": {
+      "description": "Leg walking / steering command to the tarsal motor pools.",
+      "category": "motor_output"
+    },
+    "motor.wing": {
+      "description": "Wing-flight command (depressor / promoter / haltere drive).",
+      "category": "motor_output"
+    },
+    "motor.posture": {
+      "description": "Thoracic posture hold command (static stance, not flight).",
+      "category": "motor_output"
+    },
+    "modulatory.endocrine": {
+      "description": "Peptidergic volume-transmission modulation from crustal / ventral-nerve-cord endocrine neurons.",
+      "category": "modulatory"
+    },
+    "gating.attention": {
+      "description": "Attention-priority gate on a competing modulatory program (which centrifugal feedback wins).",
+      "category": "state_regulatory"
+    }
+  },
   "stats": {
     "functional_units": 103,
     "connection_types": 66,
