@@ -98,7 +98,16 @@
         "quantal_size": 1.0
       },
       "biological_reference": "Gray 1959; Peters & Palay 1991",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.99,
+        "computational_p": 0.94,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "axo_somatic",
@@ -117,7 +126,16 @@
         "shunt_gain": 0.9
       },
       "biological_reference": "Freund & Katona 2007",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.98,
+        "computational_p": 0.93,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "axo_axonic",
@@ -136,7 +154,16 @@
         "spike_block_probability": 0.7
       },
       "biological_reference": "chandelier cells, Szabadics 2006",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.95,
+        "computational_p": 0.86,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "dendro_dendritic",
@@ -155,7 +182,16 @@
         "crosstalk_gain": 0.4
       },
       "biological_reference": "Shepherd 2004",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.93,
+        "computational_p": 0.84,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "axo_dendrite_reciprocal",
@@ -175,7 +211,16 @@
         "inh_gain": 0.5
       },
       "biological_reference": "Rall et al 1966; olfactory bulb mitral/granule pair",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.83,
+        "computational_p": 0.81,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "pre_presynaptic_inhibition",
@@ -194,7 +239,16 @@
         "release_suppression": 0.5
       },
       "biological_reference": "axo-axonic GABA-B",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.97,
+        "computational_p": 0.9,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "pre_presynaptic_excitation",
@@ -213,7 +267,16 @@
         "release_facilitation": 0.4
       },
       "biological_reference": "nicotinic presynaptic facilitation",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.8,
+        "computational_p": 0.76,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "dendritic_excitatory_synapse",
@@ -232,7 +295,16 @@
         "branch_gain": 1.2
       },
       "biological_reference": "Larkum 2013",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.96,
+        "computational_p": 0.91,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "dendritic_inhibitory_synapse",
@@ -251,7 +323,16 @@
         "branch_veto": 0.8
       },
       "biological_reference": "Miles 1990",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.93,
+        "computational_p": 0.89,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "autapse_recurrent",
@@ -298,7 +379,16 @@
         "stage_gain": 1.1
       },
       "biological_reference": "canonical cortical FF drive",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.93,
+        "computational_p": 0.95,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "feedforward_inhibitory",
@@ -317,7 +407,16 @@
         "window_ms": 15
       },
       "biological_reference": "Pouille & Scanziani 2001",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.97,
+        "computational_p": 0.96,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "feedforward_gating",
@@ -337,7 +436,16 @@
         "gate_closed": 0.0
       },
       "biological_reference": "attention gating",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.76,
+        "computational_p": 0.84,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "feedback_excitatory",
@@ -356,7 +464,16 @@
         "feedback_gain": 0.7
       },
       "biological_reference": "corticothalamic feedback",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.86,
+        "computational_p": 0.91,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "feedback_inhibitory",
@@ -375,7 +492,16 @@
         "feedback_gain": 0.6
       },
       "biological_reference": "predictive coding",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.91,
+        "computational_p": 0.93,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "lateral_inhibitory",
@@ -394,7 +520,16 @@
         "inhibition_radius": 3
       },
       "biological_reference": "Hartline & Ratliff 1958 (Limulus)",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.98,
+        "computational_p": 0.97,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "lateral_feedback",
@@ -413,7 +548,16 @@
         "resonance_gain": 0.5
       },
       "biological_reference": "cortical lateral connectivity",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.76,
+        "computational_p": 0.82,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "mutual_inhibitory",
@@ -432,7 +576,16 @@
         "balance": 1.0
       },
       "biological_reference": "half-centre oscillator",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.97,
+        "computational_p": 0.98,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "recurrent_excitatory",
@@ -451,7 +604,16 @@
         "loop_gain": 0.85
       },
       "biological_reference": "Hopfield 1982; persistent activity",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.97,
+        "computational_p": 0.97,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "recurrent_inhibitory",
@@ -470,7 +632,16 @@
         "loop_gain": 0.8
       },
       "biological_reference": "interneuron-stabilised networks",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.96,
+        "computational_p": 0.96,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "disinhibition",
@@ -489,7 +660,16 @@
         "release_gain": 0.9
       },
       "biological_reference": "VIP -> SST -> pyramidal (cortex)",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.95,
+        "computational_p": 0.92,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "shunting_inhibition",
@@ -508,7 +688,16 @@
         "conductance_gain": 1.5
       },
       "biological_reference": "Carandini & Heeger 2012",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.96,
+        "computational_p": 0.96,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "contrast_inhibition",
@@ -527,7 +716,16 @@
         "normalisation_exponent": 2.0
       },
       "biological_reference": "Heeger 1992",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.89,
+        "computational_p": 0.91,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "winner_take_all",
@@ -607,7 +805,16 @@
         ]
       },
       "biological_reference": "neuromodulatory systems",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.91,
+        "computational_p": 0.87,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "neuromodulatory_axon",
@@ -626,7 +833,16 @@
         "varicosity_count": 12
       },
       "biological_reference": "Descarries 1998",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.97,
+        "computational_p": 0.83,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "volume_transmission",
@@ -646,7 +862,16 @@
         "decay_tau": 400.0
       },
       "biological_reference": "Fuxe 2010; Agnati 1995",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.94,
+        "computational_p": 0.87,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "short_range_volume",
@@ -665,7 +890,16 @@
         "diffusion_radius": 8.0
       },
       "biological_reference": "Sahlender 2014",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.56,
+        "computational_p": 0.66,
+        "evidence_score": 2,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "retrograde_messenger",
@@ -685,7 +919,16 @@
         "effect": "suppress_release"
       },
       "biological_reference": "endocannabinoid system (Wilson & Nicoll 2001)",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.97,
+        "computational_p": 0.85,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "state_gating_modulation",
@@ -732,7 +975,16 @@
         "coupling_conductance": 0.2
       },
       "biological_reference": "connective connexin coupling",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.98,
+        "computational_p": 0.96,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "gap_junction_inhibitory",
@@ -751,7 +1003,16 @@
         "coupling_conductance": 0.15
       },
       "biological_reference": "GABAergic gap junctions",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.78,
+        "computational_p": 0.83,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "ephaptic_coupling",
@@ -770,7 +1031,16 @@
         "field_gain": 0.05
       },
       "biological_reference": "ephaptic coupling (Anastassiou 2011)",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.81,
+        "computational_p": 0.83,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "astrocyte_neuron_tripartite",
@@ -789,7 +1059,16 @@
         "response_tau": 2000.0
       },
       "biological_reference": "Araque 1999 tripartite synapse",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.93,
+        "computational_p": 0.9,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "gliotransmission_calcium_wave",
@@ -839,7 +1118,16 @@
         "tau_minus": 20.0
       },
       "biological_reference": "Bi & Poo 1998",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.95,
+        "computational_p": 0.97,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "ltp_ltd",
@@ -859,7 +1147,16 @@
         "ltp_threshold_hz": 20.0
       },
       "biological_reference": "Bliss & Lomo 1973",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.83,
+        "computational_p": 0.91,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "short_term_plasticity",
@@ -879,7 +1176,16 @@
         "depression_tau": 800.0
       },
       "biological_reference": "Zucker & Regehr 2002",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.96,
+        "computational_p": 0.96,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "dendritic_computation",
@@ -899,7 +1205,16 @@
         "plateau_ms": 300
       },
       "biological_reference": "London & Hausser 2005",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.97,
+        "computational_p": 0.95,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "homeostatic_scaling",
@@ -948,7 +1263,16 @@
         "dimensions": 2
       },
       "biological_reference": "retinotopy / somatotopy",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.93,
+        "computational_p": 0.87,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "temporal_coherence",
@@ -970,7 +1294,16 @@
         ]
       },
       "biological_reference": "Singer & Gray 1995",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.67,
+        "computational_p": 0.86,
+        "evidence_score": 3,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "inhibitory_hub",
@@ -989,7 +1322,16 @@
         "hub_fanout": "dominant"
       },
       "biological_reference": "MaleCNS v1.0 APL (fan-out 102,263)",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.62,
+        "computational_p": 0.7,
+        "evidence_score": 3,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "reservoir_smallworld",
@@ -1009,7 +1351,16 @@
         "path_length": 2.4
       },
       "biological_reference": "MaleCNS v1.0 ol_intrinsic reservoir",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.3,
+        "computational_p": 0.68,
+        "evidence_score": 1,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "recurrent_feedback",
@@ -1028,7 +1379,16 @@
         "loop_delay_ms": 80
       },
       "biological_reference": "MaleCNS v1.0 recurrent feedback motif",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.6,
+        "computational_p": 0.82,
+        "evidence_score": 3,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "divergent_fanout",
@@ -1188,7 +1548,16 @@
         "divisive_gain": 0.7
       },
       "biological_reference": "Wilson & Laurent 2005; Papadopoulou et al 2011",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.93,
+        "computational_p": 0.91,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "neural_chain_sequence",
@@ -1322,7 +1691,16 @@
         "decay_minutes": 30
       },
       "biological_reference": "Shomrat et al 2008; Hochner 2012",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.84,
+        "computational_p": 0.78,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "command_neuron_recruitment",
@@ -1429,7 +1807,16 @@
         "camp_dependent": true
       },
       "biological_reference": "Castellucci & Kandel 1976; Kandel 2001",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.96,
+        "computational_p": 0.89,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "short_term_habituation",
@@ -1449,7 +1836,16 @@
         "recovery_minutes": 10
       },
       "biological_reference": "Castellucci et al 1970; Rankin et al 2009",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "SUPPORTED",
+        "literature_p": 0.95,
+        "computational_p": 0.92,
+        "evidence_score": 5,
+        "evidence_label": "well_supported",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     },
     {
       "name": "coincidence_detection",
@@ -1556,7 +1952,16 @@
         "gain_visual": 0.6
       },
       "biological_reference": "Hartline et al 2011; Gracheva et al 2010; Newman & Hartline 1982",
-      "abstraction_only": false
+      "abstraction_only": false,
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.78,
+        "computational_p": 0.48,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T22:40:00+08:00",
+        "model_version": "jev-1.13.0"
+      }
     }
   ]
 }
