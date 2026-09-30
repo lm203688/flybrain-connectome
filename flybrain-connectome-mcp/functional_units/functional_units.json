@@ -299,6 +299,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.85,
+        "model_p": 0.8,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 4,
@@ -424,6 +433,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.9,
+        "model_p": 0.86,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 4,
@@ -548,6 +566,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.46,
+        "model_p": 0.38,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 4,
@@ -658,6 +685,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.8,
+        "model_p": 0.56,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -778,6 +814,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.87,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -891,6 +936,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.66,
+        "model_p": 0.58,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -1003,6 +1057,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "single_source",
         "n_literature_refs": 1
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.59,
+        "model_p": 0.61,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1131,6 +1194,15 @@
         "evidence_weight": "single_source",
         "n_literature_refs": 1
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.79,
+        "model_p": 0.8,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -1251,6 +1323,15 @@
         "evidence_weight": "single_source",
         "n_literature_refs": 1
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.95,
+        "model_p": 0.87,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 2,
@@ -1358,6 +1439,15 @@
         "evidence_weight": "single_source",
         "n_literature_refs": 1
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.91,
+        "model_p": 0.74,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 2,
@@ -1464,6 +1554,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "single_source",
         "n_literature_refs": 1
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.89,
+        "model_p": 0.68,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1595,6 +1694,15 @@
         "evidence_weight": "single_source",
         "n_literature_refs": 1
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.86,
+        "model_p": 0.58,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 4,
@@ -1724,6 +1832,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "single_source",
         "n_literature_refs": 1
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.85,
+        "model_p": 0.59,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -1862,6 +1979,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.81,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2038,6 +2164,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.72,
+        "model_p": 0.61,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 6,
@@ -2195,6 +2330,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.59,
+        "model_p": 0.72,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 5,
@@ -2324,6 +2468,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.72,
+        "model_p": 0.66,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2483,6 +2636,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.39,
+        "model_p": 0.63,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 6,
@@ -2612,6 +2774,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.18,
+        "model_p": 0.23,
+        "evidence_score": 1,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -2770,6 +2941,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.95,
+        "model_p": 0.94,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 5,
@@ -2894,6 +3074,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.94,
+        "model_p": 0.93,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3036,6 +3225,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.97,
+        "model_p": 0.95,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -3159,6 +3357,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.67,
+        "model_p": 0.48,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3284,6 +3491,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.67,
+        "model_p": 0.56,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3417,6 +3633,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.7,
+        "model_p": 0.87,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -3530,6 +3755,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "single_source",
         "n_literature_refs": 1
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.95,
+        "model_p": 0.89,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3657,6 +3891,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.92,
+        "model_p": 0.92,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3816,6 +4059,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.93,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 5,
@@ -3942,6 +4194,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.93,
+        "model_p": 0.86,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4074,6 +4335,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.92,
+        "model_p": 0.88,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4212,6 +4482,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.87,
+        "model_p": 0.78,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -4342,6 +4621,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.96,
+        "model_p": 0.91,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4499,6 +4787,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.94,
+        "model_p": 0.94,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 5,
@@ -4626,6 +4923,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.9,
+        "model_p": 0.88,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -4751,6 +5057,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.68,
+        "model_p": 0.56,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -4889,6 +5204,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.81,
+        "model_p": 0.82,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 5,
@@ -5020,6 +5344,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.57,
+        "model_p": 0.57,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 4,
@@ -5128,6 +5461,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.9,
+        "model_p": 0.7,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -5241,6 +5583,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.71,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -5379,6 +5730,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.92,
+        "model_p": 0.78,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -5500,7 +5860,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.93,
+        "model_p": 0.89,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -5809,7 +6179,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.91,
+        "model_p": 0.9,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -6188,7 +6568,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.92,
+        "model_p": 0.81,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -6574,7 +6964,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.93,
+        "model_p": 0.9,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -6912,7 +7312,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.71,
+        "model_p": 0.67,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -7214,7 +7624,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.55,
+        "model_p": 0.67,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 2,
@@ -7427,6 +7847,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.85,
+        "model_p": 0.79,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -7537,6 +7966,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.84,
+        "model_p": 0.79,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7666,6 +8104,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.94,
+        "model_p": 0.81,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -7803,6 +8250,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.92,
+        "model_p": 0.84,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 4,
@@ -7916,6 +8372,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.61,
+        "model_p": 0.66,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8047,6 +8512,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.79,
+        "model_p": 0.77,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 4,
@@ -8171,6 +8645,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.79,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8299,6 +8782,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.67,
+        "model_p": 0.48,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -8415,6 +8907,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.69,
+        "model_p": 0.41,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8538,6 +9039,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.75,
+        "model_p": 0.65,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8668,6 +9178,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.89,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -8796,6 +9315,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.84,
+        "model_p": 0.59,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -8934,6 +9462,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.94,
+        "model_p": 0.88,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 4,
@@ -9061,6 +9598,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.75,
+        "model_p": 0.71,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -9180,6 +9726,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.8,
+        "model_p": 0.47,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -9295,6 +9850,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.32,
+        "model_p": 0.27,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9413,6 +9977,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.8,
+        "model_p": 0.68,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9553,6 +10126,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.82,
+        "model_p": 0.74,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -9671,6 +10253,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.95,
+        "model_p": 0.92,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -9803,6 +10394,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.91,
+        "model_p": 0.9,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 4,
@@ -9931,6 +10531,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.91,
+        "model_p": 0.83,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -10063,6 +10672,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.88,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -10193,6 +10811,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.91,
+        "model_p": 0.89,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -10321,6 +10948,15 @@
         "unanchored_reason": "identity_not_in_drosophila",
         "evidence_weight": "multi_source",
         "n_literature_refs": 2
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.6,
+        "model_p": 0.65,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -10457,6 +11093,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.94,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 4,
@@ -10590,6 +11235,15 @@
         "evidence_weight": "multi_source",
         "n_literature_refs": 3
       },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.71,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
       "embodiment": {
         "populations_anchored": 0,
         "populations_total": 3,
@@ -10695,7 +11349,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.87,
+        "model_p": 0.66,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -10940,7 +11604,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.56,
+        "model_p": 0.38,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 2,
@@ -11162,7 +11836,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.89,
+        "model_p": 0.75,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -11460,7 +12144,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.87,
+        "evidence_score": 5,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -11721,7 +12415,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.72,
+        "model_p": 0.48,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -12013,7 +12717,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.86,
+        "model_p": 0.69,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -12296,7 +13010,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.62,
+        "model_p": 0.26,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -12521,7 +13245,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.77,
+        "model_p": 0.4,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -12829,7 +13563,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.59,
+        "model_p": 0.43,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 2,
@@ -13020,7 +13764,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.88,
+        "model_p": 0.5,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -13270,7 +14024,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.54,
+        "model_p": 0.29,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -13589,7 +14353,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.68,
+        "model_p": 0.51,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -13895,7 +14669,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.47,
+        "model_p": 0.18,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -14132,7 +14916,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.21,
+        "model_p": 0.27,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -14491,7 +15285,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.34,
+        "model_p": 0.31,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -14866,7 +15670,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.25,
+        "model_p": 0.38,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -15252,7 +16066,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.44,
+        "model_p": 0.3,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -15566,7 +16390,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.32,
+        "model_p": 0.26,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -15951,7 +16785,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.39,
+        "model_p": 0.26,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -16250,7 +17094,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.29,
+        "model_p": 0.16,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -16500,7 +17354,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.28,
+        "model_p": 0.15,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -16874,7 +17738,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.34,
+        "model_p": 0.21,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -17264,7 +18138,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.3,
+        "model_p": 0.31,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -17611,7 +18495,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.29,
+        "model_p": 0.19,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -18129,7 +19023,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.28,
+        "model_p": 0.24,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 6,
@@ -18583,7 +19487,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.43,
+        "model_p": 0.44,
+        "evidence_score": 2,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 7,
@@ -19048,7 +19962,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "WEAK",
+        "literature_p": 0.2,
+        "model_p": 0.12,
+        "evidence_score": 1,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 6,
@@ -19474,7 +20398,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.76,
+        "model_p": 0.41,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -19927,7 +20861,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.59,
+        "model_p": 0.33,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -20262,7 +21206,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.65,
+        "model_p": 0.54,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -20861,7 +21815,17 @@
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "embodied_in_malecns": true,
-        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome"
+        "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
+        "evidence_weight": "connectome_derived"
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.65,
+        "model_p": 0.54,
+        "evidence_score": 3,
+        "evidence_label": "speculative",
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
       },
       "embodiment": {
         "populations_anchored": 5,
