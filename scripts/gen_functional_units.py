@@ -1088,15 +1088,18 @@ def _evidence_weight(unit: dict) -> tuple:
     """Derive `provenance.evidence_weight` for UNANCHORED units from the count
     of `;`-separated entries in `biological_reference`.
 
-    Three-tier enum (never hand-typed):
-      single_source  — exactly 1 citation; a claim resting on one paper
-      multi_source   — 2-3 citations; consensus from independent groups
-      textbook       — >=4 citations; the sort of entry that appears in a
-                       textbook chapter
-
-    Anchored units do NOT carry this field: their evidence is the connectome,
-    not the citation count.
+    Four-tier enum (never hand-typed):
+      connectome_derived — the unit is anchored in MaleCNS v1.0 connectome
+                           data; evidence is the extraction itself, not
+                           literature citations
+      textbook           — >=4 citations; the sort of entry that appears in
+                           a textbook chapter
+      multi_source       — 2-3 citations; consensus from independent groups
+      single_source      — exactly 1 citation; a claim resting on one paper
     """
+    # Embodied units get the highest tier: their evidence IS the connectome
+    if unit.get("provenance", {}).get("embodied_in_malecns"):
+        return "connectome_derived", None
     refs = [r.strip() for r in (unit.get("biological_reference") or "").split(";")
             if r.strip()]
     n = len(refs)
@@ -1185,8 +1188,9 @@ def _embody(unit: dict, anchors: dict) -> None:
         _unanchored_basis(unit, anchors))
     if not anchored:
         unit["provenance"]["unanchored_reason"] = _unanchored_reason(unit, anchors)
-        weight, n_refs = _evidence_weight(unit)
-        unit["provenance"]["evidence_weight"] = weight
+    weight, n_refs = _evidence_weight(unit)
+    unit["provenance"]["evidence_weight"] = weight
+    if n_refs is not None:
         unit["provenance"]["n_literature_refs"] = n_refs
 
 
@@ -3118,6 +3122,126 @@ FUNCTIONAL_UNITS += [
        "lateral_horn_innate_odour_unit")),
 ]
 
+# ---------------------------------------------------------------------------
+# v2.24.0 — JEV-powered validation of all 103 functional units.
+# Each unit is assessed on three dimensions:
+#   literature_p:  (noul) P(documented in >=2 peer-reviewed papers)
+#   model_p:       (noul) P(published computational model exists)
+#   evidence_score:(0-10 rubric of published evidence strength)
+#   verdict:       SUPPORTED | PARTIAL | WEAK
+# Cost: 103 calls × 3 questions ≈ $0.0075. Full JSON: jev_results/.
+# ---------------------------------------------------------------------------
+_JEV_UNIT_VALIDATION = {
+    "amygdala_fear_unit":                              {"verdict": "PARTIAL", "literature_p": 0.93, "model_p": 0.86, "evidence_score": 5, "evidence_label": "preliminary"},
+    "antennal_lobe_central_complex_feedback_unit":     {"verdict": "PARTIAL", "literature_p": 0.59, "model_p": 0.33, "evidence_score": 3, "evidence_label": "speculative"},
+    "antennal_lobe_glomerular_unit":                   {"verdict": "PARTIAL", "literature_p": 0.93, "model_p": 0.89, "evidence_score": 5, "evidence_label": "preliminary"},
+    "aplysia_gill_withdrawal_unit":                    {"verdict": "PARTIAL", "literature_p": 0.94, "model_p": 0.88, "evidence_score": 5, "evidence_label": "preliminary"},
+    "ascidian_larval_escape_swim_unit":                {"verdict": "PARTIAL", "literature_p": 0.84, "model_p": 0.59, "evidence_score": 3, "evidence_label": "speculative"},
+    "astrocyte_tripartite_unit":                       {"verdict": "PARTIAL", "literature_p": 0.92, "model_p": 0.78, "evidence_score": 5, "evidence_label": "preliminary"},
+    "auditory_song_reception_unit":                    {"verdict": "PARTIAL", "literature_p": 0.62, "model_p": 0.26, "evidence_score": 3, "evidence_label": "speculative"},
+    "auditory_thalamic_relay_unit":                    {"verdict": "PARTIAL", "literature_p": 0.89, "model_p": 0.68, "evidence_score": 5, "evidence_label": "preliminary"},
+    "barrel_cortex_whisking_unit":                     {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.71, "evidence_score": 5, "evidence_label": "preliminary"},
+    "basal_ganglia_selection_unit":                    {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.93, "evidence_score": 5, "evidence_label": "preliminary"},
+    "birdsong_basal_ganglia_learning_unit":            {"verdict": "PARTIAL", "literature_p": 0.94, "model_p": 0.81, "evidence_score": 5, "evidence_label": "preliminary"},
+    "birdsong_hvc_timing_unit":                        {"verdict": "PARTIAL", "literature_p": 0.85, "model_p": 0.79, "evidence_score": 4, "evidence_label": "preliminary"},
+    "birdsong_ra_motor_unit":                          {"verdict": "PARTIAL", "literature_p": 0.84, "model_p": 0.79, "evidence_score": 4, "evidence_label": "preliminary"},
+    "buccal_efferent_feedback_unit":                   {"verdict": "WEAK",    "literature_p": 0.28, "model_p": 0.24, "evidence_score": 2, "evidence_label": "speculative"},
+    "buccal_feeding_cpg_unit":                         {"verdict": "PARTIAL", "literature_p": 0.75, "model_p": 0.71, "evidence_score": 3, "evidence_label": "speculative"},
+    "cb_efferent_command_unit":                        {"verdict": "WEAK",    "literature_p": 0.30, "model_p": 0.31, "evidence_score": 2, "evidence_label": "speculative"},
+    "cb_endocrine_modulation_unit":                    {"verdict": "WEAK",    "literature_p": 0.29, "model_p": 0.16, "evidence_score": 2, "evidence_label": "speculative"},
+    "cb_sensory_motor_unit":                           {"verdict": "WEAK",    "literature_p": 0.39, "model_p": 0.26, "evidence_score": 2, "evidence_label": "speculative"},
+    "central_complex_heading_unit":                    {"verdict": "PARTIAL", "literature_p": 0.93, "model_p": 0.90, "evidence_score": 4, "evidence_label": "preliminary"},
+    "central_complex_steering_unit":                   {"verdict": "PARTIAL", "literature_p": 0.71, "model_p": 0.67, "evidence_score": 3, "evidence_label": "speculative"},
+    "centrifugal_visual_feedback_unit":                {"verdict": "WEAK",    "literature_p": 0.29, "model_p": 0.19, "evidence_score": 2, "evidence_label": "speculative"},
+    "cephalopod_arm_motor_unit":                       {"verdict": "PARTIAL", "literature_p": 0.75, "model_p": 0.65, "evidence_score": 4, "evidence_label": "preliminary"},
+    "cephalopod_chromatophore_control_unit":           {"verdict": "PARTIAL", "literature_p": 0.69, "model_p": 0.41, "evidence_score": 4, "evidence_label": "preliminary"},
+    "cephalopod_vertical_lobe_learning_unit":          {"verdict": "PARTIAL", "literature_p": 0.67, "model_p": 0.48, "evidence_score": 3, "evidence_label": "speculative"},
+    "cerebellar_climbing_fibre_teaching_unit":         {"verdict": "PARTIAL", "literature_p": 0.95, "model_p": 0.92, "evidence_score": 5, "evidence_label": "preliminary"},
+    "cerebellar_cortical_unit":                        {"verdict": "PARTIAL", "literature_p": 0.95, "model_p": 0.94, "evidence_score": 5, "evidence_label": "preliminary"},
+    "cerebellar_error_teaching_unit":                  {"verdict": "PARTIAL", "literature_p": 0.94, "model_p": 0.93, "evidence_score": 5, "evidence_label": "preliminary"},
+    "cerebellar_purkinje_ltd_unit":                    {"verdict": "PARTIAL", "literature_p": 0.91, "model_p": 0.90, "evidence_score": 5, "evidence_label": "preliminary"},
+    "cholinergic_arousal_unit":                        {"verdict": "PARTIAL", "literature_p": 0.90, "model_p": 0.70, "evidence_score": 5, "evidence_label": "preliminary"},
+    "circadian_clock_unit":                            {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.71, "evidence_score": 5, "evidence_label": "preliminary"},
+    "cochlear_amplification_unit":                     {"verdict": "PARTIAL", "literature_p": 0.66, "model_p": 0.58, "evidence_score": 4, "evidence_label": "preliminary"},
+    "compound_lamina_relay_unit":                      {"verdict": "PARTIAL", "literature_p": 0.87, "model_p": 0.66, "evidence_score": 5, "evidence_label": "preliminary"},
+    "cortical_highorder_integration_unit":             {"verdict": "WEAK",    "literature_p": 0.18, "model_p": 0.23, "evidence_score": 1, "evidence_label": "speculative"},
+    "cortical_inhibitory_gain_unit":                   {"verdict": "WEAK",    "literature_p": 0.39, "model_p": 0.63, "evidence_score": 2, "evidence_label": "speculative"},
+    "cortical_l23_association_unit":                   {"verdict": "PARTIAL", "literature_p": 0.72, "model_p": 0.61, "evidence_score": 3, "evidence_label": "speculative"},
+    "cortical_l4_input_unit":                          {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.81, "evidence_score": 5, "evidence_label": "preliminary"},
+    "cortical_l5_output_unit":                         {"verdict": "PARTIAL", "literature_p": 0.59, "model_p": 0.72, "evidence_score": 3, "evidence_label": "speculative"},
+    "cortical_l6_feedback_unit":                       {"verdict": "PARTIAL", "literature_p": 0.72, "model_p": 0.66, "evidence_score": 4, "evidence_label": "preliminary"},
+    "courtship_decision_unit":                         {"verdict": "PARTIAL", "literature_p": 0.77, "model_p": 0.40, "evidence_score": 3, "evidence_label": "speculative"},
+    "courtship_song_pattern_unit":                     {"verdict": "PARTIAL", "literature_p": 0.59, "model_p": 0.43, "evidence_score": 3, "evidence_label": "speculative"},
+    "dopaminergic_value_unit":                         {"verdict": "PARTIAL", "literature_p": 0.81, "model_p": 0.82, "evidence_score": 4, "evidence_label": "preliminary"},
+    "efferent_command_bus_unit":                       {"verdict": "WEAK",    "literature_p": 0.34, "model_p": 0.21, "evidence_score": 2, "evidence_label": "speculative"},
+    "electric_organ_discharge_unit":                   {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.79, "evidence_score": 5, "evidence_label": "preliminary"},
+    "electrosensory_electrolocation_unit":             {"verdict": "PARTIAL", "literature_p": 0.79, "model_p": 0.77, "evidence_score": 4, "evidence_label": "preliminary"},
+    "elementary_motion_detection_unit":                {"verdict": "PARTIAL", "literature_p": 0.89, "model_p": 0.75, "evidence_score": 4, "evidence_label": "preliminary"},
+    "entorhinal_spatial_map_unit":                     {"verdict": "PARTIAL", "literature_p": 0.70, "model_p": 0.87, "evidence_score": 4, "evidence_label": "preliminary"},
+    "frog_escape_swim_unit":                           {"verdict": "PARTIAL", "literature_p": 0.82, "model_p": 0.74, "evidence_score": 4, "evidence_label": "preliminary"},
+    "frog_tectal_prey_capture_unit":                   {"verdict": "PARTIAL", "literature_p": 0.80, "model_p": 0.68, "evidence_score": 4, "evidence_label": "preliminary"},
+    "gamma_spindle_loop_unit":                         {"verdict": "PARTIAL", "literature_p": 0.90, "model_p": 0.88, "evidence_score": 5, "evidence_label": "preliminary"},
+    "giant_fiber_escape_unit":                         {"verdict": "PARTIAL", "literature_p": 0.86, "model_p": 0.69, "evidence_score": 4, "evidence_label": "preliminary"},
+    "gustatory_centrifugal_unit":                      {"verdict": "WEAK",    "literature_p": 0.20, "model_p": 0.12, "evidence_score": 1, "evidence_label": "speculative"},
+    "hippocampal_ca2_autoassoc_unit":                  {"verdict": "PARTIAL", "literature_p": 0.67, "model_p": 0.48, "evidence_score": 4, "evidence_label": "preliminary"},
+    "hippocampal_output_unit":                         {"verdict": "PARTIAL", "literature_p": 0.67, "model_p": 0.56, "evidence_score": 4, "evidence_label": "preliminary"},
+    "hippocampal_spatial_map_unit":                    {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.94, "evidence_score": 5, "evidence_label": "preliminary"},
+    "hippocampal_trisynaptic_unit":                    {"verdict": "PARTIAL", "literature_p": 0.97, "model_p": 0.95, "evidence_score": 5, "evidence_label": "preliminary"},
+    "hypothalamic_arousal_unit":                       {"verdict": "PARTIAL", "literature_p": 0.87, "model_p": 0.78, "evidence_score": 5, "evidence_label": "preliminary"},
+    "insect_clock_pacemaker_unit":                     {"verdict": "PARTIAL", "literature_p": 0.55, "model_p": 0.67, "evidence_score": 3, "evidence_label": "speculative"},
+    "johnston_organ_wind_unit":                        {"verdict": "PARTIAL", "literature_p": 0.44, "model_p": 0.30, "evidence_score": 2, "evidence_label": "speculative"},
+    "lateral_horn_innate_odour_unit":                  {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.50, "evidence_score": 4, "evidence_label": "preliminary"},
+    "leech_swim_cpg_unit":                             {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.89, "evidence_score": 4, "evidence_label": "preliminary"},
+    "leg_motor_pool_unit":                             {"verdict": "WEAK",    "literature_p": 0.34, "model_p": 0.31, "evidence_score": 2, "evidence_label": "speculative"},
+    "lobula_plate_optic_flow_unit":                    {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.87, "evidence_score": 5, "evidence_label": "preliminary"},
+    "locus_coeruleus_arousal_unit":                    {"verdict": "PARTIAL", "literature_p": 0.60, "model_p": 0.65, "evidence_score": 4, "evidence_label": "preliminary"},
+    "looming_detection_unit":                          {"verdict": "PARTIAL", "literature_p": 0.68, "model_p": 0.51, "evidence_score": 3, "evidence_label": "speculative"},
+    "medulla_centripetal_gain_unit":                   {"verdict": "PARTIAL", "literature_p": 0.65, "model_p": 0.54, "evidence_score": 3, "evidence_label": "speculative"},
+    "medulla_colour_pathway_unit":                     {"verdict": "PARTIAL", "literature_p": 0.56, "model_p": 0.38, "evidence_score": 3, "evidence_label": "speculative"},
+    "motor_thalamic_relay_unit":                       {"verdict": "PARTIAL", "literature_p": 0.85, "model_p": 0.59, "evidence_score": 5, "evidence_label": "preliminary"},
+    "mushroom_body_associative_memory_unit":           {"verdict": "PARTIAL", "literature_p": 0.92, "model_p": 0.81, "evidence_score": 5, "evidence_label": "preliminary"},
+    "mushroom_body_dopamine_arousal_unit":             {"verdict": "PARTIAL", "literature_p": 0.65, "model_p": 0.54, "evidence_score": 3, "evidence_label": "speculative"},
+    "mushroom_body_lateral_horn_reciprocal_unit":      {"verdict": "PARTIAL", "literature_p": 0.76, "model_p": 0.41, "evidence_score": 3, "evidence_label": "speculative"},
+    "mushroom_body_sparse_code_unit":                  {"verdict": "PARTIAL", "literature_p": 0.91, "model_p": 0.90, "evidence_score": 5, "evidence_label": "preliminary"},
+    "oa_visual_modulation_unit":                       {"verdict": "WEAK",    "literature_p": 0.32, "model_p": 0.26, "evidence_score": 2, "evidence_label": "speculative"},
+    "octopamine_arousal_unit":                         {"verdict": "PARTIAL", "literature_p": 0.54, "model_p": 0.29, "evidence_score": 3, "evidence_label": "speculative"},
+    "olfactory_transduction_unit":                     {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.87, "evidence_score": 5, "evidence_label": "preliminary"},
+    "passive_electroreception_unit":                   {"verdict": "PARTIAL", "literature_p": 0.61, "model_p": 0.66, "evidence_score": 4, "evidence_label": "preliminary"},
+    "pharyngeal_gustatory_unit":                       {"verdict": "PARTIAL", "literature_p": 0.47, "model_p": 0.18, "evidence_score": 2, "evidence_label": "speculative"},
+    "pit_viper_strike_unit":                           {"verdict": "WEAK",    "literature_p": 0.32, "model_p": 0.27, "evidence_score": 2, "evidence_label": "speculative"},
+    "red_nucleus_coordination_unit":                   {"verdict": "PARTIAL", "literature_p": 0.68, "model_p": 0.56, "evidence_score": 4, "evidence_label": "preliminary"},
+    "respiratory_rhythm_cpg_unit":                     {"verdict": "PARTIAL", "literature_p": 0.88, "model_p": 0.88, "evidence_score": 4, "evidence_label": "preliminary"},
+    "retinal_direction_selective_unit":                {"verdict": "PARTIAL", "literature_p": 0.90, "model_p": 0.86, "evidence_score": 5, "evidence_label": "preliminary"},
+    "retinal_irradiance_unit":                         {"verdict": "PARTIAL", "literature_p": 0.80, "model_p": 0.56, "evidence_score": 4, "evidence_label": "preliminary"},
+    "retinal_motion_onset_unit":                       {"verdict": "PARTIAL", "literature_p": 0.46, "model_p": 0.38, "evidence_score": 2, "evidence_label": "speculative"},
+    "retinal_phototransduction_unit":                  {"verdict": "PARTIAL", "literature_p": 0.85, "model_p": 0.80, "evidence_score": 5, "evidence_label": "preliminary"},
+    "septo_hippocampal_theta_unit":                    {"verdict": "PARTIAL", "literature_p": 0.92, "model_p": 0.88, "evidence_score": 5, "evidence_label": "preliminary"},
+    "serotonergic_mood_unit":                          {"verdict": "PARTIAL", "literature_p": 0.57, "model_p": 0.57, "evidence_score": 4, "evidence_label": "preliminary"},
+    "sleep_wake_flipflop_unit":                        {"verdict": "PARTIAL", "literature_p": 0.91, "model_p": 0.89, "evidence_score": 5, "evidence_label": "preliminary"},
+    "somatosensory_dorsalhorn_unit":                   {"verdict": "PARTIAL", "literature_p": 0.79, "model_p": 0.80, "evidence_score": 5, "evidence_label": "preliminary"},
+    "somatosensory_thalamic_relay_unit":               {"verdict": "PARTIAL", "literature_p": 0.86, "model_p": 0.58, "evidence_score": 5, "evidence_label": "preliminary"},
+    "spinal_cpg_unit":                                 {"verdict": "PARTIAL", "literature_p": 0.94, "model_p": 0.94, "evidence_score": 5, "evidence_label": "preliminary"},
+    "spinal_reflex_arc_unit":                          {"verdict": "PARTIAL", "literature_p": 0.96, "model_p": 0.91, "evidence_score": 5, "evidence_label": "preliminary"},
+    "startle_escape_command_unit":                     {"verdict": "PARTIAL", "literature_p": 0.92, "model_p": 0.84, "evidence_score": 5, "evidence_label": "preliminary"},
+    "striatal_direct_pathway_unit":                    {"verdict": "PARTIAL", "literature_p": 0.95, "model_p": 0.89, "evidence_score": 5, "evidence_label": "preliminary"},
+    "striatal_indirect_pathway_unit":                  {"verdict": "PARTIAL", "literature_p": 0.92, "model_p": 0.92, "evidence_score": 5, "evidence_label": "preliminary"},
+    "thalamocortical_relay_unit":                      {"verdict": "PARTIAL", "literature_p": 0.95, "model_p": 0.87, "evidence_score": 5, "evidence_label": "preliminary"},
+    "trigeminal_infrared_map_unit":                    {"verdict": "PARTIAL", "literature_p": 0.80, "model_p": 0.47, "evidence_score": 4, "evidence_label": "preliminary"},
+    "vestibular_transduction_unit":                    {"verdict": "PARTIAL", "literature_p": 0.59, "model_p": 0.61, "evidence_score": 4, "evidence_label": "preliminary"},
+    "vestibulo_ocular_reflex_unit":                    {"verdict": "PARTIAL", "literature_p": 0.91, "model_p": 0.83, "evidence_score": 5, "evidence_label": "preliminary"},
+    "visual_target_detection_unit":                    {"verdict": "PARTIAL", "literature_p": 0.72, "model_p": 0.48, "evidence_score": 3, "evidence_label": "speculative"},
+    "visual_thalamic_relay_unit":                      {"verdict": "PARTIAL", "literature_p": 0.91, "model_p": 0.74, "evidence_score": 5, "evidence_label": "preliminary"},
+    "vnc_endocrine_modulation_unit":                   {"verdict": "WEAK",    "literature_p": 0.28, "model_p": 0.15, "evidence_score": 2, "evidence_label": "speculative"},
+    "vnc_sensory_reflex_unit":                         {"verdict": "WEAK",    "literature_p": 0.21, "model_p": 0.27, "evidence_score": 2, "evidence_label": "speculative"},
+    "wing_flight_control_unit":                        {"verdict": "WEAK",    "literature_p": 0.25, "model_p": 0.38, "evidence_score": 2, "evidence_label": "speculative"},
+    "wing_flight_steering_unit":                       {"verdict": "PARTIAL", "literature_p": 0.43, "model_p": 0.44, "evidence_score": 2, "evidence_label": "speculative"},
+}
+
+for _u in FUNCTIONAL_UNITS:
+    if _u["name"] in _JEV_UNIT_VALIDATION:
+        _u["jev_validation"] = dict(_JEV_UNIT_VALIDATION[_u["name"]],
+                                     validated_at="2026-09-30T09:55:00+08:00",
+                                     model_version="jev-1.13.0")
 
 if __name__ == "__main__":
     raise SystemExit(main())
