@@ -235,18 +235,21 @@ def main() -> int:
     prov_schema = consts.get("MOTIF_PROVENANCE_SCHEMA_VERSION")
     n_blueprints = len(consts.get("BLUEPRINTS") or {})
     n_modules = len(consts.get("MODULE_PROFILES") or {})
-    # v2.27.0: the shipped library also carries the C. elegans connectome
-    # profiles. Those are attached at generation time by
-    # `extract_cel_profiles.py`, so they are never literals in
-    # synthetic_bio_topology.py -- counting them here keeps this check
-    # comparing the README against the library that actually ships.
-    cel_profiles = MCP / "functional_units" / "cel_profiles.json"
-    if cel_profiles.exists():
+    # v2.27.0 / v2.28.0: the shipped library also carries the C. elegans and
+    # Drosophila larva connectome profiles. Those are attached at generation
+    # time by `extract_cel_profiles.py` / `extract_larva_profiles.py`, so they
+    # are never literals in synthetic_bio_topology.py -- counting them here
+    # keeps this check comparing the README against the library that ships.
+    for tag, fname in (("cel", "cel_profiles.json"),
+                       ("larva", "larva_profiles.json")):
+        path = MCP / "functional_units" / fname
+        if not path.exists():
+            continue
         try:
-            with open(cel_profiles, encoding="utf-8") as _f:
+            with open(path, encoding="utf-8") as _f:
                 n_modules += len(json.load(_f).get("neuron_profiles") or {})
         except (ValueError, OSError):
-            bad("cel profile count", "cel_profiles.json unreadable")
+            bad("%s profile count" % tag, "%s unreadable" % fname)
     motif_map = consts.get("BLUEPRINT_SOURCE_MOTIF") or {}
 
     if schema:
