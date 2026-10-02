@@ -2,20 +2,20 @@
   {
     "name": "antennal_lobe_central_complex_feedback_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.645,
+    "jev_elapsed_s": 0.689,
     "jev_fallback": false,
     "connectome_evidence_score": 5,
     "connectome_evidence_label": "traced_coarse",
     "literature_evidence_score": 1,
     "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.85,
+    "cell_type_resolved_p": 0.86,
     "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 5.03,
+        "score": 5.02,
         "confidence": 0.91,
         "legend": {
           "0": "Absent from the connectome",
@@ -38,8 +38,8 @@
       },
       "literature_evidence": {
         "type": "score",
-        "score": 1.32,
-        "confidence": 0.23,
+        "score": 1.35,
+        "confidence": 0.22,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative only",
@@ -50,39 +50,39 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.42,
-          "1": 0.16,
-          "2": 0.25,
-          "3": 0.1,
-          "4": 0.04,
+          "0": 0.4,
+          "1": 0.15,
+          "2": 0.26,
+          "3": 0.11,
+          "4": 0.05,
           "5": 0.02,
           "6": 0.01
         }
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.85
+        "noul": 0.86
       }
     }
   },
   {
     "name": "auditory_song_reception_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.637,
+    "jev_elapsed_s": 0.641,
     "jev_fallback": false,
     "connectome_evidence_score": 4,
     "connectome_evidence_label": "traced_coarse",
     "literature_evidence_score": 1,
     "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.65,
+    "cell_type_resolved_p": 0.67,
     "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 4.08,
-        "confidence": 0.39,
+        "score": 4.11,
+        "confidence": 0.42,
         "legend": {
           "0": "Absent from the connectome",
           "1": "Existence only inferred",
@@ -95,17 +95,17 @@
         "probabilities": {
           "0": 0.06,
           "1": 0.07,
-          "2": 0.08,
-          "3": 0.07,
+          "2": 0.07,
+          "3": 0.05,
           "4": 0.06,
-          "5": 0.6,
+          "5": 0.63,
           "6": 0.06
         }
       },
       "literature_evidence": {
         "type": "score",
-        "score": 1.18,
-        "confidence": 0.31,
+        "score": 1.36,
+        "confidence": 0.21,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative only",
@@ -116,39 +116,39 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.48,
-          "1": 0.18,
-          "2": 0.12,
-          "3": 0.13,
-          "4": 0.06,
+          "0": 0.43,
+          "1": 0.19,
+          "2": 0.14,
+          "3": 0.14,
+          "4": 0.07,
           "5": 0.02,
           "6": 0.01
         }
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.65
+        "noul": 0.67
       }
     }
   },
   {
     "name": "buccal_efferent_feedback_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.647,
+    "jev_elapsed_s": 0.631,
     "jev_fallback": false,
     "connectome_evidence_score": 4,
     "connectome_evidence_label": "traced_coarse",
     "literature_evidence_score": 0,
     "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.63,
+    "cell_type_resolved_p": 0.64,
     "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 4.63,
-        "confidence": 0.75,
+        "score": 4.55,
+        "confidence": 0.7,
         "legend": {
           "0": "Absent from the connectome",
           "1": "Existence only inferred",
@@ -159,12 +159,12 @@
           "6": "Traced and independently verified"
         },
         "probabilities": {
-          "0": 0.02,
+          "0": 0.03,
           "1": 0.01,
           "2": 0.02,
           "3": 0.07,
-          "4": 0.07,
-          "5": 0.78,
+          "4": 0.08,
+          "5": 0.76,
           "6": 0.03
         }
       },
@@ -184,7 +184,7 @@
         "probabilities": {
           "0": 0.67,
           "1": 0.07,
-          "2": 0.24,
+          "2": 0.23,
           "3": 0.02,
           "4": 0.0,
           "5": 0.0,
@@ -193,28 +193,28 @@
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.63
+        "noul": 0.64
       }
     }
   },
   {
     "name": "cb_efferent_command_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.587,
+    "jev_elapsed_s": 0.553,
     "jev_fallback": false,
     "connectome_evidence_score": 4,
     "connectome_evidence_label": "traced_coarse",
     "literature_evidence_score": 1,
     "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.76,
+    "cell_type_resolved_p": 0.73,
     "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 4.62,
-        "confidence": 0.71,
+        "score": 4.61,
+        "confidence": 0.72,
         "legend": {
           "0": "Absent from the connectome",
           "1": "Existence only inferred",
@@ -229,15 +229,15 @@
           "1": 0.01,
           "2": 0.03,
           "3": 0.05,
-          "4": 0.07,
+          "4": 0.08,
           "5": 0.75,
-          "6": 0.06
+          "6": 0.05
         }
       },
       "literature_evidence": {
         "type": "score",
-        "score": 1.08,
-        "confidence": 0.37,
+        "score": 1.0,
+        "confidence": 0.41,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative only",
@@ -248,105 +248,39 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.5,
+          "0": 0.53,
           "1": 0.1,
-          "2": 0.3,
-          "3": 0.06,
-          "4": 0.02,
+          "2": 0.29,
+          "3": 0.05,
+          "4": 0.01,
           "5": 0.01,
           "6": 0.01
         }
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.76
+        "noul": 0.73
       }
     }
   },
   {
     "name": "cb_endocrine_modulation_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.589,
+    "jev_elapsed_s": 0.567,
     "jev_fallback": false,
     "connectome_evidence_score": 4,
     "connectome_evidence_label": "traced_coarse",
     "literature_evidence_score": 0,
     "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.7,
+    "cell_type_resolved_p": 0.68,
     "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 4.79,
-        "confidence": 0.86,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.0,
-          "1": 0.0,
-          "2": 0.0,
-          "3": 0.06,
-          "4": 0.07,
-          "5": 0.85,
-          "6": 0.02
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 0.65,
-        "confidence": 0.62,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.65,
-          "1": 0.1,
-          "2": 0.21,
-          "3": 0.03,
-          "4": 0.01,
-          "5": 0.0,
-          "6": 0.0
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.7
-      }
-    }
-  },
-  {
-    "name": "cb_sensory_motor_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.636,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 0,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.69,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.71,
-        "confidence": 0.8,
+        "score": 4.78,
+        "confidence": 0.85,
         "legend": {
           "0": "Absent from the connectome",
           "1": "Existence only inferred",
@@ -360,16 +294,16 @@
           "0": 0.0,
           "1": 0.0,
           "2": 0.01,
-          "3": 0.1,
+          "3": 0.05,
           "4": 0.07,
-          "5": 0.8,
+          "5": 0.85,
           "6": 0.02
         }
       },
       "literature_evidence": {
         "type": "score",
-        "score": 0.82,
-        "confidence": 0.52,
+        "score": 0.62,
+        "confidence": 0.64,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative only",
@@ -380,104 +314,38 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.58,
+          "0": 0.66,
           "1": 0.11,
-          "2": 0.24,
-          "3": 0.05,
+          "2": 0.19,
+          "3": 0.03,
           "4": 0.01,
-          "5": 0.01,
+          "5": 0.0,
           "6": 0.0
         }
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.69
+        "noul": 0.68
       }
     }
   },
   {
-    "name": "central_complex_steering_unit",
+    "name": "cb_sensory_motor_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.578,
-    "jev_fallback": false,
-    "connectome_evidence_score": 3,
-    "connectome_evidence_label": "wiring_inferred",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.51,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 3.87,
-        "confidence": 0.28,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.05,
-          "1": 0.08,
-          "2": 0.13,
-          "3": 0.07,
-          "4": 0.06,
-          "5": 0.55,
-          "6": 0.05
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 1.54,
-        "confidence": 0.1,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.38,
-          "1": 0.18,
-          "2": 0.19,
-          "3": 0.11,
-          "4": 0.08,
-          "5": 0.04,
-          "6": 0.02
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.51
-      }
-    }
-  },
-  {
-    "name": "centrifugal_visual_feedback_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.587,
+    "jev_elapsed_s": 0.591,
     "jev_fallback": false,
     "connectome_evidence_score": 4,
     "connectome_evidence_label": "traced_coarse",
     "literature_evidence_score": 0,
     "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.81,
+    "cell_type_resolved_p": 0.68,
     "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 4.71,
+        "score": 4.72,
         "confidence": 0.81,
         "legend": {
           "0": "Absent from the connectome",
@@ -489,19 +357,19 @@
           "6": "Traced and independently verified"
         },
         "probabilities": {
-          "0": 0.01,
-          "1": 0.01,
-          "2": 0.02,
-          "3": 0.07,
-          "4": 0.04,
-          "5": 0.83,
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.01,
+          "3": 0.09,
+          "4": 0.08,
+          "5": 0.8,
           "6": 0.02
         }
       },
       "literature_evidence": {
         "type": "score",
-        "score": 0.8,
-        "confidence": 0.53,
+        "score": 0.79,
+        "confidence": 0.54,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative only",
@@ -512,409 +380,13 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.55,
-          "1": 0.17,
-          "2": 0.23,
+          "0": 0.6,
+          "1": 0.1,
+          "2": 0.26,
           "3": 0.03,
           "4": 0.01,
-          "5": 0.01,
-          "6": 0.0
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.81
-      }
-    }
-  },
-  {
-    "name": "courtship_decision_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.595,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.69,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.21,
-        "confidence": 0.44,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.06,
-          "1": 0.05,
-          "2": 0.07,
-          "3": 0.04,
-          "4": 0.06,
-          "5": 0.64,
-          "6": 0.08
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 1.62,
-        "confidence": 0.05,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.42,
-          "1": 0.2,
-          "2": 0.06,
-          "3": 0.12,
-          "4": 0.11,
-          "5": 0.06,
-          "6": 0.03
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.69
-      }
-    }
-  },
-  {
-    "name": "courtship_song_pattern_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.61,
-    "jev_fallback": false,
-    "connectome_evidence_score": 3,
-    "connectome_evidence_label": "wiring_inferred",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.6,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 3.89,
-        "confidence": 0.29,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.08,
-          "1": 0.07,
-          "2": 0.1,
-          "3": 0.07,
-          "4": 0.06,
-          "5": 0.5599999999999999,
-          "6": 0.06
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 1.47,
-        "confidence": 0.14,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.44,
-          "1": 0.16,
-          "2": 0.12,
-          "3": 0.11,
-          "4": 0.09,
-          "5": 0.05,
-          "6": 0.03
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.6
-      }
-    }
-  },
-  {
-    "name": "efferent_command_bus_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.629,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.67,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.76,
-        "confidence": 0.82,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.0,
-          "1": 0.0,
-          "2": 0.01,
-          "3": 0.07,
-          "4": 0.06,
-          "5": 0.83,
-          "6": 0.03
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 1.19,
-        "confidence": 0.41,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.41,
-          "1": 0.09,
-          "2": 0.44,
-          "3": 0.04,
-          "4": 0.01,
-          "5": 0.01,
-          "6": 0.0
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.67
-      }
-    }
-  },
-  {
-    "name": "gustatory_centrifugal_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.583,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 0,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.65,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.66,
-        "confidence": 0.78,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.0,
-          "1": 0.0,
-          "2": 0.01,
-          "3": 0.1,
-          "4": 0.09,
-          "5": 0.78,
-          "6": 0.02
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 0.71,
-        "confidence": 0.59,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.63,
-          "1": 0.09,
-          "2": 0.26,
-          "3": 0.02,
-          "4": 0.0,
           "5": 0.0,
           "6": 0.0
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.65
-      }
-    }
-  },
-  {
-    "name": "insect_clock_pacemaker_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.64,
-    "jev_fallback": false,
-    "connectome_evidence_score": 3,
-    "connectome_evidence_label": "wiring_inferred",
-    "literature_evidence_score": 2,
-    "literature_evidence_label": "wiring_inferred",
-    "cell_type_resolved_p": 0.52,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 3.05,
-        "confidence": 0.0,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.18,
-          "1": 0.11,
-          "2": 0.14,
-          "3": 0.09,
-          "4": 0.06,
-          "5": 0.35,
-          "6": 0.07
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 2.63,
-        "confidence": 0.0,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.21,
-          "1": 0.21,
-          "2": 0.09,
-          "3": 0.11,
-          "4": 0.12,
-          "5": 0.12,
-          "6": 0.14
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.52
-      }
-    }
-  },
-  {
-    "name": "johnston_organ_wind_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.593,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.68,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.7,
-        "confidence": 0.79,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.01,
-          "1": 0.01,
-          "2": 0.02,
-          "3": 0.05,
-          "4": 0.07,
-          "5": 0.8,
-          "6": 0.03
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 1.01,
-        "confidence": 0.41,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.54,
-          "1": 0.09,
-          "2": 0.24,
-          "3": 0.08,
-          "4": 0.03,
-          "5": 0.01,
-          "6": 0.01
         }
       },
       "cell_type_resolved": {
@@ -924,221 +396,23 @@
     }
   },
   {
-    "name": "leg_motor_pool_unit",
+    "name": "cel_amphid_chemosensory_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.594,
+    "jev_elapsed_s": 0.539,
     "jev_fallback": false,
     "connectome_evidence_score": 4,
     "connectome_evidence_label": "traced_coarse",
     "literature_evidence_score": 1,
     "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.65,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "cell_type_resolved_p": 0.81,
+    "connectome_reference": "Witvliet et al. 2020, connectome of the adult C. elegans hermaphrodite nervous system reconstructed by serial-section EM (bioRxiv 10.1101/2020.04.30.066209; adult datasets 7 & 8)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 4.62,
-        "confidence": 0.75,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.02,
-          "1": 0.01,
-          "2": 0.02,
-          "3": 0.08,
-          "4": 0.07,
-          "5": 0.77,
-          "6": 0.03
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 1.24,
-        "confidence": 0.28,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.5,
-          "1": 0.09,
-          "2": 0.22,
-          "3": 0.11,
-          "4": 0.04,
-          "5": 0.02,
-          "6": 0.02
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.65
-      }
-    }
-  },
-  {
-    "name": "looming_detection_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.596,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 2,
-    "literature_evidence_label": "wiring_inferred",
-    "cell_type_resolved_p": 0.74,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.91,
-        "confidence": 0.88,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.0,
-          "1": 0.0,
-          "2": 0.0,
-          "3": 0.03,
-          "4": 0.05,
-          "5": 0.86,
-          "6": 0.06
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 2.95,
-        "confidence": 0.0,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.19,
-          "1": 0.08,
-          "2": 0.11,
-          "3": 0.17,
-          "4": 0.19999999999999998,
-          "5": 0.16,
-          "6": 0.09
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.74
-      }
-    }
-  },
-  {
-    "name": "medulla_centripetal_gain_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.585,
-    "jev_fallback": false,
-    "connectome_evidence_score": 5,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.88,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 5.01,
-        "confidence": 0.92,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.0,
-          "1": 0.0,
-          "2": 0.0,
-          "3": 0.01,
-          "4": 0.03,
-          "5": 0.89,
-          "6": 0.07
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 1.46,
-        "confidence": 0.15,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.41,
-          "1": 0.19,
-          "2": 0.15,
-          "3": 0.12,
-          "4": 0.08,
-          "5": 0.04,
-          "6": 0.01
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.88
-      }
-    }
-  },
-  {
-    "name": "medulla_colour_pathway_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.837,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.59,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.31,
-        "confidence": 0.53,
+        "score": 4.43,
+        "confidence": 0.55,
         "legend": {
           "0": "Absent from the connectome",
           "1": "Existence only inferred",
@@ -1150,342 +424,12 @@
         },
         "probabilities": {
           "0": 0.04,
-          "1": 0.05,
-          "2": 0.06,
-          "3": 0.06,
-          "4": 0.06,
-          "5": 0.67,
-          "6": 0.06
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 1.94,
-        "confidence": 0.0,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.34,
-          "1": 0.14,
-          "2": 0.13,
-          "3": 0.14,
-          "4": 0.14,
-          "5": 0.07,
-          "6": 0.04
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.59
-      }
-    }
-  },
-  {
-    "name": "mushroom_body_dopamine_arousal_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.57,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 2,
-    "literature_evidence_label": "wiring_inferred",
-    "cell_type_resolved_p": 0.74,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.93,
-        "confidence": 0.88,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.0,
-          "1": 0.0,
-          "2": 0.01,
-          "3": 0.03,
-          "4": 0.05,
-          "5": 0.84,
-          "6": 0.07
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 2.09,
-        "confidence": 0.0,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.26,
-          "1": 0.18,
-          "2": 0.2,
-          "3": 0.12,
-          "4": 0.11,
-          "5": 0.08,
-          "6": 0.05
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.74
-      }
-    }
-  },
-  {
-    "name": "mushroom_body_lateral_horn_reciprocal_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.612,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.79,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.86,
-        "confidence": 0.86,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.0,
-          "1": 0.0,
-          "2": 0.01,
-          "3": 0.05,
-          "4": 0.07,
-          "5": 0.82,
-          "6": 0.05
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 1.25,
-        "confidence": 0.27,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.46,
-          "1": 0.16,
-          "2": 0.21,
-          "3": 0.1,
-          "4": 0.04,
-          "5": 0.02,
-          "6": 0.01
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.79
-      }
-    }
-  },
-  {
-    "name": "oa_visual_modulation_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.647,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 0,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.75,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.51,
-        "confidence": 0.69,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.02,
-          "1": 0.02,
-          "2": 0.03,
-          "3": 0.08,
-          "4": 0.08,
-          "5": 0.75,
-          "6": 0.02
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 0.82,
-        "confidence": 0.52,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.55,
-          "1": 0.16,
-          "2": 0.23,
-          "3": 0.04,
-          "4": 0.01,
-          "5": 0.01,
-          "6": 0.0
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.75
-      }
-    }
-  },
-  {
-    "name": "octopamine_arousal_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.662,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.7,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.59,
-        "confidence": 0.69,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.02,
           "1": 0.03,
-          "2": 0.03,
+          "2": 0.06,
           "3": 0.05,
-          "4": 0.08,
-          "5": 0.73,
-          "6": 0.06
-        }
-      },
-      "literature_evidence": {
-        "type": "score",
-        "score": 1.77,
-        "confidence": 0.0,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers",
-          "4": "4-6 papers",
-          "5": "7-10 papers",
-          "6": "Textbook entry"
-        },
-        "probabilities": {
-          "0": 0.34,
-          "1": 0.16,
-          "2": 0.19,
-          "3": 0.13,
-          "4": 0.1,
-          "5": 0.05,
-          "6": 0.03
-        }
-      },
-      "cell_type_resolved": {
-        "type": "noul",
-        "noul": 0.7
-      }
-    }
-  },
-  {
-    "name": "pharyngeal_gustatory_unit",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.631,
-    "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.77,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
-    "rescore_basis": "connectome_axis",
-    "error": null,
-    "answers": {
-      "connectome_evidence": {
-        "type": "score",
-        "score": 4.93,
-        "confidence": 0.9,
-        "legend": {
-          "0": "Absent from the connectome",
-          "1": "Existence only inferred",
-          "2": "Wiring inferred, not traced",
-          "3": "Traced coarsely",
-          "4": "Traced cleanly",
-          "5": "Traced with cell-type resolution",
-          "6": "Traced and independently verified"
-        },
-        "probabilities": {
-          "0": 0.0,
-          "1": 0.0,
-          "2": 0.0,
-          "3": 0.03,
-          "4": 0.05,
-          "5": 0.87,
-          "6": 0.05
+          "4": 0.06,
+          "5": 0.66,
+          "6": 0.1
         }
       },
       "literature_evidence": {
@@ -1502,39 +446,39 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.4,
-          "1": 0.16,
-          "2": 0.25,
-          "3": 0.11,
-          "4": 0.05,
-          "5": 0.02,
-          "6": 0.01
+          "0": 0.49,
+          "1": 0.13,
+          "2": 0.16,
+          "3": 0.07,
+          "4": 0.06,
+          "5": 0.04,
+          "6": 0.05
         }
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.77
+        "noul": 0.81
       }
     }
   },
   {
-    "name": "visual_target_detection_unit",
+    "name": "cel_forward_locomotion_command_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.832,
+    "jev_elapsed_s": 0.578,
     "jev_fallback": false,
-    "connectome_evidence_score": 3,
-    "connectome_evidence_label": "wiring_inferred",
-    "literature_evidence_score": 1,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.55,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 3,
+    "literature_evidence_label": "wiring_inferred",
+    "cell_type_resolved_p": 0.78,
+    "connectome_reference": "Witvliet et al. 2020, connectome of the adult C. elegans hermaphrodite nervous system reconstructed by serial-section EM (bioRxiv 10.1101/2020.04.30.066209; adult datasets 7 & 8)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 3.87,
-        "confidence": 0.28,
+        "score": 4.75,
+        "confidence": 0.73,
         "legend": {
           "0": "Absent from the connectome",
           "1": "Existence only inferred",
@@ -1545,19 +489,19 @@
           "6": "Traced and independently verified"
         },
         "probabilities": {
-          "0": 0.09,
-          "1": 0.08,
-          "2": 0.08,
-          "3": 0.05,
-          "4": 0.07,
-          "5": 0.58,
-          "6": 0.05
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.04,
+          "4": 0.1,
+          "5": 0.71,
+          "6": 0.11
         }
       },
       "literature_evidence": {
         "type": "score",
-        "score": 1.19,
-        "confidence": 0.31,
+        "score": 3.25,
+        "confidence": 0.0,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative only",
@@ -1568,39 +512,39 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.45,
-          "1": 0.15,
-          "2": 0.23,
+          "0": 0.24,
+          "1": 0.08,
+          "2": 0.08,
           "3": 0.09,
-          "4": 0.05,
-          "5": 0.02,
-          "6": 0.01
+          "4": 0.1,
+          "5": 0.12,
+          "6": 0.29
         }
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.55
+        "noul": 0.78
       }
     }
   },
   {
-    "name": "vnc_endocrine_modulation_unit",
+    "name": "cel_nociceptive_avoidance_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.592,
+    "jev_elapsed_s": 0.577,
     "jev_fallback": false,
     "connectome_evidence_score": 4,
     "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 0,
+    "literature_evidence_score": 1,
     "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.69,
-    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "cell_type_resolved_p": 0.72,
+    "connectome_reference": "Witvliet et al. 2020, connectome of the adult C. elegans hermaphrodite nervous system reconstructed by serial-section EM (bioRxiv 10.1101/2020.04.30.066209; adult datasets 7 & 8)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 4.59,
-        "confidence": 0.72,
+        "score": 4.38,
+        "confidence": 0.47,
         "legend": {
           "0": "Absent from the connectome",
           "1": "Existence only inferred",
@@ -1611,19 +555,415 @@
           "6": "Traced and independently verified"
         },
         "probabilities": {
-          "0": 0.02,
-          "1": 0.01,
+          "0": 0.05,
+          "1": 0.05,
+          "2": 0.04,
+          "3": 0.06,
+          "4": 0.07,
+          "5": 0.59,
+          "6": 0.14
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.37,
+        "confidence": 0.2,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.49,
+          "1": 0.1,
+          "2": 0.17,
+          "3": 0.1,
+          "4": 0.08,
+          "5": 0.04,
+          "6": 0.02
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.72
+      }
+    }
+  },
+  {
+    "name": "cel_touch_avoidance_reflex_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.568,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 3,
+    "literature_evidence_label": "wiring_inferred",
+    "cell_type_resolved_p": 0.76,
+    "connectome_reference": "Witvliet et al. 2020, connectome of the adult C. elegans hermaphrodite nervous system reconstructed by serial-section EM (bioRxiv 10.1101/2020.04.30.066209; adult datasets 7 & 8)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.57,
+        "confidence": 0.6,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.03,
           "2": 0.03,
+          "3": 0.06,
+          "4": 0.08,
+          "5": 0.64,
+          "6": 0.13
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 3.07,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.26,
+          "1": 0.09,
+          "2": 0.07,
+          "3": 0.12,
+          "4": 0.11,
+          "5": 0.1,
+          "6": 0.25
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.76
+      }
+    }
+  },
+  {
+    "name": "central_complex_steering_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.788,
+    "jev_fallback": false,
+    "connectome_evidence_score": 3,
+    "connectome_evidence_label": "wiring_inferred",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.52,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 3.81,
+        "confidence": 0.25,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.07,
+          "1": 0.1,
+          "2": 0.1,
+          "3": 0.07,
+          "4": 0.06,
+          "5": 0.55,
+          "6": 0.05
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.52,
+        "confidence": 0.12,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.38,
+          "1": 0.17,
+          "2": 0.21,
+          "3": 0.11,
+          "4": 0.07,
+          "5": 0.04,
+          "6": 0.02
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.52
+      }
+    }
+  },
+  {
+    "name": "centrifugal_visual_feedback_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.573,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 0,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.79,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.74,
+        "confidence": 0.81,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.02,
+          "3": 0.05,
+          "4": 0.04,
+          "5": 0.84,
+          "6": 0.03
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 0.82,
+        "confidence": 0.52,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.54,
+          "1": 0.16,
+          "2": 0.25,
+          "3": 0.03,
+          "4": 0.01,
+          "5": 0.01,
+          "6": 0.0
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.79
+      }
+    }
+  },
+  {
+    "name": "courtship_decision_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.632,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.72,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.32,
+        "confidence": 0.51,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.05,
+          "2": 0.07,
+          "3": 0.04,
+          "4": 0.06,
+          "5": 0.66,
+          "6": 0.08
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.67,
+        "confidence": 0.03,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.37,
+          "1": 0.2,
+          "2": 0.1,
+          "3": 0.14,
+          "4": 0.11,
+          "5": 0.05,
+          "6": 0.03
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.72
+      }
+    }
+  },
+  {
+    "name": "courtship_song_pattern_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.586,
+    "jev_fallback": false,
+    "connectome_evidence_score": 3,
+    "connectome_evidence_label": "wiring_inferred",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.6,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 3.93,
+        "confidence": 0.31,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.08,
+          "1": 0.06,
+          "2": 0.1,
           "3": 0.07,
           "4": 0.07,
+          "5": 0.5599999999999999,
+          "6": 0.06
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.49,
+        "confidence": 0.13,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.44,
+          "1": 0.15,
+          "2": 0.15,
+          "3": 0.11,
+          "4": 0.08,
+          "5": 0.04,
+          "6": 0.03
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.6
+      }
+    }
+  },
+  {
+    "name": "efferent_command_bus_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.644,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.64,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.67,
+        "confidence": 0.78,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.02,
+          "3": 0.08,
+          "4": 0.08,
           "5": 0.77,
           "6": 0.03
         }
       },
       "literature_evidence": {
         "type": "score",
-        "score": 0.85,
-        "confidence": 0.5,
+        "score": 1.02,
+        "confidence": 0.41,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative only",
@@ -1634,31 +974,31 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.58,
-          "1": 0.16,
-          "2": 0.17,
-          "3": 0.05,
-          "4": 0.02,
+          "0": 0.47,
+          "1": 0.11,
+          "2": 0.36,
+          "3": 0.04,
+          "4": 0.01,
           "5": 0.01,
-          "6": 0.01
+          "6": 0.0
         }
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.69
+        "noul": 0.64
       }
     }
   },
   {
-    "name": "vnc_sensory_reflex_unit",
+    "name": "gustatory_centrifugal_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.611,
+    "jev_elapsed_s": 0.607,
     "jev_fallback": false,
     "connectome_evidence_score": 4,
     "connectome_evidence_label": "traced_coarse",
     "literature_evidence_score": 0,
     "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.67,
+    "cell_type_resolved_p": 0.64,
     "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
     "rescore_basis": "connectome_axis",
     "error": null,
@@ -1677,19 +1017,19 @@
           "6": "Traced and independently verified"
         },
         "probabilities": {
-          "0": 0.01,
-          "1": 0.01,
-          "2": 0.02,
-          "3": 0.08,
-          "4": 0.07,
-          "5": 0.79,
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.01,
+          "3": 0.1,
+          "4": 0.11,
+          "5": 0.76,
           "6": 0.02
         }
       },
       "literature_evidence": {
         "type": "score",
-        "score": 0.66,
-        "confidence": 0.61,
+        "score": 0.74,
+        "confidence": 0.57,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative only",
@@ -1700,38 +1040,566 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.65,
-          "1": 0.11,
-          "2": 0.21,
+          "0": 0.62,
+          "1": 0.08,
+          "2": 0.28,
           "3": 0.02,
-          "4": 0.01,
+          "4": 0.0,
           "5": 0.0,
           "6": 0.0
         }
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.67
+        "noul": 0.64
       }
     }
   },
   {
-    "name": "wing_flight_control_unit",
+    "name": "insect_clock_pacemaker_unit",
     "jev_status": 200,
     "jev_elapsed_s": 0.553,
     "jev_fallback": false,
-    "connectome_evidence_score": 4,
-    "connectome_evidence_label": "traced_coarse",
-    "literature_evidence_score": 0,
-    "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.56,
+    "connectome_evidence_score": 2,
+    "connectome_evidence_label": "wiring_inferred",
+    "literature_evidence_score": 2,
+    "literature_evidence_label": "wiring_inferred",
+    "cell_type_resolved_p": 0.51,
     "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 4.62,
+        "score": 2.98,
+        "confidence": 0.0,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.19,
+          "1": 0.11,
+          "2": 0.16,
+          "3": 0.09,
+          "4": 0.06,
+          "5": 0.32,
+          "6": 0.07
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 2.56,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.21,
+          "1": 0.22,
+          "2": 0.08,
+          "3": 0.12,
+          "4": 0.14,
+          "5": 0.12,
+          "6": 0.11
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.51
+      }
+    }
+  },
+  {
+    "name": "johnston_organ_wind_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.778,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.69,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.75,
+        "confidence": 0.81,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.04,
+          "4": 0.09,
+          "5": 0.81,
+          "6": 0.03
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.13,
+        "confidence": 0.34,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.5,
+          "1": 0.12,
+          "2": 0.22,
+          "3": 0.09,
+          "4": 0.04,
+          "5": 0.02,
+          "6": 0.01
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.69
+      }
+    }
+  },
+  {
+    "name": "leg_motor_pool_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.563,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.66,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.61,
+        "confidence": 0.74,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.01,
+          "2": 0.02,
+          "3": 0.07,
+          "4": 0.08,
+          "5": 0.77,
+          "6": 0.03
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.3,
+        "confidence": 0.24,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.46,
+          "1": 0.1,
+          "2": 0.26,
+          "3": 0.1,
+          "4": 0.05,
+          "5": 0.02,
+          "6": 0.01
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.66
+      }
+    }
+  },
+  {
+    "name": "looming_detection_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.593,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 2,
+    "literature_evidence_label": "wiring_inferred",
+    "cell_type_resolved_p": 0.73,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.89,
+        "confidence": 0.88,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.03,
+          "4": 0.05,
+          "5": 0.86,
+          "6": 0.060000000000000005
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 2.73,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.22,
+          "1": 0.09,
+          "2": 0.1,
+          "3": 0.19,
+          "4": 0.21,
+          "5": 0.13,
+          "6": 0.06
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.73
+      }
+    }
+  },
+  {
+    "name": "medulla_centripetal_gain_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.557,
+    "jev_fallback": false,
+    "connectome_evidence_score": 5,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.86,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 5.02,
+        "confidence": 0.91,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.01,
+          "4": 0.03,
+          "5": 0.88,
+          "6": 0.08
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.18,
+        "confidence": 0.31,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.45999999999999996,
+          "1": 0.21,
+          "2": 0.15,
+          "3": 0.09,
+          "4": 0.05,
+          "5": 0.03,
+          "6": 0.01
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.86
+      }
+    }
+  },
+  {
+    "name": "medulla_colour_pathway_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.56,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 2,
+    "literature_evidence_label": "wiring_inferred",
+    "cell_type_resolved_p": 0.6,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.36,
+        "confidence": 0.55,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.05,
+          "2": 0.06,
+          "3": 0.05,
+          "4": 0.07,
+          "5": 0.68,
+          "6": 0.06
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 2.14,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.32,
+          "1": 0.13,
+          "2": 0.11,
+          "3": 0.15,
+          "4": 0.15,
+          "5": 0.09,
+          "6": 0.05
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.6
+      }
+    }
+  },
+  {
+    "name": "mushroom_body_dopamine_arousal_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.554,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 2,
+    "literature_evidence_label": "wiring_inferred",
+    "cell_type_resolved_p": 0.77,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.95,
+        "confidence": 0.88,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.01,
+          "3": 0.02,
+          "4": 0.05,
+          "5": 0.84,
+          "6": 0.08
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 2.08,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.25,
+          "1": 0.2,
+          "2": 0.18,
+          "3": 0.12,
+          "4": 0.1,
+          "5": 0.08,
+          "6": 0.07
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.77
+      }
+    }
+  },
+  {
+    "name": "mushroom_body_lateral_horn_reciprocal_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.671,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.78,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.83,
+        "confidence": 0.85,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.01,
+          "3": 0.06,
+          "4": 0.06,
+          "5": 0.83,
+          "6": 0.04
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.26,
+        "confidence": 0.26,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.46,
+          "1": 0.14,
+          "2": 0.22,
+          "3": 0.1,
+          "4": 0.04,
+          "5": 0.03,
+          "6": 0.01
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.78
+      }
+    }
+  },
+  {
+    "name": "oa_visual_modulation_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.545,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 0,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.75,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.61,
         "confidence": 0.74,
         "legend": {
           "0": "Absent from the connectome",
@@ -1747,15 +1615,15 @@
           "1": 0.01,
           "2": 0.02,
           "3": 0.08,
-          "4": 0.08,
-          "5": 0.77,
+          "4": 0.07,
+          "5": 0.78,
           "6": 0.03
         }
       },
       "literature_evidence": {
         "type": "score",
-        "score": 0.82,
-        "confidence": 0.52,
+        "score": 0.85,
+        "confidence": 0.5,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative only",
@@ -1766,39 +1634,237 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.6,
-          "1": 0.07,
-          "2": 0.27,
+          "0": 0.5599999999999999,
+          "1": 0.15,
+          "2": 0.21,
           "3": 0.05,
-          "4": 0.01,
-          "5": 0.0,
+          "4": 0.02,
+          "5": 0.01,
           "6": 0.0
         }
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.56
+        "noul": 0.75
       }
     }
   },
   {
-    "name": "wing_flight_steering_unit",
+    "name": "octopamine_arousal_unit",
     "jev_status": 200,
-    "jev_elapsed_s": 0.622,
+    "jev_elapsed_s": 0.772,
     "jev_fallback": false,
     "connectome_evidence_score": 4,
     "connectome_evidence_label": "traced_coarse",
     "literature_evidence_score": 1,
     "literature_evidence_label": "absent_or_inferred",
-    "cell_type_resolved_p": 0.64,
+    "cell_type_resolved_p": 0.7,
     "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
     "rescore_basis": "connectome_axis",
     "error": null,
     "answers": {
       "connectome_evidence": {
         "type": "score",
-        "score": 4.58,
-        "confidence": 0.72,
+        "score": 4.65,
+        "confidence": 0.74,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.02,
+          "3": 0.05,
+          "4": 0.08,
+          "5": 0.77,
+          "6": 0.05
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.63,
+        "confidence": 0.05,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.37,
+          "1": 0.18,
+          "2": 0.15,
+          "3": 0.14,
+          "4": 0.1,
+          "5": 0.04,
+          "6": 0.02
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.7
+      }
+    }
+  },
+  {
+    "name": "pharyngeal_gustatory_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.561,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.77,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.92,
+        "confidence": 0.89,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.02,
+          "4": 0.06,
+          "5": 0.87,
+          "6": 0.05
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.5,
+        "confidence": 0.13,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.37,
+          "1": 0.15,
+          "2": 0.26,
+          "3": 0.12,
+          "4": 0.06,
+          "5": 0.03,
+          "6": 0.01
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.77
+      }
+    }
+  },
+  {
+    "name": "visual_target_detection_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.572,
+    "jev_fallback": false,
+    "connectome_evidence_score": 3,
+    "connectome_evidence_label": "wiring_inferred",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.58,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 3.95,
+        "confidence": 0.3,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.08,
+          "1": 0.08,
+          "2": 0.09,
+          "3": 0.06,
+          "4": 0.06,
+          "5": 0.56,
+          "6": 0.07
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.14,
+        "confidence": 0.34,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.47,
+          "1": 0.16,
+          "2": 0.21,
+          "3": 0.09,
+          "4": 0.04,
+          "5": 0.02,
+          "6": 0.01
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.58
+      }
+    }
+  },
+  {
+    "name": "vnc_endocrine_modulation_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.578,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.75,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.68,
+        "confidence": 0.78,
         "legend": {
           "0": "Absent from the connectome",
           "1": "Existence only inferred",
@@ -1811,17 +1877,17 @@
         "probabilities": {
           "0": 0.01,
           "1": 0.01,
-          "2": 0.03,
-          "3": 0.1,
-          "4": 0.06,
-          "5": 0.76,
+          "2": 0.02,
+          "3": 0.06,
+          "4": 0.08,
+          "5": 0.79,
           "6": 0.03
         }
       },
       "literature_evidence": {
         "type": "score",
-        "score": 1.36,
-        "confidence": 0.21,
+        "score": 1.02,
+        "confidence": 0.4,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative only",
@@ -1832,18 +1898,216 @@
           "6": "Textbook entry"
         },
         "probabilities": {
-          "0": 0.42,
-          "1": 0.15,
-          "2": 0.26,
-          "3": 0.07,
+          "0": 0.5,
+          "1": 0.18,
+          "2": 0.21,
+          "3": 0.06,
           "4": 0.03,
-          "5": 0.03,
-          "6": 0.04
+          "5": 0.01,
+          "6": 0.01
         }
       },
       "cell_type_resolved": {
         "type": "noul",
-        "noul": 0.64
+        "noul": 0.75
+      }
+    }
+  },
+  {
+    "name": "vnc_sensory_reflex_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.63,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 0,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.66,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.61,
+        "confidence": 0.74,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.01,
+          "2": 0.02,
+          "3": 0.07,
+          "4": 0.07,
+          "5": 0.79,
+          "6": 0.02
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 0.63,
+        "confidence": 0.63,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.66,
+          "1": 0.11,
+          "2": 0.21,
+          "3": 0.02,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.66
+      }
+    }
+  },
+  {
+    "name": "wing_flight_control_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.585,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 0,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.57,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.65,
+        "confidence": 0.75,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.02,
+          "3": 0.07,
+          "4": 0.09,
+          "5": 0.77,
+          "6": 0.03
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 0.75,
+        "confidence": 0.56,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.63,
+          "1": 0.08,
+          "2": 0.24,
+          "3": 0.04,
+          "4": 0.01,
+          "5": 0.0,
+          "6": 0.0
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.57
+      }
+    }
+  },
+  {
+    "name": "wing_flight_steering_unit",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.631,
+    "jev_fallback": false,
+    "connectome_evidence_score": 4,
+    "connectome_evidence_label": "traced_coarse",
+    "literature_evidence_score": 1,
+    "literature_evidence_label": "absent_or_inferred",
+    "cell_type_resolved_p": 0.65,
+    "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+    "rescore_basis": "connectome_axis",
+    "error": null,
+    "answers": {
+      "connectome_evidence": {
+        "type": "score",
+        "score": 4.59,
+        "confidence": 0.74,
+        "legend": {
+          "0": "Absent from the connectome",
+          "1": "Existence only inferred",
+          "2": "Wiring inferred, not traced",
+          "3": "Traced coarsely",
+          "4": "Traced cleanly",
+          "5": "Traced with cell-type resolution",
+          "6": "Traced and independently verified"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.02,
+          "3": 0.11,
+          "4": 0.08,
+          "5": 0.75,
+          "6": 0.02
+        }
+      },
+      "literature_evidence": {
+        "type": "score",
+        "score": 1.37,
+        "confidence": 0.2,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers",
+          "4": "4-6 papers",
+          "5": "7-10 papers",
+          "6": "Textbook entry"
+        },
+        "probabilities": {
+          "0": 0.44,
+          "1": 0.15,
+          "2": 0.25,
+          "3": 0.07,
+          "4": 0.04,
+          "5": 0.02,
+          "6": 0.03
+        }
+      },
+      "cell_type_resolved": {
+        "type": "noul",
+        "noul": 0.65
       }
     }
   }
