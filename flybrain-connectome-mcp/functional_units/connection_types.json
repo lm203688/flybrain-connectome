@@ -11,9 +11,9 @@
     "macro": "population-level projection geometry"
   },
   "stats": {
-    "functional_units": 112,
+    "functional_units": 115,
     "connection_types": 66,
-    "neural_members_referenced": 240,
+    "neural_members_referenced": 250,
     "systems": [
       "antennal_lobe",
       "antennal_mechanosensory",
