@@ -56,6 +56,22 @@ CONNECTOME_REFERENCE = (
     "(MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)"
 )
 
+# v2.27.0: a second, independent reconstruction. The rescore now has to know
+# which organism it is looking at, otherwise the prompt tells the model the
+# module came out of a Drosophila reconstruction when it came out of a worm.
+CEL_REFERENCE = (
+    "Witvliet et al. 2020, connectome of the adult C. elegans hermaphrodite "
+    "nervous system reconstructed by serial-section EM (bioRxiv "
+    "10.1101/2020.04.30.066209; adult datasets 7 & 8)"
+)
+
+
+def _reference(unit: dict) -> tuple[str, str]:
+    """(connectome reference, species phrase) for one unit."""
+    if unit.get("provenance", {}).get("source_connectome"):
+        return CEL_REFERENCE, "the C. elegans hermaphrodite nervous system"
+    return CONNECTOME_REFERENCE, "the Drosophila male brain"
+
 
 def load_units():
     with open(UNITS_FILE, encoding="utf-8") as f:
@@ -69,6 +85,7 @@ def build_query(unit):
     members = unit.get("members", [])
     member_roles = [m.get("role", "?") for m in members[:5]]
     member_str = ", ".join(member_roles) if member_roles else "various"
+    reference, organism = _reference(unit)
 
     state = (
         f"Functional unit: {name}\n"
@@ -76,7 +93,7 @@ def build_query(unit):
         f"Measured description: {description[:400]}\n\n"
         f"This module is NOT a literature hypothesis. It was traced directly "
         f"out of a published electron-microscopy connectome reconstruction of "
-        f"the Drosophila male brain ({CONNECTOME_REFERENCE}). Every edge "
+        f"{organism} ({reference}). Every edge "
         f"cited in the description (synapse counts, cell-type groupings) is a "
         f"directly measured anatomical connection from that reconstruction, "
         f"not an inference from research papers.\n\n"
@@ -157,6 +174,7 @@ def rescore_one(unit, key, dry_run=False):
         return {"name": unit["name"], "dry_run": True}
 
     status, data, elapsed = jev_call(state, questions, key=key, timeout=120)
+    reference, _organ = _reference(unit)
     out = {
         "name": unit["name"],
         "jev_status": status,
@@ -167,7 +185,7 @@ def rescore_one(unit, key, dry_run=False):
         "literature_evidence_score": 0,
         "literature_evidence_label": "unvalidated_fallback",
         "cell_type_resolved_p": None,
-        "connectome_reference": CONNECTOME_REFERENCE,
+        "connectome_reference": reference,
         "rescore_basis": "connectome_axis",
         "error": None,
     }
@@ -240,15 +258,23 @@ def main():
         u = by_name.get(r["name"])
         if u is None:
             continue
-        if not u.get("provenance", {}).get("embodied_in_malecns"):
+        prov = u.get("provenance", {})
+        # v2.27.0: C. elegans units are connectome-derived too. They arrive
+        # without a v2.24 evidence_score (they are new), so they are taken
+        # in unconditionally instead of by threshold.
+        if prov.get("source_connectome"):
+            targets.append(u)
+            continue
+        if not prov.get("embodied_in_malecns"):
             continue
         if (r.get("evidence_score") or 0) <= args.score_threshold:
             targets.append(u)
     if args.limit:
         targets = targets[: args.limit]
 
-    print(f"=== v2.26.0 connectome-aware re-scoring ===")
-    print(f"connectome-derived units scoring <= {args.score_threshold}: {len(targets)}")
+    print(f"=== v2.27.0 connectome-aware re-scoring ===")
+    print(f"connectome-derived units scoring <= {args.score_threshold}: "
+          f"{len(targets)}")
     print("(cross-species units are excluded by design: for those, the "
           "literature axis is the correct one and re-scoring without new "
           "papers would be fabrication)")

@@ -112,9 +112,11 @@ agree). Each declared unit edge therefore carries the measured synapse count
 between its populations' actual cell types, **plus a support tier re-derived from
 the 4,872x4,872 type-pair matrix**: 109 edges are SUPPORTED (>=2 live type pairs),
 6 FRAGILE (exactly one live pair carrying the whole profile-level non-zero), 1
-CONTRADICTED. 37 of the 103 units have `provenance.embodied_in_malecns: true`; the
-other 66 do not resolve to fly cells and each carries a machine-checkable
-`provenance.unanchored_reason`. All 57 anchored populations are now referenced by
+CONTRADICTED. 37 of the 107 units have `provenance.embodied_in_malecns: true`; the
+other 70 do not resolve to fly cells and each carries a machine-checkable
+`provenance.unanchored_reason`. Four of those 70 are traced out of a second
+connectome (the C. elegans adult reconstruction, v2.27.0) and carry
+`provenance.source_connectome`; the remaining 66 are cross-species concept units. All 57 anchored populations are now referenced by
 at least one unit (v2.1.0 wired the last five). A measured count of ZERO is a
 recorded contradiction (currently one, in `central_complex_steering_unit`), never a
 pass. `extracted_from_malecns` stays false everywhere: presence and non-contradiction

@@ -8,14 +8,87 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.26.0` | the toolkit as a whole |
+| package | `2.27.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 103 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0 and 2.10.0) |
+| functional-unit library schema | `1.0` | 107 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0 and 2.27.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.27.0] — 2026-10-02
+
+### 第二个独立连接组：C. elegans 成虫回路入库
+
+库里第一次有了**第二个**连接组作为证据来源。此前的 37 个「连接组派生」单元
+全部只能回溯到 MaleCNS v1.0（果蝇雄性脑）；现在 4 个单元的每条边都能回溯到一份
+**独立的**线虫成虫重建。
+
+**数据来源（可复核，非手写）**
+
+WormWiring 托管的 Witvliet et al. 2020 两个成虫重建文件
+（`bioRxiv 10.1101/2020.04.30.066209`）：合并后 **1,980 条带权边 / 115 个细胞类**。
+新增 `scripts/extract_cel_profiles.py`，从这两个 xlsx 直接抽取 `cel_profiles.json`；
+`gen_functional_units.py` 只读那个 JSON，不手抄字面量——与 v2.26 修掉的
+「JEV 结果手抄进生成器」是同一类漂移。
+
+**抽出的 4 个回路（全部为实测边）**
+
+| unit | 细胞类 | 边 | 突触 | 化学 / 电 |
+|---|---|---|---|---|
+| `cel_forward_locomotion_command_unit` | 5 | 13 | 304 | 284 / 17 |
+| `cel_touch_avoidance_reflex_unit` | 10 | 26 | 369 | 338 / 28 |
+| `cel_amphid_chemosensory_unit` | 10 | 60 | 928 | 686 / 49 |
+| `cel_nociceptive_avoidance_unit` | 6 | 16 | 254 | 222 / 30 |
+
+同时新增 **20 个 `cel.*` 神经类剖面**（MODULE_PROFILES 204 → 224）。两个拓扑量是
+实测推导而非手调：`reservoir_density` = 该类总突触输出 / 全库最大类输出
+（RIA = 1.000，与文献「RIA 是突触数最高的中间神经元」一致）；`recurrent_pct` =
+该类自环边占比，即左右同源细胞的电偶联占比。
+
+**方法学产出（比新增单元更重要）**
+
+JEV 的 connectome 轴在**两个物种上封顶在 4**：果蝇侧 22/28 落 4，线虫侧 4/4 全部
+落 4。高新版 rublic 重跑无效——这是模型行为，不是提示词问题。跨物种一致性说明
+「connectome 轴给不出 5 以上」是稳定现象，v2.26 的记录应当按跨物种结论读。
+
+**诚实标注（不补的都留着）**
+
+- 源数据 **不含咽部神经节**（体细胞重建 302/320 细胞），因此不抽摄食 / 咽回路；
+  `pharyngeal_gustatory` 等单元维持原状，不拿线虫数据硬凑。
+- 源数据 **不含递质／兴奋抑制标注**，因此化学边一律映射到 `axo_dendritic`、
+  缝隙结映射到 `gap_junction_sync`、**不声明任何抑制性**；同源细胞电偶联记为
+  自环（`dendro_dendritic` / `gap_junction_sync`），而不是丢掉。
+- 轻触通路与伤害性通路**共用** AIA/AIZ/AVA/AVB→PV 下游输出级，这是数据里的真实
+  汇聚，不是重复模块；两条通路靠不同感觉通道区分。
+- `jev_rescore_units.py` 现在按 `provenance.source_connectome` 识别连接组来源，
+  否则提示词会把线虫模块说成来自果蝇重建。
+
+#### 发现并修掉一个静默覆盖：连接组单元被文献阶梯降级为 `single_source`
+
+`_embody()` 会用「`biological_reference` 里分号分隔的引用条数」推导
+`provenance.evidence_weight`（≤1 → `single_source` / ≤3 → `multi_source` /
+>3 → `textbook`），而且**无条件覆盖** `extract_cel_profiles.py` 写好的值。
+于是 4 个在真实 EM 重建里逐边追溯出来的线虫单元，被这个按**引用条数**打分的
+量表打成了**最低档**——和 v2.26 修掉的「对连接组单元补文献是打错靶」是同一个
+量纲错配，只是出现在权重阶梯上。
+
+修法（两处，都与 v2.26 同思路）：
+
+- `gen_functional_units.py::_evidence_weight()` 识别 `provenance.source_connectome`
+  的存在即返回 `connectome_derived`，并把这条理由写进 docstring。
+- `check_embodiment.py::_expect_weight()` 同步加分支：连接组追溯单元必须
+  `connectome_derived` 且 `connectome_traceable` 为真，且**不得**带
+  `n_literature_refs`；代价是引用阶梯路径单独用一条注入缺陷覆盖，确保它仍被测到。
+
+新增 2 条 fail-closed 注入缺陷（共 +2）：「连接组追溯单元被降到文献档位」
+和「连接组追溯单元声称不可追溯」。原先那条「枚举值不重推导」的注入改为**跳过**
+连接组追溯单元，否则它测的是新分支而不是引用阶梯。
+
+**状态**：107 单元 / verdict 90 PARTIAL + 17 WEAK；门禁 10/10（`--with-data`）。
 
 ---
 

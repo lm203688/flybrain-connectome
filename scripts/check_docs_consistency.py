@@ -29,6 +29,7 @@ CLI = ROOT / "flybrain_cli.py"
 PYPROJECT = ROOT / "pyproject.toml"
 README = ROOT / "README.md"
 MCP_JSON = Path.home() / ".workbuddy" / "mcp.json"
+MCP = ROOT / "flybrain-connectome-mcp"
 
 problems: list[str] = []
 notes: list[str] = []
@@ -234,6 +235,18 @@ def main() -> int:
     prov_schema = consts.get("MOTIF_PROVENANCE_SCHEMA_VERSION")
     n_blueprints = len(consts.get("BLUEPRINTS") or {})
     n_modules = len(consts.get("MODULE_PROFILES") or {})
+    # v2.27.0: the shipped library also carries the C. elegans connectome
+    # profiles. Those are attached at generation time by
+    # `extract_cel_profiles.py`, so they are never literals in
+    # synthetic_bio_topology.py -- counting them here keeps this check
+    # comparing the README against the library that actually ships.
+    cel_profiles = MCP / "functional_units" / "cel_profiles.json"
+    if cel_profiles.exists():
+        try:
+            with open(cel_profiles, encoding="utf-8") as _f:
+                n_modules += len(json.load(_f).get("neuron_profiles") or {})
+        except (ValueError, OSError):
+            bad("cel profile count", "cel_profiles.json unreadable")
     motif_map = consts.get("BLUEPRINT_SOURCE_MOTIF") or {}
 
     if schema:
