@@ -140,11 +140,24 @@ def validate_one(unit, key, dry_run=False):
         "evidence_label": None,
         "literature_p": None,
         "model_p": None,
+        "jev_fallback": False,
         "verdict": "unknown",
     }
 
+    # Fail-closed: a failed call must never masquerade as a real verdict.
+    # Downstream consumers filter on SUPPORTED/PARTIAL/WEAK; emitting
+    # "unknown"/None would silently drop the unit from every band, which is
+    # strictly worse than declaring it WEAK-and-unverified. The flag
+    # `jev_fallback=True` keeps the two distinguishable.
     if status != 200 or not data:
+        result["jev_fallback"] = True
         result["error"] = f"HTTP {status}"
+        result["jev_status"] = status
+        result["verdict"] = "WEAK"
+        result["evidence_score"] = 0
+        result["evidence_label"] = "unvalidated_fallback"
+        result["literature_p"] = 0.0
+        result["model_p"] = 0.0
         return result
 
     answers = data.get("answers", {})
@@ -180,6 +193,17 @@ def validate_one(unit, key, dry_run=False):
                 result["evidence_label"] = "preliminary"
             else:
                 result["evidence_label"] = "speculative"
+        else:
+            # score present but unparseable — treat as unverified, not as a
+            # real "score 1" verdict.
+            result["jev_fallback"] = True
+            result["evidence_score"] = 0
+            result["evidence_label"] = "unvalidated_fallback"
+    else:
+        # Missing score answer — fail closed rather than emitting None.
+        result["jev_fallback"] = True
+        result["evidence_score"] = 0
+        result["evidence_label"] = "unvalidated_fallback"
 
     # Overall verdict
     lit_p = result["literature_p"] or 0
@@ -258,11 +282,17 @@ def main():
     partial = sum(1 for r in results if r.get("verdict") == "PARTIAL")
     weak = sum(1 for r in results if r.get("verdict") == "WEAK")
     unknown = sum(1 for r in results if r.get("verdict") == "unknown")
+    fallback = sum(1 for r in results if r.get("jev_fallback"))
     print(f"SUPPORTED: {supported}/{len(results)}")
     print(f"PARTIAL:   {partial}/{len(results)}")
     print(f"WEAK:      {weak}/{len(results)}")
     if unknown:
         print(f"UNKNOWN:   {unknown}/{len(results)}")
+    print(f"FALLBACK (fail-closed, unverified): {fallback}/{len(results)}")
+    if fallback:
+        for r in results:
+            if r.get("jev_fallback"):
+                print(f"    ! {r['name']}: {r.get('error', 'missing score answer')}")
     # By embodiment
     embodied_supported = sum(1 for r in results if r.get("embodied") and r.get("verdict") == "SUPPORTED")
     embodied_total = sum(1 for r in results if r.get("embodied"))
@@ -271,7 +301,13 @@ def main():
     cross_total = sum(1 for r in results if not r.get("embodied"))
     print(f"Cross-species: {cross_supported}/{cross_total} SUPPORTED")
 
-    # Save results
+    # Save results. --dry-run MUST NOT overwrite the existing result file:
+    # it has clobbered a full 103-record run with 3 placeholder records once
+    # already, so dry runs only write to an explicit --out path.
+    if args.dry_run:
+        print("\n[SKIP] --dry-run does not write unit_validation.json "
+              "(use --out to write)")
+        return
     if args.out:
         out_path = Path(args.out)
     else:
