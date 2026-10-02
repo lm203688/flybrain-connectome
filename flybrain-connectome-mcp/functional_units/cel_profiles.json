@@ -1,0 +1,1689 @@
+{
+ "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+ "note": "Every edge below is copied from the two adult reconstruction files; nothing is inferred from memory. The file carries no transmitter or sign annotation, so polarity is never asserted.",
+ "units": [
+  {
+   "name": "cel_forward_locomotion_command_unit",
+   "display": "线虫前向运动指令单元",
+   "function": "locomotion_command",
+   "system": "motor",
+   "description": "AVB 指令神经元汇聚 AIB 等中间神经元的输入，把前向运动指令交给腹侧运动神经元 PV/PVQ 与体壁肌；连接组里 AVB→PV 是这条通路上权重最高的一条边。",
+   "members": [
+    {
+     "role": "relay3",
+     "neuron": "cel.aia",
+     "count_ratio": 0.2222
+    },
+    {
+     "role": "relay",
+     "neuron": "cel.aib",
+     "count_ratio": 0.2222
+    },
+    {
+     "role": "relay2",
+     "neuron": "cel.aiz",
+     "count_ratio": 0.2222
+    },
+    {
+     "role": "command",
+     "neuron": "cel.avb",
+     "count_ratio": 0.2222
+    },
+    {
+     "role": "motor",
+     "neuron": "cel.pv",
+     "count_ratio": 0.1111
+    }
+   ],
+   "motif_source": [
+    "axo_dendritic",
+    "dendro_dendritic",
+    "gap_junction_sync"
+   ],
+   "internal_wiring": [
+    {
+     "from": "relay3",
+     "to": "relay3",
+     "type": "gap_junction_sync",
+     "synapses": 4,
+     "weight": 0.034
+    },
+    {
+     "from": "relay3",
+     "to": "relay",
+     "type": "axo_dendritic",
+     "synapses": 60,
+     "weight": 0.504
+    },
+    {
+     "from": "relay",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 31,
+     "weight": 0.261
+    },
+    {
+     "from": "relay2",
+     "to": "relay3",
+     "type": "axo_dendritic",
+     "synapses": 32,
+     "weight": 0.269
+    },
+    {
+     "from": "relay2",
+     "to": "relay",
+     "type": "axo_dendritic",
+     "synapses": 119,
+     "weight": 1.0
+    },
+    {
+     "from": "relay2",
+     "to": "relay2",
+     "type": "gap_junction_sync",
+     "synapses": 8,
+     "weight": 0.067
+    },
+    {
+     "from": "command",
+     "to": "command",
+     "type": "gap_junction_sync",
+     "synapses": 4,
+     "weight": 0.034
+    },
+    {
+     "from": "motor",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 39,
+     "weight": 0.328
+    },
+    {
+     "from": "relay",
+     "to": "relay3",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.008
+    },
+    {
+     "from": "relay",
+     "to": "relay",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.017
+    },
+    {
+     "from": "relay",
+     "to": "relay",
+     "type": "gap_junction_sync",
+     "synapses": 1,
+     "weight": 0.008
+    },
+    {
+     "from": "relay",
+     "to": "relay2",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.017
+    },
+    {
+     "from": "relay2",
+     "to": "relay2",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.008
+    }
+   ],
+   "ports": {
+    "in": [
+     {
+      "name": "forward_drive",
+      "type": "motor.command",
+      "required": true
+     }
+    ],
+    "out": [
+     {
+      "name": "locomotion",
+      "type": "motor.posture",
+      "required": true
+     }
+    ]
+   },
+   "size_range": [
+    5,
+    9
+   ],
+   "capability": [
+    "traced_connectome",
+    "locomotion_command",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "command_drive",
+    "motor_pool",
+    "forward_locomote"
+   ],
+   "lead_task_hint": "forward_locomote",
+   "neurotransmitter": [
+    "acetylcholine"
+   ],
+   "species_source": [
+    "c_elegans"
+   ],
+   "biological_reference": "Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209)",
+   "composable_with": [],
+   "provenance": {
+    "class": "curated-c-elegans-connectome",
+    "extracted_from_malecns": false,
+    "source_connectome": "C. elegans adult (WormWiring / Witvliet 2020)",
+    "basis": "serial-section EM reconstruction, cell-class resolution",
+    "embodied_in_malecns": false,
+    "embodiment_basis": "C. elegans is a different species; the MaleCNS anchor matrix cannot adjudicate its cell types",
+    "unanchored_reason": "outside_male_cns_species_coverage",
+    "evidence_weight": "connectome_derived",
+    "connectome_traceable": true
+   },
+   "cel_stats": {
+    "n_cell_classes": 5,
+    "n_cells": 9,
+    "n_edges": 13,
+    "n_synapses": 304,
+    "n_chemical": 284,
+    "n_electrical": 17,
+    "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8"
+   }
+  },
+  {
+   "name": "cel_touch_avoidance_reflex_unit",
+   "display": "线虫轻触回避反射单元",
+   "function": "touch_reflex",
+   "system": "motor",
+   "description": "ALM/ALN/PLN/AVM 机械感受神经元把轻触交给 AIA/AIB/AIZ 中间神经元，再汇到 AVA 与 AVB 指令神经元，反向驱动运动池造成后退；这是连接组里可逐条追踪的最短感觉-运动通路。",
+   "members": [
+    {
+     "role": "relay1",
+     "neuron": "cel.aia",
+     "count_ratio": 0.1111
+    },
+    {
+     "role": "relay2",
+     "neuron": "cel.aib",
+     "count_ratio": 0.1111
+    },
+    {
+     "role": "relay3",
+     "neuron": "cel.aiz",
+     "count_ratio": 0.1111
+    },
+    {
+     "role": "touch_post",
+     "neuron": "cel.alm",
+     "count_ratio": 0.1111
+    },
+    {
+     "role": "touch_post_lat",
+     "neuron": "cel.aln",
+     "count_ratio": 0.1111
+    },
+    {
+     "role": "brake",
+     "neuron": "cel.ava",
+     "count_ratio": 0.1111
+    },
+    {
+     "role": "command",
+     "neuron": "cel.avb",
+     "count_ratio": 0.1111
+    },
+    {
+     "role": "touch_ant",
+     "neuron": "cel.avm",
+     "count_ratio": 0.0556
+    },
+    {
+     "role": "touch_post_lat2",
+     "neuron": "cel.pln",
+     "count_ratio": 0.1111
+    },
+    {
+     "role": "motor",
+     "neuron": "cel.pv",
+     "count_ratio": 0.0556
+    }
+   ],
+   "motif_source": [
+    "axo_dendritic",
+    "dendro_dendritic",
+    "gap_junction_sync"
+   ],
+   "internal_wiring": [
+    {
+     "from": "relay1",
+     "to": "relay1",
+     "type": "gap_junction_sync",
+     "synapses": 4,
+     "weight": 0.034
+    },
+    {
+     "from": "relay1",
+     "to": "relay2",
+     "type": "axo_dendritic",
+     "synapses": 60,
+     "weight": 0.504
+    },
+    {
+     "from": "relay2",
+     "to": "brake",
+     "type": "axo_dendritic",
+     "synapses": 16,
+     "weight": 0.134
+    },
+    {
+     "from": "relay2",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 31,
+     "weight": 0.261
+    },
+    {
+     "from": "relay3",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 32,
+     "weight": 0.269
+    },
+    {
+     "from": "relay3",
+     "to": "relay2",
+     "type": "axo_dendritic",
+     "synapses": 119,
+     "weight": 1.0
+    },
+    {
+     "from": "relay3",
+     "to": "relay3",
+     "type": "gap_junction_sync",
+     "synapses": 8,
+     "weight": 0.067
+    },
+    {
+     "from": "touch_post",
+     "to": "touch_ant",
+     "type": "gap_junction_sync",
+     "synapses": 4,
+     "weight": 0.034
+    },
+    {
+     "from": "touch_post",
+     "to": "motor",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.017
+    },
+    {
+     "from": "touch_post",
+     "to": "motor",
+     "type": "gap_junction_sync",
+     "synapses": 5,
+     "weight": 0.042
+    },
+    {
+     "from": "touch_post",
+     "to": "touch_post_lat",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.008
+    },
+    {
+     "from": "touch_post",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.008
+    },
+    {
+     "from": "brake",
+     "to": "brake",
+     "type": "gap_junction_sync",
+     "synapses": 2,
+     "weight": 0.017
+    },
+    {
+     "from": "command",
+     "to": "command",
+     "type": "gap_junction_sync",
+     "synapses": 4,
+     "weight": 0.034
+    },
+    {
+     "from": "touch_ant",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 27,
+     "weight": 0.227
+    },
+    {
+     "from": "touch_post_lat2",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.008
+    },
+    {
+     "from": "motor",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 39,
+     "weight": 0.328
+    },
+    {
+     "from": "relay2",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.008
+    },
+    {
+     "from": "relay2",
+     "to": "relay2",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.017
+    },
+    {
+     "from": "relay2",
+     "to": "relay2",
+     "type": "gap_junction_sync",
+     "synapses": 1,
+     "weight": 0.008
+    },
+    {
+     "from": "relay2",
+     "to": "relay3",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.017
+    },
+    {
+     "from": "relay3",
+     "to": "relay3",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.008
+    },
+    {
+     "from": "relay3",
+     "to": "brake",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.008
+    },
+    {
+     "from": "touch_post",
+     "to": "touch_ant",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.008
+    },
+    {
+     "from": "touch_post_lat",
+     "to": "brake",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.017
+    },
+    {
+     "from": "touch_ant",
+     "to": "touch_post",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.017
+    }
+   ],
+   "ports": {
+    "in": [
+     {
+      "name": "touch",
+      "type": "sensory.mechanovibratory",
+      "required": true
+     }
+    ],
+    "out": [
+     {
+      "name": "reversal",
+      "type": "motor.escape",
+      "required": true
+     }
+    ]
+   },
+   "size_range": [
+    10,
+    18
+   ],
+   "capability": [
+    "traced_connectome",
+    "touch_reflex",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "sensory_motor",
+    "reflex_arc",
+    "touch_reversal"
+   ],
+   "lead_task_hint": "touch_reversal",
+   "neurotransmitter": [
+    "glutamate",
+    "acetylcholine"
+   ],
+   "species_source": [
+    "c_elegans"
+   ],
+   "biological_reference": "Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209)",
+   "composable_with": [],
+   "provenance": {
+    "class": "curated-c-elegans-connectome",
+    "extracted_from_malecns": false,
+    "source_connectome": "C. elegans adult (WormWiring / Witvliet 2020)",
+    "basis": "serial-section EM reconstruction, cell-class resolution",
+    "embodied_in_malecns": false,
+    "embodiment_basis": "C. elegans is a different species; the MaleCNS anchor matrix cannot adjudicate its cell types",
+    "unanchored_reason": "outside_male_cns_species_coverage",
+    "evidence_weight": "connectome_derived",
+    "connectome_traceable": true
+   },
+   "cel_stats": {
+    "n_cell_classes": 10,
+    "n_cells": 18,
+    "n_edges": 26,
+    "n_synapses": 369,
+    "n_chemical": 338,
+    "n_electrical": 28,
+    "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8"
+   }
+  },
+  {
+   "name": "cel_amphid_chemosensory_unit",
+   "display": "线虫头侧化学感受单元",
+   "function": "chemosensation",
+   "system": "sensory",
+   "description": "AWA/AWC/ASE/ADF/ASI/ASJ/ASK 七类 amphid 化学感受神经元经 AIA/AIY/RIA送出；RIA 是整条连接组里突触总数最高的中间神经元，本单元是唯一能在这个连接组里直接测出「高阶汇聚枢纽」的一处。",
+   "members": [
+    {
+     "role": "chemo3",
+     "neuron": "cel.adf",
+     "count_ratio": 0.1
+    },
+    {
+     "role": "relay1",
+     "neuron": "cel.aia",
+     "count_ratio": 0.1
+    },
+    {
+     "role": "relay2",
+     "neuron": "cel.aiy",
+     "count_ratio": 0.1
+    },
+    {
+     "role": "taste",
+     "neuron": "cel.ase",
+     "count_ratio": 0.1
+    },
+    {
+     "role": "chemo4",
+     "neuron": "cel.asi",
+     "count_ratio": 0.1
+    },
+    {
+     "role": "developmental",
+     "neuron": "cel.asj",
+     "count_ratio": 0.1
+    },
+    {
+     "role": "chemo5",
+     "neuron": "cel.ask",
+     "count_ratio": 0.1
+    },
+    {
+     "role": "chemo1",
+     "neuron": "cel.awa",
+     "count_ratio": 0.1
+    },
+    {
+     "role": "chemo2",
+     "neuron": "cel.awc",
+     "count_ratio": 0.1
+    },
+    {
+     "role": "hub",
+     "neuron": "cel.ria",
+     "count_ratio": 0.1
+    }
+   ],
+   "motif_source": [
+    "axo_dendritic",
+    "dendro_dendritic",
+    "gap_junction_sync"
+   ],
+   "internal_wiring": [
+    {
+     "from": "chemo3",
+     "to": "chemo3",
+     "type": "gap_junction_sync",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "chemo3",
+     "to": "taste",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "chemo3",
+     "to": "hub",
+     "type": "axo_dendritic",
+     "synapses": 64,
+     "weight": 0.448
+    },
+    {
+     "from": "chemo3",
+     "to": "relay1",
+     "type": "gap_junction_sync",
+     "synapses": 7,
+     "weight": 0.049
+    },
+    {
+     "from": "relay1",
+     "to": "relay1",
+     "type": "gap_junction_sync",
+     "synapses": 4,
+     "weight": 0.028
+    },
+    {
+     "from": "relay1",
+     "to": "taste",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.021
+    },
+    {
+     "from": "relay1",
+     "to": "chemo4",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.021
+    },
+    {
+     "from": "relay1",
+     "to": "chemo4",
+     "type": "gap_junction_sync",
+     "synapses": 10,
+     "weight": 0.07
+    },
+    {
+     "from": "relay1",
+     "to": "developmental",
+     "type": "gap_junction_sync",
+     "synapses": 3,
+     "weight": 0.021
+    },
+    {
+     "from": "relay1",
+     "to": "chemo5",
+     "type": "axo_dendritic",
+     "synapses": 8,
+     "weight": 0.056
+    },
+    {
+     "from": "relay1",
+     "to": "chemo1",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.007
+    },
+    {
+     "from": "relay1",
+     "to": "chemo1",
+     "type": "gap_junction_sync",
+     "synapses": 13,
+     "weight": 0.091
+    },
+    {
+     "from": "relay1",
+     "to": "chemo2",
+     "type": "axo_dendritic",
+     "synapses": 34,
+     "weight": 0.238
+    },
+    {
+     "from": "relay2",
+     "to": "relay2",
+     "type": "gap_junction_sync",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "relay2",
+     "to": "hub",
+     "type": "axo_dendritic",
+     "synapses": 17,
+     "weight": 0.119
+    },
+    {
+     "from": "relay2",
+     "to": "chemo3",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.021
+    },
+    {
+     "from": "relay2",
+     "to": "relay2",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.007
+    },
+    {
+     "from": "relay2",
+     "to": "taste",
+     "type": "axo_dendritic",
+     "synapses": 7,
+     "weight": 0.049
+    },
+    {
+     "from": "relay2",
+     "to": "chemo1",
+     "type": "axo_dendritic",
+     "synapses": 4,
+     "weight": 0.028
+    },
+    {
+     "from": "relay2",
+     "to": "chemo2",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.007
+    },
+    {
+     "from": "taste",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 7,
+     "weight": 0.049
+    },
+    {
+     "from": "taste",
+     "to": "relay2",
+     "type": "axo_dendritic",
+     "synapses": 96,
+     "weight": 0.671
+    },
+    {
+     "from": "taste",
+     "to": "chemo2",
+     "type": "axo_dendritic",
+     "synapses": 26,
+     "weight": 0.182
+    },
+    {
+     "from": "taste",
+     "to": "hub",
+     "type": "axo_dendritic",
+     "synapses": 6,
+     "weight": 0.042
+    },
+    {
+     "from": "taste",
+     "to": "taste",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "taste",
+     "to": "chemo4",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "taste",
+     "to": "chemo1",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.021
+    },
+    {
+     "from": "chemo4",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 23,
+     "weight": 0.161
+    },
+    {
+     "from": "chemo4",
+     "to": "relay2",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.021
+    },
+    {
+     "from": "chemo4",
+     "to": "chemo4",
+     "type": "gap_junction_sync",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "chemo4",
+     "to": "chemo1",
+     "type": "axo_dendritic",
+     "synapses": 4,
+     "weight": 0.028
+    },
+    {
+     "from": "chemo4",
+     "to": "chemo2",
+     "type": "axo_dendritic",
+     "synapses": 62,
+     "weight": 0.434
+    },
+    {
+     "from": "chemo4",
+     "to": "hub",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "chemo4",
+     "to": "chemo5",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.021
+    },
+    {
+     "from": "developmental",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "developmental",
+     "to": "developmental",
+     "type": "gap_junction_sync",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "developmental",
+     "to": "chemo5",
+     "type": "axo_dendritic",
+     "synapses": 19,
+     "weight": 0.133
+    },
+    {
+     "from": "chemo5",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 98,
+     "weight": 0.685
+    },
+    {
+     "from": "chemo5",
+     "to": "chemo4",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "chemo1",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 8,
+     "weight": 0.056
+    },
+    {
+     "from": "chemo1",
+     "to": "relay2",
+     "type": "axo_dendritic",
+     "synapses": 16,
+     "weight": 0.112
+    },
+    {
+     "from": "chemo1",
+     "to": "taste",
+     "type": "axo_dendritic",
+     "synapses": 22,
+     "weight": 0.154
+    },
+    {
+     "from": "chemo1",
+     "to": "chemo5",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "chemo1",
+     "to": "chemo1",
+     "type": "gap_junction_sync",
+     "synapses": 1,
+     "weight": 0.007
+    },
+    {
+     "from": "chemo1",
+     "to": "chemo3",
+     "type": "axo_dendritic",
+     "synapses": 6,
+     "weight": 0.042
+    },
+    {
+     "from": "chemo2",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 44,
+     "weight": 0.308
+    },
+    {
+     "from": "chemo2",
+     "to": "relay2",
+     "type": "axo_dendritic",
+     "synapses": 59,
+     "weight": 0.413
+    },
+    {
+     "from": "chemo2",
+     "to": "taste",
+     "type": "axo_dendritic",
+     "synapses": 13,
+     "weight": 0.091
+    },
+    {
+     "from": "chemo2",
+     "to": "chemo2",
+     "type": "dendro_dendritic",
+     "synapses": 46,
+     "weight": 0.322
+    },
+    {
+     "from": "chemo2",
+     "to": "chemo4",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.021
+    },
+    {
+     "from": "chemo2",
+     "to": "chemo5",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.007
+    },
+    {
+     "from": "hub",
+     "to": "hub",
+     "type": "dendro_dendritic",
+     "synapses": 143,
+     "weight": 1.0
+    },
+    {
+     "from": "chemo3",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "chemo3",
+     "to": "relay2",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.007
+    },
+    {
+     "from": "relay2",
+     "to": "taste",
+     "type": "gap_junction_sync",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "chemo4",
+     "to": "taste",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.007
+    },
+    {
+     "from": "chemo5",
+     "to": "chemo5",
+     "type": "gap_junction_sync",
+     "synapses": 1,
+     "weight": 0.007
+    },
+    {
+     "from": "chemo5",
+     "to": "taste",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.014
+    },
+    {
+     "from": "chemo5",
+     "to": "chemo5",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.007
+    },
+    {
+     "from": "chemo1",
+     "to": "chemo4",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.007
+    }
+   ],
+   "ports": {
+    "in": [
+     {
+      "name": "chemo",
+      "type": "sensory.olfactory",
+      "required": true
+     }
+    ],
+    "out": [
+     {
+      "name": "valence",
+      "type": "memory.associative",
+      "required": true
+     }
+    ]
+   },
+   "size_range": [
+    10,
+    20
+   ],
+   "capability": [
+    "traced_connectome",
+    "chemosensation",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "chemosense",
+    "convergent_fanin",
+    "sparse_code"
+   ],
+   "lead_task_hint": "chemosense",
+   "neurotransmitter": [
+    "glutamate"
+   ],
+   "species_source": [
+    "c_elegans"
+   ],
+   "biological_reference": "Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209)",
+   "composable_with": [],
+   "provenance": {
+    "class": "curated-c-elegans-connectome",
+    "extracted_from_malecns": false,
+    "source_connectome": "C. elegans adult (WormWiring / Witvliet 2020)",
+    "basis": "serial-section EM reconstruction, cell-class resolution",
+    "embodied_in_malecns": false,
+    "embodiment_basis": "C. elegans is a different species; the MaleCNS anchor matrix cannot adjudicate its cell types",
+    "unanchored_reason": "outside_male_cns_species_coverage",
+    "evidence_weight": "connectome_derived",
+    "connectome_traceable": true
+   },
+   "cel_stats": {
+    "n_cell_classes": 10,
+    "n_cells": 20,
+    "n_edges": 60,
+    "n_synapses": 928,
+    "n_chemical": 686,
+    "n_electrical": 49,
+    "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8"
+   }
+  },
+  {
+   "name": "cel_nociceptive_avoidance_unit",
+   "display": "线虫伤害性回避单元",
+   "function": "nociception",
+   "system": "sensory",
+   "description": "ASH 伤害性感受神经元是连接组里对指令神经元输出最强的感觉输入之一，与轻触通路共用 AIA/AIZ/AVA/AVB 下游；两条感觉通道汇聚到同一运动输出级，是本连接组里可直接测量的汇聚实例。",
+   "members": [
+    {
+     "role": "relay1",
+     "neuron": "cel.aia",
+     "count_ratio": 0.1818
+    },
+    {
+     "role": "relay2",
+     "neuron": "cel.aiz",
+     "count_ratio": 0.1818
+    },
+    {
+     "role": "nociceptive",
+     "neuron": "cel.ash",
+     "count_ratio": 0.1818
+    },
+    {
+     "role": "brake",
+     "neuron": "cel.ava",
+     "count_ratio": 0.1818
+    },
+    {
+     "role": "command",
+     "neuron": "cel.avb",
+     "count_ratio": 0.1818
+    },
+    {
+     "role": "motor",
+     "neuron": "cel.pv",
+     "count_ratio": 0.0909
+    }
+   ],
+   "motif_source": [
+    "axo_dendritic",
+    "dendro_dendritic",
+    "gap_junction_sync"
+   ],
+   "internal_wiring": [
+    {
+     "from": "relay1",
+     "to": "relay1",
+     "type": "gap_junction_sync",
+     "synapses": 4,
+     "weight": 0.075
+    },
+    {
+     "from": "relay1",
+     "to": "nociceptive",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.019
+    },
+    {
+     "from": "relay2",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 32,
+     "weight": 0.604
+    },
+    {
+     "from": "relay2",
+     "to": "relay2",
+     "type": "gap_junction_sync",
+     "synapses": 8,
+     "weight": 0.151
+    },
+    {
+     "from": "relay2",
+     "to": "nociceptive",
+     "type": "gap_junction_sync",
+     "synapses": 11,
+     "weight": 0.208
+    },
+    {
+     "from": "nociceptive",
+     "to": "relay1",
+     "type": "axo_dendritic",
+     "synapses": 53,
+     "weight": 1.0
+    },
+    {
+     "from": "nociceptive",
+     "to": "nociceptive",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.019
+    },
+    {
+     "from": "nociceptive",
+     "to": "brake",
+     "type": "axo_dendritic",
+     "synapses": 50,
+     "weight": 0.943
+    },
+    {
+     "from": "nociceptive",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 45,
+     "weight": 0.849
+    },
+    {
+     "from": "brake",
+     "to": "brake",
+     "type": "gap_junction_sync",
+     "synapses": 2,
+     "weight": 0.038
+    },
+    {
+     "from": "command",
+     "to": "command",
+     "type": "gap_junction_sync",
+     "synapses": 4,
+     "weight": 0.075
+    },
+    {
+     "from": "motor",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 39,
+     "weight": 0.736
+    },
+    {
+     "from": "relay2",
+     "to": "relay2",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.019
+    },
+    {
+     "from": "relay2",
+     "to": "brake",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.019
+    },
+    {
+     "from": "nociceptive",
+     "to": "relay2",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.019
+    },
+    {
+     "from": "nociceptive",
+     "to": "nociceptive",
+     "type": "gap_junction_sync",
+     "synapses": 1,
+     "weight": 0.019
+    }
+   ],
+   "ports": {
+    "in": [
+     {
+      "name": "noxious",
+      "type": "sensory.nociceptive",
+      "required": true
+     }
+    ],
+    "out": [
+     {
+      "name": "avoidance",
+      "type": "motor.escape",
+      "required": true
+     }
+    ]
+   },
+   "size_range": [
+    6,
+    11
+   ],
+   "capability": [
+    "traced_connectome",
+    "nociception",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "nociception",
+    "convergent_fanin",
+    "avoid"
+   ],
+   "lead_task_hint": "avoid",
+   "neurotransmitter": [
+    "glutamate"
+   ],
+   "species_source": [
+    "c_elegans"
+   ],
+   "biological_reference": "Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209)",
+   "composable_with": [],
+   "provenance": {
+    "class": "curated-c-elegans-connectome",
+    "extracted_from_malecns": false,
+    "source_connectome": "C. elegans adult (WormWiring / Witvliet 2020)",
+    "basis": "serial-section EM reconstruction, cell-class resolution",
+    "embodied_in_malecns": false,
+    "embodiment_basis": "C. elegans is a different species; the MaleCNS anchor matrix cannot adjudicate its cell types",
+    "unanchored_reason": "outside_male_cns_species_coverage",
+    "evidence_weight": "connectome_derived",
+    "connectome_traceable": true
+   },
+   "cel_stats": {
+    "n_cell_classes": 6,
+    "n_cells": 11,
+    "n_edges": 16,
+    "n_synapses": 254,
+    "n_chemical": 222,
+    "n_electrical": 30,
+    "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8"
+   }
+  }
+ ],
+ "neuron_profiles": {
+  "cel.adf": {
+   "reservoir_density": 0.211,
+   "recurrent_pct": 0.006,
+   "has_inhibition": false,
+   "description": "C. elegans cell class ADF (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "ADF"
+  },
+  "cel.aia": {
+   "reservoir_density": 0.179,
+   "recurrent_pct": 0.006,
+   "has_inhibition": false,
+   "description": "C. elegans cell class AIA (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "AIA"
+  },
+  "cel.aib": {
+   "reservoir_density": 0.297,
+   "recurrent_pct": 0.003,
+   "has_inhibition": false,
+   "description": "C. elegans cell class AIB (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "AIB"
+  },
+  "cel.aiy": {
+   "reservoir_density": 0.134,
+   "recurrent_pct": 0.008,
+   "has_inhibition": false,
+   "description": "C. elegans cell class AIY (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "AIY"
+  },
+  "cel.aiz": {
+   "reservoir_density": 0.478,
+   "recurrent_pct": 0.011,
+   "has_inhibition": false,
+   "description": "C. elegans cell class AIZ (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "AIZ"
+  },
+  "cel.alm": {
+   "reservoir_density": 0.121,
+   "recurrent_pct": 0.0,
+   "has_inhibition": false,
+   "description": "C. elegans cell class ALM (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "ALM"
+  },
+  "cel.aln": {
+   "reservoir_density": 0.078,
+   "recurrent_pct": 0.0,
+   "has_inhibition": false,
+   "description": "C. elegans cell class ALN (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "ALN"
+  },
+  "cel.ase": {
+   "reservoir_density": 0.234,
+   "recurrent_pct": 0.006,
+   "has_inhibition": false,
+   "description": "C. elegans cell class ASE (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "ASE"
+  },
+  "cel.ash": {
+   "reservoir_density": 0.307,
+   "recurrent_pct": 0.005,
+   "has_inhibition": false,
+   "description": "C. elegans cell class ASH (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "ASH"
+  },
+  "cel.asi": {
+   "reservoir_density": 0.151,
+   "recurrent_pct": 0.011,
+   "has_inhibition": false,
+   "description": "C. elegans cell class ASI (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "ASI"
+  },
+  "cel.asj": {
+   "reservoir_density": 0.078,
+   "recurrent_pct": 0.019,
+   "has_inhibition": false,
+   "description": "C. elegans cell class ASJ (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "ASJ"
+  },
+  "cel.ask": {
+   "reservoir_density": 0.178,
+   "recurrent_pct": 0.007,
+   "has_inhibition": false,
+   "description": "C. elegans cell class ASK (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "ASK"
+  },
+  "cel.ava": {
+   "reservoir_density": 0.031,
+   "recurrent_pct": 0.003,
+   "has_inhibition": false,
+   "description": "C. elegans cell class AVA (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "AVA"
+  },
+  "cel.avb": {
+   "reservoir_density": 0.019,
+   "recurrent_pct": 0.007,
+   "has_inhibition": false,
+   "description": "C. elegans cell class AVB (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "AVB"
+  },
+  "cel.avm": {
+   "reservoir_density": 0.082,
+   "recurrent_pct": 0.0,
+   "has_inhibition": false,
+   "description": "C. elegans cell class AVM (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "AVM"
+  },
+  "cel.awa": {
+   "reservoir_density": 0.164,
+   "recurrent_pct": 0.005,
+   "has_inhibition": false,
+   "description": "C. elegans cell class AWA (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "AWA"
+  },
+  "cel.awc": {
+   "reservoir_density": 0.222,
+   "recurrent_pct": 0.1,
+   "has_inhibition": false,
+   "description": "C. elegans cell class AWC (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "AWC"
+  },
+  "cel.pln": {
+   "reservoir_density": 0.064,
+   "recurrent_pct": 0.0,
+   "has_inhibition": false,
+   "description": "C. elegans cell class PLN (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "PLN"
+  },
+  "cel.pv": {
+   "reservoir_density": 0.102,
+   "recurrent_pct": 0.0,
+   "has_inhibition": false,
+   "description": "C. elegans cell class PV (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "PV"
+  },
+  "cel.ria": {
+   "reservoir_density": 1.0,
+   "recurrent_pct": 0.073,
+   "has_inhibition": false,
+   "description": "C. elegans cell class RIA (adult connectome, datasets 7 & 8)",
+   "capability": [
+    "c_elegans_neuron"
+   ],
+   "task_hint_pool": [
+    "c_elegans_neuron"
+   ],
+   "lead_task_hint": "c_elegans_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "nervous_system",
+   "species_source": [
+    "c_elegans"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), adult datasets 7 & 8",
+   "cell_class": "RIA"
+  }
+ }
+}
