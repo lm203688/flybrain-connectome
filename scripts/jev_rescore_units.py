@@ -65,12 +65,29 @@ CEL_REFERENCE = (
     "10.1101/2020.04.30.066209; adult datasets 7 & 8)"
 )
 
+LARVA_REFERENCE = (
+    "Winding et al. 2023, synaptic connectome of the Drosophila melanogaster "
+    "larva reconstructed by serial-section EM (Science 379:eadd9330; network "
+    "`fly_larva`)"
+)
+
+# source_connectome -> (reference, species phrase).  Keyed on the unit's own
+# provenance so the prompt never gets to call a worm or larva module a fragment
+# of the adult male brain reconstruction.
+CONNECTOME_REFERENCES = [
+    ("C. elegans", CEL_REFERENCE, "the C. elegans hermaphrodite nervous system"),
+    ("larva", LARVA_REFERENCE,
+     "the Drosophila melanogaster larval nervous system"),
+]
+
 
 def _reference(unit: dict) -> tuple[str, str]:
     """(connectome reference, species phrase) for one unit."""
-    if unit.get("provenance", {}).get("source_connectome"):
-        return CEL_REFERENCE, "the C. elegans hermaphrodite nervous system"
-    return CONNECTOME_REFERENCE, "the Drosophila male brain"
+    src = unit.get("provenance", {}).get("source_connectome") or ""
+    for key, ref, phrase in CONNECTOME_REFERENCES:
+        if key.lower() in src.lower():
+            return ref, phrase
+    return CONNECTOME_REFERENCE, "the C. elegans hermaphrodite nervous system"
 
 
 def load_units():
