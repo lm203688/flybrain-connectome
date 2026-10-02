@@ -33,9 +33,9 @@ from jev_client import call as jev_call, load_key
 UNITS_FILE = Path(__file__).parent.parent / "flybrain-connectome-mcp" / "functional_units" / "functional_units.json"
 
 
-def load_units(path=UNITS_FILE):
+def load_units(path=None):
     """Load functional units from JSON."""
-    with open(path) as f:
+    with open(path or UNITS_FILE) as f:
         data = json.load(f)
     return data["units"]
 
@@ -226,12 +226,27 @@ def main():
     parser.add_argument("--dry-run", action="store_true", help="Print queries, no API calls")
     parser.add_argument("--skip-embodied", action="store_true",
                         help="Skip units already embodied in MaleCNS")
+    parser.add_argument("--units", default=None,
+                        help="Unit document to read instead of the shipped "
+                             "functional_units.json; lets a connectome that "
+                             "is not in the artifact yet be verified without "
+                             "touching the artifact")
+    parser.add_argument("--only", default=None,
+                        help="Only validate units whose name starts with "
+                             "this prefix, so a newly added connectome can be "
+                             "verified without paying for the whole library")
+    parser.add_argument("--merge", action="store_true",
+                        help="Merge into the existing unit_validation.json "
+                             "instead of replacing it; records for units that "
+                             "were not re-validated are kept")
     parser.add_argument("--out", default=None, help="Output JSON path")
     args = parser.parse_args()
 
-    units = load_units()
+    units = load_units(args.units)
     if args.skip_embodied:
         units = [u for u in units if not u.get("provenance", {}).get("embodied_in_malecns")]
+    if args.only:
+        units = [u for u in units if u["name"].startswith(args.only)]
     if args.limit > 0:
         units = units[:args.limit]
 
@@ -308,12 +323,28 @@ def main():
         print("\n[SKIP] --dry-run does not write unit_validation.json "
               "(use --out to write)")
         return
-    if args.out:
-        out_path = Path(args.out)
-    else:
-        out_dir = Path(__file__).parent / "jev_results"
-        out_dir.mkdir(exist_ok=True)
-        out_path = out_dir / "unit_validation.json"
+    out_dir = Path(__file__).parent / "jev_results"
+    out_dir.mkdir(exist_ok=True)
+    default_path = out_dir / "unit_validation.json"
+
+    if args.merge:
+        merge_path = Path(args.out) if args.out else default_path
+        if merge_path.exists():
+            with open(merge_path, encoding="utf-8") as f:
+                prev = json.load(f)
+            by_name = {r["name"]: r for r in prev}
+            for r in results:
+                by_name[r["name"]] = r
+            merged = [by_name[k] for k in sorted(by_name)]
+            with open(merge_path, "w", encoding="utf-8") as f:
+                json.dump(merged, f, indent=2, ensure_ascii=False)
+            print(f"\n[MERGE] wrote {merge_path}: {len(merged)} records "
+                  f"(re-validated {len(results)}, was {len(prev)})")
+            return
+        print(f"\n[WARN] --merge but {merge_path} does not exist; "
+              f"writing fresh")
+
+    out_path = Path(args.out) if args.out else default_path
 
     with open(out_path, "w", encoding="utf-8") as f:
         json.dump(results, f, indent=2, ensure_ascii=False)

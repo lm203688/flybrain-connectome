@@ -92,7 +92,7 @@ reads the data):
 `get_multiplier_metrics`
 
 **Functional-unit composition library** — offline, Tier-1, stdlib-only. This is
-the layer that actually composes: 101 functional units (each ONE function,
+the layer that actually composes: 112 functional units (each ONE function,
 delivered by a group of neuron populations with typed ports) + 66 connection
 types (connection forms, constrained on port types). The unit list grew in
 batches: 10 cognitive, 16 cross-clade (insect, bird, fish, cephalopod),
@@ -112,11 +112,12 @@ agree). Each declared unit edge therefore carries the measured synapse count
 between its populations' actual cell types, **plus a support tier re-derived from
 the 4,872x4,872 type-pair matrix**: 109 edges are SUPPORTED (>=2 live type pairs),
 6 FRAGILE (exactly one live pair carrying the whole profile-level non-zero), 1
-CONTRADICTED. 37 of the 107 units have `provenance.embodied_in_malecns: true`; the
-other 70 do not resolve to fly cells and each carries a machine-checkable
-`provenance.unanchored_reason`. Four of those 70 are traced out of a second
-connectome (the C. elegans adult reconstruction, v2.27.0) and carry
-`provenance.source_connectome`; the remaining 66 are cross-species concept units. All 57 anchored populations are now referenced by
+CONTRADICTED. 37 of the 112 units have `provenance.embodied_in_malecns: true`; the
+other 75 do not resolve to fly cells and each carries a machine-checkable
+`provenance.unanchored_reason`. Nine of those 75 are traced out of reconstructable
+connectomes (four from the C. elegans adult reconstruction, v2.27.0; five from the
+Drosophila larva reconstruction, v2.28.0) and carry `provenance.source_connectome`;
+the remaining 66 are cross-species concept units. All 57 anchored populations are now referenced by
 at least one unit (v2.1.0 wired the last five). A measured count of ZERO is a
 recorded contradiction (currently one, in `central_complex_steering_unit`), never a
 pass. `extracted_from_malecns` stays false everywhere: presence and non-contradiction

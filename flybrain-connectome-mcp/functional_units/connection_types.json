@@ -11,9 +11,9 @@
     "macro": "population-level projection geometry"
   },
   "stats": {
-    "functional_units": 107,
+    "functional_units": 112,
     "connection_types": 66,
-    "neural_members_referenced": 210,
+    "neural_members_referenced": 240,
     "systems": [
       "antennal_lobe",
       "antennal_mechanosensory",
@@ -39,6 +39,7 @@
       "infrared_pit",
       "lateral_horn",
       "lateral_protocerebrum",
+      "learning",
       "leech_ganglion",
       "limbic",
       "locus_coeruleus",
@@ -69,7 +70,7 @@
       "modulatory",
       "plasticity"
     ],
-    "connection_types_used_by_units": 47,
+    "connection_types_used_by_units": 48,
     "embodied_units": 37,
     "embodied_populations_referenced": 57,
     "embodied_real_cells_referenced": 105717,

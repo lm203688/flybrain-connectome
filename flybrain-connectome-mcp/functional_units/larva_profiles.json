@@ -1,0 +1,5625 @@
+{
+ "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+ "note": "Every edge below is copied from the larva connectome; nothing is inferred from memory. The source annotates synapse polarity (ad/aa/da/dd) but no transmitter and no sign, so no inhibitory claim is made. dendro-axonic (da) edges are counted, not emitted: the library's connection vocabulary has no such type.",
+ "emitted_forms": [
+  "axo_axonic",
+  "axo_dendritic",
+  "dendro_dendritic"
+ ],
+ "dropped_form": "da (no dendro_axonic type in the library)",
+ "units": [
+  {
+   "name": "larv_olfactory_associative_learning_unit",
+   "display": "幼虫嗅觉关联学习单元",
+   "function": "associative_learning",
+   "system": "learning",
+   "description": "嗅觉感受神经元经局部中间神经元 LN 交给投射神经元 PN，PN 再经蕈状体 KC 汇到输出神经元 MBON；KC 之间以及 KC 到 MBIN 的自反馈边是这条通路里权重最高的一部分，也是幼虫 scent-memory 回路在连接组里可直接量到的部分。",
+   "members": [
+    {
+     "role": "kenyon",
+     "neuron": "larv.kc_unannotated",
+     "count_ratio": 0.2618
+    },
+    {
+     "role": "local_int_thermo",
+     "neuron": "larv.ln_thermo",
+     "count_ratio": 0.0073
+    },
+    {
+     "role": "local_int",
+     "neuron": "larv.ln_unannotated",
+     "count_ratio": 0.1927
+    },
+    {
+     "role": "output",
+     "neuron": "larv.mbon_unannotated",
+     "count_ratio": 0.0873
+    },
+    {
+     "role": "projection_gustatory",
+     "neuron": "larv.pn_gustatory",
+     "count_ratio": 0.1273
+    },
+    {
+     "role": "projection_gut",
+     "neuron": "larv.pn_gut",
+     "count_ratio": 0.0145
+    },
+    {
+     "role": "projection_thermo",
+     "neuron": "larv.pn_thermo",
+     "count_ratio": 0.0145
+    },
+    {
+     "role": "projection",
+     "neuron": "larv.pn_unannotated",
+     "count_ratio": 0.2182
+    },
+    {
+     "role": "receptor",
+     "neuron": "larv.sensory_olfactory",
+     "count_ratio": 0.0764
+    }
+   ],
+   "motif_source": [
+    "axo_axonic",
+    "axo_dendritic",
+    "dendro_dendritic"
+   ],
+   "internal_wiring": [
+    {
+     "from": "local_int",
+     "to": "local_int",
+     "type": "dendro_dendritic",
+     "synapses": 2101,
+     "weight": 0.133
+    },
+    {
+     "from": "local_int",
+     "to": "projection",
+     "type": "dendro_dendritic",
+     "synapses": 1921,
+     "weight": 0.122
+    },
+    {
+     "from": "local_int",
+     "to": "local_int",
+     "type": "axo_axonic",
+     "synapses": 822,
+     "weight": 0.052
+    },
+    {
+     "from": "local_int",
+     "to": "projection",
+     "type": "axo_axonic",
+     "synapses": 420,
+     "weight": 0.027
+    },
+    {
+     "from": "local_int",
+     "to": "local_int",
+     "type": "axo_dendritic",
+     "synapses": 1580,
+     "weight": 0.1
+    },
+    {
+     "from": "local_int",
+     "to": "projection",
+     "type": "axo_dendritic",
+     "synapses": 3887,
+     "weight": 0.247
+    },
+    {
+     "from": "kenyon",
+     "to": "output",
+     "type": "dendro_dendritic",
+     "synapses": 1235,
+     "weight": 0.078
+    },
+    {
+     "from": "kenyon",
+     "to": "kenyon",
+     "type": "dendro_dendritic",
+     "synapses": 1191,
+     "weight": 0.076
+    },
+    {
+     "from": "kenyon",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 13621,
+     "weight": 0.865
+    },
+    {
+     "from": "kenyon",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 770,
+     "weight": 0.049
+    },
+    {
+     "from": "kenyon",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 15747,
+     "weight": 1.0
+    },
+    {
+     "from": "kenyon",
+     "to": "local_int",
+     "type": "axo_dendritic",
+     "synapses": 930,
+     "weight": 0.059
+    },
+    {
+     "from": "local_int",
+     "to": "output",
+     "type": "dendro_dendritic",
+     "synapses": 16,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "local_int",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 833,
+     "weight": 0.053
+    },
+    {
+     "from": "local_int",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 42,
+     "weight": 0.003
+    },
+    {
+     "from": "projection",
+     "to": "local_int",
+     "type": "dendro_dendritic",
+     "synapses": 2090,
+     "weight": 0.133
+    },
+    {
+     "from": "projection",
+     "to": "projection",
+     "type": "dendro_dendritic",
+     "synapses": 949,
+     "weight": 0.06
+    },
+    {
+     "from": "projection",
+     "to": "local_int",
+     "type": "axo_axonic",
+     "synapses": 582,
+     "weight": 0.037
+    },
+    {
+     "from": "projection",
+     "to": "projection",
+     "type": "axo_axonic",
+     "synapses": 1194,
+     "weight": 0.076
+    },
+    {
+     "from": "projection",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 4109,
+     "weight": 0.261
+    },
+    {
+     "from": "projection",
+     "to": "local_int",
+     "type": "axo_dendritic",
+     "synapses": 2035,
+     "weight": 0.129
+    },
+    {
+     "from": "projection",
+     "to": "local_int_thermo",
+     "type": "axo_dendritic",
+     "synapses": 41,
+     "weight": 0.003
+    },
+    {
+     "from": "projection",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 280,
+     "weight": 0.018
+    },
+    {
+     "from": "kenyon",
+     "to": "projection_gustatory",
+     "type": "axo_axonic",
+     "synapses": 29,
+     "weight": 0.002
+    },
+    {
+     "from": "kenyon",
+     "to": "local_int",
+     "type": "axo_axonic",
+     "synapses": 9,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "local_int",
+     "type": "axo_axonic",
+     "synapses": 113,
+     "weight": 0.007
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "projection",
+     "type": "axo_axonic",
+     "synapses": 256,
+     "weight": 0.016
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "projection_gustatory",
+     "type": "axo_axonic",
+     "synapses": 299,
+     "weight": 0.019
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "local_int",
+     "type": "axo_dendritic",
+     "synapses": 473,
+     "weight": 0.03
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 350,
+     "weight": 0.022
+    },
+    {
+     "from": "projection",
+     "to": "projection_gustatory",
+     "type": "axo_axonic",
+     "synapses": 242,
+     "weight": 0.015
+    },
+    {
+     "from": "projection",
+     "to": "projection",
+     "type": "axo_dendritic",
+     "synapses": 153,
+     "weight": 0.01
+    },
+    {
+     "from": "projection",
+     "to": "projection_gut",
+     "type": "axo_dendritic",
+     "synapses": 32,
+     "weight": 0.002
+    },
+    {
+     "from": "output",
+     "to": "output",
+     "type": "dendro_dendritic",
+     "synapses": 154,
+     "weight": 0.01
+    },
+    {
+     "from": "output",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 977,
+     "weight": 0.062
+    },
+    {
+     "from": "output",
+     "to": "projection",
+     "type": "axo_axonic",
+     "synapses": 156,
+     "weight": 0.01
+    },
+    {
+     "from": "output",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 597,
+     "weight": 0.038
+    },
+    {
+     "from": "output",
+     "to": "local_int",
+     "type": "axo_dendritic",
+     "synapses": 431,
+     "weight": 0.027
+    },
+    {
+     "from": "output",
+     "to": "local_int",
+     "type": "dendro_dendritic",
+     "synapses": 22,
+     "weight": 0.001
+    },
+    {
+     "from": "output",
+     "to": "projection",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "output",
+     "to": "projection_gustatory",
+     "type": "axo_axonic",
+     "synapses": 30,
+     "weight": 0.002
+    },
+    {
+     "from": "output",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 82,
+     "weight": 0.005
+    },
+    {
+     "from": "output",
+     "to": "local_int",
+     "type": "axo_axonic",
+     "synapses": 83,
+     "weight": 0.005
+    },
+    {
+     "from": "output",
+     "to": "projection",
+     "type": "axo_dendritic",
+     "synapses": 101,
+     "weight": 0.006
+    },
+    {
+     "from": "output",
+     "to": "projection_gustatory",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "output",
+     "to": "projection_gut",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "output",
+     "to": "projection_gut",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "projection",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 171,
+     "weight": 0.011
+    },
+    {
+     "from": "local_int",
+     "to": "projection_thermo",
+     "type": "dendro_dendritic",
+     "synapses": 5,
+     "weight": 0.0
+    },
+    {
+     "from": "local_int",
+     "to": "projection_gustatory",
+     "type": "dendro_dendritic",
+     "synapses": 33,
+     "weight": 0.002
+    },
+    {
+     "from": "receptor",
+     "to": "local_int",
+     "type": "axo_axonic",
+     "synapses": 1044,
+     "weight": 0.066
+    },
+    {
+     "from": "receptor",
+     "to": "local_int",
+     "type": "axo_dendritic",
+     "synapses": 5982,
+     "weight": 0.38
+    },
+    {
+     "from": "receptor",
+     "to": "projection",
+     "type": "axo_dendritic",
+     "synapses": 6363,
+     "weight": 0.404
+    },
+    {
+     "from": "receptor",
+     "to": "projection_gustatory",
+     "type": "axo_dendritic",
+     "synapses": 22,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int",
+     "to": "receptor",
+     "type": "axo_axonic",
+     "synapses": 478,
+     "weight": 0.03
+    },
+    {
+     "from": "local_int",
+     "to": "projection_gustatory",
+     "type": "axo_dendritic",
+     "synapses": 174,
+     "weight": 0.011
+    },
+    {
+     "from": "receptor",
+     "to": "receptor",
+     "type": "axo_axonic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int",
+     "to": "projection_gustatory",
+     "type": "axo_axonic",
+     "synapses": 96,
+     "weight": 0.006
+    },
+    {
+     "from": "local_int",
+     "to": "local_int_thermo",
+     "type": "axo_dendritic",
+     "synapses": 40,
+     "weight": 0.003
+    },
+    {
+     "from": "local_int",
+     "to": "projection_thermo",
+     "type": "axo_dendritic",
+     "synapses": 7,
+     "weight": 0.0
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "local_int",
+     "type": "dendro_dendritic",
+     "synapses": 16,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "projection",
+     "type": "dendro_dendritic",
+     "synapses": 70,
+     "weight": 0.004
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "projection",
+     "type": "axo_dendritic",
+     "synapses": 99,
+     "weight": 0.006
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "projection_thermo",
+     "type": "axo_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "projection_gustatory",
+     "type": "dendro_dendritic",
+     "synapses": 45,
+     "weight": 0.003
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "projection_gut",
+     "type": "axo_axonic",
+     "synapses": 11,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 107,
+     "weight": 0.007
+    },
+    {
+     "from": "projection",
+     "to": "projection_gustatory",
+     "type": "dendro_dendritic",
+     "synapses": 75,
+     "weight": 0.005
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 61,
+     "weight": 0.004
+    },
+    {
+     "from": "projection",
+     "to": "projection_thermo",
+     "type": "axo_axonic",
+     "synapses": 21,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 15,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_thermo",
+     "to": "projection",
+     "type": "dendro_dendritic",
+     "synapses": 41,
+     "weight": 0.003
+    },
+    {
+     "from": "projection_thermo",
+     "to": "local_int",
+     "type": "dendro_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "projection_thermo",
+     "to": "projection_thermo",
+     "type": "dendro_dendritic",
+     "synapses": 23,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_thermo",
+     "to": "projection_thermo",
+     "type": "axo_axonic",
+     "synapses": 157,
+     "weight": 0.01
+    },
+    {
+     "from": "projection_thermo",
+     "to": "local_int",
+     "type": "axo_axonic",
+     "synapses": 90,
+     "weight": 0.006
+    },
+    {
+     "from": "projection_thermo",
+     "to": "projection",
+     "type": "axo_axonic",
+     "synapses": 76,
+     "weight": 0.005
+    },
+    {
+     "from": "projection_thermo",
+     "to": "projection_gustatory",
+     "type": "axo_axonic",
+     "synapses": 34,
+     "weight": 0.002
+    },
+    {
+     "from": "projection_thermo",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 222,
+     "weight": 0.014
+    },
+    {
+     "from": "projection_thermo",
+     "to": "local_int_thermo",
+     "type": "axo_dendritic",
+     "synapses": 92,
+     "weight": 0.006
+    },
+    {
+     "from": "projection_thermo",
+     "to": "local_int",
+     "type": "axo_dendritic",
+     "synapses": 146,
+     "weight": 0.009
+    },
+    {
+     "from": "output",
+     "to": "kenyon",
+     "type": "dendro_dendritic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int",
+     "to": "kenyon",
+     "type": "dendro_dendritic",
+     "synapses": 21,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int",
+     "to": "local_int_thermo",
+     "type": "dendro_dendritic",
+     "synapses": 5,
+     "weight": 0.0
+    },
+    {
+     "from": "projection_thermo",
+     "to": "local_int_thermo",
+     "type": "axo_axonic",
+     "synapses": 43,
+     "weight": 0.003
+    },
+    {
+     "from": "local_int_thermo",
+     "to": "local_int",
+     "type": "axo_axonic",
+     "synapses": 27,
+     "weight": 0.002
+    },
+    {
+     "from": "local_int_thermo",
+     "to": "projection_thermo",
+     "type": "axo_axonic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int_thermo",
+     "to": "projection_gustatory",
+     "type": "axo_axonic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "local_int_thermo",
+     "to": "local_int",
+     "type": "axo_dendritic",
+     "synapses": 82,
+     "weight": 0.005
+    },
+    {
+     "from": "local_int_thermo",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 16,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int_thermo",
+     "to": "local_int_thermo",
+     "type": "axo_dendritic",
+     "synapses": 15,
+     "weight": 0.001
+    },
+    {
+     "from": "kenyon",
+     "to": "local_int",
+     "type": "dendro_dendritic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "projection",
+     "to": "projection_thermo",
+     "type": "dendro_dendritic",
+     "synapses": 6,
+     "weight": 0.0
+    },
+    {
+     "from": "kenyon",
+     "to": "projection",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "kenyon",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "projection_thermo",
+     "type": "axo_axonic",
+     "synapses": 18,
+     "weight": 0.001
+    },
+    {
+     "from": "output",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "projection_thermo",
+     "to": "projection_gustatory",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "local_int_thermo",
+     "type": "axo_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 26,
+     "weight": 0.002
+    },
+    {
+     "from": "local_int",
+     "to": "projection_thermo",
+     "type": "axo_axonic",
+     "synapses": 20,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int_thermo",
+     "to": "local_int_thermo",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "local_int_thermo",
+     "to": "kenyon",
+     "type": "dendro_dendritic",
+     "synapses": 40,
+     "weight": 0.003
+    },
+    {
+     "from": "local_int",
+     "to": "local_int_thermo",
+     "type": "axo_axonic",
+     "synapses": 6,
+     "weight": 0.0
+    },
+    {
+     "from": "projection",
+     "to": "projection_gut",
+     "type": "axo_axonic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int",
+     "to": "projection_gut",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "local_int",
+     "to": "projection_gut",
+     "type": "axo_dendritic",
+     "synapses": 11,
+     "weight": 0.001
+    },
+    {
+     "from": "local_int_thermo",
+     "to": "local_int_thermo",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "output",
+     "to": "local_int_thermo",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "projection",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "local_int_thermo",
+     "to": "local_int",
+     "type": "dendro_dendritic",
+     "synapses": 5,
+     "weight": 0.0
+    },
+    {
+     "from": "projection_gut",
+     "to": "local_int",
+     "type": "axo_axonic",
+     "synapses": 9,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gut",
+     "to": "projection_gut",
+     "type": "axo_dendritic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "projection_gut",
+     "to": "local_int",
+     "type": "axo_dendritic",
+     "synapses": 24,
+     "weight": 0.002
+    },
+    {
+     "from": "projection_gut",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "projection_gut",
+     "to": "projection_gustatory",
+     "type": "axo_axonic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "projection_gut",
+     "to": "projection_gut",
+     "type": "axo_axonic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gut",
+     "to": "projection",
+     "type": "axo_axonic",
+     "synapses": 13,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gut",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 18,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gustatory",
+     "to": "projection_gustatory",
+     "type": "axo_dendritic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "projection",
+     "to": "projection_gustatory",
+     "type": "axo_dendritic",
+     "synapses": 9,
+     "weight": 0.001
+    },
+    {
+     "from": "projection_gut",
+     "to": "projection",
+     "type": "dendro_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "projection_gut",
+     "to": "projection",
+     "type": "axo_dendritic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "projection",
+     "to": "local_int_thermo",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    }
+   ],
+   "ports": {
+    "in": [
+     {
+      "name": "odor",
+      "type": "sensory.olfactory",
+      "required": true
+     }
+    ],
+    "out": [
+     {
+      "name": "valence",
+      "type": "memory.associative",
+      "required": true
+     }
+    ]
+   },
+   "size_range": [
+    9,
+    550
+   ],
+   "capability": [
+    "traced_connectome",
+    "associative_learning",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "associative_learning",
+    "sparse_expansion",
+    "mushroom_body"
+   ],
+   "lead_task_hint": "associative_learning",
+   "neurotransmitter": [],
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "composable_with": [],
+   "provenance": {
+    "class": "curated-drosophila-larva-connectome",
+    "extracted_from_malecns": false,
+    "source_connectome": "Drosophila melanogaster larva (Winding et al. 2023)",
+    "basis": "serial-section EM reconstruction, single-cell nodes aggregated to (cell_type, annotation) classes",
+    "embodied_in_malecns": false,
+    "embodiment_basis": "the MaleCNS anchor table is an adult reconstruction; larva and adult are the same species but different developmental stages, so per-cell-type homology is an inference, not a measurement, and is not claimed here",
+    "unanchored_reason": "outside_male_cns_species_coverage",
+    "evidence_weight": "connectome_derived",
+    "connectome_traceable": true
+   },
+   "larva_stats": {
+    "n_cell_classes": 9,
+    "n_cells": 550,
+    "n_edges": 125,
+    "n_synapses": 77353,
+    "n_axo_dendritic": 45109,
+    "n_axo_axonic": 22158,
+    "n_dendro_dendritic": 10086,
+    "n_dendro_axonic_dropped": 2808,
+    "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`"
+   }
+  },
+  {
+   "name": "larv_somatosensory_escape_unit",
+   "display": "幼虫躯感逃逸反射单元",
+   "function": "escape_reflex",
+   "system": "motor",
+   "description": "PN-somato 携带作者标注的 noci / mechano-Ch / proprio 三种二级感受亚型，把这些躯感通道交给外侧角 LHN，再汇到 descending pre-DN-VNC 送出脑外；这是连接组里唯一能按模态逐亚型追踪的感觉-运动通路。",
+   "members": [
+    {
+     "role": "central_int_mechano",
+     "neuron": "larv.cn_mechano",
+     "count_ratio": 0.0022
+    },
+    {
+     "role": "central_int",
+     "neuron": "larv.cn_unannotated",
+     "count_ratio": 0.1061
+    },
+    {
+     "role": "lateral_horn_mechano",
+     "neuron": "larv.lhn_mechano",
+     "count_ratio": 0.0022
+    },
+    {
+     "role": "lateral_horn_noci",
+     "neuron": "larv.lhn_noci",
+     "count_ratio": 0.0065
+    },
+    {
+     "role": "lateral_horn_thermo",
+     "neuron": "larv.lhn_thermo",
+     "count_ratio": 0.0022
+    },
+    {
+     "role": "lateral_horn",
+     "neuron": "larv.lhn_unannotated",
+     "count_ratio": 0.2078
+    },
+    {
+     "role": "mechano_relay",
+     "neuron": "larv.pn_somato_mechano",
+     "count_ratio": 0.0606
+    },
+    {
+     "role": "noci_relay",
+     "neuron": "larv.pn_somato_noci",
+     "count_ratio": 0.0714
+    },
+    {
+     "role": "proprio_relay",
+     "neuron": "larv.pn_somato_proprio",
+     "count_ratio": 0.0195
+    },
+    {
+     "role": "ascending_hub",
+     "neuron": "larv.ascending_noci",
+     "count_ratio": 0.0065
+    },
+    {
+     "role": "descending",
+     "neuron": "larv.pre_dn_vnc_unannotated",
+     "count_ratio": 0.5152
+    }
+   ],
+   "motif_source": [
+    "axo_axonic",
+    "axo_dendritic",
+    "dendro_dendritic"
+   ],
+   "internal_wiring": [
+    {
+     "from": "noci_relay",
+     "to": "noci_relay",
+     "type": "dendro_dendritic",
+     "synapses": 102,
+     "weight": 0.008
+    },
+    {
+     "from": "noci_relay",
+     "to": "descending",
+     "type": "dendro_dendritic",
+     "synapses": 141,
+     "weight": 0.012
+    },
+    {
+     "from": "noci_relay",
+     "to": "lateral_horn_noci",
+     "type": "dendro_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "noci_relay",
+     "to": "mechano_relay",
+     "type": "dendro_dendritic",
+     "synapses": 33,
+     "weight": 0.003
+    },
+    {
+     "from": "noci_relay",
+     "to": "noci_relay",
+     "type": "axo_axonic",
+     "synapses": 259,
+     "weight": 0.021
+    },
+    {
+     "from": "noci_relay",
+     "to": "mechano_relay",
+     "type": "axo_axonic",
+     "synapses": 61,
+     "weight": 0.005
+    },
+    {
+     "from": "noci_relay",
+     "to": "descending",
+     "type": "axo_axonic",
+     "synapses": 469,
+     "weight": 0.039
+    },
+    {
+     "from": "noci_relay",
+     "to": "noci_relay",
+     "type": "axo_dendritic",
+     "synapses": 673,
+     "weight": 0.055
+    },
+    {
+     "from": "noci_relay",
+     "to": "descending",
+     "type": "axo_dendritic",
+     "synapses": 1419,
+     "weight": 0.117
+    },
+    {
+     "from": "noci_relay",
+     "to": "mechano_relay",
+     "type": "axo_dendritic",
+     "synapses": 299,
+     "weight": 0.025
+    },
+    {
+     "from": "noci_relay",
+     "to": "lateral_horn_noci",
+     "type": "axo_dendritic",
+     "synapses": 69,
+     "weight": 0.006
+    },
+    {
+     "from": "descending",
+     "to": "mechano_relay",
+     "type": "axo_axonic",
+     "synapses": 138,
+     "weight": 0.011
+    },
+    {
+     "from": "descending",
+     "to": "noci_relay",
+     "type": "axo_axonic",
+     "synapses": 729,
+     "weight": 0.06
+    },
+    {
+     "from": "descending",
+     "to": "descending",
+     "type": "axo_axonic",
+     "synapses": 6904,
+     "weight": 0.569
+    },
+    {
+     "from": "descending",
+     "to": "noci_relay",
+     "type": "axo_dendritic",
+     "synapses": 784,
+     "weight": 0.065
+    },
+    {
+     "from": "descending",
+     "to": "descending",
+     "type": "axo_dendritic",
+     "synapses": 12129,
+     "weight": 1.0
+    },
+    {
+     "from": "descending",
+     "to": "central_int",
+     "type": "axo_dendritic",
+     "synapses": 1596,
+     "weight": 0.132
+    },
+    {
+     "from": "descending",
+     "to": "descending",
+     "type": "dendro_dendritic",
+     "synapses": 565,
+     "weight": 0.047
+    },
+    {
+     "from": "mechano_relay",
+     "to": "descending",
+     "type": "dendro_dendritic",
+     "synapses": 135,
+     "weight": 0.011
+    },
+    {
+     "from": "mechano_relay",
+     "to": "noci_relay",
+     "type": "dendro_dendritic",
+     "synapses": 109,
+     "weight": 0.009
+    },
+    {
+     "from": "mechano_relay",
+     "to": "mechano_relay",
+     "type": "dendro_dendritic",
+     "synapses": 120,
+     "weight": 0.01
+    },
+    {
+     "from": "mechano_relay",
+     "to": "noci_relay",
+     "type": "axo_dendritic",
+     "synapses": 537,
+     "weight": 0.044
+    },
+    {
+     "from": "mechano_relay",
+     "to": "mechano_relay",
+     "type": "axo_dendritic",
+     "synapses": 745,
+     "weight": 0.061
+    },
+    {
+     "from": "mechano_relay",
+     "to": "lateral_horn_mechano",
+     "type": "axo_dendritic",
+     "synapses": 97,
+     "weight": 0.008
+    },
+    {
+     "from": "mechano_relay",
+     "to": "descending",
+     "type": "axo_dendritic",
+     "synapses": 741,
+     "weight": 0.061
+    },
+    {
+     "from": "mechano_relay",
+     "to": "lateral_horn_noci",
+     "type": "dendro_dendritic",
+     "synapses": 22,
+     "weight": 0.002
+    },
+    {
+     "from": "mechano_relay",
+     "to": "lateral_horn_noci",
+     "type": "axo_axonic",
+     "synapses": 81,
+     "weight": 0.007
+    },
+    {
+     "from": "mechano_relay",
+     "to": "mechano_relay",
+     "type": "axo_axonic",
+     "synapses": 261,
+     "weight": 0.022
+    },
+    {
+     "from": "mechano_relay",
+     "to": "descending",
+     "type": "axo_axonic",
+     "synapses": 196,
+     "weight": 0.016
+    },
+    {
+     "from": "mechano_relay",
+     "to": "noci_relay",
+     "type": "axo_axonic",
+     "synapses": 100,
+     "weight": 0.008
+    },
+    {
+     "from": "mechano_relay",
+     "to": "lateral_horn_noci",
+     "type": "axo_dendritic",
+     "synapses": 84,
+     "weight": 0.007
+    },
+    {
+     "from": "mechano_relay",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 121,
+     "weight": 0.01
+    },
+    {
+     "from": "mechano_relay",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 91,
+     "weight": 0.008
+    },
+    {
+     "from": "mechano_relay",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 24,
+     "weight": 0.002
+    },
+    {
+     "from": "noci_relay",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 232,
+     "weight": 0.019
+    },
+    {
+     "from": "noci_relay",
+     "to": "lateral_horn_mechano",
+     "type": "axo_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "mechano_relay",
+     "to": "lateral_horn_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 21,
+     "weight": 0.002
+    },
+    {
+     "from": "noci_relay",
+     "to": "lateral_horn_noci",
+     "type": "axo_axonic",
+     "synapses": 26,
+     "weight": 0.002
+    },
+    {
+     "from": "noci_relay",
+     "to": "central_int",
+     "type": "dendro_dendritic",
+     "synapses": 11,
+     "weight": 0.001
+    },
+    {
+     "from": "noci_relay",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 15,
+     "weight": 0.001
+    },
+    {
+     "from": "noci_relay",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 69,
+     "weight": 0.006
+    },
+    {
+     "from": "noci_relay",
+     "to": "central_int",
+     "type": "axo_dendritic",
+     "synapses": 149,
+     "weight": 0.012
+    },
+    {
+     "from": "descending",
+     "to": "noci_relay",
+     "type": "dendro_dendritic",
+     "synapses": 54,
+     "weight": 0.004
+    },
+    {
+     "from": "descending",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 661,
+     "weight": 0.054
+    },
+    {
+     "from": "descending",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 1058,
+     "weight": 0.087
+    },
+    {
+     "from": "noci_relay",
+     "to": "central_int",
+     "type": "axo_axonic",
+     "synapses": 23,
+     "weight": 0.002
+    },
+    {
+     "from": "lateral_horn",
+     "to": "descending",
+     "type": "dendro_dendritic",
+     "synapses": 52,
+     "weight": 0.004
+    },
+    {
+     "from": "lateral_horn",
+     "to": "central_int",
+     "type": "dendro_dendritic",
+     "synapses": 31,
+     "weight": 0.003
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 354,
+     "weight": 0.029
+    },
+    {
+     "from": "lateral_horn",
+     "to": "descending",
+     "type": "axo_axonic",
+     "synapses": 587,
+     "weight": 0.048
+    },
+    {
+     "from": "lateral_horn",
+     "to": "noci_relay",
+     "type": "axo_axonic",
+     "synapses": 56,
+     "weight": 0.005
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 1842,
+     "weight": 0.152
+    },
+    {
+     "from": "lateral_horn",
+     "to": "central_int",
+     "type": "axo_axonic",
+     "synapses": 320,
+     "weight": 0.026
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_mechano",
+     "type": "axo_axonic",
+     "synapses": 10,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 3210,
+     "weight": 0.265
+    },
+    {
+     "from": "lateral_horn",
+     "to": "descending",
+     "type": "axo_dendritic",
+     "synapses": 2177,
+     "weight": 0.179
+    },
+    {
+     "from": "lateral_horn",
+     "to": "central_int",
+     "type": "axo_dendritic",
+     "synapses": 2274,
+     "weight": 0.187
+    },
+    {
+     "from": "lateral_horn",
+     "to": "noci_relay",
+     "type": "axo_dendritic",
+     "synapses": 204,
+     "weight": 0.017
+    },
+    {
+     "from": "descending",
+     "to": "central_int",
+     "type": "dendro_dendritic",
+     "synapses": 91,
+     "weight": 0.008
+    },
+    {
+     "from": "descending",
+     "to": "mechano_relay",
+     "type": "dendro_dendritic",
+     "synapses": 25,
+     "weight": 0.002
+    },
+    {
+     "from": "central_int",
+     "to": "descending",
+     "type": "dendro_dendritic",
+     "synapses": 120,
+     "weight": 0.01
+    },
+    {
+     "from": "central_int",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 24,
+     "weight": 0.002
+    },
+    {
+     "from": "central_int",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 343,
+     "weight": 0.028
+    },
+    {
+     "from": "central_int",
+     "to": "descending",
+     "type": "axo_axonic",
+     "synapses": 695,
+     "weight": 0.057
+    },
+    {
+     "from": "central_int",
+     "to": "central_int",
+     "type": "axo_dendritic",
+     "synapses": 1018,
+     "weight": 0.084
+    },
+    {
+     "from": "central_int",
+     "to": "central_int_mechano",
+     "type": "axo_dendritic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "central_int",
+     "to": "mechano_relay",
+     "type": "axo_dendritic",
+     "synapses": 17,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_thermo",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_mechano",
+     "type": "axo_dendritic",
+     "synapses": 67,
+     "weight": 0.006
+    },
+    {
+     "from": "central_int",
+     "to": "noci_relay",
+     "type": "axo_axonic",
+     "synapses": 29,
+     "weight": 0.002
+    },
+    {
+     "from": "central_int",
+     "to": "central_int",
+     "type": "axo_axonic",
+     "synapses": 614,
+     "weight": 0.051
+    },
+    {
+     "from": "central_int",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 418,
+     "weight": 0.034
+    },
+    {
+     "from": "descending",
+     "to": "proprio_relay",
+     "type": "dendro_dendritic",
+     "synapses": 26,
+     "weight": 0.002
+    },
+    {
+     "from": "descending",
+     "to": "central_int",
+     "type": "axo_axonic",
+     "synapses": 663,
+     "weight": 0.055
+    },
+    {
+     "from": "descending",
+     "to": "proprio_relay",
+     "type": "axo_axonic",
+     "synapses": 284,
+     "weight": 0.023
+    },
+    {
+     "from": "central_int",
+     "to": "mechano_relay",
+     "type": "axo_axonic",
+     "synapses": 6,
+     "weight": 0.0
+    },
+    {
+     "from": "central_int",
+     "to": "proprio_relay",
+     "type": "axo_axonic",
+     "synapses": 7,
+     "weight": 0.001
+    },
+    {
+     "from": "central_int",
+     "to": "descending",
+     "type": "axo_dendritic",
+     "synapses": 2321,
+     "weight": 0.191
+    },
+    {
+     "from": "central_int",
+     "to": "noci_relay",
+     "type": "axo_dendritic",
+     "synapses": 55,
+     "weight": 0.005
+    },
+    {
+     "from": "lateral_horn",
+     "to": "central_int_mechano",
+     "type": "axo_axonic",
+     "synapses": 38,
+     "weight": 0.003
+    },
+    {
+     "from": "lateral_horn",
+     "to": "central_int_mechano",
+     "type": "axo_dendritic",
+     "synapses": 101,
+     "weight": 0.008
+    },
+    {
+     "from": "lateral_horn",
+     "to": "mechano_relay",
+     "type": "axo_dendritic",
+     "synapses": 233,
+     "weight": 0.019
+    },
+    {
+     "from": "lateral_horn",
+     "to": "mechano_relay",
+     "type": "axo_axonic",
+     "synapses": 79,
+     "weight": 0.007
+    },
+    {
+     "from": "descending",
+     "to": "lateral_horn_mechano",
+     "type": "axo_axonic",
+     "synapses": 60,
+     "weight": 0.005
+    },
+    {
+     "from": "descending",
+     "to": "mechano_relay",
+     "type": "axo_dendritic",
+     "synapses": 249,
+     "weight": 0.021
+    },
+    {
+     "from": "central_int",
+     "to": "central_int",
+     "type": "dendro_dendritic",
+     "synapses": 76,
+     "weight": 0.006
+    },
+    {
+     "from": "descending",
+     "to": "proprio_relay",
+     "type": "axo_dendritic",
+     "synapses": 290,
+     "weight": 0.024
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "noci_relay",
+     "type": "axo_axonic",
+     "synapses": 20,
+     "weight": 0.002
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "mechano_relay",
+     "type": "axo_axonic",
+     "synapses": 17,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "descending",
+     "type": "axo_axonic",
+     "synapses": 31,
+     "weight": 0.003
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "noci_relay",
+     "type": "axo_dendritic",
+     "synapses": 155,
+     "weight": 0.013
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "mechano_relay",
+     "type": "axo_dendritic",
+     "synapses": 66,
+     "weight": 0.005
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "lateral_horn_noci",
+     "type": "axo_dendritic",
+     "synapses": 56,
+     "weight": 0.005
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "descending",
+     "type": "axo_dendritic",
+     "synapses": 185,
+     "weight": 0.015
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 20,
+     "weight": 0.002
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_noci",
+     "type": "axo_dendritic",
+     "synapses": 54,
+     "weight": 0.004
+    },
+    {
+     "from": "noci_relay",
+     "to": "proprio_relay",
+     "type": "axo_dendritic",
+     "synapses": 9,
+     "weight": 0.001
+    },
+    {
+     "from": "noci_relay",
+     "to": "proprio_relay",
+     "type": "axo_axonic",
+     "synapses": 32,
+     "weight": 0.003
+    },
+    {
+     "from": "central_int",
+     "to": "proprio_relay",
+     "type": "axo_dendritic",
+     "synapses": 11,
+     "weight": 0.001
+    },
+    {
+     "from": "descending",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 67,
+     "weight": 0.006
+    },
+    {
+     "from": "descending",
+     "to": "lateral_horn_noci",
+     "type": "axo_axonic",
+     "synapses": 17,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "lateral_horn_noci",
+     "type": "axo_axonic",
+     "synapses": 16,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "lateral_horn_mechano",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "proprio_relay",
+     "to": "descending",
+     "type": "axo_axonic",
+     "synapses": 476,
+     "weight": 0.039
+    },
+    {
+     "from": "proprio_relay",
+     "to": "proprio_relay",
+     "type": "axo_axonic",
+     "synapses": 35,
+     "weight": 0.003
+    },
+    {
+     "from": "proprio_relay",
+     "to": "descending",
+     "type": "axo_dendritic",
+     "synapses": 623,
+     "weight": 0.051
+    },
+    {
+     "from": "proprio_relay",
+     "to": "central_int",
+     "type": "axo_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "central_int_mechano",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 29,
+     "weight": 0.002
+    },
+    {
+     "from": "central_int_mechano",
+     "to": "central_int",
+     "type": "axo_axonic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "central_int_mechano",
+     "to": "descending",
+     "type": "axo_axonic",
+     "synapses": 21,
+     "weight": 0.002
+    },
+    {
+     "from": "central_int_mechano",
+     "to": "mechano_relay",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "central_int_mechano",
+     "to": "central_int",
+     "type": "axo_dendritic",
+     "synapses": 25,
+     "weight": 0.002
+    },
+    {
+     "from": "central_int_mechano",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "central_int_mechano",
+     "to": "descending",
+     "type": "axo_dendritic",
+     "synapses": 44,
+     "weight": 0.004
+    },
+    {
+     "from": "central_int_mechano",
+     "to": "central_int_mechano",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "central_int_mechano",
+     "to": "central_int",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "central_int_mechano",
+     "to": "mechano_relay",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "central_int",
+     "to": "central_int_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "central_int",
+     "to": "central_int_mechano",
+     "type": "axo_axonic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "central_int",
+     "to": "lateral_horn_mechano",
+     "type": "axo_axonic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "central_int",
+     "type": "axo_axonic",
+     "synapses": 14,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "noci_relay",
+     "type": "dendro_dendritic",
+     "synapses": 5,
+     "weight": 0.0
+    },
+    {
+     "from": "noci_relay",
+     "to": "lateral_horn_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "descending",
+     "to": "lateral_horn_noci",
+     "type": "axo_dendritic",
+     "synapses": 20,
+     "weight": 0.002
+    },
+    {
+     "from": "descending",
+     "to": "lateral_horn_mechano",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_thermo",
+     "type": "axo_dendritic",
+     "synapses": 13,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 18,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "mechano_relay",
+     "type": "dendro_dendritic",
+     "synapses": 43,
+     "weight": 0.004
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "descending",
+     "type": "dendro_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "descending",
+     "type": "axo_axonic",
+     "synapses": 22,
+     "weight": 0.002
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 16,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "lateral_horn_mechano",
+     "type": "axo_axonic",
+     "synapses": 22,
+     "weight": 0.002
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "descending",
+     "type": "axo_dendritic",
+     "synapses": 45,
+     "weight": 0.004
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 43,
+     "weight": 0.004
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "central_int",
+     "type": "axo_dendritic",
+     "synapses": 17,
+     "weight": 0.001
+    },
+    {
+     "from": "descending",
+     "to": "central_int_mechano",
+     "type": "axo_axonic",
+     "synapses": 5,
+     "weight": 0.0
+    },
+    {
+     "from": "descending",
+     "to": "central_int_mechano",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "mechano_relay",
+     "to": "central_int",
+     "type": "dendro_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "mechano_relay",
+     "to": "central_int",
+     "type": "axo_dendritic",
+     "synapses": 62,
+     "weight": 0.005
+    },
+    {
+     "from": "central_int",
+     "to": "proprio_relay",
+     "type": "dendro_dendritic",
+     "synapses": 33,
+     "weight": 0.003
+    },
+    {
+     "from": "proprio_relay",
+     "to": "descending",
+     "type": "dendro_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "proprio_relay",
+     "to": "proprio_relay",
+     "type": "dendro_dendritic",
+     "synapses": 7,
+     "weight": 0.001
+    },
+    {
+     "from": "proprio_relay",
+     "to": "noci_relay",
+     "type": "axo_axonic",
+     "synapses": 31,
+     "weight": 0.003
+    },
+    {
+     "from": "proprio_relay",
+     "to": "mechano_relay",
+     "type": "axo_axonic",
+     "synapses": 15,
+     "weight": 0.001
+    },
+    {
+     "from": "proprio_relay",
+     "to": "central_int",
+     "type": "axo_axonic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "proprio_relay",
+     "to": "proprio_relay",
+     "type": "axo_dendritic",
+     "synapses": 13,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 21,
+     "weight": 0.002
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "lateral_horn_mechano",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 102,
+     "weight": 0.008
+    },
+    {
+     "from": "lateral_horn",
+     "to": "proprio_relay",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "lateral_horn_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "noci_relay",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_thermo",
+     "type": "axo_axonic",
+     "synapses": 13,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "lateral_horn_thermo",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "mechano_relay",
+     "type": "dendro_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_noci",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "mechano_relay",
+     "to": "central_int",
+     "type": "axo_axonic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "mechano_relay",
+     "to": "central_int_mechano",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "ascending_hub",
+     "to": "ascending_hub",
+     "type": "axo_axonic",
+     "synapses": 6,
+     "weight": 0.0
+    },
+    {
+     "from": "ascending_hub",
+     "to": "descending",
+     "type": "axo_dendritic",
+     "synapses": 23,
+     "weight": 0.002
+    },
+    {
+     "from": "ascending_hub",
+     "to": "noci_relay",
+     "type": "axo_dendritic",
+     "synapses": 156,
+     "weight": 0.013
+    },
+    {
+     "from": "central_int",
+     "to": "lateral_horn_mechano",
+     "type": "axo_dendritic",
+     "synapses": 5,
+     "weight": 0.0
+    },
+    {
+     "from": "descending",
+     "to": "ascending_hub",
+     "type": "axo_axonic",
+     "synapses": 15,
+     "weight": 0.001
+    },
+    {
+     "from": "central_int",
+     "to": "noci_relay",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "noci_relay",
+     "to": "ascending_hub",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "proprio_relay",
+     "to": "lateral_horn_mechano",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "descending",
+     "to": "lateral_horn_noci",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "central_int",
+     "to": "lateral_horn_noci",
+     "type": "axo_axonic",
+     "synapses": 7,
+     "weight": 0.001
+    },
+    {
+     "from": "ascending_hub",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "ascending_hub",
+     "to": "noci_relay",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "ascending_hub",
+     "to": "descending",
+     "type": "axo_axonic",
+     "synapses": 14,
+     "weight": 0.001
+    },
+    {
+     "from": "ascending_hub",
+     "to": "lateral_horn_noci",
+     "type": "axo_dendritic",
+     "synapses": 68,
+     "weight": 0.006
+    },
+    {
+     "from": "ascending_hub",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 13,
+     "weight": 0.001
+    },
+    {
+     "from": "descending",
+     "to": "lateral_horn_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "central_int",
+     "to": "ascending_hub",
+     "type": "axo_axonic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "ascending_hub",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "ascending_hub",
+     "to": "mechano_relay",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "proprio_relay",
+     "to": "noci_relay",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    }
+   ],
+   "ports": {
+    "in": [
+     {
+      "name": "noxious",
+      "type": "sensory.nociceptive",
+      "required": true
+     }
+    ],
+    "out": [
+     {
+      "name": "escape",
+      "type": "motor.escape",
+      "required": true
+     }
+    ]
+   },
+   "size_range": [
+    11,
+    924
+   ],
+   "capability": [
+    "traced_connectome",
+    "escape_reflex",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "sensory_motor",
+    "reflex_arc",
+    "escape"
+   ],
+   "lead_task_hint": "escape",
+   "neurotransmitter": [],
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "composable_with": [],
+   "provenance": {
+    "class": "curated-drosophila-larva-connectome",
+    "extracted_from_malecns": false,
+    "source_connectome": "Drosophila melanogaster larva (Winding et al. 2023)",
+    "basis": "serial-section EM reconstruction, single-cell nodes aggregated to (cell_type, annotation) classes",
+    "embodied_in_malecns": false,
+    "embodiment_basis": "the MaleCNS anchor table is an adult reconstruction; larva and adult are the same species but different developmental stages, so per-cell-type homology is an inference, not a measurement, and is not claimed here",
+    "unanchored_reason": "outside_male_cns_species_coverage",
+    "evidence_weight": "connectome_derived",
+    "connectome_traceable": true
+   },
+   "larva_stats": {
+    "n_cell_classes": 11,
+    "n_cells": 924,
+    "n_edges": 181,
+    "n_synapses": 54282,
+    "n_axo_dendritic": 35250,
+    "n_axo_axonic": 16657,
+    "n_dendro_dendritic": 2375,
+    "n_dendro_axonic_dropped": 729,
+    "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`"
+   }
+  },
+  {
+   "name": "larv_gustatory_feeding_program_unit",
+   "display": "幼虫味觉摄食程序单元",
+   "function": "feeding",
+   "system": "motor",
+   "description": "外部味觉、咽部味觉与肠内感受三类神经元都把输入送到 DN-SEZ（口咽部下降神经元池）与 RGN（环腺神经元），共用一个摄食输出级；这条通路把内脏信号和口部运动接到同一级，是连接组里可逐边追踪的摄食汇聚点。",
+   "members": [
+    {
+     "role": "feed_output",
+     "neuron": "larv.dn_sez_unannotated",
+     "count_ratio": 0.3009
+    },
+    {
+     "role": "endocrine",
+     "neuron": "larv.rgn_unannotated",
+     "count_ratio": 0.0991
+    },
+    {
+     "role": "taste",
+     "neuron": "larv.sensory_gustatory",
+     "count_ratio": 0.444
+    },
+    {
+     "role": "enteric",
+     "neuron": "larv.sensory_gut",
+     "count_ratio": 0.156
+    }
+   ],
+   "motif_source": [
+    "axo_axonic",
+    "axo_dendritic",
+    "dendro_dendritic"
+   ],
+   "internal_wiring": [
+    {
+     "from": "feed_output",
+     "to": "feed_output",
+     "type": "axo_dendritic",
+     "synapses": 643,
+     "weight": 0.328
+    },
+    {
+     "from": "taste",
+     "to": "enteric",
+     "type": "axo_axonic",
+     "synapses": 7,
+     "weight": 0.004
+    },
+    {
+     "from": "taste",
+     "to": "feed_output",
+     "type": "axo_axonic",
+     "synapses": 456,
+     "weight": 0.232
+    },
+    {
+     "from": "taste",
+     "to": "feed_output",
+     "type": "axo_dendritic",
+     "synapses": 1963,
+     "weight": 1.0
+    },
+    {
+     "from": "taste",
+     "to": "taste",
+     "type": "axo_axonic",
+     "synapses": 805,
+     "weight": 0.41
+    },
+    {
+     "from": "feed_output",
+     "to": "feed_output",
+     "type": "axo_axonic",
+     "synapses": 804,
+     "weight": 0.41
+    },
+    {
+     "from": "feed_output",
+     "to": "enteric",
+     "type": "axo_axonic",
+     "synapses": 74,
+     "weight": 0.038
+    },
+    {
+     "from": "feed_output",
+     "to": "endocrine",
+     "type": "axo_dendritic",
+     "synapses": 137,
+     "weight": 0.07
+    },
+    {
+     "from": "enteric",
+     "to": "enteric",
+     "type": "axo_axonic",
+     "synapses": 382,
+     "weight": 0.195
+    },
+    {
+     "from": "enteric",
+     "to": "feed_output",
+     "type": "axo_dendritic",
+     "synapses": 334,
+     "weight": 0.17
+    },
+    {
+     "from": "enteric",
+     "to": "feed_output",
+     "type": "axo_axonic",
+     "synapses": 124,
+     "weight": 0.063
+    },
+    {
+     "from": "enteric",
+     "to": "endocrine",
+     "type": "axo_dendritic",
+     "synapses": 332,
+     "weight": 0.169
+    },
+    {
+     "from": "feed_output",
+     "to": "feed_output",
+     "type": "dendro_dendritic",
+     "synapses": 194,
+     "weight": 0.099
+    },
+    {
+     "from": "feed_output",
+     "to": "taste",
+     "type": "axo_axonic",
+     "synapses": 45,
+     "weight": 0.023
+    },
+    {
+     "from": "feed_output",
+     "to": "endocrine",
+     "type": "dendro_dendritic",
+     "synapses": 16,
+     "weight": 0.008
+    },
+    {
+     "from": "taste",
+     "to": "endocrine",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.001
+    },
+    {
+     "from": "taste",
+     "to": "endocrine",
+     "type": "axo_dendritic",
+     "synapses": 12,
+     "weight": 0.006
+    },
+    {
+     "from": "endocrine",
+     "to": "endocrine",
+     "type": "dendro_dendritic",
+     "synapses": 6,
+     "weight": 0.003
+    },
+    {
+     "from": "endocrine",
+     "to": "feed_output",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.001
+    },
+    {
+     "from": "enteric",
+     "to": "taste",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.002
+    },
+    {
+     "from": "endocrine",
+     "to": "endocrine",
+     "type": "axo_axonic",
+     "synapses": 30,
+     "weight": 0.015
+    }
+   ],
+   "ports": {
+    "in": [
+     {
+      "name": "taste",
+      "type": "sensory.gustatory",
+      "required": true
+     }
+    ],
+    "out": [
+     {
+      "name": "feeding",
+      "type": "motor.feeding",
+      "required": true
+     }
+    ]
+   },
+   "size_range": [
+    4,
+    545
+   ],
+   "capability": [
+    "traced_connectome",
+    "feeding",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "feeding",
+    "convergent_fanin",
+    "motor_pool"
+   ],
+   "lead_task_hint": "feeding",
+   "neurotransmitter": [],
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "composable_with": [],
+   "provenance": {
+    "class": "curated-drosophila-larva-connectome",
+    "extracted_from_malecns": false,
+    "source_connectome": "Drosophila melanogaster larva (Winding et al. 2023)",
+    "basis": "serial-section EM reconstruction, single-cell nodes aggregated to (cell_type, annotation) classes",
+    "embodied_in_malecns": false,
+    "embodiment_basis": "the MaleCNS anchor table is an adult reconstruction; larva and adult are the same species but different developmental stages, so per-cell-type homology is an inference, not a measurement, and is not claimed here",
+    "unanchored_reason": "outside_male_cns_species_coverage",
+    "evidence_weight": "connectome_derived",
+    "connectome_traceable": true
+   },
+   "larva_stats": {
+    "n_cell_classes": 4,
+    "n_cells": 545,
+    "n_edges": 21,
+    "n_synapses": 6370,
+    "n_axo_dendritic": 3421,
+    "n_axo_axonic": 2731,
+    "n_dendro_dendritic": 218,
+    "n_dendro_axonic_dropped": 58,
+    "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`"
+   }
+  },
+  {
+   "name": "larv_descending_motor_command_unit",
+   "display": "幼虫下降运动指令单元",
+   "function": "motor_command",
+   "system": "motor",
+   "description": "pre-DN-VNC 既接收 CN 与 PN-somato 的输入，也直接把运动指令交给 DN-VNC 送往腹神经索；同类之间的耦合边在本连接组里权重极高，说明下降池内部本身就是一个强耦合的指令层。",
+   "members": [
+    {
+     "role": "central_input_mechano",
+     "neuron": "larv.cn_mechano",
+     "count_ratio": 0.0022
+    },
+    {
+     "role": "central_input",
+     "neuron": "larv.cn_unannotated",
+     "count_ratio": 0.1077
+    },
+    {
+     "role": "descending_out",
+     "neuron": "larv.dn_vnc_unannotated",
+     "count_ratio": 0.2
+    },
+    {
+     "role": "somatosensory_input_mechano",
+     "neuron": "larv.pn_somato_mechano",
+     "count_ratio": 0.0615
+    },
+    {
+     "role": "somatosensory_input",
+     "neuron": "larv.pn_somato_noci",
+     "count_ratio": 0.0725
+    },
+    {
+     "role": "somatosensory_input_proprio",
+     "neuron": "larv.pn_somato_proprio",
+     "count_ratio": 0.0198
+    },
+    {
+     "role": "somatosensory_input_unannotated",
+     "neuron": "larv.pn_somato_unannotated",
+     "count_ratio": 0.0132
+    },
+    {
+     "role": "command",
+     "neuron": "larv.pre_dn_vnc_unannotated",
+     "count_ratio": 0.5231
+    }
+   ],
+   "motif_source": [
+    "axo_axonic",
+    "axo_dendritic",
+    "dendro_dendritic"
+   ],
+   "internal_wiring": [
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input",
+     "type": "dendro_dendritic",
+     "synapses": 102,
+     "weight": 0.008
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "command",
+     "type": "dendro_dendritic",
+     "synapses": 141,
+     "weight": 0.012
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "descending_out",
+     "type": "dendro_dendritic",
+     "synapses": 59,
+     "weight": 0.005
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 33,
+     "weight": 0.003
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input",
+     "type": "axo_axonic",
+     "synapses": 259,
+     "weight": 0.021
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_axonic",
+     "synapses": 61,
+     "weight": 0.005
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "command",
+     "type": "axo_axonic",
+     "synapses": 469,
+     "weight": 0.039
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "descending_out",
+     "type": "axo_dendritic",
+     "synapses": 873,
+     "weight": 0.072
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input",
+     "type": "axo_dendritic",
+     "synapses": 673,
+     "weight": 0.055
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 1419,
+     "weight": 0.117
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_dendritic",
+     "synapses": 299,
+     "weight": 0.025
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_axonic",
+     "synapses": 138,
+     "weight": 0.011
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_axonic",
+     "synapses": 63,
+     "weight": 0.005
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input",
+     "type": "axo_axonic",
+     "synapses": 729,
+     "weight": 0.06
+    },
+    {
+     "from": "command",
+     "to": "command",
+     "type": "axo_axonic",
+     "synapses": 6904,
+     "weight": 0.569
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input",
+     "type": "axo_dendritic",
+     "synapses": 784,
+     "weight": 0.065
+    },
+    {
+     "from": "command",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 12129,
+     "weight": 1.0
+    },
+    {
+     "from": "command",
+     "to": "descending_out",
+     "type": "axo_dendritic",
+     "synapses": 8967,
+     "weight": 0.739
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 135,
+     "weight": 0.011
+    },
+    {
+     "from": "command",
+     "to": "central_input",
+     "type": "axo_dendritic",
+     "synapses": 1596,
+     "weight": 0.132
+    },
+    {
+     "from": "command",
+     "to": "command",
+     "type": "dendro_dendritic",
+     "synapses": 565,
+     "weight": 0.047
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 86,
+     "weight": 0.007
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "command",
+     "type": "dendro_dendritic",
+     "synapses": 135,
+     "weight": 0.011
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "somatosensory_input",
+     "type": "dendro_dendritic",
+     "synapses": 109,
+     "weight": 0.009
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "somatosensory_input_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 120,
+     "weight": 0.01
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "somatosensory_input_unannotated",
+     "type": "dendro_dendritic",
+     "synapses": 17,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "somatosensory_input",
+     "type": "axo_dendritic",
+     "synapses": 537,
+     "weight": 0.044
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_dendritic",
+     "synapses": 745,
+     "weight": 0.061
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 741,
+     "weight": 0.061
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_axonic",
+     "synapses": 261,
+     "weight": 0.022
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "command",
+     "type": "axo_axonic",
+     "synapses": 196,
+     "weight": 0.016
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "somatosensory_input",
+     "type": "axo_axonic",
+     "synapses": 100,
+     "weight": 0.008
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 61,
+     "weight": 0.005
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "descending_out",
+     "type": "axo_dendritic",
+     "synapses": 289,
+     "weight": 0.024
+    },
+    {
+     "from": "descending_out",
+     "to": "somatosensory_input",
+     "type": "dendro_dendritic",
+     "synapses": 24,
+     "weight": 0.002
+    },
+    {
+     "from": "descending_out",
+     "to": "command",
+     "type": "dendro_dendritic",
+     "synapses": 141,
+     "weight": 0.012
+    },
+    {
+     "from": "descending_out",
+     "to": "somatosensory_input_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 7,
+     "weight": 0.001
+    },
+    {
+     "from": "descending_out",
+     "to": "descending_out",
+     "type": "dendro_dendritic",
+     "synapses": 183,
+     "weight": 0.015
+    },
+    {
+     "from": "descending_out",
+     "to": "somatosensory_input_unannotated",
+     "type": "dendro_dendritic",
+     "synapses": 7,
+     "weight": 0.001
+    },
+    {
+     "from": "descending_out",
+     "to": "descending_out",
+     "type": "axo_axonic",
+     "synapses": 1173,
+     "weight": 0.097
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "descending_out",
+     "type": "dendro_dendritic",
+     "synapses": 10,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input_unannotated",
+     "type": "dendro_dendritic",
+     "synapses": 14,
+     "weight": 0.001
+    },
+    {
+     "from": "descending_out",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 463,
+     "weight": 0.038
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "central_input",
+     "type": "dendro_dendritic",
+     "synapses": 11,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "central_input",
+     "type": "axo_dendritic",
+     "synapses": 149,
+     "weight": 0.012
+    },
+    {
+     "from": "command",
+     "to": "descending_out",
+     "type": "dendro_dendritic",
+     "synapses": 368,
+     "weight": 0.03
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input",
+     "type": "dendro_dendritic",
+     "synapses": 54,
+     "weight": 0.004
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_axonic",
+     "synapses": 20,
+     "weight": 0.002
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "central_input",
+     "type": "axo_axonic",
+     "synapses": 23,
+     "weight": 0.002
+    },
+    {
+     "from": "command",
+     "to": "central_input",
+     "type": "dendro_dendritic",
+     "synapses": 91,
+     "weight": 0.008
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 25,
+     "weight": 0.002
+    },
+    {
+     "from": "central_input",
+     "to": "command",
+     "type": "dendro_dendritic",
+     "synapses": 120,
+     "weight": 0.01
+    },
+    {
+     "from": "central_input",
+     "to": "command",
+     "type": "axo_axonic",
+     "synapses": 695,
+     "weight": 0.057
+    },
+    {
+     "from": "central_input",
+     "to": "central_input",
+     "type": "axo_dendritic",
+     "synapses": 1018,
+     "weight": 0.084
+    },
+    {
+     "from": "central_input",
+     "to": "central_input_mechano",
+     "type": "axo_dendritic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_dendritic",
+     "synapses": 17,
+     "weight": 0.001
+    },
+    {
+     "from": "central_input",
+     "to": "somatosensory_input",
+     "type": "axo_axonic",
+     "synapses": 29,
+     "weight": 0.002
+    },
+    {
+     "from": "central_input",
+     "to": "central_input",
+     "type": "axo_axonic",
+     "synapses": 614,
+     "weight": 0.051
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "command",
+     "type": "axo_axonic",
+     "synapses": 72,
+     "weight": 0.006
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "central_input",
+     "type": "axo_axonic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_axonic",
+     "synapses": 6,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 442,
+     "weight": 0.036
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "central_input",
+     "type": "axo_dendritic",
+     "synapses": 61,
+     "weight": 0.005
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "descending_out",
+     "type": "axo_dendritic",
+     "synapses": 95,
+     "weight": 0.008
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "somatosensory_input",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_axonic",
+     "synapses": 40,
+     "weight": 0.003
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "somatosensory_input",
+     "type": "axo_axonic",
+     "synapses": 33,
+     "weight": 0.003
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "somatosensory_input",
+     "type": "axo_dendritic",
+     "synapses": 56,
+     "weight": 0.005
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input_proprio",
+     "type": "dendro_dendritic",
+     "synapses": 26,
+     "weight": 0.002
+    },
+    {
+     "from": "command",
+     "to": "central_input",
+     "type": "axo_axonic",
+     "synapses": 663,
+     "weight": 0.055
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_axonic",
+     "synapses": 284,
+     "weight": 0.023
+    },
+    {
+     "from": "central_input",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_axonic",
+     "synapses": 6,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_axonic",
+     "synapses": 7,
+     "weight": 0.001
+    },
+    {
+     "from": "central_input",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 2321,
+     "weight": 0.191
+    },
+    {
+     "from": "central_input",
+     "to": "descending_out",
+     "type": "axo_dendritic",
+     "synapses": 665,
+     "weight": 0.055
+    },
+    {
+     "from": "central_input",
+     "to": "somatosensory_input",
+     "type": "axo_dendritic",
+     "synapses": 55,
+     "weight": 0.005
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_dendritic",
+     "synapses": 249,
+     "weight": 0.021
+    },
+    {
+     "from": "central_input",
+     "to": "central_input",
+     "type": "dendro_dendritic",
+     "synapses": 76,
+     "weight": 0.006
+    },
+    {
+     "from": "command",
+     "to": "descending_out",
+     "type": "axo_axonic",
+     "synapses": 158,
+     "weight": 0.013
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_dendritic",
+     "synapses": 290,
+     "weight": 0.024
+    },
+    {
+     "from": "central_input",
+     "to": "descending_out",
+     "type": "dendro_dendritic",
+     "synapses": 35,
+     "weight": 0.003
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_dendritic",
+     "synapses": 9,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_axonic",
+     "synapses": 32,
+     "weight": 0.003
+    },
+    {
+     "from": "central_input",
+     "to": "descending_out",
+     "type": "axo_axonic",
+     "synapses": 20,
+     "weight": 0.002
+    },
+    {
+     "from": "central_input",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_dendritic",
+     "synapses": 11,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_axonic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_dendritic",
+     "synapses": 45,
+     "weight": 0.004
+    },
+    {
+     "from": "descending_out",
+     "to": "command",
+     "type": "axo_axonic",
+     "synapses": 60,
+     "weight": 0.005
+    },
+    {
+     "from": "descending_out",
+     "to": "descending_out",
+     "type": "axo_dendritic",
+     "synapses": 391,
+     "weight": 0.032
+    },
+    {
+     "from": "central_input",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "command",
+     "type": "axo_axonic",
+     "synapses": 476,
+     "weight": 0.039
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_axonic",
+     "synapses": 35,
+     "weight": 0.003
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_axonic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 623,
+     "weight": 0.051
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "central_input",
+     "type": "axo_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "central_input_mechano",
+     "to": "central_input",
+     "type": "axo_axonic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "central_input_mechano",
+     "to": "command",
+     "type": "axo_axonic",
+     "synapses": 21,
+     "weight": 0.002
+    },
+    {
+     "from": "central_input_mechano",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input_mechano",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input_mechano",
+     "to": "central_input",
+     "type": "axo_dendritic",
+     "synapses": 25,
+     "weight": 0.002
+    },
+    {
+     "from": "central_input_mechano",
+     "to": "command",
+     "type": "axo_dendritic",
+     "synapses": 44,
+     "weight": 0.004
+    },
+    {
+     "from": "central_input_mechano",
+     "to": "central_input_mechano",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input_mechano",
+     "to": "descending_out",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input_mechano",
+     "to": "central_input",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input_mechano",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input",
+     "to": "central_input_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input",
+     "to": "central_input_mechano",
+     "type": "axo_axonic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_dendritic",
+     "synapses": 13,
+     "weight": 0.001
+    },
+    {
+     "from": "command",
+     "to": "somatosensory_input_unannotated",
+     "type": "dendro_dendritic",
+     "synapses": 10,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_axonic",
+     "synapses": 9,
+     "weight": 0.001
+    },
+    {
+     "from": "command",
+     "to": "central_input_mechano",
+     "type": "axo_axonic",
+     "synapses": 5,
+     "weight": 0.0
+    },
+    {
+     "from": "command",
+     "to": "central_input_mechano",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "descending_out",
+     "to": "central_input",
+     "type": "dendro_dendritic",
+     "synapses": 17,
+     "weight": 0.001
+    },
+    {
+     "from": "descending_out",
+     "to": "central_input",
+     "type": "axo_axonic",
+     "synapses": 13,
+     "weight": 0.001
+    },
+    {
+     "from": "descending_out",
+     "to": "somatosensory_input",
+     "type": "axo_dendritic",
+     "synapses": 20,
+     "weight": 0.002
+    },
+    {
+     "from": "descending_out",
+     "to": "central_input",
+     "type": "axo_dendritic",
+     "synapses": 55,
+     "weight": 0.005
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "central_input",
+     "type": "dendro_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "central_input",
+     "type": "axo_dendritic",
+     "synapses": 62,
+     "weight": 0.005
+    },
+    {
+     "from": "central_input",
+     "to": "somatosensory_input_proprio",
+     "type": "dendro_dendritic",
+     "synapses": 33,
+     "weight": 0.003
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "command",
+     "type": "dendro_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "descending_out",
+     "type": "dendro_dendritic",
+     "synapses": 6,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "somatosensory_input_proprio",
+     "type": "dendro_dendritic",
+     "synapses": 7,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "somatosensory_input",
+     "type": "axo_axonic",
+     "synapses": 31,
+     "weight": 0.003
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "somatosensory_input_mechano",
+     "type": "axo_axonic",
+     "synapses": 15,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "descending_out",
+     "type": "axo_dendritic",
+     "synapses": 150,
+     "weight": 0.012
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "central_input",
+     "type": "axo_axonic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_dendritic",
+     "synapses": 13,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_unannotated",
+     "to": "command",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_axonic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "central_input",
+     "type": "axo_axonic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "central_input_mechano",
+     "type": "axo_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input",
+     "to": "descending_out",
+     "type": "axo_axonic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "central_input",
+     "to": "somatosensory_input",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "descending_out",
+     "to": "somatosensory_input",
+     "type": "axo_axonic",
+     "synapses": 9,
+     "weight": 0.001
+    },
+    {
+     "from": "descending_out",
+     "to": "somatosensory_input_proprio",
+     "type": "dendro_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "descending_out",
+     "to": "somatosensory_input_proprio",
+     "type": "axo_dendritic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "descending_out",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "somatosensory_input_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 45,
+     "weight": 0.004
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "somatosensory_input",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input_mechano",
+     "to": "descending_out",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "somatosensory_input_proprio",
+     "to": "somatosensory_input_unannotated",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    }
+   ],
+   "ports": {
+    "in": [
+     {
+      "name": "command_drive",
+      "type": "motor.command",
+      "required": true
+     }
+    ],
+    "out": [
+     {
+      "name": "locomotion",
+      "type": "motor.posture",
+      "required": true
+     }
+    ]
+   },
+   "size_range": [
+    8,
+    910
+   ],
+   "capability": [
+    "traced_connectome",
+    "motor_command",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "command_drive",
+    "motor_pool",
+    "descending"
+   ],
+   "lead_task_hint": "command_drive",
+   "neurotransmitter": [],
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "composable_with": [],
+   "provenance": {
+    "class": "curated-drosophila-larva-connectome",
+    "extracted_from_malecns": false,
+    "source_connectome": "Drosophila melanogaster larva (Winding et al. 2023)",
+    "basis": "serial-section EM reconstruction, single-cell nodes aggregated to (cell_type, annotation) classes",
+    "embodied_in_malecns": false,
+    "embodiment_basis": "the MaleCNS anchor table is an adult reconstruction; larva and adult are the same species but different developmental stages, so per-cell-type homology is an inference, not a measurement, and is not claimed here",
+    "unanchored_reason": "outside_male_cns_species_coverage",
+    "evidence_weight": "connectome_derived",
+    "connectome_traceable": true
+   },
+   "larva_stats": {
+    "n_cell_classes": 8,
+    "n_cells": 910,
+    "n_edges": 142,
+    "n_synapses": 53152,
+    "n_axo_dendritic": 36775,
+    "n_axo_axonic": 13806,
+    "n_dendro_dendritic": 2571,
+    "n_dendro_axonic_dropped": 672,
+    "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`"
+   }
+  },
+  {
+   "name": "larv_mushroom_body_feedback_unit",
+   "display": "幼虫蕈状体反馈调制单元",
+   "function": "modulation",
+   "system": "modulatory",
+   "description": "MBIN 亚型里作者标注了 DAN-i1/DAN-g1（多巴胺能）与 OAN-g1（章鱼胺能），它们回连 KC 形成蕈状体内部的调制环；LHN 与 MB-FBN 再把这个环接到外侧角输入侧，构成可测量的反馈臂。",
+   "members": [
+    {
+     "role": "kenyon",
+     "neuron": "larv.kc_unannotated",
+     "count_ratio": 0.2717
+    },
+    {
+     "role": "lateral_horn_mechano",
+     "neuron": "larv.lhn_mechano",
+     "count_ratio": 0.0038
+    },
+    {
+     "role": "lateral_horn_noci",
+     "neuron": "larv.lhn_noci",
+     "count_ratio": 0.0113
+    },
+    {
+     "role": "lateral_horn_thermo",
+     "neuron": "larv.lhn_thermo",
+     "count_ratio": 0.0038
+    },
+    {
+     "role": "lateral_horn",
+     "neuron": "larv.lhn_unannotated",
+     "count_ratio": 0.3623
+    },
+    {
+     "role": "feedback",
+     "neuron": "larv.mb_fbn_unannotated",
+     "count_ratio": 0.2038
+    },
+    {
+     "role": "modulatory",
+     "neuron": "larv.mbin_dopaminergic",
+     "count_ratio": 0.0264
+    },
+    {
+     "role": "modulatory_octopaminergic",
+     "neuron": "larv.mbin_octopaminergic",
+     "count_ratio": 0.0075
+    },
+    {
+     "role": "modulatory_unannotated",
+     "neuron": "larv.mbin_unannotated",
+     "count_ratio": 0.0189
+    },
+    {
+     "role": "output",
+     "neuron": "larv.mbon_unannotated",
+     "count_ratio": 0.0906
+    }
+   ],
+   "motif_source": [
+    "axo_axonic",
+    "axo_dendritic",
+    "dendro_dendritic"
+   ],
+   "internal_wiring": [
+    {
+     "from": "kenyon",
+     "to": "output",
+     "type": "dendro_dendritic",
+     "synapses": 1235,
+     "weight": 0.078
+    },
+    {
+     "from": "kenyon",
+     "to": "kenyon",
+     "type": "dendro_dendritic",
+     "synapses": 1191,
+     "weight": 0.076
+    },
+    {
+     "from": "kenyon",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 13621,
+     "weight": 0.865
+    },
+    {
+     "from": "kenyon",
+     "to": "modulatory_unannotated",
+     "type": "axo_axonic",
+     "synapses": 1100,
+     "weight": 0.07
+    },
+    {
+     "from": "kenyon",
+     "to": "modulatory_octopaminergic",
+     "type": "axo_axonic",
+     "synapses": 944,
+     "weight": 0.06
+    },
+    {
+     "from": "kenyon",
+     "to": "modulatory",
+     "type": "axo_axonic",
+     "synapses": 4019,
+     "weight": 0.255
+    },
+    {
+     "from": "kenyon",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 770,
+     "weight": 0.049
+    },
+    {
+     "from": "kenyon",
+     "to": "feedback",
+     "type": "axo_axonic",
+     "synapses": 262,
+     "weight": 0.017
+    },
+    {
+     "from": "kenyon",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 15747,
+     "weight": 1.0
+    },
+    {
+     "from": "kenyon",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 40,
+     "weight": 0.003
+    },
+    {
+     "from": "kenyon",
+     "to": "feedback",
+     "type": "axo_dendritic",
+     "synapses": 172,
+     "weight": 0.011
+    },
+    {
+     "from": "kenyon",
+     "to": "modulatory",
+     "type": "axo_dendritic",
+     "synapses": 21,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 3708,
+     "weight": 0.235
+    },
+    {
+     "from": "modulatory",
+     "to": "modulatory",
+     "type": "axo_axonic",
+     "synapses": 69,
+     "weight": 0.004
+    },
+    {
+     "from": "modulatory",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 22,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory",
+     "to": "feedback",
+     "type": "axo_axonic",
+     "synapses": 30,
+     "weight": 0.002
+    },
+    {
+     "from": "modulatory",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 1089,
+     "weight": 0.069
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 354,
+     "weight": 0.022
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 1842,
+     "weight": 0.117
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_mechano",
+     "type": "axo_axonic",
+     "synapses": 10,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 182,
+     "weight": 0.012
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 3210,
+     "weight": 0.204
+    },
+    {
+     "from": "lateral_horn",
+     "to": "feedback",
+     "type": "axo_dendritic",
+     "synapses": 3190,
+     "weight": 0.203
+    },
+    {
+     "from": "feedback",
+     "to": "modulatory_unannotated",
+     "type": "dendro_dendritic",
+     "synapses": 17,
+     "weight": 0.001
+    },
+    {
+     "from": "feedback",
+     "to": "feedback",
+     "type": "dendro_dendritic",
+     "synapses": 181,
+     "weight": 0.011
+    },
+    {
+     "from": "feedback",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 379,
+     "weight": 0.024
+    },
+    {
+     "from": "feedback",
+     "to": "modulatory",
+     "type": "axo_dendritic",
+     "synapses": 1062,
+     "weight": 0.067
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_thermo",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "output",
+     "type": "dendro_dendritic",
+     "synapses": 10,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_mechano",
+     "type": "axo_dendritic",
+     "synapses": 67,
+     "weight": 0.004
+    },
+    {
+     "from": "lateral_horn",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 614,
+     "weight": 0.039
+    },
+    {
+     "from": "lateral_horn",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 59,
+     "weight": 0.004
+    },
+    {
+     "from": "feedback",
+     "to": "feedback",
+     "type": "axo_axonic",
+     "synapses": 2364,
+     "weight": 0.15
+    },
+    {
+     "from": "feedback",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 324,
+     "weight": 0.021
+    },
+    {
+     "from": "feedback",
+     "to": "modulatory",
+     "type": "axo_axonic",
+     "synapses": 166,
+     "weight": 0.011
+    },
+    {
+     "from": "feedback",
+     "to": "feedback",
+     "type": "axo_dendritic",
+     "synapses": 3878,
+     "weight": 0.246
+    },
+    {
+     "from": "feedback",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 810,
+     "weight": 0.051
+    },
+    {
+     "from": "feedback",
+     "to": "output",
+     "type": "dendro_dendritic",
+     "synapses": 24,
+     "weight": 0.002
+    },
+    {
+     "from": "feedback",
+     "to": "modulatory",
+     "type": "dendro_dendritic",
+     "synapses": 98,
+     "weight": 0.006
+    },
+    {
+     "from": "feedback",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 79,
+     "weight": 0.005
+    },
+    {
+     "from": "feedback",
+     "to": "modulatory_unannotated",
+     "type": "axo_axonic",
+     "synapses": 84,
+     "weight": 0.005
+    },
+    {
+     "from": "feedback",
+     "to": "modulatory_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 585,
+     "weight": 0.037
+    },
+    {
+     "from": "feedback",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "feedback",
+     "type": "axo_axonic",
+     "synapses": 531,
+     "weight": 0.034
+    },
+    {
+     "from": "lateral_horn",
+     "to": "modulatory",
+     "type": "axo_dendritic",
+     "synapses": 90,
+     "weight": 0.006
+    },
+    {
+     "from": "feedback",
+     "to": "modulatory_octopaminergic",
+     "type": "axo_dendritic",
+     "synapses": 194,
+     "weight": 0.012
+    },
+    {
+     "from": "lateral_horn",
+     "to": "modulatory",
+     "type": "axo_axonic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "feedback",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 225,
+     "weight": 0.014
+    },
+    {
+     "from": "lateral_horn",
+     "to": "feedback",
+     "type": "dendro_dendritic",
+     "synapses": 34,
+     "weight": 0.002
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "modulatory_octopaminergic",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "modulatory",
+     "type": "axo_axonic",
+     "synapses": 11,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "modulatory_unannotated",
+     "type": "axo_axonic",
+     "synapses": 21,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "feedback",
+     "type": "axo_axonic",
+     "synapses": 18,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 196,
+     "weight": 0.012
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 18,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 269,
+     "weight": 0.017
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "feedback",
+     "type": "axo_dendritic",
+     "synapses": 20,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "modulatory",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "modulatory_octopaminergic",
+     "type": "axo_dendritic",
+     "synapses": 29,
+     "weight": 0.002
+    },
+    {
+     "from": "output",
+     "to": "output",
+     "type": "dendro_dendritic",
+     "synapses": 154,
+     "weight": 0.01
+    },
+    {
+     "from": "output",
+     "to": "modulatory_unannotated",
+     "type": "axo_axonic",
+     "synapses": 20,
+     "weight": 0.001
+    },
+    {
+     "from": "output",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 977,
+     "weight": 0.062
+    },
+    {
+     "from": "output",
+     "to": "feedback",
+     "type": "axo_axonic",
+     "synapses": 560,
+     "weight": 0.036
+    },
+    {
+     "from": "output",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 448,
+     "weight": 0.028
+    },
+    {
+     "from": "output",
+     "to": "modulatory_octopaminergic",
+     "type": "axo_axonic",
+     "synapses": 11,
+     "weight": 0.001
+    },
+    {
+     "from": "output",
+     "to": "feedback",
+     "type": "axo_dendritic",
+     "synapses": 2253,
+     "weight": 0.143
+    },
+    {
+     "from": "output",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 597,
+     "weight": 0.038
+    },
+    {
+     "from": "output",
+     "to": "modulatory",
+     "type": "axo_dendritic",
+     "synapses": 149,
+     "weight": 0.009
+    },
+    {
+     "from": "output",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 1030,
+     "weight": 0.065
+    },
+    {
+     "from": "output",
+     "to": "modulatory_octopaminergic",
+     "type": "axo_dendritic",
+     "synapses": 21,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "feedback",
+     "type": "axo_axonic",
+     "synapses": 35,
+     "weight": 0.002
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "modulatory",
+     "type": "axo_axonic",
+     "synapses": 11,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 805,
+     "weight": 0.051
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "output",
+     "type": "axo_axonic",
+     "synapses": 5,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "modulatory_octopaminergic",
+     "type": "axo_axonic",
+     "synapses": 41,
+     "weight": 0.003
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 524,
+     "weight": 0.033
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "feedback",
+     "type": "axo_dendritic",
+     "synapses": 24,
+     "weight": 0.002
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "modulatory",
+     "type": "axo_dendritic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "modulatory_unannotated",
+     "type": "axo_axonic",
+     "synapses": 17,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "modulatory_octopaminergic",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "modulatory_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 89,
+     "weight": 0.006
+    },
+    {
+     "from": "feedback",
+     "to": "modulatory_octopaminergic",
+     "type": "axo_axonic",
+     "synapses": 69,
+     "weight": 0.004
+    },
+    {
+     "from": "output",
+     "to": "feedback",
+     "type": "dendro_dendritic",
+     "synapses": 108,
+     "weight": 0.007
+    },
+    {
+     "from": "output",
+     "to": "modulatory",
+     "type": "dendro_dendritic",
+     "synapses": 6,
+     "weight": 0.0
+    },
+    {
+     "from": "output",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 82,
+     "weight": 0.005
+    },
+    {
+     "from": "output",
+     "to": "modulatory_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 130,
+     "weight": 0.008
+    },
+    {
+     "from": "modulatory",
+     "to": "modulatory_unannotated",
+     "type": "axo_axonic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory",
+     "to": "modulatory_octopaminergic",
+     "type": "axo_axonic",
+     "synapses": 7,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory",
+     "to": "feedback",
+     "type": "axo_dendritic",
+     "synapses": 11,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory",
+     "to": "modulatory_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory",
+     "to": "modulatory",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "lateral_horn_noci",
+     "type": "axo_dendritic",
+     "synapses": 56,
+     "weight": 0.004
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 20,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_noci",
+     "type": "axo_dendritic",
+     "synapses": 54,
+     "weight": 0.003
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "feedback",
+     "type": "dendro_dendritic",
+     "synapses": 24,
+     "weight": 0.002
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "modulatory_unannotated",
+     "type": "axo_axonic",
+     "synapses": 74,
+     "weight": 0.005
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 43,
+     "weight": 0.003
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "lateral_horn_noci",
+     "type": "axo_axonic",
+     "synapses": 16,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "lateral_horn_mechano",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_noci",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "modulatory_unannotated",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "kenyon",
+     "type": "dendro_dendritic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_thermo",
+     "type": "axo_dendritic",
+     "synapses": 13,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 18,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "kenyon",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 16,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "lateral_horn_mechano",
+     "type": "axo_axonic",
+     "synapses": 22,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "output",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "feedback",
+     "type": "axo_dendritic",
+     "synapses": 47,
+     "weight": 0.003
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 43,
+     "weight": 0.003
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "modulatory",
+     "type": "axo_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "modulatory_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "output",
+     "to": "kenyon",
+     "type": "dendro_dendritic",
+     "synapses": 8,
+     "weight": 0.001
+    },
+    {
+     "from": "output",
+     "to": "modulatory",
+     "type": "axo_axonic",
+     "synapses": 35,
+     "weight": 0.002
+    },
+    {
+     "from": "kenyon",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 14,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn",
+     "to": "kenyon",
+     "type": "axo_axonic",
+     "synapses": 4,
+     "weight": 0.0
+    },
+    {
+     "from": "kenyon",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 9,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory",
+     "to": "feedback",
+     "type": "dendro_dendritic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "kenyon",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "output",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "output",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 12,
+     "weight": 0.001
+    },
+    {
+     "from": "kenyon",
+     "to": "modulatory_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "feedback",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "lateral_horn",
+     "type": "axo_axonic",
+     "synapses": 21,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "lateral_horn_mechano",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "lateral_horn",
+     "type": "axo_dendritic",
+     "synapses": 102,
+     "weight": 0.006
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "kenyon",
+     "type": "axo_dendritic",
+     "synapses": 28,
+     "weight": 0.002
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "lateral_horn_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn_mechano",
+     "to": "feedback",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_thermo",
+     "type": "axo_axonic",
+     "synapses": 13,
+     "weight": 0.001
+    },
+    {
+     "from": "lateral_horn_thermo",
+     "to": "lateral_horn_thermo",
+     "type": "axo_axonic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_noci",
+     "type": "axo_axonic",
+     "synapses": 3,
+     "weight": 0.0
+    },
+    {
+     "from": "feedback",
+     "to": "modulatory_octopaminergic",
+     "type": "dendro_dendritic",
+     "synapses": 7,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "lateral_horn_mechano",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "modulatory",
+     "type": "dendro_dendritic",
+     "synapses": 7,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "modulatory_octopaminergic",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "modulatory_octopaminergic",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "lateral_horn",
+     "to": "modulatory_unannotated",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "modulatory_unannotated",
+     "type": "axo_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "output",
+     "type": "dendro_dendritic",
+     "synapses": 5,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "feedback",
+     "type": "dendro_dendritic",
+     "synapses": 19,
+     "weight": 0.001
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "modulatory",
+     "type": "dendro_dendritic",
+     "synapses": 2,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "modulatory_unannotated",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_octopaminergic",
+     "to": "lateral_horn",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory_unannotated",
+     "to": "output",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "modulatory",
+     "to": "modulatory_unannotated",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    },
+    {
+     "from": "kenyon",
+     "to": "feedback",
+     "type": "dendro_dendritic",
+     "synapses": 1,
+     "weight": 0.0
+    }
+   ],
+   "ports": {
+    "in": [
+     {
+      "name": "modulation",
+      "type": "modulatory.dopamine",
+      "required": true
+     }
+    ],
+    "out": [
+     {
+      "name": "gate",
+      "type": "gating.attention",
+      "required": true
+     }
+    ]
+   },
+   "size_range": [
+    10,
+    530
+   ],
+   "capability": [
+    "traced_connectome",
+    "modulation",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "modulation",
+    "recurrent_feedback",
+    "sparse_code"
+   ],
+   "lead_task_hint": "modulation",
+   "neurotransmitter": [
+    "dopamine",
+    "octopamine"
+   ],
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "composable_with": [],
+   "provenance": {
+    "class": "curated-drosophila-larva-connectome",
+    "extracted_from_malecns": false,
+    "source_connectome": "Drosophila melanogaster larva (Winding et al. 2023)",
+    "basis": "serial-section EM reconstruction, single-cell nodes aggregated to (cell_type, annotation) classes",
+    "embodied_in_malecns": false,
+    "embodiment_basis": "the MaleCNS anchor table is an adult reconstruction; larva and adult are the same species but different developmental stages, so per-cell-type homology is an inference, not a measurement, and is not claimed here",
+    "unanchored_reason": "outside_male_cns_species_coverage",
+    "evidence_weight": "connectome_derived",
+    "connectome_traceable": true
+   },
+   "larva_stats": {
+    "n_cell_classes": 10,
+    "n_cells": 530,
+    "n_edges": 150,
+    "n_synapses": 74310,
+    "n_axo_dendritic": 36613,
+    "n_axo_axonic": 34133,
+    "n_dendro_dendritic": 3564,
+    "n_dendro_axonic_dropped": 650,
+    "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`"
+   }
+  }
+ ],
+ "neuron_profiles": {
+  "larv.cn_mechano": {
+   "reservoir_density": 0.008,
+   "recurrent_pct": 0.004,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class CN (mechano) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "CN",
+   "annotations": "mechano"
+  },
+  "larv.cn_unannotated": {
+   "reservoir_density": 0.226,
+   "recurrent_pct": 0.056,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class CN (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "CN",
+   "annotations": "unannotated"
+  },
+  "larv.dn_sez_unannotated": {
+   "reservoir_density": 0.131,
+   "recurrent_pct": 0.085,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class DN-SEZ (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "DN-SEZ",
+   "annotations": "unannotated"
+  },
+  "larv.dn_vnc_unannotated": {
+   "reservoir_density": 0.076,
+   "recurrent_pct": 0.077,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class DN-VNC (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "DN-VNC",
+   "annotations": "unannotated"
+  },
+  "larv.kc_unannotated": {
+   "reservoir_density": 0.799,
+   "recurrent_pct": 0.221,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class KC (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "KC",
+   "annotations": "unannotated"
+  },
+  "larv.lhn_mechano": {
+   "reservoir_density": 0.011,
+   "recurrent_pct": 0.018,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class LHN (mechano) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "LHN",
+   "annotations": "mechano"
+  },
+  "larv.lhn_noci": {
+   "reservoir_density": 0.02,
+   "recurrent_pct": 0.035,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class LHN (noci) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "LHN",
+   "annotations": "noci"
+  },
+  "larv.lhn_thermo": {
+   "reservoir_density": 0.005,
+   "recurrent_pct": 0.002,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class LHN (thermo) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "LHN",
+   "annotations": "thermo"
+  },
+  "larv.lhn_unannotated": {
+   "reservoir_density": 0.506,
+   "recurrent_pct": 0.097,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class LHN (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "LHN",
+   "annotations": "unannotated"
+  },
+  "larv.ln_thermo": {
+   "reservoir_density": 0.01,
+   "recurrent_pct": 0.019,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class LN (thermo) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "LN",
+   "annotations": "thermo"
+  },
+  "larv.ln_unannotated": {
+   "reservoir_density": 0.448,
+   "recurrent_pct": 0.091,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class LN (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "LN",
+   "annotations": "unannotated"
+  },
+  "larv.mb_fbn_unannotated": {
+   "reservoir_density": 0.434,
+   "recurrent_pct": 0.125,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class MB-FBN (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "MB-FBN",
+   "annotations": "unannotated"
+  },
+  "larv.mbin_dopaminergic": {
+   "reservoir_density": 0.098,
+   "recurrent_pct": 0.006,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class MBIN (dopaminergic) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "MBIN",
+   "annotations": "dopaminergic"
+  },
+  "larv.mbin_octopaminergic": {
+   "reservoir_density": 0.014,
+   "recurrent_pct": 0.001,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class MBIN (octopaminergic) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "MBIN",
+   "annotations": "octopaminergic"
+  },
+  "larv.mbin_unannotated": {
+   "reservoir_density": 0.036,
+   "recurrent_pct": 0.015,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class MBIN (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "MBIN",
+   "annotations": "unannotated"
+  },
+  "larv.mbon_unannotated": {
+   "reservoir_density": 0.263,
+   "recurrent_pct": 0.045,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class MBON (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "MBON",
+   "annotations": "unannotated"
+  },
+  "larv.pn_gustatory": {
+   "reservoir_density": 0.174,
+   "recurrent_pct": 0.024,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class PN (gustatory) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "PN",
+   "annotations": "gustatory"
+  },
+  "larv.pn_gut": {
+   "reservoir_density": 0.011,
+   "recurrent_pct": 0.01,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class PN (gut) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "PN",
+   "annotations": "gut"
+  },
+  "larv.pn_thermo": {
+   "reservoir_density": 0.031,
+   "recurrent_pct": 0.061,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class PN (thermo) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "PN",
+   "annotations": "thermo"
+  },
+  "larv.pn_unannotated": {
+   "reservoir_density": 0.6,
+   "recurrent_pct": 0.042,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class PN (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "PN",
+   "annotations": "unannotated"
+  },
+  "larv.pn_somato_mechano": {
+   "reservoir_density": 0.119,
+   "recurrent_pct": 0.111,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class PN-somato (mechano) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "PN-somato",
+   "annotations": "mechano"
+  },
+  "larv.pn_somato_noci": {
+   "reservoir_density": 0.146,
+   "recurrent_pct": 0.072,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class PN-somato (noci) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "PN-somato",
+   "annotations": "noci"
+  },
+  "larv.pn_somato_proprio": {
+   "reservoir_density": 0.038,
+   "recurrent_pct": 0.017,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class PN-somato (proprio) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "PN-somato",
+   "annotations": "proprio"
+  },
+  "larv.pn_somato_unannotated": {
+   "reservoir_density": 0.032,
+   "recurrent_pct": 0.02,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class PN-somato (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "PN-somato",
+   "annotations": "unannotated"
+  },
+  "larv.rgn_unannotated": {
+   "reservoir_density": 0.001,
+   "recurrent_pct": 0.013,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class RGN (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "RGN",
+   "annotations": "unannotated"
+  },
+  "larv.ascending_noci": {
+   "reservoir_density": 0.009,
+   "recurrent_pct": 0.011,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class ascending (noci) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "ascending",
+   "annotations": "noci"
+  },
+  "larv.pre_dn_vnc_unannotated": {
+   "reservoir_density": 1.0,
+   "recurrent_pct": 0.197,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class pre-DN-VNC (unannotated) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "pre-DN-VNC",
+   "annotations": "unannotated"
+  },
+  "larv.sensory_gustatory": {
+   "reservoir_density": 0.194,
+   "recurrent_pct": 0.072,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class sensory (gustatory) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "sensory",
+   "annotations": "gustatory"
+  },
+  "larv.sensory_gut": {
+   "reservoir_density": 0.04,
+   "recurrent_pct": 0.15,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class sensory (gut) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "sensory",
+   "annotations": "gut"
+  },
+  "larv.sensory_olfactory": {
+   "reservoir_density": 0.274,
+   "recurrent_pct": 0.0,
+   "has_inhibition": false,
+   "description": "Drosophila larva cell class sensory (olfactory) in the Winding et al. 2023 connectome",
+   "capability": [
+    "traced_connectome",
+    "measure_synapses"
+   ],
+   "task_hint_pool": [
+    "larva_neuron"
+   ],
+   "lead_task_hint": "larva_neuron",
+   "neurotransmitter": "unannotated",
+   "brain_region": "larval_central_nervous_system",
+   "species_source": [
+    "drosophila_melanogaster"
+   ],
+   "allen_class": "",
+   "biological_reference": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+   "cell_class": "sensory",
+   "annotations": "olfactory"
+  }
+ }
+}

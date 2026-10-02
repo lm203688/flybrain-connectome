@@ -306,7 +306,7 @@ MLflow2PROV, and MIT Sloan provenance tooling.
 
 ## Blueprint & module library
 
-**25 blueprints** across three categories, composed from **224 modules**:
+**25 blueprints** across three categories, composed from **254 modules**:
 **10 cognitive-function modules** (sensory / memory / motor / integration / attention /
 working_memory / reward / punishment / habit / metacognition) + **190 cross-species
 neuron types** spanning cortical pyramidal (L2/3 CX1/CX5, L4b/L4c, L5 basal tuft, L6 reticulo-thalamic,
@@ -378,11 +378,11 @@ single neuron type does nothing on its own, and wiring two of them together mean
 nothing. What composes is a **function with a known interface**. So the library is
 split into two tiers, and the upper tier is the one you actually build from:
 
-- **107 functional units** — each is ONE function (phototransduction, action
+- **112 functional units** — each is ONE function (phototransduction, action
   selection, theta pacing, gliotransmission, sparse mushroom-body coding, ring-attractor
   heading, song timing, Mauthner escape, active electrolocation, camouflage, leech swim
   rhythm, infrared thermal imaging, climbing-fibre error teaching, sleep/wake switching …)
-  delivered by a **group** of neuron populations (1–6 of them, taken from the 224-module
+  delivered by a **group** of neuron populations (1–6 of them, taken from the 254-module
   vocabulary) wired into an internal sub-circuit, and exposing **typed ports** (`light`
   in → `high_res` out; `candidates` + `value` in → `selected_action` out).
   Composition: 40 mammal-cortex-shaped + **16 cross-clade** (insect / bird / fish /
@@ -393,6 +393,9 @@ split into two tiers, and the upper tier is the one you actually build from:
   + **5 Drosophila-shaped** (thermal preference, feeding circuit, leg motor, multimodal LAL, sleep memory, v1.10.0 — first batch anchored, see below).
   + **4 C. elegans connectome-derived** (forward locomotion command, touch-avoidance
   reflex, amphid chemosensory, nociceptive avoidance — v2.27.0, see below).
+  + **5 Drosophila larva connectome-derived** (olfactory associative learning,
+  somatosensory escape, gustatory feeding, descending motor command, mushroom-body
+  feedback — v2.28.0, third connectome, see below).
 - **66 connection types** — each is one connection FORM, constrained on the port
   types it may join, in six families:
   **micro** (axo-dendritic / axo-somatic / axo-axonic / dendro-dendritic …
@@ -442,7 +445,7 @@ it is named after? `functional_units/malecns_anchors.json` (built by
 `scripts/build_malecns_anchors.py`) answers it, for the part where an answer is
 honest.
 
-- **Presence.** **37 of 107 units** have member populations that resolve to real
+- **Presence.** **37 of 112 units** have member populations that resolve to real
   annotated MaleCNS v1.0 cell types. Across the whole library that is
   **58 of 204 neuron populations** covering **107,558 real cells**: the `kc` role of
   the mushroom-body unit is 4,064 real Kenyon cells over 15 real KC types
