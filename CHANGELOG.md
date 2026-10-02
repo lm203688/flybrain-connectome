@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.21.0` | the toolkit as a whole |
+| package | `2.26.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,400 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.26.0] — 2026-10-02
+
+### 单元证据双轴化 + JEV 管线回灌 + fail-closed
+
+v2.24 用**一套**量表（「文献证据 0-10，2 分 = 1-2 篇论文」）评了全部 103 个
+单元。这个量表对跨物种那一半是对的，对连接组提取出来的那一半是错的。本轮修的
+是这个量纲错配，以及让 JEV 结果能真正回流进产物。
+
+#### 1. 量纲错配的实测证据
+
+| 分组 | n | 平均 evidence_score | 平均 literature_p | score≤2 |
+|---|---|---|---|---|
+| embodied（连接组提取） | 37 | 2.95 | 0.575 | 15 |
+| cross-species（跨物种模板） | 66 | 4.32 | 0.800 | 4 |
+
+19 个 score≤2 单元里 **15 个是连接组提取出来的**。`leg_motor_pool_unit` 的
+描述里每个数字（403 真实细胞 / 84 类型 / 1,205,967 突触）都是 MaleCNS v1.0
+这条已发表重建的直接测量边，不是「等文献来证实的假设」。拿「几篇论文」给它
+2 分，测的是错误的东西。
+
+#### 2. 双轴重评（`scripts/jev_rescore_units.py` 新增）
+
+对 28 个连接组单元（v2.24 score≤3 且 embodied）在**连接组轴**上重评，两条轴
+并行记录、互不覆盖：
+
+| 轴 | n | 均值 | 分布 |
+|---|---|---|---|
+| `connectome_evidence_score` | 28 | 3.93 | 3×4 / 4×22 / 5×2 |
+| `literature_evidence_score` | 28 | 0.79 | 0×9 / 1×16 / 2×3 |
+
+新增字段：`connectome_evidence_score`、`connectome_evidence_label`、
+`literature_evidence_score`、`cell_type_resolved_p`、`connectome_reference`、
+`rescore_basis`、`evidence_governing_axis`、`evidence_tier`。
+
+`evidence_tier` 分布：`traced` 0 / `traced_coarse` 24 / `inferred` 4
+（另有 75 个跨物种单元无连接组轴，保持 `None`）。
+
+**观察（不强行调）**：把高分锚点从模糊措辞改成显式边界（9-10 = 单神经元+实测
+突触数 / 7-8 = 细胞类型已解析 / 5-6 = 仅成组 / 3-4 = 未逐条追踪 / 0-2 = 缺在）
+后重跑一遍，28 个里仍有 22 个落在 4 分。JEV 模型在这一轴上似乎封顶在 4，再调
+提示词不会改变分布，只会在产物里堆噪音——记为模型行为，按现状记录。
+
+#### 3. 跨物种单元的真文献核查（4 个 score≤2 单元）
+
+不为了好看造引用，逐个检索后分别处理：
+
+| 单元 | v2.24 分 | 处理 |
+|---|---|---|
+| `pit_viper_strike_unit` | 2 | **确实是错的，已补 5 篇真文献** |
+| `cortical_highorder_integration_unit` | 1 | 检索无此模块 → 标 `abstraction_only=True`，维持 WEAK |
+| `cortical_inhibitory_gain_unit` | 2 | 已有 Markram 2004 / Tremblay 2016 / Gouwens 2020；低分来自合成单元名，不是缺文献，维持 |
+| `retinal_motion_onset_unit` | 2 | 引用指向小鼠 Yonehara，而单元定义为果蝇 ACL2 无长突细胞——物种错配，维持 |
+
+`pit_viper_strike_unit` 补入的 5 篇：Bothe et al. 2018 `J Exp Biol 221:
+jeb185611`（LTTD 突触汇聚 / 感觉对比增强）；Bothe et al. 2019 *Current
+Biology*（红外运动检测回路，LTTD + RC 编码猎物运动方向）；Kaldenbach,
+Bleckmann & Kohl 2016 `J Comp Physiol A 202(6):389-398`
+doi:10.1007/s00359-016-1076-1；Terashima & Goris 1975 `Brain Research
+83:490-494`；Hartline, Loop & Gentry 2011。其中 2 篇直接刻画运动检测回路，
+「1 篇初步论文」的判定站不住。
+
+#### 4. JEV 结果回灌 + fail-closed
+
+v2.24 把 103 行 JEV 结果**手工抄**进 `gen_functional_units.py` 的
+`_JEV_UNIT_VALIDATION` 字面量，`scripts/jev_results/unit_validation.json`
+没有任何代码读取——重跑一次 JEV 不会产出任何产物变化，除非有人手动粘 103 行。
+
+- `_load_unit_jev()`：JEV JSON 为主源（按 name 对齐），原字面量降级为
+  fallback；断言覆盖 == 103，**缺一个就 fail-closed 并列出单元名**（实测
+  截断到 100 条时正常报错、列出 3 个缺失单元）。
+- `_load_unit_rescore()`：挂载连接组轴重评结果。
+
+#### 5. fail-closed fallback（`scripts/jev_validate_units.py`）
+
+HTTP 失败 / 空响应 / score 不可解析时，旧代码输出
+`evidence_score=None` + `verdict="unknown"`——下游按
+SUPPORTED/PARTIAL/WEAK 三态过滤会**静默漏掉**，比直接判 WEAK 更糟。
+改为：`verdict="WEAK"` / `evidence_score=0` /
+`evidence_label="unvalidated_fallback"` / `jev_fallback=True`，错误原因保留在
+`error` 字段，summary 统计 fallback 数量并逐条打印。
+
+**过程中自伤并修复**：`--dry-run` 原本会覆盖
+`scripts/jev_results/unit_validation.json`（一次 dry run 把完整的 103 条换成了
+3 条占位记录），已改为 dry run 只写 `--out` 指定路径，并补 `[SKIP]` 提示。
+恢复走 `git restore --worktree`，103 条 / 88 PARTIAL / 15 WEAK 分布未变。
+
+#### 修改文件
+
+- `scripts/jev_validate_units.py` — fail-closed fallback + dry-run 不写盘
+- `scripts/gen_functional_units.py` — `_load_unit_jev()` /
+  `_load_unit_rescore()` 回灌与覆盖断言；`_VERIFIED_LITERATURE` 真文献块
+- `scripts/jev_rescore_units.py` — 新增（连接组轴双轴重评，28 单元）
+- `scripts/jev_results/unit_rescore.json` — 新增（28 条）
+- `flybrain-connectome-mcp/functional_units/functional_units.json` — 重新生成
+- `flybrain-connectome-mcp/mcp_connectome/api_server.py` /
+  `flybrain-connectome-mcp/mcp_connectome/server.py` / `flybrain_cli.py` /
+  `integrations/swarmlabs/diagnostics/topology_visualizer.py` / `pyproject.toml`
+  — 版本号 2.25.0 → 2.26.0
+- `CHANGELOG.md` — 本段
+
+#### 门禁
+
+- 10/10 待跑（`--with-data`）
+- 103 单元 verdict 分布未变：88 PARTIAL / 15 WEAK / 0 SUPPORTED
+- 新增字段均为叠加，无既有字段回归
+- JEV 调用 28×3 ≈ $0.003
+
+---
+
+## [2.25.0] — 2026-09-30
+
+### 66 个连接类型全量 JEV 验证 + 83 个 PORT_TYPES 生物分类
+
+v2.25 补齐 v2.23 遗留的两处缺口：（1）45 个带 motif_ref 的微观突触/电路
+类型（axo_dendritic、feedforward_excitatory、gap_junction_sync 等）从未做过
+JEV 文献验证；（2）83 个 PORT_TYPES 缺少机器可读的语义分类字段。
+
+#### 连接类型 JEV 验证（45 个 motif_ref 新增）
+
+在 v2.23 的 21 抽象类型之外，本轮对 45 个 motif_ref 类型独立跑 JEV 决策
+模型，输出 `jev_validation` 元数据。结果：
+
+| 家族 | 总数 | SUPPORTED | PARTIAL | WEAK |
+|---|---|---|---|---|
+| micro        | 9  | 7  | 2  | 0  |
+| circuit      | 14 | 12 | 2  | 0  |
+| modulatory   | 5  | 4  | 1  | 0  |
+| electrical   | 4  | 2  | 2  | 0  |
+| plasticity   | 7  | 5  | 2  | 0  |
+| macro        | 6  | 1  | 4  | 1  |
+| **合计**     | 45 | 31 | 13 | 1  |
+
+**唯一 WEAK**：`reservoir_smallworld`（lit=0.30, score=1）——小世界储备池
+属于 ESN 计算神经科学领域，不是经典神经解剖 motif，果蝇/脊椎动物文献里
+没有直接对应。这符合"它是抽象计算概念而非突触形式"的定位，与 `abstraction_only`
+未标记的 motif_ref 层级并不矛盾。
+
+**PARTIAL 13 个**主要分布在宏观和可塑性家族（`temporal_coherence`、
+`recurrent_feedback`、`ltp_ltd`、`short_range_volume` 等），表明这些 motif
+在特定物种/上下文有实证但缺乏跨物种共识。
+
+**66 个连接类型 verdict 汇总**：39 SUPPORTED / 25 PARTIAL / 2 WEAK
+（v2.23 抽象 8/12/1 + v2.25 motif 31/13/1）。
+
+#### PORT_TYPES 生物分类
+
+`functional_units.json` 新增 `port_types_classified` 字段，为每个 PORT_TYPE
+派生 `category` 字段（名字前缀 → 类别，非文献声明）：
+
+| 类别 | 数量 | 例 |
+|---|---|---|
+| `sensory_input`        | 21 | sensory.visual, sensory.vibrissa, olfactory.sparse_code |
+| `motor_output`         | 17 | motor.wing, motor.escape, motor.song |
+| `cortical_processing`  | 14 | cortex.association, hippocampal.engram, cerebellar.output |
+| `spatial_temporal`     | 12 | spatial.place_code, rhythm.theta, clock.phase |
+| `modulatory`           |  9 | modulatory.dopamine, modulatory.octopamine |
+| `state_regulatory`     |  8 | arousal.state, error.teaching, efference.copy |
+| `glial_support`        |  1 | glial.support |
+| `wildcard`             |  1 | * |
+
+类别字段是名字派生标签，不是文献验证结果——目的是让下游工具（可视化、
+拓扑生成器、诊断器）按功能路由 port，而不必解析字符串前缀。
+
+#### 修改文件
+
+- `scripts/jev_validate_motifs.py` — 新增（45 motif_ref 类型 JEV 验证脚本）
+- `scripts/jev_results/motif_validation.json` — 新增（45 结果）
+- `scripts/gen_functional_units.py` — 新增 `_MOTIF_JEV_VALIDATION` 字典
+  + `_classify_port_types()` 函数；66 个连接类型全量 JEV 验证；83 个
+  PORT_TYPES 分类元数据
+- `flybrain-connectome-mcp/functional_units/connection_types.json` — 重新
+  生成（66 个类型全部有 `jev_validation` 字段）
+- `flybrain-connectome-mcp/functional_units/functional_units.json` — 重新
+  生成（新增 `port_types_classified` 顶层字段）
+- `pyproject.toml` / `server.py` / `api_server.py` / `flybrain_cli.py` /
+  `topology_visualizer.py` — 版本号 2.24.0 → 2.25.0
+- `.workbuddy/memory/MEMORY.md` — 更新定位段
+- `.workbuddy/memory/2026-09-30.md` — 追加 v2.25.0 段
+- `CHANGELOG.md` — 本段
+
+#### 门禁
+
+- 10/10 全绿（含 `--with-data`）
+- 无 anchor 变化（204 modules / 58 anchored / 107,558 cells / 5,413 types
+  全部保持不变）
+- JEV 调用 45 次 × 3 问题 ≈ $0.002
+
+
+---
+
+## [2.24.0] — 2026-09-30
+
+### 神经元单元证据健全 + JEV 全量验证
+
+v2.24 聚焦用户核心目标 3 点第 1 点「健全所有神经元单元」，
+为全部 103 个 functional units 增加 evidence_weight 分层和 JEV 文献验证。
+
+#### evidence_weight 四层体系
+
+之前 37 个 embodied 单元（从 MaleCNS v1.0 提取）缺少 evidence_weight 字段，
+因为它们的证据是连接组提取本身，不是文献引用。v2.24 增加 `connectome_derived`
+层级，使证据分层完整：
+
+| 层级 | 含义 | 数量 |
+|---|---|---|
+| `connectome_derived` | 证据来自 MaleCNS v1.0 连接组提取 | 37 |
+| `textbook` | ≥4 篇独立文献引用 | 0 |
+| `multi_source` | 2-3 篇独立文献引用 | 58 |
+| `single_source` | 1 篇文献引用 | 8 |
+
+#### JEV 全量验证（103 单元）
+
+使用 TypeSafe Jev System One 决策模型验证全部 103 个 functional units 的
+生物学声明，每个单元查询 3 个维度：
+
+- **literature_p** (noul): P(≥2 篇同行评审论文描述该模块)
+- **model_p** (noul): P(已发表的计算模型存在)
+- **evidence_score** (0-10): 文献证据强度评分
+
+**结果**：
+- **SUPPORTED**: 0/103（阈值 lit_p≥0.7 且 score≥6 太高）
+- **PARTIAL**: 88/103（85% — 大部分单元有证据但非教科书级）
+- **WEAK**: 15/103（15% — 过度声称的电路模块）
+
+**WEAK 单元（15 个）**：
+- 12 个 embodied 果蝇单元（vnc_sensory_reflex, leg_motor_pool, wing_flight_control 等）
+  — 细胞类型存在于连接组，但特定电路模块文献证据不足
+- 3 个跨物种单元（cortical_inhibitory_gain, cortical_highorder_integration, pit_viper_strike）
+
+**关键发现**：
+1. 0 SUPPORTED 说明 functional unit 级别的电路模块声明普遍高于文献支持
+2. 12 个 embodied 单元 WEAK 表明「细胞存在」≠「电路模块存在」
+3. 85% PARTIAL 说明大部分单元有合理文献基础，但需更严格的引用
+
+**成本**：103 调用 × 3 问题 ≈ $0.0075
+
+#### 修改文件
+
+- `scripts/gen_functional_units.py` — 增加 `connectome_derived` 层级 + `_JEV_UNIT_VALIDATION` 字典
+- `scripts/jev_validate_units.py` — 新增 JEV 单元验证脚本
+- `scripts/jev_results/unit_validation.json` — JEV 验证结果
+- `scripts/check_embodiment.py` — 更新 embodied 单元 evidence_weight 检查逻辑
+- `flybrain-connectome-mcp/functional_units/functional_units.json` — 重新生成
+- `pyproject.toml` / `server.py` / `api_server.py` / `flybrain_cli.py` / `topology_visualizer.py` — 版本号 2.23.0 → 2.24.0
+
+#### 门禁
+
+9/9 PASS（含 Gate 10 embodiment 检查更新）
+
+---
+
+## [2.23.0] — 2026-09-29
+
+### 连接件证据验证 + 单元库回灌引擎 + 开源技术扫描
+
+v2.23 聚焦用户核心目标 3 点第 2 点「中间件连接件和连接形式是否健全」，
+完成 21 个抽象级连接类型的文献证据验证，并验证单元库的计算性能主张。
+
+#### 连接件证据验证（JEV + Laya 双栈）
+
+21 个无 motif_ref 的系统级连接模式通过 TypeSafe Jev (System One 决策模型)
+进行文献证据强度评估，每个类型查询 3 个维度：
+
+| 维度 | 方法 | 含义 |
+|---|---|---|
+| literature_support | noul | P(≥2 篇同行评审论文描述该模式) |
+| evidence_strength | score 0-10 | 文献证据强度评分 |
+| computational_validation | noul | P(已计算建模并验证) |
+
+**JEV 验证结果**（21 类型，~$0.0015 API 成本）：
+- **8 SUPPORTED**：winner_take_all, homeostatic_scaling, convergent_fanin,
+  corollary_discharge, divergent_fanout, efference_copy_cancellation,
+  half_center_oscillation, grid_phase_precession
+- **12 PARTIAL**：autapse_recurrent, state_gating_modulation,
+  gliotransmission_calcium_wave, sparse_expansion_projection, global_broadcast,
+  neural_chain_sequence, modulatory_gated_plasticity, mixed_electrical_chemical_synapse,
+  command_neuron_recruitment, coincidence_detection, plateau_potential_bistability,
+  state_switch_bistable
+- **1 WEAK**：loop_relay_chain（文献支撑最弱，score=1）
+
+**Laya 421M 本地验证**（免费，~700ms/类型）：
+- 8/21 与 JEV 一致，12/21 部分一致，1/21 不一致（loop_relay_chain）
+- Laya 对 SUPPORTED 类型方向正确但置信度偏低（p=0.77-0.85 vs JEV 0.87-0.97）
+- 推荐流水线：Laya 预筛 → JEV 深度验证，可节省 ~60% API 成本
+
+#### 单元库回灌引擎验证（#126）
+
+使用 4 个 DEMO 组合 × 3 臂（UNIT/BIO/RANDOM）× 2 指标（r2_score/fault_isolation）
+验证单元库的「结构精简 + 结构稳定性」主张，N=60, n_seeds=20。
+
+| 指标 | UNIT (4 compositions) | RANDOM (ER) | 结论 |
+|---|---|---|---|
+| r2_score | 0.004-0.225 | **0.642** | 随机拓扑碾压单元组合 |
+| fault_isolation | -1.15~1.41 (mixed) | **0.521 (H1)** | 故障隔离结果混合 |
+
+**核心发现**：
+- 随机拓扑在计算性能上比单元组合好 10-100 倍
+- 与 v2.17-v2.21 涌现链证伪结论一致：结构不产生计算优势
+- 故障隔离无统计显著性（Bonferroni α=0.0083，0/24 显著）
+- 单元库的价值在于**可追溯性**和**语义丰富度**，不在计算性能
+
+#### 新增文件
+
+| 文件 | 说明 |
+|---|---|
+| `scripts/jev_validate_connections.py` | JEV 连接件验证脚本（21 类型 × 3 维度） |
+| `scripts/laya_validate_connections.py` | Laya 本地验证脚本（免费替代方案） |
+| `scripts/jev_results/connection_validation.json` | JEV 验证结果 |
+| `scripts/laya_results/connection_validation.json` | Laya 验证结果 |
+| `integrations/swarmlabs/diagnostics/unit_engine_feedback_experiment.py` | 单元库回灌引擎实验 |
+| `integrations/reports/UNIT_ENGINE_FEEDBACK_REPORT.json` | 实验结果 JSON |
+| `integrations/reports/OPEN_SOURCE_SCAN_REPORT.md` | 开源技术扫描报告 |
+
+#### 连接类型元数据扩充
+
+在 `gen_functional_units.py` 中为 21 个抽象连接类型添加：
+- `abstraction_only: True` — 标记为系统级抽象（无 motif_ref）
+- `jev_validation` — JEV 验证结果（verdict, literature_p, evidence_score 等）
+- `validated_at` — ISO 时间戳
+- `model_version` — jev-1.13.0
+
+66 个连接类型中 21 个标注 abstraction_only，其余 45 个保持 motif_ref 引用。
+
+---
+
+## [2.22.0] — 2026-09-29
+
+### MaleCNS 真实脑区锚定扩充：ascending_neuron_pool
+
+v2.21 涌现链已彻底闭合。v2.22 转向用户核心目标 3 点第 1 点
+「最小功能神经元模块扩展全了吗」，扩充 MODULE_PROFILES 的锚定覆盖。
+
+#### 摸底结论
+
+摸底 body-annotations 27 superclass 分布，发现 `ascending_neuron` superclass
+（1,846 bodies / 567 types）**完全未被锚定**，且与现有 `sensory_ascending_pool`
+（537 bodies）和 `efferent_ascending_pool`（8 bodies）**零重叠**——每个 bodyId
+只属于一个 superclass。AN01-AN23 A/B 命名是独立编号系统，不是其他两个
+sub-class。
+
+其他 145 unanchored 是 pyramidal_l23, retinal_gc, dopaminergic_vta,
+leech_*, aplysia_*, frog_tectum 等跨物种神经元类型学模板，**不可能锚到果蝇**。
+
+#### 新增锚定
+
+| Profile | Superclass | Cells | Types |
+|---------|-----------|-------|-------|
+| **ascending_neuron_pool** | ascending_neuron | **1,841** | **567** |
+
+规则：`type_re=.+` + `superclass=["ascending_neuron"]`（与 pool 类惯例一致）。
+注：regex `^AN` 匹配 1,819 bodies / 553 types，但 superclass 已精确过滤，
+`.+` 覆盖全部 27 个非-AN 命名的 IN/vMS/dMS 变体。
+
+#### 锚定率变化
+
+| 指标 | v2.21.0 | v2.22.0 |
+|------|---------|---------|
+| anchored profiles | 57/203 (28.1%) | **58/204 (28.4%)** |
+| anchored real cells | 105,717 | **107,558** (+1,841) |
+| anchored types | 4,872 | **5,413** (+541) |
+| embodied units | 37/103 | 37/103（新 profile 未被 unit 引用） |
+
+#### 诚实边界
+
+- **扩充量小**：+1 profile 是摸底发现的实际上限，不是目标
+- **145 unanchored 无法扩充**：跨物种神经元类型学模板，果蝇大脑没有对应结构
+- **新 profile 未被 unit 引用**：`embodied_populations_referenced` 保持 57
+  （unit members 里的 neuron 必须在 profile_anchors 里才计入）；新增 unit
+  引用 ascending_neuron_pool 需未来做（ports/wiring/members 设计工作量大）
+- **ENS / *_tbc superclass 无法锚**：type 列为空，regex 无法匹配
+
+#### 修改文件
+
+- `flybrain-connectome-mcp/synthetic_bio_topology.py` — MODULE_PROFILES 新增
+  `ascending_neuron_pool`（capability: ascending_path / sensory_integrator /
+  proprioceptive）
+- `flybrain-connectome-mcp/module_registry.py` — MODULE_REGISTRY 新增对应
+  ModuleSpec（size_range=(1000, 2000), motif_source=feedforward_excitatory）
+- `scripts/build_malecns_anchors.py` — TYPE_RULES 新增 v1.22.0 段
+- `flybrain-connectome-mcp/functional_units/malecns_anchors.json` — 重新生成
+  （58 anchored profiles, 107,558 cells, 5,413 types）
+- `flybrain-connectome-mcp/functional_units/functional_units.json` — 更新
+  embodiment_source.sha256 / anchored_profiles / anchored_real_cells /
+  anchored_types
+- `README.md` — 更新 57→58 / 203→204 / 105,717→107,558 / 4,872→5,413
+- `.workbuddy/memory/MEMORY.md` — 更新定位段
+
+#### 门禁
+
+- **10/10 PASS**（--with-data）
+- Gate 10 45 checks 全过（107,558 anchored cells / 58 populations）
 
 ---
 

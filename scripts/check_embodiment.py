@@ -377,9 +377,14 @@ def run_checks(units_doc, anchors, readme_text):
         weight = u["provenance"].get("evidence_weight")
         n_refs = u["provenance"].get("n_literature_refs")
         if embodied:
-            if weight is not None or n_refs is not None:
-                bad_weight.append("%s embodied but carries evidence_weight=%r n_refs=%r"
-                                  % (u["name"], weight, n_refs))
+            # Embodied units carry connectome_derived (v2.24.0+): their
+            # evidence IS the connectome extraction, not literature citations.
+            if weight != "connectome_derived":
+                bad_weight.append("%s embodied but evidence_weight=%r (expected connectome_derived)"
+                                  % (u["name"], weight))
+            if n_refs is not None:
+                bad_weight.append("%s embodied but carries n_literature_refs=%r"
+                                  % (u["name"], n_refs))
             continue
         weight_counts[weight] = weight_counts.get(weight, 0) + 1
         exp_w, exp_n = _expect_weight(u)
@@ -390,7 +395,7 @@ def run_checks(units_doc, anchors, readme_text):
                               % (u["name"], weight, exp_w, n_refs))
         if n_refs != exp_n:
             bad_weight.append("%s: n_literature_refs %r != cited %d" % (u["name"], n_refs, exp_n))
-    check(r, "every unanchored unit carries a re-derivable evidence_weight (and embodied units carry none)",
+    check(r, "every unanchored unit carries a re-derivable evidence_weight (and embodied units carry connectome_derived)",
           not bad_weight, str(bad_weight[:3]) if bad_weight else "ok")
     check(r, "unanchored evidence_weight distribution is non-empty per declared tier used",
           all(v > 0 for v in weight_counts.values()),
@@ -567,8 +572,7 @@ def injections(units_doc, anchors):
             break
     out.append(("an unanchored unit's evidence_weight does not re-derive from citations", u, a))
 
-    # embodied units must never carry an evidence_weight: their evidence is the
-    # connectome, not a citation count
+    # embodied units must carry connectome_derived, not a citation-count tier
     a = copy.deepcopy(anchors)
     u = copy.deepcopy(units_doc)
     for unit in u["units"]:
@@ -576,7 +580,7 @@ def injections(units_doc, anchors):
             unit["provenance"]["evidence_weight"] = "multi_source"
             unit["provenance"]["n_literature_refs"] = 2
             break
-    out.append(("an embodied unit carries an evidence_weight", u, a))
+    out.append(("an embodied unit carries a non-connectome_derived evidence_weight", u, a))
 
     return out
 

@@ -3504,6 +3504,15 @@ MODULE_REGISTRY.update({
         capabilities=['corollary_discharge', 'efferent_copy'],
         task_hints=['corollary_discharge', 'efferent_copy'], lead_task_hint='corollary_discharge',
         category="biological"),
+    'ascending_neuron_pool': ModuleSpec(
+        name='ascending_neuron_pool', function='ascending_path',
+        description='Ascending neurons (AN01-AN23 A/B + IN/vMS/dMS): general VNC-to-brain ascending channel, distinct superclass from sensory/efferent ascending',
+        connection_pattern={"inputs": ['vnc_sensory_pool', 'vnc_intrinsic'], "outputs": ['central_complex_eb', 'mushroom_body_output', 'antennal_lobe_pn']},
+        size_range=(1000, 2000), motif_source='feedforward_excitatory',
+        parameters={"reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False},
+        capabilities=['ascending_path', 'sensory_integrator', 'propriooperative'],
+        task_hints=['ascending_path', 'sensory_integrator', 'propriooperative'], lead_task_hint='ascending_path',
+        category="biological"),
     'cb_efferent_pool': ModuleSpec(
         name='cb_efferent_pool', function='brain_output',
         description='Central-brain efferent neurons: a small brain output class',

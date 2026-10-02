@@ -1,0 +1,455 @@
+{
+  "experiment": "unit_engine_feedback",
+  "version": "2.23.0",
+  "date": "2026-09-29",
+  "parameters": {
+    "n_seeds": 20,
+    "nodes": 60,
+    "delay": 5,
+    "rho": 1.0
+  },
+  "compositions": [
+    {
+      "composition": "demo_visual_to_action",
+      "unit": {
+        "r2": 0.22541205254260346,
+        "fi": -1.154,
+        "verdict": "H1_isolation",
+        "structural": {
+          "nodes": 60,
+          "edges": 653,
+          "density": 0.1814,
+          "avg_out_degree": 10.88,
+          "max_out_degree": 25,
+          "spectral_radius": 17.9396
+        }
+      },
+      "bio": {
+        "r2": 0.004515649928009869,
+        "fi": 1.372,
+        "verdict": "H2_coupling",
+        "structural": {
+          "nodes": 60,
+          "edges": 1661,
+          "density": 0.4614,
+          "avg_out_degree": 27.68,
+          "max_out_degree": 50,
+          "spectral_radius": 32.1412
+        }
+      },
+      "random": {
+        "r2": 0.6420063769188364,
+        "fi": 0.521,
+        "verdict": "H1_isolation",
+        "structural": {
+          "nodes": 60,
+          "edges": 168,
+          "density": 0.0467,
+          "avg_out_degree": 2.8,
+          "max_out_degree": 7,
+          "spectral_radius": 2.2139
+        }
+      }
+    },
+    {
+      "composition": "demo_insect_olfactory_navigation",
+      "unit": {
+        "r2": 0.004515649928009869,
+        "fi": 1.372,
+        "verdict": "H2_coupling",
+        "structural": {
+          "nodes": 60,
+          "edges": 1661,
+          "density": 0.4614,
+          "avg_out_degree": 27.68,
+          "max_out_degree": 50,
+          "spectral_radius": 32.1412
+        }
+      },
+      "bio": {
+        "r2": 0.004515649928009869,
+        "fi": 1.372,
+        "verdict": "H2_coupling",
+        "structural": {
+          "nodes": 60,
+          "edges": 1661,
+          "density": 0.4614,
+          "avg_out_degree": 27.68,
+          "max_out_degree": 50,
+          "spectral_radius": 32.1412
+        }
+      },
+      "random": {
+        "r2": 0.6420063769188364,
+        "fi": 0.521,
+        "verdict": "H1_isolation",
+        "structural": {
+          "nodes": 60,
+          "edges": 168,
+          "density": 0.0467,
+          "avg_out_degree": 2.8,
+          "max_out_degree": 7,
+          "spectral_radius": 2.2139
+        }
+      }
+    },
+    {
+      "composition": "demo_electrosensory_escape",
+      "unit": {
+        "r2": 0.005131545451553293,
+        "fi": 1.412,
+        "verdict": "H2_coupling",
+        "structural": {
+          "nodes": 60,
+          "edges": 627,
+          "density": 0.1742,
+          "avg_out_degree": 10.45,
+          "max_out_degree": 39,
+          "spectral_radius": 15.223
+        }
+      },
+      "bio": {
+        "r2": 0.004515649928009869,
+        "fi": 1.372,
+        "verdict": "H2_coupling",
+        "structural": {
+          "nodes": 60,
+          "edges": 1661,
+          "density": 0.4614,
+          "avg_out_degree": 27.68,
+          "max_out_degree": 50,
+          "spectral_radius": 32.1412
+        }
+      },
+      "random": {
+        "r2": 0.6420063769188364,
+        "fi": 0.521,
+        "verdict": "H1_isolation",
+        "structural": {
+          "nodes": 60,
+          "edges": 168,
+          "density": 0.0467,
+          "avg_out_degree": 2.8,
+          "max_out_degree": 7,
+          "spectral_radius": 2.2139
+        }
+      }
+    },
+    {
+      "composition": "demo_swim_rhythm_chain",
+      "unit": {
+        "r2": 0.0040428901455341615,
+        "fi": 1.0,
+        "verdict": "H3_random",
+        "structural": {
+          "nodes": 60,
+          "edges": 1899,
+          "density": 0.5275,
+          "avg_out_degree": 31.65,
+          "max_out_degree": 56,
+          "spectral_radius": 39.1323
+        }
+      },
+      "bio": {
+        "r2": 0.004515649928009869,
+        "fi": 1.372,
+        "verdict": "H2_coupling",
+        "structural": {
+          "nodes": 60,
+          "edges": 1661,
+          "density": 0.4614,
+          "avg_out_degree": 27.68,
+          "max_out_degree": 50,
+          "spectral_radius": 32.1412
+        }
+      },
+      "random": {
+        "r2": 0.6420063769188364,
+        "fi": 0.521,
+        "verdict": "H1_isolation",
+        "structural": {
+          "nodes": 60,
+          "edges": 168,
+          "density": 0.0467,
+          "avg_out_degree": 2.8,
+          "max_out_degree": 7,
+          "spectral_radius": 2.2139
+        }
+      }
+    }
+  ],
+  "comparisons": [
+    {
+      "composition": "demo_visual_to_action",
+      "metric": "r2",
+      "arm_a": "unit",
+      "arm_b": "bio",
+      "mean_a": 0.22541205254260346,
+      "mean_b": 0.004515649928009869,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_visual_to_action",
+      "metric": "r2",
+      "arm_a": "unit",
+      "arm_b": "random",
+      "mean_a": 0.22541205254260346,
+      "mean_b": 0.6420063769188364,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_visual_to_action",
+      "metric": "r2",
+      "arm_a": "bio",
+      "arm_b": "random",
+      "mean_a": 0.004515649928009869,
+      "mean_b": 0.6420063769188364,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_visual_to_action",
+      "metric": "fi",
+      "arm_a": "unit",
+      "arm_b": "bio",
+      "mean_a": -1.154,
+      "mean_b": 1.372,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_visual_to_action",
+      "metric": "fi",
+      "arm_a": "unit",
+      "arm_b": "random",
+      "mean_a": -1.154,
+      "mean_b": 0.521,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_visual_to_action",
+      "metric": "fi",
+      "arm_a": "bio",
+      "arm_b": "random",
+      "mean_a": 1.372,
+      "mean_b": 0.521,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_insect_olfactory_navigation",
+      "metric": "r2",
+      "arm_a": "unit",
+      "arm_b": "bio",
+      "mean_a": 0.004515649928009869,
+      "mean_b": 0.004515649928009869,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_insect_olfactory_navigation",
+      "metric": "r2",
+      "arm_a": "unit",
+      "arm_b": "random",
+      "mean_a": 0.004515649928009869,
+      "mean_b": 0.6420063769188364,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_insect_olfactory_navigation",
+      "metric": "r2",
+      "arm_a": "bio",
+      "arm_b": "random",
+      "mean_a": 0.004515649928009869,
+      "mean_b": 0.6420063769188364,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_insect_olfactory_navigation",
+      "metric": "fi",
+      "arm_a": "unit",
+      "arm_b": "bio",
+      "mean_a": 1.372,
+      "mean_b": 1.372,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_insect_olfactory_navigation",
+      "metric": "fi",
+      "arm_a": "unit",
+      "arm_b": "random",
+      "mean_a": 1.372,
+      "mean_b": 0.521,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_insect_olfactory_navigation",
+      "metric": "fi",
+      "arm_a": "bio",
+      "arm_b": "random",
+      "mean_a": 1.372,
+      "mean_b": 0.521,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_electrosensory_escape",
+      "metric": "r2",
+      "arm_a": "unit",
+      "arm_b": "bio",
+      "mean_a": 0.005131545451553293,
+      "mean_b": 0.004515649928009869,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_electrosensory_escape",
+      "metric": "r2",
+      "arm_a": "unit",
+      "arm_b": "random",
+      "mean_a": 0.005131545451553293,
+      "mean_b": 0.6420063769188364,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_electrosensory_escape",
+      "metric": "r2",
+      "arm_a": "bio",
+      "arm_b": "random",
+      "mean_a": 0.004515649928009869,
+      "mean_b": 0.6420063769188364,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_electrosensory_escape",
+      "metric": "fi",
+      "arm_a": "unit",
+      "arm_b": "bio",
+      "mean_a": 1.412,
+      "mean_b": 1.372,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_electrosensory_escape",
+      "metric": "fi",
+      "arm_a": "unit",
+      "arm_b": "random",
+      "mean_a": 1.412,
+      "mean_b": 0.521,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_electrosensory_escape",
+      "metric": "fi",
+      "arm_a": "bio",
+      "arm_b": "random",
+      "mean_a": 1.372,
+      "mean_b": 0.521,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_swim_rhythm_chain",
+      "metric": "r2",
+      "arm_a": "unit",
+      "arm_b": "bio",
+      "mean_a": 0.0040428901455341615,
+      "mean_b": 0.004515649928009869,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_swim_rhythm_chain",
+      "metric": "r2",
+      "arm_a": "unit",
+      "arm_b": "random",
+      "mean_a": 0.0040428901455341615,
+      "mean_b": 0.6420063769188364,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_swim_rhythm_chain",
+      "metric": "r2",
+      "arm_a": "bio",
+      "arm_b": "random",
+      "mean_a": 0.004515649928009869,
+      "mean_b": 0.6420063769188364,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_swim_rhythm_chain",
+      "metric": "fi",
+      "arm_a": "unit",
+      "arm_b": "bio",
+      "mean_a": 1.0,
+      "mean_b": 1.372,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_swim_rhythm_chain",
+      "metric": "fi",
+      "arm_a": "unit",
+      "arm_b": "random",
+      "mean_a": 1.0,
+      "mean_b": 0.521,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    },
+    {
+      "composition": "demo_swim_rhythm_chain",
+      "metric": "fi",
+      "arm_a": "bio",
+      "arm_b": "random",
+      "mean_a": 1.372,
+      "mean_b": 0.521,
+      "cohens_d": 0.0,
+      "p_value": 1.0,
+      "significant": false
+    }
+  ],
+  "summary": {
+    "n_compositions": 4,
+    "n_comparisons": 24,
+    "n_significant": 0,
+    "n_positive": 0,
+    "n_negative": 0,
+    "bonferroni_alpha": 0.0083
+  }
+}

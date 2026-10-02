@@ -3248,6 +3248,21 @@ MODULE_PROFILES = {
         "species_source": ["drosophila"], "allen_class": "",
         "biological_reference": "Dorkenwald et al 2024"
     },
+    "ascending_neuron_pool": {
+        "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
+        "description": "Ascending neurons (AN01-AN23 A/B families plus IN / vMS / "
+                       "dMS variants): the general ascending channel from VNC / "
+                       "peripheral segments up to brain centres. A separate "
+                       "superclass from sensory_ascending and efferent_ascending "
+                       "-- the dataset's own AN prefix is the distinctive marker. "
+                       "1,846 bodies, 567 types in MaleCNS v1.0.",
+        "capability": ["ascending_path", "sensory_integrator", "proprioceptive"],
+        "task_hint_pool": ["ascending_path", "sensory_integrator", "proprioceptive"],
+        "lead_task_hint": "ascending_path",
+        "neurotransmitter": "mixed", "brain_region": "ascending",
+        "species_source": ["drosophila"], "allen_class": "",
+        "biological_reference": "Dorkenwald et al 2024"
+    },
     "cb_efferent_pool": {
         "reservoir_density": 0.2, "recurrent_pct": 0.05, "has_inhibition": False,
         "description": "Central-brain efferent neurons: a small brain output class.",

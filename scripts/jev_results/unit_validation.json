@@ -1,0 +1,6218 @@
+[
+  {
+    "name": "amygdala_fear_unit",
+    "system": "limbic",
+    "species_source": [
+      "rat",
+      "mouse",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.611,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.8,
+        "confidence": 0.89,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.02,
+          "4": 0.01,
+          "5": 0.04,
+          "6": 0.92
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.86
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.93,
+    "model_p": 0.86,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.89
+  },
+  {
+    "name": "antennal_lobe_central_complex_feedback_unit",
+    "system": "central_complex",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.58,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.59
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.22,
+        "confidence": 0.75,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.71,
+          "4": 0.16,
+          "5": 0.07,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.33
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.59,
+    "model_p": 0.33,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.75
+  },
+  {
+    "name": "antennal_lobe_glomerular_unit",
+    "system": "antennal_lobe",
+    "species_source": [
+      "drosophila",
+      "honeybee",
+      "moth"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.539,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.63,
+        "confidence": 0.78,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.06,
+          "4": 0.03,
+          "5": 0.08,
+          "6": 0.83
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.89
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.93,
+    "model_p": 0.89,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.78
+  },
+  {
+    "name": "aplysia_gill_withdrawal_unit",
+    "system": "aplysia_ganglion",
+    "species_source": [
+      "aplysia",
+      "sea_hare"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.78,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.94
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.13,
+        "confidence": 0.49,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.14,
+          "4": 0.06,
+          "5": 0.29,
+          "6": 0.51
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.88
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.94,
+    "model_p": 0.88,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.49
+  },
+  {
+    "name": "ascidian_larval_escape_swim_unit",
+    "system": "ascidian_larva",
+    "species_source": [
+      "ciona",
+      "ascidian"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.722,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.84
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.74,
+        "confidence": 0.51,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.5,
+          "4": 0.18,
+          "5": 0.26,
+          "6": 0.03
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.59
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.84,
+    "model_p": 0.59,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.51
+  },
+  {
+    "name": "astrocyte_tripartite_unit",
+    "system": "glia",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.554,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.92
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.17,
+        "confidence": 0.52,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.09,
+          "4": 0.1,
+          "5": 0.2,
+          "6": 0.58
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.78
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.92,
+    "model_p": 0.78,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.52
+  },
+  {
+    "name": "auditory_song_reception_unit",
+    "system": "antennal_mechanosensory",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.567,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.62
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.02,
+        "confidence": 0.73,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.06,
+          "2": 0.02,
+          "3": 0.72,
+          "4": 0.11,
+          "5": 0.06,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.26
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.62,
+    "model_p": 0.26,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.73
+  },
+  {
+    "name": "auditory_thalamic_relay_unit",
+    "system": "thalamus",
+    "species_source": [
+      "mouse",
+      "bat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "single_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.578,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.89
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.54,
+        "confidence": 0.73,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.060000000000000005,
+          "3": 0.02,
+          "4": 0.02,
+          "5": 0.05,
+          "6": 0.83
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.68
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.89,
+    "model_p": 0.68,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.73
+  },
+  {
+    "name": "barrel_cortex_whisking_unit",
+    "system": "barrel_cortex",
+    "species_source": [
+      "mouse",
+      "rat"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.611,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.16,
+        "confidence": 0.51,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.0,
+          "3": 0.1,
+          "4": 0.08,
+          "5": 0.18,
+          "6": 0.61
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.71
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.71,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.51
+  },
+  {
+    "name": "basal_ganglia_selection_unit",
+    "system": "basal_ganglia",
+    "species_source": [
+      "macaque",
+      "mouse",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.598,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.62,
+        "confidence": 0.78,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.06,
+          "4": 0.03,
+          "5": 0.04,
+          "6": 0.85
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.93
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.93,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.78
+  },
+  {
+    "name": "birdsong_basal_ganglia_learning_unit",
+    "system": "song_system",
+    "species_source": [
+      "zebra_finch",
+      "bengalese_finch"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.595,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.94
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.38,
+        "confidence": 0.64,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.08,
+          "4": 0.06,
+          "5": 0.2,
+          "6": 0.64
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.81
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.94,
+    "model_p": 0.81,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.64
+  },
+  {
+    "name": "birdsong_hvc_timing_unit",
+    "system": "song_system",
+    "species_source": [
+      "zebra_finch",
+      "canary",
+      "bengalese_finch"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.524,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.85
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.32,
+        "confidence": 0.11,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.03,
+          "2": 0.01,
+          "3": 0.29,
+          "4": 0.15,
+          "5": 0.25,
+          "6": 0.26
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.79
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.85,
+    "model_p": 0.79,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.11
+  },
+  {
+    "name": "birdsong_ra_motor_unit",
+    "system": "song_system",
+    "species_source": [
+      "zebra_finch",
+      "canary"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.753,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.84
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.95,
+        "confidence": 0.39,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.17,
+          "4": 0.07,
+          "5": 0.21,
+          "6": 0.51
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.79
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.84,
+    "model_p": 0.79,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.39
+  },
+  {
+    "name": "buccal_efferent_feedback_unit",
+    "system": "subesophageal_zone",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.493,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.28
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.6,
+        "confidence": 0.67,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.08,
+          "1": 0.1,
+          "2": 0.04,
+          "3": 0.72,
+          "4": 0.04,
+          "5": 0.02,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.24
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.28,
+    "model_p": 0.24,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.67
+  },
+  {
+    "name": "buccal_feeding_cpg_unit",
+    "system": "buccal_ganglion",
+    "species_source": [
+      "aplysia",
+      "lobster"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.596,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.75
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.89,
+        "confidence": 0.26,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.05,
+          "2": 0.02,
+          "3": 0.41000000000000003,
+          "4": 0.12,
+          "5": 0.19,
+          "6": 0.19
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.71
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.75,
+    "model_p": 0.71,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.26
+  },
+  {
+    "name": "cb_efferent_command_unit",
+    "system": "central_complex",
+    "species_source": [
+      "drosophila",
+      "locust"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.796,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.3
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.24,
+        "confidence": 0.42,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.12,
+          "1": 0.22,
+          "2": 0.07,
+          "3": 0.51,
+          "4": 0.04,
+          "5": 0.03,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.31
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.3,
+    "model_p": 0.31,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.42
+  },
+  {
+    "name": "cb_endocrine_modulation_unit",
+    "system": "brain",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 1.264,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.29
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.65,
+        "confidence": 0.73,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.09,
+          "2": 0.08,
+          "3": 0.75,
+          "4": 0.03,
+          "5": 0.01,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.16
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.29,
+    "model_p": 0.16,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.73
+  },
+  {
+    "name": "cb_sensory_motor_unit",
+    "system": "brain",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 1.611,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.39
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.8,
+        "confidence": 0.76,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.05,
+          "2": 0.09,
+          "3": 0.75,
+          "4": 0.05,
+          "5": 0.02,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.26
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.39,
+    "model_p": 0.26,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.76
+  },
+  {
+    "name": "central_complex_heading_unit",
+    "system": "central_complex",
+    "species_source": [
+      "drosophila",
+      "locust",
+      "monarch_butterfly"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.575,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.93
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.33,
+        "confidence": 0.2,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.34,
+          "4": 0.18,
+          "5": 0.24,
+          "6": 0.23
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.9
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.93,
+    "model_p": 0.9,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.2
+  },
+  {
+    "name": "central_complex_steering_unit",
+    "system": "central_complex",
+    "species_source": [
+      "drosophila",
+      "locust"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.742,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.71
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.67,
+        "confidence": 0.41,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.06,
+          "2": 0.01,
+          "3": 0.45,
+          "4": 0.2,
+          "5": 0.17,
+          "6": 0.1
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.67
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.71,
+    "model_p": 0.67,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.41
+  },
+  {
+    "name": "centrifugal_visual_feedback_unit",
+    "system": "optic_lobe",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.596,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.29
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.58,
+        "confidence": 0.63,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.06,
+          "1": 0.11,
+          "2": 0.13,
+          "3": 0.62,
+          "4": 0.05,
+          "5": 0.03,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.19
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.29,
+    "model_p": 0.19,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.63
+  },
+  {
+    "name": "cephalopod_arm_motor_unit",
+    "system": "arm_cord",
+    "species_source": [
+      "octopus",
+      "squid"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.525,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.75
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.38,
+        "confidence": 0.11,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.33,
+          "4": 0.13,
+          "5": 0.19,
+          "6": 0.31
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.65
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.75,
+    "model_p": 0.65,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.11
+  },
+  {
+    "name": "cephalopod_chromatophore_control_unit",
+    "system": "chromatophore",
+    "species_source": [
+      "octopus",
+      "cuttlefish",
+      "squid"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.619,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.69
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.73,
+        "confidence": 0.26,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.05,
+          "2": 0.02,
+          "3": 0.18,
+          "4": 0.07,
+          "5": 0.12,
+          "6": 0.54
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.41
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.69,
+    "model_p": 0.41,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.26
+  },
+  {
+    "name": "cephalopod_vertical_lobe_learning_unit",
+    "system": "vertical_lobe",
+    "species_source": [
+      "octopus",
+      "cuttlefish",
+      "squid"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.543,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.67
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.71,
+        "confidence": 0.28,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.09,
+          "2": 0.02,
+          "3": 0.32,
+          "4": 0.25,
+          "5": 0.17,
+          "6": 0.13
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.48
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.67,
+    "model_p": 0.48,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.28
+  },
+  {
+    "name": "cerebellar_climbing_fibre_teaching_unit",
+    "system": "olivocerebellar",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human",
+      "electric_fish"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.608,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.85,
+        "confidence": 0.91,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.03,
+          "4": 0.01,
+          "5": 0.02,
+          "6": 0.94
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.92
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.95,
+    "model_p": 0.92,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.91
+  },
+  {
+    "name": "cerebellar_cortical_unit",
+    "system": "cerebellum",
+    "species_source": [
+      "mouse",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.548,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.94,
+        "confidence": 0.97,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.01,
+          "6": 0.99
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.94
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.95,
+    "model_p": 0.94,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.97
+  },
+  {
+    "name": "cerebellar_error_teaching_unit",
+    "system": "cerebellum",
+    "species_source": [
+      "mouse",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.617,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.94
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.92,
+        "confidence": 0.95,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.01,
+          "4": 0.0,
+          "5": 0.02,
+          "6": 0.97
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.93
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.94,
+    "model_p": 0.93,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.95
+  },
+  {
+    "name": "cerebellar_purkinje_ltd_unit",
+    "system": "cerebellum",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.521,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.91
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.83,
+        "confidence": 0.9,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.01,
+          "4": 0.01,
+          "5": 0.03,
+          "6": 0.9299999999999999
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.9
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.91,
+    "model_p": 0.9,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.9
+  },
+  {
+    "name": "cholinergic_arousal_unit",
+    "system": "neuromodulatory",
+    "species_source": [
+      "rat",
+      "mouse",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.544,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.9
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.68,
+        "confidence": 0.81,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.04,
+          "4": 0.02,
+          "5": 0.05,
+          "6": 0.86
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.7
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.9,
+    "model_p": 0.7,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.81
+  },
+  {
+    "name": "circadian_clock_unit",
+    "system": "neuromodulatory",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.794,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.7,
+        "confidence": 0.83,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.03,
+          "4": 0.02,
+          "5": 0.04,
+          "6": 0.88
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.71
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.71,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.83
+  },
+  {
+    "name": "cochlear_amplification_unit",
+    "system": "sensory",
+    "species_source": [
+      "mouse",
+      "human",
+      "bat"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.563,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.66
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.37,
+        "confidence": 0.05,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.08,
+          "1": 0.12,
+          "2": 0.02,
+          "3": 0.12,
+          "4": 0.03,
+          "5": 0.05,
+          "6": 0.58
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.58
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.66,
+    "model_p": 0.58,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.05
+  },
+  {
+    "name": "compound_lamina_relay_unit",
+    "system": "optic_lobe",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.513,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.87
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.04,
+        "confidence": 0.44,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.17,
+          "4": 0.05,
+          "5": 0.23,
+          "6": 0.52
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.66
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.87,
+    "model_p": 0.66,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.44
+  },
+  {
+    "name": "cortical_highorder_integration_unit",
+    "system": "cortex",
+    "species_source": [
+      "human",
+      "macaque"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.809,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.18
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 1.9,
+        "confidence": 0.28,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.11,
+          "1": 0.4,
+          "2": 0.05,
+          "3": 0.39,
+          "4": 0.03,
+          "5": 0.01,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.23
+      }
+    },
+    "evidence_score": 1,
+    "evidence_label": "speculative",
+    "literature_p": 0.18,
+    "model_p": 0.23,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.28
+  },
+  {
+    "name": "cortical_inhibitory_gain_unit",
+    "system": "cortex",
+    "species_source": [
+      "mouse",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.554,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.39
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.77,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.37,
+          "2": 0.02,
+          "3": 0.21,
+          "4": 0.14,
+          "5": 0.12,
+          "6": 0.1
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.63
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.39,
+    "model_p": 0.63,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "cortical_l23_association_unit",
+    "system": "cortex",
+    "species_source": [
+      "mouse",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.565,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.72
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.85,
+        "confidence": 0.34,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.05,
+          "2": 0.01,
+          "3": 0.35,
+          "4": 0.23,
+          "5": 0.26,
+          "6": 0.09
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.61
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.72,
+    "model_p": 0.61,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.34
+  },
+  {
+    "name": "cortical_l4_input_unit",
+    "system": "cortex",
+    "species_source": [
+      "mouse",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.365,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.39,
+        "confidence": 0.64,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.08,
+          "4": 0.06,
+          "5": 0.13999999999999999,
+          "6": 0.69
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.81
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.81,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.64
+  },
+  {
+    "name": "cortical_l5_output_unit",
+    "system": "cortex",
+    "species_source": [
+      "mouse",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.595,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.59
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.82,
+        "confidence": 0.08,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.13,
+          "2": 0.02,
+          "3": 0.31,
+          "4": 0.09,
+          "5": 0.15,
+          "6": 0.27
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.72
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.59,
+    "model_p": 0.72,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.08
+  },
+  {
+    "name": "cortical_l6_feedback_unit",
+    "system": "cortex",
+    "species_source": [
+      "mouse",
+      "macaque"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.749,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.72
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.21,
+        "confidence": 0.13,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.05,
+          "2": 0.01,
+          "3": 0.28,
+          "4": 0.18,
+          "5": 0.24,
+          "6": 0.23
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.66
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.72,
+    "model_p": 0.66,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.13
+  },
+  {
+    "name": "courtship_decision_unit",
+    "system": "lateral_protocerebrum",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.513,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.77
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.43,
+        "confidence": 0.61,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.03,
+          "2": 0.01,
+          "3": 0.56,
+          "4": 0.22,
+          "5": 0.15,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.4
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.77,
+    "model_p": 0.4,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.61
+  },
+  {
+    "name": "courtship_song_pattern_unit",
+    "system": "ventral_nerve_cord",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.552,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.59
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.06,
+        "confidence": 0.29,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.05,
+          "2": 0.32,
+          "3": 0.28,
+          "4": 0.18,
+          "5": 0.16,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.43
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.59,
+    "model_p": 0.43,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.29
+  },
+  {
+    "name": "dopaminergic_value_unit",
+    "system": "neuromodulatory",
+    "species_source": [
+      "mouse",
+      "rat",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.815,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.81
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.67,
+        "confidence": 0.23,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.1,
+          "2": 0.01,
+          "3": 0.13,
+          "4": 0.08,
+          "5": 0.1,
+          "6": 0.56
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.82
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.81,
+    "model_p": 0.82,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.23
+  },
+  {
+    "name": "efferent_command_bus_unit",
+    "system": "brainstem",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.611,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.34
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.52,
+        "confidence": 0.54,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.07,
+          "1": 0.13,
+          "2": 0.15,
+          "3": 0.55,
+          "4": 0.06,
+          "5": 0.03,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.21
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.34,
+    "model_p": 0.21,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.54
+  },
+  {
+    "name": "electric_organ_discharge_unit",
+    "system": "electrosensory",
+    "species_source": [
+      "gymnotiform",
+      "mormyrid"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.526,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.4,
+        "confidence": 0.65,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.09,
+          "4": 0.04,
+          "5": 0.09,
+          "6": 0.75
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.79
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.79,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.65
+  },
+  {
+    "name": "electrosensory_electrolocation_unit",
+    "system": "electrosensory",
+    "species_source": [
+      "gymnotiform",
+      "mormyrid",
+      "electric_ray"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.627,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.79
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.84,
+        "confidence": 0.33,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.05,
+          "2": 0.01,
+          "3": 0.12,
+          "4": 0.08,
+          "5": 0.17,
+          "6": 0.54
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.77
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.79,
+    "model_p": 0.77,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.33
+  },
+  {
+    "name": "elementary_motion_detection_unit",
+    "system": "optic_lobe",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.604,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.89
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.33,
+        "confidence": 0.53,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.25,
+          "4": 0.16,
+          "5": 0.51,
+          "6": 0.07
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.75
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.89,
+    "model_p": 0.75,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.53
+  },
+  {
+    "name": "entorhinal_spatial_map_unit",
+    "system": "entorhinal",
+    "species_source": [
+      "rat",
+      "mouse",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.565,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.7
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.81,
+        "confidence": 0.31,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.06,
+          "2": 0.01,
+          "3": 0.15000000000000002,
+          "4": 0.06,
+          "5": 0.12,
+          "6": 0.58
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.87
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.7,
+    "model_p": 0.87,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.31
+  },
+  {
+    "name": "frog_escape_swim_unit",
+    "system": "reticulospinal",
+    "species_source": [
+      "frog",
+      "xenopus",
+      "lamprey"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.622,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.82
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.62,
+        "confidence": 0.19,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.27,
+          "4": 0.1,
+          "5": 0.23,
+          "6": 0.36
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.74
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.82,
+    "model_p": 0.74,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.19
+  },
+  {
+    "name": "frog_tectal_prey_capture_unit",
+    "system": "optic_tectum",
+    "species_source": [
+      "frog",
+      "toad"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.547,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.8
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.84,
+        "confidence": 0.32,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.2,
+          "4": 0.08,
+          "5": 0.21,
+          "6": 0.47
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.68
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.8,
+    "model_p": 0.68,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.32
+  },
+  {
+    "name": "gamma_spindle_loop_unit",
+    "system": "spinal_cord",
+    "species_source": [
+      "cat",
+      "mouse",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.535,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.9
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.73,
+        "confidence": 0.84,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.04,
+          "4": 0.01,
+          "5": 0.04,
+          "6": 0.88
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.88
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.9,
+    "model_p": 0.88,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.84
+  },
+  {
+    "name": "giant_fiber_escape_unit",
+    "system": "ventral_nerve_cord",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.729,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.86
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.28,
+        "confidence": 0.45,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.27,
+          "4": 0.11,
+          "5": 0.46,
+          "6": 0.12
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.69
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.86,
+    "model_p": 0.69,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.45
+  },
+  {
+    "name": "gustatory_centrifugal_unit",
+    "system": "subesophageal_zone",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.553,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.2
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 1.92,
+        "confidence": 0.31,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.18,
+          "1": 0.29,
+          "2": 0.02,
+          "3": 0.48,
+          "4": 0.02,
+          "5": 0.01,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.12
+      }
+    },
+    "evidence_score": 1,
+    "evidence_label": "speculative",
+    "literature_p": 0.2,
+    "model_p": 0.12,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.31
+  },
+  {
+    "name": "hippocampal_ca2_autoassoc_unit",
+    "system": "hippocampus",
+    "species_source": [
+      "mouse",
+      "macaque"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.547,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.67
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.02,
+        "confidence": 0.28,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.03,
+          "2": 0.01,
+          "3": 0.32,
+          "4": 0.24,
+          "5": 0.28,
+          "6": 0.11
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.48
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.67,
+    "model_p": 0.48,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.28
+  },
+  {
+    "name": "hippocampal_output_unit",
+    "system": "hippocampus",
+    "species_source": [
+      "mouse",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.558,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.67
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.55,
+        "confidence": 0.16,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.07,
+          "2": 0.02,
+          "3": 0.19,
+          "4": 0.09,
+          "5": 0.12,
+          "6": 0.49
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.56
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.67,
+    "model_p": 0.56,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.16
+  },
+  {
+    "name": "hippocampal_spatial_map_unit",
+    "system": "hippocampus",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human",
+      "bat"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.594,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.67,
+        "confidence": 0.81,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.04,
+          "4": 0.02,
+          "5": 0.06,
+          "6": 0.86
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.94
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.94,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.81
+  },
+  {
+    "name": "hippocampal_trisynaptic_unit",
+    "system": "hippocampus",
+    "species_source": [
+      "mouse",
+      "rat",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.639,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.97
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.96,
+        "confidence": 0.97,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 1.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.95
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.97,
+    "model_p": 0.95,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.97
+  },
+  {
+    "name": "hypothalamic_arousal_unit",
+    "system": "hypothalamus",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.59,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.87
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.7,
+        "confidence": 0.82,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.04,
+          "4": 0.03,
+          "5": 0.05,
+          "6": 0.87
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.78
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.87,
+    "model_p": 0.78,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.82
+  },
+  {
+    "name": "insect_clock_pacemaker_unit",
+    "system": "circadian",
+    "species_source": [
+      "drosophila",
+      "mouse",
+      "human"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.632,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.55
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.01,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.29,
+          "2": 0.05,
+          "3": 0.24,
+          "4": 0.13,
+          "5": 0.15,
+          "6": 0.1
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.67
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.55,
+    "model_p": 0.67,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "johnston_organ_wind_unit",
+    "system": "antennal_mechanosensory",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.595,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.44
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.83,
+        "confidence": 0.51,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.14,
+          "2": 0.1,
+          "3": 0.51,
+          "4": 0.1,
+          "5": 0.09,
+          "6": 0.02
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.3
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.44,
+    "model_p": 0.3,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.51
+  },
+  {
+    "name": "lateral_horn_innate_odour_unit",
+    "system": "lateral_horn",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.605,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.33,
+        "confidence": 0.57,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.21,
+          "4": 0.22,
+          "5": 0.52,
+          "6": 0.03
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.5
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.5,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.57
+  },
+  {
+    "name": "leech_swim_cpg_unit",
+    "system": "leech_ganglion",
+    "species_source": [
+      "leech",
+      "medicinal_leech"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.527,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.95,
+        "confidence": 0.38,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.16,
+          "4": 0.08,
+          "5": 0.31,
+          "6": 0.42
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.89
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.89,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.38
+  },
+  {
+    "name": "leg_motor_pool_unit",
+    "system": "ventral_nerve_cord",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.593,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.34
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.69,
+        "confidence": 0.66,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.06,
+          "1": 0.08,
+          "2": 0.11,
+          "3": 0.67,
+          "4": 0.05,
+          "5": 0.03,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.31
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.34,
+    "model_p": 0.31,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.66
+  },
+  {
+    "name": "lobula_plate_optic_flow_unit",
+    "system": "optic_lobe",
+    "species_source": [
+      "drosophila",
+      "blowfly"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.555,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.42,
+        "confidence": 0.66,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.05,
+          "4": 0.06,
+          "5": 0.21,
+          "6": 0.65
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.87
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.87,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.66
+  },
+  {
+    "name": "locus_coeruleus_arousal_unit",
+    "system": "locus_coeruleus",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.568,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.6
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.26,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.14,
+          "2": 0.02,
+          "3": 0.13999999999999999,
+          "4": 0.13,
+          "5": 0.14,
+          "6": 0.39999999999999997
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.65
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.6,
+    "model_p": 0.65,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "looming_detection_unit",
+    "system": "optic_lobe",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.608,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.68
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.77,
+        "confidence": 0.26,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.06,
+          "2": 0.04,
+          "3": 0.28,
+          "4": 0.2,
+          "5": 0.37,
+          "6": 0.02
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.51
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.68,
+    "model_p": 0.51,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.26
+  },
+  {
+    "name": "medulla_centripetal_gain_unit",
+    "system": "optic_lobe",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.513,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.65
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.7,
+        "confidence": 0.6,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.08,
+          "2": 0.01,
+          "3": 0.11,
+          "4": 0.59,
+          "5": 0.16,
+          "6": 0.02
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.54
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.65,
+    "model_p": 0.54,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.6
+  },
+  {
+    "name": "medulla_colour_pathway_unit",
+    "system": "optic_lobe",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.579,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.56
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.19,
+        "confidence": 0.0,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.05,
+          "1": 0.12,
+          "2": 0.26,
+          "3": 0.11,
+          "4": 0.11,
+          "5": 0.33,
+          "6": 0.02
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.38
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.56,
+    "model_p": 0.38,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.0
+  },
+  {
+    "name": "motor_thalamic_relay_unit",
+    "system": "thalamus",
+    "species_source": [
+      "macaque",
+      "mouse",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "single_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.737,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.85
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.38,
+        "confidence": 0.64,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.07,
+          "3": 0.03,
+          "4": 0.03,
+          "5": 0.05,
+          "6": 0.79
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.59
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.85,
+    "model_p": 0.59,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.64
+  },
+  {
+    "name": "mushroom_body_associative_memory_unit",
+    "system": "mushroom_body",
+    "species_source": [
+      "drosophila",
+      "honeybee"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.594,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.92
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.06,
+        "confidence": 0.45,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.16,
+          "4": 0.1,
+          "5": 0.23,
+          "6": 0.51
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.81
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.92,
+    "model_p": 0.81,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.45
+  },
+  {
+    "name": "mushroom_body_dopamine_arousal_unit",
+    "system": "mushroom_body",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.58,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.65
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.77,
+        "confidence": 0.51,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.1,
+          "2": 0.01,
+          "3": 0.08,
+          "4": 0.49,
+          "5": 0.25,
+          "6": 0.03
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.54
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.65,
+    "model_p": 0.54,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.51
+  },
+  {
+    "name": "mushroom_body_lateral_horn_reciprocal_unit",
+    "system": "mushroom_body",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.619,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.76
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.35,
+        "confidence": 0.73,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.68,
+          "4": 0.18,
+          "5": 0.1,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.41
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.76,
+    "model_p": 0.41,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.73
+  },
+  {
+    "name": "mushroom_body_sparse_code_unit",
+    "system": "mushroom_body",
+    "species_source": [
+      "drosophila",
+      "honeybee",
+      "locust"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.579,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.91
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.09,
+        "confidence": 0.47,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.21,
+          "4": 0.06,
+          "5": 0.11,
+          "6": 0.62
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.9
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.91,
+    "model_p": 0.9,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.47
+  },
+  {
+    "name": "oa_visual_modulation_unit",
+    "system": "optic_lobe",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.556,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.32
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.59,
+        "confidence": 0.48,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.05,
+          "1": 0.2,
+          "2": 0.1,
+          "3": 0.48,
+          "4": 0.09,
+          "5": 0.07,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.26
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.32,
+    "model_p": 0.26,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.48
+  },
+  {
+    "name": "octopamine_arousal_unit",
+    "system": "modulatory",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.604,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.54
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.27,
+        "confidence": 0.67,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.05,
+          "2": 0.01,
+          "3": 0.67,
+          "4": 0.13,
+          "5": 0.12,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.29
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.54,
+    "model_p": 0.29,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.67
+  },
+  {
+    "name": "olfactory_transduction_unit",
+    "system": "sensory",
+    "species_source": [
+      "mouse",
+      "fly",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.576,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.4,
+        "confidence": 0.65,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.07,
+          "4": 0.04,
+          "5": 0.11,
+          "6": 0.74
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.87
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.87,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.65
+  },
+  {
+    "name": "passive_electroreception_unit",
+    "system": "electrosensory",
+    "species_source": [
+      "shark",
+      "ray",
+      "catfish",
+      "platypus"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.642,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.61
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.53,
+        "confidence": 0.14,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.08,
+          "2": 0.02,
+          "3": 0.16,
+          "4": 0.09,
+          "5": 0.19,
+          "6": 0.43
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.66
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.61,
+    "model_p": 0.66,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.14
+  },
+  {
+    "name": "pharyngeal_gustatory_unit",
+    "system": "subesophageal_zone",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.606,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.47
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.96,
+        "confidence": 0.69,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.08,
+          "2": 0.03,
+          "3": 0.69,
+          "4": 0.1,
+          "5": 0.07,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.18
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.47,
+    "model_p": 0.18,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.69
+  },
+  {
+    "name": "pit_viper_strike_unit",
+    "system": "infrared_pit",
+    "species_source": [
+      "pit_viper",
+      "rattlesnake"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.852,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.32
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.36,
+        "confidence": 0.02,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.16,
+          "1": 0.3,
+          "2": 0.04,
+          "3": 0.25,
+          "4": 0.08,
+          "5": 0.09,
+          "6": 0.08
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.27
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.32,
+    "model_p": 0.27,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.02
+  },
+  {
+    "name": "red_nucleus_coordination_unit",
+    "system": "brainstem",
+    "species_source": [
+      "macaque",
+      "cat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.666,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.68
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.34,
+        "confidence": 0.03,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.11,
+          "2": 0.02,
+          "3": 0.17,
+          "4": 0.09,
+          "5": 0.15,
+          "6": 0.43
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.56
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.68,
+    "model_p": 0.56,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.03
+  },
+  {
+    "name": "respiratory_rhythm_cpg_unit",
+    "system": "respiratory",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.593,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.88
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.99,
+        "confidence": 0.41,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.22,
+          "4": 0.06,
+          "5": 0.1,
+          "6": 0.59
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.88
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.88,
+    "model_p": 0.88,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.41
+  },
+  {
+    "name": "retinal_direction_selective_unit",
+    "system": "sensory",
+    "species_source": [
+      "mouse",
+      "rabbit",
+      "macaque"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.639,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.9
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.38,
+        "confidence": 0.64,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.02,
+          "3": 0.09,
+          "4": 0.05,
+          "5": 0.1,
+          "6": 0.72
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.86
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.9,
+    "model_p": 0.86,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.64
+  },
+  {
+    "name": "retinal_irradiance_unit",
+    "system": "sensory",
+    "species_source": [
+      "mouse",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.594,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.8
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.95,
+        "confidence": 0.38,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.03,
+          "2": 0.01,
+          "3": 0.17,
+          "4": 0.07,
+          "5": 0.11,
+          "6": 0.6
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.56
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.8,
+    "model_p": 0.56,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.38
+  },
+  {
+    "name": "retinal_motion_onset_unit",
+    "system": "sensory",
+    "species_source": [
+      "mouse",
+      "rabbit"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.638,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.46
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.9,
+        "confidence": 0.65,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.05,
+          "1": 0.08,
+          "2": 0.03,
+          "3": 0.68,
+          "4": 0.08,
+          "5": 0.05,
+          "6": 0.02
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.38
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.46,
+    "model_p": 0.38,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.65
+  },
+  {
+    "name": "retinal_phototransduction_unit",
+    "system": "sensory",
+    "species_source": [
+      "mouse",
+      "macaque",
+      "human",
+      "salamander"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.642,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.85
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.61,
+        "confidence": 0.77,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.02,
+          "4": 0.02,
+          "5": 0.06,
+          "6": 0.85
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.8
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.85,
+    "model_p": 0.8,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.77
+  },
+  {
+    "name": "septo_hippocampal_theta_unit",
+    "system": "limbic",
+    "species_source": [
+      "rat",
+      "mouse",
+      "macaque"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.518,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.92
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.85,
+        "confidence": 0.91,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.01,
+          "4": 0.01,
+          "5": 0.05,
+          "6": 0.92
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.88
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.92,
+    "model_p": 0.88,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.91
+  },
+  {
+    "name": "serotonergic_mood_unit",
+    "system": "neuromodulatory",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.597,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.57
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.45,
+        "confidence": 0.1,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.1,
+          "2": 0.02,
+          "3": 0.19,
+          "4": 0.1,
+          "5": 0.11,
+          "6": 0.45999999999999996
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.57
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.57,
+    "model_p": 0.57,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.1
+  },
+  {
+    "name": "sleep_wake_flipflop_unit",
+    "system": "arousal_switch",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.561,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.91
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.64,
+        "confidence": 0.79,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.01,
+          "2": 0.01,
+          "3": 0.05,
+          "4": 0.03,
+          "5": 0.07,
+          "6": 0.83
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.89
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.91,
+    "model_p": 0.89,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.79
+  },
+  {
+    "name": "somatosensory_dorsalhorn_unit",
+    "system": "sensory",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "single_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.555,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.79
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.52,
+        "confidence": 0.72,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.05,
+          "2": 0.01,
+          "3": 0.01,
+          "4": 0.01,
+          "5": 0.04,
+          "6": 0.87
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.8
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.79,
+    "model_p": 0.8,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.72
+  },
+  {
+    "name": "somatosensory_thalamic_relay_unit",
+    "system": "thalamus",
+    "species_source": [
+      "macaque",
+      "mouse",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "single_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.603,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.86
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.59,
+        "confidence": 0.76,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.02,
+          "2": 0.04,
+          "3": 0.02,
+          "4": 0.01,
+          "5": 0.02,
+          "6": 0.87
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.58
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.86,
+    "model_p": 0.58,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.76
+  },
+  {
+    "name": "spinal_cpg_unit",
+    "system": "spinal_cord",
+    "species_source": [
+      "lamprey",
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.542,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.94
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.82,
+        "confidence": 0.9,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.01,
+          "4": 0.01,
+          "5": 0.060000000000000005,
+          "6": 0.92
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.94
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.94,
+    "model_p": 0.94,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.9
+  },
+  {
+    "name": "spinal_reflex_arc_unit",
+    "system": "spinal_cord",
+    "species_source": [
+      "mouse",
+      "rat",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.629,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.96
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.96,
+        "confidence": 0.98,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 1.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.91
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.96,
+    "model_p": 0.91,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.98
+  },
+  {
+    "name": "startle_escape_command_unit",
+    "system": "startle_circuit",
+    "species_source": [
+      "zebrafish",
+      "goldfish",
+      "lamprey"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.779,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.92
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.58,
+        "confidence": 0.76,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.08,
+          "4": 0.03,
+          "5": 0.06,
+          "6": 0.82
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.84
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.92,
+    "model_p": 0.84,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.76
+  },
+  {
+    "name": "striatal_direct_pathway_unit",
+    "system": "basal_ganglia",
+    "species_source": [
+      "mouse",
+      "rat",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "single_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.507,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.9,
+        "confidence": 0.94,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.01,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.02,
+          "6": 0.97
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.89
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.95,
+    "model_p": 0.89,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.94
+  },
+  {
+    "name": "striatal_indirect_pathway_unit",
+    "system": "basal_ganglia",
+    "species_source": [
+      "mouse",
+      "rat",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.603,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.92
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.81,
+        "confidence": 0.89,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.0,
+          "3": 0.02,
+          "4": 0.01,
+          "5": 0.02,
+          "6": 0.9299999999999999
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.92
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.92,
+    "model_p": 0.92,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.89
+  },
+  {
+    "name": "thalamocortical_relay_unit",
+    "system": "thalamus",
+    "species_source": [
+      "mouse",
+      "macaque",
+      "human",
+      "ferret"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "single_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.594,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.95
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.94,
+        "confidence": 0.96,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.01,
+          "3": 0.0,
+          "4": 0.0,
+          "5": 0.01,
+          "6": 0.98
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.87
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.95,
+    "model_p": 0.87,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.96
+  },
+  {
+    "name": "trigeminal_infrared_map_unit",
+    "system": "infrared_pit",
+    "species_source": [
+      "python",
+      "rattlesnake",
+      "pit_viper"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.51,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.8
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.83,
+        "confidence": 0.32,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.02,
+          "2": 0.01,
+          "3": 0.24,
+          "4": 0.08,
+          "5": 0.12,
+          "6": 0.52
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.47
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.8,
+    "model_p": 0.47,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.32
+  },
+  {
+    "name": "vestibular_transduction_unit",
+    "system": "sensory",
+    "species_source": [
+      "mouse",
+      "macaque",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "single_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.598,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.59
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.31,
+        "confidence": 0.01,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.05,
+          "1": 0.12,
+          "2": 0.11,
+          "3": 0.05,
+          "4": 0.05,
+          "5": 0.09,
+          "6": 0.53
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.61
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.59,
+    "model_p": 0.61,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.01
+  },
+  {
+    "name": "vestibulo_ocular_reflex_unit",
+    "system": "vestibular",
+    "species_source": [
+      "rabbit",
+      "mouse",
+      "monkey"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "multi_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.566,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.91
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.67,
+        "confidence": 0.81,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.0,
+          "1": 0.0,
+          "2": 0.0,
+          "3": 0.07,
+          "4": 0.02,
+          "5": 0.03,
+          "6": 0.88
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.83
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.91,
+    "model_p": 0.83,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.81
+  },
+  {
+    "name": "visual_target_detection_unit",
+    "system": "optic_lobe",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.553,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.72
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 3.46,
+        "confidence": 0.59,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.04,
+          "2": 0.02,
+          "3": 0.56,
+          "4": 0.18,
+          "5": 0.18,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.48
+      }
+    },
+    "evidence_score": 3,
+    "evidence_label": "speculative",
+    "literature_p": 0.72,
+    "model_p": 0.48,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.59
+  },
+  {
+    "name": "visual_thalamic_relay_unit",
+    "system": "thalamus",
+    "species_source": [
+      "macaque",
+      "mouse",
+      "human"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "single_source",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.568,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.91
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 5.64,
+        "confidence": 0.79,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.01,
+          "2": 0.05,
+          "3": 0.01,
+          "4": 0.01,
+          "5": 0.02,
+          "6": 0.89
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.74
+      }
+    },
+    "evidence_score": 5,
+    "evidence_label": "preliminary",
+    "literature_p": 0.91,
+    "model_p": 0.74,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.79
+  },
+  {
+    "name": "vnc_endocrine_modulation_unit",
+    "system": "ventral_nerve_cord",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.545,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.28
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.44,
+        "confidence": 0.55,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.07,
+          "1": 0.19,
+          "2": 0.07,
+          "3": 0.59,
+          "4": 0.06,
+          "5": 0.02,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.15
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.28,
+    "model_p": 0.15,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.55
+  },
+  {
+    "name": "vnc_sensory_reflex_unit",
+    "system": "ventral_nerve_cord",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.559,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.21
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.21,
+        "confidence": 0.46,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.11,
+          "1": 0.19,
+          "2": 0.14,
+          "3": 0.52,
+          "4": 0.02,
+          "5": 0.02,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.27
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.21,
+    "model_p": 0.27,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.46
+  },
+  {
+    "name": "wing_flight_control_unit",
+    "system": "ventral_nerve_cord",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.578,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.25
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.03,
+        "confidence": 0.27,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.15,
+          "1": 0.28,
+          "2": 0.09,
+          "3": 0.4,
+          "4": 0.04,
+          "5": 0.04,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.38
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.25,
+    "model_p": 0.38,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.27
+  },
+  {
+    "name": "wing_flight_steering_unit",
+    "system": "ventral_nerve_cord",
+    "species_source": [
+      "drosophila"
+    ],
+    "embodied": true,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 1.607,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.43
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.56,
+        "confidence": 0.48,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.1,
+          "1": 0.17,
+          "2": 0.01,
+          "3": 0.56,
+          "4": 0.07,
+          "5": 0.07,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.44
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.43,
+    "model_p": 0.44,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.48
+  }
+]
