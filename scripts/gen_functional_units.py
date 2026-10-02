@@ -98,13 +98,23 @@ ACKNOWLEDGED_CONTRADICTIONS = [
 ]
 
 
+_PROFILES_CACHE: dict | None = None
+
+
 def _load_profiles() -> dict:
+    # v2.27.0: cached. `synthetic_bio_topology.py` builds a fresh module dict
+    # on every exec, so a caller that registered extra profiles into the first
+    # copy would see them vanish in the next copy. One shared dict, one build.
+    global _PROFILES_CACHE
+    if _PROFILES_CACHE is not None:
+        return _PROFILES_CACHE
     spec = importlib.util.spec_from_file_location(
         "sbt_for_units", str(MCP / "synthetic_bio_topology.py"))
     mod = importlib.util.module_from_spec(spec)
     sys.modules["sbt_for_units"] = mod
     spec.loader.exec_module(mod)
-    return mod.MODULE_PROFILES
+    _PROFILES_CACHE = mod.MODULE_PROFILES
+    return _PROFILES_CACHE
 
 
 # ====================================================================== #
@@ -1155,6 +1165,14 @@ def _evidence_weight(unit: dict) -> tuple:
     """
     # Embodied units get the highest tier: their evidence IS the connectome
     if unit.get("provenance", {}).get("embodied_in_malecns"):
+        return "connectome_derived", None
+    # v2.27.0 -- the second connectome. A unit traced out of an explicit
+    # reconstruction carries its evidence AS that reconstruction, so it must
+    # not be graded on the citation ladder: a unit fully traced in a real
+    # serial-section EM reconstruction would land in the weakest tier
+    # (single_source) for citing one paper. That is the same axis error the
+    # v2.26 connectome-axis rescore fixed, applied to the weight ladder.
+    if unit.get("provenance", {}).get("source_connectome"):
         return "connectome_derived", None
     refs = [r.strip() for r in (unit.get("biological_reference") or "").split(";")
             if r.strip()]
@@ -3485,6 +3503,46 @@ def _load_unit_rescore():
     return rescore
 
 
+def _load_cel_units():
+    """v2.27.0 — append the C. elegans connectome units.
+
+    These are NOT hand-written into this file. `scripts/extract_cel_profiles.py`
+    reads the two adult reconstruction files hosted by WormWiring (the raw
+    output of Witvliet et al. 2020, bioRxiv 10.1101/2020.04.30.066209) and
+    writes `functional_units/cel_profiles.json`; this hook only appends what
+    that file says. Hand-copying a second connectome would reintroduce exactly
+    the drift that `_load_unit_jev` was added to stop.
+
+    They are connectome-derived in the same sense the MaleCNS units are, so
+    they are scored on the connectome axis too — see `_load_unit_rescore`.
+    """
+    path = MCP / "functional_units" / "cel_profiles.json"
+    if not path.exists():
+        return []
+    with open(path, encoding="utf-8") as f:
+        doc = json.load(f)
+    cel = doc["units"]
+
+    # The cell classes the units use are also registered in the neural-profile
+    # vocabulary, otherwise gate 4.2 rejects every `cel.*` member.
+    profiles = _load_profiles()
+    clash = [k for k in doc["neuron_profiles"] if k in profiles]
+    if clash:
+        raise SystemExit("cel_profiles.json redefines known neuron profiles: %s"
+                         % clash)
+    profiles.update(doc["neuron_profiles"])
+
+    known = {u["name"] for u in FUNCTIONAL_UNITS}
+    for u in cel:
+        if u["name"] in known:
+            raise SystemExit("cel_profiles.json redefines unit %s" % u["name"])
+    FUNCTIONAL_UNITS.extend(cel)
+    print(f"[CEL] appended {len(cel)} C. elegans connectome unit(s) "
+          f"and {len(doc['neuron_profiles'])} neuron profile(s)")
+    return cel
+
+
+_load_cel_units()
 _load_unit_jev()
 _load_unit_rescore()
 
