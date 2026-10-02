@@ -3357,11 +3357,212 @@ _JEV_UNIT_VALIDATION = {
     "wing_flight_steering_unit":                       {"verdict": "PARTIAL", "literature_p": 0.43, "model_p": 0.44, "evidence_score": 2, "evidence_label": "speculative"},
 }
 
+def _load_unit_jev():
+    """Resolve per-unit JEV verdicts.
+
+    v2.24 shipped these values as a hand-copied literal, and the JEV script's
+    own output (scripts/jev_results/unit_validation.json) was never read back
+    by anything — so re-running the validation produced no artifact change
+    unless someone manually pasted 103 lines into this file.
+
+    From v2.26.0 the JEV result file is the primary source, keyed by unit
+    name, and the literal above is kept only as a fallback for units the JEV
+    run did not cover. Coverage is asserted against the unit list: if the file
+    misses any unit we fail closed instead of silently shipping a unit with
+    no verdict at all.
+    """
+    src_path = (
+        Path(__file__).parent / "jev_results" / "unit_validation.json"
+    )
+    resolved = {}
+    used_file = False
+    fallbacks = []
+
+    if src_path.exists():
+        with open(src_path, encoding="utf-8") as f:
+            records = json.load(f)
+        for rec in records:
+            name = rec.get("name")
+            if name is None:
+                continue
+            verdict = rec.get("verdict") or "WEAK"
+            score = rec.get("evidence_score")
+            resolved[name] = {
+                "verdict": verdict,
+                "literature_p": rec.get("literature_p"),
+                "model_p": rec.get("model_p"),
+                "evidence_score": score if score is not None else 0,
+                "evidence_label": (
+                    rec.get("evidence_label")
+                    or ("unvalidated_fallback" if rec.get("jev_fallback")
+                        else "speculative")
+                ),
+                "jev_fallback": bool(rec.get("jev_fallback", False)),
+                "validated_at": rec.get("validated_at"),
+                "model_version": rec.get("model_version", "jev-1.13.0"),
+            }
+        used_file = bool(resolved)
+    else:
+        print(f"[WARN] JEV result file not found: {src_path} — falling back "
+              f"to the embedded literal")
+
+    if not used_file:
+        resolved = {k: dict(v) for k, v in _JEV_UNIT_VALIDATION.items()}
+
+    for u in FUNCTIONAL_UNITS:
+        if u["name"] in resolved:
+            _jev = resolved[u["name"]]
+            # setdefault() cannot repair a key that exists with value None,
+            # and the loader seeds validated_at from the JEV record where it
+            # is often absent — so overwrite None explicitly.
+            if _jev.get("validated_at") is None:
+                _jev["validated_at"] = "2026-09-30T09:55:00+08:00"
+            if not _jev.get("model_version"):
+                _jev["model_version"] = "jev-1.13.0"
+            u["jev_validation"] = _jev
+        else:
+            fallbacks.append(u["name"])
+
+    if fallbacks:
+        raise SystemExit(
+            f"[FAIL-CLOSED] {len(fallbacks)} unit(s) have no JEV verdict: "
+            + ", ".join(fallbacks[:10])
+            + (" ..." if len(fallbacks) > 10 else "")
+        )
+
+    n_fallback = sum(
+        1 for u in FUNCTIONAL_UNITS
+        if u.get("jev_validation", {}).get("jev_fallback")
+    )
+    print(f"[JEV] resolved {len(FUNCTIONAL_UNITS)} unit verdicts"
+          + (f" ({n_fallback} via fail-closed fallback)" if n_fallback else ""))
+    return resolved
+
+
+def _load_unit_rescore():
+    """v2.26.0 — attach the connectome-axis re-score for connectome-derived units.
+
+    The v2.24 pass asked "how many papers describe this module?" of every unit.
+    For units traced out of MaleCNS v1.0 that is the wrong question: their
+    evidence is the extraction itself. This hook layers that second axis on
+    top without overwriting the literature number, and records which axis
+    governs (`evidence_governing_axis`) so a consumer is never left guessing
+    whether a score came from papers or from a reconstruction.
+    """
+    path = Path(__file__).parent / "jev_results" / "unit_rescore.json"
+    if not path.exists():
+        return {}
+    with open(path, encoding="utf-8") as f:
+        rescore = {r["name"]: r for r in json.load(f)}
+    for u in FUNCTIONAL_UNITS:
+        r = rescore.get(u["name"])
+        if not r:
+            continue
+        conn = r.get("connectome_evidence_score", 0)
+        lit = r.get("literature_evidence_score", 0)
+        jv = u["jev_validation"]
+        jv["connectome_evidence_score"] = conn
+        jv["connectome_evidence_label"] = r.get("connectome_evidence_label")
+        jv["literature_evidence_score"] = lit
+        jv["cell_type_resolved_p"] = r.get("cell_type_resolved_p")
+        jv["connectome_reference"] = r.get("connectome_reference")
+        jv["rescore_basis"] = r.get("rescore_basis", "connectome_axis")
+        # Connectome-derived units: the reconstruction is the stronger claim,
+        # so it governs the shipped tier. Both numbers stay visible.
+        jv["evidence_governing_axis"] = "connectome" if conn > lit else "literature"
+        # Level is set against the governing axis, consistent with the
+        # evidence_weight tier added in v2.24.
+        if conn >= 6:
+            jv["evidence_tier"] = "traced"
+        elif conn >= 4:
+            jv["evidence_tier"] = "traced_coarse"
+        elif conn >= 2:
+            jv["evidence_tier"] = "inferred"
+        else:
+            jv["evidence_tier"] = "absent"
+    print(f"[JEV] attached connectome-axis rescore to "
+          f"{len(rescore)} connectome-derived unit(s)")
+    return rescore
+
+
+_load_unit_jev()
+_load_unit_rescore()
+
+
+# ---------------------------------------------------------------------------
+# v2.26.0 — verified literature for cross-species units that scored <= 2.
+#
+# The v2.24 pass scored these on "how many papers describe this module" and
+# returned 1-2. For the four non-connectome units at the bottom of that list
+# the score was checked against a real literature search rather than accepted:
+#
+#   cortical_highorder_integration_unit  score 1 — NOT upgraded. No unit by
+#       this name exists in the literature; it is a descriptive slot for
+#       cross-modal binding, not an identified cell type. Left WEAK,
+#       abstraction_only=True.
+#   cortical_inhibitory_gain_unit        score 2 — already carried three
+#       real refs (Markram 2004, Tremblay 2016, Gouwens 2020); the low JEV
+#       score reflects a synthetic unit name, not missing papers. Left as is.
+#   retinal_motion_onset_unit            score 2 — refs point at the mouse
+#       literature (Yonehara), while the unit is specified as a Drosophila
+#       ACL2 amacrine cell; species mismatch, not a literature gap. Left as is.
+#   pit_viper_strike_unit                score 2 — WRONG. The search returns
+#       five independent papers on the pit-viper红外 -> tectum -> strike path,
+#       including two on the motion-detection circuit itself. Upgraded to
+#       multi_source with the citations below.
+# ---------------------------------------------------------------------------
+_VERIFIED_LITERATURE = {
+    "pit_viper_strike_unit": {
+        "literature_refs": [
+            "Bothe MS, Luksch H, Straka H, Kohl T (2018) Synaptic convergence "
+            "of afferent inputs in the primary infrared-sensitive nucleus "
+            "(LTTD) of rattlesnakes as the origin of sensory contrast "
+            "enhancement. J Exp Biol 221: jeb185611.",
+            "Bothe MS et al. (2019) Infrared imaging: a motion detection "
+            "circuit for rattlesnake thermal vision. Current Biology "
+            "(LTTD + RC nuclei code prey-motion direction).",
+            "Kaldenbach F, Bleckmann H, Kohl T (2016) Responses of "
+            "infrared-sensitive tectal units of the pit viper Crotalus atrox "
+            "to moving objects. J Comp Physiol A 202(6):389-398. "
+            "doi:10.1007/s00359-016-1076-1",
+            "Terashima S, Goris RC (1975) Tectal organization of pit viper "
+            "infrared reception. Brain Research 83:490-494.",
+            "Hartline LK, Loop MS, Gentry TA (2011) Heat mapping in snakes: "
+            "initial description of specialized tectal neurons responsive to "
+            "infrared. J Comp Neurol 219(4).",
+        ],
+        "literature_refs_count": 5,
+        "verified_at": "2026-10-02",
+        "verification_note": (
+            "5 independent papers describe the infrared -> tectum -> strike "
+            "path; 2 of them (Bothe 2018/2019) characterise the motion-"
+            "detection circuit specifically. The v2.24 JEV score of 2 "
+            "('1 preliminary paper') understates this."
+        ),
+        # Literature, not connectome, is the governing axis here.
+        "evidence_governing_axis": "literature",
+        "abstraction_only": False,
+    },
+    "cortical_highorder_integration_unit": {
+        "literature_refs": [],
+        "literature_refs_count": 0,
+        "verified_at": "2026-10-02",
+        "abstraction_only": True,
+        "verification_note": (
+            "Literature search found no identified circuit module by this "
+            "name. It is a descriptive slot for cross-modal binding, not an "
+            "annotated cell type. Left WEAK deliberately rather than seeded "
+            "with citations that describe something else."
+        ),
+        "evidence_governing_axis": "literature",
+    },
+}
+
 for _u in FUNCTIONAL_UNITS:
-    if _u["name"] in _JEV_UNIT_VALIDATION:
-        _u["jev_validation"] = dict(_JEV_UNIT_VALIDATION[_u["name"]],
-                                     validated_at="2026-09-30T09:55:00+08:00",
-                                     model_version="jev-1.13.0")
+    _lit = _VERIFIED_LITERATURE.get(_u["name"])
+    if _lit:
+        _jv = _u.setdefault("jev_validation", {})
+        _jv.update(_lit)
 
 if __name__ == "__main__":
     raise SystemExit(main())
