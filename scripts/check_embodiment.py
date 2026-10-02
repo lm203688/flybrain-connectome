@@ -362,6 +362,11 @@ def run_checks(units_doc, anchors, readme_text):
     # `biological_reference` field cites. Recompute here so a hand-edited
     # value in the artifact cannot slip through.
     def _expect_weight(u):
+        # v2.27.0: a unit traced out of an explicit connectome carries its
+        # evidence as the reconstruction, not as citations. Grading it on the
+        # citation ladder would place a fully traced unit in the weakest tier.
+        if u["provenance"].get("source_connectome"):
+            return "connectome_derived", 0
         refs = [x.strip() for x in (u.get("biological_reference") or "").split(";")
                 if x.strip()]
         n = len(refs)
@@ -388,6 +393,20 @@ def run_checks(units_doc, anchors, readme_text):
             continue
         weight_counts[weight] = weight_counts.get(weight, 0) + 1
         exp_w, exp_n = _expect_weight(u)
+        traced = u["provenance"].get("source_connectome")
+        if traced:
+            # A reconstruction-traced unit must stay connectome_derived and
+            # must remain traceable; its source is not a citation count.
+            if weight != "connectome_derived" or not u["provenance"].get(
+                    "connectome_traceable"):
+                bad_weight.append("%s: connectome-traced unit graded %r / "
+                                  "traceable=%r" % (u["name"], weight,
+                                                    u["provenance"].get(
+                                                        "connectome_traceable")))
+            if n_refs not in (None, 0):
+                bad_weight.append("%s: connectome-traced unit carries "
+                                  "n_literature_refs=%r" % (u["name"], n_refs))
+            continue
         if weight not in ("single_source", "multi_source", "textbook"):
             bad_weight.append("%s: unknown evidence_weight %r" % (u["name"], weight))
         elif weight != exp_w:
@@ -560,17 +579,40 @@ def injections(units_doc, anchors):
     out.append(("an unanchored unit carries a non-enum evidence_weight", u, a))
 
     # the more interesting case: a valid enum value that DOES NOT re-derive from
-    # the citation count in biological_reference
+    # the citation count in biological_reference. Skip connectome-traced units --
+    # they answer to the trace branch below, not to the citation ladder.
     a = copy.deepcopy(anchors)
     u = copy.deepcopy(units_doc)
     for unit in u["units"]:
-        if not unit["provenance"]["embodied_in_malecns"]:
+        if (not unit["provenance"]["embodied_in_malecns"]
+                and not unit["provenance"].get("source_connectome")):
             if unit["provenance"]["evidence_weight"] == "single_source":
                 unit["provenance"]["evidence_weight"] = "textbook"
             else:
                 unit["provenance"]["evidence_weight"] = "single_source"
             break
     out.append(("an unanchored unit's evidence_weight does not re-derive from citations", u, a))
+
+    # v2.27.0: a connectome-traced unit downgraded to a citation tier -- exactly
+    # the drift `_evidence_weight` used to cause before it learned about
+    # `source_connectome` -- must not pass.
+    a = copy.deepcopy(anchors)
+    u = copy.deepcopy(units_doc)
+    for unit in u["units"]:
+        if unit["provenance"].get("source_connectome"):
+            unit["provenance"]["evidence_weight"] = "single_source"
+            unit["provenance"]["n_literature_refs"] = 1
+            break
+    out.append(("a connectome-traced unit is graded on the citation ladder", u, a))
+
+    # ... and neither may a traced unit claim traceability it cannot back.
+    a = copy.deepcopy(anchors)
+    u = copy.deepcopy(units_doc)
+    for unit in u["units"]:
+        if unit["provenance"].get("source_connectome"):
+            unit["provenance"]["connectome_traceable"] = False
+            break
+    out.append(("a connectome-traced unit is marked untraceable", u, a))
 
     # embodied units must carry connectome_derived, not a citation-count tier
     a = copy.deepcopy(anchors)
