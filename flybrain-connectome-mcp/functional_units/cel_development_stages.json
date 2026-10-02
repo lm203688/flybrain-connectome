@@ -1,0 +1,476 @@
+{
+  "schema_version": "1.0",
+  "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), datasets 1-8 (L1 x4, L2, L3, adult x2)",
+  "note": "Every edge counted here is summed out of the WormWiring xlsx rows for that stage.  The four circuits are the same four `extract_cel_profiles.py` emits as units; this artifact records how many edges and synapses each one carries at L1/L2/L3/adult.",
+  "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+  "stages": [
+    {
+      "stage": "L1",
+      "label": "L1 (four independent animals)",
+      "n_animals": 4,
+      "animals": [
+        {
+          "dataset": "witvliet_2020_1_L1.xlsx",
+          "n_cell_classes": 108,
+          "n_weighted_edges": 1400,
+          "n_unique_edges": 566,
+          "unit_cel_forward_locomotion_command_unit": {
+            "edges": 7,
+            "synapses": 26
+          },
+          "unit_cel_touch_avoidance_reflex_unit": {
+            "edges": 9,
+            "synapses": 30
+          },
+          "unit_cel_amphid_chemosensory_unit": {
+            "edges": 35,
+            "synapses": 97
+          },
+          "unit_cel_nociceptive_avoidance_unit": {
+            "edges": 10,
+            "synapses": 21
+          }
+        },
+        {
+          "dataset": "witvliet_2020_2_L1.xlsx",
+          "n_cell_classes": 114,
+          "n_weighted_edges": 2028,
+          "n_unique_edges": 693,
+          "unit_cel_forward_locomotion_command_unit": {
+            "edges": 6,
+            "synapses": 34
+          },
+          "unit_cel_touch_avoidance_reflex_unit": {
+            "edges": 8,
+            "synapses": 38
+          },
+          "unit_cel_amphid_chemosensory_unit": {
+            "edges": 31,
+            "synapses": 127
+          },
+          "unit_cel_nociceptive_avoidance_unit": {
+            "edges": 12,
+            "synapses": 22
+          }
+        },
+        {
+          "dataset": "witvliet_2020_3_L1.xlsx",
+          "n_cell_classes": 119,
+          "n_weighted_edges": 2237,
+          "n_unique_edges": 700,
+          "unit_cel_forward_locomotion_command_unit": {
+            "edges": 7,
+            "synapses": 41
+          },
+          "unit_cel_touch_avoidance_reflex_unit": {
+            "edges": 8,
+            "synapses": 43
+          },
+          "unit_cel_amphid_chemosensory_unit": {
+            "edges": 35,
+            "synapses": 150
+          },
+          "unit_cel_nociceptive_avoidance_unit": {
+            "edges": 8,
+            "synapses": 31
+          }
+        },
+        {
+          "dataset": "witvliet_2020_4_L1.xlsx",
+          "n_cell_classes": 122,
+          "n_weighted_edges": 3020,
+          "n_unique_edges": 795,
+          "unit_cel_forward_locomotion_command_unit": {
+            "edges": 8,
+            "synapses": 66
+          },
+          "unit_cel_touch_avoidance_reflex_unit": {
+            "edges": 13,
+            "synapses": 72
+          },
+          "unit_cel_amphid_chemosensory_unit": {
+            "edges": 37,
+            "synapses": 199
+          },
+          "unit_cel_nociceptive_avoidance_unit": {
+            "edges": 13,
+            "synapses": 64
+          }
+        }
+      ],
+      "unit_measurements": {
+        "cel_forward_locomotion_command_unit": {
+          "edges": [
+            7,
+            6,
+            7,
+            8
+          ],
+          "synapses": [
+            26,
+            34,
+            41,
+            66
+          ],
+          "synapses_median": 37.5,
+          "synapses_range": [
+            26,
+            66
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_touch_avoidance_reflex_unit": {
+          "edges": [
+            9,
+            8,
+            8,
+            13
+          ],
+          "synapses": [
+            30,
+            38,
+            43,
+            72
+          ],
+          "synapses_median": 40.5,
+          "synapses_range": [
+            30,
+            72
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_amphid_chemosensory_unit": {
+          "edges": [
+            35,
+            31,
+            35,
+            37
+          ],
+          "synapses": [
+            97,
+            127,
+            150,
+            199
+          ],
+          "synapses_median": 138.5,
+          "synapses_range": [
+            97,
+            199
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_nociceptive_avoidance_unit": {
+          "edges": [
+            10,
+            12,
+            8,
+            13
+          ],
+          "synapses": [
+            21,
+            22,
+            31,
+            64
+          ],
+          "synapses_median": 26.5,
+          "synapses_range": [
+            21,
+            64
+          ],
+          "present_in_every_animal": true
+        }
+      }
+    },
+    {
+      "stage": "L2",
+      "label": "L2",
+      "n_animals": 1,
+      "animals": [
+        {
+          "dataset": "witvliet_2020_5_L2.xlsx",
+          "n_cell_classes": 128,
+          "n_weighted_edges": 4535,
+          "n_unique_edges": 1107,
+          "unit_cel_forward_locomotion_command_unit": {
+            "edges": 12,
+            "synapses": 92
+          },
+          "unit_cel_touch_avoidance_reflex_unit": {
+            "edges": 21,
+            "synapses": 111
+          },
+          "unit_cel_amphid_chemosensory_unit": {
+            "edges": 44,
+            "synapses": 301
+          },
+          "unit_cel_nociceptive_avoidance_unit": {
+            "edges": 15,
+            "synapses": 76
+          }
+        }
+      ],
+      "unit_measurements": {
+        "cel_forward_locomotion_command_unit": {
+          "edges": [
+            12
+          ],
+          "synapses": [
+            92
+          ],
+          "synapses_median": 92,
+          "synapses_range": [
+            92,
+            92
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_touch_avoidance_reflex_unit": {
+          "edges": [
+            21
+          ],
+          "synapses": [
+            111
+          ],
+          "synapses_median": 111,
+          "synapses_range": [
+            111,
+            111
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_amphid_chemosensory_unit": {
+          "edges": [
+            44
+          ],
+          "synapses": [
+            301
+          ],
+          "synapses_median": 301,
+          "synapses_range": [
+            301,
+            301
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_nociceptive_avoidance_unit": {
+          "edges": [
+            15
+          ],
+          "synapses": [
+            76
+          ],
+          "synapses_median": 76,
+          "synapses_range": [
+            76,
+            76
+          ],
+          "present_in_every_animal": true
+        }
+      }
+    },
+    {
+      "stage": "L3",
+      "label": "L3",
+      "n_animals": 1,
+      "animals": [
+        {
+          "dataset": "witvliet_2020_6_L3.xlsx",
+          "n_cell_classes": 132,
+          "n_weighted_edges": 4723,
+          "n_unique_edges": 1072,
+          "unit_cel_forward_locomotion_command_unit": {
+            "edges": 9,
+            "synapses": 87
+          },
+          "unit_cel_touch_avoidance_reflex_unit": {
+            "edges": 15,
+            "synapses": 107
+          },
+          "unit_cel_amphid_chemosensory_unit": {
+            "edges": 38,
+            "synapses": 267
+          },
+          "unit_cel_nociceptive_avoidance_unit": {
+            "edges": 11,
+            "synapses": 69
+          }
+        }
+      ],
+      "unit_measurements": {
+        "cel_forward_locomotion_command_unit": {
+          "edges": [
+            9
+          ],
+          "synapses": [
+            87
+          ],
+          "synapses_median": 87,
+          "synapses_range": [
+            87,
+            87
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_touch_avoidance_reflex_unit": {
+          "edges": [
+            15
+          ],
+          "synapses": [
+            107
+          ],
+          "synapses_median": 107,
+          "synapses_range": [
+            107,
+            107
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_amphid_chemosensory_unit": {
+          "edges": [
+            38
+          ],
+          "synapses": [
+            267
+          ],
+          "synapses_median": 267,
+          "synapses_range": [
+            267,
+            267
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_nociceptive_avoidance_unit": {
+          "edges": [
+            11
+          ],
+          "synapses": [
+            69
+          ],
+          "synapses_median": 69,
+          "synapses_range": [
+            69,
+            69
+          ],
+          "present_in_every_animal": true
+        }
+      }
+    },
+    {
+      "stage": "adult",
+      "label": "adult (two animals)",
+      "n_animals": 2,
+      "animals": [
+        {
+          "dataset": "witvliet_witvliet_2020_7_adult.xlsx",
+          "n_cell_classes": 135,
+          "n_weighted_edges": 7867,
+          "n_unique_edges": 1565,
+          "unit_cel_forward_locomotion_command_unit": {
+            "edges": 8,
+            "synapses": 125
+          },
+          "unit_cel_touch_avoidance_reflex_unit": {
+            "edges": 17,
+            "synapses": 159
+          },
+          "unit_cel_amphid_chemosensory_unit": {
+            "edges": 52,
+            "synapses": 433
+          },
+          "unit_cel_nociceptive_avoidance_unit": {
+            "edges": 12,
+            "synapses": 110
+          }
+        },
+        {
+          "dataset": "witvliet_witvliet_2020_8_adult.xlsx",
+          "n_cell_classes": 134,
+          "n_weighted_edges": 8400,
+          "n_unique_edges": 1530,
+          "unit_cel_forward_locomotion_command_unit": {
+            "edges": 13,
+            "synapses": 179
+          },
+          "unit_cel_touch_avoidance_reflex_unit": {
+            "edges": 22,
+            "synapses": 210
+          },
+          "unit_cel_amphid_chemosensory_unit": {
+            "edges": 50,
+            "synapses": 495
+          },
+          "unit_cel_nociceptive_avoidance_unit": {
+            "edges": 14,
+            "synapses": 144
+          }
+        }
+      ],
+      "unit_measurements": {
+        "cel_forward_locomotion_command_unit": {
+          "edges": [
+            8,
+            13
+          ],
+          "synapses": [
+            125,
+            179
+          ],
+          "synapses_median": 152.0,
+          "synapses_range": [
+            125,
+            179
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_touch_avoidance_reflex_unit": {
+          "edges": [
+            17,
+            22
+          ],
+          "synapses": [
+            159,
+            210
+          ],
+          "synapses_median": 184.5,
+          "synapses_range": [
+            159,
+            210
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_amphid_chemosensory_unit": {
+          "edges": [
+            52,
+            50
+          ],
+          "synapses": [
+            433,
+            495
+          ],
+          "synapses_median": 464.0,
+          "synapses_range": [
+            433,
+            495
+          ],
+          "present_in_every_animal": true
+        },
+        "cel_nociceptive_avoidance_unit": {
+          "edges": [
+            12,
+            14
+          ],
+          "synapses": [
+            110,
+            144
+          ],
+          "synapses_median": 127.0,
+          "synapses_range": [
+            110,
+            144
+          ],
+          "present_in_every_animal": true
+        }
+      }
+    }
+  ]
+}
