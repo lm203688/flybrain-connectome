@@ -116,7 +116,11 @@ CONTRADICTED. 37 of the 115 units have `provenance.embodied_in_malecns: true`; t
 other 78 do not resolve to fly cells and each carries a machine-checkable
 `provenance.unanchored_reason`. Twelve of those 78 are traced out of reconstructable
 connectomes (four from the C. elegans adult reconstruction, v2.27.0; eight from the
-Drosophila larva reconstruction, v2.28.0 + v2.29.0) and carry
+Drosophila larva reconstruction, v2.28.0 + v2.29.0). The four C. elegans units
+additionally carry `provenance.developmental_stages` (v2.30.0): the same four
+circuits re-measured across all eight Witvliet 2020 reconstructions (L1 x4,
+L2, L3, adult x2), so each unit reports the synapses its own cell classes carry
+at L1 / L2 / L3 / adult. They carry
 `provenance.source_connectome`;
 the remaining 66 are cross-species concept units. All 57 anchored populations are now referenced by
 at least one unit (v2.1.0 wired the last five). A measured count of ZERO is a

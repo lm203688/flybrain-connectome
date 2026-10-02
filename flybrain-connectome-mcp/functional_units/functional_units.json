@@ -23174,7 +23174,79 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "developmental_stages": {
+          "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), datasets 1-8 (L1 x4, L2, L3, adult x2)",
+          "artifact": "cel_development_stages.json",
+          "note": "Every edge counted here is summed out of the WormWiring xlsx rows for that stage.  The four circuits are the same four `extract_cel_profiles.py` emits as units; this artifact records how many edges and synapses each one carries at L1/L2/L3/adult.",
+          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "measured": {
+            "L1": {
+              "edges_per_animal": [
+                7,
+                6,
+                7,
+                8
+              ],
+              "synapses_per_animal": [
+                26,
+                34,
+                41,
+                66
+              ],
+              "synapses_median": 37.5,
+              "synapses_range": [
+                26,
+                66
+              ],
+              "present_in_every_animal": true
+            },
+            "L2": {
+              "edges_per_animal": [
+                12
+              ],
+              "synapses_per_animal": [
+                92
+              ],
+              "synapses_median": 92,
+              "synapses_range": [
+                92,
+                92
+              ],
+              "present_in_every_animal": true
+            },
+            "L3": {
+              "edges_per_animal": [
+                9
+              ],
+              "synapses_per_animal": [
+                87
+              ],
+              "synapses_median": 87,
+              "synapses_range": [
+                87,
+                87
+              ],
+              "present_in_every_animal": true
+            },
+            "adult": {
+              "edges_per_animal": [
+                8,
+                13
+              ],
+              "synapses_per_animal": [
+                125,
+                179
+              ],
+              "synapses_median": 152.0,
+              "synapses_range": [
+                125,
+                179
+              ],
+              "present_in_every_animal": true
+            }
+          }
+        }
       },
       "cel_stats": {
         "n_cell_classes": 5,
@@ -23510,7 +23582,79 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "developmental_stages": {
+          "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), datasets 1-8 (L1 x4, L2, L3, adult x2)",
+          "artifact": "cel_development_stages.json",
+          "note": "Every edge counted here is summed out of the WormWiring xlsx rows for that stage.  The four circuits are the same four `extract_cel_profiles.py` emits as units; this artifact records how many edges and synapses each one carries at L1/L2/L3/adult.",
+          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "measured": {
+            "L1": {
+              "edges_per_animal": [
+                9,
+                8,
+                8,
+                13
+              ],
+              "synapses_per_animal": [
+                30,
+                38,
+                43,
+                72
+              ],
+              "synapses_median": 40.5,
+              "synapses_range": [
+                30,
+                72
+              ],
+              "present_in_every_animal": true
+            },
+            "L2": {
+              "edges_per_animal": [
+                21
+              ],
+              "synapses_per_animal": [
+                111
+              ],
+              "synapses_median": 111,
+              "synapses_range": [
+                111,
+                111
+              ],
+              "present_in_every_animal": true
+            },
+            "L3": {
+              "edges_per_animal": [
+                15
+              ],
+              "synapses_per_animal": [
+                107
+              ],
+              "synapses_median": 107,
+              "synapses_range": [
+                107,
+                107
+              ],
+              "present_in_every_animal": true
+            },
+            "adult": {
+              "edges_per_animal": [
+                17,
+                22
+              ],
+              "synapses_per_animal": [
+                159,
+                210
+              ],
+              "synapses_median": 184.5,
+              "synapses_range": [
+                159,
+                210
+              ],
+              "present_in_every_animal": true
+            }
+          }
+        }
       },
       "cel_stats": {
         "n_cell_classes": 10,
@@ -24083,7 +24227,79 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "developmental_stages": {
+          "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), datasets 1-8 (L1 x4, L2, L3, adult x2)",
+          "artifact": "cel_development_stages.json",
+          "note": "Every edge counted here is summed out of the WormWiring xlsx rows for that stage.  The four circuits are the same four `extract_cel_profiles.py` emits as units; this artifact records how many edges and synapses each one carries at L1/L2/L3/adult.",
+          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "measured": {
+            "L1": {
+              "edges_per_animal": [
+                35,
+                31,
+                35,
+                37
+              ],
+              "synapses_per_animal": [
+                97,
+                127,
+                150,
+                199
+              ],
+              "synapses_median": 138.5,
+              "synapses_range": [
+                97,
+                199
+              ],
+              "present_in_every_animal": true
+            },
+            "L2": {
+              "edges_per_animal": [
+                44
+              ],
+              "synapses_per_animal": [
+                301
+              ],
+              "synapses_median": 301,
+              "synapses_range": [
+                301,
+                301
+              ],
+              "present_in_every_animal": true
+            },
+            "L3": {
+              "edges_per_animal": [
+                38
+              ],
+              "synapses_per_animal": [
+                267
+              ],
+              "synapses_median": 267,
+              "synapses_range": [
+                267,
+                267
+              ],
+              "present_in_every_animal": true
+            },
+            "adult": {
+              "edges_per_animal": [
+                52,
+                50
+              ],
+              "synapses_per_animal": [
+                433,
+                495
+              ],
+              "synapses_median": 464.0,
+              "synapses_range": [
+                433,
+                495
+              ],
+              "present_in_every_animal": true
+            }
+          }
+        }
       },
       "cel_stats": {
         "n_cell_classes": 10,
@@ -24328,7 +24544,79 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "developmental_stages": {
+          "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), datasets 1-8 (L1 x4, L2, L3, adult x2)",
+          "artifact": "cel_development_stages.json",
+          "note": "Every edge counted here is summed out of the WormWiring xlsx rows for that stage.  The four circuits are the same four `extract_cel_profiles.py` emits as units; this artifact records how many edges and synapses each one carries at L1/L2/L3/adult.",
+          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "measured": {
+            "L1": {
+              "edges_per_animal": [
+                10,
+                12,
+                8,
+                13
+              ],
+              "synapses_per_animal": [
+                21,
+                22,
+                31,
+                64
+              ],
+              "synapses_median": 26.5,
+              "synapses_range": [
+                21,
+                64
+              ],
+              "present_in_every_animal": true
+            },
+            "L2": {
+              "edges_per_animal": [
+                15
+              ],
+              "synapses_per_animal": [
+                76
+              ],
+              "synapses_median": 76,
+              "synapses_range": [
+                76,
+                76
+              ],
+              "present_in_every_animal": true
+            },
+            "L3": {
+              "edges_per_animal": [
+                11
+              ],
+              "synapses_per_animal": [
+                69
+              ],
+              "synapses_median": 69,
+              "synapses_range": [
+                69,
+                69
+              ],
+              "present_in_every_animal": true
+            },
+            "adult": {
+              "edges_per_animal": [
+                12,
+                14
+              ],
+              "synapses_per_animal": [
+                110,
+                144
+              ],
+              "synapses_median": 127.0,
+              "synapses_range": [
+                110,
+                144
+              ],
+              "present_in_every_animal": true
+            }
+          }
+        }
       },
       "cel_stats": {
         "n_cell_classes": 6,

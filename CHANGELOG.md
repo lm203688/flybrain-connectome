@@ -8,14 +8,74 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.29.0` | the toolkit as a whole |
+| package | `2.30.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 115 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0, 2.28.0 and 2.29.0) |
+| functional-unit library schema | `1.0` | 115 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0, 2.28.0, 2.29.0 and 2.30.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.30.0] — 2026-10-02
+
+### 发育阶段轴接入：Witvliet 2020 的 8 个重建，此前只用了 2 个
+
+v2.27.0 接入 C. elegans 连接组时，从 WormWiring 的 `/pages/witvliet.html` 只拉了
+两个成人数据集（dataset 7/8）。那一页实际挂着同一个「Connectomes across development
+reveal principles of brain maturation」系列的**八个**重建：L1 ×4（dataset 1–4）、
+L2（5）、L3（6）、成虫 ×2（7–8）。另外六个一直躺在同一页面上没被读。
+
+本轮把八个全部装进来，并做一件此前任何单元都做不到的事：**把同一条回路在四个
+发育阶段逐边数出来**。
+
+**为什么没有新增功能单元。** 四条线虫回路的细胞类与 v2.27.0 已发出的单元完全相同，
+再发一遍就是同 members 的复制品。所以发育轴不作为新单元进库，而是作为
+`provenance.developmental_stages` 注进那四条既有单元——新增的是证据维度，不是
+模块数量。FUNCTIONAL_UNITS 仍为 **115**。
+
+**实测（全部从 xlsx 逐行累加，脚本 `scripts/extract_cel_development.py`）**
+
+| stage | 重建 | 细胞类数 | 唯一边 | 突触 |
+|---|---|---|---|---|
+| L1 | dataset 1 | 108 | 566 | 1,400 |
+| L1 | dataset 2 | 114 | 693 | 2,028 |
+| L1 | dataset 3 | 119 | 700 | 2,237 |
+| L1 | dataset 4 | 122 | 795 | 3,020 |
+| L2 | dataset 5 | 128 | 1,107 | 4,535 |
+| L3 | dataset 6 | 132 | 1,072 | 4,723 |
+| adult | dataset 7 | 135 | 1,565 | 7,867 |
+| adult | dataset 8 | 134 | 1,530 | 8,400 |
+
+四条回路在各阶段的突触数（每只动物一个值）：
+
+| unit | L1 (ds1–4) | L2 | L3 | adult (ds7–8) |
+|---|---|---|---|---|
+| `cel_forward_locomotion_command_unit` | 26 / 34 / 41 / 66 | 92 | 87 | 125 / 179 |
+| `cel_touch_avoidance_reflex_unit` | 30 / 38 / 43 / 72 | 111 | 107 | 159 / 210 |
+| `cel_amphid_chemosensory_unit` | 97 / 127 / 150 / 199 | 301 | 267 | 433 / 495 |
+| `cel_nociceptive_avoidance_unit` | 21 / 22 / 31 / 64 | 76 | 69 | 110 / 144 |
+
+**结论（16 组测量都在这个方向上）**：四条回路在**最早的 L1 重建里就已经存在**——
+四只 L1 动物**每一只**都测到了这四条通路（每阶段 `present_in_every_animal` 全为
+true，边数 6–37），发育往后加的是突触权重，不是新拓扑。
+
+**一处必须说清的边界。** 顺带算过「L1 有、成虫没有」的边共 271 条对。这些**没有**
+被写成「发育期瞬态突触」——单只 L1 文件只有 566–795 条去重边，单只 L2 就有 1,107 条，
+这个差异主要是重建覆盖度而非真实消除。凡是「L1 独有」都和覆盖度混杂，不修掉就报是
+假结论；artifact 的 `caveat` 字段把这条写死了。
+
+**新增/改动**
+
+- `scripts/extract_cel_development.py`（新）：读八个 xlsx，产出
+  `functional_units/cel_development_stages.json`（4 阶段 × 4 回路逐动物实测）。
+- `scripts/gen_functional_units.py`：新增 `_load_development_stages()`，只读该
+  artifact，不手抄任何数字；注入 4 条线虫单元的 `provenance.developmental_stages`。
+- `flybrain_cli.py`：新增 `flybrain stages [--unit NAME] [--caveat]` 子命令，
+  `--unit` 可重复。
+- 版本锚点 2.29.0 → 2.30.0（pyproject、cli、api_server、server、topology_visualizer）。
 
 ---
 

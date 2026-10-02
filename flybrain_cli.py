@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.29.0"
+__version__ = "2.30.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -223,6 +223,47 @@ def cmd_verify(args) -> int:
     return _verify.main([])
 
 
+def cmd_stages(args) -> int:
+    """v2.30.0 — print the C. elegans developmental axis.
+
+    All eight Witvliet 2020 reconstructions (L1 x4, L2, L3, adult x2) form one
+    series, but the library used to carry only the two adults.  This command
+    reports what the other six contribute: for each stage how much of the
+    network was reconstructed, and how many edges / synapses each C. elegans
+    unit's own cell classes carry there.
+
+    Every number comes from `functional_units/cel_development_stages.json`,
+    which `scripts/extract_cel_development.py` sums out of the raw xlsx files.
+    `--caveat` prints why the L1 columns are a floor and why the L1-only edges
+    are deliberately not called transient synapses.
+    """
+    path = MCP_DIR / "functional_units" / "cel_development_stages.json"
+    if not path.exists():
+        print("developmental axis artifact missing: %s" % path)
+        print("run: python scripts/extract_cel_development.py")
+        return 2
+    with open(path, encoding="utf-8") as f:
+        doc = json.load(f)
+
+    if args.caveat:
+        print(doc["caveat"], "\n")
+    for s in doc["stages"]:
+        print("[%s] %s" % (s["stage"], s["label"]))
+        for a in s["animals"]:
+            print("    %-34s classes=%3d unique_edges=%4d synapses=%5d"
+                  % (a["dataset"], a["n_cell_classes"],
+                     a["n_unique_edges"], a["n_weighted_edges"]))
+        for uname, m in s["unit_measurements"].items():
+            if args.unit and uname not in args.unit:
+                continue
+            print("    %-42s edges=%-14s synapses=%-14s present=%s"
+                  % (uname, m["edges"], m["synapses"],
+                     "yes" if m["present_in_every_animal"]
+                     else "NOT IN EVERY ANIMAL"))
+        print()
+    return 0
+
+
 def cmd_info(args) -> int:
     """Report what this launcher resolved — the one command that diagnoses
     a broken install (wrong toolkit root, missing data dir, missing snapshot)."""
@@ -291,6 +332,14 @@ def build_parser() -> argparse.ArgumentParser:
                    help="arguments passed through to synthetic_bio_topology "
                         "(run `flybrain generate --help` to see them)")
     s.set_defaults(func=cmd_generate)
+
+    s = sub.add_parser("stages",
+                       help="print the C. elegans L1/L2/L3/adult measurements")
+    s.add_argument("--unit", action="append", default=None,
+                   help="show only this unit (repeatable)")
+    s.add_argument("--caveat", action="store_true",
+                   help="print the coverage caveat before the tables")
+    s.set_defaults(func=cmd_stages)
 
     s = sub.add_parser("verify", help="run the end-to-end smoke test")
     s.set_defaults(func=cmd_verify)

@@ -191,7 +191,15 @@ flybrain generate --blueprint predictive_coding_v2 --modules 5 --agents-per-modu
 # -> generated_organisms/<name>.{json,html} + swarmlabs/<name>.swarm.{json,yaml}
 ```
 
-### 5. Verify everything still works
+### 5. Read the C. elegans developmental axis
+
+```bash
+flybrain stages         # L1 x4 / L2 / L3 / adult x2, measured per animal
+flybrain stages --caveat            # why the L1 columns are a floor
+flybrain stages --unit cel_amphid_chemosensory_unit
+```
+
+### 6. Verify everything still works
 
 ```bash
 flybrain verify        # needs FLYBRAIN_DATA_DIR set to your data
@@ -392,7 +400,8 @@ split into two tiers, and the upper tier is the one you actually build from:
   lateral horn, v1.8.0 — every one of them fully anchored, see below).
   + **5 Drosophila-shaped** (thermal preference, feeding circuit, leg motor, multimodal LAL, sleep memory, v1.10.0 — first batch anchored, see below).
   + **4 C. elegans connectome-derived** (forward locomotion command, touch-avoidance
-  reflex, amphid chemosensory, nociceptive avoidance — v2.27.0, see below).
+  reflex, amphid chemosensory, nociceptive avoidance — v2.27.0, see below; each also
+  carries a **L1 → L2 → L3 → adult** axis, v2.30.0).
   + **8 Drosophila larva connectome-derived** (`larv_olfactory_associative_learning_unit`,
   `larv_somatosensory_escape_unit`, `larv_gustatory_feeding_program_unit`,
   `larv_descending_motor_command_unit`, `larv_mushroom_body_feedback_unit` — v2.28.0,
@@ -439,6 +448,45 @@ electrolocation, plus a passive-electric cue into the Mauthner escape command)
 and `--demo swim` (leech half-centre swim CPG → ascidian larval oscillator →
 frog reticulospinal escape swim).
 `--demo` with no argument runs all four.
+
+### Developmental axis (v2.30.0) — the same four circuits at L1 / L2 / L3 / adult
+
+The Witvliet 2020 series is **eight** reconstructions, not two: four L1 animals,
+one L2, one L3 and two adults. The library used to carry only the two adults.
+All eight are now loaded and measured per animal. Each of the four C. elegans
+units above carries the result in `provenance.developmental_stages`; run
+`flybrain stages` to print it.
+
+| stage | dataset | cell classes | unique edges | synapses |
+|---|---|---|---|---|
+| L1 | 1 | 108 | 566 | 1,400 |
+| L1 | 2 | 114 | 693 | 2,028 |
+| L1 | 3 | 119 | 700 | 2,237 |
+| L1 | 4 | 122 | 795 | 3,020 |
+| L2 | 5 | 128 | 1,107 | 4,535 |
+| L3 | 6 | 132 | 1,072 | 4,723 |
+| adult | 7 | 135 | 1,565 | 7,867 |
+| adult | 8 | 134 | 1,530 | 8,400 |
+
+The four circuits, measured at every stage (synapses per animal):
+
+| unit | L1 | L2 | L3 | adult |
+|---|---|---|---|---|
+| forward locomotion command | 26 / 34 / 41 / 66 | 92 | 87 | 125 / 179 |
+| touch-avoidance reflex | 30 / 38 / 43 / 72 | 111 | 107 | 159 / 210 |
+| amphid chemosensory | 97 / 127 / 150 / 199 | 301 | 267 | 433 / 495 |
+| nociceptive avoidance | 21 / 22 / 31 / 64 | 76 | 69 | 110 / 144 |
+
+Across all 16 measurements the four circuits are **present in every animal at
+every stage** (6–37 edges at L1), so what development adds is synapse weight,
+not new topology.
+
+**The boundary that matters here.** A side result — 271 edge pairs appear in L1
+and not in the adults — is **not** reported as transient developing synapses. A
+single L1 file carries 566–795 distinct edges against 1,107 for a single L2
+file, so "seen at L1" is confounded with reconstruction depth. Only the claim
+that survives that confound is published; the `caveat` field of
+`cel_development_stages.json` states this in the artifact itself.
 
 ### MaleCNS embodiment (v1.7.0, densified v1.8.0)
 
