@@ -10,6 +10,12 @@ male_cns/connectome_cache/
 male_cns/flat-connectome/
 drosophila_connectome/data/
 drosophila_connectome/dataset/
+# Raw third-party connectome downloads for the extraction scripts
+# (cel_data/ = WormWiring xlsx, larva_data/ = fly_larva csv.zip).
+# The derived JSON they produce IS committed (cel_profiles.json /
+# larva_profiles.json); the downloads themselves are not.
+cel_data/
+larva_data/
 .backups/
 archive/
 ops/
