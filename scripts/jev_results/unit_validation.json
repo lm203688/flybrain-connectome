@@ -3749,135 +3749,15 @@
     "embodied": false,
     "evidence_weight_before": "connectome_derived",
     "jev_status": 200,
-    "jev_elapsed_s": 0.594,
+    "jev_elapsed_s": 0.581,
     "answers": {
       "literature_support": {
         "type": "noul",
-        "noul": 0.24
+        "noul": 0.23
       },
       "evidence_strength": {
         "type": "score",
         "score": 2.14,
-        "confidence": 0.73,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative hypothesis only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers, preliminary",
-          "4": "4-6 papers, consensus forming",
-          "5": "7-10 papers, well-characterized",
-          "6": "Textbook entry, cross-species"
-        },
-        "probabilities": {
-          "0": 0.05,
-          "1": 0.06,
-          "2": 0.72,
-          "3": 0.1,
-          "4": 0.04,
-          "5": 0.03,
-          "6": 0.0
-        }
-      },
-      "model_validation": {
-        "type": "noul",
-        "noul": 0.35
-      }
-    },
-    "evidence_score": 2,
-    "evidence_label": "speculative",
-    "literature_p": 0.24,
-    "model_p": 0.35,
-    "jev_fallback": false,
-    "verdict": "WEAK",
-    "evidence_legend": {
-      "0": "No published evidence",
-      "1": "Speculative hypothesis only",
-      "2": "1 preliminary paper",
-      "3": "2-3 papers, preliminary",
-      "4": "4-6 papers, consensus forming",
-      "5": "7-10 papers, well-characterized",
-      "6": "Textbook entry, cross-species"
-    },
-    "evidence_confidence": 0.73
-  },
-  {
-    "name": "larv_gustatory_feeding_program_unit",
-    "system": "motor",
-    "species_source": [
-      "drosophila_melanogaster"
-    ],
-    "embodied": false,
-    "evidence_weight_before": "connectome_derived",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.631,
-    "answers": {
-      "literature_support": {
-        "type": "noul",
-        "noul": 0.29
-      },
-      "evidence_strength": {
-        "type": "score",
-        "score": 2.17,
-        "confidence": 0.79,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative hypothesis only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers, preliminary",
-          "4": "4-6 papers, consensus forming",
-          "5": "7-10 papers, well-characterized",
-          "6": "Textbook entry, cross-species"
-        },
-        "probabilities": {
-          "0": 0.03,
-          "1": 0.04,
-          "2": 0.78,
-          "3": 0.09,
-          "4": 0.03,
-          "5": 0.03,
-          "6": 0.0
-        }
-      },
-      "model_validation": {
-        "type": "noul",
-        "noul": 0.21
-      }
-    },
-    "evidence_score": 2,
-    "evidence_label": "speculative",
-    "literature_p": 0.29,
-    "model_p": 0.21,
-    "jev_fallback": false,
-    "verdict": "WEAK",
-    "evidence_legend": {
-      "0": "No published evidence",
-      "1": "Speculative hypothesis only",
-      "2": "1 preliminary paper",
-      "3": "2-3 papers, preliminary",
-      "4": "4-6 papers, consensus forming",
-      "5": "7-10 papers, well-characterized",
-      "6": "Textbook entry, cross-species"
-    },
-    "evidence_confidence": 0.79
-  },
-  {
-    "name": "larv_mushroom_body_feedback_unit",
-    "system": "modulatory",
-    "species_source": [
-      "drosophila_melanogaster"
-    ],
-    "embodied": false,
-    "evidence_weight_before": "connectome_derived",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.586,
-    "answers": {
-      "literature_support": {
-        "type": "noul",
-        "noul": 0.27
-      },
-      "evidence_strength": {
-        "type": "score",
-        "score": 2.22,
         "confidence": 0.76,
         "legend": {
           "0": "No published evidence",
@@ -3889,24 +3769,24 @@
           "6": "Textbook entry, cross-species"
         },
         "probabilities": {
-          "0": 0.03,
-          "1": 0.04,
-          "2": 0.74,
-          "3": 0.11,
+          "0": 0.04,
+          "1": 0.06,
+          "2": 0.73,
+          "3": 0.1,
           "4": 0.04,
-          "5": 0.04,
+          "5": 0.03,
           "6": 0.0
         }
       },
       "model_validation": {
         "type": "noul",
-        "noul": 0.32
+        "noul": 0.34
       }
     },
     "evidence_score": 2,
     "evidence_label": "speculative",
-    "literature_p": 0.27,
-    "model_p": 0.32,
+    "literature_p": 0.23,
+    "model_p": 0.34,
     "jev_fallback": false,
     "verdict": "WEAK",
     "evidence_legend": {
@@ -3921,67 +3801,7 @@
     "evidence_confidence": 0.76
   },
   {
-    "name": "larv_olfactory_associative_learning_unit",
-    "system": "learning",
-    "species_source": [
-      "drosophila_melanogaster"
-    ],
-    "embodied": false,
-    "evidence_weight_before": "connectome_derived",
-    "jev_status": 200,
-    "jev_elapsed_s": 0.859,
-    "answers": {
-      "literature_support": {
-        "type": "noul",
-        "noul": 0.61
-      },
-      "evidence_strength": {
-        "type": "score",
-        "score": 3.0,
-        "confidence": 0.35,
-        "legend": {
-          "0": "No published evidence",
-          "1": "Speculative hypothesis only",
-          "2": "1 preliminary paper",
-          "3": "2-3 papers, preliminary",
-          "4": "4-6 papers, consensus forming",
-          "5": "7-10 papers, well-characterized",
-          "6": "Textbook entry, cross-species"
-        },
-        "probabilities": {
-          "0": 0.01,
-          "1": 0.04,
-          "2": 0.45,
-          "3": 0.16,
-          "4": 0.14,
-          "5": 0.19,
-          "6": 0.01
-        }
-      },
-      "model_validation": {
-        "type": "noul",
-        "noul": 0.55
-      }
-    },
-    "evidence_score": 3,
-    "evidence_label": "speculative",
-    "literature_p": 0.61,
-    "model_p": 0.55,
-    "jev_fallback": false,
-    "verdict": "PARTIAL",
-    "evidence_legend": {
-      "0": "No published evidence",
-      "1": "Speculative hypothesis only",
-      "2": "1 preliminary paper",
-      "3": "2-3 papers, preliminary",
-      "4": "4-6 papers, consensus forming",
-      "5": "7-10 papers, well-characterized",
-      "6": "Textbook entry, cross-species"
-    },
-    "evidence_confidence": 0.35
-  },
-  {
-    "name": "larv_somatosensory_escape_unit",
+    "name": "larv_gustatory_feeding_program_unit",
     "system": "motor",
     "species_source": [
       "drosophila_melanogaster"
@@ -3989,16 +3809,16 @@
     "embodied": false,
     "evidence_weight_before": "connectome_derived",
     "jev_status": 200,
-    "jev_elapsed_s": 0.687,
+    "jev_elapsed_s": 0.887,
     "answers": {
       "literature_support": {
         "type": "noul",
-        "noul": 0.2
+        "noul": 0.27
       },
       "evidence_strength": {
         "type": "score",
-        "score": 2.01,
-        "confidence": 0.8,
+        "score": 2.05,
+        "confidence": 0.74,
         "legend": {
           "0": "No published evidence",
           "1": "Speculative hypothesis only",
@@ -4009,12 +3829,12 @@
           "6": "Textbook entry, cross-species"
         },
         "probabilities": {
-          "0": 0.05,
-          "1": 0.06,
-          "2": 0.77,
+          "0": 0.08,
+          "1": 0.05,
+          "2": 0.73,
           "3": 0.08,
-          "4": 0.02,
-          "5": 0.02,
+          "4": 0.03,
+          "5": 0.03,
           "6": 0.0
         }
       },
@@ -4025,7 +3845,7 @@
     },
     "evidence_score": 2,
     "evidence_label": "speculative",
-    "literature_p": 0.2,
+    "literature_p": 0.27,
     "model_p": 0.21,
     "jev_fallback": false,
     "verdict": "WEAK",
@@ -4038,7 +3858,367 @@
       "5": "7-10 papers, well-characterized",
       "6": "Textbook entry, cross-species"
     },
+    "evidence_confidence": 0.74
+  },
+  {
+    "name": "larv_mushroom_body_feedback_unit",
+    "system": "modulatory",
+    "species_source": [
+      "drosophila_melanogaster"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "connectome_derived",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.806,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.27
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.15,
+        "confidence": 0.77,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.03,
+          "1": 0.06,
+          "2": 0.73,
+          "3": 0.12,
+          "4": 0.03,
+          "5": 0.03,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.34
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.27,
+    "model_p": 0.34,
+    "jev_fallback": false,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.77
+  },
+  {
+    "name": "larv_olfactory_associative_learning_unit",
+    "system": "learning",
+    "species_source": [
+      "drosophila_melanogaster"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "connectome_derived",
+    "jev_status": 200,
+    "jev_elapsed_s": 3.221,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.57
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.94,
+        "confidence": 0.38,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.03,
+          "2": 0.45,
+          "3": 0.18,
+          "4": 0.16,
+          "5": 0.16,
+          "6": 0.01
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.54
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.57,
+    "model_p": 0.54,
+    "jev_fallback": false,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.38
+  },
+  {
+    "name": "larv_respiratory_relay_unit",
+    "system": "respiratory",
+    "species_source": [
+      "drosophila_melanogaster"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "connectome_derived",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.571,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.13
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 1.78,
+        "confidence": 0.83,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.06,
+          "1": 0.13,
+          "2": 0.79,
+          "3": 0.02,
+          "4": 0.0,
+          "5": 0.0,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.18
+      }
+    },
+    "evidence_score": 1,
+    "evidence_label": "speculative",
+    "literature_p": 0.13,
+    "model_p": 0.18,
+    "jev_fallback": false,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.83
+  },
+  {
+    "name": "larv_somatosensory_escape_unit",
+    "system": "motor",
+    "species_source": [
+      "drosophila_melanogaster"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "connectome_derived",
+    "jev_status": 200,
+    "jev_elapsed_s": 0.661,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.21
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.06,
+        "confidence": 0.78,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.04,
+          "1": 0.07,
+          "2": 0.75,
+          "3": 0.1,
+          "4": 0.02,
+          "5": 0.02,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.22
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.21,
+    "model_p": 0.22,
+    "jev_fallback": false,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.78
+  },
+  {
+    "name": "larv_thermosensory_relay_unit",
+    "system": "sensory",
+    "species_source": [
+      "drosophila_melanogaster"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "connectome_derived",
+    "jev_status": 200,
+    "jev_elapsed_s": 2.003,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.29
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 2.21,
+        "confidence": 0.8,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.02,
+          "1": 0.03,
+          "2": 0.79,
+          "3": 0.08,
+          "4": 0.04,
+          "5": 0.04,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.23
+      }
+    },
+    "evidence_score": 2,
+    "evidence_label": "speculative",
+    "literature_p": 0.29,
+    "model_p": 0.23,
+    "jev_fallback": false,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
     "evidence_confidence": 0.8
+  },
+  {
+    "name": "larv_visual_relay_unit",
+    "system": "sensory",
+    "species_source": [
+      "drosophila_melanogaster"
+    ],
+    "embodied": false,
+    "evidence_weight_before": "connectome_derived",
+    "jev_status": 200,
+    "jev_elapsed_s": 1.578,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.18
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 1.85,
+        "confidence": 0.77,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.09,
+          "1": 0.1,
+          "2": 0.74,
+          "3": 0.05,
+          "4": 0.01,
+          "5": 0.01,
+          "6": 0.0
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.18
+      }
+    },
+    "evidence_score": 1,
+    "evidence_label": "speculative",
+    "literature_p": 0.18,
+    "model_p": 0.18,
+    "jev_fallback": false,
+    "verdict": "WEAK",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.77
   },
   {
     "name": "lateral_horn_innate_odour_unit",

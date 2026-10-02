@@ -8,14 +8,67 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.28.0` | the toolkit as a whole |
+| package | `2.29.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 112 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0 and 2.28.0) |
+| functional-unit library schema | `1.0` | 115 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0, 2.28.0 and 2.29.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.29.0] — 2026-10-02
+
+### 幼虫连接组补齐：每个能被逐边追溯的感官通道各一个单元
+
+v2.28.0 只抽了幼虫的 5 个单元。本轮做的是**补完**，不是再找一个物种：幼虫数据里
+还有三个作者标注过、但被归并规则漏掉的感官通道——**温度、视觉、呼吸**——把它们
+各自做成独立单元。同时修掉抽取出错的一处**语义失真**（见方法学）。
+
+**三个新单元（全部实测边）**
+
+| unit | 细胞类 | 细胞数 | 边 | 突触 | a-d / a-a / d-d | d-a 未发射 |
+|---|---|---|---|---|---|---|
+| `larv_thermosensory_relay_unit` | 7 | 364 | 52 | 22,852 | 5,350 / 15,892 / 1,610 | 129 |
+| `larv_visual_relay_unit` | 8 | 359 | 102 | 20,211 | 12,681 / 4,337 / 3,193 | 501 |
+| `larv_respiratory_relay_unit` | 7 | 290 | 52 | 2,673 | 1,159 / 1,166 / 348 | 63 |
+
+三条通道各自最值得记的一手数字：
+
+- **温度**：只有 10 个 thermo-cold / thermo-warm 感受神经元，实测把 939 突触交给
+  8 个 thermo 投射神经元（tPN）；tPN 再分两路——外侧角 LHN 509 突触、**蕈状体 KC
+  222 突触**。温度信息进 KC 这一支说明 tPN 同时喂运动侧与稀疏编码侧，这条边在
+  连接组里是数得出来的，不是推出来的。
+- **视觉**：29 个视觉感受神经元的轴突在重建里落到 LN（830 突触）与二级视觉 PN
+  （696 突触），后者再汇到 LHN（1,142 突触）。
+- **呼吸**：26 个被作者标为 respiratory 的感受神经元指向上行反馈级（151）、口咽部
+  下降池 DN-SEZ（51）与内分泌级 RGN（31）。**这条单元刻意不声明任何行为**——源只
+  给了模态标签，能追下来的就是这三跳，不往上编。
+
+**方法学：modality 归并只看第一个分号 token，是错的。**
+
+`bucket()` 原本取 `annotations.split(";")[0]` 找模态，于是
+`Vision PN 1; vPN; visual 2nd_order PN` 里的 `visual` 被整个丢掉、`respiratory`
+连规则都没有——视觉与呼吸两个通道被静默归档成 `unannotated`（各 18 / 28 个细胞），
+看起来像「数据里没有这条通路」，其实只是解析丢了信息。修正后的规则：
+
+1. 先只看首 token（作者的主标签优先：`noci 2nd_order PN; mechano-Ch …` 是 noci
+   细胞而不是 mechano 细胞）；
+2. 首 token 不认得任何模态时，才在整串里搜；
+3. 新增 `respiratory` 规则。
+
+结果有 ~180 个细胞被重新归档（PN 多出 72 olfactory / 22 gustatory / 18 visual /
+6 gut、28 respiratory、18 noci、10 proprio/mechano）。v2.28.0 那 5 个单元的
+类数与边数因此变了（例如 olfactory 9→11 类、125→152 边），**但突触总数不变**——
+漏掉的只是标签，边一直都在、也一直被计入。v2.28.0 段落的表格已按新规则重测值更新。
+
+**数字**：单元 112 → **115**（103 果蝇成虫 + 4 线虫 + 8 幼虫）；`larv.*` 剖面
+30 → **40**；MODULE_PROFILES 254 → **264**；未锚定 78 = 66 跨物种 + 12 连接组追溯
+（4 线虫 + 8 幼虫）；`embodied_units` 仍为 **37**（幼虫/成虫异发育阶段，同源性属
+推断，不假装锚定）。JEV 8 个幼虫单元 1 PARTIAL + 7 WEAK、0 fallback；双轴重评分
+target 37 → 40。Gate 9 计数 112 → 115。
 
 ---
 
@@ -42,13 +95,16 @@ v2.27.0 让库里第一次有了**第二个**独立连接组（线虫成虫）�
 
 | unit | 细胞类 | 细胞数 | 边 | 突触 | a-d / a-a / d-d | d-a 未发射 |
 |---|---|---|---|---|---|---|
-| `larv_olfactory_associative_learning_unit` | 9 | 550 | 125 | 77,353 | 45,109 / 22,158 / 10,086 | 2,808 |
-| `larv_somatosensory_escape_unit` | 11 | 924 | 181 | 54,282 | 35,250 / 16,657 / 2,375 | 729 |
+| `larv_olfactory_associative_learning_unit` | 11 | 550 | 152 | 77,353 | 45,109 / 22,158 / 10,086 | 2,808 |
+| `larv_somatosensory_escape_unit` | 11 | 942 | 195 | 56,514 | 37,008 / 17,083 / 2,423 | 748 |
 | `larv_gustatory_feeding_program_unit` | 4 | 545 | 21 | 6,370 | 3,421 / 2,731 / 218 | 58 |
-| `larv_descending_motor_command_unit` | 8 | 910 | 142 | 53,152 | 36,775 / 13,806 / 2,571 | 672 |
-| `larv_mushroom_body_feedback_unit` | 10 | 530 | 150 | 74,310 | 36,613 / 34,133 / 3,564 | 650 |
+| `larv_descending_motor_command_unit` | 7 | 910 | 113 | 53,152 | 36,775 / 13,806 / 2,571 | 672 |
+| `larv_mushroom_body_feedback_unit` | 13 | 530 | 200 | 74,310 | 36,613 / 34,133 / 3,564 | 650 |
 
 同时新增 **30 个 `larv.*` 神经类剖面**（MODULE_PROFILES 224 → 254）。
+
+> 上表数字在 v2.29.0 因 modality 归并规则修正而重测（见下），与 v2.28.0 首次发布时
+> 的打印值略有出入；这里记的是当前 artifact 里的实测值。
 
 **方法学产出（比新增单元更重要）**
 
