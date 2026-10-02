@@ -393,9 +393,10 @@ split into two tiers, and the upper tier is the one you actually build from:
   + **5 Drosophila-shaped** (thermal preference, feeding circuit, leg motor, multimodal LAL, sleep memory, v1.10.0 — first batch anchored, see below).
   + **4 C. elegans connectome-derived** (forward locomotion command, touch-avoidance
   reflex, amphid chemosensory, nociceptive avoidance — v2.27.0, see below).
-  + **5 Drosophila larva connectome-derived** (olfactory associative learning,
-  somatosensory escape, gustatory feeding, descending motor command, mushroom-body
-  feedback — v2.28.0, third connectome, see below).
+  + **5 Drosophila larva connectome-derived** (`larv_olfactory_associative_learning_unit`,
+  `larv_somatosensory_escape_unit`, `larv_gustatory_feeding_program_unit`,
+  `larv_descending_motor_command_unit`, `larv_mushroom_body_feedback_unit` — v2.28.0,
+  third connectome, see below).
 - **66 connection types** — each is one connection FORM, constrained on the port
   types it may join, in six families:
   **micro** (axo-dendritic / axo-somatic / axo-axonic / dendro-dendritic …
