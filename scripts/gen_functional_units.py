@@ -3550,6 +3550,63 @@ _load_unit_jev()
 _load_unit_rescore()
 
 
+def _load_development_stages():
+    """v2.30.0 — attach the L1/L2/L3/adult axis to the C. elegans units.
+
+    `scripts/extract_cel_development.py` loads all eight Witvliet reconstructions
+    (four L1 animals, one L2, one L3, two adults) and counts, per stage, how
+    many edges and synapses each C. elegans unit's own cell classes carry.  The
+    artifact it writes is the only source; nothing here is typed by hand, so the
+    stage numbers cannot drift from the reconstruction files.
+
+    No new unit is created for this.  The four circuits already exist as units
+    and their members would be identical; what is new is the developmental axis
+    underneath them, which is attached as provenance rather than faked as
+    another module.
+    """
+    path = MCP / "functional_units" / "cel_development_stages.json"
+    if not path.exists():
+        return []
+    with open(path, encoding="utf-8") as f:
+        doc = json.load(f)
+
+    attached = []
+    for unit in FUNCTIONAL_UNITS:
+        by_stage = {}
+        for s in doc["stages"]:
+            m = s["unit_measurements"].get(unit["name"])
+            if m is None:
+                by_stage = {}
+                break
+            by_stage[s["stage"]] = m
+        if not by_stage:
+            continue
+        unit.setdefault("provenance", {})["developmental_stages"] = {
+            "source": doc["source"],
+            "artifact": path.name,
+            "note": doc["note"],
+            "caveat": doc["caveat"],
+            "measured": {
+                stage: {
+                    "edges_per_animal": m["edges"],
+                    "synapses_per_animal": m["synapses"],
+                    "synapses_median": m["synapses_median"],
+                    "synapses_range": m["synapses_range"],
+                    "present_in_every_animal": m["present_in_every_animal"],
+                }
+                for stage, m in by_stage.items()
+            },
+        }
+        attached.append(unit["name"])
+
+    print(f"[DEV] attached L1/L2/L3/adult stage measurements to "
+          f"{len(attached)} unit(s): {', '.join(attached)}")
+    return attached
+
+
+_load_development_stages()
+
+
 # ---------------------------------------------------------------------------
 # v2.26.0 — verified literature for cross-species units that scored <= 2.
 #
