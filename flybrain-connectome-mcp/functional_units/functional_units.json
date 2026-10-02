@@ -639,6 +639,7 @@
         "model_p": 0.8,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -773,6 +774,7 @@
         "model_p": 0.86,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -906,6 +908,7 @@
         "model_p": 0.38,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -1026,6 +1029,7 @@
         "model_p": 0.56,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -1154,6 +1158,7 @@
         "model_p": 0.87,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -1276,6 +1281,7 @@
         "model_p": 0.58,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -1398,6 +1404,7 @@
         "model_p": 0.61,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -1534,6 +1541,7 @@
         "model_p": 0.8,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -1663,6 +1671,7 @@
         "model_p": 0.87,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -1779,6 +1788,7 @@
         "model_p": 0.74,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -1895,6 +1905,7 @@
         "model_p": 0.68,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -2034,6 +2045,7 @@
         "model_p": 0.58,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -2173,6 +2185,7 @@
         "model_p": 0.59,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -2320,6 +2333,7 @@
         "model_p": 0.81,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -2504,6 +2518,7 @@
         "model_p": 0.61,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -2670,6 +2685,7 @@
         "model_p": 0.72,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -2809,6 +2825,7 @@
         "model_p": 0.66,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -2976,6 +2993,7 @@
         "model_p": 0.63,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -3115,8 +3133,15 @@
         "model_p": 0.23,
         "evidence_score": 1,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "literature_refs": [],
+        "literature_refs_count": 0,
+        "verified_at": "2026-10-02",
+        "abstraction_only": true,
+        "verification_note": "Literature search found no identified circuit module by this name. It is a descriptive slot for cross-modal binding, not an annotated cell type. Left WEAK deliberately rather than seeded with citations that describe something else.",
+        "evidence_governing_axis": "literature"
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -3281,6 +3306,7 @@
         "model_p": 0.94,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -3415,6 +3441,7 @@
         "model_p": 0.93,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -3565,6 +3592,7 @@
         "model_p": 0.95,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -3698,6 +3726,7 @@
         "model_p": 0.48,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -3832,6 +3861,7 @@
         "model_p": 0.56,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -3973,6 +4003,7 @@
         "model_p": 0.87,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -4096,6 +4127,7 @@
         "model_p": 0.89,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -4232,6 +4264,7 @@
         "model_p": 0.92,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -4399,6 +4432,7 @@
         "model_p": 0.93,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -4535,6 +4569,7 @@
         "model_p": 0.86,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -4676,6 +4711,7 @@
         "model_p": 0.88,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -4822,6 +4858,7 @@
         "model_p": 0.78,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -4962,6 +4999,7 @@
         "model_p": 0.91,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -5127,6 +5165,7 @@
         "model_p": 0.94,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -5263,6 +5302,7 @@
         "model_p": 0.88,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -5398,6 +5438,7 @@
         "model_p": 0.56,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -5544,6 +5585,7 @@
         "model_p": 0.82,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -5684,6 +5726,7 @@
         "model_p": 0.57,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -5802,6 +5845,7 @@
         "model_p": 0.7,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -5924,6 +5968,7 @@
         "model_p": 0.71,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -6070,6 +6115,7 @@
         "model_p": 0.78,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -6203,6 +6249,7 @@
         "model_p": 0.89,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -6522,6 +6569,7 @@
         "model_p": 0.9,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -6911,6 +6959,7 @@
         "model_p": 0.81,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -7307,6 +7356,7 @@
         "model_p": 0.9,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -7655,8 +7705,17 @@
         "model_p": 0.67,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 3,
+        "connectome_evidence_label": "wiring_inferred",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.51,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "inferred"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -7967,8 +8026,17 @@
         "model_p": 0.67,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 3,
+        "connectome_evidence_label": "wiring_inferred",
+        "literature_evidence_score": 2,
+        "cell_type_resolved_p": 0.52,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "inferred"
       },
       "embodiment": {
         "populations_anchored": 2,
@@ -8187,6 +8255,7 @@
         "model_p": 0.79,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -8307,6 +8376,7 @@
         "model_p": 0.79,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -8445,6 +8515,7 @@
         "model_p": 0.81,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -8590,6 +8661,7 @@
         "model_p": 0.84,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -8713,6 +8785,7 @@
         "model_p": 0.66,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -8852,6 +8925,7 @@
         "model_p": 0.77,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -8986,6 +9060,7 @@
         "model_p": 0.79,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -9122,6 +9197,7 @@
         "model_p": 0.48,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -9248,6 +9324,7 @@
         "model_p": 0.41,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -9380,6 +9457,7 @@
         "model_p": 0.65,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -9518,6 +9596,7 @@
         "model_p": 0.89,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -9656,6 +9735,7 @@
         "model_p": 0.59,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -9802,6 +9882,7 @@
         "model_p": 0.88,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -9938,6 +10019,7 @@
         "model_p": 0.71,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -10066,6 +10148,7 @@
         "model_p": 0.47,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -10191,8 +10274,21 @@
         "model_p": 0.27,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "literature_refs": [
+          "Bothe MS, Luksch H, Straka H, Kohl T (2018) Synaptic convergence of afferent inputs in the primary infrared-sensitive nucleus (LTTD) of rattlesnakes as the origin of sensory contrast enhancement. J Exp Biol 221: jeb185611.",
+          "Bothe MS et al. (2019) Infrared imaging: a motion detection circuit for rattlesnake thermal vision. Current Biology (LTTD + RC nuclei code prey-motion direction).",
+          "Kaldenbach F, Bleckmann H, Kohl T (2016) Responses of infrared-sensitive tectal units of the pit viper Crotalus atrox to moving objects. J Comp Physiol A 202(6):389-398. doi:10.1007/s00359-016-1076-1",
+          "Terashima S, Goris RC (1975) Tectal organization of pit viper infrared reception. Brain Research 83:490-494.",
+          "Hartline LK, Loop MS, Gentry TA (2011) Heat mapping in snakes: initial description of specialized tectal neurons responsive to infrared. J Comp Neurol 219(4)."
+        ],
+        "literature_refs_count": 5,
+        "verified_at": "2026-10-02",
+        "verification_note": "5 independent papers describe the infrared -> tectum -> strike path; 2 of them (Bothe 2018/2019) characterise the motion-detection circuit specifically. The v2.24 JEV score of 2 ('1 preliminary paper') understates this.",
+        "evidence_governing_axis": "literature",
+        "abstraction_only": false
       },
       "embodiment": {
         "populations_anchored": 0,
@@ -10318,6 +10414,7 @@
         "model_p": 0.68,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -10466,6 +10563,7 @@
         "model_p": 0.74,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -10594,6 +10692,7 @@
         "model_p": 0.92,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -10734,6 +10833,7 @@
         "model_p": 0.9,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -10872,6 +10972,7 @@
         "model_p": 0.83,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -11012,6 +11113,7 @@
         "model_p": 0.88,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -11151,6 +11253,7 @@
         "model_p": 0.89,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -11289,6 +11392,7 @@
         "model_p": 0.65,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -11433,6 +11537,7 @@
         "model_p": 0.94,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -11575,6 +11680,7 @@
         "model_p": 0.71,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -11692,6 +11798,7 @@
         "model_p": 0.66,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -11947,8 +12054,17 @@
         "model_p": 0.38,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.59,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 2,
@@ -12179,6 +12295,7 @@
         "model_p": 0.75,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -12487,6 +12604,7 @@
         "model_p": 0.87,
         "evidence_score": 5,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -12758,8 +12876,17 @@
         "model_p": 0.48,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 3,
+        "connectome_evidence_label": "wiring_inferred",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.55,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "inferred"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -13060,6 +13187,7 @@
         "model_p": 0.69,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -13353,8 +13481,17 @@
         "model_p": 0.26,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.65,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -13588,8 +13725,17 @@
         "model_p": 0.4,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.69,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -13906,8 +14052,17 @@
         "model_p": 0.43,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 3,
+        "connectome_evidence_label": "wiring_inferred",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.6,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "inferred"
       },
       "embodiment": {
         "populations_anchored": 2,
@@ -14107,6 +14262,7 @@
         "model_p": 0.5,
         "evidence_score": 4,
         "evidence_label": "preliminary",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
         "model_version": "jev-1.13.0"
       },
@@ -14367,8 +14523,17 @@
         "model_p": 0.29,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.7,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -14696,8 +14861,17 @@
         "model_p": 0.51,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 2,
+        "cell_type_resolved_p": 0.74,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -15012,8 +15186,17 @@
         "model_p": 0.18,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.77,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -15259,8 +15442,17 @@
         "model_p": 0.27,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 0,
+        "cell_type_resolved_p": 0.67,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -15628,8 +15820,17 @@
         "model_p": 0.31,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.65,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -16013,8 +16214,17 @@
         "model_p": 0.38,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 0,
+        "cell_type_resolved_p": 0.56,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -16409,8 +16619,17 @@
         "model_p": 0.3,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.68,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -16733,8 +16952,17 @@
         "model_p": 0.26,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 0,
+        "cell_type_resolved_p": 0.75,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -17128,8 +17356,17 @@
         "model_p": 0.26,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 0,
+        "cell_type_resolved_p": 0.69,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -17437,8 +17674,17 @@
         "model_p": 0.16,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 0,
+        "cell_type_resolved_p": 0.7,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -17697,8 +17943,17 @@
         "model_p": 0.15,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 0,
+        "cell_type_resolved_p": 0.69,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -18081,8 +18336,17 @@
         "model_p": 0.21,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.67,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -18481,8 +18745,17 @@
         "model_p": 0.31,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.76,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -18838,8 +19111,17 @@
         "model_p": 0.19,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 0,
+        "cell_type_resolved_p": 0.81,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -19366,8 +19648,17 @@
         "model_p": 0.24,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 0,
+        "cell_type_resolved_p": 0.63,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 6,
@@ -19830,8 +20121,17 @@
         "model_p": 0.44,
         "evidence_score": 2,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.64,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 7,
@@ -20305,8 +20605,17 @@
         "model_p": 0.12,
         "evidence_score": 1,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 0,
+        "cell_type_resolved_p": 0.65,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 6,
@@ -20741,8 +21050,17 @@
         "model_p": 0.41,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.79,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 4,
@@ -21204,8 +21522,17 @@
         "model_p": 0.33,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 5,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.85,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 3,
@@ -21549,8 +21876,17 @@
         "model_p": 0.54,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 5,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 1,
+        "cell_type_resolved_p": 0.88,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 5,
@@ -22158,8 +22494,17 @@
         "model_p": 0.54,
         "evidence_score": 3,
         "evidence_label": "speculative",
+        "jev_fallback": false,
         "validated_at": "2026-09-30T09:55:00+08:00",
-        "model_version": "jev-1.13.0"
+        "model_version": "jev-1.13.0",
+        "connectome_evidence_score": 4,
+        "connectome_evidence_label": "traced_coarse",
+        "literature_evidence_score": 2,
+        "cell_type_resolved_p": 0.74,
+        "connectome_reference": "Dorkenwald et al. 2024, A connectome of the adult male Drosophila brain (MaleCNS v1.0; 166,700 neurons, 124,177,617 synapses)",
+        "rescore_basis": "connectome_axis",
+        "evidence_governing_axis": "connectome",
+        "evidence_tier": "traced_coarse"
       },
       "embodiment": {
         "populations_anchored": 5,
