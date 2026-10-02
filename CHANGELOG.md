@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.25.0` | the toolkit as a whole |
+| package | `2.26.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,115 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.26.0] — 2026-10-02
+
+### 单元证据双轴化 + JEV 管线回灌 + fail-closed
+
+v2.24 用**一套**量表（「文献证据 0-10，2 分 = 1-2 篇论文」）评了全部 103 个
+单元。这个量表对跨物种那一半是对的，对连接组提取出来的那一半是错的。本轮修的
+是这个量纲错配，以及让 JEV 结果能真正回流进产物。
+
+#### 1. 量纲错配的实测证据
+
+| 分组 | n | 平均 evidence_score | 平均 literature_p | score≤2 |
+|---|---|---|---|---|
+| embodied（连接组提取） | 37 | 2.95 | 0.575 | 15 |
+| cross-species（跨物种模板） | 66 | 4.32 | 0.800 | 4 |
+
+19 个 score≤2 单元里 **15 个是连接组提取出来的**。`leg_motor_pool_unit` 的
+描述里每个数字（403 真实细胞 / 84 类型 / 1,205,967 突触）都是 MaleCNS v1.0
+这条已发表重建的直接测量边，不是「等文献来证实的假设」。拿「几篇论文」给它
+2 分，测的是错误的东西。
+
+#### 2. 双轴重评（`scripts/jev_rescore_units.py` 新增）
+
+对 28 个连接组单元（v2.24 score≤3 且 embodied）在**连接组轴**上重评，两条轴
+并行记录、互不覆盖：
+
+| 轴 | n | 均值 | 分布 |
+|---|---|---|---|
+| `connectome_evidence_score` | 28 | 3.93 | 3×4 / 4×22 / 5×2 |
+| `literature_evidence_score` | 28 | 0.79 | 0×9 / 1×16 / 2×3 |
+
+新增字段：`connectome_evidence_score`、`connectome_evidence_label`、
+`literature_evidence_score`、`cell_type_resolved_p`、`connectome_reference`、
+`rescore_basis`、`evidence_governing_axis`、`evidence_tier`。
+
+`evidence_tier` 分布：`traced` 0 / `traced_coarse` 24 / `inferred` 4
+（另有 75 个跨物种单元无连接组轴，保持 `None`）。
+
+**观察（不强行调）**：把高分锚点从模糊措辞改成显式边界（9-10 = 单神经元+实测
+突触数 / 7-8 = 细胞类型已解析 / 5-6 = 仅成组 / 3-4 = 未逐条追踪 / 0-2 = 缺在）
+后重跑一遍，28 个里仍有 22 个落在 4 分。JEV 模型在这一轴上似乎封顶在 4，再调
+提示词不会改变分布，只会在产物里堆噪音——记为模型行为，按现状记录。
+
+#### 3. 跨物种单元的真文献核查（4 个 score≤2 单元）
+
+不为了好看造引用，逐个检索后分别处理：
+
+| 单元 | v2.24 分 | 处理 |
+|---|---|---|
+| `pit_viper_strike_unit` | 2 | **确实是错的，已补 5 篇真文献** |
+| `cortical_highorder_integration_unit` | 1 | 检索无此模块 → 标 `abstraction_only=True`，维持 WEAK |
+| `cortical_inhibitory_gain_unit` | 2 | 已有 Markram 2004 / Tremblay 2016 / Gouwens 2020；低分来自合成单元名，不是缺文献，维持 |
+| `retinal_motion_onset_unit` | 2 | 引用指向小鼠 Yonehara，而单元定义为果蝇 ACL2 无长突细胞——物种错配，维持 |
+
+`pit_viper_strike_unit` 补入的 5 篇：Bothe et al. 2018 `J Exp Biol 221:
+jeb185611`（LTTD 突触汇聚 / 感觉对比增强）；Bothe et al. 2019 *Current
+Biology*（红外运动检测回路，LTTD + RC 编码猎物运动方向）；Kaldenbach,
+Bleckmann & Kohl 2016 `J Comp Physiol A 202(6):389-398`
+doi:10.1007/s00359-016-1076-1；Terashima & Goris 1975 `Brain Research
+83:490-494`；Hartline, Loop & Gentry 2011。其中 2 篇直接刻画运动检测回路，
+「1 篇初步论文」的判定站不住。
+
+#### 4. JEV 结果回灌 + fail-closed
+
+v2.24 把 103 行 JEV 结果**手工抄**进 `gen_functional_units.py` 的
+`_JEV_UNIT_VALIDATION` 字面量，`scripts/jev_results/unit_validation.json`
+没有任何代码读取——重跑一次 JEV 不会产出任何产物变化，除非有人手动粘 103 行。
+
+- `_load_unit_jev()`：JEV JSON 为主源（按 name 对齐），原字面量降级为
+  fallback；断言覆盖 == 103，**缺一个就 fail-closed 并列出单元名**（实测
+  截断到 100 条时正常报错、列出 3 个缺失单元）。
+- `_load_unit_rescore()`：挂载连接组轴重评结果。
+
+#### 5. fail-closed fallback（`scripts/jev_validate_units.py`）
+
+HTTP 失败 / 空响应 / score 不可解析时，旧代码输出
+`evidence_score=None` + `verdict="unknown"`——下游按
+SUPPORTED/PARTIAL/WEAK 三态过滤会**静默漏掉**，比直接判 WEAK 更糟。
+改为：`verdict="WEAK"` / `evidence_score=0` /
+`evidence_label="unvalidated_fallback"` / `jev_fallback=True`，错误原因保留在
+`error` 字段，summary 统计 fallback 数量并逐条打印。
+
+**过程中自伤并修复**：`--dry-run` 原本会覆盖
+`scripts/jev_results/unit_validation.json`（一次 dry run 把完整的 103 条换成了
+3 条占位记录），已改为 dry run 只写 `--out` 指定路径，并补 `[SKIP]` 提示。
+恢复走 `git restore --worktree`，103 条 / 88 PARTIAL / 15 WEAK 分布未变。
+
+#### 修改文件
+
+- `scripts/jev_validate_units.py` — fail-closed fallback + dry-run 不写盘
+- `scripts/gen_functional_units.py` — `_load_unit_jev()` /
+  `_load_unit_rescore()` 回灌与覆盖断言；`_VERIFIED_LITERATURE` 真文献块
+- `scripts/jev_rescore_units.py` — 新增（连接组轴双轴重评，28 单元）
+- `scripts/jev_results/unit_rescore.json` — 新增（28 条）
+- `flybrain-connectome-mcp/functional_units/functional_units.json` — 重新生成
+- `flybrain-connectome-mcp/mcp_connectome/api_server.py` /
+  `flybrain-connectome-mcp/mcp_connectome/server.py` / `flybrain_cli.py` /
+  `integrations/swarmlabs/diagnostics/topology_visualizer.py` / `pyproject.toml`
+  — 版本号 2.25.0 → 2.26.0
+- `CHANGELOG.md` — 本段
+
+#### 门禁
+
+- 10/10 待跑（`--with-data`）
+- 103 单元 verdict 分布未变：88 PARTIAL / 15 WEAK / 0 SUPPORTED
+- 新增字段均为叠加，无既有字段回归
+- JEV 调用 28×3 ≈ $0.003
 
 ---
 
