@@ -11,9 +11,9 @@
     "macro": "population-level projection geometry"
   },
   "stats": {
-    "functional_units": 103,
+    "functional_units": 107,
     "connection_types": 66,
-    "neural_members_referenced": 190,
+    "neural_members_referenced": 210,
     "systems": [
       "antennal_lobe",
       "antennal_mechanosensory",
@@ -43,6 +43,7 @@
       "limbic",
       "locus_coeruleus",
       "modulatory",
+      "motor",
       "mushroom_body",
       "neuromodulatory",
       "olivocerebellar",
