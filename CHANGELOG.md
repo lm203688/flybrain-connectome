@@ -8,14 +8,91 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.27.0` | the toolkit as a whole |
+| package | `2.28.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 107 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0 and 2.27.0) |
+| functional-unit library schema | `1.0` | 112 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0 and 2.28.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.28.0] — 2026-10-02
+
+### 第三个独立连接组：Drosophila 幼虫回路入库
+
+v2.27.0 让库里第一次有了**第二个**独立连接组（线虫成虫）。本轮加的是**第三个**：
+**果蝇幼虫**重建。选它的理由不是「又一个物种」，而是三件事同时成立——有可直接
+下载的**邻接表**（不是只有图像体）、边带**真实极性标注**、节点带亚型级
+`cell_type` / `annotations`；而且它和 37 个已锚定单元是**同物种**（幼虫 vs 成虫），
+评估与对照都能在果蝇内部做，不需要跨门类的类比。
+
+**数据来源（可复核，非手写）**
+
+`Winding et al. 2023, Science 379:eadd9330`（`doi:10.1126/science.add9330`），
+经 WormWiring 托管的 `fly_larva` 网络包（`networks.skewed.de/net/fly_larva/files/fly_larva.csv.zip`，
+489 KiB）直接下载：2,956 节点 / 116,922 有向边 / 352,611 突触。边表带 `etype`
+极性（`ad 234,958` / `aa 90,800` / `dd 20,415` / `da 6,438` 突触）。
+新增 `scripts/extract_larva_profiles.py`，与 `extract_cel_profiles.py` 同一纪律：
+生成器只读它产出的 `larva_profiles.json`，不手抄字面量。
+
+**抽出的 5 个回路（全部为实测边，逐边求和而非去重——同 (A,B,形态) 多细胞对合并时相加）**
+
+| unit | 细胞类 | 细胞数 | 边 | 突触 | a-d / a-a / d-d | d-a 未发射 |
+|---|---|---|---|---|---|---|
+| `larv_olfactory_associative_learning_unit` | 9 | 550 | 125 | 77,353 | 45,109 / 22,158 / 10,086 | 2,808 |
+| `larv_somatosensory_escape_unit` | 11 | 924 | 181 | 54,282 | 35,250 / 16,657 / 2,375 | 729 |
+| `larv_gustatory_feeding_program_unit` | 4 | 545 | 21 | 6,370 | 3,421 / 2,731 / 218 | 58 |
+| `larv_descending_motor_command_unit` | 8 | 910 | 142 | 53,152 | 36,775 / 13,806 / 2,571 | 672 |
+| `larv_mushroom_body_feedback_unit` | 10 | 530 | 150 | 74,310 | 36,613 / 34,133 / 3,564 | 650 |
+
+同时新增 **30 个 `larv.*` 神经类剖面**（MODULE_PROFILES 224 → 254）。
+
+**方法学产出（比新增单元更重要）**
+
+- **d-a 边必须计数不发射。** 幼虫数据里有 `da`（dendro-axonic）6,438 突触，但库里
+  66 个连接类型**没有** `dendro_axonic`——树突不能当输出侧。不去造一个新形态来
+  「消化」它，而是在 `larva_profiles.json` 的 `dropped_form` 字段显式声明：
+  这些突触被计入单元统计（读者能看到），但不产生任何边。
+- **声明的 selector 不等于聚合 key。** 第一版把 profile 里写的细胞类前缀当成了
+  聚合键，结果真实 `annotations` 大多是 `no official annotation`／空串，
+  选择器一条都没命中、每个单元只剩 1 条边。修法：前缀只是**选择器**，聚合键取
+  被选中的真实细胞 `(cell_type, annotations)`；同一 key 撞到两个不同 role 直接
+  `SystemExit`，不静默合并。
+- **亚型长尾要显式归并。** 源 `annotations` 细到亚型（`"42a PN"`、`"Thermo PN 3"`），
+  直接用会炸出 93/120 个类。引入显式写在脚本里的 `_MODALITY_RULES` 折成模态桶
+  （dopaminergic / octopaminergic / olfactory / gustatory / gut / mechano / noci /
+  proprio / thermo / visual / unannotated），类数回到 4–11。规则显式 ⇒ 可机器检查，
+  不是「看起来差不多」。
+- **单元数 107 → 112，锚定数不变。** 幼虫与成虫是不同发育阶段，同源性是**推断**不是
+  测量，因此 `embodied_in_malecns` 仍为 false、`unanchored_reason =
+  taxon_no_malecns_data`，不假装锚定。`embodied_units` 仍是 **37**；
+  未锚定 75 = 66 跨物种（`identity_not_in_drosophila`）+ 9 连接组追溯（4 线虫 + 5 幼虫）。
+
+**诚实标注（不补的都留着）**
+
+- 幼虫**不是**去补那 40 个 `identity_not_in_drosophila` 缺口：它们全是哺乳／鸟／
+  头足／水蛭／海兔等（Mauthner 逃逸、哺乳呼吸 CPG、海兔 buccal CPG …），
+  幼虫一个也补不上。它的价值是第三个独立证据源，不是缺口填充。
+- 源数据**不含递质／兴奋抑制标注**，因此化学边一律映射到 `axo_dendritic` /
+  `axo_axonic` / `dendro_dendritic`、**不声明任何抑制性**；`mushroom_body_feedback`
+  的 `nts=["dopamine","octopamine"]` 来自作者对该类群的命名（DAN/OAN），不是连线极性。
+- 源数据**无 gap junction 表**，因此 5 个单元的 `motif_source` 只含
+  `axo_axonic` / `axo_dendritic` / `dendro_dendritic`，不发射 `gap_junction_sync`。
+
+**JEV 验证**：5 个幼虫单元 **1 PARTIAL**（olfactory，lit 0.61 / mod 0.55 / score 3）
++ **4 WEAK**（score 2），**0 fallback**。双轴重评分 target 32 → **37**
+（28 果蝇 + 4 线虫 + 5 幼虫），幼虫 5 单元 connectome 轴全部 `traced_coarse`。
+
+**配套改动**：`gen_functional_units.py::_load_connectome_units()` 由「只认 cel」通用为
+按文件名接入任意连接组剖面；`jev_rescore_units.py` 加 `LARVA_REFERENCE`、
+按 `source_connectome` 选参考；`jev_validate_units.py` 加 `--units/--only/--merge`
+（增量验证，未重验的旧记录保留）；Gate 2 的模块数现在同时计入 `cel_profiles.json`
+与 `larva_profiles.json`（字面量 204 + 20 + 30 = 254）。
+
+**状态**：112 单元 / verdict 91 PARTIAL + 21 WEAK；门禁 10/10（`--with-data`）。
 
 ---
 
