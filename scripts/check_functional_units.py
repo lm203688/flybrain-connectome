@@ -24,7 +24,7 @@ What this gate proves:
   5. FAIL-CLOSED PROOF (defect injection): twelve deliberately broken inputs must
      each make the composer return ok=False. A validator that cannot go red is
      not a validator -- so this gate re-injects the defects every run.
-  6. Coverage: 112 units / 66 connection types / all 6 families actually wired /
+  6. Coverage: 115 units / 66 connection types / all 6 families actually wired /
      >= 34 anatomical systems / the v1.4.1 and v1.6.0 clades present / every
      v1.4.1 and v1.6.0 connection form actually wired by >= 1 unit or chain.
 
@@ -265,8 +265,8 @@ def main() -> int:
               + " error(s)")
 
     # ---------------------------------------------------------------- 6
-    # 112 = 103 curated + 4 C. elegans + 5 Drosophila larva (v2.28.0).
-    check("unit count is 112", len(units) == 112, str(len(units)))
+    # 115 = 103 curated + 4 C. elegans + 8 Drosophila larva (v2.29.0).
+    check("unit count is 115", len(units) == 115, str(len(units)))
     check("connection-type count is 66", len(conns) == 66, str(len(conns)))
     used = {w["type"] for u in units for w in u["internal_wiring"]}
     fams = {c["family"] for c in conns}
