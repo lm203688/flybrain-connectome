@@ -3503,46 +3503,49 @@ def _load_unit_rescore():
     return rescore
 
 
-def _load_cel_units():
-    """v2.27.0 — append the C. elegans connectome units.
+def _load_connectome_units(fname: str, tag: str, label: str):
+    """v2.27.0 — append the units of a second connectome (v2.28.0: three).
 
     These are NOT hand-written into this file. `scripts/extract_cel_profiles.py`
     reads the two adult reconstruction files hosted by WormWiring (the raw
     output of Witvliet et al. 2020, bioRxiv 10.1101/2020.04.30.066209) and
-    writes `functional_units/cel_profiles.json`; this hook only appends what
-    that file says. Hand-copying a second connectome would reintroduce exactly
-    the drift that `_load_unit_jev` was added to stop.
+    writes `functional_units/cel_profiles.json`; `scripts/extract_larva_profiles.py`
+    reads the larva network `fly_larva` (distributed from the Winding et al.
+    2023 Science paper) and writes `functional_units/larva_profiles.json`.
+    This hook only appends what those files say. Hand-copying a connectome
+    would reintroduce exactly the drift that `_load_unit_jev` was added to stop.
 
     They are connectome-derived in the same sense the MaleCNS units are, so
     they are scored on the connectome axis too — see `_load_unit_rescore`.
     """
-    path = MCP / "functional_units" / "cel_profiles.json"
+    path = MCP / "functional_units" / fname
     if not path.exists():
         return []
     with open(path, encoding="utf-8") as f:
         doc = json.load(f)
-    cel = doc["units"]
+    new_units = doc["units"]
 
     # The cell classes the units use are also registered in the neural-profile
-    # vocabulary, otherwise gate 4.2 rejects every `cel.*` member.
+    # vocabulary, otherwise gate 4.2 rejects every `cel.*` / `larv.*` member.
     profiles = _load_profiles()
     clash = [k for k in doc["neuron_profiles"] if k in profiles]
     if clash:
-        raise SystemExit("cel_profiles.json redefines known neuron profiles: %s"
-                         % clash)
+        raise SystemExit("%s redefines known neuron profiles: %s"
+                         % (fname, clash))
     profiles.update(doc["neuron_profiles"])
 
     known = {u["name"] for u in FUNCTIONAL_UNITS}
-    for u in cel:
+    for u in new_units:
         if u["name"] in known:
-            raise SystemExit("cel_profiles.json redefines unit %s" % u["name"])
-    FUNCTIONAL_UNITS.extend(cel)
-    print(f"[CEL] appended {len(cel)} C. elegans connectome unit(s) "
+            raise SystemExit("%s redefines unit %s" % (fname, u["name"]))
+    FUNCTIONAL_UNITS.extend(new_units)
+    print(f"[{tag}] appended {len(new_units)} {label} connectome unit(s) "
           f"and {len(doc['neuron_profiles'])} neuron profile(s)")
-    return cel
+    return new_units
 
 
-_load_cel_units()
+_load_connectome_units("cel_profiles.json", "CEL", "C. elegans")
+_load_connectome_units("larva_profiles.json", "LARVA", "Drosophila larva")
 _load_unit_jev()
 _load_unit_rescore()
 
