@@ -100,15 +100,27 @@ _MODALITY_RULES = [
     ("proprio", ("proprio",)),
     ("thermo", ("thermo",)),
     ("visual", ("visual",)),
+    ("respiratory", ("respiratory",)),
 ]
 
 
 def bucket(annotations: str, cell_type: str) -> str:
-    """Fold a long subtype label onto a modality bucket."""
-    a = annotations.split(";")[0].strip().lower()
-    for name, keys in _MODALITY_RULES:
-        if any(k in a for k in keys):
-            return name
+    """Fold a long subtype label onto a modality bucket.
+
+    The authors write several labels into one cell, in no fixed order
+    (``Vision PN 1; vPN; visual 2nd_order PN``).  The head token is read
+    first so a modality that leads the label keeps priority over one that
+    merely appears later (``noci 2nd_order PN; mechano-Ch ...`` is a noci
+    cell, not a mechano one); if the head makes no modality claim at all,
+    the whole string is searched, which is what stops the visual and
+    respiratory channels from being silently filed as "unannotated".
+    """
+    tokens = [t.strip().lower() for t in annotations.split(";")]
+    head = tokens[0] if tokens else ""
+    for src in (head, " ".join(tokens)):
+        for name, keys in _MODALITY_RULES:
+            if any(k in src for k in keys):
+                return name
     return "unannotated"
 
 
@@ -225,6 +237,66 @@ PROFILES = [
         "nts": ["dopamine", "octopamine"],
         "hints": ["modulation", "recurrent_feedback", "sparse_code"],
         "lead": "modulation",
+    },
+    {
+        "suffix": "thermosensory_relay",
+        "display": "幼虫温度感受中继单元",
+        "function": "thermoreception",
+        "system": "sensory",
+        "desc": ("作者标注的 thermo-cold / thermo-warm 感受神经元只有 10 个，它们"
+                 "把温度信号交给 8 个 thermo 投射神经元（tPN，实测 939 突触），"
+                 "tPN 再分两路：外侧角 LHN（509 突触）与蕈状体 KC（222 突触）。"
+                 "温度信息进到 KC 这一支是这条通路最值得记的一点——同一批 tPN "
+                 "同时喂外侧角的运动侧与蕈状体的稀疏编码侧，而这条边在连接组里是"
+                 "可直接数出来的。"),
+        "nodes": [("sensory", "thermo", "receptor"),
+                  ("PN", "thermo", "relay"),
+                  ("LHN", "", "lateral"),
+                  ("KC", "", "kenyon")],
+        "in_ports": [("temperature", "thermal.vector", True)],
+        "out_ports": [("drive", "motor.posture", True)],
+        "nts": [],
+        "hints": ["thermosensory", "relay", "sparse_code"],
+        "lead": "relay",
+    },
+    {
+        "suffix": "visual_relay",
+        "display": "幼虫视觉信号中继单元",
+        "function": "visual_relay",
+        "system": "sensory",
+        "desc": ("幼虫的外围光感受神经元（作者标注 visual，29 个）在这个重建里"
+                 "把轴突送到两类细胞：局部中间神经元 LN（830 突触）与二级视觉"
+                 "投射神经元 vPN（696 突触）；vPN 再汇到外侧角 LHN（1,142 突触）。"
+                 "这条单元覆盖了库里此前唯一一个按视觉标注逐边追下来的通道。"),
+        "nodes": [("sensory", "visual", "receptor"),
+                  ("PN", "visual", "relay"),
+                  ("LN", "", "local"),
+                  ("LHN", "", "lateral")],
+        "in_ports": [("light", "sensory.visual", True)],
+        "out_ports": [("steer", "navigation.steering", True)],
+        "nts": [],
+        "hints": ["visual", "relay", "feedforward"],
+        "lead": "relay",
+    },
+    {
+        "suffix": "respiratory_relay",
+        "display": "幼虫内部状态（呼吸）中继单元",
+        "function": "respiratory_relay",
+        "system": "respiratory",
+        "desc": ("作者把 26 个感受神经元标注成 respiratory（气管/呼吸相关）。"
+                 "连接组里它们指向三层：上行反馈神经元 ascending（151 突触）、"
+                 "口咽部下降神经元池 DN-SEZ（51 突触）与内分泌级 RGN（31 突触）——"
+                 "也就是把内部状态信号接到运动级与神经内分泌级。这条单元刻意不"
+                 "声明任何行为：源只给了模态标签，没给行为，能追下来的就是这三跳。"),
+        "nodes": [("sensory", "respiratory", "receptor"),
+                  ("ascending", "", "feedback"),
+                  ("DN-SEZ", "", "motor"),
+                  ("RGN", "", "endocrine")],
+        "in_ports": [("internal", "sensory.*", True)],
+        "out_ports": [("ventilation", "motor.respiration", True)],
+        "nts": [],
+        "hints": ["internal_state", "relay", "feedback"],
+        "lead": "relay",
     },
 ]
 
