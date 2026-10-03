@@ -6247,11 +6247,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -6260,7 +6263,26 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 1,
-          "family_anchored_types_dimorphic": 0
+          "family_anchored_types_dimorphic": 0,
+          "unit_dimorphic_types": [
+            "M_vPNml57"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -6588,11 +6610,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -6601,7 +6626,26 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 1,
-          "family_anchored_types_dimorphic": 0
+          "family_anchored_types_dimorphic": 0,
+          "unit_dimorphic_types": [
+            "M_vPNml57"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -7745,11 +7789,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -7758,7 +7805,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 41,
-          "family_anchored_types_dimorphic": 1
+          "family_anchored_types_dimorphic": 1,
+          "unit_dimorphic_types": [
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047",
+            "DNge049",
+            "DNge063"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -12115,11 +12200,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -12128,7 +12216,28 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 3,
-          "family_anchored_types_dimorphic": 1
+          "family_anchored_types_dimorphic": 1,
+          "unit_dimorphic_types": [
+            "Mi20",
+            "Tm26",
+            "TmY21"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -12377,11 +12486,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -12390,7 +12502,28 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 3,
-          "family_anchored_types_dimorphic": 1
+          "family_anchored_types_dimorphic": 1,
+          "unit_dimorphic_types": [
+            "Mi20",
+            "Tm26",
+            "TmY21"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -12979,11 +13112,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -12992,7 +13128,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 44,
-          "family_anchored_types_dimorphic": 2
+          "family_anchored_types_dimorphic": 2,
+          "unit_dimorphic_types": [
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047",
+            "DNge049",
+            "DNge063"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -13605,11 +13779,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -13618,7 +13795,32 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 7,
-          "family_anchored_types_dimorphic": 2
+          "family_anchored_types_dimorphic": 2,
+          "unit_dimorphic_types": [
+            "aSP-g3Am",
+            "aSP10A_a",
+            "aSP10A_b",
+            "aSP10C_a",
+            "aSP10C_b",
+            "pIP1",
+            "pIP10"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -13870,11 +14072,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -13883,7 +14088,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 56,
-          "family_anchored_types_dimorphic": 3
+          "family_anchored_types_dimorphic": 3,
+          "unit_dimorphic_types": [
+            "aSP-g3Am",
+            "aSP10A_a",
+            "aSP10A_b",
+            "aSP10C_a",
+            "aSP10C_b",
+            "pC1_10a",
+            "pC1_10b",
+            "pC1_10c",
+            "pC1_10d",
+            "pC1_11a",
+            "pC1_11b",
+            "pC1_12a",
+            "pC1_12b",
+            "pC1_13a",
+            "pC1_13b",
+            "pC1_13c",
+            "pC1_14a",
+            "pC1_14b",
+            "pC1_15a",
+            "pC1_15b"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -14218,11 +14461,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -14231,7 +14477,28 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 3,
-          "family_anchored_types_dimorphic": 2
+          "family_anchored_types_dimorphic": 2,
+          "unit_dimorphic_types": [
+            "pIP1",
+            "pIP10",
+            "vMS17"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -14449,11 +14716,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -14462,7 +14732,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 58,
-          "family_anchored_types_dimorphic": 2
+          "family_anchored_types_dimorphic": 2,
+          "unit_dimorphic_types": [
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047",
+            "DNge049",
+            "DNge063"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -14731,11 +15039,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -14744,7 +15055,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 57,
-          "family_anchored_types_dimorphic": 2
+          "family_anchored_types_dimorphic": 2,
+          "unit_dimorphic_types": [
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047",
+            "DNge049",
+            "DNge063"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -15090,11 +15439,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -15103,7 +15455,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 44,
-          "family_anchored_types_dimorphic": 2
+          "family_anchored_types_dimorphic": 2,
+          "unit_dimorphic_types": [
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047",
+            "DNge049",
+            "DNge063"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -15436,11 +15826,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -15449,7 +15842,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 57,
-          "family_anchored_types_dimorphic": 2
+          "family_anchored_types_dimorphic": 2,
+          "unit_dimorphic_types": [
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047",
+            "DNge049",
+            "DNge063"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -15713,11 +16144,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -15726,7 +16160,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 31,
-          "family_anchored_types_dimorphic": 4
+          "family_anchored_types_dimorphic": 4,
+          "unit_dimorphic_types": [
+            "AN12B060",
+            "ANXXX214",
+            "IN05B041",
+            "IN08A003",
+            "IN10B013",
+            "IN11A035",
+            "IN12A002",
+            "IN12A030",
+            "IN12A037",
+            "IN12A041",
+            "IN14A006",
+            "IN18B009",
+            "IN27X002",
+            "INXXX025",
+            "INXXX058",
+            "INXXX062",
+            "INXXX110",
+            "INXXX121",
+            "INXXX217",
+            "LN-DN1"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -16112,11 +16584,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -16125,7 +16600,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 29,
-          "family_anchored_types_dimorphic": 3
+          "family_anchored_types_dimorphic": 3,
+          "unit_dimorphic_types": [
+            "AN12B060",
+            "ANXXX214",
+            "IN05B041",
+            "IN08A003",
+            "IN10B013",
+            "IN11A035",
+            "IN12A002",
+            "IN12A030",
+            "IN12A037",
+            "IN12A041",
+            "IN14A006",
+            "IN18B009",
+            "IN27X002",
+            "INXXX025",
+            "INXXX058",
+            "INXXX062",
+            "INXXX110",
+            "INXXX121",
+            "INXXX217",
+            "TN1a_b"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -16527,11 +17040,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -16540,7 +17056,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 30,
-          "family_anchored_types_dimorphic": 2
+          "family_anchored_types_dimorphic": 2,
+          "unit_dimorphic_types": [
+            "AN12B060",
+            "ANXXX214",
+            "IN05B041",
+            "IN08A003",
+            "IN10B013",
+            "IN11A035",
+            "IN12A002",
+            "IN12A030",
+            "IN12A037",
+            "IN12A041",
+            "IN14A006",
+            "IN18B009",
+            "IN27X002",
+            "INXXX025",
+            "INXXX058",
+            "INXXX062",
+            "INXXX110",
+            "INXXX121",
+            "INXXX217",
+            "TN1a_b"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -16953,11 +17507,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -16966,7 +17523,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 43,
-          "family_anchored_types_dimorphic": 2
+          "family_anchored_types_dimorphic": 2,
+          "unit_dimorphic_types": [
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047",
+            "DNge049",
+            "DNge063"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -17307,11 +17902,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -17320,7 +17918,28 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 3,
-          "family_anchored_types_dimorphic": 1
+          "family_anchored_types_dimorphic": 1,
+          "unit_dimorphic_types": [
+            "Mi20",
+            "Tm26",
+            "TmY21"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -17732,11 +18351,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -17745,7 +18367,26 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 1,
-          "family_anchored_types_dimorphic": 3
+          "family_anchored_types_dimorphic": 3,
+          "unit_dimorphic_types": [
+            "GNG314"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -18071,11 +18712,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -18084,7 +18728,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 29,
-          "family_anchored_types_dimorphic": 3
+          "family_anchored_types_dimorphic": 3,
+          "unit_dimorphic_types": [
+            "AN12B060",
+            "ANXXX214",
+            "IN05B041",
+            "IN08A003",
+            "IN10B013",
+            "IN11A035",
+            "IN12A002",
+            "IN12A030",
+            "IN12A037",
+            "IN12A041",
+            "IN14A006",
+            "IN18B009",
+            "IN27X002",
+            "INXXX025",
+            "INXXX058",
+            "INXXX062",
+            "INXXX110",
+            "INXXX121",
+            "INXXX217",
+            "TN1a_b"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -18361,11 +19043,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -18374,7 +19059,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 70,
-          "family_anchored_types_dimorphic": 3
+          "family_anchored_types_dimorphic": 3,
+          "unit_dimorphic_types": [
+            "AN12B060",
+            "ANXXX214",
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -18775,11 +19498,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -18788,7 +19514,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 70,
-          "family_anchored_types_dimorphic": 3
+          "family_anchored_types_dimorphic": 3,
+          "unit_dimorphic_types": [
+            "AN12B060",
+            "ANXXX214",
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -19205,11 +19969,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -19218,7 +19985,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 42,
-          "family_anchored_types_dimorphic": 3
+          "family_anchored_types_dimorphic": 3,
+          "unit_dimorphic_types": [
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047",
+            "DNge049",
+            "DNge063"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -19592,11 +20397,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -19605,7 +20413,28 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 3,
-          "family_anchored_types_dimorphic": 2
+          "family_anchored_types_dimorphic": 2,
+          "unit_dimorphic_types": [
+            "Mi20",
+            "Tm26",
+            "TmY21"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -20150,11 +20979,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -20163,7 +20995,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 44,
-          "family_anchored_types_dimorphic": 4
+          "family_anchored_types_dimorphic": 4,
+          "unit_dimorphic_types": [
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047",
+            "DNge049",
+            "DNge063"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -20644,11 +21514,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -20657,7 +21530,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 71,
-          "family_anchored_types_dimorphic": 3
+          "family_anchored_types_dimorphic": 3,
+          "unit_dimorphic_types": [
+            "AN12B060",
+            "ANXXX214",
+            "DNa08",
+            "DNa09",
+            "DNae005",
+            "DNb05",
+            "DNbe005",
+            "DNde002",
+            "DNde007",
+            "DNg02_a",
+            "DNg02_g",
+            "DNg101",
+            "DNg111",
+            "DNg13",
+            "DNg37",
+            "DNg66",
+            "DNg83",
+            "DNg96",
+            "DNge010",
+            "DNge047"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -21149,11 +22060,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -21162,7 +22076,45 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 30,
-          "family_anchored_types_dimorphic": 5
+          "family_anchored_types_dimorphic": 5,
+          "unit_dimorphic_types": [
+            "AN12B060",
+            "ANXXX214",
+            "GNG314",
+            "IN05B041",
+            "IN08A003",
+            "IN10B013",
+            "IN11A035",
+            "IN12A002",
+            "IN12A030",
+            "IN12A037",
+            "IN12A041",
+            "IN14A006",
+            "IN18B009",
+            "IN27X002",
+            "INXXX025",
+            "INXXX058",
+            "INXXX062",
+            "INXXX110",
+            "INXXX121",
+            "INXXX217"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -21615,11 +22567,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -21628,7 +22583,41 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 16,
-          "family_anchored_types_dimorphic": 1
+          "family_anchored_types_dimorphic": 1,
+          "unit_dimorphic_types": [
+            "LH001m",
+            "LH002m",
+            "LH003m",
+            "LH004m",
+            "LH005m",
+            "LH006m",
+            "LH007m",
+            "LH008m",
+            "LHAV2b2_a",
+            "LHAV2b2_b",
+            "LHAV2b2_c",
+            "LHAV2b2_d",
+            "LHAV2b5",
+            "LHAV4c2",
+            "LHPD2b1",
+            "LHPV5a2"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -22462,11 +23451,14 @@
           "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
           "caveat": [
             "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
             "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
             "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
             "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+            "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+            "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+            "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
           ],
           "population_bodies": 2368,
           "population_types": 479,
@@ -22475,7 +23467,28 @@
           "synapses_both_ends": 1589267,
           "synapses_both_ends_pct": 1.2798,
           "anchored_types_dimorphic": 3,
-          "family_anchored_types_dimorphic": 1
+          "family_anchored_types_dimorphic": 1,
+          "unit_dimorphic_types": [
+            "Mi20",
+            "Tm26",
+            "TmY21"
+          ],
+          "body_scale": {
+            "median": 1164,
+            "p90": 4636,
+            "p99": 19816,
+            "p999": 48496,
+            "max": 271220
+          },
+          "type_axis": {
+            "counted_on": "type (MaleCNS axis)",
+            "type_vs_flywireType_differ_pct": 33.08
+          },
+          "dimorphism_provenance": {
+            "types_with_matching_note": 150,
+            "types_total": 479,
+            "types_roughly_traced": 327
+          }
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
