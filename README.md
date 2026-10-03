@@ -495,6 +495,24 @@ The four circuits, measured at every stage (synapses per animal):
 | amphid chemosensory | 97 / 127 / 150 / 199 | 301 | 267 | 433 / 495 |
 | nociceptive avoidance | 21 / 22 / 31 / 64 | 76 | 69 | 110 / 144 |
 
+**Those four rows do not add up (v2.34.0).** The circuits are not disjoint
+cell-class sets — `AIA` sits in all four, `AIB`/`AIZ`/`AVB`/`PV` in two or three
+— so an edge like `AIZ → AIB` is internal wiring for two circuits at once and
+gets counted by both. Adding the column overstates the wiring that is actually
+internal to these circuits by ~1.27×. Both figures are now reported per stage:
+
+| stage | sum of the four circuits | union (counted once) | inflation |
+|---|---|---|---|
+| L1 | 1,061 | 849 | 1.25× |
+| L2 | 580 | 455 | 1.27× |
+| L3 | 530 | 421 | 1.26× |
+| adult | 1,855 | 1,456 | 1.27× |
+
+Use **union** for "how much of this animal's wiring sits inside these
+circuits"; use the sum only when the circuits are counted individually. The
+extractor now asserts that the per-circuit rows reconstruct the sum, and refuses
+to write when they disagree.
+
 Across all 16 measurements the four circuits are **present in every animal at
 every stage** (6–37 edges at L1), so what development adds is synapse weight,
 not new topology.
@@ -504,7 +522,11 @@ and not in the adults — is **not** reported as transient developing synapses. 
 single L1 file carries 566–795 distinct edges against 1,107 for a single L2
 file, so "seen at L1" is confounded with reconstruction depth. Only the claim
 that survives that confound is published; the `caveat` field of
-`cel_development_stages.json` states this in the artifact itself.
+`cel_development_stages.json` states this in the artifact itself. As of
+v2.34.0 that 271 is **computed** (`stage_diffs.l1_only_keys`, alongside
+`l1_union_keys` 1,188, `adult_union_keys` 1,980, `shared_keys` 917,
+`adult_only_keys` 1,063) rather than written into the caveat as a literal that
+could not be re-derived if the source changed.
 
 ### Larva cluster ledger (v2.31.0) — how much of the larva network the units cover
 
@@ -537,6 +559,17 @@ Per unit, at both-endpoint resolution:
 
 Three cell classes sit entirely outside every unit: the unlabelled class
 (346 cells), `MB-FFN` and `pre-DN-SEZ`.
+
+**The per-unit rows are not additive either (v2.34.0).** Nineteen `larv.*`
+profiles are declared by more than one unit — `larv.lhn_unannotated`,
+`larv.lhn_mechano`, `larv.kc_unannotated` and friends — so one synapse
+legitimately counts toward each of them. The eight rows sum to **319,064**
+against a covered total of **271,956** (1.17×). Use the union figure for network
+coverage and the per-unit rows only to compare units with one another; the
+shared-profile list is in `unit_attribution` and `flybrain larva-clusters
+--caveat` prints it. The extractor asserts that the sum can only exceed the
+covered total, that the coverage partition closes, and that per-cluster
+`internal + out` reconstructs the network.
 
 **The headcount was the wrong measure.** The larva network has 1,560 cells with
 no official annotation — 52.77% of its neurons, and the number that made the
