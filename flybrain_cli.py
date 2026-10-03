@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.30.0"
+__version__ = "2.31.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -264,6 +264,76 @@ def cmd_stages(args) -> int:
     return 0
 
 
+def cmd_larva_clusters(args) -> int:
+    """v2.31.0 — ledger the larva connectome at cluster resolution.
+
+    Two questions, both answered by counting every edge of the Winding et al.
+    reconstruction rather than by modelling either one:
+
+    1. how much of the network the eight v2.28.0/v2.29.0 larva units actually
+       cover -- a synapse counts when BOTH of its endpoints resolve to a
+       `larv.*` profile the unit declares as a member;
+    2. what the unannotated half is really made of, in synapses rather than
+       headcount, and which cell classes sit entirely outside every unit.
+
+    Every number comes from `functional_units/larva_clusters.json`, which
+    `scripts/extract_larva_clusters.py` sums out of nodes.csv / edges.csv.
+    """
+    path = MCP_DIR / "functional_units" / "larva_clusters.json"
+    if not path.exists():
+        print("larva cluster ledger missing: %s" % path)
+        print("run: python scripts/extract_larva_clusters.py")
+        return 2
+    with open(path, encoding="utf-8") as f:
+        doc = json.load(f)
+
+    if args.caveat:
+        print(doc["caveat"], "\n")
+
+    net = doc["network"]
+    print("larva network: %d nodes / %d edges / %d synapses / %d clusters"
+          % (net["nodes"], net["edges"], net["synapses"], net["n_clusters"]))
+    print("  unannotated cells: %d (%.2f%%) touching %d synapses (%.2f%%)"
+          % (net["unannotated_nodes"], net["unannotated_nodes_pct"],
+             net["unannotated_incident_synapses"], net["unannotated_synapse_pct"]))
+    print("  left/right homologue pairs, as declared: %d"
+          % net["homologue_pairs"])
+
+    cov = doc["coverage"]
+    print("unit coverage (both endpoints traceable):")
+    for name, c in sorted(doc["unit_coverage"].items(),
+                          key=lambda kv: -kv[1]["synapses_both_ends"]):
+        if args.unit and name not in args.unit:
+            continue
+        print("    %-42s %7d synapses  %5.2f%%  nodes=%-5d (%d profiles)"
+              % (name, c["synapses_both_ends"], c["synapse_share_pct"],
+                 c["nodes_reached"], c["n_member_profiles"]))
+    print("    %-42s %7d synapses  %5.2f%%"
+          % ("ALL units (union)", cov["synapses_both_ends_covered"],
+             cov["synapses_both_ends_covered_pct"]))
+    print("    %-42s %7d synapses  %5.2f%%  <- frontier"
+          % ("no unit declares either endpoint",
+             cov["synapses_frontier"], cov["synapses_frontier_pct"]))
+
+    ct = doc["cell_type_coverage"]
+    print("cell classes: %d seen, %d touched, %d entirely outside every unit"
+          % (len(ct["cell_types_seen"]), len(ct["covered"]), len(ct["frontier"])))
+    print("    frontier: %s" % ", ".join(ct["frontier"]))
+
+    top = sorted(doc["clusters"],
+                 key=lambda c: -(c["internal_synapses"] + c["out_synapses"]
+                                 + c["in_synapses"]))[:args.top]
+    print("top %d clusters by synapse volume:" % len(top))
+    for c in top:
+        tot = c["internal_synapses"] + c["out_synapses"] + c["in_synapses"]
+        if args.unannotated and c["n_unannotated"] == 0:
+            continue
+        print("    cluster %-4s nodes=%-4d synapses=%-7d %-15s %s"
+              % (c["cluster"], c["n_nodes"], tot, c["annotation_status"],
+                 " ".join(c["cell_types"][:4])))
+    return 0
+
+
 def cmd_info(args) -> int:
     """Report what this launcher resolved — the one command that diagnoses
     a broken install (wrong toolkit root, missing data dir, missing snapshot)."""
@@ -340,6 +410,18 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--caveat", action="store_true",
                    help="print the coverage caveat before the tables")
     s.set_defaults(func=cmd_stages)
+
+    s = sub.add_parser("larva-clusters",
+                       help="larva connectome cluster ledger + unit coverage")
+    s.add_argument("--unit", action="append", default=None,
+                   help="show only this unit (repeatable)")
+    s.add_argument("--top", type=int, default=10,
+                   help="show this many clusters (default 10)")
+    s.add_argument("--unannotated", action="store_true",
+                   help="print only clusters that hold unannotated cells")
+    s.add_argument("--caveat", action="store_true",
+                   help="print the coverage caveat before the tables")
+    s.set_defaults(func=cmd_larva_clusters)
 
     s = sub.add_parser("verify", help="run the end-to-end smoke test")
     s.set_defaults(func=cmd_verify)
