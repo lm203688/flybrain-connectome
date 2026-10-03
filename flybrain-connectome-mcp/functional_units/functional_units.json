@@ -6241,6 +6241,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 1,
+          "family_anchored_types_dimorphic": 0
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -6561,6 +6582,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 1,
+          "family_anchored_types_dimorphic": 0
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -7697,6 +7739,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 41,
+          "family_anchored_types_dimorphic": 1
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -12046,6 +12109,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 3,
+          "family_anchored_types_dimorphic": 1
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -12287,6 +12371,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 3,
+          "family_anchored_types_dimorphic": 1
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -12868,6 +12973,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 44,
+          "family_anchored_types_dimorphic": 2
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -13473,6 +13599,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 7,
+          "family_anchored_types_dimorphic": 2
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -13717,6 +13864,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 56,
+          "family_anchored_types_dimorphic": 3
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -14044,6 +14212,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 3,
+          "family_anchored_types_dimorphic": 2
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -14254,6 +14443,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 58,
+          "family_anchored_types_dimorphic": 2
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -14515,6 +14725,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 57,
+          "family_anchored_types_dimorphic": 2
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -14853,6 +15084,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 44,
+          "family_anchored_types_dimorphic": 2
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -15178,6 +15430,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 57,
+          "family_anchored_types_dimorphic": 2
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -15434,6 +15707,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 31,
+          "family_anchored_types_dimorphic": 4
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -15812,6 +16106,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 29,
+          "family_anchored_types_dimorphic": 3
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -16206,6 +16521,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 30,
+          "family_anchored_types_dimorphic": 2
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -16611,6 +16947,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 43,
+          "family_anchored_types_dimorphic": 2
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -16944,6 +17301,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 3,
+          "family_anchored_types_dimorphic": 1
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -17348,6 +17726,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 1,
+          "family_anchored_types_dimorphic": 3
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -17666,6 +18065,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 29,
+          "family_anchored_types_dimorphic": 3
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -17935,6 +18355,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 70,
+          "family_anchored_types_dimorphic": 3
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -18328,6 +18769,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 70,
+          "family_anchored_types_dimorphic": 3
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -18737,6 +19199,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 42,
+          "family_anchored_types_dimorphic": 3
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -19103,6 +19586,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 3,
+          "family_anchored_types_dimorphic": 2
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -19640,6 +20144,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 44,
+          "family_anchored_types_dimorphic": 4
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -20113,6 +20638,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 71,
+          "family_anchored_types_dimorphic": 3
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -20597,6 +21143,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 30,
+          "family_anchored_types_dimorphic": 5
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -21042,6 +21609,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 16,
+          "family_anchored_types_dimorphic": 1
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -21868,6 +22456,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "male_dimorphic": {
+          "source": "MaleCNS v1.0 (FlyCellAtlas)",
+          "artifact": "malecns_dimorphism.json",
+          "note": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+          "caveat": [
+            "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+            "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+            "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+            "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+            "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+            "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+          ],
+          "population_bodies": 2368,
+          "population_types": 479,
+          "synapses_touching": 13376848,
+          "synapses_touching_pct": 10.7724,
+          "synapses_both_ends": 1589267,
+          "synapses_both_ends_pct": 1.2798,
+          "anchored_types_dimorphic": 3,
+          "family_anchored_types_dimorphic": 1
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
