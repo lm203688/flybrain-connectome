@@ -25836,7 +25836,28 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "connectome_coverage": {
+          "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+          "artifact": "larva_clusters.json",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "network": {
+            "nodes": 2956,
+            "edges": 116922,
+            "synapses": 352611,
+            "n_clusters": 93,
+            "homologue_pairs": 1237,
+            "unannotated_nodes": 1560,
+            "unannotated_nodes_pct": 52.77,
+            "unannotated_incident_synapses": 212542,
+            "unannotated_synapse_pct": 60.28,
+            "unannotated_note": "an edge touches the unannotated population whenever EITHER endpoint lacks an official annotation, so the synapse share exceeds the node share"
+          },
+          "synapses_both_ends": 80161,
+          "synapse_share_pct": 22.73,
+          "nodes_reached": 548,
+          "n_member_profiles": 11
+        }
       },
       "larva_stats": {
         "n_cell_classes": 11,
@@ -27359,7 +27380,28 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "connectome_coverage": {
+          "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+          "artifact": "larva_clusters.json",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "network": {
+            "nodes": 2956,
+            "edges": 116922,
+            "synapses": 352611,
+            "n_clusters": 93,
+            "homologue_pairs": 1237,
+            "unannotated_nodes": 1560,
+            "unannotated_nodes_pct": 52.77,
+            "unannotated_incident_synapses": 212542,
+            "unannotated_synapse_pct": 60.28,
+            "unannotated_note": "an edge touches the unannotated population whenever EITHER endpoint lacks an official annotation, so the synapse share exceeds the node share"
+          },
+          "synapses_both_ends": 57262,
+          "synapse_share_pct": 16.24,
+          "nodes_reached": 942,
+          "n_member_profiles": 11
+        }
       },
       "larva_stats": {
         "n_cell_classes": 11,
@@ -27629,7 +27671,28 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "connectome_coverage": {
+          "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+          "artifact": "larva_clusters.json",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "network": {
+            "nodes": 2956,
+            "edges": 116922,
+            "synapses": 352611,
+            "n_clusters": 93,
+            "homologue_pairs": 1237,
+            "unannotated_nodes": 1560,
+            "unannotated_nodes_pct": 52.77,
+            "unannotated_incident_synapses": 212542,
+            "unannotated_synapse_pct": 60.28,
+            "unannotated_note": "an edge touches the unannotated population whenever EITHER endpoint lacks an official annotation, so the synapse share exceeds the node share"
+          },
+          "synapses_both_ends": 6428,
+          "synapse_share_pct": 1.82,
+          "nodes_reached": 525,
+          "n_member_profiles": 4
+        }
       },
       "larva_stats": {
         "n_cell_classes": 4,
@@ -28558,7 +28621,28 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "connectome_coverage": {
+          "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+          "artifact": "larva_clusters.json",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "network": {
+            "nodes": 2956,
+            "edges": 116922,
+            "synapses": 352611,
+            "n_clusters": 93,
+            "homologue_pairs": 1237,
+            "unannotated_nodes": 1560,
+            "unannotated_nodes_pct": 52.77,
+            "unannotated_incident_synapses": 212542,
+            "unannotated_synapse_pct": 60.28,
+            "unannotated_note": "an edge touches the unannotated population whenever EITHER endpoint lacks an official annotation, so the synapse share exceeds the node share"
+          },
+          "synapses_both_ends": 53824,
+          "synapse_share_pct": 15.26,
+          "nodes_reached": 910,
+          "n_member_profiles": 7
+        }
       },
       "larva_stats": {
         "n_cell_classes": 7,
@@ -30129,7 +30213,28 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "connectome_coverage": {
+          "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+          "artifact": "larva_clusters.json",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "network": {
+            "nodes": 2956,
+            "edges": 116922,
+            "synapses": 352611,
+            "n_clusters": 93,
+            "homologue_pairs": 1237,
+            "unannotated_nodes": 1560,
+            "unannotated_nodes_pct": 52.77,
+            "unannotated_incident_synapses": 212542,
+            "unannotated_synapse_pct": 60.28,
+            "unannotated_note": "an edge touches the unannotated population whenever EITHER endpoint lacks an official annotation, so the synapse share exceeds the node share"
+          },
+          "synapses_both_ends": 74960,
+          "synapse_share_pct": 21.26,
+          "nodes_reached": 530,
+          "n_member_profiles": 13
+        }
       },
       "larva_stats": {
         "n_cell_classes": 13,
@@ -30631,7 +30736,28 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "connectome_coverage": {
+          "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+          "artifact": "larva_clusters.json",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "network": {
+            "nodes": 2956,
+            "edges": 116922,
+            "synapses": 352611,
+            "n_clusters": 93,
+            "homologue_pairs": 1237,
+            "unannotated_nodes": 1560,
+            "unannotated_nodes_pct": 52.77,
+            "unannotated_incident_synapses": 212542,
+            "unannotated_synapse_pct": 60.28,
+            "unannotated_note": "an edge touches the unannotated population whenever EITHER endpoint lacks an official annotation, so the synapse share exceeds the node share"
+          },
+          "synapses_both_ends": 22981,
+          "synapse_share_pct": 6.52,
+          "nodes_reached": 361,
+          "n_member_profiles": 7
+        }
       },
       "larva_stats": {
         "n_cell_classes": 7,
@@ -31488,7 +31614,28 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "connectome_coverage": {
+          "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+          "artifact": "larva_clusters.json",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "network": {
+            "nodes": 2956,
+            "edges": 116922,
+            "synapses": 352611,
+            "n_clusters": 93,
+            "homologue_pairs": 1237,
+            "unannotated_nodes": 1560,
+            "unannotated_nodes_pct": 52.77,
+            "unannotated_incident_synapses": 212542,
+            "unannotated_synapse_pct": 60.28,
+            "unannotated_note": "an edge touches the unannotated population whenever EITHER endpoint lacks an official annotation, so the synapse share exceeds the node share"
+          },
+          "synapses_both_ends": 20712,
+          "synapse_share_pct": 5.87,
+          "nodes_reached": 358,
+          "n_member_profiles": 8
+        }
       },
       "larva_stats": {
         "n_cell_classes": 8,
@@ -31990,7 +32137,28 @@
         "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
         "unanchored_reason": "taxon_no_malecns_data",
         "evidence_weight": "connectome_derived",
-        "connectome_traceable": true
+        "connectome_traceable": true,
+        "connectome_coverage": {
+          "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+          "artifact": "larva_clusters.json",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "network": {
+            "nodes": 2956,
+            "edges": 116922,
+            "synapses": 352611,
+            "n_clusters": 93,
+            "homologue_pairs": 1237,
+            "unannotated_nodes": 1560,
+            "unannotated_nodes_pct": 52.77,
+            "unannotated_incident_synapses": 212542,
+            "unannotated_synapse_pct": 60.28,
+            "unannotated_note": "an edge touches the unannotated population whenever EITHER endpoint lacks an official annotation, so the synapse share exceeds the node share"
+          },
+          "synapses_both_ends": 2736,
+          "synapse_share_pct": 0.78,
+          "nodes_reached": 275,
+          "n_member_profiles": 7
+        }
       },
       "larva_stats": {
         "n_cell_classes": 7,
