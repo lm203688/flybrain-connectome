@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.32.0"
+__version__ = "2.33.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -395,9 +395,63 @@ def cmd_dimorphism(args) -> int:
 
     print("heaviest dimorphic types:")
     for t in doc["types_top"][:args.top]:
-        print("    %-16s bodies=%-4d %10d synapses  %5.3f%%  %-18s anchored=%s"
-              % (t["type"], t["bodies"], t["synapses"], t["pct_of_network"],
-                 t["superclass"], "yes" if t["anchored"] else "no"))
+        alias = t.get("provenance", {}).get("flywire_alias") or []
+        print("    %-16s bodies=%-4d %10d synapses (%7.0f/cell) %5.3f%%  %-18s anchored=%s%s"
+              % (t["type"], t["bodies"], t["synapses"],
+                 t.get("synapses_per_body") or 0.0, t["pct_of_network"],
+                 t["superclass"], "yes" if t["anchored"] else "no",
+                 ("  [FlyWire: %s]" % alias[0]) if alias else ""))
+        if args.provenance:
+            for note in t.get("provenance", {}).get("matching_notes", []):
+                print("        note: %s" % note)
+            grades = t.get("provenance", {}).get("status_labels", []) or []
+            itolee = t.get("provenance", {}).get("itolee_grade", []) or []
+            if grades or itolee:
+                print("        trace: %s%s"
+                      % ("/".join(grades),
+                         ("  itolee:" + "/".join(itolee)) if itolee else ""))
+        if t.get("body_synapse_percentile") is not None:
+            print("        per-body strength: p%.2f of annotated bodies "
+                  "(median body %s synapses)"
+                  % (t["body_synapse_percentile"],
+                     (t.get("median_body_synapses") or 0)))
+
+    axes = doc.get("type_axes", {})
+    if axes:
+        cmp_ = axes.get("axis_comparison") or {}
+        print("type axes (this ledger counts the `type` axis only):")
+        for col, n in (axes.get("class_counts") or {}).items():
+            print("    %-16s %6d classes" % (col, n))
+        if cmp_.get("compared"):
+            print("    %s differ on %d/%d bodies (%.2f%%), across %d classes"
+                  % (cmp_["compared"], cmp_["bodies_differing"],
+                     cmp_["bodies_compared"], cmp_["bodies_differing_pct"],
+                     cmp_["classes_involved"]))
+            print("    -> a class name here may be filed under another name in "
+                  "FlyWire / hemibrain; see types_top[].provenance.flywire_alias")
+
+    chk = meas.get("per_type_attribution_check")
+    if chk:
+        print("per-type attribution check: %s (%d charged == touching + both-ends)"
+              % ("reconciles" if chk.get("reconciles") else "FAILED",
+                 chk.get("charged_to_types", -1)))
+
+    bs = meas.get("body_scale")
+    if bs:
+        print("per-body scale (annotated bodies with synapses: %d):"
+              % bs["bodies_with_synapses"])
+        print("    median %d   p90 %d   p99 %d   p99.9 %d   max %d"
+              % (bs["median"], bs["p90"], bs["p99"], bs["p999"], bs["max"]))
+        print("    -> per-cell means above are read against this, not against a "
+              "rule of thumb; the distribution is heavy-tailed")
+
+    prov = doc.get("dimorphism_provenance", {})
+    if prov:
+        print("dimorphism provenance: %d/%d types carry a curator matchingNote, "
+              "%d are `Roughly traced`"
+              % (prov.get("types_with_matching_note", 0),
+                 prov.get("types_total", 0),
+                 prov.get("types_roughly_traced", 0)))
 
     ov = doc["anchor_overlap"]
     print("anchored profiles: %d dimorphic types listed explicitly, %d inside a "
@@ -513,6 +567,8 @@ def build_parser() -> argparse.ArgumentParser:
                    help="show this many types (default 10)")
     s.add_argument("--internal", action="store_true",
                    help="also print the both-endpoints-dimorphic type pairs")
+    s.add_argument("--provenance", action="store_true",
+                   help="print the curator note and trace grade behind each type")
     s.add_argument("--caveat", action="store_true",
                    help="print the ledger caveats first")
     s.set_defaults(func=cmd_dimorphism)
