@@ -3685,11 +3685,45 @@ def _load_malecns_dimorphism():
     meas = doc["measurement"]
     pop = doc["population"]
 
+    # v2.33.0.  The v2.32.0 pass read this ledger's caveat list and its two
+    # headline percentages and stopped there.  Three things in it turn out to
+    # matter for how a unit should read, so they are carried through:
+    #
+    #   body_scale          -- per-body synapse percentiles.  Without them a
+    #                         per-cell figure cannot be judged, and the
+    #                         temptation is to fall back on the "1k-10k per
+    #                         neuron" folk rule, which this dataset breaks by
+    #                         two orders of magnitude at the top.
+    #   type_axes           -- the MaleCNS `type` axis is the one all 5,413
+    #                         anchored names sit on, but it disagrees with
+    #                         `flywireType` on a third of the bodies, so a type
+    #                         name in a unit is not greppable in FlyWire.
+    #   dimorphism_provenance -- how many of the sex labels actually carry a
+    #                         curator note (150 of 479) and how many of the
+    #                         types are only `Roughly traced` (327).  A unit
+    #                         anchored on those is anchored on curation, and
+    #                         the reader is entitled to know that.
+    #
+    # A unit's own dimorphic types are listed too, so the distance is
+    # name-level rather than a bare count.
+    scale = meas.get("body_scale", {})
+    chk = meas.get("per_type_attribution_check", {})
+    if chk and not chk.get("reconciles", True):
+        raise SystemExit(
+            "gen_functional_units: %s reports an unreconciled per-type "
+            "attribution; re-run scripts/extract_malecns_dimorphism.py before "
+            "regenerating." % path.name)
+    per_type = {t["type"]: t for t in doc.get("types_top", [])}
+    axes = doc.get("type_axes", {}).get("axis_comparison", {})
+    prov_counts = {k: v for k, v in doc.get("dimorphism_provenance", {}).items()
+                   if k != "note"}
+
     anchored_profiles = _load_anchors().get("profile_anchors", {})
     attached = []
     for unit in FUNCTIONAL_UNITS:
         n_listed = 0
         n_family = 0
+        mine = set()
         for m in unit.get("members", []):
             spec = anchored_profiles.get(m.get("neuron"))
             if not isinstance(spec, dict):
@@ -3697,6 +3731,7 @@ def _load_malecns_dimorphism():
             for t in spec.get("types") or []:
                 if isinstance(t, dict) and t.get("type") in explicit:
                     n_listed += 1
+                    mine.add(t["type"])
             rule = spec.get("rule") or ""
             if rule.startswith("type_re:"):
                 rx = re.compile(rule.split("type_re:", 1)[1])
@@ -3716,6 +3751,16 @@ def _load_malecns_dimorphism():
             "synapses_both_ends_pct": meas["synapses_both_ends_pct"],
             "anchored_types_dimorphic": n_listed,
             "family_anchored_types_dimorphic": n_family,
+            "unit_dimorphic_types": sorted(mine)[:20],
+            "body_scale": {k: scale.get(k) for k in
+                           ("median", "p90", "p99", "p999", "max")
+                           if k in scale},
+            "type_axis": {
+                "counted_on": "type (MaleCNS axis)",
+                "type_vs_flywireType_differ_pct":
+                    axes.get("bodies_differing_pct"),
+            },
+            "dimorphism_provenance": prov_counts,
         }
         attached.append(unit["name"])
 

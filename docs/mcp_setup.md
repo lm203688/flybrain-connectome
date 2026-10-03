@@ -134,6 +134,23 @@ over all 151,856,684 weight rows, and each unit records how far it sits from tha
 population -- 10.77% of network synapses touch a dimorphic body, only 1.28% have
 both endpoints dimorphic. MaleCNS is male-only, so the ledger reports the
 annotation, never a measured sex difference.
+
+Audited in v2.33.0, which added three things every one of those 29 units now
+carries. `body_scale`: the per-body synapse distribution (median 1,164 / p99
+19,816 / max 271,220 over 191,696 annotated bodies), so a per-cell figure can be
+read against this connectome instead of against a rule of thumb that the data
+breaks -- `oviIN` at ~91k synapses per body is the 99.98th percentile of a
+heavy tail, while the heaviest type by total (`TmY21`) is only the 72nd
+percentile per body. `type_axis`: the ledger counts on the MaleCNS `type` axis,
+which disagrees with `flywireType` on 33.08% of bodies -- `TmY21` is FlyWire's
+`Tm36` -- and all 5,413 anchored type names are asserted to sit on that axis.
+`dimorphism_provenance`: 150 of 479 types carry the curator's own
+`matchingNotes` sentence and 327 are only `Roughly traced`. The per-type totals
+are reconciled on every extraction (each pair charged once per dimorphic
+endpoint, so they must sum to touching + both-ends = 14,966,115) and the
+extractor refuses to write when they do not; v2.32.0's per-type column was
+inflated by 3x the internal total and is corrected here.
+
 All 57 anchored populations are now referenced by
 at least one unit (v2.1.0 wired the last five). A measured count of ZERO is a
 recorded contradiction (currently one, in `central_complex_steering_unit`), never a

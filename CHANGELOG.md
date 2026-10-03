@@ -8,16 +8,62 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.32.0` | the toolkit as a whole |
+| package | `2.33.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 115 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0, 2.28.0, 2.29.0, 2.30.0, 2.31.0 and 2.32.0) |
+| functional-unit library schema | `1.0` | 115 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0, 2.28.0, 2.29.0, 2.30.0, 2.31.0, 2.32.0 and 2.33.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [2.33.0] — 2026-10-03
+
+### 回源核实 v2.32.0 的极值：抓到一个重复计数 bug，换来一张尺度参照表
+
+v2.32.0 收尾时留了一句自我提醒：`oviIN`（2 细胞 196,360 突触）和 `TmY21`
+（372 细胞）是账本里最刺眼的数字，注释来源没回源核实。这轮就是去核它，结果
+**注释是干净的，脚本是脏的**。
+
+**① `oviIN` / `TmY21` 的注释有出处。** `matchingNotes` 列存着策展人自己写的句子
+—— `oviIN`: "more extensive dendrites in male"；`TmY21`: "the male dendrites have an
+extra layer of arborisation in layer 3 of the ME, and also more arborisation in the
+LP"。标签是可追溯的策展，不是推断。**150/479** 个类型带这样的原话，**327** 个只是
+`Roughly traced`。现在这些跟着每个 top type 一起走（`--provenance`）。
+
+**② 但 per-type 突触数被灌了水。** `extract_malecns_dimorphism.py` 的归因循环把
+「两端都雄性」的边走第二遍，于是每条内部突触被记 **4 次**（应该每个 dimorphic 端点
+各记 1 次）。`TmY21` 741,415 → **732,527**，`oviIN` 196,360 → **182,815**。
+总体口径（直接取自 groupby）没受影响，**但 per-type 明细才是读者会引用的那部分**。
+修法不是「小心一点」，是一条恒等式：每类型之和必须恒等于
+`触碰 + 两端都雄性`（14,966,115），对不上就 **拒绝写盘并退出 3**。
+注入原 bug 复现：该断言报 `16555382 vs 14966115`，差额恰好 1,589,267 = 内部总量。
+
+**③ 「1k–10k 突触/神经元」这条常识在这个连接组里是错的。** 补了 per-body 尺度
+（191,696 个带突触的体）：中位 **1,164**、p90 4,636、p99 19,816、p99.9 48,496、
+max **271,220**。重尾。所以 `oviIN` 每细胞 ~91k 落在 **99.98 百分位**——长尾顶端，
+不是异常值；而总量第一的 `TmY21` 每细胞只有 **72 百分位**。
+**细胞数 ≠ 单位强度**，两者现在都在 artifact 里。
+（这条也纠正了我自己：第一轮怀疑 `oviIN` 是 10 倍离群点，方向错了。）
+
+**④ 三条类型轴并存，名字不能互相 grep。** `type`（MaleCNS，11,751 类）、
+`flywireType`（8,199）、`hemibrainType`（4,495），`type` 与 `flywireType` 在
+**33.08%** 的体上不一致——`TmY21` 在这里是 FlyWire 的 `Tm36`。别名随每个 top type
+输出。5,413 个锚定类型名已断言全在 `type` 轴上，不是假设。
+
+**过程中自己犯的两个错，都留成了防线。**
+`np.zeros(400_000)` + `pre < 400_000` 掩码看着像边界检查，实际是**静默丢掉 96% 数据**
+（body id 到 1,571,825,087，稠密数组要 11.7 GiB）——它算出 per-body 中位 573，
+差点「证实」`oviIN` 是离群点。改成对注解 id 排序 + 二分查找。现在断言
+`bodies_with_synapses >= 1000`。另一处：把 `54.94%` 手写进 caveat，那是 pandas 把
+缺失值变成字符串 `'nan'` 造成的假差异，真实值 33.08%；现在文字里**不写数字**，
+只指向 `type_axes.axis_comparison`。
+
+29 个单元的 `provenance.male_dimorphic` 升级：带 `body_scale`、`type_axis`、
+`dimorphism_provenance`、本单元自己的 dimorphic 类型名。FUNCTIONAL_UNITS 仍 **115**
+（无新增单元）。门禁 10/10（--with-data）。
 
 ## [2.32.0] — 2026-10-03
 

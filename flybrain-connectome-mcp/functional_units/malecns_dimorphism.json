@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_utc": "2026-10-03T07:48:01Z",
+  "generated_utc": "2026-10-03T15:28:34Z",
   "purpose": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
   "source": {
     "connectome": "MaleCNS v1.0 (FlyCellAtlas)",
@@ -20,10 +20,48 @@
     },
     "labels_total": 2368
   },
+  "type_axes": {
+    "note": "The annotation table carries three independent type-naming axes. This ledger counts on `type` (the MaleCNS axis) and only that one. `type` != `flywireType` on most bodies, so a class named here may be filed under a different name in FlyWire or hemibrain; per-type aliases travel with the top types below.",
+    "class_counts": {
+      "type": 11751,
+      "flywireType": 8199,
+      "hemibrainType": 4495
+    },
+    "axis_comparison": {
+      "compared": "type vs flywireType",
+      "bodies_compared": 211577,
+      "bodies_differing": 69997,
+      "bodies_differing_pct": 33.08,
+      "bodies_named_on_either_axis": 165344,
+      "classes_involved": 7192,
+      "hemibrain_comparison": {
+        "bodies_with_hemibrain_type": 32919,
+        "bodies_differing": 7243,
+        "bodies_differing_pct": 22.0
+      }
+    }
+  },
+  "dimorphism_provenance": {
+    "note": "Where the sex label came from. `matching_notes` is the curator's own sentence; `status_labels` is the trace grade; `itolee_grade` is the matching grade against the Ito et al. reference. A label with a note is curation you can check, not an inference this library made -- but it is still a label, and MaleCNS has no female reconstruction to measure it against.",
+    "types_with_matching_note": 150,
+    "types_total": 479,
+    "types_roughly_traced": 327
+  },
   "measurement": {
     "network_baseline": {
       "edges": 25582938,
       "synapses": 124177617
+    },
+    "body_scale": {
+      "note": "Scale reference so an extreme per-type number can be judged. Percentiles are over annotated bodies that carry at least one synapse. The distribution is heavy-tailed, so the per-cell means in types_top sit far above the median and are not anomalies.",
+      "annotated_bodies": 211577,
+      "bodies_with_synapses": 191696,
+      "median": 1164,
+      "p90": 4636,
+      "p99": 19816,
+      "p999": 48496,
+      "max": 271220,
+      "max_body_id": 1571825087
     },
     "edges_touching": 5875648,
     "edges_touching_pct": 22.9671,
@@ -33,7 +71,13 @@
     "edges_both_ends_pct": 1.114,
     "synapses_both_ends": 1589267,
     "synapses_both_ends_pct": 1.2798,
-    "internal_share_of_touched_synapses": 0.1188
+    "internal_share_of_touched_synapses": 0.1188,
+    "per_type_attribution_check": {
+      "charged_to_types": 14966115,
+      "expected_touching_plus_both": 14966115,
+      "reconciles": true,
+      "note": "Each collapsed pair is charged once per dimorphic endpoint, so the per-type totals sum to touching + both-ends. Checked on every run; the script refuses to write if it fails."
+    }
   },
   "per_label": {
     "male-specific": {
@@ -78,322 +122,853 @@
     {
       "type": "TmY21",
       "bodies": 372,
-      "synapses": 741415,
-      "pct_of_network": 0.5971,
+      "synapses": 732527,
+      "pct_of_network": 0.5899,
       "superclass": "ol_intrinsic",
-      "anchored": true
+      "anchored": true,
+      "synapses_per_body": 1969.2,
+      "median_body_synapses": 2032,
+      "body_synapse_percentile": 72.4856,
+      "provenance": {
+        "flywire_alias": [
+          "Tm36"
+        ],
+        "note": "Counted under the MaleCNS `type` axis; FlyWire calls this class Tm36. The two axes disagree on a third of the annotated bodies, so a FlyWire-side grep for `TmY21` returns nothing.",
+        "status_labels": [
+          "Prelim Roughly traced",
+          "Reviewed",
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "the male dendrites have an extra layer of arborisation in layer 3 of the ME, and also more arborisation in the LP"
+        ],
+        "itolee_grade": []
+      }
     },
     {
       "type": "oviIN",
       "bodies": 2,
-      "synapses": 196360,
-      "pct_of_network": 0.1581,
+      "synapses": 182815,
+      "pct_of_network": 0.1472,
       "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 91407.5,
+      "median_body_synapses": 91407,
+      "body_synapse_percentile": 99.9838,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "more extensive dendrites in male"
+        ],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
     },
     {
       "type": "Tm26",
       "bodies": 103,
-      "synapses": 157729,
-      "pct_of_network": 0.127,
+      "synapses": 151269,
+      "pct_of_network": 0.1218,
       "superclass": "ol_intrinsic",
-      "anchored": true
+      "anchored": true,
+      "synapses_per_body": 1468.6,
+      "median_body_synapses": 1411,
+      "body_synapse_percentile": 57.1462,
+      "provenance": {
+        "status_labels": [
+          "Reviewed",
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": []
+      }
     },
     {
       "type": "ANXXX084",
       "bodies": 8,
-      "synapses": 153642,
-      "pct_of_network": 0.1237,
+      "synapses": 145646,
+      "pct_of_network": 0.1173,
       "superclass": "ascending_neuron",
-      "anchored": true
+      "anchored": true,
+      "synapses_per_body": 18205.8,
+      "median_body_synapses": 17432,
+      "body_synapse_percentile": 98.6656,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced"
+        ],
+        "matching_notes": [
+          "extended dendrites across mcns VNC"
+        ],
+        "itolee_grade": []
+      }
     },
     {
       "type": "pIP1",
       "bodies": 2,
-      "synapses": 150723,
-      "pct_of_network": 0.1214,
+      "synapses": 132385,
+      "pct_of_network": 0.1066,
       "superclass": "descending_neuron",
-      "anchored": true
-    },
-    {
-      "type": "mAL_m8",
-      "bodies": 16,
-      "synapses": 146071,
-      "pct_of_network": 0.1176,
-      "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": true,
+      "synapses_per_body": 66192.5,
+      "median_body_synapses": 66192,
+      "body_synapse_percentile": 99.9525,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": []
+      }
     },
     {
       "type": "AOTU008",
       "bodies": 25,
-      "synapses": 143308,
-      "pct_of_network": 0.1154,
+      "synapses": 128042,
+      "pct_of_network": 0.1031,
       "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "mAL_m1",
-      "bodies": 12,
-      "synapses": 137435,
-      "pct_of_network": 0.1107,
-      "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 5121.7,
+      "median_body_synapses": 5229,
+      "body_synapse_percentile": 91.2956,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "ventrally projecting axonal arbors mcns"
+        ],
+        "itolee_grade": [
+          "AOTUv3_dorsal"
+        ]
+      }
     },
     {
       "type": "AVLP749m",
       "bodies": 12,
-      "synapses": 135554,
-      "pct_of_network": 0.1092,
+      "synapses": 108708,
+      "pct_of_network": 0.0875,
       "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 9059.0,
+      "median_body_synapses": 8911,
+      "body_synapse_percentile": 95.6968,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "closest types in female: SMP003, SMP005"
+        ],
+        "itolee_grade": [
+          "LHl2_dorsal"
+        ]
+      }
+    },
+    {
+      "type": "mAL_m8",
+      "bodies": 16,
+      "synapses": 96063,
+      "pct_of_network": 0.0774,
+      "superclass": "cb_intrinsic",
+      "anchored": false,
+      "synapses_per_body": 6003.9,
+      "median_body_synapses": 5931,
+      "body_synapse_percentile": 92.5794,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "CREa1_ventral"
+        ]
+      }
     },
     {
       "type": "DNp13",
       "bodies": 2,
-      "synapses": 113327,
-      "pct_of_network": 0.0913,
+      "synapses": 90050,
+      "pct_of_network": 0.0725,
       "superclass": "descending_neuron",
-      "anchored": true
+      "anchored": true,
+      "synapses_per_body": 45025.0,
+      "median_body_synapses": 45025,
+      "body_synapse_percentile": 99.8858,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "difference in morphology"
+        ],
+        "itolee_grade": [
+          "PSp2"
+        ]
+      }
     },
     {
-      "type": "SMP702m",
-      "bodies": 4,
-      "synapses": 108672,
-      "pct_of_network": 0.0875,
-      "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "AVLP316",
-      "bodies": 6,
-      "synapses": 102853,
-      "pct_of_network": 0.0828,
-      "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "aSP22",
-      "bodies": 2,
-      "synapses": 101767,
-      "pct_of_network": 0.082,
-      "superclass": "descending_neuron",
-      "anchored": false
-    },
-    {
-      "type": "VES200m",
+      "type": "mAL_m1",
       "bodies": 12,
-      "synapses": 99439,
-      "pct_of_network": 0.0801,
+      "synapses": 89694,
+      "pct_of_network": 0.0722,
       "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "VES022",
-      "bodies": 11,
-      "synapses": 96688,
-      "pct_of_network": 0.0779,
-      "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 7474.5,
+      "median_body_synapses": 7417,
+      "body_synapse_percentile": 94.389,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "CREa1_ventral"
+        ]
+      }
     },
     {
       "type": "Cm26",
       "bodies": 13,
-      "synapses": 90027,
-      "pct_of_network": 0.0725,
+      "synapses": 88605,
+      "pct_of_network": 0.0714,
       "superclass": "ol_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 6815.8,
+      "median_body_synapses": 5838,
+      "body_synapse_percentile": 92.4302,
+      "provenance": {
+        "status_labels": [
+          "Reviewed",
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": []
+      }
     },
     {
-      "type": "PVLP214m",
-      "bodies": 10,
-      "synapses": 86539,
-      "pct_of_network": 0.0697,
+      "type": "aSP22",
+      "bodies": 2,
+      "synapses": 88517,
+      "pct_of_network": 0.0713,
+      "superclass": "descending_neuron",
+      "anchored": false,
+      "synapses_per_body": 44258.5,
+      "median_body_synapses": 44258,
+      "body_synapse_percentile": 99.8811,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "mcns bushier in VNC"
+        ],
+        "itolee_grade": [
+          "WEDd1"
+        ]
+      }
+    },
+    {
+      "type": "VES200m",
+      "bodies": 12,
+      "synapses": 85619,
+      "pct_of_network": 0.0689,
       "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 7134.9,
+      "median_body_synapses": 7175,
+      "body_synapse_percentile": 94.1501,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced",
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "SMPad2"
+        ]
+      }
     },
     {
       "type": "DNb05",
       "bodies": 2,
-      "synapses": 83025,
-      "pct_of_network": 0.0669,
+      "synapses": 81860,
+      "pct_of_network": 0.0659,
       "superclass": "descending_neuron",
-      "anchored": true
-    },
-    {
-      "type": "CRE021",
-      "bodies": 2,
-      "synapses": 81705,
-      "pct_of_network": 0.0658,
-      "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "AVLP029",
-      "bodies": 2,
-      "synapses": 81226,
-      "pct_of_network": 0.0654,
-      "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "SIP136m",
-      "bodies": 2,
-      "synapses": 80067,
-      "pct_of_network": 0.0645,
-      "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": true,
+      "synapses_per_body": 40930.0,
+      "median_body_synapses": 40930,
+      "body_synapse_percentile": 99.8513,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced"
+        ],
+        "matching_notes": [
+          "extra VNC branch mcns"
+        ],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
     },
     {
       "type": "INXXX058",
       "bodies": 6,
-      "synapses": 79432,
-      "pct_of_network": 0.064,
+      "synapses": 77764,
+      "pct_of_network": 0.0626,
       "superclass": "vnc_intrinsic",
-      "anchored": true
+      "anchored": true,
+      "synapses_per_body": 12960.7,
+      "median_body_synapses": 13278,
+      "body_synapse_percentile": 97.712,
+      "provenance": {
+        "status_labels": [
+          "Reviewed"
+        ],
+        "matching_notes": [],
+        "itolee_grade": []
+      }
     },
     {
-      "type": "SMP709m",
-      "bodies": 2,
-      "synapses": 78486,
-      "pct_of_network": 0.0632,
-      "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "AVLP712m",
-      "bodies": 2,
-      "synapses": 77933,
-      "pct_of_network": 0.0628,
-      "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "PVLP016",
-      "bodies": 2,
-      "synapses": 76710,
-      "pct_of_network": 0.0618,
-      "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "pC1_4a",
+      "type": "AVLP316",
       "bodies": 6,
-      "synapses": 75607,
-      "pct_of_network": 0.0609,
+      "synapses": 76605,
+      "pct_of_network": 0.0617,
       "superclass": "cb_intrinsic",
-      "anchored": true
+      "anchored": false,
+      "synapses_per_body": 12767.5,
+      "median_body_synapses": 12624,
+      "body_synapse_percentile": 97.5018,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
     },
     {
-      "type": "DNp36",
-      "bodies": 2,
-      "synapses": 75332,
-      "pct_of_network": 0.0607,
-      "superclass": "descending_neuron",
-      "anchored": true
+      "type": "SMP702m",
+      "bodies": 4,
+      "synapses": 76009,
+      "pct_of_network": 0.0612,
+      "superclass": "cb_intrinsic",
+      "anchored": false,
+      "synapses_per_body": 19002.2,
+      "median_body_synapses": 19187,
+      "body_synapse_percentile": 98.9217,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
     },
     {
-      "type": "AVLP714m",
-      "bodies": 6,
-      "synapses": 75155,
+      "type": "PVLP214m",
+      "bodies": 10,
+      "synapses": 75188,
       "pct_of_network": 0.0605,
       "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 7518.8,
+      "median_body_synapses": 7369,
+      "body_synapse_percentile": 94.3447,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced",
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "DL1_ventral"
+        ]
+      }
     },
     {
-      "type": "MZ_lv2PN",
-      "bodies": 2,
-      "synapses": 74609,
-      "pct_of_network": 0.0601,
+      "type": "VES022",
+      "bodies": 11,
+      "synapses": 71193,
+      "pct_of_network": 0.0573,
       "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "FLA001m",
-      "bodies": 12,
-      "synapses": 73761,
-      "pct_of_network": 0.0594,
-      "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "pIP10",
-      "bodies": 2,
-      "synapses": 73662,
-      "pct_of_network": 0.0593,
-      "superclass": "descending_neuron",
-      "anchored": true
-    },
-    {
-      "type": "AVLP728m",
-      "bodies": 6,
-      "synapses": 73661,
-      "pct_of_network": 0.0593,
-      "superclass": "cb_intrinsic",
-      "anchored": false
-    },
-    {
-      "type": "LoVP92",
-      "bodies": 13,
-      "synapses": 72953,
-      "pct_of_network": 0.0587,
-      "superclass": "visual_projection",
-      "anchored": false
-    },
-    {
-      "type": "SIP103m",
-      "bodies": 9,
-      "synapses": 71778,
-      "pct_of_network": 0.0578,
-      "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 6472.1,
+      "median_body_synapses": 6820,
+      "body_synapse_percentile": 93.7385,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced",
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "more ventral, posterior branching mcns"
+        ],
+        "itolee_grade": [
+          "PSa1"
+        ]
+      }
     },
     {
       "type": "ANXXX013",
       "bodies": 2,
-      "synapses": 70537,
-      "pct_of_network": 0.0568,
+      "synapses": 69507,
+      "pct_of_network": 0.056,
       "superclass": "ascending_neuron",
-      "anchored": true
+      "anchored": true,
+      "synapses_per_body": 34753.5,
+      "median_body_synapses": 34753,
+      "body_synapse_percentile": 99.7924,
+      "provenance": {
+        "flywire_alias": [
+          "AN_GNG_150"
+        ],
+        "note": "Counted under the MaleCNS `type` axis; FlyWire calls this class AN_GNG_150. The two axes disagree on a third of the annotated bodies, so a FlyWire-side grep for `ANXXX013` returns nothing.",
+        "status_labels": [
+          "Prelim Roughly traced"
+        ],
+        "matching_notes": [
+          "extended dorsal projections mcns brain"
+        ],
+        "itolee_grade": []
+      }
     },
     {
-      "type": "SIP100m",
-      "bodies": 10,
-      "synapses": 69972,
-      "pct_of_network": 0.0563,
+      "type": "MZ_lv2PN",
+      "bodies": 2,
+      "synapses": 68304,
+      "pct_of_network": 0.055,
       "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 34152.0,
+      "median_body_synapses": 34152,
+      "body_synapse_percentile": 99.7856,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced"
+        ],
+        "matching_notes": [
+          "extra dendritic branches in DA1 glomerulus in the male; input from DA1 ORNs in male"
+        ],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
+    },
+    {
+      "type": "SIP136m",
+      "bodies": 2,
+      "synapses": 67976,
+      "pct_of_network": 0.0547,
+      "superclass": "cb_intrinsic",
+      "anchored": false,
+      "synapses_per_body": 33988.0,
+      "median_body_synapses": 33988,
+      "body_synapse_percentile": 99.7825,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "biological variability mcns"
+        ],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
+    },
+    {
+      "type": "SMP709m",
+      "bodies": 2,
+      "synapses": 65695,
+      "pct_of_network": 0.0529,
+      "superclass": "cb_intrinsic",
+      "anchored": false,
+      "synapses_per_body": 32847.5,
+      "median_body_synapses": 32847,
+      "body_synapse_percentile": 99.7543,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "DL1_ventral"
+        ]
+      }
+    },
+    {
+      "type": "AVLP029",
+      "bodies": 2,
+      "synapses": 64441,
+      "pct_of_network": 0.0519,
+      "superclass": "cb_intrinsic",
+      "anchored": false,
+      "synapses_per_body": 32220.5,
+      "median_body_synapses": 32220,
+      "body_synapse_percentile": 99.7386,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
+    },
+    {
+      "type": "LoVP92",
+      "bodies": 13,
+      "synapses": 64438,
+      "pct_of_network": 0.0519,
+      "superclass": "visual_projection",
+      "anchored": false,
+      "synapses_per_body": 4956.8,
+      "median_body_synapses": 5018,
+      "body_synapse_percentile": 90.8736,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced",
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "VPNp1_lateral"
+        ]
+      }
+    },
+    {
+      "type": "DNge049",
+      "bodies": 2,
+      "synapses": 63319,
+      "pct_of_network": 0.051,
+      "superclass": "descending_neuron",
+      "anchored": true,
+      "synapses_per_body": 31659.5,
+      "median_body_synapses": 31659,
+      "body_synapse_percentile": 99.7267,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced"
+        ],
+        "matching_notes": [
+          "difference in morphology"
+        ],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
+    },
+    {
+      "type": "CRE021",
+      "bodies": 2,
+      "synapses": 62258,
+      "pct_of_network": 0.0501,
+      "superclass": "cb_intrinsic",
+      "anchored": false,
+      "synapses_per_body": 31129.0,
+      "median_body_synapses": 31129,
+      "body_synapse_percentile": 99.712,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "extensive lateral axon branching mcns"
+        ],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
+    },
+    {
+      "type": "DNg37",
+      "bodies": 2,
+      "synapses": 62172,
+      "pct_of_network": 0.0501,
+      "superclass": "descending_neuron",
+      "anchored": true,
+      "synapses_per_body": 31086.0,
+      "median_body_synapses": 31086,
+      "body_synapse_percentile": 99.7115,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced"
+        ],
+        "matching_notes": [
+          "difference in morphology"
+        ],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
+    },
+    {
+      "type": "IN12A002",
+      "bodies": 4,
+      "synapses": 61896,
+      "pct_of_network": 0.0498,
+      "superclass": "vnc_intrinsic",
+      "anchored": true,
+      "synapses_per_body": 15474.0,
+      "median_body_synapses": 15142,
+      "body_synapse_percentile": 98.2118,
+      "provenance": {
+        "status_labels": [
+          "Reviewed"
+        ],
+        "matching_notes": [
+          "extensive dorsal and lateral branching mcns"
+        ],
+        "itolee_grade": []
+      }
+    },
+    {
+      "type": "AVLP297",
+      "bodies": 8,
+      "synapses": 61607,
+      "pct_of_network": 0.0496,
+      "superclass": "cb_intrinsic",
+      "anchored": false,
+      "synapses_per_body": 7700.9,
+      "median_body_synapses": 7708,
+      "body_synapse_percentile": 94.6994,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced",
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "axon shifted medially in female"
+        ],
+        "itolee_grade": [
+          "VLPa1_lateral"
+        ]
+      }
+    },
+    {
+      "type": "DNp36",
+      "bodies": 2,
+      "synapses": 60191,
+      "pct_of_network": 0.0485,
+      "superclass": "descending_neuron",
+      "anchored": true,
+      "synapses_per_body": 30095.5,
+      "median_body_synapses": 30095,
+      "body_synapse_percentile": 99.6813,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "difference in morphology"
+        ],
+        "itolee_grade": [
+          "DM6_central1__prim"
+        ]
+      }
+    },
+    {
+      "type": "LHAV2b2_a",
+      "bodies": 9,
+      "synapses": 59283,
+      "pct_of_network": 0.0477,
+      "superclass": "cb_intrinsic",
+      "anchored": true,
+      "synapses_per_body": 6587.0,
+      "median_body_synapses": 5965,
+      "body_synapse_percentile": 92.6274,
+      "provenance": {
+        "flywire_alias": [
+          "LHAV2b2a"
+        ],
+        "note": "Counted under the MaleCNS `type` axis; FlyWire calls this class LHAV2b2a. The two axes disagree on a third of the annotated bodies, so a FlyWire-side grep for `LHAV2b2_a` returns nothing.",
+        "status_labels": [
+          "Prelim Roughly traced",
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "mcns more extensive in dendrites and axons"
+        ],
+        "itolee_grade": [
+          "VLPl2_posterior"
+        ]
+      }
+    },
+    {
+      "type": "PVLP016",
+      "bodies": 2,
+      "synapses": 59088,
+      "pct_of_network": 0.0476,
+      "superclass": "cb_intrinsic",
+      "anchored": false,
+      "synapses_per_body": 29544.0,
+      "median_body_synapses": 29544,
+      "body_synapse_percentile": 99.6588,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [
+          "denser, more extensive neurites in male"
+        ],
+        "itolee_grade": [
+          "VLPl2_medial"
+        ]
+      }
+    },
+    {
+      "type": "DNp48",
+      "bodies": 2,
+      "synapses": 57974,
+      "pct_of_network": 0.0467,
+      "superclass": "descending_neuron",
+      "anchored": true,
+      "synapses_per_body": 28987.0,
+      "median_body_synapses": 28987,
+      "body_synapse_percentile": 99.6374,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced"
+        ],
+        "matching_notes": [
+          "little dimorphism, only in abdomen"
+        ],
+        "itolee_grade": [
+          "SMPpm1"
+        ]
+      }
+    },
+    {
+      "type": "AVLP728m",
+      "bodies": 6,
+      "synapses": 57902,
+      "pct_of_network": 0.0466,
+      "superclass": "cb_intrinsic",
+      "anchored": false,
+      "synapses_per_body": 9650.3,
+      "median_body_synapses": 9306,
+      "body_synapse_percentile": 95.9597,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced",
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "VLPa1_medial"
+        ]
+      }
+    },
+    {
+      "type": "AVLP714m",
+      "bodies": 6,
+      "synapses": 57052,
+      "pct_of_network": 0.0459,
+      "superclass": "cb_intrinsic",
+      "anchored": false,
+      "synapses_per_body": 9508.7,
+      "median_body_synapses": 9535,
+      "body_synapse_percentile": 96.1042,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "DL1_ventral"
+        ]
+      }
     },
     {
       "type": "AVLP710m",
       "bodies": 2,
-      "synapses": 69479,
-      "pct_of_network": 0.056,
+      "synapses": 56744,
+      "pct_of_network": 0.0457,
       "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 28372.0,
+      "median_body_synapses": 28372,
+      "body_synapse_percentile": 99.6187,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
     },
     {
-      "type": "SIP133m",
+      "type": "AVLP712m",
       "bodies": 2,
-      "synapses": 69015,
-      "pct_of_network": 0.0556,
+      "synapses": 56541,
+      "pct_of_network": 0.0455,
       "superclass": "cb_intrinsic",
-      "anchored": false
+      "anchored": false,
+      "synapses_per_body": 28270.5,
+      "median_body_synapses": 28270,
+      "body_synapse_percentile": 99.6155,
+      "provenance": {
+        "status_labels": [
+          "Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": [
+          "putative_primary"
+        ]
+      }
     },
     {
-      "type": "SIP104m",
-      "bodies": 8,
-      "synapses": 68493,
-      "pct_of_network": 0.0552,
-      "superclass": "cb_intrinsic",
-      "anchored": false
+      "type": "AN05B102c",
+      "bodies": 2,
+      "synapses": 56397,
+      "pct_of_network": 0.0454,
+      "superclass": "ascending_neuron",
+      "anchored": true,
+      "synapses_per_body": 28198.5,
+      "median_body_synapses": 28198,
+      "body_synapse_percentile": 99.6129,
+      "provenance": {
+        "flywire_alias": [
+          "AN_AVLP_PVLP_5"
+        ],
+        "note": "Counted under the MaleCNS `type` axis; FlyWire calls this class AN_AVLP_PVLP_5. The two axes disagree on a third of the annotated bodies, so a FlyWire-side grep for `AN05B102c` returns nothing.",
+        "status_labels": [
+          "Prelim Roughly traced"
+        ],
+        "matching_notes": [
+          "dorsal projection around esophagous in mcns"
+        ],
+        "itolee_grade": []
+      }
     },
     {
       "type": "AN09B017g",
       "bodies": 2,
-      "synapses": 68420,
-      "pct_of_network": 0.0551,
+      "synapses": 55802,
+      "pct_of_network": 0.0449,
       "superclass": "ascending_neuron",
-      "anchored": true
+      "anchored": true,
+      "synapses_per_body": 27901.0,
+      "median_body_synapses": 27901,
+      "body_synapse_percentile": 99.5999,
+      "provenance": {
+        "status_labels": [
+          "Prelim Roughly traced"
+        ],
+        "matching_notes": [],
+        "itolee_grade": []
+      }
     }
   ],
   "internal_type_pairs_top": [
@@ -783,10 +1358,13 @@
   },
   "caveat": [
     "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
-    "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+    "A synapse is charged once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the per-type figures therefore sum to touching + both-ends rather than to the touching total. `measurement.per_type_attribution_check` records that identity and the script refuses to write when it fails.",
     "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
     "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
     "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
-    "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+    "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list.",
+    "Types are named on the MaleCNS `type` axis. That axis disagrees with `flywireType` on a third of all annotated bodies -- `TmY21` here is the class FlyWire calls `Tm36` -- so quoting a type name from this artifact into FlyWire or hemibrain documentation needs the alias in `types_top[].provenance.flywire_alias` first. The exact rate is in `type_axes.axis_comparison`, not repeated here on purpose: a first pass of this script hardcoded 54.94% into this string, which was the pandas 'nan'-vs-missing artefact described above, not a measurement.",
+    "Per-type synapse counts are per-cell figures on a heavy-tailed distribution: compare them against `measurement.body_scale` (median / p99 / max) rather than against a rule of thumb. `oviIN` at ~91k synapses per body looks impossible next to the usual '1k-10k per neuron' rule, and is nonetheless real in this dataset -- the rule is not what the data does.",
+    "`dimorphism_provenance` records the curator's own `matchingNotes` sentence and the trace grade behind each sex label. That makes a label auditable; it does not make it a measurement, and `Roughly traced` types are weaker objects than `Reviewed` ones."
   ]
 }

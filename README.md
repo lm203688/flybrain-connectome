@@ -212,6 +212,7 @@ flybrain larva-clusters --caveat    # what "covered" does and does not mean
 
 ```bash
 flybrain dimorphism                 # 2,368 cells nobody has looked at
+flybrain dimorphism --provenance    # ... with the curator note behind each sex label
 flybrain dimorphism --top 20 --internal
 flybrain dimorphism --caveat        # what "male-specific" does not mean here
 ```
@@ -547,7 +548,7 @@ while its unannotated members still have no known function. Cluster 0 — the
 authors' unassigned bucket, 364 cells — is the single largest holder of
 synapses in the whole network (51,211) and is *not* given a function here.
 
-### Male dimorphic ledger (v2.32.0) — 2,368 cells inside the male connectome
+### Male dimorphic ledger (v2.32.0, audited v2.33.0) — 2,368 cells inside the male connectome
 
 MaleCNS v1.0 is a *male* reconstruction, and its annotation table carries a
 `dimorphism` column. Nobody in this library had ever read it: the 58 anchored
@@ -573,10 +574,39 @@ the surrounding network. So no circuit is declared: FUNCTIONAL_UNITS stays at
 115, and 29 units carry the population's distance in
 `provenance.male_dimorphic`.
 
-The heaviest type is `TmY21` (372 bodies, 741,415 synapses, 0.597% of the
-network). `oviIN` reaches 196,360 synapses from two bodies. The heaviest
-both-ends pair is `TmY21 → LoVP92` (442 edges / 2,721 synapses), then
-`AN09B017b → mAL_m1`, then `pC1_2a → mAL_m8`.
+The heaviest type is `TmY21` (372 bodies, 732,527 synapses, 0.590% of the
+network). The heaviest both-ends pair is `TmY21 → LoVP92` (442 edges / 2,721
+synapses), then `AN09B017b → mAL_m1`, then `pC1_2a → mAL_m8`.
+
+**How big is "big" here (v2.33.0).** v2.32.0 quoted those totals with nothing to
+compare them against, which is how `oviIN`'s two bodies / 196,360 synapses came
+to look like an error — it is 10× the "1k–10k per neuron" folk rule. It is not
+an error. The per-body distribution in this connectome is heavy-tailed:
+
+| per-body synapses (annotated bodies) | median | p90 | p99 | p99.9 | max |
+|---|---|---|---|---|---|
+| 191,696 bodies with synapses | 1,164 | 4,636 | 19,816 | 48,496 | 271,220 |
+
+So `oviIN` sits at the **99.98th percentile** — the top of a long tail, not an
+outlier — while `TmY21`, the heaviest type by total, sits at only the **72nd
+percentile** per body. Cell count and per-cell strength are different things and
+the ledger now carries both.
+
+**Three things the type names will not tell you (v2.33.0).** First, the
+annotation table carries **three independent type axes** — `type` (MaleCNS,
+11,751 classes), `flywireType` (8,199) and `hemibrainType` (4,495) — and
+`type` disagrees with `flywireType` on **33.08%** of bodies. `TmY21` in this
+ledger is the class FlyWire calls **`Tm36`**; the alias travels with every top
+type. All 5,413 anchored type names were checked to sit on the `type` axis, and
+the script refuses to write if that ever stops being true. Second, each type now
+carries the curator's own `matchingNotes` sentence behind the sex label
+(`oviIN`: *"more extensive dendrites in male"*) plus its trace grade — **150 of
+479** types have such a note and **327** are only `Roughly traced`. Third, the
+per-type totals are now checked on every run: each pair is charged once per
+dimorphic endpoint, so they must sum to touching + both-ends
+(14,966,115), and the extractor refuses to write if they do not. They did not
+in v2.32.0 — internal pairs were counted four times, which inflated every
+per-type figure by 3× the internal total.
 
 **What this ledger cannot say.** MaleCNS contains no female reconstruction, so
 a `dimorphism` label is the curator's annotation, not a comparison made here.
