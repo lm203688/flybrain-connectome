@@ -122,7 +122,13 @@ circuits re-measured across all eight Witvliet 2020 reconstructions (L1 x4,
 L2, L3, adult x2), so each unit reports the synapses its own cell classes carry
 at L1 / L2 / L3 / adult. They carry
 `provenance.source_connectome`;
-the remaining 66 are cross-species concept units. All 57 anchored populations are now referenced by
+the remaining 66 are cross-species concept units. The eight Drosophila larva units
+additionally carry `provenance.connectome_coverage` (v2.31.0): `larva_clusters.json`
+walks all 116,922 larva edges and records, per unit, how many synapses have BOTH
+endpoints resolving to a profile that unit declares -- 80,161 / 22.73% for the
+olfactory unit down to 2,736 / 0.78% for the respiratory relay, 77.13% network-wide
+and 3.52% frontier. Coverage there means traceable, not functionally characterised.
+All 57 anchored populations are now referenced by
 at least one unit (v2.1.0 wired the last five). A measured count of ZERO is a
 recorded contradiction (currently one, in `central_complex_steering_unit`), never a
 pass. `extracted_from_malecns` stays false everywhere: presence and non-contradiction
