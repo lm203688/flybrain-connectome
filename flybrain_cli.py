@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.33.0"
+__version__ = "2.34.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -247,12 +247,32 @@ def cmd_stages(args) -> int:
 
     if args.caveat:
         print(doc["caveat"], "\n")
+    ov = doc.get("circuit_overlap", {})
+    if ov.get("shared_cell_classes"):
+        print("the four circuits share cell classes, so their rows are NOT "
+              "additive:")
+        for pair, shared in ov["shared_cell_classes"].items():
+            print("    %-64s %s" % (pair, shared))
+        print()
+    sd = doc.get("stage_diffs", {})
+    if sd:
+        print("stage key sets (measured, not asserted): L1 union=%d  adult "
+              "union=%d  shared=%d  L1-only=%d  adult-only=%d"
+              % (sd["l1_union_keys"], sd["adult_union_keys"],
+                 sd["shared_keys"], sd["l1_only_keys"], sd["adult_only_keys"]))
+        print()
     for s in doc["stages"]:
         print("[%s] %s" % (s["stage"], s["label"]))
         for a in s["animals"]:
             print("    %-34s classes=%3d unique_edges=%4d synapses=%5d"
                   % (a["dataset"], a["n_cell_classes"],
                      a["n_unique_edges"], a["n_weighted_edges"]))
+        attr = s.get("attribution")
+        if attr:
+            print("    %-42s sum=%-14s union=%-14s inflation=%s"
+                  % ("ALL FOUR CIRCUITS",
+                     attr["sum_of_circuits"], attr["union"],
+                     attr["inflation_ratio"]))
         for uname, m in s["unit_measurements"].items():
             if args.unit and uname not in args.unit:
                 continue
@@ -314,6 +334,18 @@ def cmd_larva_clusters(args) -> int:
     print("    %-42s %7d synapses  %5.2f%%  <- frontier"
           % ("no unit declares either endpoint",
              cov["synapses_frontier"], cov["synapses_frontier_pct"]))
+    attr = doc.get("unit_attribution")
+    if attr:
+        print("    ^ the per-unit rows above are NOT additive: %d profiles are "
+              "declared by more than one unit," % attr["shared_profiles"])
+        print("      so they sum to %d against the %d covered above (%.4fx). "
+              "Use the union row for coverage."
+              % (attr["per_unit_sum"], attr["covered_total"], attr["ratio"]))
+        if args.caveat:
+            for p, us in sorted(attr["shared_profiles_detail"].items()):
+                print("      shared: %-34s %s"
+                      % (p, ", ".join(u.replace("larv_", "").replace("_unit", "")
+                                      for u in us)))
 
     ct = doc["cell_type_coverage"]
     print("cell classes: %d seen, %d touched, %d entirely outside every unit"
