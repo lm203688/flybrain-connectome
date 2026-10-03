@@ -208,7 +208,15 @@ flybrain larva-clusters --unannotated
 flybrain larva-clusters --caveat    # what "covered" does and does not mean
 ```
 
-### 7. Verify everything still works
+### 7. Read the MaleCNS male-dimorphic ledger
+
+```bash
+flybrain dimorphism                 # 2,368 cells nobody has looked at
+flybrain dimorphism --top 20 --internal
+flybrain dimorphism --caveat        # what "male-specific" does not mean here
+```
+
+### 8. Verify everything still works
 
 ```bash
 flybrain verify        # needs FLYBRAIN_DATA_DIR set to your data
@@ -538,6 +546,45 @@ them apart on purpose: a unit can span three quarters of the larva synapses
 while its unannotated members still have no known function. Cluster 0 — the
 authors' unassigned bucket, 364 cells — is the single largest holder of
 synapses in the whole network (51,211) and is *not* given a function here.
+
+### Male dimorphic ledger (v2.32.0) — 2,368 cells inside the male connectome
+
+MaleCNS v1.0 is a *male* reconstruction, and its annotation table carries a
+`dimorphism` column. Nobody in this library had ever read it: the 58 anchored
+profiles were built from `superclass` / `type`, and `type` is not sex-aware.
+`flybrain dimorphism` streams all 151,856,684 weight rows and asks, for every
+edge, whether at least one endpoint is one of the 2,368 bodies the column
+flags.
+
+| quantity | value |
+|---|---|
+| bodies / cell types | **2,368 / 479** |
+| edges touching the population | 5,875,648 pairs — **22.97%** |
+| synapses touching the population | 13,376,848 — **10.77%** |
+| edges with *both* endpoints dimorphic | 284,982 pairs — **1.11%** |
+| synapses with both endpoints dimorphic | 1,589,267 — **1.28%** |
+
+**The gap between those last two rows is the finding.** The male population is
+not an island: it is a thin, widely-connected subset that mostly talks to
+universal cells, and only about one in nine of the synapses it touches sits
+*between* two of its own cells. A "male circuit" declared on these numbers
+would have to be the 1.28% — which is smaller than the measurement noise of
+the surrounding network. So no circuit is declared: FUNCTIONAL_UNITS stays at
+115, and 29 units carry the population's distance in
+`provenance.male_dimorphic`.
+
+The heaviest type is `TmY21` (372 bodies, 741,415 synapses, 0.597% of the
+network). `oviIN` reaches 196,360 synapses from two bodies. The heaviest
+both-ends pair is `TmY21 → LoVP92` (442 edges / 2,721 synapses), then
+`AN09B017b → mAL_m1`, then `pC1_2a → mAL_m8`.
+
+**What this ledger cannot say.** MaleCNS contains no female reconstruction, so
+a `dimorphism` label is the curator's annotation, not a comparison made here.
+Nothing in it supports "larger in males", and the artifact says so in its own
+`caveat` field. Two counters are also kept separate on purpose: **194** dimorphic
+types are *listed* in an anchored profile's own type list (someone looked at
+them), while all **479** sit inside some anchored `^XXX` family rule — family
+membership is not tracing.
 
 ### MaleCNS embodiment (v1.7.0, densified v1.8.0)
 
