@@ -8,14 +8,72 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.30.0` | the toolkit as a whole |
+| package | `2.31.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 115 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0, 2.28.0, 2.29.0 and 2.30.0) |
+| functional-unit library schema | `1.0` | 115 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0, 2.28.0, 2.29.0, 2.30.0 and 2.31.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.31.0] — 2026-10-03
+
+### 幼虫连接组覆盖度账本：八单元的 77.13%，以及「未注释 53%」是个假象
+
+v2.28.0 / v2.29.0 的八个幼虫单元是按 `(cell_type, annotations)` 聚合出来的。
+聚合顺带留下了一个从未被回答的问题：**这八个单元到底覆盖了多少幼虫网络？**
+库里没有这个数，也就没有任何东西能回答「幼虫连接组是不是被抽干了」。
+
+新增 `scripts/extract_larva_clusters.py`：把 Winding et al. 2023 的全部
+116,922 条边走一遍，按数据自带的 `cluster` 列（93 个推断聚类）做账本，并给每个
+突触打一个判定。
+
+**判定口径（写死在 artifact）**：一条突触只有在**两端**的 `(cell_type, 模态桶)`
+都能解析到某个单元声明过的 `larv.*` profile 时才算被覆盖；两端都不在任何一个
+单元里才算 frontier。
+
+| 度量 | 突触数 | 占比 |
+|---|---|---|
+| 两端可追溯 | 271,956 | **77.13%** |
+| frontier（两端都不在任何单元里） | 12,415 | **3.52%** |
+
+分单元（两端口径）：嗅觉关联学习 80,161 / 22.73%（548 细胞）；
+蕈状体反馈 74,960 / 21.26%（530）；躯感逃逸 57,262 / 16.24%（942）；
+下降运动指令 53,824 / 15.26%（910）；温度中继 22,981 / 6.52%（361）；
+视觉中继 20,712 / 5.87%（358）；味觉摄食 6,428 / 1.82%（525）；
+呼吸中继 2,736 / 0.78%（275）。
+
+**推翻了之前的一个假设。** 幼虫网络有 1,560 个细胞没有官方注释——占全部细胞
+**52.77%**，这也是当初觉得「一大半还没被表征」的来源。但按突触算，这 1,560 个细胞
+只接触 212,542 个突触（**60.28%**），而且其中很大一部分**已经被单元当作填充
+population 声明了**（例如 `larv.lhn_unannotated` 在视觉中继单元里就是一个 role）。
+所以「细胞数多」和「突触没被覆盖」是两件事：8 个单元已经可以横跨 77% 的幼虫突触，
+同时它们的未注释成员依然没有任何已知功能。**覆盖 ≠ 表征**，这个账本把两者分开记。
+
+另外三个数字：作者标注的左右同源对 1,237 对；cluster 0（作者的未分配桶，364 个
+细胞）是全网络最大的单一突触持有者（51,211 突触），本轮**不给它任何功能**；
+完全落在所有单元之外的细胞类只有三个（无标注类 346 细胞、`MB-FFN`、`pre-DN-SEZ`）。
+
+**没有新增功能单元、没有新增模块剖面。** 一个 cluster 不是功能单元，库不拿结构
+冒充功能。FUNCTIONAL_UNITS 仍 **115**，MODULE_PROFILES 仍 **264**；新增的是一层
+可查的覆盖度账本。
+
+改动：
+- `scripts/extract_larva_clusters.py`（新）：只读 `larva_data/raw/{nodes,edges}.csv`
+  与既有的 `larva_profiles.json`，模态桶直接 import v2.28.0 抽取器的
+  `bucket()`，避免覆盖度数与单元实际口径分叉
+- `functional_units/larva_clusters.json`（新）：93 个 cluster 明细 + 覆盖度 + 分单元
+  覆盖度 + 30 条最大可追溯 profile 对
+- `gen_functional_units.py::_load_larva_coverage()`：注进 8 个幼虫单元的
+  `provenance.connectome_coverage`
+- `flybrain larva-clusters [--unit N] [--top N] [--unannotated] [--caveat]`
+- 版本锚点 2.30.0 → 2.31.0；README「Larva cluster ledger (v2.31.0)」节 + quickstart
+  第 6 步；CHANGELOG `[2.31.0]`
+
+门禁 10/10（`--with-data`）。
 
 ---
 
