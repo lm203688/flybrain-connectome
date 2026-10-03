@@ -1,0 +1,5817 @@
+{
+  "schema_version": "1.0",
+  "generated_utc": "2026-10-03T07:04:47+00:00",
+  "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
+  "purpose": "ledger of the larva connectome at the source's own cluster resolution, plus the coverage of the eight v2.28.0/v2.29.0 larva units over it",
+  "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+  "network": {
+    "nodes": 2956,
+    "edges": 116922,
+    "synapses": 352611,
+    "n_clusters": 93,
+    "homologue_pairs": 1237,
+    "unannotated_nodes": 1560,
+    "unannotated_nodes_pct": 52.77,
+    "unannotated_incident_synapses": 212542,
+    "unannotated_synapse_pct": 60.28,
+    "unannotated_note": "an edge touches the unannotated population whenever EITHER endpoint lacks an official annotation, so the synapse share exceeds the node share"
+  },
+  "coverage": {
+    "synapses_total": 352611,
+    "synapses_both_ends_covered": 271956,
+    "synapses_both_ends_covered_pct": 77.13,
+    "synapses_either_end_covered": 340196,
+    "synapses_frontier": 12415,
+    "synapses_frontier_pct": 3.52,
+    "defined": "an endpoint is covered when its (cell_type, modality bucket) resolves to a larv.* profile that at least one larva unit declares as a member; a synapse is counted as covered only when BOTH endpoints are"
+  },
+  "cell_type_coverage": {
+    "cell_types_seen": [
+      "(none)",
+      "CN",
+      "DN-SEZ",
+      "DN-VNC",
+      "KC",
+      "LHN",
+      "LN",
+      "MB-FBN",
+      "MB-FFN",
+      "MBIN",
+      "MBON",
+      "PN",
+      "PN-somato",
+      "RGN",
+      "ascending",
+      "pre-DN-SEZ",
+      "pre-DN-VNC",
+      "sensory"
+    ],
+    "covered": [
+      "CN",
+      "DN-SEZ",
+      "DN-VNC",
+      "KC",
+      "LHN",
+      "LN",
+      "MB-FBN",
+      "MBIN",
+      "MBON",
+      "PN",
+      "PN-somato",
+      "RGN",
+      "ascending",
+      "pre-DN-VNC",
+      "sensory"
+    ],
+    "frontier": [
+      "(none)",
+      "MB-FFN",
+      "pre-DN-SEZ"
+    ],
+    "frontier_note": "cell classes with no synapse on either side reaching a covered endpoint"
+  },
+  "unit_coverage": {
+    "larv_olfactory_associative_learning_unit": {
+      "synapses_both_ends": 80161,
+      "synapse_share_pct": 22.73,
+      "nodes_reached": 548,
+      "n_member_profiles": 11
+    },
+    "larv_somatosensory_escape_unit": {
+      "synapses_both_ends": 57262,
+      "synapse_share_pct": 16.24,
+      "nodes_reached": 942,
+      "n_member_profiles": 11
+    },
+    "larv_gustatory_feeding_program_unit": {
+      "synapses_both_ends": 6428,
+      "synapse_share_pct": 1.82,
+      "nodes_reached": 525,
+      "n_member_profiles": 4
+    },
+    "larv_descending_motor_command_unit": {
+      "synapses_both_ends": 53824,
+      "synapse_share_pct": 15.26,
+      "nodes_reached": 910,
+      "n_member_profiles": 7
+    },
+    "larv_mushroom_body_feedback_unit": {
+      "synapses_both_ends": 74960,
+      "synapse_share_pct": 21.26,
+      "nodes_reached": 530,
+      "n_member_profiles": 13
+    },
+    "larv_thermosensory_relay_unit": {
+      "synapses_both_ends": 22981,
+      "synapse_share_pct": 6.52,
+      "nodes_reached": 361,
+      "n_member_profiles": 7
+    },
+    "larv_visual_relay_unit": {
+      "synapses_both_ends": 20712,
+      "synapse_share_pct": 5.87,
+      "nodes_reached": 358,
+      "n_member_profiles": 8
+    },
+    "larv_respiratory_relay_unit": {
+      "synapses_both_ends": 2736,
+      "synapse_share_pct": 0.78,
+      "nodes_reached": 275,
+      "n_member_profiles": 7
+    }
+  },
+  "covered_profile_pairs": [
+    {
+      "from": "larv.pre_dn_vnc_unannotated",
+      "to": "larv.pre_dn_vnc_unannotated",
+      "synapses": 19830
+    },
+    {
+      "from": "larv.kc_unannotated",
+      "to": "larv.mbon_unannotated",
+      "synapses": 17752
+    },
+    {
+      "from": "larv.kc_unannotated",
+      "to": "larv.kc_unannotated",
+      "synapses": 14854
+    },
+    {
+      "from": "larv.pre_dn_vnc_unannotated",
+      "to": "larv.dn_vnc_unannotated",
+      "synapses": 9502
+    },
+    {
+      "from": "larv.sensory_olfactory",
+      "to": "larv.ln_unannotated",
+      "synapses": 7026
+    },
+    {
+      "from": "larv.sensory_olfactory",
+      "to": "larv.pn_olfactory",
+      "synapses": 6361
+    },
+    {
+      "from": "larv.mb_fbn_unannotated",
+      "to": "larv.mb_fbn_unannotated",
+      "synapses": 5956
+    },
+    {
+      "from": "larv.pn_olfactory",
+      "to": "larv.lhn_unannotated",
+      "synapses": 5853
+    },
+    {
+      "from": "larv.lhn_unannotated",
+      "to": "larv.lhn_unannotated",
+      "synapses": 5382
+    },
+    {
+      "from": "larv.ln_unannotated",
+      "to": "larv.pn_olfactory",
+      "synapses": 5332
+    },
+    {
+      "from": "larv.ln_unannotated",
+      "to": "larv.ln_unannotated",
+      "synapses": 4771
+    },
+    {
+      "from": "larv.kc_unannotated",
+      "to": "larv.mbin_dopaminergic",
+      "synapses": 4040
+    },
+    {
+      "from": "larv.pn_olfactory",
+      "to": "larv.kc_unannotated",
+      "synapses": 4022
+    },
+    {
+      "from": "larv.pn_olfactory",
+      "to": "larv.ln_unannotated",
+      "synapses": 3872
+    },
+    {
+      "from": "larv.mbin_dopaminergic",
+      "to": "larv.kc_unannotated",
+      "synapses": 3708
+    },
+    {
+      "from": "larv.lhn_unannotated",
+      "to": "larv.mb_fbn_unannotated",
+      "synapses": 3655
+    },
+    {
+      "from": "larv.pn_gustatory",
+      "to": "larv.lhn_unannotated",
+      "synapses": 3458
+    },
+    {
+      "from": "larv.sensory_gustatory",
+      "to": "larv.pn_gustatory",
+      "synapses": 3414
+    },
+    {
+      "from": "larv.pre_dn_vnc_unannotated",
+      "to": "larv.mb_fbn_unannotated",
+      "synapses": 3197
+    },
+    {
+      "from": "larv.cn_unannotated",
+      "to": "larv.pre_dn_vnc_unannotated",
+      "synapses": 3165
+    },
+    {
+      "from": "larv.mbon_unannotated",
+      "to": "larv.mb_fbn_unannotated",
+      "synapses": 2859
+    },
+    {
+      "from": "larv.lhn_unannotated",
+      "to": "larv.pre_dn_vnc_unannotated",
+      "synapses": 2813
+    },
+    {
+      "from": "larv.ln_unannotated",
+      "to": "larv.lhn_unannotated",
+      "synapses": 2746
+    },
+    {
+      "from": "larv.lhn_unannotated",
+      "to": "larv.cn_unannotated",
+      "synapses": 2637
+    },
+    {
+      "from": "larv.mbon_unannotated",
+      "to": "larv.cn_unannotated",
+      "synapses": 2621
+    },
+    {
+      "from": "larv.pn_somato_noci",
+      "to": "larv.pre_dn_vnc_unannotated",
+      "synapses": 2497
+    },
+    {
+      "from": "larv.sensory_gustatory",
+      "to": "larv.dn_sez_unannotated",
+      "synapses": 2419
+    },
+    {
+      "from": "larv.pre_dn_vnc_unannotated",
+      "to": "larv.cn_unannotated",
+      "synapses": 2378
+    },
+    {
+      "from": "larv.mb_fbn_unannotated",
+      "to": "larv.cn_unannotated",
+      "synapses": 2373
+    },
+    {
+      "from": "larv.lhn_unannotated",
+      "to": "larv.ln_unannotated",
+      "synapses": 2326
+    }
+  ],
+  "clusters": [
+    {
+      "cluster": "5",
+      "n_nodes": 84,
+      "n_annotated": 64,
+      "n_unannotated": 20,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "sensory"
+      ],
+      "internal_synapses": 351,
+      "out_synapses": 3236,
+      "in_synapses": 873,
+      "top_out": [
+        {
+          "to": "17",
+          "synapses": 687
+        },
+        {
+          "to": "22",
+          "synapses": 376
+        },
+        {
+          "to": "28",
+          "synapses": 347
+        },
+        {
+          "to": "35",
+          "synapses": 261
+        },
+        {
+          "to": "31",
+          "synapses": 177
+        }
+      ],
+      "top_in": [
+        {
+          "from": "3",
+          "synapses": 208
+        },
+        {
+          "from": "6",
+          "synapses": 195
+        },
+        {
+          "from": "4",
+          "synapses": 66
+        },
+        {
+          "from": "10",
+          "synapses": 58
+        },
+        {
+          "from": "9",
+          "synapses": 53
+        }
+      ]
+    },
+    {
+      "cluster": "52",
+      "n_nodes": 74,
+      "n_annotated": 16,
+      "n_unannotated": 58,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "DN-VNC",
+        "LN",
+        "PN-somato",
+        "RGN",
+        "ascending",
+        "pre-DN-VNC",
+        "sensory"
+      ],
+      "internal_synapses": 579,
+      "out_synapses": 2913,
+      "in_synapses": 3607,
+      "top_out": [
+        {
+          "to": "18",
+          "synapses": 218
+        },
+        {
+          "to": "0",
+          "synapses": 205
+        },
+        {
+          "to": "50",
+          "synapses": 189
+        },
+        {
+          "to": "26",
+          "synapses": 187
+        },
+        {
+          "to": "85",
+          "synapses": 170
+        }
+      ],
+      "top_in": [
+        {
+          "from": "46",
+          "synapses": 444
+        },
+        {
+          "from": "0",
+          "synapses": 425
+        },
+        {
+          "from": "50",
+          "synapses": 314
+        },
+        {
+          "from": "71",
+          "synapses": 295
+        },
+        {
+          "from": "27",
+          "synapses": 200
+        }
+      ]
+    },
+    {
+      "cluster": "71",
+      "n_nodes": 72,
+      "n_annotated": 4,
+      "n_unannotated": 68,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "DN-VNC",
+        "PN-somato",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 681,
+      "out_synapses": 4521,
+      "in_synapses": 5406,
+      "top_out": [
+        {
+          "to": "73",
+          "synapses": 508
+        },
+        {
+          "to": "66",
+          "synapses": 405
+        },
+        {
+          "to": "0",
+          "synapses": 352
+        },
+        {
+          "to": "85",
+          "synapses": 338
+        },
+        {
+          "to": "62",
+          "synapses": 300
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 621
+        },
+        {
+          "from": "46",
+          "synapses": 473
+        },
+        {
+          "from": "62",
+          "synapses": 412
+        },
+        {
+          "from": "50",
+          "synapses": 357
+        },
+        {
+          "from": "66",
+          "synapses": 319
+        }
+      ]
+    },
+    {
+      "cluster": "70",
+      "n_nodes": 70,
+      "n_annotated": 8,
+      "n_unannotated": 62,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "DN-VNC",
+        "PN-somato",
+        "ascending",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 820,
+      "out_synapses": 2370,
+      "in_synapses": 2222,
+      "top_out": [
+        {
+          "to": "78",
+          "synapses": 289
+        },
+        {
+          "to": "62",
+          "synapses": 251
+        },
+        {
+          "to": "80",
+          "synapses": 235
+        },
+        {
+          "to": "0",
+          "synapses": 212
+        },
+        {
+          "to": "71",
+          "synapses": 166
+        }
+      ],
+      "top_in": [
+        {
+          "from": "62",
+          "synapses": 345
+        },
+        {
+          "from": "0",
+          "synapses": 268
+        },
+        {
+          "from": "58",
+          "synapses": 213
+        },
+        {
+          "from": "73",
+          "synapses": 182
+        },
+        {
+          "from": "86",
+          "synapses": 160
+        }
+      ]
+    },
+    {
+      "cluster": "38",
+      "n_nodes": 64,
+      "n_annotated": 16,
+      "n_unannotated": 48,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "DN-SEZ",
+        "DN-VNC",
+        "LHN",
+        "LN",
+        "MB-FFN",
+        "PN",
+        "pre-DN-SEZ"
+      ],
+      "internal_synapses": 842,
+      "out_synapses": 5642,
+      "in_synapses": 5883,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 994
+        },
+        {
+          "to": "53",
+          "synapses": 673
+        },
+        {
+          "to": "56",
+          "synapses": 532
+        },
+        {
+          "to": "43",
+          "synapses": 267
+        },
+        {
+          "to": "61",
+          "synapses": 260
+        }
+      ],
+      "top_in": [
+        {
+          "from": "22",
+          "synapses": 1007
+        },
+        {
+          "from": "28",
+          "synapses": 967
+        },
+        {
+          "from": "12",
+          "synapses": 714
+        },
+        {
+          "from": "0",
+          "synapses": 475
+        },
+        {
+          "from": "32",
+          "synapses": 408
+        }
+      ]
+    },
+    {
+      "cluster": "85",
+      "n_nodes": 62,
+      "n_annotated": 14,
+      "n_unannotated": 48,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "DN-VNC",
+        "PN-somato",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 1839,
+      "out_synapses": 5103,
+      "in_synapses": 6398,
+      "top_out": [
+        {
+          "to": "92",
+          "synapses": 997
+        },
+        {
+          "to": "87",
+          "synapses": 819
+        },
+        {
+          "to": "0",
+          "synapses": 530
+        },
+        {
+          "to": "91",
+          "synapses": 498
+        },
+        {
+          "to": "78",
+          "synapses": 394
+        }
+      ],
+      "top_in": [
+        {
+          "from": "78",
+          "synapses": 986
+        },
+        {
+          "from": "0",
+          "synapses": 552
+        },
+        {
+          "from": "76",
+          "synapses": 491
+        },
+        {
+          "from": "81",
+          "synapses": 392
+        },
+        {
+          "from": "84",
+          "synapses": 390
+        }
+      ]
+    },
+    {
+      "cluster": "18",
+      "n_nodes": 54,
+      "n_annotated": 46,
+      "n_unannotated": 8,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-VNC",
+        "PN-somato",
+        "ascending",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 1226,
+      "out_synapses": 4558,
+      "in_synapses": 1986,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 799
+        },
+        {
+          "to": "27",
+          "synapses": 795
+        },
+        {
+          "to": "46",
+          "synapses": 714
+        },
+        {
+          "to": "26",
+          "synapses": 644
+        },
+        {
+          "to": "50",
+          "synapses": 239
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 439
+        },
+        {
+          "from": "14",
+          "synapses": 353
+        },
+        {
+          "from": "23",
+          "synapses": 303
+        },
+        {
+          "from": "27",
+          "synapses": 255
+        },
+        {
+          "from": "52",
+          "synapses": 218
+        }
+      ]
+    },
+    {
+      "cluster": "64",
+      "n_nodes": 54,
+      "n_annotated": 52,
+      "n_unannotated": 2,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "LHN",
+        "MB-FBN",
+        "MB-FFN",
+        "MBIN",
+        "MBON",
+        "PN",
+        "pre-DN-SEZ"
+      ],
+      "internal_synapses": 2225,
+      "out_synapses": 9184,
+      "in_synapses": 13654,
+      "top_out": [
+        {
+          "to": "82",
+          "synapses": 1657
+        },
+        {
+          "to": "75",
+          "synapses": 1404
+        },
+        {
+          "to": "57",
+          "synapses": 729
+        },
+        {
+          "to": "0",
+          "synapses": 669
+        },
+        {
+          "to": "79",
+          "synapses": 563
+        }
+      ],
+      "top_in": [
+        {
+          "from": "30",
+          "synapses": 2216
+        },
+        {
+          "from": "59",
+          "synapses": 1065
+        },
+        {
+          "from": "0",
+          "synapses": 920
+        },
+        {
+          "from": "57",
+          "synapses": 715
+        },
+        {
+          "from": "79",
+          "synapses": 603
+        }
+      ]
+    },
+    {
+      "cluster": "30",
+      "n_nodes": 50,
+      "n_annotated": 50,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "KC"
+      ],
+      "internal_synapses": 3962,
+      "out_synapses": 18004,
+      "in_synapses": 6765,
+      "top_out": [
+        {
+          "to": "59",
+          "synapses": 7298
+        },
+        {
+          "to": "57",
+          "synapses": 4567
+        },
+        {
+          "to": "64",
+          "synapses": 2216
+        },
+        {
+          "to": "33",
+          "synapses": 1117
+        },
+        {
+          "to": "40",
+          "synapses": 825
+        }
+      ],
+      "top_in": [
+        {
+          "from": "57",
+          "synapses": 2647
+        },
+        {
+          "from": "12",
+          "synapses": 1276
+        },
+        {
+          "from": "33",
+          "synapses": 1003
+        },
+        {
+          "from": "40",
+          "synapses": 671
+        },
+        {
+          "from": "42",
+          "synapses": 325
+        }
+      ]
+    },
+    {
+      "cluster": "87",
+      "n_nodes": 50,
+      "n_annotated": 14,
+      "n_unannotated": 36,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-VNC",
+        "MB-FBN",
+        "MB-FFN",
+        "PN-somato",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 3175,
+      "out_synapses": 3353,
+      "in_synapses": 5412,
+      "top_out": [
+        {
+          "to": "91",
+          "synapses": 908
+        },
+        {
+          "to": "89",
+          "synapses": 707
+        },
+        {
+          "to": "92",
+          "synapses": 305
+        },
+        {
+          "to": "85",
+          "synapses": 291
+        },
+        {
+          "to": "57",
+          "synapses": 191
+        }
+      ],
+      "top_in": [
+        {
+          "from": "91",
+          "synapses": 876
+        },
+        {
+          "from": "85",
+          "synapses": 819
+        },
+        {
+          "from": "89",
+          "synapses": 695
+        },
+        {
+          "from": "82",
+          "synapses": 595
+        },
+        {
+          "from": "74",
+          "synapses": 366
+        }
+      ]
+    },
+    {
+      "cluster": "3",
+      "n_nodes": 48,
+      "n_annotated": 42,
+      "n_unannotated": 6,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "LN",
+        "PN",
+        "sensory"
+      ],
+      "internal_synapses": 496,
+      "out_synapses": 5761,
+      "in_synapses": 738,
+      "top_out": [
+        {
+          "to": "22",
+          "synapses": 1564
+        },
+        {
+          "to": "10",
+          "synapses": 1056
+        },
+        {
+          "to": "0",
+          "synapses": 471
+        },
+        {
+          "to": "17",
+          "synapses": 426
+        },
+        {
+          "to": "15",
+          "synapses": 350
+        }
+      ],
+      "top_in": [
+        {
+          "from": "10",
+          "synapses": 312
+        },
+        {
+          "from": "5",
+          "synapses": 140
+        },
+        {
+          "from": "4",
+          "synapses": 74
+        },
+        {
+          "from": "1",
+          "synapses": 59
+        },
+        {
+          "from": "22",
+          "synapses": 32
+        }
+      ]
+    },
+    {
+      "cluster": "62",
+      "n_nodes": 48,
+      "n_annotated": 8,
+      "n_unannotated": 40,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "DN-VNC",
+        "LHN",
+        "PN-somato",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 589,
+      "out_synapses": 4965,
+      "in_synapses": 4918,
+      "top_out": [
+        {
+          "to": "73",
+          "synapses": 615
+        },
+        {
+          "to": "77",
+          "synapses": 530
+        },
+        {
+          "to": "71",
+          "synapses": 412
+        },
+        {
+          "to": "0",
+          "synapses": 393
+        },
+        {
+          "to": "70",
+          "synapses": 345
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 637
+        },
+        {
+          "from": "58",
+          "synapses": 493
+        },
+        {
+          "from": "47",
+          "synapses": 357
+        },
+        {
+          "from": "32",
+          "synapses": 312
+        },
+        {
+          "from": "50",
+          "synapses": 301
+        }
+      ]
+    },
+    {
+      "cluster": "63",
+      "n_nodes": 46,
+      "n_annotated": 18,
+      "n_unannotated": 28,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "DN-VNC",
+        "RGN",
+        "sensory"
+      ],
+      "internal_synapses": 149,
+      "out_synapses": 532,
+      "in_synapses": 633,
+      "top_out": [
+        {
+          "to": "83",
+          "synapses": 150
+        },
+        {
+          "to": "54",
+          "synapses": 142
+        },
+        {
+          "to": "56",
+          "synapses": 43
+        },
+        {
+          "to": "52",
+          "synapses": 38
+        },
+        {
+          "to": "64",
+          "synapses": 22
+        }
+      ],
+      "top_in": [
+        {
+          "from": "66",
+          "synapses": 118
+        },
+        {
+          "from": "83",
+          "synapses": 85
+        },
+        {
+          "from": "71",
+          "synapses": 63
+        },
+        {
+          "from": "31",
+          "synapses": 62
+        },
+        {
+          "from": "54",
+          "synapses": 37
+        }
+      ]
+    },
+    {
+      "cluster": "78",
+      "n_nodes": 46,
+      "n_annotated": 6,
+      "n_unannotated": 40,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "DN-SEZ",
+        "MB-FFN",
+        "PN-somato",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 408,
+      "out_synapses": 4521,
+      "in_synapses": 4169,
+      "top_out": [
+        {
+          "to": "85",
+          "synapses": 986
+        },
+        {
+          "to": "92",
+          "synapses": 595
+        },
+        {
+          "to": "91",
+          "synapses": 410
+        },
+        {
+          "to": "87",
+          "synapses": 354
+        },
+        {
+          "to": "0",
+          "synapses": 259
+        }
+      ],
+      "top_in": [
+        {
+          "from": "85",
+          "synapses": 394
+        },
+        {
+          "from": "70",
+          "synapses": 289
+        },
+        {
+          "from": "0",
+          "synapses": 277
+        },
+        {
+          "from": "74",
+          "synapses": 266
+        },
+        {
+          "from": "62",
+          "synapses": 255
+        }
+      ]
+    },
+    {
+      "cluster": "53",
+      "n_nodes": 46,
+      "n_annotated": 18,
+      "n_unannotated": 28,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "LHN",
+        "LN",
+        "MB-FBN",
+        "MB-FFN",
+        "PN",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 779,
+      "out_synapses": 6285,
+      "in_synapses": 6723,
+      "top_out": [
+        {
+          "to": "75",
+          "synapses": 1396
+        },
+        {
+          "to": "82",
+          "synapses": 1187
+        },
+        {
+          "to": "61",
+          "synapses": 931
+        },
+        {
+          "to": "0",
+          "synapses": 584
+        },
+        {
+          "to": "64",
+          "synapses": 516
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 883
+        },
+        {
+          "from": "22",
+          "synapses": 723
+        },
+        {
+          "from": "38",
+          "synapses": 673
+        },
+        {
+          "from": "12",
+          "synapses": 585
+        },
+        {
+          "from": "28",
+          "synapses": 533
+        }
+      ]
+    },
+    {
+      "cluster": "89",
+      "n_nodes": 46,
+      "n_annotated": 2,
+      "n_unannotated": 44,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "DN-VNC",
+        "LN",
+        "PN-somato",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 290,
+      "out_synapses": 1847,
+      "in_synapses": 2165,
+      "top_out": [
+        {
+          "to": "87",
+          "synapses": 695
+        },
+        {
+          "to": "91",
+          "synapses": 212
+        },
+        {
+          "to": "85",
+          "synapses": 199
+        },
+        {
+          "to": "84",
+          "synapses": 199
+        },
+        {
+          "to": "88",
+          "synapses": 95
+        }
+      ],
+      "top_in": [
+        {
+          "from": "87",
+          "synapses": 707
+        },
+        {
+          "from": "91",
+          "synapses": 220
+        },
+        {
+          "from": "84",
+          "synapses": 160
+        },
+        {
+          "from": "0",
+          "synapses": 143
+        },
+        {
+          "from": "85",
+          "synapses": 132
+        }
+      ]
+    },
+    {
+      "cluster": "4",
+      "n_nodes": 44,
+      "n_annotated": 26,
+      "n_unannotated": 18,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "sensory"
+      ],
+      "internal_synapses": 272,
+      "out_synapses": 2249,
+      "in_synapses": 774,
+      "top_out": [
+        {
+          "to": "22",
+          "synapses": 558
+        },
+        {
+          "to": "31",
+          "synapses": 234
+        },
+        {
+          "to": "44",
+          "synapses": 206
+        },
+        {
+          "to": "10",
+          "synapses": 171
+        },
+        {
+          "to": "53",
+          "synapses": 128
+        }
+      ],
+      "top_in": [
+        {
+          "from": "3",
+          "synapses": 338
+        },
+        {
+          "from": "5",
+          "synapses": 156
+        },
+        {
+          "from": "10",
+          "synapses": 104
+        },
+        {
+          "from": "15",
+          "synapses": 36
+        },
+        {
+          "from": "22",
+          "synapses": 26
+        }
+      ]
+    },
+    {
+      "cluster": "44",
+      "n_nodes": 44,
+      "n_annotated": 16,
+      "n_unannotated": 28,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "DN-SEZ",
+        "DN-VNC",
+        "LHN",
+        "PN",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 201,
+      "out_synapses": 3219,
+      "in_synapses": 2734,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 452
+        },
+        {
+          "to": "47",
+          "synapses": 383
+        },
+        {
+          "to": "32",
+          "synapses": 241
+        },
+        {
+          "to": "74",
+          "synapses": 163
+        },
+        {
+          "to": "58",
+          "synapses": 160
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 392
+        },
+        {
+          "from": "47",
+          "synapses": 280
+        },
+        {
+          "from": "32",
+          "synapses": 245
+        },
+        {
+          "from": "22",
+          "synapses": 225
+        },
+        {
+          "from": "4",
+          "synapses": 206
+        }
+      ]
+    },
+    {
+      "cluster": "12",
+      "n_nodes": 42,
+      "n_annotated": 42,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "PN"
+      ],
+      "internal_synapses": 255,
+      "out_synapses": 10795,
+      "in_synapses": 6656,
+      "top_out": [
+        {
+          "to": "10",
+          "synapses": 1977
+        },
+        {
+          "to": "32",
+          "synapses": 1394
+        },
+        {
+          "to": "30",
+          "synapses": 1276
+        },
+        {
+          "to": "33",
+          "synapses": 1263
+        },
+        {
+          "to": "38",
+          "synapses": 714
+        }
+      ],
+      "top_in": [
+        {
+          "from": "10",
+          "synapses": 2199
+        },
+        {
+          "from": "2",
+          "synapses": 2060
+        },
+        {
+          "from": "1",
+          "synapses": 1713
+        },
+        {
+          "from": "22",
+          "synapses": 120
+        },
+        {
+          "from": "57",
+          "synapses": 112
+        }
+      ]
+    },
+    {
+      "cluster": "47",
+      "n_nodes": 42,
+      "n_annotated": 28,
+      "n_unannotated": 14,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "LHN",
+        "MB-FBN",
+        "MB-FFN",
+        "PN",
+        "PN-somato",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 855,
+      "out_synapses": 5982,
+      "in_synapses": 6749,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 944
+        },
+        {
+          "to": "58",
+          "synapses": 610
+        },
+        {
+          "to": "62",
+          "synapses": 357
+        },
+        {
+          "to": "64",
+          "synapses": 299
+        },
+        {
+          "to": "71",
+          "synapses": 284
+        }
+      ],
+      "top_in": [
+        {
+          "from": "22",
+          "synapses": 1135
+        },
+        {
+          "from": "32",
+          "synapses": 973
+        },
+        {
+          "from": "0",
+          "synapses": 831
+        },
+        {
+          "from": "59",
+          "synapses": 581
+        },
+        {
+          "from": "12",
+          "synapses": 398
+        }
+      ]
+    },
+    {
+      "cluster": "22",
+      "n_nodes": 42,
+      "n_annotated": 32,
+      "n_unannotated": 10,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "LN",
+        "PN",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 1037,
+      "out_synapses": 10895,
+      "in_synapses": 9035,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 1460
+        },
+        {
+          "to": "32",
+          "synapses": 1176
+        },
+        {
+          "to": "47",
+          "synapses": 1135
+        },
+        {
+          "to": "38",
+          "synapses": 1007
+        },
+        {
+          "to": "53",
+          "synapses": 723
+        }
+      ],
+      "top_in": [
+        {
+          "from": "10",
+          "synapses": 1982
+        },
+        {
+          "from": "3",
+          "synapses": 1564
+        },
+        {
+          "from": "2",
+          "synapses": 1111
+        },
+        {
+          "from": "1",
+          "synapses": 1056
+        },
+        {
+          "from": "4",
+          "synapses": 558
+        }
+      ]
+    },
+    {
+      "cluster": "66",
+      "n_nodes": 40,
+      "n_annotated": 12,
+      "n_unannotated": 28,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "DN-SEZ",
+        "DN-VNC",
+        "MB-FBN",
+        "MB-FFN",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 873,
+      "out_synapses": 5326,
+      "in_synapses": 6182,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 725
+        },
+        {
+          "to": "79",
+          "synapses": 723
+        },
+        {
+          "to": "73",
+          "synapses": 666
+        },
+        {
+          "to": "57",
+          "synapses": 519
+        },
+        {
+          "to": "75",
+          "synapses": 336
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 867
+        },
+        {
+          "from": "22",
+          "synapses": 461
+        },
+        {
+          "from": "75",
+          "synapses": 420
+        },
+        {
+          "from": "71",
+          "synapses": 405
+        },
+        {
+          "from": "73",
+          "synapses": 330
+        }
+      ]
+    },
+    {
+      "cluster": "28",
+      "n_nodes": 40,
+      "n_annotated": 12,
+      "n_unannotated": 28,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "LHN",
+        "LN",
+        "PN",
+        "pre-DN-SEZ"
+      ],
+      "internal_synapses": 1214,
+      "out_synapses": 3638,
+      "in_synapses": 2854,
+      "top_out": [
+        {
+          "to": "38",
+          "synapses": 967
+        },
+        {
+          "to": "53",
+          "synapses": 533
+        },
+        {
+          "to": "0",
+          "synapses": 487
+        },
+        {
+          "to": "61",
+          "synapses": 253
+        },
+        {
+          "to": "43",
+          "synapses": 205
+        }
+      ],
+      "top_in": [
+        {
+          "from": "17",
+          "synapses": 470
+        },
+        {
+          "from": "22",
+          "synapses": 362
+        },
+        {
+          "from": "5",
+          "synapses": 347
+        },
+        {
+          "from": "25",
+          "synapses": 341
+        },
+        {
+          "from": "32",
+          "synapses": 286
+        }
+      ]
+    },
+    {
+      "cluster": "88",
+      "n_nodes": 40,
+      "n_annotated": 6,
+      "n_unannotated": 34,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "DN-VNC",
+        "LN",
+        "MB-FFN",
+        "ascending",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 153,
+      "out_synapses": 649,
+      "in_synapses": 1290,
+      "top_out": [
+        {
+          "to": "89",
+          "synapses": 109
+        },
+        {
+          "to": "87",
+          "synapses": 66
+        },
+        {
+          "to": "0",
+          "synapses": 56
+        },
+        {
+          "to": "85",
+          "synapses": 49
+        },
+        {
+          "to": "84",
+          "synapses": 45
+        }
+      ],
+      "top_in": [
+        {
+          "from": "84",
+          "synapses": 149
+        },
+        {
+          "from": "70",
+          "synapses": 117
+        },
+        {
+          "from": "91",
+          "synapses": 114
+        },
+        {
+          "from": "78",
+          "synapses": 108
+        },
+        {
+          "from": "65",
+          "synapses": 96
+        }
+      ]
+    },
+    {
+      "cluster": "83",
+      "n_nodes": 38,
+      "n_annotated": 4,
+      "n_unannotated": 34,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "DN-VNC",
+        "RGN",
+        "sensory"
+      ],
+      "internal_synapses": 326,
+      "out_synapses": 898,
+      "in_synapses": 2344,
+      "top_out": [
+        {
+          "to": "54",
+          "synapses": 430
+        },
+        {
+          "to": "64",
+          "synapses": 130
+        },
+        {
+          "to": "63",
+          "synapses": 85
+        },
+        {
+          "to": "52",
+          "synapses": 49
+        },
+        {
+          "to": "5",
+          "synapses": 26
+        }
+      ],
+      "top_in": [
+        {
+          "from": "67",
+          "synapses": 371
+        },
+        {
+          "from": "61",
+          "synapses": 305
+        },
+        {
+          "from": "56",
+          "synapses": 233
+        },
+        {
+          "from": "66",
+          "synapses": 172
+        },
+        {
+          "from": "55",
+          "synapses": 166
+        }
+      ]
+    },
+    {
+      "cluster": "56",
+      "n_nodes": 36,
+      "n_annotated": 8,
+      "n_unannotated": 28,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "LHN",
+        "LN",
+        "PN-somato",
+        "RGN",
+        "ascending",
+        "pre-DN-SEZ"
+      ],
+      "internal_synapses": 716,
+      "out_synapses": 2941,
+      "in_synapses": 3110,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 465
+        },
+        {
+          "to": "73",
+          "synapses": 445
+        },
+        {
+          "to": "61",
+          "synapses": 415
+        },
+        {
+          "to": "67",
+          "synapses": 321
+        },
+        {
+          "to": "66",
+          "synapses": 246
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 552
+        },
+        {
+          "from": "38",
+          "synapses": 532
+        },
+        {
+          "from": "22",
+          "synapses": 264
+        },
+        {
+          "from": "28",
+          "synapses": 187
+        },
+        {
+          "from": "35",
+          "synapses": 140
+        }
+      ]
+    },
+    {
+      "cluster": "33",
+      "n_nodes": 36,
+      "n_annotated": 36,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "KC"
+      ],
+      "internal_synapses": 914,
+      "out_synapses": 7264,
+      "in_synapses": 4795,
+      "top_out": [
+        {
+          "to": "59",
+          "synapses": 2496
+        },
+        {
+          "to": "57",
+          "synapses": 1837
+        },
+        {
+          "to": "30",
+          "synapses": 1003
+        },
+        {
+          "to": "42",
+          "synapses": 588
+        },
+        {
+          "to": "64",
+          "synapses": 557
+        }
+      ],
+      "top_in": [
+        {
+          "from": "12",
+          "synapses": 1263
+        },
+        {
+          "from": "57",
+          "synapses": 1186
+        },
+        {
+          "from": "30",
+          "synapses": 1117
+        },
+        {
+          "from": "42",
+          "synapses": 534
+        },
+        {
+          "from": "49",
+          "synapses": 191
+        }
+      ]
+    },
+    {
+      "cluster": "32",
+      "n_nodes": 34,
+      "n_annotated": 28,
+      "n_unannotated": 6,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "LHN",
+        "LN",
+        "PN"
+      ],
+      "internal_synapses": 1277,
+      "out_synapses": 6606,
+      "in_synapses": 6458,
+      "top_out": [
+        {
+          "to": "47",
+          "synapses": 973
+        },
+        {
+          "to": "0",
+          "synapses": 637
+        },
+        {
+          "to": "64",
+          "synapses": 503
+        },
+        {
+          "to": "22",
+          "synapses": 413
+        },
+        {
+          "to": "38",
+          "synapses": 408
+        }
+      ],
+      "top_in": [
+        {
+          "from": "12",
+          "synapses": 1394
+        },
+        {
+          "from": "22",
+          "synapses": 1176
+        },
+        {
+          "from": "59",
+          "synapses": 675
+        },
+        {
+          "from": "0",
+          "synapses": 439
+        },
+        {
+          "from": "10",
+          "synapses": 287
+        }
+      ]
+    },
+    {
+      "cluster": "69",
+      "n_nodes": 34,
+      "n_annotated": 22,
+      "n_unannotated": 12,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "DN-SEZ",
+        "MB-FBN",
+        "MB-FFN",
+        "PN-somato",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 622,
+      "out_synapses": 3790,
+      "in_synapses": 2878,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 873
+        },
+        {
+          "to": "64",
+          "synapses": 428
+        },
+        {
+          "to": "79",
+          "synapses": 414
+        },
+        {
+          "to": "85",
+          "synapses": 379
+        },
+        {
+          "to": "81",
+          "synapses": 249
+        }
+      ],
+      "top_in": [
+        {
+          "from": "59",
+          "synapses": 603
+        },
+        {
+          "from": "0",
+          "synapses": 494
+        },
+        {
+          "from": "81",
+          "synapses": 193
+        },
+        {
+          "from": "64",
+          "synapses": 189
+        },
+        {
+          "from": "72",
+          "synapses": 175
+        }
+      ]
+    },
+    {
+      "cluster": "84",
+      "n_nodes": 34,
+      "n_annotated": 4,
+      "n_unannotated": 30,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-VNC",
+        "PN-somato",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 281,
+      "out_synapses": 2861,
+      "in_synapses": 2807,
+      "top_out": [
+        {
+          "to": "85",
+          "synapses": 390
+        },
+        {
+          "to": "87",
+          "synapses": 324
+        },
+        {
+          "to": "92",
+          "synapses": 247
+        },
+        {
+          "to": "91",
+          "synapses": 215
+        },
+        {
+          "to": "0",
+          "synapses": 197
+        }
+      ],
+      "top_in": [
+        {
+          "from": "85",
+          "synapses": 393
+        },
+        {
+          "from": "91",
+          "synapses": 309
+        },
+        {
+          "from": "78",
+          "synapses": 255
+        },
+        {
+          "from": "0",
+          "synapses": 250
+        },
+        {
+          "from": "65",
+          "synapses": 245
+        }
+      ]
+    },
+    {
+      "cluster": "74",
+      "n_nodes": 32,
+      "n_annotated": 10,
+      "n_unannotated": 22,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "LHN",
+        "MB-FBN",
+        "MBIN",
+        "PN-somato",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 336,
+      "out_synapses": 4205,
+      "in_synapses": 4616,
+      "top_out": [
+        {
+          "to": "91",
+          "synapses": 673
+        },
+        {
+          "to": "85",
+          "synapses": 380
+        },
+        {
+          "to": "87",
+          "synapses": 366
+        },
+        {
+          "to": "64",
+          "synapses": 311
+        },
+        {
+          "to": "78",
+          "synapses": 266
+        }
+      ],
+      "top_in": [
+        {
+          "from": "59",
+          "synapses": 418
+        },
+        {
+          "from": "32",
+          "synapses": 331
+        },
+        {
+          "from": "77",
+          "synapses": 284
+        },
+        {
+          "from": "0",
+          "synapses": 281
+        },
+        {
+          "from": "64",
+          "synapses": 243
+        }
+      ]
+    },
+    {
+      "cluster": "7",
+      "n_nodes": 32,
+      "n_annotated": 32,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "sensory"
+      ],
+      "internal_synapses": 93,
+      "out_synapses": 53,
+      "in_synapses": 50,
+      "top_out": [
+        {
+          "to": "9",
+          "synapses": 21
+        },
+        {
+          "to": "11",
+          "synapses": 16
+        },
+        {
+          "to": "13",
+          "synapses": 5
+        },
+        {
+          "to": "5",
+          "synapses": 3
+        },
+        {
+          "to": "-1",
+          "synapses": 2
+        }
+      ],
+      "top_in": [
+        {
+          "from": "11",
+          "synapses": 18
+        },
+        {
+          "from": "9",
+          "synapses": 14
+        },
+        {
+          "from": "5",
+          "synapses": 7
+        },
+        {
+          "from": "13",
+          "synapses": 6
+        },
+        {
+          "from": "-1",
+          "synapses": 3
+        }
+      ]
+    },
+    {
+      "cluster": "9",
+      "n_nodes": 30,
+      "n_annotated": 28,
+      "n_unannotated": 2,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "sensory"
+      ],
+      "internal_synapses": 36,
+      "out_synapses": 249,
+      "in_synapses": 144,
+      "top_out": [
+        {
+          "to": "24",
+          "synapses": 53
+        },
+        {
+          "to": "5",
+          "synapses": 53
+        },
+        {
+          "to": "16",
+          "synapses": 40
+        },
+        {
+          "to": "11",
+          "synapses": 28
+        },
+        {
+          "to": "21",
+          "synapses": 22
+        }
+      ],
+      "top_in": [
+        {
+          "from": "11",
+          "synapses": 29
+        },
+        {
+          "from": "16",
+          "synapses": 21
+        },
+        {
+          "from": "7",
+          "synapses": 21
+        },
+        {
+          "from": "24",
+          "synapses": 20
+        },
+        {
+          "from": "5",
+          "synapses": 16
+        }
+      ]
+    },
+    {
+      "cluster": "91",
+      "n_nodes": 30,
+      "n_annotated": 4,
+      "n_unannotated": 26,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "DN-SEZ",
+        "DN-VNC",
+        "MB-FBN",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 387,
+      "out_synapses": 2767,
+      "in_synapses": 4388,
+      "top_out": [
+        {
+          "to": "87",
+          "synapses": 876
+        },
+        {
+          "to": "84",
+          "synapses": 309
+        },
+        {
+          "to": "90",
+          "synapses": 222
+        },
+        {
+          "to": "89",
+          "synapses": 220
+        },
+        {
+          "to": "85",
+          "synapses": 187
+        }
+      ],
+      "top_in": [
+        {
+          "from": "87",
+          "synapses": 908
+        },
+        {
+          "from": "74",
+          "synapses": 673
+        },
+        {
+          "from": "85",
+          "synapses": 498
+        },
+        {
+          "from": "78",
+          "synapses": 410
+        },
+        {
+          "from": "84",
+          "synapses": 215
+        }
+      ]
+    },
+    {
+      "cluster": "10",
+      "n_nodes": 30,
+      "n_annotated": 6,
+      "n_unannotated": 24,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "LN",
+        "PN"
+      ],
+      "internal_synapses": 3701,
+      "out_synapses": 8480,
+      "in_synapses": 11904,
+      "top_out": [
+        {
+          "to": "12",
+          "synapses": 2199
+        },
+        {
+          "to": "22",
+          "synapses": 1982
+        },
+        {
+          "to": "2",
+          "synapses": 1017
+        },
+        {
+          "to": "1",
+          "synapses": 978
+        },
+        {
+          "to": "3",
+          "synapses": 312
+        }
+      ],
+      "top_in": [
+        {
+          "from": "2",
+          "synapses": 3984
+        },
+        {
+          "from": "1",
+          "synapses": 3889
+        },
+        {
+          "from": "12",
+          "synapses": 1977
+        },
+        {
+          "from": "3",
+          "synapses": 1056
+        },
+        {
+          "from": "22",
+          "synapses": 314
+        }
+      ]
+    },
+    {
+      "cluster": "86",
+      "n_nodes": 30,
+      "n_annotated": 4,
+      "n_unannotated": 26,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "DN-VNC",
+        "ascending",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 103,
+      "out_synapses": 1018,
+      "in_synapses": 1841,
+      "top_out": [
+        {
+          "to": "70",
+          "synapses": 160
+        },
+        {
+          "to": "78",
+          "synapses": 94
+        },
+        {
+          "to": "80",
+          "synapses": 77
+        },
+        {
+          "to": "0",
+          "synapses": 73
+        },
+        {
+          "to": "71",
+          "synapses": 72
+        }
+      ],
+      "top_in": [
+        {
+          "from": "58",
+          "synapses": 303
+        },
+        {
+          "from": "84",
+          "synapses": 169
+        },
+        {
+          "from": "77",
+          "synapses": 132
+        },
+        {
+          "from": "80",
+          "synapses": 112
+        },
+        {
+          "from": "0",
+          "synapses": 102
+        }
+      ]
+    },
+    {
+      "cluster": "23",
+      "n_nodes": 29,
+      "n_annotated": 19,
+      "n_unannotated": 10,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "DN-VNC",
+        "ascending",
+        "pre-DN-VNC",
+        "sensory"
+      ],
+      "internal_synapses": 140,
+      "out_synapses": 1171,
+      "in_synapses": 665,
+      "top_out": [
+        {
+          "to": "18",
+          "synapses": 303
+        },
+        {
+          "to": "52",
+          "synapses": 168
+        },
+        {
+          "to": "14",
+          "synapses": 80
+        },
+        {
+          "to": "0",
+          "synapses": 76
+        },
+        {
+          "to": "27",
+          "synapses": 67
+        }
+      ],
+      "top_in": [
+        {
+          "from": "18",
+          "synapses": 156
+        },
+        {
+          "from": "14",
+          "synapses": 94
+        },
+        {
+          "from": "0",
+          "synapses": 89
+        },
+        {
+          "from": "52",
+          "synapses": 58
+        },
+        {
+          "from": "46",
+          "synapses": 52
+        }
+      ]
+    },
+    {
+      "cluster": "50",
+      "n_nodes": 28,
+      "n_annotated": 2,
+      "n_unannotated": 26,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-VNC",
+        "LHN",
+        "PN-somato",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 149,
+      "out_synapses": 3307,
+      "in_synapses": 3440,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 535
+        },
+        {
+          "to": "71",
+          "synapses": 357
+        },
+        {
+          "to": "52",
+          "synapses": 314
+        },
+        {
+          "to": "62",
+          "synapses": 301
+        },
+        {
+          "to": "68",
+          "synapses": 251
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 899
+        },
+        {
+          "from": "46",
+          "synapses": 361
+        },
+        {
+          "from": "27",
+          "synapses": 329
+        },
+        {
+          "from": "31",
+          "synapses": 254
+        },
+        {
+          "from": "18",
+          "synapses": 239
+        }
+      ]
+    },
+    {
+      "cluster": "57",
+      "n_nodes": 28,
+      "n_annotated": 28,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "LN",
+        "MBIN",
+        "MBON"
+      ],
+      "internal_synapses": 401,
+      "out_synapses": 8022,
+      "in_synapses": 14124,
+      "top_out": [
+        {
+          "to": "30",
+          "synapses": 2647
+        },
+        {
+          "to": "33",
+          "synapses": 1186
+        },
+        {
+          "to": "59",
+          "synapses": 1165
+        },
+        {
+          "to": "64",
+          "synapses": 715
+        },
+        {
+          "to": "42",
+          "synapses": 601
+        }
+      ],
+      "top_in": [
+        {
+          "from": "30",
+          "synapses": 4567
+        },
+        {
+          "from": "33",
+          "synapses": 1837
+        },
+        {
+          "from": "42",
+          "synapses": 822
+        },
+        {
+          "from": "64",
+          "synapses": 729
+        },
+        {
+          "from": "75",
+          "synapses": 613
+        }
+      ]
+    },
+    {
+      "cluster": "31",
+      "n_nodes": 28,
+      "n_annotated": 12,
+      "n_unannotated": 16,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "LHN",
+        "PN",
+        "PN-somato",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 133,
+      "out_synapses": 3182,
+      "in_synapses": 2323,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 481
+        },
+        {
+          "to": "46",
+          "synapses": 339
+        },
+        {
+          "to": "50",
+          "synapses": 254
+        },
+        {
+          "to": "47",
+          "synapses": 227
+        },
+        {
+          "to": "66",
+          "synapses": 212
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 302
+        },
+        {
+          "from": "4",
+          "synapses": 234
+        },
+        {
+          "from": "5",
+          "synapses": 177
+        },
+        {
+          "from": "47",
+          "synapses": 175
+        },
+        {
+          "from": "22",
+          "synapses": 164
+        }
+      ]
+    },
+    {
+      "cluster": "2",
+      "n_nodes": 28,
+      "n_annotated": 28,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "sensory"
+      ],
+      "internal_synapses": 1,
+      "out_synapses": 7704,
+      "in_synapses": 1031,
+      "top_out": [
+        {
+          "to": "10",
+          "synapses": 3984
+        },
+        {
+          "to": "12",
+          "synapses": 2060
+        },
+        {
+          "to": "22",
+          "synapses": 1111
+        },
+        {
+          "to": "32",
+          "synapses": 201
+        },
+        {
+          "to": "29",
+          "synapses": 169
+        }
+      ],
+      "top_in": [
+        {
+          "from": "10",
+          "synapses": 1017
+        },
+        {
+          "from": "12",
+          "synapses": 9
+        },
+        {
+          "from": "0",
+          "synapses": 2
+        },
+        {
+          "from": "1",
+          "synapses": 1
+        },
+        {
+          "from": "4",
+          "synapses": 1
+        }
+      ]
+    },
+    {
+      "cluster": "59",
+      "n_nodes": 26,
+      "n_annotated": 26,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "MBON"
+      ],
+      "internal_synapses": 873,
+      "out_synapses": 6972,
+      "in_synapses": 14916,
+      "top_out": [
+        {
+          "to": "64",
+          "synapses": 1065
+        },
+        {
+          "to": "0",
+          "synapses": 867
+        },
+        {
+          "to": "32",
+          "synapses": 675
+        },
+        {
+          "to": "69",
+          "synapses": 603
+        },
+        {
+          "to": "47",
+          "synapses": 581
+        }
+      ],
+      "top_in": [
+        {
+          "from": "30",
+          "synapses": 7298
+        },
+        {
+          "from": "33",
+          "synapses": 2496
+        },
+        {
+          "from": "40",
+          "synapses": 1316
+        },
+        {
+          "from": "57",
+          "synapses": 1165
+        },
+        {
+          "from": "42",
+          "synapses": 809
+        }
+      ]
+    },
+    {
+      "cluster": "58",
+      "n_nodes": 26,
+      "n_annotated": 10,
+      "n_unannotated": 16,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "LHN",
+        "LN",
+        "MB-FFN",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 585,
+      "out_synapses": 3391,
+      "in_synapses": 3621,
+      "top_out": [
+        {
+          "to": "62",
+          "synapses": 493
+        },
+        {
+          "to": "77",
+          "synapses": 399
+        },
+        {
+          "to": "0",
+          "synapses": 330
+        },
+        {
+          "to": "86",
+          "synapses": 303
+        },
+        {
+          "to": "64",
+          "synapses": 300
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 624
+        },
+        {
+          "from": "47",
+          "synapses": 610
+        },
+        {
+          "from": "32",
+          "synapses": 396
+        },
+        {
+          "from": "62",
+          "synapses": 329
+        },
+        {
+          "from": "59",
+          "synapses": 325
+        }
+      ]
+    },
+    {
+      "cluster": "14",
+      "n_nodes": 24,
+      "n_annotated": 14,
+      "n_unannotated": 10,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "PN-somato",
+        "ascending",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 55,
+      "out_synapses": 1155,
+      "in_synapses": 550,
+      "top_out": [
+        {
+          "to": "18",
+          "synapses": 353
+        },
+        {
+          "to": "0",
+          "synapses": 163
+        },
+        {
+          "to": "27",
+          "synapses": 117
+        },
+        {
+          "to": "46",
+          "synapses": 103
+        },
+        {
+          "to": "23",
+          "synapses": 94
+        }
+      ],
+      "top_in": [
+        {
+          "from": "18",
+          "synapses": 197
+        },
+        {
+          "from": "0",
+          "synapses": 126
+        },
+        {
+          "from": "23",
+          "synapses": 80
+        },
+        {
+          "from": "52",
+          "synapses": 49
+        },
+        {
+          "from": "27",
+          "synapses": 39
+        }
+      ]
+    },
+    {
+      "cluster": "20",
+      "n_nodes": 24,
+      "n_annotated": 22,
+      "n_unannotated": 2,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "sensory"
+      ],
+      "internal_synapses": 27,
+      "out_synapses": 382,
+      "in_synapses": 131,
+      "top_out": [
+        {
+          "to": "54",
+          "synapses": 89
+        },
+        {
+          "to": "21",
+          "synapses": 79
+        },
+        {
+          "to": "56",
+          "synapses": 39
+        },
+        {
+          "to": "63",
+          "synapses": 36
+        },
+        {
+          "to": "83",
+          "synapses": 34
+        }
+      ],
+      "top_in": [
+        {
+          "from": "21",
+          "synapses": 31
+        },
+        {
+          "from": "5",
+          "synapses": 21
+        },
+        {
+          "from": "63",
+          "synapses": 12
+        },
+        {
+          "from": "6",
+          "synapses": 11
+        },
+        {
+          "from": "16",
+          "synapses": 10
+        }
+      ]
+    },
+    {
+      "cluster": "42",
+      "n_nodes": 24,
+      "n_annotated": 24,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "KC"
+      ],
+      "internal_synapses": 519,
+      "out_synapses": 3268,
+      "in_synapses": 2903,
+      "top_out": [
+        {
+          "to": "57",
+          "synapses": 822
+        },
+        {
+          "to": "59",
+          "synapses": 809
+        },
+        {
+          "to": "33",
+          "synapses": 534
+        },
+        {
+          "to": "49",
+          "synapses": 393
+        },
+        {
+          "to": "30",
+          "synapses": 325
+        }
+      ],
+      "top_in": [
+        {
+          "from": "12",
+          "synapses": 704
+        },
+        {
+          "from": "57",
+          "synapses": 601
+        },
+        {
+          "from": "33",
+          "synapses": 588
+        },
+        {
+          "from": "30",
+          "synapses": 449
+        },
+        {
+          "from": "49",
+          "synapses": 299
+        }
+      ]
+    },
+    {
+      "cluster": "21",
+      "n_nodes": 24,
+      "n_annotated": 24,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "PN",
+        "sensory"
+      ],
+      "internal_synapses": 97,
+      "out_synapses": 333,
+      "in_synapses": 331,
+      "top_out": [
+        {
+          "to": "56",
+          "synapses": 94
+        },
+        {
+          "to": "54",
+          "synapses": 52
+        },
+        {
+          "to": "20",
+          "synapses": 31
+        },
+        {
+          "to": "63",
+          "synapses": 30
+        },
+        {
+          "to": "24",
+          "synapses": 25
+        }
+      ],
+      "top_in": [
+        {
+          "from": "24",
+          "synapses": 97
+        },
+        {
+          "from": "20",
+          "synapses": 79
+        },
+        {
+          "from": "16",
+          "synapses": 52
+        },
+        {
+          "from": "11",
+          "synapses": 37
+        },
+        {
+          "from": "9",
+          "synapses": 22
+        }
+      ]
+    },
+    {
+      "cluster": "27",
+      "n_nodes": 24,
+      "n_annotated": 18,
+      "n_unannotated": 6,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "PN-somato",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 375,
+      "out_synapses": 2388,
+      "in_synapses": 2026,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 534
+        },
+        {
+          "to": "46",
+          "synapses": 339
+        },
+        {
+          "to": "50",
+          "synapses": 329
+        },
+        {
+          "to": "18",
+          "synapses": 255
+        },
+        {
+          "to": "52",
+          "synapses": 200
+        }
+      ],
+      "top_in": [
+        {
+          "from": "18",
+          "synapses": 795
+        },
+        {
+          "from": "0",
+          "synapses": 423
+        },
+        {
+          "from": "26",
+          "synapses": 335
+        },
+        {
+          "from": "14",
+          "synapses": 117
+        },
+        {
+          "from": "52",
+          "synapses": 85
+        }
+      ]
+    },
+    {
+      "cluster": "75",
+      "n_nodes": 24,
+      "n_annotated": 22,
+      "n_unannotated": 2,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "LN",
+        "MB-FBN",
+        "MB-FFN"
+      ],
+      "internal_synapses": 374,
+      "out_synapses": 4437,
+      "in_synapses": 7399,
+      "top_out": [
+        {
+          "to": "57",
+          "synapses": 613
+        },
+        {
+          "to": "64",
+          "synapses": 444
+        },
+        {
+          "to": "0",
+          "synapses": 430
+        },
+        {
+          "to": "66",
+          "synapses": 420
+        },
+        {
+          "to": "79",
+          "synapses": 391
+        }
+      ],
+      "top_in": [
+        {
+          "from": "64",
+          "synapses": 1404
+        },
+        {
+          "from": "53",
+          "synapses": 1396
+        },
+        {
+          "from": "0",
+          "synapses": 883
+        },
+        {
+          "from": "61",
+          "synapses": 773
+        },
+        {
+          "from": "79",
+          "synapses": 378
+        }
+      ]
+    },
+    {
+      "cluster": "61",
+      "n_nodes": 24,
+      "n_annotated": 16,
+      "n_unannotated": 8,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "LHN",
+        "LN",
+        "MB-FBN",
+        "MB-FFN",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 550,
+      "out_synapses": 3927,
+      "in_synapses": 5188,
+      "top_out": [
+        {
+          "to": "75",
+          "synapses": 773
+        },
+        {
+          "to": "64",
+          "synapses": 522
+        },
+        {
+          "to": "82",
+          "synapses": 520
+        },
+        {
+          "to": "0",
+          "synapses": 407
+        },
+        {
+          "to": "83",
+          "synapses": 305
+        }
+      ],
+      "top_in": [
+        {
+          "from": "53",
+          "synapses": 931
+        },
+        {
+          "from": "0",
+          "synapses": 674
+        },
+        {
+          "from": "64",
+          "synapses": 491
+        },
+        {
+          "from": "56",
+          "synapses": 415
+        },
+        {
+          "from": "35",
+          "synapses": 412
+        }
+      ]
+    },
+    {
+      "cluster": "73",
+      "n_nodes": 24,
+      "n_annotated": 8,
+      "n_unannotated": 16,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "LN",
+        "MB-FFN",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 420,
+      "out_synapses": 4000,
+      "in_synapses": 6053,
+      "top_out": [
+        {
+          "to": "79",
+          "synapses": 556
+        },
+        {
+          "to": "77",
+          "synapses": 476
+        },
+        {
+          "to": "0",
+          "synapses": 381
+        },
+        {
+          "to": "66",
+          "synapses": 330
+        },
+        {
+          "to": "62",
+          "synapses": 273
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 933
+        },
+        {
+          "from": "66",
+          "synapses": 666
+        },
+        {
+          "from": "67",
+          "synapses": 643
+        },
+        {
+          "from": "62",
+          "synapses": 615
+        },
+        {
+          "from": "71",
+          "synapses": 508
+        }
+      ]
+    },
+    {
+      "cluster": "11",
+      "n_nodes": 24,
+      "n_annotated": 24,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "sensory"
+      ],
+      "internal_synapses": 44,
+      "out_synapses": 115,
+      "in_synapses": 77,
+      "top_out": [
+        {
+          "to": "21",
+          "synapses": 37
+        },
+        {
+          "to": "9",
+          "synapses": 29
+        },
+        {
+          "to": "7",
+          "synapses": 18
+        },
+        {
+          "to": "67",
+          "synapses": 9
+        },
+        {
+          "to": "16",
+          "synapses": 7
+        }
+      ],
+      "top_in": [
+        {
+          "from": "9",
+          "synapses": 28
+        },
+        {
+          "from": "7",
+          "synapses": 16
+        },
+        {
+          "from": "16",
+          "synapses": 12
+        },
+        {
+          "from": "21",
+          "synapses": 11
+        },
+        {
+          "from": "13",
+          "synapses": 3
+        }
+      ]
+    },
+    {
+      "cluster": "24",
+      "n_nodes": 23,
+      "n_annotated": 15,
+      "n_unannotated": 8,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "sensory"
+      ],
+      "internal_synapses": 19,
+      "out_synapses": 258,
+      "in_synapses": 259,
+      "top_out": [
+        {
+          "to": "21",
+          "synapses": 97
+        },
+        {
+          "to": "16",
+          "synapses": 42
+        },
+        {
+          "to": "5",
+          "synapses": 28
+        },
+        {
+          "to": "9",
+          "synapses": 20
+        },
+        {
+          "to": "80",
+          "synapses": 13
+        }
+      ],
+      "top_in": [
+        {
+          "from": "16",
+          "synapses": 93
+        },
+        {
+          "from": "9",
+          "synapses": 53
+        },
+        {
+          "from": "6",
+          "synapses": 41
+        },
+        {
+          "from": "21",
+          "synapses": 25
+        },
+        {
+          "from": "20",
+          "synapses": 18
+        }
+      ]
+    },
+    {
+      "cluster": "16",
+      "n_nodes": 22,
+      "n_annotated": 20,
+      "n_unannotated": 2,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "sensory"
+      ],
+      "internal_synapses": 22,
+      "out_synapses": 266,
+      "in_synapses": 144,
+      "top_out": [
+        {
+          "to": "24",
+          "synapses": 93
+        },
+        {
+          "to": "21",
+          "synapses": 52
+        },
+        {
+          "to": "5",
+          "synapses": 37
+        },
+        {
+          "to": "52",
+          "synapses": 24
+        },
+        {
+          "to": "9",
+          "synapses": 21
+        }
+      ],
+      "top_in": [
+        {
+          "from": "24",
+          "synapses": 42
+        },
+        {
+          "from": "9",
+          "synapses": 40
+        },
+        {
+          "from": "21",
+          "synapses": 21
+        },
+        {
+          "from": "6",
+          "synapses": 17
+        },
+        {
+          "from": "13",
+          "synapses": 7
+        }
+      ]
+    },
+    {
+      "cluster": "46",
+      "n_nodes": 22,
+      "n_annotated": 12,
+      "n_unannotated": 10,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "LHN",
+        "MB-FFN",
+        "PN-somato",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 365,
+      "out_synapses": 3403,
+      "in_synapses": 3515,
+      "top_out": [
+        {
+          "to": "71",
+          "synapses": 473
+        },
+        {
+          "to": "52",
+          "synapses": 444
+        },
+        {
+          "to": "50",
+          "synapses": 361
+        },
+        {
+          "to": "0",
+          "synapses": 353
+        },
+        {
+          "to": "68",
+          "synapses": 346
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 738
+        },
+        {
+          "from": "18",
+          "synapses": 714
+        },
+        {
+          "from": "27",
+          "synapses": 339
+        },
+        {
+          "from": "31",
+          "synapses": 339
+        },
+        {
+          "from": "26",
+          "synapses": 306
+        }
+      ]
+    },
+    {
+      "cluster": "65",
+      "n_nodes": 22,
+      "n_annotated": 6,
+      "n_unannotated": 16,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "PN-somato",
+        "pre-DN-VNC",
+        "sensory"
+      ],
+      "internal_synapses": 155,
+      "out_synapses": 1285,
+      "in_synapses": 1210,
+      "top_out": [
+        {
+          "to": "84",
+          "synapses": 245
+        },
+        {
+          "to": "0",
+          "synapses": 167
+        },
+        {
+          "to": "88",
+          "synapses": 96
+        },
+        {
+          "to": "86",
+          "synapses": 91
+        },
+        {
+          "to": "74",
+          "synapses": 69
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 197
+        },
+        {
+          "from": "84",
+          "synapses": 163
+        },
+        {
+          "from": "72",
+          "synapses": 138
+        },
+        {
+          "from": "70",
+          "synapses": 100
+        },
+        {
+          "from": "81",
+          "synapses": 97
+        }
+      ]
+    },
+    {
+      "cluster": "49",
+      "n_nodes": 20,
+      "n_annotated": 20,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "KC"
+      ],
+      "internal_synapses": 453,
+      "out_synapses": 1093,
+      "in_synapses": 1517,
+      "top_out": [
+        {
+          "to": "42",
+          "synapses": 299
+        },
+        {
+          "to": "57",
+          "synapses": 237
+        },
+        {
+          "to": "33",
+          "synapses": 191
+        },
+        {
+          "to": "59",
+          "synapses": 178
+        },
+        {
+          "to": "30",
+          "synapses": 102
+        }
+      ],
+      "top_in": [
+        {
+          "from": "42",
+          "synapses": 393
+        },
+        {
+          "from": "12",
+          "synapses": 346
+        },
+        {
+          "from": "33",
+          "synapses": 278
+        },
+        {
+          "from": "57",
+          "synapses": 184
+        },
+        {
+          "from": "30",
+          "synapses": 184
+        }
+      ]
+    },
+    {
+      "cluster": "68",
+      "n_nodes": 20,
+      "n_annotated": 2,
+      "n_unannotated": 18,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-VNC",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 83,
+      "out_synapses": 769,
+      "in_synapses": 1842,
+      "top_out": [
+        {
+          "to": "71",
+          "synapses": 128
+        },
+        {
+          "to": "62",
+          "synapses": 90
+        },
+        {
+          "to": "0",
+          "synapses": 72
+        },
+        {
+          "to": "78",
+          "synapses": 61
+        },
+        {
+          "to": "50",
+          "synapses": 52
+        }
+      ],
+      "top_in": [
+        {
+          "from": "46",
+          "synapses": 346
+        },
+        {
+          "from": "50",
+          "synapses": 251
+        },
+        {
+          "from": "0",
+          "synapses": 167
+        },
+        {
+          "from": "71",
+          "synapses": 161
+        },
+        {
+          "from": "52",
+          "synapses": 157
+        }
+      ]
+    },
+    {
+      "cluster": "54",
+      "n_nodes": 20,
+      "n_annotated": 16,
+      "n_unannotated": 4,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "PN",
+        "pre-DN-SEZ"
+      ],
+      "internal_synapses": 239,
+      "out_synapses": 2015,
+      "in_synapses": 1764,
+      "top_out": [
+        {
+          "to": "64",
+          "synapses": 323
+        },
+        {
+          "to": "73",
+          "synapses": 240
+        },
+        {
+          "to": "67",
+          "synapses": 180
+        },
+        {
+          "to": "57",
+          "synapses": 168
+        },
+        {
+          "to": "0",
+          "synapses": 157
+        }
+      ],
+      "top_in": [
+        {
+          "from": "83",
+          "synapses": 430
+        },
+        {
+          "from": "63",
+          "synapses": 142
+        },
+        {
+          "from": "64",
+          "synapses": 121
+        },
+        {
+          "from": "5",
+          "synapses": 105
+        },
+        {
+          "from": "20",
+          "synapses": 89
+        }
+      ]
+    },
+    {
+      "cluster": "76",
+      "n_nodes": 20,
+      "n_annotated": 10,
+      "n_unannotated": 10,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "LHN",
+        "MB-FBN",
+        "MB-FFN",
+        "PN",
+        "pre-DN-SEZ"
+      ],
+      "internal_synapses": 178,
+      "out_synapses": 2832,
+      "in_synapses": 4226,
+      "top_out": [
+        {
+          "to": "85",
+          "synapses": 491
+        },
+        {
+          "to": "0",
+          "synapses": 300
+        },
+        {
+          "to": "75",
+          "synapses": 272
+        },
+        {
+          "to": "64",
+          "synapses": 248
+        },
+        {
+          "to": "81",
+          "synapses": 234
+        }
+      ],
+      "top_in": [
+        {
+          "from": "64",
+          "synapses": 504
+        },
+        {
+          "from": "0",
+          "synapses": 342
+        },
+        {
+          "from": "71",
+          "synapses": 266
+        },
+        {
+          "from": "47",
+          "synapses": 231
+        },
+        {
+          "from": "59",
+          "synapses": 231
+        }
+      ]
+    },
+    {
+      "cluster": "1",
+      "n_nodes": 20,
+      "n_annotated": 18,
+      "n_unannotated": 2,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "LN",
+        "sensory"
+      ],
+      "internal_synapses": 88,
+      "out_synapses": 7307,
+      "in_synapses": 1082,
+      "top_out": [
+        {
+          "to": "10",
+          "synapses": 3889
+        },
+        {
+          "to": "12",
+          "synapses": 1713
+        },
+        {
+          "to": "22",
+          "synapses": 1056
+        },
+        {
+          "to": "32",
+          "synapses": 202
+        },
+        {
+          "to": "0",
+          "synapses": 151
+        }
+      ],
+      "top_in": [
+        {
+          "from": "10",
+          "synapses": 978
+        },
+        {
+          "from": "3",
+          "synapses": 33
+        },
+        {
+          "from": "2",
+          "synapses": 24
+        },
+        {
+          "from": "12",
+          "synapses": 16
+        },
+        {
+          "from": "22",
+          "synapses": 13
+        }
+      ]
+    },
+    {
+      "cluster": "80",
+      "n_nodes": 20,
+      "n_annotated": 4,
+      "n_unannotated": 16,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "DN-VNC",
+        "MB-FFN",
+        "PN",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 81,
+      "out_synapses": 1067,
+      "in_synapses": 1630,
+      "top_out": [
+        {
+          "to": "77",
+          "synapses": 148
+        },
+        {
+          "to": "87",
+          "synapses": 124
+        },
+        {
+          "to": "86",
+          "synapses": 112
+        },
+        {
+          "to": "78",
+          "synapses": 101
+        },
+        {
+          "to": "74",
+          "synapses": 82
+        }
+      ],
+      "top_in": [
+        {
+          "from": "70",
+          "synapses": 235
+        },
+        {
+          "from": "77",
+          "synapses": 133
+        },
+        {
+          "from": "64",
+          "synapses": 126
+        },
+        {
+          "from": "62",
+          "synapses": 105
+        },
+        {
+          "from": "73",
+          "synapses": 94
+        }
+      ]
+    },
+    {
+      "cluster": "72",
+      "n_nodes": 20,
+      "n_annotated": 14,
+      "n_unannotated": 6,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "PN-somato",
+        "ascending",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 125,
+      "out_synapses": 1168,
+      "in_synapses": 856,
+      "top_out": [
+        {
+          "to": "85",
+          "synapses": 254
+        },
+        {
+          "to": "69",
+          "synapses": 175
+        },
+        {
+          "to": "0",
+          "synapses": 169
+        },
+        {
+          "to": "65",
+          "synapses": 138
+        },
+        {
+          "to": "84",
+          "synapses": 80
+        }
+      ],
+      "top_in": [
+        {
+          "from": "85",
+          "synapses": 211
+        },
+        {
+          "from": "0",
+          "synapses": 167
+        },
+        {
+          "from": "69",
+          "synapses": 150
+        },
+        {
+          "from": "84",
+          "synapses": 115
+        },
+        {
+          "from": "88",
+          "synapses": 34
+        }
+      ]
+    },
+    {
+      "cluster": "25",
+      "n_nodes": 19,
+      "n_annotated": 10,
+      "n_unannotated": 9,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-VNC",
+        "LN",
+        "PN",
+        "RGN"
+      ],
+      "internal_synapses": 473,
+      "out_synapses": 1069,
+      "in_synapses": 1803,
+      "top_out": [
+        {
+          "to": "28",
+          "synapses": 341
+        },
+        {
+          "to": "38",
+          "synapses": 265
+        },
+        {
+          "to": "32",
+          "synapses": 230
+        },
+        {
+          "to": "0",
+          "synapses": 89
+        },
+        {
+          "to": "52",
+          "synapses": 54
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 940
+        },
+        {
+          "from": "38",
+          "synapses": 185
+        },
+        {
+          "from": "5",
+          "synapses": 171
+        },
+        {
+          "from": "8",
+          "synapses": 112
+        },
+        {
+          "from": "22",
+          "synapses": 71
+        }
+      ]
+    },
+    {
+      "cluster": "17",
+      "n_nodes": 19,
+      "n_annotated": 18,
+      "n_unannotated": 1,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "LN",
+        "PN"
+      ],
+      "internal_synapses": 231,
+      "out_synapses": 2676,
+      "in_synapses": 1803,
+      "top_out": [
+        {
+          "to": "28",
+          "synapses": 470
+        },
+        {
+          "to": "38",
+          "synapses": 305
+        },
+        {
+          "to": "53",
+          "synapses": 277
+        },
+        {
+          "to": "40",
+          "synapses": 274
+        },
+        {
+          "to": "0",
+          "synapses": 246
+        }
+      ],
+      "top_in": [
+        {
+          "from": "5",
+          "synapses": 687
+        },
+        {
+          "from": "3",
+          "synapses": 426
+        },
+        {
+          "from": "28",
+          "synapses": 144
+        },
+        {
+          "from": "4",
+          "synapses": 124
+        },
+        {
+          "from": "10",
+          "synapses": 77
+        }
+      ]
+    },
+    {
+      "cluster": "6",
+      "n_nodes": 18,
+      "n_annotated": 18,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "sensory"
+      ],
+      "internal_synapses": 8,
+      "out_synapses": 402,
+      "in_synapses": 71,
+      "top_out": [
+        {
+          "to": "5",
+          "synapses": 195
+        },
+        {
+          "to": "13",
+          "synapses": 44
+        },
+        {
+          "to": "24",
+          "synapses": 41
+        },
+        {
+          "to": "4",
+          "synapses": 20
+        },
+        {
+          "to": "16",
+          "synapses": 17
+        }
+      ],
+      "top_in": [
+        {
+          "from": "5",
+          "synapses": 44
+        },
+        {
+          "from": "24",
+          "synapses": 4
+        },
+        {
+          "from": "9",
+          "synapses": 4
+        },
+        {
+          "from": "11",
+          "synapses": 4
+        },
+        {
+          "from": "13",
+          "synapses": 3
+        }
+      ]
+    },
+    {
+      "cluster": "77",
+      "n_nodes": 18,
+      "n_annotated": 6,
+      "n_unannotated": 12,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-VNC",
+        "LHN",
+        "MB-FFN",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 287,
+      "out_synapses": 2061,
+      "in_synapses": 3315,
+      "top_out": [
+        {
+          "to": "74",
+          "synapses": 284
+        },
+        {
+          "to": "78",
+          "synapses": 152
+        },
+        {
+          "to": "0",
+          "synapses": 139
+        },
+        {
+          "to": "80",
+          "synapses": 133
+        },
+        {
+          "to": "86",
+          "synapses": 132
+        }
+      ],
+      "top_in": [
+        {
+          "from": "62",
+          "synapses": 530
+        },
+        {
+          "from": "0",
+          "synapses": 498
+        },
+        {
+          "from": "73",
+          "synapses": 476
+        },
+        {
+          "from": "58",
+          "synapses": 399
+        },
+        {
+          "from": "66",
+          "synapses": 194
+        }
+      ]
+    },
+    {
+      "cluster": "67",
+      "n_nodes": 18,
+      "n_annotated": 6,
+      "n_unannotated": 12,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "MB-FBN",
+        "MB-FFN",
+        "PN-somato",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 167,
+      "out_synapses": 2297,
+      "in_synapses": 2750,
+      "top_out": [
+        {
+          "to": "73",
+          "synapses": 643
+        },
+        {
+          "to": "83",
+          "synapses": 371
+        },
+        {
+          "to": "66",
+          "synapses": 242
+        },
+        {
+          "to": "0",
+          "synapses": 190
+        },
+        {
+          "to": "79",
+          "synapses": 124
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 366
+        },
+        {
+          "from": "56",
+          "synapses": 321
+        },
+        {
+          "from": "66",
+          "synapses": 285
+        },
+        {
+          "from": "64",
+          "synapses": 201
+        },
+        {
+          "from": "54",
+          "synapses": 180
+        }
+      ]
+    },
+    {
+      "cluster": "26",
+      "n_nodes": 16,
+      "n_annotated": 10,
+      "n_unannotated": 6,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "LHN",
+        "PN-somato",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 175,
+      "out_synapses": 2296,
+      "in_synapses": 1945,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 571
+        },
+        {
+          "to": "27",
+          "synapses": 335
+        },
+        {
+          "to": "46",
+          "synapses": 306
+        },
+        {
+          "to": "50",
+          "synapses": 182
+        },
+        {
+          "to": "18",
+          "synapses": 161
+        }
+      ],
+      "top_in": [
+        {
+          "from": "18",
+          "synapses": 644
+        },
+        {
+          "from": "0",
+          "synapses": 433
+        },
+        {
+          "from": "52",
+          "synapses": 187
+        },
+        {
+          "from": "27",
+          "synapses": 184
+        },
+        {
+          "from": "31",
+          "synapses": 115
+        }
+      ]
+    },
+    {
+      "cluster": "81",
+      "n_nodes": 16,
+      "n_annotated": 14,
+      "n_unannotated": 2,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "MB-FBN",
+        "PN-somato",
+        "pre-DN-SEZ"
+      ],
+      "internal_synapses": 321,
+      "out_synapses": 3602,
+      "in_synapses": 3784,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 502
+        },
+        {
+          "to": "82",
+          "synapses": 407
+        },
+        {
+          "to": "85",
+          "synapses": 392
+        },
+        {
+          "to": "64",
+          "synapses": 272
+        },
+        {
+          "to": "79",
+          "synapses": 247
+        }
+      ],
+      "top_in": [
+        {
+          "from": "82",
+          "synapses": 503
+        },
+        {
+          "from": "59",
+          "synapses": 369
+        },
+        {
+          "from": "0",
+          "synapses": 335
+        },
+        {
+          "from": "64",
+          "synapses": 321
+        },
+        {
+          "from": "79",
+          "synapses": 309
+        }
+      ]
+    },
+    {
+      "cluster": "79",
+      "n_nodes": 16,
+      "n_annotated": 12,
+      "n_unannotated": 4,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "MB-FBN",
+        "PN"
+      ],
+      "internal_synapses": 755,
+      "out_synapses": 4207,
+      "in_synapses": 5420,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 643
+        },
+        {
+          "to": "64",
+          "synapses": 603
+        },
+        {
+          "to": "57",
+          "synapses": 486
+        },
+        {
+          "to": "75",
+          "synapses": 378
+        },
+        {
+          "to": "81",
+          "synapses": 309
+        }
+      ],
+      "top_in": [
+        {
+          "from": "66",
+          "synapses": 723
+        },
+        {
+          "from": "64",
+          "synapses": 563
+        },
+        {
+          "from": "73",
+          "synapses": 556
+        },
+        {
+          "from": "69",
+          "synapses": 414
+        },
+        {
+          "from": "75",
+          "synapses": 391
+        }
+      ]
+    },
+    {
+      "cluster": "35",
+      "n_nodes": 16,
+      "n_annotated": 12,
+      "n_unannotated": 4,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "LHN",
+        "LN",
+        "PN",
+        "PN-somato",
+        "pre-DN-SEZ"
+      ],
+      "internal_synapses": 190,
+      "out_synapses": 2289,
+      "in_synapses": 1406,
+      "top_out": [
+        {
+          "to": "61",
+          "synapses": 412
+        },
+        {
+          "to": "0",
+          "synapses": 345
+        },
+        {
+          "to": "53",
+          "synapses": 264
+        },
+        {
+          "to": "64",
+          "synapses": 260
+        },
+        {
+          "to": "75",
+          "synapses": 189
+        }
+      ],
+      "top_in": [
+        {
+          "from": "5",
+          "synapses": 261
+        },
+        {
+          "from": "0",
+          "synapses": 222
+        },
+        {
+          "from": "3",
+          "synapses": 113
+        },
+        {
+          "from": "64",
+          "synapses": 81
+        },
+        {
+          "from": "38",
+          "synapses": 76
+        }
+      ]
+    },
+    {
+      "cluster": "13",
+      "n_nodes": 14,
+      "n_annotated": 12,
+      "n_unannotated": 2,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "sensory"
+      ],
+      "internal_synapses": 9,
+      "out_synapses": 74,
+      "in_synapses": 77,
+      "top_out": [
+        {
+          "to": "80",
+          "synapses": 13
+        },
+        {
+          "to": "9",
+          "synapses": 9
+        },
+        {
+          "to": "21",
+          "synapses": 8
+        },
+        {
+          "to": "20",
+          "synapses": 8
+        },
+        {
+          "to": "16",
+          "synapses": 7
+        }
+      ],
+      "top_in": [
+        {
+          "from": "6",
+          "synapses": 44
+        },
+        {
+          "from": "24",
+          "synapses": 9
+        },
+        {
+          "from": "9",
+          "synapses": 8
+        },
+        {
+          "from": "7",
+          "synapses": 5
+        },
+        {
+          "from": "16",
+          "synapses": 4
+        }
+      ]
+    },
+    {
+      "cluster": "92",
+      "n_nodes": 14,
+      "n_annotated": 0,
+      "n_unannotated": 14,
+      "annotation_status": "none_annotated",
+      "cell_types": [
+        "DN-VNC",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 221,
+      "out_synapses": 960,
+      "in_synapses": 3032,
+      "top_out": [
+        {
+          "to": "85",
+          "synapses": 266
+        },
+        {
+          "to": "87",
+          "synapses": 227
+        },
+        {
+          "to": "91",
+          "synapses": 132
+        },
+        {
+          "to": "84",
+          "synapses": 54
+        },
+        {
+          "to": "69",
+          "synapses": 45
+        }
+      ],
+      "top_in": [
+        {
+          "from": "85",
+          "synapses": 997
+        },
+        {
+          "from": "78",
+          "synapses": 595
+        },
+        {
+          "from": "87",
+          "synapses": 305
+        },
+        {
+          "from": "84",
+          "synapses": 247
+        },
+        {
+          "from": "91",
+          "synapses": 161
+        }
+      ]
+    },
+    {
+      "cluster": "8",
+      "n_nodes": 14,
+      "n_annotated": 14,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "PN",
+        "sensory"
+      ],
+      "internal_synapses": 3,
+      "out_synapses": 751,
+      "in_synapses": 204,
+      "top_out": [
+        {
+          "to": "32",
+          "synapses": 230
+        },
+        {
+          "to": "25",
+          "synapses": 112
+        },
+        {
+          "to": "28",
+          "synapses": 75
+        },
+        {
+          "to": "38",
+          "synapses": 74
+        },
+        {
+          "to": "31",
+          "synapses": 73
+        }
+      ],
+      "top_in": [
+        {
+          "from": "5",
+          "synapses": 62
+        },
+        {
+          "from": "4",
+          "synapses": 46
+        },
+        {
+          "from": "3",
+          "synapses": 33
+        },
+        {
+          "from": "0",
+          "synapses": 21
+        },
+        {
+          "from": "6",
+          "synapses": 9
+        }
+      ]
+    },
+    {
+      "cluster": "-1",
+      "n_nodes": 14,
+      "n_annotated": 14,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "MB-FFN",
+        "sensory"
+      ],
+      "internal_synapses": 1,
+      "out_synapses": 44,
+      "in_synapses": 7,
+      "top_out": [
+        {
+          "to": "44",
+          "synapses": 15
+        },
+        {
+          "to": "0",
+          "synapses": 13
+        },
+        {
+          "to": "7",
+          "synapses": 3
+        },
+        {
+          "to": "16",
+          "synapses": 3
+        },
+        {
+          "to": "31",
+          "synapses": 2
+        }
+      ],
+      "top_in": [
+        {
+          "from": "44",
+          "synapses": 2
+        },
+        {
+          "from": "7",
+          "synapses": 2
+        },
+        {
+          "from": "6",
+          "synapses": 1
+        },
+        {
+          "from": "13",
+          "synapses": 1
+        },
+        {
+          "from": "89",
+          "synapses": 1
+        }
+      ]
+    },
+    {
+      "cluster": "55",
+      "n_nodes": 12,
+      "n_annotated": 6,
+      "n_unannotated": 6,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "LHN",
+        "MB-FBN",
+        "PN-somato"
+      ],
+      "internal_synapses": 10,
+      "out_synapses": 1604,
+      "in_synapses": 1276,
+      "top_out": [
+        {
+          "to": "82",
+          "synapses": 287
+        },
+        {
+          "to": "75",
+          "synapses": 274
+        },
+        {
+          "to": "64",
+          "synapses": 184
+        },
+        {
+          "to": "83",
+          "synapses": 166
+        },
+        {
+          "to": "76",
+          "synapses": 109
+        }
+      ],
+      "top_in": [
+        {
+          "from": "64",
+          "synapses": 190
+        },
+        {
+          "from": "22",
+          "synapses": 116
+        },
+        {
+          "from": "32",
+          "synapses": 111
+        },
+        {
+          "from": "0",
+          "synapses": 96
+        },
+        {
+          "from": "47",
+          "synapses": 75
+        }
+      ]
+    },
+    {
+      "cluster": "43",
+      "n_nodes": 12,
+      "n_annotated": 6,
+      "n_unannotated": 6,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "CN",
+        "LHN",
+        "PN-somato"
+      ],
+      "internal_synapses": 89,
+      "out_synapses": 1800,
+      "in_synapses": 2131,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 361
+        },
+        {
+          "to": "66",
+          "synapses": 194
+        },
+        {
+          "to": "67",
+          "synapses": 146
+        },
+        {
+          "to": "53",
+          "synapses": 113
+        },
+        {
+          "to": "47",
+          "synapses": 88
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 336
+        },
+        {
+          "from": "38",
+          "synapses": 267
+        },
+        {
+          "from": "22",
+          "synapses": 251
+        },
+        {
+          "from": "28",
+          "synapses": 205
+        },
+        {
+          "from": "18",
+          "synapses": 166
+        }
+      ]
+    },
+    {
+      "cluster": "82",
+      "n_nodes": 12,
+      "n_annotated": 12,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "CN",
+        "MB-FBN",
+        "MBON"
+      ],
+      "internal_synapses": 289,
+      "out_synapses": 3469,
+      "in_synapses": 7150,
+      "top_out": [
+        {
+          "to": "87",
+          "synapses": 595
+        },
+        {
+          "to": "81",
+          "synapses": 503
+        },
+        {
+          "to": "0",
+          "synapses": 360
+        },
+        {
+          "to": "85",
+          "synapses": 233
+        },
+        {
+          "to": "64",
+          "synapses": 184
+        }
+      ],
+      "top_in": [
+        {
+          "from": "64",
+          "synapses": 1657
+        },
+        {
+          "from": "53",
+          "synapses": 1187
+        },
+        {
+          "from": "0",
+          "synapses": 705
+        },
+        {
+          "from": "61",
+          "synapses": 520
+        },
+        {
+          "from": "30",
+          "synapses": 496
+        }
+      ]
+    },
+    {
+      "cluster": "40",
+      "n_nodes": 8,
+      "n_annotated": 8,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "KC"
+      ],
+      "internal_synapses": 391,
+      "out_synapses": 3607,
+      "in_synapses": 2302,
+      "top_out": [
+        {
+          "to": "59",
+          "synapses": 1316
+        },
+        {
+          "to": "30",
+          "synapses": 671
+        },
+        {
+          "to": "57",
+          "synapses": 585
+        },
+        {
+          "to": "64",
+          "synapses": 466
+        },
+        {
+          "to": "33",
+          "synapses": 140
+        }
+      ],
+      "top_in": [
+        {
+          "from": "30",
+          "synapses": 825
+        },
+        {
+          "from": "57",
+          "synapses": 450
+        },
+        {
+          "from": "17",
+          "synapses": 274
+        },
+        {
+          "from": "33",
+          "synapses": 150
+        },
+        {
+          "from": "28",
+          "synapses": 129
+        }
+      ]
+    },
+    {
+      "cluster": "37",
+      "n_nodes": 8,
+      "n_annotated": 4,
+      "n_unannotated": 4,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "LHN",
+        "PN",
+        "ascending",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 24,
+      "out_synapses": 534,
+      "in_synapses": 373,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 130
+        },
+        {
+          "to": "47",
+          "synapses": 100
+        },
+        {
+          "to": "32",
+          "synapses": 40
+        },
+        {
+          "to": "31",
+          "synapses": 36
+        },
+        {
+          "to": "44",
+          "synapses": 23
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 78
+        },
+        {
+          "from": "4",
+          "synapses": 75
+        },
+        {
+          "from": "38",
+          "synapses": 38
+        },
+        {
+          "from": "22",
+          "synapses": 30
+        },
+        {
+          "from": "31",
+          "synapses": 20
+        }
+      ]
+    },
+    {
+      "cluster": "48",
+      "n_nodes": 8,
+      "n_annotated": 0,
+      "n_unannotated": 8,
+      "annotation_status": "none_annotated",
+      "cell_types": [
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 16,
+      "out_synapses": 521,
+      "in_synapses": 780,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 61
+        },
+        {
+          "to": "46",
+          "synapses": 58
+        },
+        {
+          "to": "52",
+          "synapses": 53
+        },
+        {
+          "to": "79",
+          "synapses": 46
+        },
+        {
+          "to": "71",
+          "synapses": 39
+        }
+      ],
+      "top_in": [
+        {
+          "from": "0",
+          "synapses": 173
+        },
+        {
+          "from": "31",
+          "synapses": 94
+        },
+        {
+          "from": "18",
+          "synapses": 69
+        },
+        {
+          "from": "50",
+          "synapses": 61
+        },
+        {
+          "from": "38",
+          "synapses": 49
+        }
+      ]
+    },
+    {
+      "cluster": "15",
+      "n_nodes": 8,
+      "n_annotated": 4,
+      "n_unannotated": 4,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ"
+      ],
+      "internal_synapses": 19,
+      "out_synapses": 636,
+      "in_synapses": 930,
+      "top_out": [
+        {
+          "to": "22",
+          "synapses": 196
+        },
+        {
+          "to": "44",
+          "synapses": 110
+        },
+        {
+          "to": "32",
+          "synapses": 60
+        },
+        {
+          "to": "0",
+          "synapses": 50
+        },
+        {
+          "to": "64",
+          "synapses": 37
+        }
+      ],
+      "top_in": [
+        {
+          "from": "3",
+          "synapses": 350
+        },
+        {
+          "from": "10",
+          "synapses": 137
+        },
+        {
+          "from": "4",
+          "synapses": 86
+        },
+        {
+          "from": "1",
+          "synapses": 85
+        },
+        {
+          "from": "2",
+          "synapses": 68
+        }
+      ]
+    },
+    {
+      "cluster": "41",
+      "n_nodes": 8,
+      "n_annotated": 4,
+      "n_unannotated": 4,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "LHN",
+        "LN"
+      ],
+      "internal_synapses": 71,
+      "out_synapses": 1727,
+      "in_synapses": 1933,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 343
+        },
+        {
+          "to": "38",
+          "synapses": 248
+        },
+        {
+          "to": "53",
+          "synapses": 217
+        },
+        {
+          "to": "61",
+          "synapses": 170
+        },
+        {
+          "to": "56",
+          "synapses": 135
+        }
+      ],
+      "top_in": [
+        {
+          "from": "12",
+          "synapses": 512
+        },
+        {
+          "from": "22",
+          "synapses": 352
+        },
+        {
+          "from": "32",
+          "synapses": 211
+        },
+        {
+          "from": "38",
+          "synapses": 147
+        },
+        {
+          "from": "47",
+          "synapses": 117
+        }
+      ]
+    },
+    {
+      "cluster": "19",
+      "n_nodes": 6,
+      "n_annotated": 2,
+      "n_unannotated": 4,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "PN-somato",
+        "pre-DN-SEZ",
+        "pre-DN-VNC"
+      ],
+      "internal_synapses": 5,
+      "out_synapses": 328,
+      "in_synapses": 163,
+      "top_out": [
+        {
+          "to": "0",
+          "synapses": 52
+        },
+        {
+          "to": "52",
+          "synapses": 47
+        },
+        {
+          "to": "46",
+          "synapses": 40
+        },
+        {
+          "to": "48",
+          "synapses": 40
+        },
+        {
+          "to": "18",
+          "synapses": 34
+        }
+      ],
+      "top_in": [
+        {
+          "from": "18",
+          "synapses": 54
+        },
+        {
+          "from": "0",
+          "synapses": 36
+        },
+        {
+          "from": "27",
+          "synapses": 22
+        },
+        {
+          "from": "14",
+          "synapses": 21
+        },
+        {
+          "from": "52",
+          "synapses": 16
+        }
+      ]
+    },
+    {
+      "cluster": "51",
+      "n_nodes": 4,
+      "n_annotated": 2,
+      "n_unannotated": 2,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "DN-SEZ",
+        "sensory"
+      ],
+      "internal_synapses": 8,
+      "out_synapses": 65,
+      "in_synapses": 64,
+      "top_out": [
+        {
+          "to": "54",
+          "synapses": 21
+        },
+        {
+          "to": "21",
+          "synapses": 10
+        },
+        {
+          "to": "63",
+          "synapses": 10
+        },
+        {
+          "to": "78",
+          "synapses": 6
+        },
+        {
+          "to": "83",
+          "synapses": 4
+        }
+      ],
+      "top_in": [
+        {
+          "from": "83",
+          "synapses": 16
+        },
+        {
+          "from": "21",
+          "synapses": 9
+        },
+        {
+          "from": "52",
+          "synapses": 7
+        },
+        {
+          "from": "5",
+          "synapses": 6
+        },
+        {
+          "from": "20",
+          "synapses": 5
+        }
+      ]
+    },
+    {
+      "cluster": "60",
+      "n_nodes": 2,
+      "n_annotated": 2,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "MB-FBN"
+      ],
+      "internal_synapses": 0,
+      "out_synapses": 430,
+      "in_synapses": 362,
+      "top_out": [
+        {
+          "to": "85",
+          "synapses": 77
+        },
+        {
+          "to": "91",
+          "synapses": 63
+        },
+        {
+          "to": "78",
+          "synapses": 51
+        },
+        {
+          "to": "79",
+          "synapses": 36
+        },
+        {
+          "to": "87",
+          "synapses": 34
+        }
+      ],
+      "top_in": [
+        {
+          "from": "22",
+          "synapses": 151
+        },
+        {
+          "from": "38",
+          "synapses": 25
+        },
+        {
+          "from": "59",
+          "synapses": 22
+        },
+        {
+          "from": "47",
+          "synapses": 18
+        },
+        {
+          "from": "43",
+          "synapses": 16
+        }
+      ]
+    },
+    {
+      "cluster": "36",
+      "n_nodes": 2,
+      "n_annotated": 2,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "KC"
+      ],
+      "internal_synapses": 0,
+      "out_synapses": 684,
+      "in_synapses": 400,
+      "top_out": [
+        {
+          "to": "59",
+          "synapses": 166
+        },
+        {
+          "to": "57",
+          "synapses": 152
+        },
+        {
+          "to": "30",
+          "synapses": 104
+        },
+        {
+          "to": "64",
+          "synapses": 95
+        },
+        {
+          "to": "40",
+          "synapses": 34
+        }
+      ],
+      "top_in": [
+        {
+          "from": "30",
+          "synapses": 122
+        },
+        {
+          "from": "57",
+          "synapses": 102
+        },
+        {
+          "from": "28",
+          "synapses": 55
+        },
+        {
+          "from": "33",
+          "synapses": 36
+        },
+        {
+          "from": "40",
+          "synapses": 25
+        }
+      ]
+    },
+    {
+      "cluster": "90",
+      "n_nodes": 2,
+      "n_annotated": 2,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "MB-FBN"
+      ],
+      "internal_synapses": 9,
+      "out_synapses": 586,
+      "in_synapses": 1106,
+      "top_out": [
+        {
+          "to": "87",
+          "synapses": 241
+        },
+        {
+          "to": "85",
+          "synapses": 113
+        },
+        {
+          "to": "91",
+          "synapses": 63
+        },
+        {
+          "to": "92",
+          "synapses": 45
+        },
+        {
+          "to": "0",
+          "synapses": 31
+        }
+      ],
+      "top_in": [
+        {
+          "from": "91",
+          "synapses": 222
+        },
+        {
+          "from": "85",
+          "synapses": 174
+        },
+        {
+          "from": "87",
+          "synapses": 133
+        },
+        {
+          "from": "78",
+          "synapses": 102
+        },
+        {
+          "from": "82",
+          "synapses": 101
+        }
+      ]
+    },
+    {
+      "cluster": "39",
+      "n_nodes": 2,
+      "n_annotated": 2,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "KC"
+      ],
+      "internal_synapses": 0,
+      "out_synapses": 731,
+      "in_synapses": 430,
+      "top_out": [
+        {
+          "to": "59",
+          "synapses": 274
+        },
+        {
+          "to": "30",
+          "synapses": 99
+        },
+        {
+          "to": "64",
+          "synapses": 97
+        },
+        {
+          "to": "57",
+          "synapses": 95
+        },
+        {
+          "to": "33",
+          "synapses": 36
+        }
+      ],
+      "top_in": [
+        {
+          "from": "30",
+          "synapses": 138
+        },
+        {
+          "from": "57",
+          "synapses": 91
+        },
+        {
+          "from": "32",
+          "synapses": 40
+        },
+        {
+          "from": "33",
+          "synapses": 40
+        },
+        {
+          "from": "40",
+          "synapses": 31
+        }
+      ]
+    },
+    {
+      "cluster": "34",
+      "n_nodes": 2,
+      "n_annotated": 2,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "KC"
+      ],
+      "internal_synapses": 0,
+      "out_synapses": 521,
+      "in_synapses": 413,
+      "top_out": [
+        {
+          "to": "59",
+          "synapses": 164
+        },
+        {
+          "to": "57",
+          "synapses": 106
+        },
+        {
+          "to": "33",
+          "synapses": 80
+        },
+        {
+          "to": "30",
+          "synapses": 66
+        },
+        {
+          "to": "64",
+          "synapses": 33
+        }
+      ],
+      "top_in": [
+        {
+          "from": "30",
+          "synapses": 102
+        },
+        {
+          "from": "57",
+          "synapses": 81
+        },
+        {
+          "from": "12",
+          "synapses": 68
+        },
+        {
+          "from": "33",
+          "synapses": 66
+        },
+        {
+          "from": "42",
+          "synapses": 33
+        }
+      ]
+    },
+    {
+      "cluster": "29",
+      "n_nodes": 2,
+      "n_annotated": 2,
+      "n_unannotated": 0,
+      "annotation_status": "all_annotated",
+      "cell_types": [
+        "PN"
+      ],
+      "internal_synapses": 0,
+      "out_synapses": 435,
+      "in_synapses": 779,
+      "top_out": [
+        {
+          "to": "64",
+          "synapses": 189
+        },
+        {
+          "to": "82",
+          "synapses": 125
+        },
+        {
+          "to": "55",
+          "synapses": 29
+        },
+        {
+          "to": "76",
+          "synapses": 24
+        },
+        {
+          "to": "77",
+          "synapses": 16
+        }
+      ],
+      "top_in": [
+        {
+          "from": "10",
+          "synapses": 265
+        },
+        {
+          "from": "2",
+          "synapses": 169
+        },
+        {
+          "from": "3",
+          "synapses": 135
+        },
+        {
+          "from": "1",
+          "synapses": 102
+        },
+        {
+          "from": "22",
+          "synapses": 22
+        }
+      ]
+    },
+    {
+      "cluster": "0",
+      "n_nodes": 364,
+      "n_annotated": 18,
+      "n_unannotated": 346,
+      "annotation_status": "mixed",
+      "cell_types": [
+        "(none)",
+        "sensory"
+      ],
+      "internal_synapses": 4743,
+      "out_synapses": 23179,
+      "in_synapses": 23289,
+      "top_out": [
+        {
+          "to": "25",
+          "synapses": 940
+        },
+        {
+          "to": "73",
+          "synapses": 933
+        },
+        {
+          "to": "64",
+          "synapses": 920
+        },
+        {
+          "to": "50",
+          "synapses": 899
+        },
+        {
+          "to": "53",
+          "synapses": 883
+        }
+      ],
+      "top_in": [
+        {
+          "from": "22",
+          "synapses": 1460
+        },
+        {
+          "from": "38",
+          "synapses": 994
+        },
+        {
+          "from": "47",
+          "synapses": 944
+        },
+        {
+          "from": "69",
+          "synapses": 873
+        },
+        {
+          "from": "59",
+          "synapses": 867
+        }
+      ]
+    }
+  ]
+}
