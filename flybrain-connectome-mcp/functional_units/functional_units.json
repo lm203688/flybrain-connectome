@@ -24801,7 +24801,55 @@
           "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), datasets 1-8 (L1 x4, L2, L3, adult x2)",
           "artifact": "cel_development_stages.json",
           "note": "Every edge counted here is summed out of the WormWiring xlsx rows for that stage.  The four circuits are the same four `extract_cel_profiles.py` emits as units; this artifact records how many edges and synapses each one carries at L1/L2/L3/adult.",
-          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults (`stage_diffs.l1_only_keys`) are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "circuit_attribution": {
+            "L1": {
+              "sum_of_four_circuits": 1061,
+              "union": 849,
+              "inflation_ratio": 1.2497
+            },
+            "L2": {
+              "sum_of_four_circuits": 580,
+              "union": 455,
+              "inflation_ratio": 1.2747
+            },
+            "L3": {
+              "sum_of_four_circuits": 530,
+              "union": 421,
+              "inflation_ratio": 1.2589
+            },
+            "adult": {
+              "sum_of_four_circuits": 1855,
+              "union": 1456,
+              "inflation_ratio": 1.274
+            }
+          },
+          "shared_cell_classes_with": {
+            "cel_touch_avoidance_reflex_unit": [
+              "AIA",
+              "AIB",
+              "AIZ",
+              "AVB",
+              "PV"
+            ],
+            "cel_amphid_chemosensory_unit": [
+              "AIA"
+            ],
+            "cel_nociceptive_avoidance_unit": [
+              "AIA",
+              "AIZ",
+              "AVB",
+              "PV"
+            ]
+          },
+          "stage_diffs": {
+            "note": "Measured on the union of (pre, post, type) keys per group of animals, not asserted. v2.30.0 stated the L1-only count as a literal in its caveat; it is now derived, so it moves if the source data or the class sets move.",
+            "l1_union_keys": 1188,
+            "adult_union_keys": 1980,
+            "l1_only_keys": 271,
+            "adult_only_keys": 1063,
+            "shared_keys": 917
+          },
           "measured": {
             "L1": {
               "edges_per_animal": [
@@ -25209,7 +25257,56 @@
           "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), datasets 1-8 (L1 x4, L2, L3, adult x2)",
           "artifact": "cel_development_stages.json",
           "note": "Every edge counted here is summed out of the WormWiring xlsx rows for that stage.  The four circuits are the same four `extract_cel_profiles.py` emits as units; this artifact records how many edges and synapses each one carries at L1/L2/L3/adult.",
-          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults (`stage_diffs.l1_only_keys`) are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "circuit_attribution": {
+            "L1": {
+              "sum_of_four_circuits": 1061,
+              "union": 849,
+              "inflation_ratio": 1.2497
+            },
+            "L2": {
+              "sum_of_four_circuits": 580,
+              "union": 455,
+              "inflation_ratio": 1.2747
+            },
+            "L3": {
+              "sum_of_four_circuits": 530,
+              "union": 421,
+              "inflation_ratio": 1.2589
+            },
+            "adult": {
+              "sum_of_four_circuits": 1855,
+              "union": 1456,
+              "inflation_ratio": 1.274
+            }
+          },
+          "shared_cell_classes_with": {
+            "cel_forward_locomotion_command_unit": [
+              "AIA",
+              "AIB",
+              "AIZ",
+              "AVB",
+              "PV"
+            ],
+            "cel_amphid_chemosensory_unit": [
+              "AIA"
+            ],
+            "cel_nociceptive_avoidance_unit": [
+              "AIA",
+              "AIZ",
+              "AVA",
+              "AVB",
+              "PV"
+            ]
+          },
+          "stage_diffs": {
+            "note": "Measured on the union of (pre, post, type) keys per group of animals, not asserted. v2.30.0 stated the L1-only count as a literal in its caveat; it is now derived, so it moves if the source data or the class sets move.",
+            "l1_union_keys": 1188,
+            "adult_union_keys": 1980,
+            "l1_only_keys": 271,
+            "adult_only_keys": 1063,
+            "shared_keys": 917
+          },
           "measured": {
             "L1": {
               "edges_per_animal": [
@@ -25854,7 +25951,48 @@
           "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), datasets 1-8 (L1 x4, L2, L3, adult x2)",
           "artifact": "cel_development_stages.json",
           "note": "Every edge counted here is summed out of the WormWiring xlsx rows for that stage.  The four circuits are the same four `extract_cel_profiles.py` emits as units; this artifact records how many edges and synapses each one carries at L1/L2/L3/adult.",
-          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults (`stage_diffs.l1_only_keys`) are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "circuit_attribution": {
+            "L1": {
+              "sum_of_four_circuits": 1061,
+              "union": 849,
+              "inflation_ratio": 1.2497
+            },
+            "L2": {
+              "sum_of_four_circuits": 580,
+              "union": 455,
+              "inflation_ratio": 1.2747
+            },
+            "L3": {
+              "sum_of_four_circuits": 530,
+              "union": 421,
+              "inflation_ratio": 1.2589
+            },
+            "adult": {
+              "sum_of_four_circuits": 1855,
+              "union": 1456,
+              "inflation_ratio": 1.274
+            }
+          },
+          "shared_cell_classes_with": {
+            "cel_forward_locomotion_command_unit": [
+              "AIA"
+            ],
+            "cel_touch_avoidance_reflex_unit": [
+              "AIA"
+            ],
+            "cel_nociceptive_avoidance_unit": [
+              "AIA"
+            ]
+          },
+          "stage_diffs": {
+            "note": "Measured on the union of (pre, post, type) keys per group of animals, not asserted. v2.30.0 stated the L1-only count as a literal in its caveat; it is now derived, so it moves if the source data or the class sets move.",
+            "l1_union_keys": 1188,
+            "adult_union_keys": 1980,
+            "l1_only_keys": 271,
+            "adult_only_keys": 1063,
+            "shared_keys": 917
+          },
           "measured": {
             "L1": {
               "edges_per_animal": [
@@ -26171,7 +26309,55 @@
           "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), datasets 1-8 (L1 x4, L2, L3, adult x2)",
           "artifact": "cel_development_stages.json",
           "note": "Every edge counted here is summed out of the WormWiring xlsx rows for that stage.  The four circuits are the same four `extract_cel_profiles.py` emits as units; this artifact records how many edges and synapses each one carries at L1/L2/L3/adult.",
-          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults (`stage_diffs.l1_only_keys`) are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+          "circuit_attribution": {
+            "L1": {
+              "sum_of_four_circuits": 1061,
+              "union": 849,
+              "inflation_ratio": 1.2497
+            },
+            "L2": {
+              "sum_of_four_circuits": 580,
+              "union": 455,
+              "inflation_ratio": 1.2747
+            },
+            "L3": {
+              "sum_of_four_circuits": 530,
+              "union": 421,
+              "inflation_ratio": 1.2589
+            },
+            "adult": {
+              "sum_of_four_circuits": 1855,
+              "union": 1456,
+              "inflation_ratio": 1.274
+            }
+          },
+          "shared_cell_classes_with": {
+            "cel_forward_locomotion_command_unit": [
+              "AIA",
+              "AIZ",
+              "AVB",
+              "PV"
+            ],
+            "cel_touch_avoidance_reflex_unit": [
+              "AIA",
+              "AIZ",
+              "AVA",
+              "AVB",
+              "PV"
+            ],
+            "cel_amphid_chemosensory_unit": [
+              "AIA"
+            ]
+          },
+          "stage_diffs": {
+            "note": "Measured on the union of (pre, post, type) keys per group of animals, not asserted. v2.30.0 stated the L1-only count as a literal in its caveat; it is now derived, so it moves if the source data or the class sets move.",
+            "l1_union_keys": 1188,
+            "adult_union_keys": 1980,
+            "l1_only_keys": 271,
+            "adult_only_keys": 1063,
+            "shared_keys": 917
+          },
           "measured": {
             "L1": {
               "edges_per_animal": [
@@ -27462,7 +27648,7 @@
         "connectome_coverage": {
           "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
           "artifact": "larva_clusters.json",
-          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified. The eight unit_coverage rows are not additive: profiles are shared between units, so their sum exceeds `coverage.synapses_both_ends_covered` by the ratio recorded in `unit_attribution`.",
           "network": {
             "nodes": 2956,
             "edges": 116922,
@@ -27478,7 +27664,14 @@
           "synapses_both_ends": 80161,
           "synapse_share_pct": 22.73,
           "nodes_reached": 548,
-          "n_member_profiles": 11
+          "n_member_profiles": 11,
+          "not_additive": {
+            "per_unit_sum": 319064,
+            "covered_total": 271956,
+            "ratio": 1.1732,
+            "shared_profiles": 19,
+            "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          }
         }
       },
       "larva_stats": {
@@ -29006,7 +29199,7 @@
         "connectome_coverage": {
           "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
           "artifact": "larva_clusters.json",
-          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified. The eight unit_coverage rows are not additive: profiles are shared between units, so their sum exceeds `coverage.synapses_both_ends_covered` by the ratio recorded in `unit_attribution`.",
           "network": {
             "nodes": 2956,
             "edges": 116922,
@@ -29022,7 +29215,14 @@
           "synapses_both_ends": 57262,
           "synapse_share_pct": 16.24,
           "nodes_reached": 942,
-          "n_member_profiles": 11
+          "n_member_profiles": 11,
+          "not_additive": {
+            "per_unit_sum": 319064,
+            "covered_total": 271956,
+            "ratio": 1.1732,
+            "shared_profiles": 19,
+            "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          }
         }
       },
       "larva_stats": {
@@ -29297,7 +29497,7 @@
         "connectome_coverage": {
           "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
           "artifact": "larva_clusters.json",
-          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified. The eight unit_coverage rows are not additive: profiles are shared between units, so their sum exceeds `coverage.synapses_both_ends_covered` by the ratio recorded in `unit_attribution`.",
           "network": {
             "nodes": 2956,
             "edges": 116922,
@@ -29313,7 +29513,14 @@
           "synapses_both_ends": 6428,
           "synapse_share_pct": 1.82,
           "nodes_reached": 525,
-          "n_member_profiles": 4
+          "n_member_profiles": 4,
+          "not_additive": {
+            "per_unit_sum": 319064,
+            "covered_total": 271956,
+            "ratio": 1.1732,
+            "shared_profiles": 19,
+            "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          }
         }
       },
       "larva_stats": {
@@ -30247,7 +30454,7 @@
         "connectome_coverage": {
           "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
           "artifact": "larva_clusters.json",
-          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified. The eight unit_coverage rows are not additive: profiles are shared between units, so their sum exceeds `coverage.synapses_both_ends_covered` by the ratio recorded in `unit_attribution`.",
           "network": {
             "nodes": 2956,
             "edges": 116922,
@@ -30263,7 +30470,14 @@
           "synapses_both_ends": 53824,
           "synapse_share_pct": 15.26,
           "nodes_reached": 910,
-          "n_member_profiles": 7
+          "n_member_profiles": 7,
+          "not_additive": {
+            "per_unit_sum": 319064,
+            "covered_total": 271956,
+            "ratio": 1.1732,
+            "shared_profiles": 19,
+            "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          }
         }
       },
       "larva_stats": {
@@ -31839,7 +32053,7 @@
         "connectome_coverage": {
           "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
           "artifact": "larva_clusters.json",
-          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified. The eight unit_coverage rows are not additive: profiles are shared between units, so their sum exceeds `coverage.synapses_both_ends_covered` by the ratio recorded in `unit_attribution`.",
           "network": {
             "nodes": 2956,
             "edges": 116922,
@@ -31855,7 +32069,14 @@
           "synapses_both_ends": 74960,
           "synapse_share_pct": 21.26,
           "nodes_reached": 530,
-          "n_member_profiles": 13
+          "n_member_profiles": 13,
+          "not_additive": {
+            "per_unit_sum": 319064,
+            "covered_total": 271956,
+            "ratio": 1.1732,
+            "shared_profiles": 19,
+            "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          }
         }
       },
       "larva_stats": {
@@ -32362,7 +32583,7 @@
         "connectome_coverage": {
           "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
           "artifact": "larva_clusters.json",
-          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified. The eight unit_coverage rows are not additive: profiles are shared between units, so their sum exceeds `coverage.synapses_both_ends_covered` by the ratio recorded in `unit_attribution`.",
           "network": {
             "nodes": 2956,
             "edges": 116922,
@@ -32378,7 +32599,14 @@
           "synapses_both_ends": 22981,
           "synapse_share_pct": 6.52,
           "nodes_reached": 361,
-          "n_member_profiles": 7
+          "n_member_profiles": 7,
+          "not_additive": {
+            "per_unit_sum": 319064,
+            "covered_total": 271956,
+            "ratio": 1.1732,
+            "shared_profiles": 19,
+            "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          }
         }
       },
       "larva_stats": {
@@ -33240,7 +33468,7 @@
         "connectome_coverage": {
           "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
           "artifact": "larva_clusters.json",
-          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified. The eight unit_coverage rows are not additive: profiles are shared between units, so their sum exceeds `coverage.synapses_both_ends_covered` by the ratio recorded in `unit_attribution`.",
           "network": {
             "nodes": 2956,
             "edges": 116922,
@@ -33256,7 +33484,14 @@
           "synapses_both_ends": 20712,
           "synapse_share_pct": 5.87,
           "nodes_reached": 358,
-          "n_member_profiles": 8
+          "n_member_profiles": 8,
+          "not_additive": {
+            "per_unit_sum": 319064,
+            "covered_total": 271956,
+            "ratio": 1.1732,
+            "shared_profiles": 19,
+            "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          }
         }
       },
       "larva_stats": {
@@ -33763,7 +33998,7 @@
         "connectome_coverage": {
           "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
           "artifact": "larva_clusters.json",
-          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+          "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified. The eight unit_coverage rows are not additive: profiles are shared between units, so their sum exceeds `coverage.synapses_both_ends_covered` by the ratio recorded in `unit_attribution`.",
           "network": {
             "nodes": 2956,
             "edges": 116922,
@@ -33779,7 +34014,14 @@
           "synapses_both_ends": 2736,
           "synapse_share_pct": 0.78,
           "nodes_reached": 275,
-          "n_member_profiles": 7
+          "n_member_profiles": 7,
+          "not_additive": {
+            "per_unit_sum": 319064,
+            "covered_total": 271956,
+            "ratio": 1.1732,
+            "shared_profiles": 19,
+            "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          }
         }
       },
       "larva_stats": {
