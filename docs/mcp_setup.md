@@ -120,14 +120,24 @@ Drosophila larva reconstruction, v2.28.0 + v2.29.0). The four C. elegans units
 additionally carry `provenance.developmental_stages` (v2.30.0): the same four
 circuits re-measured across all eight Witvliet 2020 reconstructions (L1 x4,
 L2, L3, adult x2), so each unit reports the synapses its own cell classes carry
-at L1 / L2 / L3 / adult. They carry
+at L1 / L2 / L3 / adult. Those four rows are not additive (v2.34.0): the circuits
+share cell classes -- AIA is in all four -- so one edge can be internal wiring
+for several of them, and the four rows together overstate the wiring internal
+to these circuits by 1.25-1.27x. Every unit therefore also carries
+`provenance.developmental_stages.circuit_attribution` (sum / union / inflation
+per stage) and `.shared_cell_classes_with`; the L1-only edge count in the
+artifact caveat is measured into `stage_diffs`, not typed in. They carry
 `provenance.source_connectome`;
 the remaining 66 are cross-species concept units. The eight Drosophila larva units
 additionally carry `provenance.connectome_coverage` (v2.31.0): `larva_clusters.json`
 walks all 116,922 larva edges and records, per unit, how many synapses have BOTH
 endpoints resolving to a profile that unit declares -- 80,161 / 22.73% for the
 olfactory unit down to 2,736 / 0.78% for the respiratory relay, 77.13% network-wide
-and 3.52% frontier. Coverage there means traceable, not functionally characterised.
+and 3.52% frontier. Coverage there means traceable, not functionally
+characterised. The eight per-unit rows are not additive either (v2.34.0): 19
+larva profiles are declared by more than one unit, so the rows sum to 319,064
+against the 271,956 covered total (1.17x) and each unit carries
+`connectome_coverage.not_additive` with the shared-profile list.
 **29 units** additionally carry `provenance.male_dimorphic` (v2.32.0): the MaleCNS
 annotation table's own `dimorphism` column (2,368 bodies / 479 types) is streamed
 over all 151,856,684 weight rows, and each unit records how far it sits from that
