@@ -3587,6 +3587,36 @@ def _load_development_stages():
             "artifact": path.name,
             "note": doc["note"],
             "caveat": doc["caveat"],
+            # v2.34.0.  The four C. elegans circuits are not disjoint cell-class
+            # sets -- AIA is in all four, AIB/AIZ/AVB/PV in two or three -- so
+            # the four per-stage rows add up to ~1.27x the wiring that is
+            # actually internal to these circuits.  Anyone summing them (this
+            # library included, in its own README) gets an inflated number, so
+            # the stage-level sum/union pair now travels with every unit.
+            "circuit_attribution": {
+                s["stage"]: {
+                    "sum_of_four_circuits": s["attribution"]["sum_of_circuits"],
+                    "union": s["attribution"]["union"],
+                    "inflation_ratio": s["attribution"]["inflation_ratio"],
+                }
+                for s in doc["stages"] if "attribution" in s
+            },
+            "shared_cell_classes_with": {
+                other: sorted(
+                    set(doc.get("circuit_overlap", {})
+                        .get("cell_classes_per_circuit", {})
+                        .get(unit["name"], []))
+                    & set(cls)
+                )
+                for other, cls in
+                doc.get("circuit_overlap", {})
+                .get("cell_classes_per_circuit", {}).items()
+                if other != unit["name"]
+                and set(doc.get("circuit_overlap", {})
+                        .get("cell_classes_per_circuit", {})
+                        .get(unit["name"], [])) & set(cls)
+            },
+            "stage_diffs": doc.get("stage_diffs"),
             "measured": {
                 stage: {
                     "edges_per_animal": m["edges"],
@@ -3625,6 +3655,12 @@ def _load_larva_coverage():
         return []
     with open(path, encoding="utf-8") as f:
         doc = json.load(f)
+    attr = doc.get("unit_attribution", {})
+    if attr and attr.get("per_unit_sum", 0) < attr.get("covered_total", 0):
+        raise SystemExit(
+            "gen_functional_units: %s reports a per-unit sum below the covered "
+            "total, which should be impossible; re-run "
+            "scripts/extract_larva_clusters.py before regenerating." % path.name)
 
     attached = []
     for unit in FUNCTIONAL_UNITS:
@@ -3640,6 +3676,19 @@ def _load_larva_coverage():
             "synapse_share_pct": cov["synapse_share_pct"],
             "nodes_reached": cov["nodes_reached"],
             "n_member_profiles": cov["n_member_profiles"],
+            # v2.34.0.  The eight unit rows are not additive: 19 larva profiles
+            # are declared by more than one unit (larv.lhn_unannotated and
+            # friends), so a single synapse legitimately counts toward each of
+            # them and the column sums to 319,064 against a covered total of
+            # 271,956.  Carried here so a reader comparing units against each
+            # other does not also add them up.
+            "not_additive": {
+                "per_unit_sum": attr["per_unit_sum"],
+                "covered_total": attr["covered_total"],
+                "ratio": attr["ratio"],
+                "shared_profiles": attr["shared_profiles"],
+                "note": attr["note"],
+            },
         }
         attached.append(unit["name"])
 
