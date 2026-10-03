@@ -1,8 +1,92 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "source": "WormWiring / Witvliet et al. 2020 (bioRxiv 10.1101/2020.04.30.066209), datasets 1-8 (L1 x4, L2, L3, adult x2)",
   "note": "Every edge counted here is summed out of the WormWiring xlsx rows for that stage.  The four circuits are the same four `extract_cel_profiles.py` emits as units; this artifact records how many edges and synapses each one carries at L1/L2/L3/adult.",
-  "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
+  "circuit_overlap": {
+    "note": "The four circuits are not disjoint cell-class sets, so the four per-circuit rows must not be added together. Both figures are reported per stage under `attribution`.",
+    "shared_cell_classes": {
+      "cel_amphid_chemosensory_unit|cel_forward_locomotion_command_unit": [
+        "AIA"
+      ],
+      "cel_amphid_chemosensory_unit|cel_nociceptive_avoidance_unit": [
+        "AIA"
+      ],
+      "cel_amphid_chemosensory_unit|cel_touch_avoidance_reflex_unit": [
+        "AIA"
+      ],
+      "cel_forward_locomotion_command_unit|cel_nociceptive_avoidance_unit": [
+        "AIA",
+        "AIZ",
+        "AVB",
+        "PV"
+      ],
+      "cel_forward_locomotion_command_unit|cel_touch_avoidance_reflex_unit": [
+        "AIA",
+        "AIB",
+        "AIZ",
+        "AVB",
+        "PV"
+      ],
+      "cel_nociceptive_avoidance_unit|cel_touch_avoidance_reflex_unit": [
+        "AIA",
+        "AIZ",
+        "AVA",
+        "AVB",
+        "PV"
+      ]
+    },
+    "cell_classes_per_circuit": {
+      "cel_forward_locomotion_command_unit": [
+        "AIA",
+        "AIB",
+        "AIZ",
+        "AVB",
+        "PV"
+      ],
+      "cel_touch_avoidance_reflex_unit": [
+        "AIA",
+        "AIB",
+        "AIZ",
+        "ALM",
+        "ALN",
+        "AVA",
+        "AVB",
+        "AVM",
+        "PLM",
+        "PLN",
+        "PV"
+      ],
+      "cel_amphid_chemosensory_unit": [
+        "ADF",
+        "AIA",
+        "AIY",
+        "ASE",
+        "ASI",
+        "ASJ",
+        "ASK",
+        "AWA",
+        "AWC",
+        "RIA"
+      ],
+      "cel_nociceptive_avoidance_unit": [
+        "AIA",
+        "AIZ",
+        "ASH",
+        "AVA",
+        "AVB",
+        "PV"
+      ]
+    }
+  },
+  "stage_diffs": {
+    "note": "Measured on the union of (pre, post, type) keys per group of animals, not asserted. v2.30.0 stated the L1-only count as a literal in its caveat; it is now derived, so it moves if the source data or the class sets move.",
+    "l1_union_keys": 1188,
+    "adult_union_keys": 1980,
+    "l1_only_keys": 271,
+    "adult_only_keys": 1063,
+    "shared_keys": 917
+  },
+  "caveat": "These are separate reconstructions of separate animals at separate stages, so a smaller edge count at L1 means 'this many were reconstructed', not 'the animal had this many'.  Single L1 files carry ~570-800 distinct edges against ~1,100 for a single L2 file and ~1,550 for an adult, so the L1 numbers are a floor.  The conclusion this artifact is offered for -- the four circuits are already wired at the earliest stage and gain synapse count afterwards -- is the one that survives that confound; the 271 edge pairs seen in L1 and absent from adults (`stage_diffs.l1_only_keys`) are NOT reported as transient synapses, because that difference is confounded with reconstruction depth.",
   "stages": [
     {
       "stage": "L1",
@@ -29,6 +113,18 @@
           "unit_cel_nociceptive_avoidance_unit": {
             "edges": 10,
             "synapses": 21
+          },
+          "attribution": {
+            "sum_of_circuits": 174,
+            "union": 139,
+            "union_edges": 49,
+            "inflation_ratio": 1.2518,
+            "synapses_by_circuits_claiming": {
+              "1": 113,
+              "2": 18,
+              "3": 7,
+              "4": 1
+            }
           }
         },
         {
@@ -51,6 +147,17 @@
           "unit_cel_nociceptive_avoidance_unit": {
             "edges": 12,
             "synapses": 22
+          },
+          "attribution": {
+            "sum_of_circuits": 221,
+            "union": 180,
+            "union_edges": 47,
+            "inflation_ratio": 1.2278,
+            "synapses_by_circuits_claiming": {
+              "1": 145,
+              "2": 29,
+              "3": 6
+            }
           }
         },
         {
@@ -73,6 +180,17 @@
           "unit_cel_nociceptive_avoidance_unit": {
             "edges": 8,
             "synapses": 31
+          },
+          "attribution": {
+            "sum_of_circuits": 265,
+            "union": 217,
+            "union_edges": 48,
+            "inflation_ratio": 1.2212,
+            "synapses_by_circuits_claiming": {
+              "1": 176,
+              "2": 34,
+              "3": 7
+            }
           }
         },
         {
@@ -95,9 +213,34 @@
           "unit_cel_nociceptive_avoidance_unit": {
             "edges": 13,
             "synapses": 64
+          },
+          "attribution": {
+            "sum_of_circuits": 401,
+            "union": 313,
+            "union_edges": 55,
+            "inflation_ratio": 1.2812,
+            "synapses_by_circuits_claiming": {
+              "1": 245,
+              "2": 49,
+              "3": 18,
+              "4": 1
+            }
           }
         }
       ],
+      "attribution": {
+        "sum_of_circuits": 1061,
+        "union": 849,
+        "union_edges": 199,
+        "inflation_ratio": 1.2497,
+        "synapses_by_circuits_claiming": {
+          "1": 679,
+          "2": 130,
+          "3": 38,
+          "4": 2
+        },
+        "note": "The four circuits share cell classes, so one edge can be internal wiring for several of them. `sum_of_circuits` is what the four rows below add up to; `union` is the wiring internal to at least one circuit, counted once. Use `union` for 'how much of this animal's wiring sits inside these circuits' and `sum_of_circuits` only when the circuits are being counted individually."
+      },
       "unit_measurements": {
         "cel_forward_locomotion_command_unit": {
           "edges": [
@@ -206,9 +349,34 @@
           "unit_cel_nociceptive_avoidance_unit": {
             "edges": 15,
             "synapses": 76
+          },
+          "attribution": {
+            "sum_of_circuits": 580,
+            "union": 455,
+            "union_edges": 70,
+            "inflation_ratio": 1.2747,
+            "synapses_by_circuits_claiming": {
+              "1": 361,
+              "2": 64,
+              "3": 29,
+              "4": 1
+            }
           }
         }
       ],
+      "attribution": {
+        "sum_of_circuits": 580,
+        "union": 455,
+        "union_edges": 70,
+        "inflation_ratio": 1.2747,
+        "synapses_by_circuits_claiming": {
+          "1": 361,
+          "2": 64,
+          "3": 29,
+          "4": 1
+        },
+        "note": "The four circuits share cell classes, so one edge can be internal wiring for several of them. `sum_of_circuits` is what the four rows below add up to; `union` is the wiring internal to at least one circuit, counted once. Use `union` for 'how much of this animal's wiring sits inside these circuits' and `sum_of_circuits` only when the circuits are being counted individually."
+      },
       "unit_measurements": {
         "cel_forward_locomotion_command_unit": {
           "edges": [
@@ -293,9 +461,34 @@
           "unit_cel_nociceptive_avoidance_unit": {
             "edges": 11,
             "synapses": 69
+          },
+          "attribution": {
+            "sum_of_circuits": 530,
+            "union": 421,
+            "union_edges": 56,
+            "inflation_ratio": 1.2589,
+            "synapses_by_circuits_claiming": {
+              "1": 332,
+              "2": 70,
+              "3": 18,
+              "4": 1
+            }
           }
         }
       ],
+      "attribution": {
+        "sum_of_circuits": 530,
+        "union": 421,
+        "union_edges": 56,
+        "inflation_ratio": 1.2589,
+        "synapses_by_circuits_claiming": {
+          "1": 332,
+          "2": 70,
+          "3": 18,
+          "4": 1
+        },
+        "note": "The four circuits share cell classes, so one edge can be internal wiring for several of them. `sum_of_circuits` is what the four rows below add up to; `union` is the wiring internal to at least one circuit, counted once. Use `union` for 'how much of this animal's wiring sits inside these circuits' and `sum_of_circuits` only when the circuits are being counted individually."
+      },
       "unit_measurements": {
         "cel_forward_locomotion_command_unit": {
           "edges": [
@@ -380,6 +573,18 @@
           "unit_cel_nociceptive_avoidance_unit": {
             "edges": 12,
             "synapses": 110
+          },
+          "attribution": {
+            "sum_of_circuits": 827,
+            "union": 663,
+            "union_edges": 74,
+            "inflation_ratio": 1.2474,
+            "synapses_by_circuits_claiming": {
+              "1": 537,
+              "2": 89,
+              "3": 36,
+              "4": 1
+            }
           }
         },
         {
@@ -402,9 +607,34 @@
           "unit_cel_nociceptive_avoidance_unit": {
             "edges": 14,
             "synapses": 144
+          },
+          "attribution": {
+            "sum_of_circuits": 1028,
+            "union": 793,
+            "union_edges": 77,
+            "inflation_ratio": 1.2963,
+            "synapses_by_circuits_claiming": {
+              "1": 612,
+              "2": 130,
+              "3": 48,
+              "4": 3
+            }
           }
         }
       ],
+      "attribution": {
+        "sum_of_circuits": 1855,
+        "union": 1456,
+        "union_edges": 151,
+        "inflation_ratio": 1.274,
+        "synapses_by_circuits_claiming": {
+          "1": 1149,
+          "2": 219,
+          "3": 84,
+          "4": 4
+        },
+        "note": "The four circuits share cell classes, so one edge can be internal wiring for several of them. `sum_of_circuits` is what the four rows below add up to; `union` is the wiring internal to at least one circuit, counted once. Use `union` for 'how much of this animal's wiring sits inside these circuits' and `sum_of_circuits` only when the circuits are being counted individually."
+      },
       "unit_measurements": {
         "cel_forward_locomotion_command_unit": {
           "edges": [

@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.33.0` | the toolkit as a whole |
+| package | `2.34.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -18,6 +18,51 @@ The **schema version** is versioned separately from the **package version**:
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [2.34.0] — 2026-10-04
+
+### 审计 v2.30 / v2.31 两个账本：数字都对，但两处「不能相加」没写出来
+
+v2.33.0 抓到 MaleCNS 账本的 per-type 重复计数之后，剩下的风险就明确了：**已有账本的
+每条目明细有没有同样的口径问题**。两个都审了，结论是**账算得对，账本没把话说全**。
+
+**① 四条线虫回路不是不相交的**（v2.30 `cel_development_stages.json`）。细胞类重叠
+严重：`AIA` 在全部四条里，`AIB`/`AIZ`/`AVB`/`PV` 在两到三条里。于是一条 `AIZ → AIB`
+同时是两条回路的内部接线，被两条各记一次。**把四个 stage 数字竖着加起来，比真实并集
+高 1.25–1.27 倍**（L1 1061/849、L2 580/455、L3 530/421、adult 1855/1456）。v2.30 的
+artifact 和 README 都只给了四行，读者一列相加就会发布一个虚高 27% 的数。
+现在 `attribution` 同时给 `sum_of_circuits` / `union` / `inflation_ratio`，
+`circuit_overlap` 给出完整重叠矩阵。
+
+**② 那个 271 是手写的。** v2.30 的 caveat 里「271 edge pairs seen in L1 and absent
+from adults」是字符串常量，代码从不计算它——真实值恰好也是 271，但源数据或类定义一变
+就漂移且无从重算。现在由 `stage_diffs` 实测：`l1_only_keys` 271、`l1_union_keys`
+1,188、`adult_union_keys` 1,980、`shared_keys` 917、`adult_only_keys` 1,063。
+**通用教训：caveat 里的派生数字必须由代码产出，巧合对了一次不算可追溯。**
+
+**③ 八个幼虫单元的明细也不能相加**（v2.31 `larva_clusters.json`）。19 个 `larv.*`
+profile 被多个单元同时声明（`larv.lhn_unannotated` 被 4 个单元共享，
+`larv.kc_unannotated` 被 3 个），所以一条突触合法地给多个单元计数：**八行之和
+319,064 vs 覆盖总量 271,956（1.17×）**。v2.31 没说明这点。现在 `unit_attribution`
+给出 `per_unit_sum` / `covered_total` / `ratio` / 19 个共享 profile 的完整清单。
+
+**④ 账本本身的算术是对的。** 覆盖划分闭合（either 340,196 + frontier 12,415 =
+352,611），没有 v2.32 那种重复归因。已写成三条 fail-closed 断言：覆盖划分必须闭合、
+per-unit 之和只能 ≥ 覆盖总量、per-cluster `internal + out` 必须重建全网。
+
+**断言自己也报红过一次，是断言写错不是账本错。** 我先写成
+`internal + out + in == total`，跑出 658,093 vs 352,611——跨簇边在 `out` 和 `in`
+各记一次是设计如此，`internal + out` 已经是每条突触恰好一次。修正断言时把
+「断言写错」这件事连同原因一起留在代码注释里。
+
+**两个注入缺陷验证。** cel：把 `measure()` 改成半边计数 → 报
+`per-circuit synapses sum to 3760 but the independent attribution pass says 1061`，
+退出 3。larva：断言按上条修正后全绿。
+
+4 条线虫单元挂 `provenance.developmental_stages.circuit_attribution` /
+`shared_cell_classes_with` / `stage_diffs`；8 条幼虫单元挂
+`connectome_coverage.not_additive`。CLI `flybrain stages` 打印重叠矩阵与 sum/union，
+`flybrain larva-clusters` 提示不可相加。FUNCTIONAL_UNITS 仍 **115**。门禁 10/10。
 
 ## [2.33.0] — 2026-10-03
 

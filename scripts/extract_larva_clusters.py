@@ -261,6 +261,41 @@ def build() -> dict:
     frontier_ctypes = sorted({c for c in cell_types
                               if cell_covered_syn.get(c, 0) == 0})
 
+    # ------------------------------------------------------------------ #
+    # v2.34.0 -- make the per-unit rows addable, or say why they cannot.
+    #
+    # Auditing this ledger after the v2.33.0 attribution bug: the coverage
+    # arithmetic itself is sound (either + frontier == total, asserted below),
+    # but the eight `unit_coverage` rows sum to 319,064 against a covered
+    # total of 271,956 -- 1.17x.  That is not a double count, it is the eight
+    # units sharing profiles: `larv.lhn_unannotated` and friends are declared
+    # by more than one unit, so one synapse legitimately serves two units.
+    #
+    # The v2.31.0 artifact printed those eight rows and never said so, so the
+    # obvious move -- add the column, get the total -- silently overstates
+    # coverage by 17%.  Both figures are now emitted, plus the profile-level
+    # overlap that explains the gap, and the arithmetic is asserted.
+    # ------------------------------------------------------------------ #
+    prof_units: dict[str, list[str]] = defaultdict(list)
+    for name, mem in unit_members:
+        for pid in sorted(mem):
+            prof_units[pid].append(name)
+    shared_profiles = {p: u for p, u in sorted(prof_units.items()) if len(u) > 1}
+    per_unit_sum = sum(unit_syn[n] for n, _m in unit_members)
+    attribution = {
+        "per_unit_sum": per_unit_sum,
+        "covered_total": both_cov,
+        "ratio": round(per_unit_sum / both_cov, 4) if both_cov else None,
+        "shared_profiles": len(shared_profiles),
+        "shared_profiles_detail": shared_profiles,
+        "note": ("The eight unit rows are NOT additive. A profile declared by "
+                 "more than one unit (larv.lhn_unannotated and the other "
+                 "shared ones) makes a single synapse count toward each of "
+                 "them, which is correct but means the column sums above the "
+                 "covered total. Use `covered_total` for network coverage and "
+                 "the per-unit rows only to compare units with each other."),
+    }
+
     doc = {
         "schema_version": "1.0",
         "generated_utc": datetime.now(timezone.utc).isoformat(timespec="seconds"),
@@ -275,7 +310,10 @@ def build() -> dict:
                    "bucket) resolves to a larva profile at least one unit "
                    "declares -- it does NOT mean the circuit's function is "
                    "known. Left/right homology is counted as the source "
-                   "declares it, not verified."),
+                   "declares it, not verified. The eight unit_coverage rows "
+                   "are not additive: profiles are shared between units, so "
+                   "their sum exceeds `coverage.synapses_both_ends_covered` "
+                   "by the ratio recorded in `unit_attribution`."),
         "network": {
             "nodes": len(nodes),
             "edges": len(edges),
@@ -321,6 +359,7 @@ def build() -> dict:
             }
             for i, (name, _mem) in enumerate(unit_members)
         },
+        "unit_attribution": attribution,
         "covered_profile_pairs": [
             {"from": a, "to": b, "synapses": v}
             for (a, b), v in covered_pairs.most_common(30)
@@ -368,6 +407,68 @@ def main() -> int:
     args = ap.parse_args()
 
     doc = build()
+
+    # ------------------------------------------------------------------ #
+    # Assertions, before anything is written.
+    #
+    # The coverage partition has to close: every synapse is either reached by
+    # a covered endpoint or it is frontier, and the two must add to the whole.
+    # The v2.33.0 pass found a four-times-inflated per-type column in the
+    # MaleCNS ledger, so the habit here is to check the arithmetic rather
+    # than trust that the loop above added the right things up.  It did --
+    # these pass on the real data and are kept because they would catch the
+    # next version that does not.
+    # ------------------------------------------------------------------ #
+    import sys as _sys
+
+    net, cov = doc["network"], doc["coverage"]
+    total = net["synapses"]
+    if total <= 0:
+        print("REFUSING TO WRITE: network synapse total is %d" % total,
+              file=_sys.stderr)
+        return 3
+    if cov["synapses_either_end_covered"] + cov["synapses_frontier"] != total:
+        print("REFUSING TO WRITE: covered + frontier = %d but the network holds "
+              "%d synapses; the coverage partition does not close"
+              % (cov["synapses_either_end_covered"] + cov["synapses_frontier"],
+                 total), file=_sys.stderr)
+        return 3
+    if cov["synapses_both_ends_covered"] > cov["synapses_either_end_covered"]:
+        print("REFUSING TO WRITE: both-ends covered (%d) exceeds either-end "
+              "covered (%d), which is impossible"
+              % (cov["synapses_both_ends_covered"],
+                 cov["synapses_either_end_covered"]), file=_sys.stderr)
+        return 3
+    attr = doc["unit_attribution"]
+    if attr["per_unit_sum"] < attr["covered_total"]:
+        print("REFUSING TO WRITE: the per-unit rows sum to %d, below the "
+              "covered total %d; shared profiles can only push the sum up"
+              % (attr["per_unit_sum"], attr["covered_total"]), file=_sys.stderr)
+        return 3
+    # Every cluster's internal + out must reconstruct the network.  A
+    # cross-cluster edge is charged once to the source cluster's `out` and
+    # once to the target's `in`, so `in` is NOT added here: internal + out
+    # already covers each synapse exactly once, and adding `in` too would
+    # double the 305,482 cross-cluster synapses.  (Asserted the other way
+    # first, which reported 658,093 against a 352,611 network -- the
+    # assertion was wrong, not the ledger.  out == in holds because every
+    # cross-cluster edge contributes to both.)
+    recon = sum(c["internal_synapses"] + c["out_synapses"] for c in doc["clusters"])
+    if recon != total:
+        print("REFUSING TO WRITE: per-cluster internal+out sums to %d against "
+              "a network total of %d" % (recon, total), file=_sys.stderr)
+        return 3
+    if sum(c["out_synapses"] for c in doc["clusters"]) != sum(
+            c["in_synapses"] for c in doc["clusters"]):
+        print("REFUSING TO WRITE: cluster out and in totals disagree, so some "
+              "edge is not landing on both of its clusters", file=_sys.stderr)
+        return 3
+    print("assertions: coverage closes (%d + %d = %d); per-unit sum %d >= "
+          "covered %d via %d shared profiles; per-cluster sum %d"
+          % (cov["synapses_either_end_covered"], cov["synapses_frontier"],
+             total, attr["per_unit_sum"], attr["covered_total"],
+             attr["shared_profiles"], recon))
+
     if args.report:
         report(doc)
         return 0

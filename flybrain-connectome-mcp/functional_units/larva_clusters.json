@@ -1,9 +1,9 @@
 {
   "schema_version": "1.0",
-  "generated_utc": "2026-10-03T07:04:47+00:00",
+  "generated_utc": "2026-10-03T22:29:08+00:00",
   "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
   "purpose": "ledger of the larva connectome at the source's own cluster resolution, plus the coverage of the eight v2.28.0/v2.29.0 larva units over it",
-  "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified.",
+  "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified. The eight unit_coverage rows are not additive: profiles are shared between units, so their sum exceeds `coverage.synapses_both_ends_covered` by the ratio recorded in `unit_attribution`.",
   "network": {
     "nodes": 2956,
     "edges": 116922,
@@ -119,6 +119,100 @@
       "nodes_reached": 275,
       "n_member_profiles": 7
     }
+  },
+  "unit_attribution": {
+    "per_unit_sum": 319064,
+    "covered_total": 271956,
+    "ratio": 1.1732,
+    "shared_profiles": 19,
+    "shared_profiles_detail": {
+      "larv.ascending_noci": [
+        "larv_somatosensory_escape_unit",
+        "larv_respiratory_relay_unit"
+      ],
+      "larv.cn_mechano": [
+        "larv_somatosensory_escape_unit",
+        "larv_descending_motor_command_unit"
+      ],
+      "larv.cn_unannotated": [
+        "larv_somatosensory_escape_unit",
+        "larv_descending_motor_command_unit"
+      ],
+      "larv.dn_sez_unannotated": [
+        "larv_gustatory_feeding_program_unit",
+        "larv_respiratory_relay_unit"
+      ],
+      "larv.kc_unannotated": [
+        "larv_olfactory_associative_learning_unit",
+        "larv_mushroom_body_feedback_unit",
+        "larv_thermosensory_relay_unit"
+      ],
+      "larv.lhn_mechano": [
+        "larv_somatosensory_escape_unit",
+        "larv_mushroom_body_feedback_unit",
+        "larv_thermosensory_relay_unit",
+        "larv_visual_relay_unit"
+      ],
+      "larv.lhn_noci": [
+        "larv_somatosensory_escape_unit",
+        "larv_mushroom_body_feedback_unit",
+        "larv_thermosensory_relay_unit",
+        "larv_visual_relay_unit"
+      ],
+      "larv.lhn_thermo": [
+        "larv_somatosensory_escape_unit",
+        "larv_mushroom_body_feedback_unit",
+        "larv_thermosensory_relay_unit",
+        "larv_visual_relay_unit"
+      ],
+      "larv.lhn_unannotated": [
+        "larv_somatosensory_escape_unit",
+        "larv_mushroom_body_feedback_unit",
+        "larv_thermosensory_relay_unit",
+        "larv_visual_relay_unit"
+      ],
+      "larv.ln_thermo": [
+        "larv_olfactory_associative_learning_unit",
+        "larv_visual_relay_unit"
+      ],
+      "larv.ln_unannotated": [
+        "larv_olfactory_associative_learning_unit",
+        "larv_visual_relay_unit"
+      ],
+      "larv.mbon_unannotated": [
+        "larv_olfactory_associative_learning_unit",
+        "larv_mushroom_body_feedback_unit"
+      ],
+      "larv.pn_somato_mechano": [
+        "larv_somatosensory_escape_unit",
+        "larv_descending_motor_command_unit"
+      ],
+      "larv.pn_somato_noci": [
+        "larv_somatosensory_escape_unit",
+        "larv_descending_motor_command_unit"
+      ],
+      "larv.pn_somato_proprio": [
+        "larv_somatosensory_escape_unit",
+        "larv_descending_motor_command_unit"
+      ],
+      "larv.pn_thermo": [
+        "larv_olfactory_associative_learning_unit",
+        "larv_thermosensory_relay_unit"
+      ],
+      "larv.pn_visual": [
+        "larv_olfactory_associative_learning_unit",
+        "larv_visual_relay_unit"
+      ],
+      "larv.pre_dn_vnc_unannotated": [
+        "larv_somatosensory_escape_unit",
+        "larv_descending_motor_command_unit"
+      ],
+      "larv.rgn_unannotated": [
+        "larv_gustatory_feeding_program_unit",
+        "larv_respiratory_relay_unit"
+      ]
+    },
+    "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
   },
   "covered_profile_pairs": [
     {
