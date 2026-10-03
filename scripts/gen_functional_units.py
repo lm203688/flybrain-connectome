@@ -3607,6 +3607,54 @@ def _load_development_stages():
 _load_development_stages()
 
 
+def _load_larva_coverage():
+    """v2.31.0 — how much of the larva connectome each larva unit actually covers.
+
+    `scripts/extract_larva_clusters.py` walks every one of the 116,922 edges of
+    the Winding et al. reconstruction and asks, per synapse, whether both of its
+    endpoints resolve to a `larv.*` profile that this unit declares as a member.
+    The result is a coverage ledger, not a claim: a unit can cover a large share
+    of the network while its *unannotated* populations are still functionally
+    undefined, and both facts are recorded here side by side.
+
+    No new unit is created for this.
+    """
+    path = MCP / "functional_units" / "larva_clusters.json"
+    if not path.exists():
+        return []
+    with open(path, encoding="utf-8") as f:
+        doc = json.load(f)
+
+    attached = []
+    for unit in FUNCTIONAL_UNITS:
+        cov = doc["unit_coverage"].get(unit["name"])
+        if cov is None:
+            continue
+        unit.setdefault("provenance", {})["connectome_coverage"] = {
+            "source": doc["source"],
+            "artifact": path.name,
+            "caveat": doc["caveat"],
+            "network": doc["network"],
+            "synapses_both_ends": cov["synapses_both_ends"],
+            "synapse_share_pct": cov["synapse_share_pct"],
+            "nodes_reached": cov["nodes_reached"],
+            "n_member_profiles": cov["n_member_profiles"],
+        }
+        attached.append(unit["name"])
+
+    cov = doc["coverage"]
+    print(f"[LARVA-COV] attached larva connectome coverage to "
+          f"{len(attached)} unit(s); network-wide "
+          f"{cov['synapses_both_ends_covered']}/"
+          f"{cov['synapses_total']} synapses "
+          f"({cov['synapses_both_ends_covered_pct']}%) have both endpoints "
+          f"traceable, {cov['synapses_frontier_pct']}% are frontier")
+    return attached
+
+
+_load_larva_coverage()
+
+
 # ---------------------------------------------------------------------------
 # v2.26.0 — verified literature for cross-species units that scored <= 2.
 #
