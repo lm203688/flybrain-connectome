@@ -199,7 +199,16 @@ flybrain stages --caveat            # why the L1 columns are a floor
 flybrain stages --unit cel_amphid_chemosensory_unit
 ```
 
-### 6. Verify everything still works
+### 6. Read the larva connectome cluster ledger
+
+```bash
+flybrain larva-clusters             # network totals + per-unit coverage
+flybrain larva-clusters --top 20    # the 20 biggest clusters
+flybrain larva-clusters --unannotated
+flybrain larva-clusters --caveat    # what "covered" does and does not mean
+```
+
+### 7. Verify everything still works
 
 ```bash
 flybrain verify        # needs FLYBRAIN_DATA_DIR set to your data
@@ -487,6 +496,48 @@ single L1 file carries 566–795 distinct edges against 1,107 for a single L2
 file, so "seen at L1" is confounded with reconstruction depth. Only the claim
 that survives that confound is published; the `caveat` field of
 `cel_development_stages.json` states this in the artifact itself.
+
+### Larva cluster ledger (v2.31.0) — how much of the larva network the units cover
+
+The eight larva units were built by aggregating nodes on
+`(cell_type, annotations)`. That left one question unanswered: *how much of the
+352,611-synapse larva network do they actually span?* `flybrain
+larva-clusters` answers it by walking all 116,922 edges.
+
+A synapse counts as **covered** only when **both** endpoints' `(cell_type,
+modality bucket)` resolve to a `larv.*` profile that at least one unit declares
+as a member. A synapse is **frontier** when neither endpoint does.
+
+| measure | synapses | share |
+|---|---|---|
+| both endpoints traceable | 271,956 | **77.13%** |
+| frontier (no unit declares either endpoint) | 12,415 | **3.52%** |
+
+Per unit, at both-endpoint resolution:
+
+| unit | synapses | share | cells reached |
+|---|---|---|---|
+| olfactory associative learning | 80,161 | 22.73% | 548 |
+| mushroom body feedback | 74,960 | 21.26% | 530 |
+| somatosensory escape | 57,262 | 16.24% | 942 |
+| descending motor command | 53,824 | 15.26% | 910 |
+| thermosensory relay | 22,981 | 6.52% | 361 |
+| visual relay | 20,712 | 5.87% | 358 |
+| gustatory feeding program | 6,428 | 1.82% | 525 |
+| respiratory relay | 2,736 | 0.78% | 275 |
+
+Three cell classes sit entirely outside every unit: the unlabelled class
+(346 cells), `MB-FFN` and `pre-DN-SEZ`.
+
+**The headcount was the wrong measure.** The larva network has 1,560 cells with
+no official annotation — 52.77% of its neurons, and the number that made the
+network look mostly uncharacterised. They touch 212,542 synapses, 60.28% of the
+total, because the units *do* declare the unannotated populations as filler
+roles. Coverage and characterisation are different things, and the ledger holds
+them apart on purpose: a unit can span three quarters of the larva synapses
+while its unannotated members still have no known function. Cluster 0 — the
+authors' unassigned bucket, 364 cells — is the single largest holder of
+synapses in the whole network (51,211) and is *not* given a function here.
 
 ### MaleCNS embodiment (v1.7.0, densified v1.8.0)
 
