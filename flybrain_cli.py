@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.31.0"
+__version__ = "2.32.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -334,6 +334,88 @@ def cmd_larva_clusters(args) -> int:
     return 0
 
 
+def cmd_dimorphism(args) -> int:
+    """v2.32.0 — ledger the male-specific population sitting inside MaleCNS.
+
+    MaleCNS v1.0 is a male reconstruction and its annotation table carries a
+    `dimorphism` column.  `scripts/extract_malecns_dimorphism.py` streams all
+    151,856,684 weight rows and counts, per edge, how many synapses touch a
+    dimorphic body and how many sit between two of them.
+
+    The interesting number is the gap between those two: the population is
+    large and talks to the whole network, but almost none of it talks to
+    itself.  And because MaleCNS contains no female reconstruction, none of
+    this measures a sex difference -- it only reports what the annotation
+    column declares and what the edges actually do.
+    """
+    path = MCP_DIR / "functional_units" / "malecns_dimorphism.json"
+    if not path.exists():
+        print("male dimorphic ledger missing: %s" % path)
+        print("run: FLYBRAIN_DATA_DIR=... python scripts/extract_malecns_dimorphism.py")
+        return 2
+    with open(path, encoding="utf-8") as f:
+        doc = json.load(f)
+
+    if args.caveat:
+        for c in doc["caveat"]:
+            print("! %s" % c)
+        print()
+
+    pop, meas = doc["population"], doc["measurement"]
+    base = meas["network_baseline"]
+    print("MaleCNS dimorphic population: %d bodies over %d cell types"
+          % (pop["bodies"], pop["types"]))
+    for lb, n in pop["labels"].items():
+        print("    %-32s %5d" % (lb, n))
+    print("measured over %s raw weight rows of the neuron subgraph:"
+          % "{:,}".format(doc["source"]["rows_scanned"]))
+    print("    touching the population    %12d pairs  %5.2f%%   "
+          "%13d synapses  %5.2f%%"
+          % (meas["edges_touching"], meas["edges_touching_pct"],
+             meas["synapses_touching"], meas["synapses_touching_pct"]))
+    print("    both endpoints dimorphic   %12d pairs  %5.2f%%   "
+          "%13d synapses  %5.2f%%   (%.1f%% of the touching synapses)"
+          % (meas["edges_both_ends"], meas["edges_both_ends_pct"],
+             meas["synapses_both_ends"], meas["synapses_both_ends_pct"],
+             100.0 * meas["internal_share_of_touched_synapses"]))
+    print("    baseline: %d pairs / %d synapses"
+          % (base["edges"], base["synapses"]))
+
+    print("per annotation label:")
+    for lb, v in doc["per_label"].items():
+        print("    %-32s bodies=%-5d touching=%-9d both-ends=%-7d synapses=%d"
+              % (lb, v["bodies"], v["edges_touching"],
+                 v["edges_both_ends"], v["synapses_both_ends"]))
+
+    if args.unit:
+        print("per-unit distance to the population:")
+        for unit in args.unit:
+            print("    %-42s see `flybrain dimorphism --unit` on the ledger; "
+                  "unit provenance block `male_dimorphic`" % unit)
+
+    print("heaviest dimorphic types:")
+    for t in doc["types_top"][:args.top]:
+        print("    %-16s bodies=%-4d %10d synapses  %5.3f%%  %-18s anchored=%s"
+              % (t["type"], t["bodies"], t["synapses"], t["pct_of_network"],
+                 t["superclass"], "yes" if t["anchored"] else "no"))
+
+    ov = doc["anchor_overlap"]
+    print("anchored profiles: %d dimorphic types listed explicitly, %d inside a "
+          "family rule, %d fully dark"
+          % (ov["dimorphic_types_explicitly_anchored"],
+             ov["dimorphic_types_family_anchored"],
+             ov["dimorphic_types_dark"]))
+    print("    (family membership is not tracing: it only means the type sits in "
+          "a clan somebody anchored)")
+
+    if args.internal:
+        print("heaviest both-ends dimorphic type pairs:")
+        for p in doc["internal_type_pairs_top"][:args.top]:
+            print("    %-18s -> %-18s edges=%-7d synapses=%d"
+                  % (p["from"], p["to"], p["edges"], p["synapses"]))
+    return 0
+
+
 def cmd_info(args) -> int:
     """Report what this launcher resolved — the one command that diagnoses
     a broken install (wrong toolkit root, missing data dir, missing snapshot)."""
@@ -422,6 +504,18 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--caveat", action="store_true",
                    help="print the coverage caveat before the tables")
     s.set_defaults(func=cmd_larva_clusters)
+
+    s = sub.add_parser("dimorphism",
+                       help="MaleCNS male-specific / dimorphic population ledger")
+    s.add_argument("--unit", action="append", default=None,
+                   help="name the unit whose provenance block to show")
+    s.add_argument("--top", type=int, default=10,
+                   help="show this many types (default 10)")
+    s.add_argument("--internal", action="store_true",
+                   help="also print the both-endpoints-dimorphic type pairs")
+    s.add_argument("--caveat", action="store_true",
+                   help="print the ledger caveats first")
+    s.set_defaults(func=cmd_dimorphism)
 
     s = sub.add_parser("verify", help="run the end-to-end smoke test")
     s.set_defaults(func=cmd_verify)

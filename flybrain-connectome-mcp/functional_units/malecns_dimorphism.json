@@ -1,0 +1,792 @@
+{
+  "schema_version": "1.0",
+  "generated_utc": "2026-10-03T07:48:01Z",
+  "purpose": "Ledger for the male-specific / sexually dimorphic cell population of MaleCNS v1.0: how many bodies it holds over how many cell types, how many real synapses it carries, how much of the network it touches, which of its types the library already traces, and which are dark. It deliberately declares no circuit as a functional unit -- MaleCNS is a male-only reconstruction, so a sex difference cannot be measured here, only declared by the annotation column.",
+  "source": {
+    "connectome": "MaleCNS v1.0 (FlyCellAtlas)",
+    "annotation_column": "dimorphism",
+    "annotation_file": "body-annotations-male-cns-v1.0-minconf-0.5.feather",
+    "edge_file": "connectome-weights-male-cns-v1.0-minconf-0.5.feather",
+    "rows_scanned": 151856684
+  },
+  "population": {
+    "bodies": 2368,
+    "types": 479,
+    "labels": {
+      "male-specific": 1258,
+      "sexually dimorphic": 771,
+      "potentially male-specific": 162,
+      "potentially sexually dimorphic": 177
+    },
+    "labels_total": 2368
+  },
+  "measurement": {
+    "network_baseline": {
+      "edges": 25582938,
+      "synapses": 124177617
+    },
+    "edges_touching": 5875648,
+    "edges_touching_pct": 22.9671,
+    "synapses_touching": 13376848,
+    "synapses_touching_pct": 10.7724,
+    "edges_both_ends": 284982,
+    "edges_both_ends_pct": 1.114,
+    "synapses_both_ends": 1589267,
+    "synapses_both_ends_pct": 1.2798,
+    "internal_share_of_touched_synapses": 0.1188
+  },
+  "per_label": {
+    "male-specific": {
+      "bodies": 1258,
+      "edges_touching": 2974391,
+      "synapses_touching": 6708640,
+      "edges_both_ends": 150449,
+      "synapses_both_ends": 789106
+    },
+    "sexually dimorphic": {
+      "bodies": 771,
+      "edges_touching": 1801489,
+      "synapses_touching": 4334409,
+      "edges_both_ends": 12323,
+      "synapses_both_ends": 82711
+    },
+    "potentially male-specific": {
+      "bodies": 162,
+      "edges_touching": 534315,
+      "synapses_touching": 1286371,
+      "edges_both_ends": 2337,
+      "synapses_both_ends": 14593
+    },
+    "potentially sexually dimorphic": {
+      "bodies": 177,
+      "edges_touching": 684178,
+      "synapses_touching": 1741552,
+      "edges_both_ends": 1148,
+      "synapses_both_ends": 8733
+    }
+  },
+  "fru_dsx": {
+    "fru_high": 997,
+    "?": 921,
+    "dsx_high": 138,
+    "coexpress_low": 52,
+    "coexpress_high": 154,
+    "dsx_low": 10,
+    "fru_low": 96
+  },
+  "types_top": [
+    {
+      "type": "TmY21",
+      "bodies": 372,
+      "synapses": 741415,
+      "pct_of_network": 0.5971,
+      "superclass": "ol_intrinsic",
+      "anchored": true
+    },
+    {
+      "type": "oviIN",
+      "bodies": 2,
+      "synapses": 196360,
+      "pct_of_network": 0.1581,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "Tm26",
+      "bodies": 103,
+      "synapses": 157729,
+      "pct_of_network": 0.127,
+      "superclass": "ol_intrinsic",
+      "anchored": true
+    },
+    {
+      "type": "ANXXX084",
+      "bodies": 8,
+      "synapses": 153642,
+      "pct_of_network": 0.1237,
+      "superclass": "ascending_neuron",
+      "anchored": true
+    },
+    {
+      "type": "pIP1",
+      "bodies": 2,
+      "synapses": 150723,
+      "pct_of_network": 0.1214,
+      "superclass": "descending_neuron",
+      "anchored": true
+    },
+    {
+      "type": "mAL_m8",
+      "bodies": 16,
+      "synapses": 146071,
+      "pct_of_network": 0.1176,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "AOTU008",
+      "bodies": 25,
+      "synapses": 143308,
+      "pct_of_network": 0.1154,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "mAL_m1",
+      "bodies": 12,
+      "synapses": 137435,
+      "pct_of_network": 0.1107,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "AVLP749m",
+      "bodies": 12,
+      "synapses": 135554,
+      "pct_of_network": 0.1092,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "DNp13",
+      "bodies": 2,
+      "synapses": 113327,
+      "pct_of_network": 0.0913,
+      "superclass": "descending_neuron",
+      "anchored": true
+    },
+    {
+      "type": "SMP702m",
+      "bodies": 4,
+      "synapses": 108672,
+      "pct_of_network": 0.0875,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "AVLP316",
+      "bodies": 6,
+      "synapses": 102853,
+      "pct_of_network": 0.0828,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "aSP22",
+      "bodies": 2,
+      "synapses": 101767,
+      "pct_of_network": 0.082,
+      "superclass": "descending_neuron",
+      "anchored": false
+    },
+    {
+      "type": "VES200m",
+      "bodies": 12,
+      "synapses": 99439,
+      "pct_of_network": 0.0801,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "VES022",
+      "bodies": 11,
+      "synapses": 96688,
+      "pct_of_network": 0.0779,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "Cm26",
+      "bodies": 13,
+      "synapses": 90027,
+      "pct_of_network": 0.0725,
+      "superclass": "ol_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "PVLP214m",
+      "bodies": 10,
+      "synapses": 86539,
+      "pct_of_network": 0.0697,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "DNb05",
+      "bodies": 2,
+      "synapses": 83025,
+      "pct_of_network": 0.0669,
+      "superclass": "descending_neuron",
+      "anchored": true
+    },
+    {
+      "type": "CRE021",
+      "bodies": 2,
+      "synapses": 81705,
+      "pct_of_network": 0.0658,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "AVLP029",
+      "bodies": 2,
+      "synapses": 81226,
+      "pct_of_network": 0.0654,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "SIP136m",
+      "bodies": 2,
+      "synapses": 80067,
+      "pct_of_network": 0.0645,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "INXXX058",
+      "bodies": 6,
+      "synapses": 79432,
+      "pct_of_network": 0.064,
+      "superclass": "vnc_intrinsic",
+      "anchored": true
+    },
+    {
+      "type": "SMP709m",
+      "bodies": 2,
+      "synapses": 78486,
+      "pct_of_network": 0.0632,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "AVLP712m",
+      "bodies": 2,
+      "synapses": 77933,
+      "pct_of_network": 0.0628,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "PVLP016",
+      "bodies": 2,
+      "synapses": 76710,
+      "pct_of_network": 0.0618,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "pC1_4a",
+      "bodies": 6,
+      "synapses": 75607,
+      "pct_of_network": 0.0609,
+      "superclass": "cb_intrinsic",
+      "anchored": true
+    },
+    {
+      "type": "DNp36",
+      "bodies": 2,
+      "synapses": 75332,
+      "pct_of_network": 0.0607,
+      "superclass": "descending_neuron",
+      "anchored": true
+    },
+    {
+      "type": "AVLP714m",
+      "bodies": 6,
+      "synapses": 75155,
+      "pct_of_network": 0.0605,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "MZ_lv2PN",
+      "bodies": 2,
+      "synapses": 74609,
+      "pct_of_network": 0.0601,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "FLA001m",
+      "bodies": 12,
+      "synapses": 73761,
+      "pct_of_network": 0.0594,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "pIP10",
+      "bodies": 2,
+      "synapses": 73662,
+      "pct_of_network": 0.0593,
+      "superclass": "descending_neuron",
+      "anchored": true
+    },
+    {
+      "type": "AVLP728m",
+      "bodies": 6,
+      "synapses": 73661,
+      "pct_of_network": 0.0593,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "LoVP92",
+      "bodies": 13,
+      "synapses": 72953,
+      "pct_of_network": 0.0587,
+      "superclass": "visual_projection",
+      "anchored": false
+    },
+    {
+      "type": "SIP103m",
+      "bodies": 9,
+      "synapses": 71778,
+      "pct_of_network": 0.0578,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "ANXXX013",
+      "bodies": 2,
+      "synapses": 70537,
+      "pct_of_network": 0.0568,
+      "superclass": "ascending_neuron",
+      "anchored": true
+    },
+    {
+      "type": "SIP100m",
+      "bodies": 10,
+      "synapses": 69972,
+      "pct_of_network": 0.0563,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "AVLP710m",
+      "bodies": 2,
+      "synapses": 69479,
+      "pct_of_network": 0.056,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "SIP133m",
+      "bodies": 2,
+      "synapses": 69015,
+      "pct_of_network": 0.0556,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "SIP104m",
+      "bodies": 8,
+      "synapses": 68493,
+      "pct_of_network": 0.0552,
+      "superclass": "cb_intrinsic",
+      "anchored": false
+    },
+    {
+      "type": "AN09B017g",
+      "bodies": 2,
+      "synapses": 68420,
+      "pct_of_network": 0.0551,
+      "superclass": "ascending_neuron",
+      "anchored": true
+    }
+  ],
+  "internal_type_pairs_top": [
+    {
+      "from": "TmY21",
+      "to": "LoVP92",
+      "edges": 442,
+      "synapses": 2721
+    },
+    {
+      "from": "AN09B017b",
+      "to": "mAL_m1",
+      "edges": 24,
+      "synapses": 2647
+    },
+    {
+      "from": "pC1_2a",
+      "to": "mAL_m8",
+      "edges": 55,
+      "synapses": 2156
+    },
+    {
+      "from": "pIP10",
+      "to": "AN08B061",
+      "edges": 14,
+      "synapses": 2113
+    },
+    {
+      "from": "TmY21",
+      "to": "Tm26",
+      "edges": 882,
+      "synapses": 2012
+    },
+    {
+      "from": "AVLP744m",
+      "to": "AVLP705m",
+      "edges": 55,
+      "synapses": 1750
+    },
+    {
+      "from": "MZ_lv2PN",
+      "to": "pIP1",
+      "edges": 2,
+      "synapses": 1704
+    },
+    {
+      "from": "SIP103m",
+      "to": "mAL_m8",
+      "edges": 125,
+      "synapses": 1679
+    },
+    {
+      "from": "LHAV4c2",
+      "to": "mAL_m8",
+      "edges": 64,
+      "synapses": 1667
+    },
+    {
+      "from": "AVLP567",
+      "to": "AVLP744m",
+      "edges": 28,
+      "synapses": 1663
+    },
+    {
+      "from": "AVLP722m",
+      "to": "mAL_m8",
+      "edges": 80,
+      "synapses": 1608
+    },
+    {
+      "from": "AN09B017e",
+      "to": "mAL_m8",
+      "edges": 31,
+      "synapses": 1589
+    },
+    {
+      "from": "mAL_m8",
+      "to": "SIP104m",
+      "edges": 64,
+      "synapses": 1518
+    },
+    {
+      "from": "AN09B017a",
+      "to": "mAL_m1",
+      "edges": 24,
+      "synapses": 1492
+    },
+    {
+      "from": "DNpe025",
+      "to": "AN08B031",
+      "edges": 12,
+      "synapses": 1485
+    },
+    {
+      "from": "mAL_m1",
+      "to": "mAL_m5c",
+      "edges": 72,
+      "synapses": 1454
+    },
+    {
+      "from": "TmY21",
+      "to": "TmY21",
+      "edges": 987,
+      "synapses": 1400
+    },
+    {
+      "from": "mAL_m1",
+      "to": "mAL_m5a",
+      "edges": 69,
+      "synapses": 1399
+    },
+    {
+      "from": "AN09B017g",
+      "to": "mAL_m1",
+      "edges": 24,
+      "synapses": 1398
+    },
+    {
+      "from": "Tm26",
+      "to": "Tm26",
+      "edges": 469,
+      "synapses": 1363
+    },
+    {
+      "from": "AOTU008",
+      "to": "VES200m",
+      "edges": 168,
+      "synapses": 1355
+    },
+    {
+      "from": "AVLP744m",
+      "to": "SIP136m",
+      "edges": 14,
+      "synapses": 1336
+    },
+    {
+      "from": "ANXXX084",
+      "to": "IN27X002",
+      "edges": 32,
+      "synapses": 1325
+    },
+    {
+      "from": "aIPg7",
+      "to": "pIP10",
+      "edges": 14,
+      "synapses": 1280
+    },
+    {
+      "from": "LHAV2b2_a",
+      "to": "pIP1",
+      "edges": 9,
+      "synapses": 1265
+    },
+    {
+      "from": "PVLP206m",
+      "to": "mAL_m1",
+      "edges": 24,
+      "synapses": 1256
+    },
+    {
+      "from": "mAL_m8",
+      "to": "mAL_m2b",
+      "edges": 75,
+      "synapses": 1250
+    },
+    {
+      "from": "mAL_m1",
+      "to": "mAL_m2b",
+      "edges": 71,
+      "synapses": 1243
+    },
+    {
+      "from": "AVLP743m",
+      "to": "AVLP316",
+      "edges": 42,
+      "synapses": 1236
+    },
+    {
+      "from": "SMP709m",
+      "to": "AVLP749m",
+      "edges": 19,
+      "synapses": 1223
+    }
+  ],
+  "anchor_overlap": {
+    "anchored_profile_types": 5413,
+    "note": "explicit = the dimorphic type is listed in the anchored profile's own type list; family = an anchored profile's `^XXX` rule also matches it. Family membership is not tracing: it only says the type sits inside a clan somebody anchored.",
+    "dimorphic_types_explicitly_anchored": 194,
+    "dimorphic_types_family_anchored": 479,
+    "dimorphic_types_dark": 0,
+    "explicitly_anchored": [
+      "AN00A006",
+      "AN03A008",
+      "AN05B035",
+      "AN05B095",
+      "AN05B102c",
+      "AN05B102d",
+      "AN05B103",
+      "AN06B004",
+      "AN08B020",
+      "AN08B031",
+      "AN08B035",
+      "AN08B043",
+      "AN08B047",
+      "AN08B059",
+      "AN08B061",
+      "AN08B069",
+      "AN08B074",
+      "AN08B081",
+      "AN08B084",
+      "AN09B012",
+      "AN09B017a",
+      "AN09B017b",
+      "AN09B017c",
+      "AN09B017d",
+      "AN09B017e",
+      "AN09B017f",
+      "AN09B017g",
+      "AN09B042",
+      "AN10B009",
+      "AN10B026",
+      "AN12B060",
+      "AN18B053",
+      "AN19B104",
+      "ANXXX013",
+      "ANXXX050",
+      "ANXXX068",
+      "ANXXX071",
+      "ANXXX084",
+      "ANXXX116",
+      "ANXXX150",
+      "ANXXX151",
+      "ANXXX152",
+      "ANXXX191",
+      "ANXXX214",
+      "DNa08",
+      "DNa09",
+      "DNae005",
+      "DNb05",
+      "DNbe005",
+      "DNde002",
+      "DNde007",
+      "DNg02_a",
+      "DNg02_g",
+      "DNg101",
+      "DNg111",
+      "DNg13",
+      "DNg37",
+      "DNg66",
+      "DNg83",
+      "DNg96",
+      "DNge010",
+      "DNge047",
+      "DNge049",
+      "DNge063",
+      "DNge098",
+      "DNge103",
+      "DNge116",
+      "DNge128",
+      "DNge154",
+      "DNge175",
+      "DNp13",
+      "DNp16_a",
+      "DNp16_b",
+      "DNp36",
+      "DNp48",
+      "DNp67",
+      "DNp68",
+      "DNpe002",
+      "DNpe011",
+      "DNpe017",
+      "DNpe025",
+      "DNpe034",
+      "DNpe036",
+      "DNpe041",
+      "DNpe052",
+      "GNG314",
+      "IN05B041",
+      "IN08A003",
+      "IN10B013",
+      "IN11A035",
+      "IN12A002",
+      "IN12A030",
+      "IN12A037",
+      "IN12A041",
+      "IN14A006",
+      "IN18B009",
+      "IN27X002",
+      "INXXX025",
+      "INXXX058",
+      "INXXX062",
+      "INXXX110",
+      "INXXX121",
+      "INXXX217",
+      "LH001m",
+      "LH002m",
+      "LH003m",
+      "LH004m",
+      "LH005m",
+      "LH006m",
+      "LH007m",
+      "LH008m",
+      "LHAV2b2_a",
+      "LHAV2b2_b",
+      "LHAV2b2_c",
+      "LHAV2b2_d",
+      "LHAV2b5",
+      "LHAV4c2",
+      "LHPD2b1",
+      "LHPV5a2",
+      "LN-DN1",
+      "LN-DN2",
+      "M_vPNml57",
+      "Mi20",
+      "TN1a_b",
+      "TN1a_c",
+      "TN1a_d",
+      "TN1a_e",
+      "TN1a_f",
+      "TN1a_g",
+      "TN1a_h",
+      "TN1a_i",
+      "TN1c_a",
+      "Tm26",
+      "TmY21",
+      "aSP-g3Am",
+      "aSP10A_a",
+      "aSP10A_b",
+      "aSP10C_a",
+      "aSP10C_b",
+      "dMS9",
+      "hg1 MN",
+      "pC1_10a",
+      "pC1_10b",
+      "pC1_10c",
+      "pC1_10d",
+      "pC1_11a",
+      "pC1_11b",
+      "pC1_12a",
+      "pC1_12b",
+      "pC1_13a",
+      "pC1_13b",
+      "pC1_13c",
+      "pC1_14a",
+      "pC1_14b",
+      "pC1_15a",
+      "pC1_15b",
+      "pC1_15c",
+      "pC1_16a",
+      "pC1_16b",
+      "pC1_17a",
+      "pC1_17b",
+      "pC1_18a",
+      "pC1_18b",
+      "pC1_19",
+      "pC1_1a",
+      "pC1_1b",
+      "pC1_2a",
+      "pC1_2a/2b",
+      "pC1_2b",
+      "pC1_2c",
+      "pC1_3a",
+      "pC1_3b",
+      "pC1_3c",
+      "pC1_4a",
+      "pC1_4b",
+      "pC1_5a",
+      "pC1_5b",
+      "pC1_6a",
+      "pC1_6b",
+      "pC1_7a",
+      "pC1_7b",
+      "pC1_8a",
+      "pC1_8b",
+      "pC1_8c",
+      "pC1_9a",
+      "pC1_9b",
+      "pC1x_a",
+      "pC1x_b",
+      "pC1x_c",
+      "pC1x_d",
+      "pIP1",
+      "pIP10",
+      "vMS16",
+      "vMS17"
+    ]
+  },
+  "caveat": [
+    "MaleCNS v1.0 contains no female reconstruction. A `dimorphism` label is the curator's annotation, not a measurement made in this connectome: nothing here compares a male to a female, and no claim of the form 'larger / more numerous in males' is supported by this artifact.",
+    "A synapse is counted once per dimorphic endpoint, so a synapse between two dimorphic bodies is claimed by both of their type totals; the both-ends row below is the non-double-counted population figure.",
+    "Weight rows are collapsed by (pre, post) pair because the neuron subgraph holds 25,582,938 pairs across 151,856,684 raw rows; synapse totals are summed over those same rows and sit on the authoritative 124,177,617 network scale.",
+    "The ledger is deliberately not a functional unit: no circuit is declared, so the unit count does not grow because of it.",
+    "`per_label` counts are per annotation class, so a synapse between two bodies carrying different labels is claimed by both rows and the four rows do not add up to the population totals above.",
+    "Anchored-family membership (all 479 dimorphic types sit inside some anchored `^XXX` clan) is not tracing: only 194 of them are listed in an anchored profile's own type list."
+  ]
+}

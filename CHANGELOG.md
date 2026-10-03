@@ -8,14 +8,65 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.31.0` | the toolkit as a whole |
+| package | `2.32.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
-| functional-unit library schema | `1.0` | 115 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0, 2.28.0, 2.29.0, 2.30.0 and 2.31.0) |
+| functional-unit library schema | `1.0` | 115 units + 66 connection types (1.4.0; grown in 1.5.0, 1.6.0, 1.8.0, 1.9.0, 2.0.0, 2.1.0, 2.3.0, 2.4.0, 2.8.0, 2.9.0, 2.10.0, 2.27.0, 2.28.0, 2.29.0, 2.30.0, 2.31.0 and 2.32.0) |
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.32.0] — 2026-10-03
+
+### MaleCNS 的雄性群体账本：2,368 个细胞、10.77% 的突触，而「雄性回路」只有 1.28%
+
+MaleCNS v1.0 是雄性重建，它的注释表带一列 `dimorphism`。**这个库从来没读过这列**——
+58 个锚定 profile 是按 `superclass` / `type` 建的，`type` 不含性别信息。
+新增 `scripts/extract_malecns_dimorphism.py`：把 151,856,684 条权重行逐批流一遍
+（文件 1 GB，不能整体读），对每条边问「至少一端是不是这 2,368 个 body 之一」。
+
+| 量 | 值 |
+|---|---|
+| cells / 细胞类型 | **2,368 / 479** |
+| 触碰该群体的边 | 5,875,648 pairs — **22.97%** |
+| 触碰该群体的突触 | 13,376,848 — **10.77%** |
+| 两端都雄性的边 | 284,982 pairs — **1.11%** |
+| 两端都雄性的突触 | 1,589,267 — **1.28%**（只占触碰群体的 11.9%） |
+
+**最后两行的落差才是结论。** 雄性群体不是一座孤岛：它又薄又散，主要跟通用细胞说话，
+碰到的突触里只有约九分之一是「雄性内部」的。照这个数字声明一个「雄性回路」，
+实际上等于声明那 1.28%——比周围网络的测量噪声还小。所以**不声明回路**：
+FUNCTIONAL_UNITS 仍 **115**，29 个单元在 `provenance.male_dimorphic` 里记下
+自己离这个群体有多远。
+
+最大的类型是 `TmY21`（372 细胞，741,415 突触，全网 0.597%）；`oviIN` 用 2 个细胞
+拿到 196,360 突触；两端都雄性最重的对子是 `TmY21 → LoVP92`（442 边 / 2,721 突触），
+随后 `AN09B017b → mAL_m1`、`pC1_2a → mAL_m8`。
+
+**这个账本不能说什么，也写进了 artifact 的 caveat**：MaleCNS 没有雌性重建，
+`dimorphism` 是策展人的标注而不是本连接组里做的比较，任何「雄性更大／更多」
+的说法都不被这份产物支持。另外两个计数刻意分开：**194** 个 dimorphic 类型被显式列在
+某个锚定 profile 的类型表里（有人看过它），而全部 **479** 个都落在某条锚定族
+`^XXX` 规则里——**族覆盖 ≠ 逐类型追溯**。
+
+**没有新增功能单元、没有新增模块剖面**，新增的是一层可查的账本。
+
+改动：
+- `scripts/extract_malecns_dimorphism.py`（新）：流式读 `body-annotations` 的
+  `dimorphism` 列 + `connectome-weights`（按 `(pre, post)` 折叠 5.88M 触碰行）
+- `functional_units/malecns_dimorphism.json`（新）：四类标签计数、逐标签实测、
+  top 类型、两端都雄性 top 类型对、与锚定 profile 的显式/族级交叉、caveat
+- `gen_functional_units.py::_load_malecns_dimorphism()`：注进 29 个 MaleCNS 单元的
+  `provenance.male_dimorphic`
+- `flybrain dimorphism [--unit N] [--top N] [--internal] [--caveat]`
+- 版本锚点 2.31.0 → 2.32.0（pyproject、cli、api_server、server、topology_visualizer）；
+  README「Male dimorphic ledger (v2.32.0)」节 + quickstart 第 7 步；
+  docs/mcp_setup.md；CHANGELOG `[2.32.0]`
+
+门禁 10/10（`--with-data`）。
 
 ---
 

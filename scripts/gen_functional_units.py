@@ -70,6 +70,7 @@ of by eyeball.
 """
 from __future__ import annotations
 import hashlib
+import re
 import importlib.util
 import json
 import sys
@@ -3653,6 +3654,77 @@ def _load_larva_coverage():
 
 
 _load_larva_coverage()
+
+
+def _load_malecns_dimorphism():
+    """v2.32.0 — the male-specific cell population of the MaleCNS itself.
+
+    MaleCNS v1.0 is a male reconstruction, and its annotation table carries a
+    `dimorphism` column.  `scripts/extract_malecns_dimorphism.py` streams all
+    151,856,684 weight rows and asks, per edge, whether at least one endpoint
+    is a dimorphic body.  The population turns out to be 2,368 bodies over 479
+    cell types, touching 10.77% of the network's synapses, while only 1.28% of
+    synapses sit between two dimorphic bodies.
+
+    That asymmetry is the finding worth keeping: the "male circuit" is not a
+    closed island, it is a thinly-connected subset that mostly talks to
+    universal cells.  Which is also why no male circuit is declared here — the
+    annotation column says a body is male-specific, but a male-only
+    reconstruction cannot measure a sex difference, so the ledger stays a
+    ledger and the unit count does not move.
+
+    Units whose anchored profile actually lists a dimorphic type carry the
+    distance to that population, so a reader can see which modules already sit
+    on male-specific cells and which sit on the universal ones next door.
+    """
+    path = MCP / "functional_units" / "malecns_dimorphism.json"
+    if not path.exists():
+        return []
+    doc = json.loads(path.read_text(encoding="utf-8"))
+    explicit = set(doc["anchor_overlap"]["explicitly_anchored"])
+    meas = doc["measurement"]
+    pop = doc["population"]
+
+    anchored_profiles = _load_anchors().get("profile_anchors", {})
+    attached = []
+    for unit in FUNCTIONAL_UNITS:
+        n_listed = 0
+        n_family = 0
+        for m in unit.get("members", []):
+            spec = anchored_profiles.get(m.get("neuron"))
+            if not isinstance(spec, dict):
+                continue
+            for t in spec.get("types") or []:
+                if isinstance(t, dict) and t.get("type") in explicit:
+                    n_listed += 1
+            rule = spec.get("rule") or ""
+            if rule.startswith("type_re:"):
+                rx = re.compile(rule.split("type_re:", 1)[1])
+                n_family += int(any(rx.match(t) for t in explicit))
+        if not n_listed and not n_family:
+            continue
+        unit.setdefault("provenance", {})["male_dimorphic"] = {
+            "source": doc["source"]["connectome"],
+            "artifact": path.name,
+            "note": doc["purpose"],
+            "caveat": doc["caveat"],
+            "population_bodies": pop["bodies"],
+            "population_types": pop["types"],
+            "synapses_touching": meas["synapses_touching"],
+            "synapses_touching_pct": meas["synapses_touching_pct"],
+            "synapses_both_ends": meas["synapses_both_ends"],
+            "synapses_both_ends_pct": meas["synapses_both_ends_pct"],
+            "anchored_types_dimorphic": n_listed,
+            "family_anchored_types_dimorphic": n_family,
+        }
+        attached.append(unit["name"])
+
+    print(f"[DIMORPH] attached the MaleCNS dimorphic ledger to "
+          f"{len(attached)} unit(s): {', '.join(attached)}")
+    return attached
+
+
+_load_malecns_dimorphism()
 
 
 # ---------------------------------------------------------------------------

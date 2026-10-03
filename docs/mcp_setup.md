@@ -128,6 +128,12 @@ walks all 116,922 larva edges and records, per unit, how many synapses have BOTH
 endpoints resolving to a profile that unit declares -- 80,161 / 22.73% for the
 olfactory unit down to 2,736 / 0.78% for the respiratory relay, 77.13% network-wide
 and 3.52% frontier. Coverage there means traceable, not functionally characterised.
+**29 units** additionally carry `provenance.male_dimorphic` (v2.32.0): the MaleCNS
+annotation table's own `dimorphism` column (2,368 bodies / 479 types) is streamed
+over all 151,856,684 weight rows, and each unit records how far it sits from that
+population -- 10.77% of network synapses touch a dimorphic body, only 1.28% have
+both endpoints dimorphic. MaleCNS is male-only, so the ledger reports the
+annotation, never a measured sex difference.
 All 57 anchored populations are now referenced by
 at least one unit (v2.1.0 wired the last five). A measured count of ZERO is a
 recorded contradiction (currently one, in `central_complex_steering_unit`), never a
