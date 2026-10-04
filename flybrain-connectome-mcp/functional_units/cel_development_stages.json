@@ -78,6 +78,57 @@
       ]
     }
   },
+  "declared_vs_shipped": {
+    "note": "`PROFILES` declares more cell classes than some units actually carry, because extract_cel_profiles.py only emits a member profile for a declared class that has an edge inside the module. PLM is declared for the touch-avoidance circuit but has no edge in the adult reconstruction, so the v2.27 unit ships 10 members; merged across all eight reconstructions PLM does have edges, so this series measures 11. Both are right -- the unit NAME is identical, which is exactly why the gap is recorded here.",
+    "v227_shipped_members": {
+      "cel_amphid_chemosensory_unit": [
+        "ADF",
+        "AIA",
+        "AIY",
+        "ASE",
+        "ASI",
+        "ASJ",
+        "ASK",
+        "AWA",
+        "AWC",
+        "RIA"
+      ],
+      "cel_forward_locomotion_command_unit": [
+        "AIA",
+        "AIB",
+        "AIZ",
+        "AVB",
+        "PV"
+      ],
+      "cel_nociceptive_avoidance_unit": [
+        "AIA",
+        "AIZ",
+        "ASH",
+        "AVA",
+        "AVB",
+        "PV"
+      ],
+      "cel_touch_avoidance_reflex_unit": [
+        "AIA",
+        "AIB",
+        "AIZ",
+        "ALM",
+        "ALN",
+        "AVA",
+        "AVB",
+        "AVM",
+        "PLN",
+        "PV"
+      ]
+    },
+    "measured_wider_than_unit": {
+      "cel_touch_avoidance_reflex_unit": [
+        "PLM"
+      ]
+    },
+    "unit_wider_than_measured": {},
+    "consequence": "The stage rows below for a circuit listed in `measured_wider_than_unit` describe a slightly wider circuit than the unit they are attached to. Compare the two by the difference listed, not directly."
+  },
   "stage_diffs": {
     "note": "Measured on the union of (pre, post, type) keys per group of animals, not asserted. v2.30.0 stated the L1-only count as a literal in its caveat; it is now derived, so it moves if the source data or the class sets move.",
     "l1_union_keys": 1188,
