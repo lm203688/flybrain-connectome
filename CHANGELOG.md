@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.36.0` | the toolkit as a whole |
+| package | `2.37.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -18,6 +18,58 @@ The **schema version** is versioned separately from the **package version**:
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [2.37.0] — 2026-10-04
+
+### 转向：从量的扩张到质的提升——建功能分类轴 + GATE 11
+
+v2.27–v2.36 十轮全在做证据审计，**一个单元没加**。审计本身必要且已收口，但它优化的是
+「引用不出错」，不是「功能覆盖得上、组合用得好」。这轮按核心目标
+（`PROJECT_VISION.md` 的虚拟生物形态生成器）做体检与转向的第一块基石。
+
+**诊断：库是按物种组织的，不是按功能。** 115 个单元里 `system` 字段 **48 种**取值、
+`function` 字段 **60+** 种，单元名 30+ 前缀（`cortical_` / `retinal_` / `frog_` …），
+几乎每个单元一个解剖学标签。对照 vision 要求的 15 个功能类别，覆盖矩阵如下。
+
+**新增 `scripts/extract_function_coverage.py` + `function_coverage.json`**：
+24 个功能类别 / 8 个家族，每个单元按**自己声明的** `capability` / `task_hint_pool`
+打标签（不从描述散文推断），给出单元数 / 跨几个类群 / 其中几个来自连接组重建。
+
+**GATE 11（`check_function_coverage.py`）**：这是第一次有一条门禁问「库覆盖了
+vision 要的功能吗」。它不因为有缺口而失败——缺口现在是**写下来的工作队列**，
+不是隐形问题；它失败于**缺口不可见**（artifact 与矩阵不一致、类别引用了库里没有的
+单元、tagged+untagged 对不上库容、cross_species 声称与数字矛盾）。
+**注入缺陷验证**：把 `metacognition` 从声明缺口里抹掉 → 报
+`vision_required_missing ([]) disagrees with the matrix (['metacognition'])`。
+
+**这个轴自己抓到了三个 bug，都是我自己的。**
+1. **子串匹配造出假覆盖。** 第一版用 `k in cap` 匹配，把
+   `retinal_phototransduction_unit` 算进 `memory_encode`（`high_res_encode` 里有
+   `encode`）、`cortical_l5_output_unit` 算进 `motor_command`。
+2. **改了全词匹配后仍有假覆盖，而且更隐蔽。** `metabolic_support` 含 `meta` →
+   `astrocyte_tripartite_unit` 进 metacognition；`habituation`（感觉适应）→
+   `aplysia_gill_withdrawal_unit` 进 habit；`angular_integration` / `path_integrate` →
+   四个单元进 working_memory。**六类缺口一度全部显示为 covered。**
+   一个虚高的覆盖矩阵比没有矩阵更糟：它会关掉它本该打开的工作队列。
+3. **字典键空间混用。** `per_unit` 先是 `unit_name → categories`，后被塞进
+   `category → units`，24 个类别桶混进单元命名空间，artifact 报「85 tagged +
+   51 untagged」对 115 个单元。**GATE 11 的算术当场抓住。**
+
+**最终覆盖矩阵（15 个 vision 必需类别）**
+
+| 状态 | 类别 |
+|---|---|
+| 缺失 | **metacognition** |
+| 薄（<3 单元） | attention(2) / habit(1) / punishment(1) / working_memory(1) / motor_command(2) / motor_relay(1) |
+| 已覆盖 | integration(4) / prediction(6) / reward(5) / associative_learn(9, 4 类群) / memory_encode(11) / memory_readout(5) / sensory_relay(16, 3 溯源) / sensory_transduction(6) |
+
+**跨 ≥3 类群的只有 2 个类别**（associative_learn、credit_assign），
+**48/115 单元不属任何类别**——后者不是缺陷，是库的功能词汇本身按机制动作写
+（`transduce` / `sparsify` / `gain_control` / `arbitrate`），映射表要跟着它走。
+跨类群覆盖是这个库最弱的一环：**它现在是 115 条物种回路，不是一套功能库。**
+
+**无新增/重命名/重分类单元**，FUNCTIONAL_UNITS 仍 **115**。CLI `flybrain function
+[--vision] [--caveat]`；115 个单元全挂 `provenance.function_axis`。门禁 **11/11**。
 
 ## [2.36.0] — 2026-10-04
 
