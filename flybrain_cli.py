@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.35.0"
+__version__ = "2.36.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -359,7 +359,28 @@ def cmd_larva_clusters(args) -> int:
     ct = doc["cell_type_coverage"]
     print("cell classes: %d seen, %d touched, %d entirely outside every unit"
           % (len(ct["cell_types_seen"]), len(ct["covered"]), len(ct["frontier"])))
-    print("    frontier: %s" % ", ".join(ct["frontier"]))
+    print("    outside every unit: %s" % ", ".join(ct["frontier"]))
+    if ct.get("frontier_is_not_an_annotations_verdict"):
+        print("    ^ being outside a unit is a coverage fact, not an "
+              "annotation verdict -- see annotation identity below")
+
+    ident = doc.get("annotation_identity")
+    if ident:
+        print("annotation identity: %d classes carry the `_unannotated` "
+              "suffix; %d of them hold annotated cells (%d cells)"
+              % (ident["classes_with_fallback_suffix"],
+                 ident["classes_misnamed_by_suffix"],
+                 ident["cells_in_misnamed_classes"]))
+        print("    cells genuinely without an official annotation: %d (%.2f%%)"
+              % (ident["cells_actually_unannotated"],
+                 ident["cells_actually_unannotated_pct"]))
+        for pid, e in sorted(ident["misnamed_detail"].items(),
+                             key=lambda kv: -kv[1]["cells_with_official_annotation"])[:5]:
+            print("    %-32s %d/%d annotated  e.g. %s"
+                  % (pid, e["cells_with_official_annotation"], e["cells"],
+                     ", ".join(e["example_annotations"][:2])))
+        if args.caveat:
+            print("    %s" % ident["note"])
 
     top = sorted(doc["clusters"],
                  key=lambda c: -(c["internal_synapses"] + c["out_synapses"]

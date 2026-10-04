@@ -573,6 +573,25 @@ Per unit, at both-endpoint resolution:
 Three cell classes sit entirely outside every unit: the unlabelled class
 (346 cells), `MB-FFN` and `pre-DN-SEZ`.
 
+**`_unannotated` in a profile id does not mean "unannotated" (v2.36.0).** 15 of
+the 43 profile classes carry that suffix, and it is `bucket()`'s
+*modality-recognition* fallback, not an annotation verdict: a cell whose
+`annotations` string is literally `KC` contains no modality keyword, so it
+lands in the fallback bucket while being fully named. **13 of those 15 classes
+hold annotated cells — 1,686 of them**, including `larv.kc_unannotated` (144
+cells, all annotated `KC`), `larv.mb_fbn_unannotated` (100, all annotated like
+`CN-10; FAN-2`) and `larv.mb_ffn_unannotated` (54, all `FFN-23` and
+siblings). The earlier line in this README that read the frontier list as an
+annotation verdict was wrong on exactly this point: `MB-FFN`'s 54 cells all
+carry names.
+
+The network-wide figure is unaffected — **1,560 cells (52.77%) genuinely have
+no official annotation**, because it reads the `annotations` column directly
+and never touches the bucket. What was wrong was the reading of the *names*.
+The ids are unchanged (40 profile keys, gate 9 and every published artifact
+index them by name); the two notions are now measured apart in
+`annotation_identity` and carried on each unit as `member_id_caveat`.
+
 **The per-unit rows are not additive either (v2.34.0).** Nineteen `larv.*`
 profiles are declared by more than one unit — `larv.lhn_unannotated`,
 `larv.lhn_mechano`, `larv.kc_unannotated` and friends — so one synapse

@@ -3709,6 +3709,26 @@ def _load_larva_coverage():
                 "shared_profiles": attr["shared_profiles"],
                 "note": attr["note"],
             },
+            # v2.36.0.  Several member profile ids end in `_unannotated`, and
+            # that suffix is the modality-recognition fallback, not an
+            # annotation verdict: `larv.kc_unannotated` holds 144 cells whose
+            # annotation is literally "KC", `larv.mb_ffn_unannotated` holds 54
+            # named FFN neurons.  13 of the 15 classes carrying the suffix
+            # contain annotated cells.  A unit that declares one of them is
+            # declaring a real, named population -- which is a stronger claim
+            # than the id suggests, and this block says so.
+            "member_id_caveat": {
+                "note": (doc.get("annotation_identity", {}).get("note")),
+                "classes_misnamed_by_suffix": (doc.get("annotation_identity", {})
+                                               .get("classes_misnamed_by_suffix")),
+                "cells_in_misnamed_classes": (doc.get("annotation_identity", {})
+                                              .get("cells_in_misnamed_classes")),
+                "cells_actually_unannotated": (doc.get("annotation_identity", {})
+                                               .get("cells_actually_unannotated")),
+                "cells_actually_unannotated_pct": (
+                    doc.get("annotation_identity", {})
+                    .get("cells_actually_unannotated_pct")),
+            },
         }
         attached.append(unit["name"])
 

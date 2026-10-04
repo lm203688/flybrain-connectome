@@ -262,6 +262,87 @@ def build() -> dict:
                               if cell_covered_syn.get(c, 0) == 0})
 
     # ------------------------------------------------------------------ #
+    # v2.36.0 -- `_unannotated` in a profile id means "modality not
+    # recognised", NOT "no official annotation".
+    #
+    # The `_MODALITY_RULES` lookup in extract_larva_profiles.bucket() falls
+    # through to the literal "unannotated" when no modality keyword appears in
+    # the annotation string.  That fallback bucket therefore collects two very
+    # different things, and only one of them is unannotated:
+    #
+    #   larv.kc_unannotated        144 cells, ALL annotated (the string is
+    #                              literally "KC") -- a Kenyon cell with no
+    #                              modality keyword is not unannotated
+    #   larv.mb_fbn_unannotated   100 cells, ALL annotated ("CN-10; FAN-2"...)
+    #   larv.mb_ffn_unannotated     54 cells, ALL annotated ("FFN-23"...)
+    #   larv.mbon_unannotated       48 cells, ALL annotated ("MBON-a1"...)
+    #
+    # 13 of the classes carrying that suffix contain annotated cells.  The
+    # network-wide "1,560 cells with no official annotation (52.77%)" figure is
+    # unaffected -- it reads the `annotations` column directly and never goes
+    # near the bucket.  What is wrong is naming, and v2.31.0's
+    # `cell_type_coverage.frontier` list read those names as an annotation
+    # verdict: it printed `MB-FFN` and `pre-DN-SEZ` as unlabelled classes when
+    # MB-FFN's 54 cells are all named FFN neurons.
+    #
+    # The ids are NOT renamed.  They are load-bearing: 40 profile keys, gate 9,
+    # and every published artifact index them by name, and a rename would break
+    # all of that to fix a label.  Instead the two notions are measured apart and
+    # the naming caveat travels with the data.
+    # ------------------------------------------------------------------ #
+    truly_unannotated = {i for i, d in info.items() if not _annotated(d["annotations"])}
+    per_class_identity: dict[str, dict] = {}
+    for i, d in info.items():
+        pid = node_profile[i]
+        e = per_class_identity.setdefault(pid, {
+            "cell_type": d["cell_type"],
+            "cells": 0,
+            "cells_without_official_annotation": 0,
+            "example_annotations": [],
+        })
+        e["cells"] += 1
+        if i in truly_unannotated:
+            e["cells_without_official_annotation"] += 1
+        elif len(e["example_annotations"]) < 3:
+            a = d["annotations"]
+            if a and "no official annotation" not in a:
+                e["example_annotations"].append(a)
+
+    misnamed = {}
+    for pid, e in sorted(per_class_identity.items()):
+        if not (pid.endswith("_unannotated") or pid == "larv._unannotated"):
+            continue
+        annotated = e["cells"] - e["cells_without_official_annotation"]
+        if annotated:
+            misnamed[pid] = {
+                "cells": e["cells"],
+                "cells_without_official_annotation":
+                    e["cells_without_official_annotation"],
+                "cells_with_official_annotation": annotated,
+                "cell_type": e["cell_type"],
+                "example_annotations": e["example_annotations"],
+            }
+    identity = {
+        "note": ("`_unannotated` inside a larv.* profile id is the "
+                 "modality-recognition fallback, not an annotation verdict. "
+                 "A cell whose annotation is literally `KC` or `MBON-a1` "
+                 "carries no modality keyword, so it lands in that bucket "
+                 "while being fully annotated. Counts here read the "
+                 "`annotations` column itself. The ids are unchanged because "
+                 "they are load-bearing across the published artifacts."),
+        "n_profile_classes": len(per_class_identity),
+        "classes_with_fallback_suffix": sum(
+            1 for pid in per_class_identity
+            if pid.endswith("_unannotated") or pid == "larv._unannotated"),
+        "classes_misnamed_by_suffix": len(misnamed),
+        "cells_in_misnamed_classes": sum(v["cells"] for v in misnamed.values()),
+        "cells_actually_unannotated": len(truly_unannotated),
+        "cells_actually_unannotated_pct": round(
+            100.0 * len(truly_unannotated) / len(nodes), 2) if nodes else 0.0,
+        "misnamed_detail": misnamed,
+    }
+
+    # ------------------------------------------------------------------ #
     # v2.34.0 -- make the per-unit rows addable, or say why they cannot.
     #
     # Auditing this ledger after the v2.33.0 attribution bug: the coverage
@@ -348,7 +429,14 @@ def build() -> dict:
             "frontier": frontier_ctypes,
             "frontier_note": ("cell classes with no synapse on either side "
                               "reaching a covered endpoint"),
+            "frontier_is_not_an_annotations_verdict": (
+                "A class appearing here is outside every unit, which is a "
+                "statement about the library's coverage and not about the "
+                "reconstruction's annotation quality. MB-FFN is the clearest "
+                "case: all 54 of its cells carry names like FFN-23. See "
+                "annotation_identity for the two notions measured apart."),
         },
+        "annotation_identity": identity,
         "unit_coverage": {
             name: {
                 "synapses_both_ends": unit_syn[name],
@@ -468,6 +556,33 @@ def main() -> int:
           % (cov["synapses_either_end_covered"], cov["synapses_frontier"],
              total, attr["per_unit_sum"], attr["covered_total"],
              attr["shared_profiles"], recon))
+
+    # The annotation verdict and the class-name suffix must be kept apart.  If
+    # a future change ever makes them agree perfectly, that is worth knowing
+    # (the fallback would be doing real work); if the numbers drift apart, the
+    # `frontier_is_not_an_annotations_verdict` note in cell_type_coverage is
+    # load-bearing and someone must notice.  Either way, no silent change.
+    ident = doc["annotation_identity"]
+    total_nodes = doc["network"]["nodes"]
+    if ident["cells_actually_unannotated"] > total_nodes:
+        print("REFUSING TO WRITE: %d cells reported as unannotated out of %d"
+              % (ident["cells_actually_unannotated"], total_nodes),
+              file=_sys.stderr)
+        return 3
+    if ident["classes_misnamed_by_suffix"] and not ident.get("note"):
+        print("REFUSING TO WRITE: %d profile classes carry the `_unannotated` "
+              "suffix while holding annotated cells, but the artifact has no "
+              "note explaining the two notions"
+              % ident["classes_misnamed_by_suffix"], file=_sys.stderr)
+        return 3
+    print("  annotation identity: %d classes carry the `_unannotated` suffix, "
+          "%d of them hold annotated cells (%d cells); %d cells (%.2f%%) "
+          "really have no official annotation"
+          % (ident["classes_with_fallback_suffix"],
+             ident["classes_misnamed_by_suffix"],
+             ident["cells_in_misnamed_classes"],
+             ident["cells_actually_unannotated"],
+             ident["cells_actually_unannotated_pct"]))
 
     if args.report:
         report(doc)

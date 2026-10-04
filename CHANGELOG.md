@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.35.0` | the toolkit as a whole |
+| package | `2.36.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -18,6 +18,57 @@ The **schema version** is versioned separately from the **package version**:
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [2.36.0] — 2026-10-04
+
+### 审计 8 条幼虫单元的成员 id：`_unannotated` 不是「无注释」，是「模态未识别」
+
+v2.35.0 在 C. elegans 上抓到「同名单元测了不同批细胞类」，于是去查 v2.28/v2.29 的
+8 条幼虫单元与 `larva_profiles.json` 的关系。三件事：
+
+**① 两个数据源完全一致，没有口径分叉。** `larva_profiles.json` 发出的 40 个成员
+profile id，与 v2.31 从 `nodes.csv` 重新算出的 43 个键做差集——**零差集**。v2.31
+自己重建 profile id（记忆里那个「selector ≠ 聚合键」的坑）这次没踩到。
+
+**② 但那 3 个剩下的键暴露了一个命名陷阱。** `nodes.csv` 有 43 个 profile 类，
+40 个被单元声明，剩 3 个正是 v2.31 报的 frontier 类。它们叫
+`larv.mb_ffn_unannotated` / `larv.pre_dn_sez_unannotated` / `larv._unannotated`——
+**名字里的 `unannotated` 来自 `bucket()` 的兜底分支，语义是「模态关键词没识别出来」，
+不是「无官方注释」**。查原值：`larv.mb_ffn_unannotated` 的 `annotations` 是
+`FFN-23`、`FFN-1`、`FFN-10`…**54 个细胞全部有名字**。
+
+**③ 13 个类全被误标，涉及 1,686 个细胞。**
+
+| profile id | 细胞 | 真无注释 | 实际注释样例 |
+|---|---|---|---|
+| `larv.kc_unannotated` | 144 | **0** | 全是 `KC` |
+| `larv.mb_fbn_unannotated` | 100 | **0** | `CN-10; FAN-2` 等 |
+| `larv.mb_ffn_unannotated` | 54 | **0** | `FFN-23` 等 |
+| `larv.mbon_unannotated` | 48 | **0** | `MBON-a1` / `MBON-b1` |
+| `larv.pre_dn_vnc_unannotated` | 476 | 450 | 26 个有（`PL-13` 等） |
+
+**Kenyon 细胞和 MBON 输出神经元都被叫成了 `unannotated`。**
+
+**为什么错得隐蔽**：全网「1,560 细胞无官方注释（52.77%）」这个数**是对的**——它直接
+读 `annotations` 列，从不碰 bucket。错的是 v2.31 把 frontier 类名**当成注释裁定**来读，
+于是 README 写了「`MB-FFN` 和 `pre-DN-SEZ` 是无标注类」，而 MB-FFN 的 54 个细胞
+全都带着 `FFN-xx` 这样的正式名字。**数字对、语义错，比数字错更难发现。**
+
+**没改名。** 40 个 profile id 是 load-bearing 的：门禁 9、每个已发 artifact 都按名索引，
+改名会把这些一起打断。改成把两个概念**分开测量**并显式记录：
+- artifact 新增 `annotation_identity`（15 个带后缀的类 / 13 个含已注释细胞 /
+  1,686 个细胞 / 真正无注释 1,560 / 逐类明细）
+- `cell_type_coverage.frontier` 加 `frontier_is_not_an_annotations_verdict`：
+  **在所有单元之外是覆盖事实，不是注释裁定**
+- 8 条单元挂 `connectome_coverage.member_id_caveat`
+- 断言：真无注释数不得超过细胞总数；存在误标类时 artifact 必须带解释性 note
+- CLI `larva-clusters` 打印误标清单；README 更正原先的读法
+
+**通用教训：fallback 桶的名字会被后来者当成事实。** `_unannotated` 当初只是个兜底
+返回值，没人规定它意味着什么，于是它长成了一个看起来像断言的名字。凡是「识别不出」
+的兜底分支，都必须同时给出一个区分「识别不出」与「本来就没有」的字段。
+
+FUNCTIONAL_UNITS 仍 **115**。门禁 10/10（--with-data）。
 
 ## [2.35.0] — 2026-10-04
 
