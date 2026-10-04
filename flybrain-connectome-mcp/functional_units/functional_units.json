@@ -24850,6 +24850,18 @@
             "adult_only_keys": 1063,
             "shared_keys": 917
           },
+          "declared_vs_shipped": {
+            "measured_wider_than_unit": null,
+            "unit_wider_than_measured": null,
+            "v227_shipped_members": [
+              "AIA",
+              "AIB",
+              "AIZ",
+              "AVB",
+              "PV"
+            ],
+            "note": "The stage rows below for a circuit listed in `measured_wider_than_unit` describe a slightly wider circuit than the unit they are attached to. Compare the two by the difference listed, not directly."
+          },
           "measured": {
             "L1": {
               "edges_per_animal": [
@@ -25306,6 +25318,25 @@
             "l1_only_keys": 271,
             "adult_only_keys": 1063,
             "shared_keys": 917
+          },
+          "declared_vs_shipped": {
+            "measured_wider_than_unit": [
+              "PLM"
+            ],
+            "unit_wider_than_measured": null,
+            "v227_shipped_members": [
+              "AIA",
+              "AIB",
+              "AIZ",
+              "ALM",
+              "ALN",
+              "AVA",
+              "AVB",
+              "AVM",
+              "PLN",
+              "PV"
+            ],
+            "note": "The stage rows below for a circuit listed in `measured_wider_than_unit` describe a slightly wider circuit than the unit they are attached to. Compare the two by the difference listed, not directly."
           },
           "measured": {
             "L1": {
@@ -25993,6 +26024,23 @@
             "adult_only_keys": 1063,
             "shared_keys": 917
           },
+          "declared_vs_shipped": {
+            "measured_wider_than_unit": null,
+            "unit_wider_than_measured": null,
+            "v227_shipped_members": [
+              "ADF",
+              "AIA",
+              "AIY",
+              "ASE",
+              "ASI",
+              "ASJ",
+              "ASK",
+              "AWA",
+              "AWC",
+              "RIA"
+            ],
+            "note": "The stage rows below for a circuit listed in `measured_wider_than_unit` describe a slightly wider circuit than the unit they are attached to. Compare the two by the difference listed, not directly."
+          },
           "measured": {
             "L1": {
               "edges_per_animal": [
@@ -26357,6 +26405,19 @@
             "l1_only_keys": 271,
             "adult_only_keys": 1063,
             "shared_keys": 917
+          },
+          "declared_vs_shipped": {
+            "measured_wider_than_unit": null,
+            "unit_wider_than_measured": null,
+            "v227_shipped_members": [
+              "AIA",
+              "AIZ",
+              "ASH",
+              "AVA",
+              "AVB",
+              "PV"
+            ],
+            "note": "The stage rows below for a circuit listed in `measured_wider_than_unit` describe a slightly wider circuit than the unit they are attached to. Compare the two by the difference listed, not directly."
           },
           "measured": {
             "L1": {
