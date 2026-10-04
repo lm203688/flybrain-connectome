@@ -27732,6 +27732,13 @@
             "ratio": 1.1732,
             "shared_profiles": 19,
             "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          },
+          "member_id_caveat": {
+            "note": "`_unannotated` inside a larv.* profile id is the modality-recognition fallback, not an annotation verdict. A cell whose annotation is literally `KC` or `MBON-a1` carries no modality keyword, so it lands in that bucket while being fully annotated. Counts here read the `annotations` column itself. The ids are unchanged because they are load-bearing across the published artifacts.",
+            "classes_misnamed_by_suffix": 13,
+            "cells_in_misnamed_classes": 1686,
+            "cells_actually_unannotated": 1560,
+            "cells_actually_unannotated_pct": 52.77
           }
         }
       },
@@ -29283,6 +29290,13 @@
             "ratio": 1.1732,
             "shared_profiles": 19,
             "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          },
+          "member_id_caveat": {
+            "note": "`_unannotated` inside a larv.* profile id is the modality-recognition fallback, not an annotation verdict. A cell whose annotation is literally `KC` or `MBON-a1` carries no modality keyword, so it lands in that bucket while being fully annotated. Counts here read the `annotations` column itself. The ids are unchanged because they are load-bearing across the published artifacts.",
+            "classes_misnamed_by_suffix": 13,
+            "cells_in_misnamed_classes": 1686,
+            "cells_actually_unannotated": 1560,
+            "cells_actually_unannotated_pct": 52.77
           }
         }
       },
@@ -29581,6 +29595,13 @@
             "ratio": 1.1732,
             "shared_profiles": 19,
             "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          },
+          "member_id_caveat": {
+            "note": "`_unannotated` inside a larv.* profile id is the modality-recognition fallback, not an annotation verdict. A cell whose annotation is literally `KC` or `MBON-a1` carries no modality keyword, so it lands in that bucket while being fully annotated. Counts here read the `annotations` column itself. The ids are unchanged because they are load-bearing across the published artifacts.",
+            "classes_misnamed_by_suffix": 13,
+            "cells_in_misnamed_classes": 1686,
+            "cells_actually_unannotated": 1560,
+            "cells_actually_unannotated_pct": 52.77
           }
         }
       },
@@ -30538,6 +30559,13 @@
             "ratio": 1.1732,
             "shared_profiles": 19,
             "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          },
+          "member_id_caveat": {
+            "note": "`_unannotated` inside a larv.* profile id is the modality-recognition fallback, not an annotation verdict. A cell whose annotation is literally `KC` or `MBON-a1` carries no modality keyword, so it lands in that bucket while being fully annotated. Counts here read the `annotations` column itself. The ids are unchanged because they are load-bearing across the published artifacts.",
+            "classes_misnamed_by_suffix": 13,
+            "cells_in_misnamed_classes": 1686,
+            "cells_actually_unannotated": 1560,
+            "cells_actually_unannotated_pct": 52.77
           }
         }
       },
@@ -32137,6 +32165,13 @@
             "ratio": 1.1732,
             "shared_profiles": 19,
             "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          },
+          "member_id_caveat": {
+            "note": "`_unannotated` inside a larv.* profile id is the modality-recognition fallback, not an annotation verdict. A cell whose annotation is literally `KC` or `MBON-a1` carries no modality keyword, so it lands in that bucket while being fully annotated. Counts here read the `annotations` column itself. The ids are unchanged because they are load-bearing across the published artifacts.",
+            "classes_misnamed_by_suffix": 13,
+            "cells_in_misnamed_classes": 1686,
+            "cells_actually_unannotated": 1560,
+            "cells_actually_unannotated_pct": 52.77
           }
         }
       },
@@ -32667,6 +32702,13 @@
             "ratio": 1.1732,
             "shared_profiles": 19,
             "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          },
+          "member_id_caveat": {
+            "note": "`_unannotated` inside a larv.* profile id is the modality-recognition fallback, not an annotation verdict. A cell whose annotation is literally `KC` or `MBON-a1` carries no modality keyword, so it lands in that bucket while being fully annotated. Counts here read the `annotations` column itself. The ids are unchanged because they are load-bearing across the published artifacts.",
+            "classes_misnamed_by_suffix": 13,
+            "cells_in_misnamed_classes": 1686,
+            "cells_actually_unannotated": 1560,
+            "cells_actually_unannotated_pct": 52.77
           }
         }
       },
@@ -33552,6 +33594,13 @@
             "ratio": 1.1732,
             "shared_profiles": 19,
             "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          },
+          "member_id_caveat": {
+            "note": "`_unannotated` inside a larv.* profile id is the modality-recognition fallback, not an annotation verdict. A cell whose annotation is literally `KC` or `MBON-a1` carries no modality keyword, so it lands in that bucket while being fully annotated. Counts here read the `annotations` column itself. The ids are unchanged because they are load-bearing across the published artifacts.",
+            "classes_misnamed_by_suffix": 13,
+            "cells_in_misnamed_classes": 1686,
+            "cells_actually_unannotated": 1560,
+            "cells_actually_unannotated_pct": 52.77
           }
         }
       },
@@ -34082,6 +34131,13 @@
             "ratio": 1.1732,
             "shared_profiles": 19,
             "note": "The eight unit rows are NOT additive. A profile declared by more than one unit (larv.lhn_unannotated and the other shared ones) makes a single synapse count toward each of them, which is correct but means the column sums above the covered total. Use `covered_total` for network coverage and the per-unit rows only to compare units with each other."
+          },
+          "member_id_caveat": {
+            "note": "`_unannotated` inside a larv.* profile id is the modality-recognition fallback, not an annotation verdict. A cell whose annotation is literally `KC` or `MBON-a1` carries no modality keyword, so it lands in that bucket while being fully annotated. Counts here read the `annotations` column itself. The ids are unchanged because they are load-bearing across the published artifacts.",
+            "classes_misnamed_by_suffix": 13,
+            "cells_in_misnamed_classes": 1686,
+            "cells_actually_unannotated": 1560,
+            "cells_actually_unannotated_pct": 52.77
           }
         }
       },
