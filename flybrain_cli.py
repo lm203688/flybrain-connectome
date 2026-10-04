@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.36.0"
+__version__ = "2.37.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -532,6 +532,66 @@ def cmd_dimorphism(args) -> int:
     return 0
 
 
+def cmd_function(args) -> int:
+    """v2.37.0 — the function axis: coverage by FUNCTION, not by species.
+
+    The library is organised by taxon (115 units named for fruit fly, worm,
+    mouse, bird, frog...).  PROJECT_VISION says the generator grows toward a
+    function set instead.  This command prints the measured distance between
+    the two, so the next unit added is chosen against a number.
+
+    A tag means the unit's own `capability` / `task_hint_pool` fields declare
+    a mechanism implementing the category. It is a coverage label, not a
+    claim that the unit performs the function well.
+    """
+    path = MCP_DIR / "functional_units" / "function_coverage.json"
+    if not path.exists():
+        print("function coverage artifact missing: %s" % path)
+        print("run: python scripts/extract_function_coverage.py")
+        return 2
+    with open(path, encoding="utf-8") as f:
+        doc = json.load(f)
+
+    if args.caveat:
+        for c in doc["caveat"]:
+            print("! %s" % c)
+        print()
+
+    lib = doc["library"]
+    print("function axis: %d units / %d categories / %d distinct capability "
+          "tokens" % (lib["units"], len(doc["coverage_matrix"]),
+                      lib["capability_tokens_distinct"]))
+    fams = {}
+    for r in doc["coverage_matrix"]:
+        fams.setdefault(r["family"], []).append(r)
+    for fam in sorted(fams):
+        print("  %s" % fam)
+        for r in fams[fam]:
+            if args.vision and not r["vision_required"]:
+                continue
+            mark = "*" if r["vision_required"] else " "
+            print("   %s %-22s units=%-3d taxa=%-2d connectome-traced=%-3d %s"
+                  % (mark, r["category"], r["units"], r["species"],
+                     r["connectome_traced_units"], r["status"]))
+    print("  (* = required by PROJECT_VISION; unit count, how many taxa carry "
+          "it, and how many of those come from a reconstruction)")
+
+    s = doc["summary"]
+    if s["vision_required_missing"]:
+        print()
+        print("MISSING, declared work queue: %s"
+              % ", ".join(s["vision_required_missing"]))
+    if s["vision_required_thin"]:
+        print("THIN (<3 units): %s" % ", ".join(s["vision_required_thin"]))
+    if s["cross_species_categories"]:
+        print("cross-species (>=3 taxa): %s"
+              % ", ".join(s["cross_species_categories"]))
+    if doc["library"]["units_with_no_category"]:
+        print("units outside every category: %d of %d"
+              % (len(doc["library"]["units_with_no_category"]), lib["units"]))
+    return 0
+
+
 def cmd_info(args) -> int:
     """Report what this launcher resolved — the one command that diagnoses
     a broken install (wrong toolkit root, missing data dir, missing snapshot)."""
@@ -634,6 +694,14 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--caveat", action="store_true",
                    help="print the ledger caveats first")
     s.set_defaults(func=cmd_dimorphism)
+
+    s = sub.add_parser("function",
+                       help="function-axis coverage against PROJECT_VISION")
+    s.add_argument("--vision", action="store_true",
+                   help="only the categories PROJECT_VISION requires")
+    s.add_argument("--caveat", action="store_true",
+                   help="print the coverage caveats first")
+    s.set_defaults(func=cmd_function)
 
     s = sub.add_parser("verify", help="run the end-to-end smoke test")
     s.set_defaults(func=cmd_verify)
