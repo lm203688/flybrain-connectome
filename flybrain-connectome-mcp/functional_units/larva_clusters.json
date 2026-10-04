@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_utc": "2026-10-03T22:29:08+00:00",
+  "generated_utc": "2026-10-04T06:41:58+00:00",
   "source": "WormWiring / Winding et al. 2023, Science 379:eadd9330 (doi:10.1126/science.add9330), larva network `fly_larva`",
   "purpose": "ledger of the larva connectome at the source's own cluster resolution, plus the coverage of the eight v2.28.0/v2.29.0 larva units over it",
   "caveat": "cluster is the SOURCE's inferred cluster index and is reproduced, not asserted; no cluster is given a function or a unit, and none was added to the library. Coverage means the endpoint's (cell_type, modality bucket) resolves to a larva profile at least one unit declares -- it does NOT mean the circuit's function is known. Left/right homology is counted as the source declares it, not verified. The eight unit_coverage rows are not additive: profiles are shared between units, so their sum exceeds `coverage.synapses_both_ends_covered` by the ratio recorded in `unit_attribution`.",
@@ -68,7 +68,162 @@
       "MB-FFN",
       "pre-DN-SEZ"
     ],
-    "frontier_note": "cell classes with no synapse on either side reaching a covered endpoint"
+    "frontier_note": "cell classes with no synapse on either side reaching a covered endpoint",
+    "frontier_is_not_an_annotations_verdict": "A class appearing here is outside every unit, which is a statement about the library's coverage and not about the reconstruction's annotation quality. MB-FFN is the clearest case: all 54 of its cells carry names like FFN-23. See annotation_identity for the two notions measured apart."
+  },
+  "annotation_identity": {
+    "note": "`_unannotated` inside a larv.* profile id is the modality-recognition fallback, not an annotation verdict. A cell whose annotation is literally `KC` or `MBON-a1` carries no modality keyword, so it lands in that bucket while being fully annotated. Counts here read the `annotations` column itself. The ids are unchanged because they are load-bearing across the published artifacts.",
+    "n_profile_classes": 43,
+    "classes_with_fallback_suffix": 15,
+    "classes_misnamed_by_suffix": 13,
+    "cells_in_misnamed_classes": 1686,
+    "cells_actually_unannotated": 1560,
+    "cells_actually_unannotated_pct": 52.77,
+    "misnamed_detail": {
+      "larv.ascending_unannotated": {
+        "cells": 12,
+        "cells_without_official_annotation": 0,
+        "cells_with_official_annotation": 12,
+        "cell_type": "ascending",
+        "example_annotations": [
+          "unknown modality",
+          "unknown modality",
+          "unknown modality"
+        ]
+      },
+      "larv.cn_unannotated": {
+        "cells": 98,
+        "cells_without_official_annotation": 64,
+        "cells_with_official_annotation": 34,
+        "cell_type": "CN",
+        "example_annotations": [
+          "CN-4",
+          "FFN-2",
+          "CN-6"
+        ]
+      },
+      "larv.dn_sez_unannotated": {
+        "cells": 164,
+        "cells_without_official_annotation": 154,
+        "cells_with_official_annotation": 10,
+        "cell_type": "DN-SEZ",
+        "example_annotations": [
+          "FFN-39",
+          "FFN-39",
+          "mPN"
+        ]
+      },
+      "larv.dn_vnc_unannotated": {
+        "cells": 182,
+        "cells_without_official_annotation": 176,
+        "cells_with_official_annotation": 6,
+        "cell_type": "DN-VNC",
+        "example_annotations": [
+          "CN-28; PL-17",
+          "_telegoro-1",
+          "PL-19"
+        ]
+      },
+      "larv.kc_unannotated": {
+        "cells": 144,
+        "cells_without_official_annotation": 0,
+        "cells_with_official_annotation": 144,
+        "cell_type": "KC",
+        "example_annotations": [
+          "KC",
+          "KC",
+          "KC"
+        ]
+      },
+      "larv.lhn_unannotated": {
+        "cells": 190,
+        "cells_without_official_annotation": 144,
+        "cells_with_official_annotation": 46,
+        "cell_type": "LHN",
+        "example_annotations": [
+          "LHN-16; CN-52",
+          "LHN-20; CN-56",
+          "LHN-16; CN-52"
+        ]
+      },
+      "larv.ln_unannotated": {
+        "cells": 106,
+        "cells_without_official_annotation": 74,
+        "cells_with_official_annotation": 32,
+        "cell_type": "LN",
+        "example_annotations": [
+          "APL",
+          "CN-20",
+          "FB2N-6"
+        ]
+      },
+      "larv.mb_fbn_unannotated": {
+        "cells": 100,
+        "cells_without_official_annotation": 0,
+        "cells_with_official_annotation": 100,
+        "cell_type": "MB-FBN",
+        "example_annotations": [
+          "FAN-1",
+          "FB2N-5",
+          "FBN-23"
+        ]
+      },
+      "larv.mb_ffn_unannotated": {
+        "cells": 54,
+        "cells_without_official_annotation": 0,
+        "cells_with_official_annotation": 54,
+        "cell_type": "MB-FFN",
+        "example_annotations": [
+          "FFN-23",
+          "FFN-6",
+          "FFN-41"
+        ]
+      },
+      "larv.mbin_unannotated": {
+        "cells": 10,
+        "cells_without_official_annotation": 0,
+        "cells_with_official_annotation": 10,
+        "cell_type": "MBIN",
+        "example_annotations": [
+          "MBIN-l1",
+          "MBIN-b2",
+          "MBIN-b2"
+        ]
+      },
+      "larv.mbon_unannotated": {
+        "cells": 48,
+        "cells_without_official_annotation": 0,
+        "cells_with_official_annotation": 48,
+        "cell_type": "MBON",
+        "example_annotations": [
+          "MBON-n1",
+          "MBON-m1; CN-62",
+          "MBON-k1"
+        ]
+      },
+      "larv.pre_dn_sez_unannotated": {
+        "cells": 102,
+        "cells_without_official_annotation": 98,
+        "cells_with_official_annotation": 4,
+        "cell_type": "pre-DN-SEZ",
+        "example_annotations": [
+          "CN-30",
+          "mPN",
+          "CN-30"
+        ]
+      },
+      "larv.pre_dn_vnc_unannotated": {
+        "cells": 476,
+        "cells_without_official_annotation": 450,
+        "cells_with_official_annotation": 26,
+        "cell_type": "pre-DN-VNC",
+        "example_annotations": [
+          "CN-34",
+          "PL-13",
+          "CN-34"
+        ]
+      }
+    }
   },
   "unit_coverage": {
     "larv_olfactory_associative_learning_unit": {
