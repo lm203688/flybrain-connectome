@@ -80,6 +80,11 @@ def main() -> int:
         "GATE 2 — docs match code",
         [py, str(SCRIPTS / "check_docs_consistency.py")])[0]))
 
+    # ---- Gate 11: the function axis (stdlib only, runs even in --quick) ----
+    results.append(("gate11 function coverage", run(
+        "GATE 11 — PROJECT_VISION function coverage measured, gaps declared",
+        [py, str(SCRIPTS / "check_function_coverage.py")])[0]))
+
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
         "GATE 9 — functional units + connection types + composer fail-closed",

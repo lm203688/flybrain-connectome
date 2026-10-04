@@ -629,6 +629,27 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "memory_encode",
+            "pattern_separate",
+            "sensory_gating",
+            "sensory_transduction"
+          ],
+          "vision_required_categories": [
+            "memory_encode",
+            "sensory_transduction"
+          ],
+          "definitions": {
+            "memory_encode": "writes an experience into a persistent representation",
+            "pattern_separate": "decorrelates inputs so similar patterns can be stored independently",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools",
+            "sensory_transduction": "converts a physical stimulus into neural activity"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -764,6 +785,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "prediction"
+          ],
+          "vision_required_categories": [
+            "prediction"
+          ],
+          "definitions": {
+            "prediction": "anticipates future input and signals the difference from it"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -898,6 +933,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "attention"
+          ],
+          "vision_required_categories": [
+            "attention"
+          ],
+          "definitions": {
+            "attention": "allocates limited processing capacity to one of several inputs"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -1019,6 +1068,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_transduction"
+          ],
+          "vision_required_categories": [
+            "sensory_transduction"
+          ],
+          "definitions": {
+            "sensory_transduction": "converts a physical stimulus into neural activity"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -1148,6 +1211,24 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "pattern_separate",
+            "sensory_gating",
+            "sensory_transduction"
+          ],
+          "vision_required_categories": [
+            "sensory_transduction"
+          ],
+          "definitions": {
+            "pattern_separate": "decorrelates inputs so similar patterns can be stored independently",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools",
+            "sensory_transduction": "converts a physical stimulus into neural activity"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -1271,6 +1352,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_transduction"
+          ],
+          "vision_required_categories": [
+            "sensory_transduction"
+          ],
+          "definitions": {
+            "sensory_transduction": "converts a physical stimulus into neural activity"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -1394,6 +1489,22 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "reflex",
+            "sensory_transduction"
+          ],
+          "vision_required_categories": [
+            "sensory_transduction"
+          ],
+          "definitions": {
+            "reflex": "produces a stereotyped response with minimal central processing",
+            "sensory_transduction": "converts a physical stimulus into neural activity"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -1531,6 +1642,22 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "memory_encode",
+            "sensory_gating"
+          ],
+          "vision_required_categories": [
+            "memory_encode"
+          ],
+          "definitions": {
+            "memory_encode": "writes an experience into a persistent representation",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -1661,6 +1788,22 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_gating",
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools",
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -1778,6 +1921,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -1895,6 +2052,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -2035,6 +2206,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -2175,6 +2360,25 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "motor_relay",
+            "sensory_gating",
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "motor_relay",
+            "sensory_relay"
+          ],
+          "definitions": {
+            "motor_relay": "passes a motor command through a relay stage",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools",
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -2323,6 +2527,24 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "pattern_separate",
+            "sensory_gating",
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "pattern_separate": "decorrelates inputs so similar patterns can be stored independently",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools",
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -2508,6 +2730,28 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "associative_learn",
+            "integration",
+            "memory_encode",
+            "sensory_gating"
+          ],
+          "vision_required_categories": [
+            "associative_learn",
+            "integration",
+            "memory_encode"
+          ],
+          "definitions": {
+            "associative_learn": "links a cue to a consequence so the pairing changes future behaviour",
+            "integration": "combines information across modalities or brain regions",
+            "memory_encode": "writes an experience into a persistent representation",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -2675,6 +2919,25 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "memory_readout",
+            "sensory_gating",
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "memory_readout",
+            "sensory_relay"
+          ],
+          "definitions": {
+            "memory_readout": "retrieves a stored representation for downstream use",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools",
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -2815,6 +3078,25 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "attention",
+            "prediction",
+            "sensory_gating"
+          ],
+          "vision_required_categories": [
+            "attention",
+            "prediction"
+          ],
+          "definitions": {
+            "attention": "allocates limited processing capacity to one of several inputs",
+            "prediction": "anticipates future input and signals the difference from it",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -2983,6 +3265,18 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_gating"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -3123,6 +3417,25 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "associative_learn",
+            "integration",
+            "valence_assign"
+          ],
+          "vision_required_categories": [
+            "associative_learn",
+            "integration"
+          ],
+          "definitions": {
+            "associative_learn": "links a cue to a consequence so the pairing changes future behaviour",
+            "integration": "combines information across modalities or brain regions",
+            "valence_assign": "tags a representation as positive or negative"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -3296,6 +3609,26 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "integration",
+            "prediction",
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "integration",
+            "prediction",
+            "sensory_relay"
+          ],
+          "definitions": {
+            "integration": "combines information across modalities or brain regions",
+            "prediction": "anticipates future input and signals the difference from it",
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -3431,6 +3764,18 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "credit_assign"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "credit_assign": "attributes a consequence to the specific action that produced it"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -3582,6 +3927,28 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "associative_learn",
+            "memory_encode",
+            "memory_readout",
+            "pattern_separate"
+          ],
+          "vision_required_categories": [
+            "associative_learn",
+            "memory_encode",
+            "memory_readout"
+          ],
+          "definitions": {
+            "associative_learn": "links a cue to a consequence so the pairing changes future behaviour",
+            "memory_encode": "writes an experience into a persistent representation",
+            "memory_readout": "retrieves a stored representation for downstream use",
+            "pattern_separate": "decorrelates inputs so similar patterns can be stored independently"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -3716,6 +4083,25 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "associative_learn",
+            "memory_encode",
+            "sensory_gating"
+          ],
+          "vision_required_categories": [
+            "associative_learn",
+            "memory_encode"
+          ],
+          "definitions": {
+            "associative_learn": "links a cue to a consequence so the pairing changes future behaviour",
+            "memory_encode": "writes an experience into a persistent representation",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -3851,6 +4237,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "memory_readout"
+          ],
+          "vision_required_categories": [
+            "memory_readout"
+          ],
+          "definitions": {
+            "memory_readout": "retrieves a stored representation for downstream use"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -3993,6 +4393,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "memory_encode"
+          ],
+          "vision_required_categories": [
+            "memory_encode"
+          ],
+          "definitions": {
+            "memory_encode": "writes an experience into a persistent representation"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -4117,6 +4531,26 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "credit_assign",
+            "reward",
+            "sensory_gating",
+            "valence_assign"
+          ],
+          "vision_required_categories": [
+            "reward"
+          ],
+          "definitions": {
+            "credit_assign": "attributes a consequence to the specific action that produced it",
+            "reward": "signals that a behaviour was advantageous",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools",
+            "valence_assign": "tags a representation as positive or negative"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -4254,6 +4688,22 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "punishment",
+            "sensory_gating"
+          ],
+          "vision_required_categories": [
+            "punishment"
+          ],
+          "definitions": {
+            "punishment": "signals that a behaviour was costly",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -4422,6 +4872,26 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "credit_assign",
+            "reward",
+            "sensory_gating",
+            "valence_assign"
+          ],
+          "vision_required_categories": [
+            "reward"
+          ],
+          "definitions": {
+            "credit_assign": "attributes a consequence to the specific action that produced it",
+            "reward": "signals that a behaviour was advantageous",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools",
+            "valence_assign": "tags a representation as positive or negative"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -4559,6 +5029,25 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "associative_learn",
+            "memory_encode",
+            "sensory_gating"
+          ],
+          "vision_required_categories": [
+            "associative_learn",
+            "memory_encode"
+          ],
+          "definitions": {
+            "associative_learn": "links a cue to a consequence so the pairing changes future behaviour",
+            "memory_encode": "writes an experience into a persistent representation",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -4701,6 +5190,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -4848,6 +5345,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -4989,6 +5494,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -5155,6 +5668,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -5292,6 +5813,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -5428,6 +5957,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "memory_readout"
+          ],
+          "vision_required_categories": [
+            "memory_readout"
+          ],
+          "definitions": {
+            "memory_readout": "retrieves a stored representation for downstream use"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -5575,6 +6118,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "reward"
+          ],
+          "vision_required_categories": [
+            "reward"
+          ],
+          "definitions": {
+            "reward": "signals that a behaviour was advantageous"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -5716,6 +6273,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -5835,6 +6400,18 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "arousal"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "arousal": "sets the global activation level of the system"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -5958,6 +6535,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -6105,6 +6690,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -6283,6 +6876,25 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "memory_encode",
+            "pattern_separate",
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "memory_encode",
+            "sensory_relay"
+          ],
+          "definitions": {
+            "memory_encode": "writes an experience into a persistent representation",
+            "pattern_separate": "decorrelates inputs so similar patterns can be stored independently",
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -6646,6 +7258,27 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "memory_encode",
+            "pattern_separate",
+            "sensory_gating",
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "memory_encode",
+            "sensory_relay"
+          ],
+          "definitions": {
+            "memory_encode": "writes an experience into a persistent representation",
+            "pattern_separate": "decorrelates inputs so similar patterns can be stored independently",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools",
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -7037,6 +7670,33 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "associative_learn",
+            "credit_assign",
+            "memory_encode",
+            "memory_readout",
+            "reward",
+            "valence_assign"
+          ],
+          "vision_required_categories": [
+            "associative_learn",
+            "memory_encode",
+            "memory_readout",
+            "reward"
+          ],
+          "definitions": {
+            "associative_learn": "links a cue to a consequence so the pairing changes future behaviour",
+            "credit_assign": "attributes a consequence to the specific action that produced it",
+            "memory_encode": "writes an experience into a persistent representation",
+            "memory_readout": "retrieves a stored representation for downstream use",
+            "reward": "signals that a behaviour was advantageous",
+            "valence_assign": "tags a representation as positive or negative"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -7434,6 +8094,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "working_memory"
+          ],
+          "vision_required_categories": [
+            "working_memory"
+          ],
+          "definitions": {
+            "working_memory": "holds information transiently in an active, revisable state"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -7845,6 +8519,14 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -8166,6 +8848,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -8393,6 +9083,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -8514,6 +9212,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -8653,6 +9359,18 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "credit_assign"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "credit_assign": "attributes a consequence to the specific action that produced it"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -8799,6 +9517,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -8923,6 +9649,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -9063,6 +9797,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -9198,6 +9940,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -9335,6 +10085,23 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "associative_learn",
+            "integration"
+          ],
+          "vision_required_categories": [
+            "associative_learn",
+            "integration"
+          ],
+          "definitions": {
+            "associative_learn": "links a cue to a consequence so the pairing changes future behaviour",
+            "integration": "combines information across modalities or brain regions"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -9462,6 +10229,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -9595,6 +10370,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -9734,6 +10517,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -9873,6 +10664,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -10020,6 +10819,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -10157,6 +10964,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -10286,6 +11101,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -10412,6 +11235,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "associative_learn"
+          ],
+          "vision_required_categories": [
+            "associative_learn"
+          ],
+          "definitions": {
+            "associative_learn": "links a cue to a consequence so the pairing changes future behaviour"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -10552,6 +11389,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "habit"
+          ],
+          "vision_required_categories": [
+            "habit"
+          ],
+          "definitions": {
+            "habit": "executes a learned routine without re-evaluating its value"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -10701,6 +11552,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -10830,6 +11689,22 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "credit_assign",
+            "prediction"
+          ],
+          "vision_required_categories": [
+            "prediction"
+          ],
+          "definitions": {
+            "credit_assign": "attributes a consequence to the specific action that produced it",
+            "prediction": "anticipates future input and signals the difference from it"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -10971,6 +11846,23 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "associative_learn",
+            "prediction"
+          ],
+          "vision_required_categories": [
+            "associative_learn",
+            "prediction"
+          ],
+          "definitions": {
+            "associative_learn": "links a cue to a consequence so the pairing changes future behaviour",
+            "prediction": "anticipates future input and signals the difference from it"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -11110,6 +12002,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -11251,6 +12151,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -11391,6 +12299,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -11530,6 +12446,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "arousal",
+            "sensory_gating"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "arousal": "sets the global activation level of the system",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -11675,6 +12605,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "prediction"
+          ],
+          "vision_required_categories": [
+            "prediction"
+          ],
+          "definitions": {
+            "prediction": "anticipates future input and signals the difference from it"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -11818,6 +12762,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": false,
         "embodiment_basis": "a member population is a cell class MaleCNS v1.0 cannot contain (mammalian-only type, not annotatable in an insect brain)",
         "unanchored_reason": "identity_not_in_drosophila",
@@ -11938,6 +12890,20 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_transduction"
+          ],
+          "vision_required_categories": [
+            "sensory_transduction"
+          ],
+          "definitions": {
+            "sensory_transduction": "converts a physical stimulus into neural activity"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -12239,6 +13205,14 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -12524,6 +13498,14 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -12834,6 +13816,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -13168,6 +14158,20 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -13479,6 +14483,18 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "reflex"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "reflex": "produces a stereotyped response with minimal central processing"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -13822,6 +14838,22 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_relay",
+            "social_signal"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "sensory_relay": "passes modality-specific sensory information toward central circuits",
+            "social_signal": "produces or interprets a signal that carries meaning between individuals"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -14127,6 +15159,18 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_gating"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -14500,6 +15544,14 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -14771,6 +15823,14 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -15094,6 +16154,20 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "arousal",
+            "sensory_gating"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "arousal": "sets the global activation level of the system",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -15495,6 +16569,14 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -15882,6 +16964,20 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "reward"
+          ],
+          "vision_required_categories": [
+            "reward"
+          ],
+          "definitions": {
+            "reward": "signals that a behaviour was advantageous"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -16199,6 +17295,14 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -16639,6 +17743,14 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -17095,6 +18207,14 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -17563,6 +18683,14 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -17940,6 +19068,18 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "arousal"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "arousal": "sets the global activation level of the system"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -18388,6 +19528,14 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -18768,6 +19916,14 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -19098,6 +20254,18 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_gating"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -19553,6 +20721,20 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -20025,6 +21207,18 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_gating"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -20435,6 +21629,18 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_gating"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -21035,6 +22241,20 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "arousal",
+            "sensory_gating"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "arousal": "sets the global activation level of the system",
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -21569,6 +22789,14 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -22116,6 +23344,18 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "arousal"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "arousal": "sets the global activation level of the system"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -22619,6 +23859,14 @@
             "types_roughly_traced": 327
           }
         },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -23091,6 +24339,14 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -23489,6 +24745,18 @@
             "types_total": 479,
             "types_roughly_traced": 327
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_gating"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
@@ -24108,6 +25376,18 @@
         "class": "curated-cross-species",
         "extracted_from_malecns": false,
         "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "arousal"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "arousal": "sets the global activation level of the system"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
         "embodied_in_malecns": true,
         "embodiment_basis": "member populations matched to real annotated MaleCNS v1.0 cell types; declared wiring and connection FORM NOT verified against the connectome",
         "evidence_weight": "connectome_derived"
@@ -24928,6 +26208,20 @@
               "present_in_every_animal": true
             }
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "motor_command"
+          ],
+          "vision_required_categories": [
+            "motor_command"
+          ],
+          "definitions": {
+            "motor_command": "issues a command that drives a muscle or effector"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "cel_stats": {
@@ -25404,6 +26698,14 @@
               "present_in_every_animal": true
             }
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "cel_stats": {
@@ -26107,6 +27409,14 @@
               "present_in_every_animal": true
             }
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "cel_stats": {
@@ -26485,6 +27795,14 @@
               "present_in_every_animal": true
             }
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "cel_stats": {
@@ -27740,6 +29058,22 @@
             "cells_actually_unannotated": 1560,
             "cells_actually_unannotated_pct": 52.77
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "memory_encode",
+            "pattern_separate"
+          ],
+          "vision_required_categories": [
+            "memory_encode"
+          ],
+          "definitions": {
+            "memory_encode": "writes an experience into a persistent representation",
+            "pattern_separate": "decorrelates inputs so similar patterns can be stored independently"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "larva_stats": {
@@ -29298,6 +30632,18 @@
             "cells_actually_unannotated": 1560,
             "cells_actually_unannotated_pct": 52.77
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "reflex"
+          ],
+          "vision_required_categories": [],
+          "definitions": {
+            "reflex": "produces a stereotyped response with minimal central processing"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "larva_stats": {
@@ -29603,6 +30949,14 @@
             "cells_actually_unannotated": 1560,
             "cells_actually_unannotated_pct": 52.77
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "larva_stats": {
@@ -30567,6 +31921,20 @@
             "cells_actually_unannotated": 1560,
             "cells_actually_unannotated_pct": 52.77
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "motor_command"
+          ],
+          "vision_required_categories": [
+            "motor_command"
+          ],
+          "definitions": {
+            "motor_command": "issues a command that drives a muscle or effector"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "larva_stats": {
@@ -32173,6 +33541,14 @@
             "cells_actually_unannotated": 1560,
             "cells_actually_unannotated_pct": 52.77
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [],
+          "vision_required_categories": [],
+          "definitions": {},
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "larva_stats": {
@@ -32710,6 +34086,20 @@
             "cells_actually_unannotated": 1560,
             "cells_actually_unannotated_pct": 52.77
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "larva_stats": {
@@ -33602,6 +34992,20 @@
             "cells_actually_unannotated": 1560,
             "cells_actually_unannotated_pct": 52.77
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "larva_stats": {
@@ -34139,6 +35543,20 @@
             "cells_actually_unannotated": 1560,
             "cells_actually_unannotated_pct": 52.77
           }
+        },
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "sensory_relay"
+          ],
+          "vision_required_categories": [
+            "sensory_relay"
+          ],
+          "definitions": {
+            "sensory_relay": "passes modality-specific sensory information toward central circuits"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
       },
       "larva_stats": {

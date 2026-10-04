@@ -3936,5 +3936,60 @@ for _u in FUNCTIONAL_UNITS:
         _jv = _u.setdefault("jev_validation", {})
         _jv.update(_lit)
 
+
+# ---------------------------------------------------------------------------
+# v2.37.0 — the function axis.
+#
+# Ten releases of evidence auditing went into making sure a citation is not
+# wrong.  None of them asked whether the library covers the function set
+# PROJECT_VISION says the generator grows toward.  `scripts/extract_function_
+# coverage.py` measures that; this attaches the per-unit tag so a reader
+# landing on a unit can see which functional categories it serves without
+# having to open a second artifact and match names by hand.
+#
+# No unit is added, renamed or reclassified.  `gate11` is what keeps the
+# coverage numbers honest.
+# ---------------------------------------------------------------------------
+
+def _load_function_axis():
+    """v2.37.0 — tag every unit with the function categories it declares."""
+    path = MCP / "functional_units" / "function_coverage.json"
+    if not path.exists():
+        return 0
+    doc = json.loads(path.read_text(encoding="utf-8"))
+
+    by_unit: dict[str, list] = {}
+    for row in doc.get("coverage_matrix", []):
+        for name in row.get("units_listed") or []:
+            by_unit.setdefault(name, []).append(row["category"])
+
+    defs = {r["category"]: r["definition"] for r in doc.get("coverage_matrix", [])}
+    req = {r["category"] for r in doc.get("coverage_matrix", [])
+           if r.get("vision_required")}
+
+    attached = 0
+    for unit in FUNCTIONAL_UNITS:
+        cats = sorted(by_unit.get(unit["name"], []))
+        unit.setdefault("provenance", {})["function_axis"] = {
+            "artifact": path.name,
+            "categories": cats,
+            "vision_required_categories": [c for c in cats if c in req],
+            "definitions": {c: defs.get(c) for c in cats},
+            "method": doc.get("method", {}).get("note"),
+            "caveat": (
+                "A tag means the unit's own `capability` / `task_hint_pool` "
+                "fields declare the mechanism that implements the category. It "
+                "is a coverage label, not a performance claim, and the whole "
+                "matrix is measured in %s." % path.name),
+        }
+        attached += 1
+    print(f"[FUNCTION] attached the function axis to {attached} unit(s); "
+          f"{len(req)} categories are vision-required")
+    return attached
+
+
+_load_function_axis()
+
+
 if __name__ == "__main__":
     raise SystemExit(main())

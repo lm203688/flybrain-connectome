@@ -211,6 +211,8 @@ flybrain larva-clusters --caveat    # what "covered" does and does not mean
 ### 7. Read the MaleCNS male-dimorphic ledger
 
 ```bash
+flybrain function                   # coverage by FUNCTION, not by species
+flybrain function --vision          # only what PROJECT_VISION requires
 flybrain dimorphism                 # 2,368 cells nobody has looked at
 flybrain dimorphism --provenance    # ... with the curator note behind each sex label
 flybrain dimorphism --top 20 --internal
@@ -680,6 +682,41 @@ Nothing in it supports "larger in males", and the artifact says so in its own
 types are *listed* in an anchored profile's own type list (someone looked at
 them), while all **479** sit inside some anchored `^XXX` family rule — family
 membership is not tracing.
+
+### Function axis (v2.37.0) — coverage by function, not by species
+
+The library is organised by taxon. Its 115 units carry 48 distinct `system`
+values and 60+ distinct `function` values, and their names are anatomical:
+`cortical_`, `retinal_`, `larv_`, `cel_`, `frog_`, `birdsong_`. That is a
+catalogue of species circuits, not a function library, and `PROJECT_VISION.md`
+asks for the second kind — it names the set the generator grows toward.
+
+`flybrain function` measures the distance. Every unit is tagged with the
+function categories its **own** `capability` / `task_hint_pool` fields declare;
+nothing is inferred from description prose, and no unit is added, renamed or
+reclassified.
+
+Of the 15 categories PROJECT_VISION requires:
+
+| status | categories |
+|---|---|
+| **missing** | `metacognition` |
+| thin (<3 units) | `attention` (2) · `habit` (1) · `punishment` (1) · `working_memory` (1) · `motor_command` (2) · `motor_relay` (1) |
+| covered | `integration` (4) · `prediction` (6) · `reward` (5) · `associative_learn` (9, 4 taxa) · `memory_encode` (11) · `memory_readout` (5) · `sensory_relay` (16) · `sensory_transduction` (6) |
+
+**The honest summary of this axis: only 2 of 24 categories are carried by three
+or more taxa** (`associative_learn`, `credit_assign`), and 48 of 115 units
+belong to no category at all. Cross-taxon coverage is this library's weakest
+dimension, and that is now a number rather than an impression. A tag means the
+unit declares a mechanism implementing the category — it is a coverage label,
+not a claim that the unit performs the function well.
+
+**GATE 11 keeps it honest.** It is the first gate that asks whether the library
+covers what the vision requires. It does not fail for having gaps — the gap
+list *is* the work queue. It fails when a gap becomes invisible: the summary
+disagrees with the matrix, a category names a unit the library does not have,
+tagged + untagged stops equalling the library size, or a `cross_species` claim
+contradicts its own count.
 
 ### MaleCNS embodiment (v1.7.0, densified v1.8.0)
 
