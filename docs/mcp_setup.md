@@ -143,7 +143,14 @@ and 3.52% frontier. Coverage there means traceable, not functionally
 characterised. The eight per-unit rows are not additive either (v2.34.0): 19
 larva profiles are declared by more than one unit, so the rows sum to 319,064
 against the 271,956 covered total (1.17x) and each unit carries
-`connectome_coverage.not_additive` with the shared-profile list.
+`connectome_coverage.not_additive` with the shared-profile list, and
+`connectome_coverage.member_id_caveat` (v2.36.0): the `_unannotated` suffix in
+a `larv.*` profile id is bucket()'s modality-recognition fallback, not an
+annotation verdict -- 13 of the 15 classes carrying it hold annotated cells
+(`larv.kc_unannotated` is 144 Kenyon cells whose annotation is literally "KC"),
+and 1,560 cells (52.77%) are the ones genuinely without an official
+annotation. Being outside every unit is a coverage fact, not a labelling
+claim.
 **29 units** additionally carry `provenance.male_dimorphic` (v2.32.0): the MaleCNS
 annotation table's own `dimorphism` column (2,368 bodies / 479 types) is streamed
 over all 151,856,684 weight rows, and each unit records how far it sits from that
