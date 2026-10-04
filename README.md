@@ -513,6 +513,19 @@ circuits"; use the sum only when the circuits are counted individually. The
 extractor now asserts that the per-circuit rows reconstruct the sum, and refuses
 to write when they disagree.
 
+**One circuit is measured wider than the unit it attaches to (v2.35.0).**
+`PROFILES` declares 11 cell classes for the touch-avoidance circuit, `PLM`
+among them, but `extract_cel_profiles.py` only emits a member profile for a
+declared class that actually has an edge inside the module — and in the adult
+reconstruction `PLM` has none, so the v2.27 unit ships **10** members and
+`cel.plm` does not exist anywhere in this library. Merged across all eight
+reconstructions `PLM` *does* have edges, so this series measures **11**. Both
+are correct; the unit name is identical, which is exactly why the gap had no
+name and no guard. The artifact now records it as `declared_vs_shipped` and
+the extractor refuses to write if a unit ever ships a class the series cannot
+measure. Practical consequence: compare the touch-avoidance stage numbers
+against the unit by that one class, not directly.
+
 Across all 16 measurements the four circuits are **present in every animal at
 every stage** (6–37 edges at L1), so what development adds is synapse weight,
 not new topology.
