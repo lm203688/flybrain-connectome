@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.34.0` | the toolkit as a whole |
+| package | `2.35.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -18,6 +18,37 @@ The **schema version** is versioned separately from the **package version**:
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [2.35.0] — 2026-10-04
+
+### 审计 v2.27 的四条线虫单元：同一个单元名，两版测的不是同一批细胞类
+
+v2.34 审完两个账本的口径后，下一个该查的是「v2.30 的 stage 数字所挂的那个单元，
+和 v2.27 实际发出来的单元是不是同一个东西」。查出来：**不是**。
+
+**`PLM`。** `PROFILES` 给 touch-avoidance 回路声明了 11 个细胞类，`PLM` 在内。但
+`extract_cel_profiles.py` 有一行明确规则（源码注释原话）：*classes actually emitted,
+not merely declared — a declared cell class with no edge inside the module must not
+ship a profile*。成虫重建里 `PLM` 没有边，于是 v2.27 的单元只发 **10** 个成员，
+`cel.plm` **在整个库里根本不存在**（`neuron_profiles` 20 个键里没有它）。
+而 v2.30 把八个重建合并，`PLM` 在合并集里**有边**，所以那条 series 量的是 **11** 个类。
+
+两边都对，但**单元名一模一样**，所以这个差既没有名字也没有护栏。现在：
+- artifact 新增 `declared_vs_shipped`：两侧类集合、哪些回路「测得比单元宽/窄」、
+  以及后果说明（touch-avoidance 的 stage 数字描述的是**比 v2.27 单元略宽**的回路，
+  要比就按 `PLM` 这个差值折算，不要直接比）。
+- 抽取器加断言：若某单元发了 series 量不到的成员类，**拒绝写盘退出 3**；
+  方向反了（`unit_wider_than_measured`）同样拒绝。
+- 注入 `provenance.developmental_stages.declared_vs_shipped`；
+  `flybrain stages` 打印漂移清单。
+- 断言在真实数据上通过：只有 touch-avoidance 一处 `+['PLM']`，其余三条无漂移。
+
+**过程中我自己算错过一次。** 审计脚本按 `(pre,post,type)` key 累加 union，多单元
+声明同一 key 时把突触重复加进 union，得出 `inflation=1.000x` 的荒谬结论（明明有
+15/93 条边被 ≥2 单元声明）。这是 v2.34 那个「union 也可能被污染」的具体形态——
+**并集必须按 key 去重，不是按 key 累加**。
+
+FUNCTIONAL_UNITS 仍 **115**。门禁 10/10（--with-data）。
 
 ## [2.34.0] — 2026-10-04
 
