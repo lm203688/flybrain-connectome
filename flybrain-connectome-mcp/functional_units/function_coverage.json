@@ -1,0 +1,749 @@
+{
+  "schema_version": "1.0",
+  "generated_utc": "2026-10-04T08:50:29Z",
+  "purpose": "Function-axis classification of the unit library. Every unit is tagged with the function categories its own `capability` and `task_hint_pool` fields claim, so coverage can be read by function instead of by species. The point is not the tags; it is the coverage matrix and the gap list, which turn PROJECT_VISION's module plan into a measured work queue.",
+  "method": {
+    "source_fields": [
+      "capability",
+      "task_hint_pool"
+    ],
+    "note": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+    "category_rules": "scripts/extract_function_coverage.py :: CATEGORY_KEYWORDS"
+  },
+  "library": {
+    "units": 115,
+    "capability_tokens_distinct": 456,
+    "capability_tokens_total": 554,
+    "units_with_any_category": 67,
+    "units_with_no_category": [
+      "antennal_lobe_central_complex_feedback_unit",
+      "aplysia_gill_withdrawal_unit",
+      "ascidian_larval_escape_swim_unit",
+      "astrocyte_tripartite_unit",
+      "barrel_cortex_whisking_unit",
+      "birdsong_hvc_timing_unit",
+      "birdsong_ra_motor_unit",
+      "buccal_feeding_cpg_unit",
+      "cb_endocrine_modulation_unit",
+      "cb_sensory_motor_unit",
+      "cel_amphid_chemosensory_unit",
+      "cel_nociceptive_avoidance_unit",
+      "cel_touch_avoidance_reflex_unit",
+      "central_complex_steering_unit",
+      "cephalopod_arm_motor_unit",
+      "cephalopod_chromatophore_control_unit",
+      "circadian_clock_unit",
+      "courtship_song_pattern_unit",
+      "electric_organ_discharge_unit",
+      "electrosensory_electrolocation_unit",
+      "elementary_motion_detection_unit",
+      "frog_escape_swim_unit",
+      "gamma_spindle_loop_unit",
+      "hypothalamic_arousal_unit",
+      "insect_clock_pacemaker_unit",
+      "johnston_organ_wind_unit",
+      "larv_gustatory_feeding_program_unit",
+      "larv_mushroom_body_feedback_unit",
+      "lateral_horn_innate_odour_unit",
+      "leech_swim_cpg_unit",
+      "leg_motor_pool_unit",
+      "lobula_plate_optic_flow_unit",
+      "looming_detection_unit",
+      "medulla_colour_pathway_unit",
+      "mushroom_body_lateral_horn_reciprocal_unit",
+      "passive_electroreception_unit",
+      "respiratory_rhythm_cpg_unit",
+      "septo_hippocampal_theta_unit",
+      "serotonergic_mood_unit",
+      "sleep_wake_flipflop_unit",
+      "spinal_cpg_unit",
+      "spinal_reflex_arc_unit",
+      "startle_escape_command_unit",
+      "trigeminal_infrared_map_unit",
+      "vestibulo_ocular_reflex_unit",
+      "vnc_sensory_reflex_unit",
+      "wing_flight_control_unit",
+      "wing_flight_steering_unit"
+    ]
+  },
+  "coverage_matrix": [
+    {
+      "family": "learning",
+      "category": "metacognition",
+      "vision_required": true,
+      "definition": "estimates confidence or performance of the system itself",
+      "units": 0,
+      "species": 0,
+      "species_labels": {},
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [],
+      "example_units": [],
+      "status": "missing"
+    },
+    {
+      "family": "control",
+      "category": "attention",
+      "vision_required": true,
+      "definition": "allocates limited processing capacity to one of several inputs",
+      "units": 2,
+      "species": 2,
+      "species_labels": {
+        "mouse": 1,
+        "human": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "cortical_l6_feedback_unit",
+        "retinal_motion_onset_unit"
+      ],
+      "example_units": [
+        "cortical_l6_feedback_unit",
+        "retinal_motion_onset_unit"
+      ],
+      "status": "thin"
+    },
+    {
+      "family": "control",
+      "category": "integration",
+      "vision_required": true,
+      "definition": "combines information across modalities or brain regions",
+      "units": 4,
+      "species": 2,
+      "species_labels": {
+        "human": 3,
+        "cephalopod": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "cephalopod_vertical_lobe_learning_unit",
+        "cerebellar_cortical_unit",
+        "cortical_highorder_integration_unit",
+        "cortical_l23_association_unit"
+      ],
+      "example_units": [
+        "cephalopod_vertical_lobe_learning_unit",
+        "cerebellar_cortical_unit",
+        "cortical_highorder_integration_unit",
+        "cortical_l23_association_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "control",
+      "category": "prediction",
+      "vision_required": true,
+      "definition": "anticipates future input and signals the difference from it",
+      "units": 6,
+      "species": 2,
+      "species_labels": {
+        "human": 5,
+        "mouse": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "cerebellar_climbing_fibre_teaching_unit",
+        "cerebellar_cortical_unit",
+        "cerebellar_purkinje_ltd_unit",
+        "cortical_l6_feedback_unit",
+        "hippocampal_spatial_map_unit",
+        "retinal_direction_selective_unit"
+      ],
+      "example_units": [
+        "cerebellar_climbing_fibre_teaching_unit",
+        "cerebellar_cortical_unit",
+        "cerebellar_purkinje_ltd_unit",
+        "cortical_l6_feedback_unit",
+        "hippocampal_spatial_map_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "learning",
+      "category": "habit",
+      "vision_required": true,
+      "definition": "executes a learned routine without re-evaluating its value",
+      "units": 1,
+      "species": 1,
+      "species_labels": {
+        "frog": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "frog_tectal_prey_capture_unit"
+      ],
+      "example_units": [
+        "frog_tectal_prey_capture_unit"
+      ],
+      "status": "thin"
+    },
+    {
+      "family": "learning",
+      "category": "punishment",
+      "vision_required": true,
+      "definition": "signals that a behaviour was costly",
+      "units": 1,
+      "species": 1,
+      "species_labels": {
+        "human": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "striatal_indirect_pathway_unit"
+      ],
+      "example_units": [
+        "striatal_indirect_pathway_unit"
+      ],
+      "status": "thin"
+    },
+    {
+      "family": "learning",
+      "category": "reward",
+      "vision_required": true,
+      "definition": "signals that a behaviour was advantageous",
+      "units": 5,
+      "species": 2,
+      "species_labels": {
+        "human": 3,
+        "drosophila": 2
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "basal_ganglia_selection_unit",
+        "dopaminergic_value_unit",
+        "mushroom_body_associative_memory_unit",
+        "pharyngeal_gustatory_unit",
+        "striatal_direct_pathway_unit"
+      ],
+      "example_units": [
+        "basal_ganglia_selection_unit",
+        "dopaminergic_value_unit",
+        "mushroom_body_associative_memory_unit",
+        "pharyngeal_gustatory_unit",
+        "striatal_direct_pathway_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "memory",
+      "category": "associative_learn",
+      "vision_required": true,
+      "definition": "links a cue to a consequence so the pairing changes future behaviour",
+      "units": 9,
+      "species": 4,
+      "species_labels": {
+        "human": 6,
+        "drosophila": 1,
+        "cephalopod": 1,
+        "unspecified": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": true,
+      "units_listed": [
+        "amygdala_fear_unit",
+        "cephalopod_vertical_lobe_learning_unit",
+        "cerebellar_purkinje_ltd_unit",
+        "cortical_highorder_integration_unit",
+        "cortical_l23_association_unit",
+        "hippocampal_ca2_autoassoc_unit",
+        "hippocampal_trisynaptic_unit",
+        "mushroom_body_associative_memory_unit",
+        "pit_viper_strike_unit"
+      ],
+      "example_units": [
+        "amygdala_fear_unit",
+        "cephalopod_vertical_lobe_learning_unit",
+        "cerebellar_purkinje_ltd_unit",
+        "cortical_highorder_integration_unit",
+        "cortical_l23_association_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "memory",
+      "category": "memory_encode",
+      "vision_required": true,
+      "definition": "writes an experience into a persistent representation",
+      "units": 11,
+      "species": 2,
+      "species_labels": {
+        "human": 7,
+        "drosophila": 4
+      },
+      "connectome_traced_units": 1,
+      "cross_species": false,
+      "units_listed": [
+        "amygdala_fear_unit",
+        "antennal_lobe_glomerular_unit",
+        "cortical_l23_association_unit",
+        "entorhinal_spatial_map_unit",
+        "hippocampal_ca2_autoassoc_unit",
+        "hippocampal_trisynaptic_unit",
+        "larv_olfactory_associative_learning_unit",
+        "mushroom_body_associative_memory_unit",
+        "mushroom_body_sparse_code_unit",
+        "retinal_phototransduction_unit",
+        "somatosensory_dorsalhorn_unit"
+      ],
+      "example_units": [
+        "amygdala_fear_unit",
+        "antennal_lobe_glomerular_unit",
+        "cortical_l23_association_unit",
+        "entorhinal_spatial_map_unit",
+        "hippocampal_ca2_autoassoc_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "memory",
+      "category": "memory_readout",
+      "vision_required": true,
+      "definition": "retrieves a stored representation for downstream use",
+      "units": 5,
+      "species": 2,
+      "species_labels": {
+        "human": 4,
+        "drosophila": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "cortical_l5_output_unit",
+        "hippocampal_output_unit",
+        "hippocampal_trisynaptic_unit",
+        "mushroom_body_associative_memory_unit",
+        "red_nucleus_coordination_unit"
+      ],
+      "example_units": [
+        "cortical_l5_output_unit",
+        "hippocampal_output_unit",
+        "hippocampal_trisynaptic_unit",
+        "mushroom_body_associative_memory_unit",
+        "red_nucleus_coordination_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "memory",
+      "category": "working_memory",
+      "vision_required": true,
+      "definition": "holds information transiently in an active, revisable state",
+      "units": 1,
+      "species": 1,
+      "species_labels": {
+        "drosophila": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "central_complex_heading_unit"
+      ],
+      "example_units": [
+        "central_complex_heading_unit"
+      ],
+      "status": "thin"
+    },
+    {
+      "family": "motor",
+      "category": "motor_command",
+      "vision_required": true,
+      "definition": "issues a command that drives a muscle or effector",
+      "units": 2,
+      "species": 1,
+      "species_labels": {
+        "drosophila": 2
+      },
+      "connectome_traced_units": 2,
+      "cross_species": false,
+      "units_listed": [
+        "cel_forward_locomotion_command_unit",
+        "larv_descending_motor_command_unit"
+      ],
+      "example_units": [
+        "cel_forward_locomotion_command_unit",
+        "larv_descending_motor_command_unit"
+      ],
+      "status": "thin"
+    },
+    {
+      "family": "motor",
+      "category": "motor_relay",
+      "vision_required": true,
+      "definition": "passes a motor command through a relay stage",
+      "units": 1,
+      "species": 1,
+      "species_labels": {
+        "human": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "motor_thalamic_relay_unit"
+      ],
+      "example_units": [
+        "motor_thalamic_relay_unit"
+      ],
+      "status": "thin"
+    },
+    {
+      "family": "sensing",
+      "category": "sensory_relay",
+      "vision_required": true,
+      "definition": "passes modality-specific sensory information toward central circuits",
+      "units": 16,
+      "species": 2,
+      "species_labels": {
+        "human": 8,
+        "drosophila": 8
+      },
+      "connectome_traced_units": 3,
+      "cross_species": false,
+      "units_listed": [
+        "antennal_lobe_glomerular_unit",
+        "auditory_song_reception_unit",
+        "auditory_thalamic_relay_unit",
+        "cerebellar_cortical_unit",
+        "cortical_l4_input_unit",
+        "cortical_l5_output_unit",
+        "efferent_command_bus_unit",
+        "larv_respiratory_relay_unit",
+        "larv_thermosensory_relay_unit",
+        "larv_visual_relay_unit",
+        "motor_thalamic_relay_unit",
+        "mushroom_body_sparse_code_unit",
+        "somatosensory_thalamic_relay_unit",
+        "thalamocortical_relay_unit",
+        "visual_target_detection_unit",
+        "visual_thalamic_relay_unit"
+      ],
+      "example_units": [
+        "antennal_lobe_glomerular_unit",
+        "auditory_song_reception_unit",
+        "auditory_thalamic_relay_unit",
+        "cerebellar_cortical_unit",
+        "cortical_l4_input_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "sensing",
+      "category": "sensory_transduction",
+      "vision_required": true,
+      "definition": "converts a physical stimulus into neural activity",
+      "units": 6,
+      "species": 2,
+      "species_labels": {
+        "human": 5,
+        "drosophila": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "cochlear_amplification_unit",
+        "compound_lamina_relay_unit",
+        "olfactory_transduction_unit",
+        "retinal_irradiance_unit",
+        "retinal_phototransduction_unit",
+        "vestibular_transduction_unit"
+      ],
+      "example_units": [
+        "cochlear_amplification_unit",
+        "compound_lamina_relay_unit",
+        "olfactory_transduction_unit",
+        "retinal_irradiance_unit",
+        "retinal_phototransduction_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "modulatory",
+      "category": "homeostasis",
+      "vision_required": false,
+      "definition": "keeps an internal variable inside a workable range",
+      "units": 0,
+      "species": 0,
+      "species_labels": {},
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [],
+      "example_units": [],
+      "status": "missing"
+    },
+    {
+      "family": "modulatory",
+      "category": "neuromodulation",
+      "vision_required": false,
+      "definition": "broadcasts a diffusible signal that changes the gain of many targets",
+      "units": 0,
+      "species": 0,
+      "species_labels": {},
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [],
+      "example_units": [],
+      "status": "missing"
+    },
+    {
+      "family": "emotion",
+      "category": "arousal",
+      "vision_required": false,
+      "definition": "sets the global activation level of the system",
+      "units": 7,
+      "species": 2,
+      "species_labels": {
+        "drosophila": 5,
+        "human": 2
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "buccal_efferent_feedback_unit",
+        "cholinergic_arousal_unit",
+        "gustatory_centrifugal_unit",
+        "locus_coeruleus_arousal_unit",
+        "mushroom_body_dopamine_arousal_unit",
+        "oa_visual_modulation_unit",
+        "octopamine_arousal_unit"
+      ],
+      "example_units": [
+        "buccal_efferent_feedback_unit",
+        "cholinergic_arousal_unit",
+        "gustatory_centrifugal_unit",
+        "locus_coeruleus_arousal_unit",
+        "mushroom_body_dopamine_arousal_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "emotion",
+      "category": "valence_assign",
+      "vision_required": false,
+      "definition": "tags a representation as positive or negative",
+      "units": 4,
+      "species": 2,
+      "species_labels": {
+        "human": 3,
+        "drosophila": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "basal_ganglia_selection_unit",
+        "cortical_highorder_integration_unit",
+        "mushroom_body_associative_memory_unit",
+        "striatal_direct_pathway_unit"
+      ],
+      "example_units": [
+        "basal_ganglia_selection_unit",
+        "cortical_highorder_integration_unit",
+        "mushroom_body_associative_memory_unit",
+        "striatal_direct_pathway_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "learning",
+      "category": "credit_assign",
+      "vision_required": false,
+      "definition": "attributes a consequence to the specific action that produced it",
+      "units": 6,
+      "species": 3,
+      "species_labels": {
+        "human": 4,
+        "drosophila": 1,
+        "bird": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": true,
+      "units_listed": [
+        "basal_ganglia_selection_unit",
+        "birdsong_basal_ganglia_learning_unit",
+        "cerebellar_climbing_fibre_teaching_unit",
+        "cerebellar_error_teaching_unit",
+        "mushroom_body_associative_memory_unit",
+        "striatal_direct_pathway_unit"
+      ],
+      "example_units": [
+        "basal_ganglia_selection_unit",
+        "birdsong_basal_ganglia_learning_unit",
+        "cerebellar_climbing_fibre_teaching_unit",
+        "cerebellar_error_teaching_unit",
+        "mushroom_body_associative_memory_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "memory",
+      "category": "pattern_separate",
+      "vision_required": false,
+      "definition": "decorrelates inputs so similar patterns can be stored independently",
+      "units": 7,
+      "species": 2,
+      "species_labels": {
+        "human": 4,
+        "drosophila": 3
+      },
+      "connectome_traced_units": 1,
+      "cross_species": false,
+      "units_listed": [
+        "antennal_lobe_glomerular_unit",
+        "cortical_l4_input_unit",
+        "hippocampal_trisynaptic_unit",
+        "larv_olfactory_associative_learning_unit",
+        "mushroom_body_sparse_code_unit",
+        "olfactory_transduction_unit",
+        "retinal_phototransduction_unit"
+      ],
+      "example_units": [
+        "antennal_lobe_glomerular_unit",
+        "cortical_l4_input_unit",
+        "hippocampal_trisynaptic_unit",
+        "larv_olfactory_associative_learning_unit",
+        "mushroom_body_sparse_code_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "motor",
+      "category": "reflex",
+      "vision_required": false,
+      "definition": "produces a stereotyped response with minimal central processing",
+      "units": 3,
+      "species": 2,
+      "species_labels": {
+        "drosophila": 2,
+        "human": 1
+      },
+      "connectome_traced_units": 1,
+      "cross_species": false,
+      "units_listed": [
+        "giant_fiber_escape_unit",
+        "larv_somatosensory_escape_unit",
+        "vestibular_transduction_unit"
+      ],
+      "example_units": [
+        "giant_fiber_escape_unit",
+        "larv_somatosensory_escape_unit",
+        "vestibular_transduction_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "sensing",
+      "category": "sensory_gating",
+      "vision_required": false,
+      "definition": "filters incoming sensory information before it reaches downstream pools",
+      "units": 24,
+      "species": 2,
+      "species_labels": {
+        "human": 16,
+        "drosophila": 8
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "amygdala_fear_unit",
+        "basal_ganglia_selection_unit",
+        "buccal_efferent_feedback_unit",
+        "cb_efferent_command_unit",
+        "centrifugal_visual_feedback_unit",
+        "cortical_inhibitory_gain_unit",
+        "cortical_l23_association_unit",
+        "cortical_l4_input_unit",
+        "cortical_l5_output_unit",
+        "cortical_l6_feedback_unit",
+        "courtship_decision_unit",
+        "hippocampal_ca2_autoassoc_unit",
+        "locus_coeruleus_arousal_unit",
+        "medulla_centripetal_gain_unit",
+        "motor_thalamic_relay_unit",
+        "mushroom_body_sparse_code_unit",
+        "octopamine_arousal_unit",
+        "olfactory_transduction_unit",
+        "retinal_phototransduction_unit",
+        "somatosensory_dorsalhorn_unit",
+        "striatal_direct_pathway_unit",
+        "striatal_indirect_pathway_unit",
+        "thalamocortical_relay_unit",
+        "vnc_endocrine_modulation_unit"
+      ],
+      "example_units": [
+        "amygdala_fear_unit",
+        "basal_ganglia_selection_unit",
+        "buccal_efferent_feedback_unit",
+        "cb_efferent_command_unit",
+        "centrifugal_visual_feedback_unit"
+      ],
+      "status": "covered"
+    },
+    {
+      "family": "social",
+      "category": "social_signal",
+      "vision_required": false,
+      "definition": "produces or interprets a signal that carries meaning between individuals",
+      "units": 1,
+      "species": 1,
+      "species_labels": {
+        "drosophila": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "auditory_song_reception_unit"
+      ],
+      "example_units": [
+        "auditory_song_reception_unit"
+      ],
+      "status": "thin"
+    }
+  ],
+  "summary": {
+    "categories_total": 24,
+    "covered": 14,
+    "vision_required_total": 15,
+    "vision_required_missing": [
+      "metacognition"
+    ],
+    "vision_required_thin": [
+      "attention",
+      "habit",
+      "punishment",
+      "working_memory",
+      "motor_command",
+      "motor_relay"
+    ],
+    "cross_species_categories": [
+      "associative_learn",
+      "credit_assign"
+    ],
+    "connectome_traced_categories": [
+      "memory_encode",
+      "motor_command",
+      "sensory_relay",
+      "pattern_separate",
+      "reflex"
+    ]
+  },
+  "mechanism_without_function": {
+    "note": "A motif layer that can express a function the unit layer cannot carry. These are not missing motifs -- the machinery exists. They are missing functional blocks, and each one names a concrete unit worth building.",
+    "mechanisms_per_category": {
+      "working_memory": [
+        "feedback_excitatory",
+        "recurrent_excitatory"
+      ]
+    },
+    "categories_with_mechanism_but_no_unit": {}
+  },
+  "caveat": [
+    "This axis is a coverage measurement, not a claim that a unit in a category performs that function well. A tag means the unit declares the capability.",
+    "Categories are assigned by keyword match over declared capability strings, so a unit whose function is real but named differently is absent rather than misfiled. That direction of error is visible in `library.units_with_no_category` and is fixable; the opposite error -- a unit placed in a category it does not implement -- cannot happen from a keyword match.",
+    "Cross-species count uses a token heuristic on the unit's name and declared reference, so it undercounts species whose name does not carry a species token. Treat `cross_species` as a lower bound.",
+    "No unit was added, renamed or reclassified. The unit count is unchanged; this artifact only adds an axis and measures coverage on it."
+  ]
+}
