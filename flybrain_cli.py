@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.34.0"
+__version__ = "2.35.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -260,6 +260,15 @@ def cmd_stages(args) -> int:
               "union=%d  shared=%d  L1-only=%d  adult-only=%d"
               % (sd["l1_union_keys"], sd["adult_union_keys"],
                  sd["shared_keys"], sd["l1_only_keys"], sd["adult_only_keys"]))
+        print()
+    dvs = doc.get("declared_vs_shipped", {})
+    if dvs.get("measured_wider_than_unit"):
+        print("v2.35.0 -- this series measures a wider circuit than the unit it "
+              "attaches to:")
+        for uname, extra in sorted(dvs["measured_wider_than_unit"].items()):
+            print("    %-42s +%s" % (uname, extra))
+        print("    (declared in PROFILES, no edge in the adult reconstruction, "
+              "so not shipped as a v2.27 member)")
         print()
     for s in doc["stages"]:
         print("[%s] %s" % (s["stage"], s["label"]))

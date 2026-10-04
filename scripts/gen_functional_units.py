@@ -3617,6 +3617,26 @@ def _load_development_stages():
                         .get(unit["name"], [])) & set(cls)
             },
             "stage_diffs": doc.get("stage_diffs"),
+            # v2.35.0.  `PROFILES` declares 11 cell classes for
+            # touch_avoidance_reflex; the v2.27 unit ships 10 because PLM has
+            # no edge in the adult reconstruction and an unemitted class must
+            # not become a member.  Merged across all eight reconstructions PLM
+            # does have edges, so this series measures 11 -- the same unit
+            # NAME covering a slightly wider circuit.  Recorded on the unit
+            # because comparing the stage numbers against the unit without
+            # this is exactly the off-by-PLM error.
+            "declared_vs_shipped": {
+                "measured_wider_than_unit": (doc.get("declared_vs_shipped", {})
+                                             .get("measured_wider_than_unit", {})
+                                             .get(unit["name"])),
+                "unit_wider_than_measured": (doc.get("declared_vs_shipped", {})
+                                             .get("unit_wider_than_measured", {})
+                                             .get(unit["name"])),
+                "v227_shipped_members": (doc.get("declared_vs_shipped", {})
+                                         .get("v227_shipped_members", {})
+                                         .get(unit["name"])),
+                "note": (doc.get("declared_vs_shipped", {}).get("consequence")),
+            },
             "measured": {
                 stage: {
                     "edges_per_animal": m["edges"],

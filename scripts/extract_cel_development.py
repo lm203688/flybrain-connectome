@@ -162,6 +162,58 @@ def main() -> int:
     # The unit names the adult extractor produces, paired with their classes.
     units = {"cel_%s_unit" % p["suffix"]: set(p["classes"]) for p in cel.PROFILES}
 
+    # ------------------------------------------------------------------ #
+    # v2.35.0 -- declared classes vs classes this series can actually trace.
+    #
+    # Auditing v2.27's four C. elegans units the way v2.34 audited the stage
+    # numbers turned up a口径 drift nobody had a name for.  `PROFILES` declares
+    # 11 cell classes for the touch-avoidance circuit, PLM among them.  But
+    # `extract_cel_profiles.py` only emits a member profile for a declared
+    # class that actually has an edge inside the module, so in the adult
+    # reconstruction PLM has none and `cel.plm` was never created -- the unit
+    # ships 10 members.  Merge all eight developmental reconstructions, PLM
+    # does have edges, so this series measures 11.
+    #
+    # Both are correct for what they are; the unit NAME is the same either way,
+    # and nothing in v2.30 said so.  So the drift is measured here and stated
+    # rather than left to be discovered by someone diffing two JSON files:
+    # `declared_not_traced_by_series` names the classes this series measures
+    # that the unit does not currently carry as members.
+    #
+    # Consequence for a reader: the v2.30 stage numbers for
+    # `touch_avoidance_reflex` describe a slightly wider circuit than the
+    # v2.27 unit they are attached to.  Comparing the two directly is off by
+    # whatever PLM carries.
+    # ------------------------------------------------------------------ #
+    profiles_path = (ROOT / "flybrain-connectome-mcp" / "functional_units"
+                     / "cel_profiles.json")
+    v227_members: dict[str, set] = {}
+    if profiles_path.exists():
+        p227 = json.loads(profiles_path.read_text(encoding="utf-8"))
+        for u in p227.get("units", []):
+            v227_members[u["name"]] = {
+                m["neuron"].split(".", 1)[1].upper()
+                for m in u.get("members", [])
+            }
+    series_wider: dict[str, list] = {}
+    series_narrower: dict[str, list] = {}
+    for uname, declared in units.items():
+        shipped = v227_members.get(uname)
+        if not shipped:
+            continue
+        extra = sorted(declared - shipped)
+        missing = sorted(shipped - declared)
+        if extra:
+            series_wider[uname] = extra
+        if missing:
+            series_narrower[uname] = missing
+    if series_wider:
+        print("  declared-vs-shipped drift: this series measures cell classes "
+              "the units do not carry -> %s" % series_wider)
+    else:
+        print("  declared-vs-shipped: this series measures exactly the classes "
+              "each unit carries")
+
     # The four circuits share cell classes (AIA is in all four), so the sum of
     # their rows is not the network's internal wiring.  Measure the overlap
     # once here instead of restating it as a hand-typed sentence.
@@ -281,6 +333,16 @@ def main() -> int:
         if _s == "adult":
             for fn in fs:
                 adult_keys |= set(load_one(CELDIR / fn))
+    if series_narrower:
+        print("REFUSING TO WRITE: %s ship member classes this series never "
+              "measures (%s); the series is supposed to cover every shipped "
+              "class, so something is upstream of the extractor"
+              % (list(series_narrower), series_narrower), file=sys.stderr)
+        return 3
+    if not v227_members:
+        print("NOTE: %s not found; declared-vs-shipped drift not measured"
+              % profiles_path.name)
+
     l1_only = len(l1_keys - adult_keys)
     adult_only = len(adult_keys - l1_keys)
     print("  edge keys: L1 union=%d adult union=%d L1-only=%d adult-only=%d"
@@ -299,6 +361,25 @@ def main() -> int:
                      "figures are reported per stage under `attribution`."),
             "shared_cell_classes": overlap_matrix,
             "cell_classes_per_circuit": {u: sorted(cs) for u, cs in units.items()},
+        },
+        "declared_vs_shipped": {
+            "note": ("`PROFILES` declares more cell classes than some units "
+                     "actually carry, because extract_cel_profiles.py only emits "
+                     "a member profile for a declared class that has an edge "
+                     "inside the module. PLM is declared for the touch-avoidance "
+                     "circuit but has no edge in the adult reconstruction, so the "
+                     "v2.27 unit ships 10 members; merged across all eight "
+                     "reconstructions PLM does have edges, so this series "
+                     "measures 11. Both are right -- the unit NAME is identical, "
+                     "which is exactly why the gap is recorded here."),
+            "v227_shipped_members": {k: sorted(v) for k, v
+                                     in sorted(v227_members.items())},
+            "measured_wider_than_unit": series_wider,
+            "unit_wider_than_measured": series_narrower,
+            "consequence": ("The stage rows below for a circuit listed in "
+                            "`measured_wider_than_unit` describe a slightly wider "
+                            "circuit than the unit they are attached to. Compare "
+                            "the two by the difference listed, not directly."),
         },
         "stage_diffs": {
             "note": ("Measured on the union of (pre, post, type) keys per group "
