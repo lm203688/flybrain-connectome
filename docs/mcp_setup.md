@@ -174,6 +174,15 @@ endpoint, so they must sum to touching + both-ends = 14,966,115) and the
 extractor refuses to write when they do not; v2.32.0's per-type column was
 inflated by 3x the internal total and is corrected here.
 
+**All 115 units** carry `provenance.function_axis` (v2.37.0): the function
+categories the unit's own `capability` / `task_hint_pool` fields declare, which
+is how the library is read by function rather than by the taxon its names come
+from. A tag is a coverage label, not a performance claim. `GATE 11`
+(`check_function_coverage.py`) checks that the coverage matrix reconciles with
+the unit library and that the declared gap list matches the matrix -- it fails
+when a gap is hidden, not when one exists. `flybrain function` prints the
+matrix.
+
 All 57 anchored populations are now referenced by
 at least one unit (v2.1.0 wired the last five). A measured count of ZERO is a
 recorded contradiction (currently one, in `central_complex_steering_unit`), never a
