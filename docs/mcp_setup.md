@@ -126,7 +126,13 @@ for several of them, and the four rows together overstate the wiring internal
 to these circuits by 1.25-1.27x. Every unit therefore also carries
 `provenance.developmental_stages.circuit_attribution` (sum / union / inflation
 per stage) and `.shared_cell_classes_with`; the L1-only edge count in the
-artifact caveat is measured into `stage_diffs`, not typed in. They carry
+artifact caveat is measured into `stage_diffs`, not typed in. One of the four
+also carries `.declared_vs_shipped` (v2.35.0): touch-avoidance declares 11 cell
+classes but ships 10 members, because PLM has no edge in the adult
+reconstruction and an unemitted class must not become a member; the
+developmental series measures 11 because PLM does have edges in the merged
+eight. The stage numbers therefore describe a slightly wider circuit than the
+unit they attach to -- compare by that one class. They carry
 `provenance.source_connectome`;
 the remaining 66 are cross-species concept units. The eight Drosophila larva units
 additionally carry `provenance.connectome_coverage` (v2.31.0): `larva_clusters.json`
