@@ -1,0 +1,171 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Whether the library can be assembled. `composable_with` decides which units may be wired together, and until now nothing checked it: gate 9 verifies the units are well formed, gate 11 checks functional coverage, gate 12 checks the cost axis, and none of them asked whether a declared combination can actually form.",
+  "measurements": {
+    "units": 115,
+    "declarations": 163,
+    "consistent_reciprocal_and_ports_meet": 28,
+    "one_way_or_unreachable": 135,
+    "one_way_ports_would_meet": 38,
+    "declared_but_unreachable": 97,
+    "distinct_usable_pairs_mutual": 23,
+    "distinct_usable_pairs_one_way_reachable": 28,
+    "port_coverage_in": 115,
+    "port_coverage_out": 115
+  },
+  "builder_behaviour": {
+    "file": "functional_units.py",
+    "reads": "composable_with",
+    "emits": "starter_edges with reason=declared_composable",
+    "checks_reciprocity": false,
+    "checks_port_compatibility": false,
+    "note": "The one-way declarations are not a latent risk; they are what the tool does today. Changing that is a behaviour change and belongs in its own release, not in a gate."
+  },
+  "unreachable_examples": [
+    {
+      "from": "amygdala_fear_unit",
+      "to": "hypothalamic_arousal_unit",
+      "from_out_ports": [
+        "limbic.fear"
+      ],
+      "to_in_ports": [
+        "arousal.state",
+        "rhythm.circadian"
+      ]
+    },
+    {
+      "from": "amygdala_fear_unit",
+      "to": "somatosensory_dorsalhorn_unit",
+      "from_out_ports": [
+        "limbic.fear"
+      ],
+      "to_in_ports": [
+        "sensory.nociceptive",
+        "sensory.somatosensory"
+      ]
+    },
+    {
+      "from": "antennal_lobe_central_complex_feedback_unit",
+      "to": "antennal_lobe_glomerular_unit",
+      "from_out_ports": [
+        "navigation.heading",
+        "navigation.steering"
+      ],
+      "to_in_ports": [
+        "modulatory.histamine",
+        "sensory.olfactory"
+      ]
+    },
+    {
+      "from": "antennal_lobe_central_complex_feedback_unit",
+      "to": "central_complex_heading_unit",
+      "from_out_ports": [
+        "navigation.heading",
+        "navigation.steering"
+      ],
+      "to_in_ports": [
+        "clock.phase",
+        "navigation.steering",
+        "sensory.skylight_compass"
+      ]
+    },
+    {
+      "from": "antennal_lobe_central_complex_feedback_unit",
+      "to": "central_complex_steering_unit",
+      "from_out_ports": [
+        "navigation.heading",
+        "navigation.steering"
+      ],
+      "to_in_ports": [
+        "memory.associative",
+        "modulatory.orexin",
+        "navigation.ego_speed",
+        "navigation.heading",
+        "olfactory.learned_valence"
+      ]
+    },
+    {
+      "from": "antennal_lobe_glomerular_unit",
+      "to": "mushroom_body_sparse_code_unit",
+      "from_out_ports": [
+        "sensory.olfactory"
+      ],
+      "to_in_ports": [
+        "sensory.olfactory"
+      ]
+    },
+    {
+      "from": "aplysia_gill_withdrawal_unit",
+      "to": "buccal_feeding_cpg_unit",
+      "from_out_ports": [
+        "motor.gill"
+      ],
+      "to_in_ports": [
+        "gating.hunger",
+        "motor.command"
+      ]
+    },
+    {
+      "from": "ascidian_larval_escape_swim_unit",
+      "to": "frog_escape_swim_unit",
+      "from_out_ports": [
+        "motor.swim",
+        "rhythm.swim"
+      ],
+      "to_in_ports": [
+        "motor.swim",
+        "rhythm.swim",
+        "sensory.auditory.startle",
+        "sensory.visual"
+      ]
+    },
+    {
+      "from": "astrocyte_tripartite_unit",
+      "to": "cortical_inhibitory_gain_unit",
+      "from_out_ports": [
+        "glial.support"
+      ],
+      "to_in_ports": [
+        "arousal.state",
+        "cortex.association"
+      ]
+    },
+    {
+      "from": "astrocyte_tripartite_unit",
+      "to": "cortical_l5_output_unit",
+      "from_out_ports": [
+        "glial.support"
+      ],
+      "to_in_ports": [
+        "cortex.association",
+        "cortex.input"
+      ]
+    },
+    {
+      "from": "auditory_song_reception_unit",
+      "to": "courtship_decision_unit",
+      "from_out_ports": [
+        "sensory.auditory"
+      ],
+      "to_in_ports": [
+        "sensory.auditory",
+        "sensory.olfactory"
+      ]
+    },
+    {
+      "from": "auditory_thalamic_relay_unit",
+      "to": "cortical_l4_input_unit",
+      "from_out_ports": [
+        "cortex.input"
+      ],
+      "to_in_ports": [
+        "cortex.input"
+      ]
+    }
+  ],
+  "caveat": [
+    "A one-way declaration is a real claim by the declaring unit. It is counted, not treated as an error: a composition A wants is not wrong merely because B never reciprocated.",
+    "Port compatibility is checked by type string. Two units whose ports share a type are recorded as meeting, which is the weakest available reading -- a real composition may still be impossible for reasons a type string does not capture.",
+    "A dangling target is reported as an error and the classifier still runs, so one bad reference does not hide the rest."
+  ]
+}
