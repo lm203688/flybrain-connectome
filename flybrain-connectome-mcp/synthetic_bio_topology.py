@@ -1212,6 +1212,94 @@ MODULE_PROFILES = {
         "allen_class": "",
         "biological_reference": "LeDoux 2000, CeA",
     },
+    # ------------------------------------------------------------------ #
+    # v2.41.0 -- prefrontal metacognition, the region set the coverage matrix
+    # was missing entirely (function_coverage.json, v2.37.0).  The sweep that
+    # established the gap looked for confidence / uncertainty / metacognit /
+    # precision across all 115 units and their descriptions and found nothing,
+    # so these six profiles come from the literature rather than from an
+    # existing unit.
+    #
+    # dACC and the insula are the negative-network pair: their activity tracks
+    # objective uncertainty and error detection and correlates negatively with
+    # reported confidence.  VMPFC and pgACC are the positive pair, associated
+    # with confidence and self-performance evaluation.  DLPFC carries the
+    # evidence integration the other two read.  FPl is the mapping stage --
+    # private sense to public report -- which is the part separable from
+    # confidence itself.
+    # ------------------------------------------------------------------ #
+    "pfc_dorsal_accumbens": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "Dorsal anterior cingulate: objective uncertainty, error detection, negative network",
+        "capability": ['uncertainty_signal', 'error_monitor', 'conflict_detect'],
+        "task_hint_pool": ['uncertainty_track', 'error_detect', 'stop_deciding'],
+        "lead_task_hint": "uncertainty_signal",
+        "neurotransmitter": "glutamate",
+        "brain_region": "dorsal_anterior_cingulate",
+        "species_source": ['human', 'macaque', 'rat'],
+        "allen_class": "",
+        "biological_reference": "Fleming & Dolan 2012; Bang & Fleming 2018; Vogels et al. 2015",
+    },
+    "pfc_insula": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.2, "has_inhibition": True,
+        "description": "Anterior insula: salience and uncertainty, paired with dACC in the negative network",
+        "capability": ['salience_mark', 'uncertainty_signal', 'effort_meter'],
+        "task_hint_pool": ['salience_detect', 'uncertainty_track'],
+        "lead_task_hint": "salience_mark",
+        "neurotransmitter": "glutamate",
+        "brain_region": "anterior_insula",
+        "species_source": ['human', 'macaque', 'rat'],
+        "allen_class": "",
+        "biological_reference": "White & Engel 2014; Bang & Fleming 2018; Runyon et al. 2017",
+    },
+    "pfc_dorsolateral": {
+        "reservoir_density": 0.55, "recurrent_pct": 0.25, "has_inhibition": True,
+        "description": "Dorsolateral PFC: evidence integration and task control feeding the confidence estimate",
+        "capability": ['evidence_integrate', 'rule_apply', 'confidence_calibration'],
+        "task_hint_pool": ['context_rule', 'evidence_integrate', 'confidence_report'],
+        "lead_task_hint": "evidence_integrate",
+        "neurotransmitter": "glutamate",
+        "brain_region": "dorsolateral_prefrontal_cortex",
+        "species_source": ['human', 'macaque', 'rat'],
+        "allen_class": "",
+        "biological_reference": "Fleming & Dolan 2012; Bang et al. 2017; Fernandes et al. 2013",
+    },
+    "pfc_ventromedial": {
+        "reservoir_density": 0.5, "recurrent_pct": 0.3, "has_inhibition": False,
+        "description": "Ventromedial PFC: aggregates decision signals into the subjective feeling of confidence",
+        "capability": ['confidence_estimate', 'self_monitor', 'value_aggregate'],
+        "task_hint_pool": ['confidence_report', 'self_evaluate', 'valence_aggregate'],
+        "lead_task_hint": "confidence_estimate",
+        "neurotransmitter": "glutamate",
+        "brain_region": "ventromedial_prefrontal_cortex",
+        "species_source": ['human', 'macaque', 'rat'],
+        "allen_class": "",
+        "biological_reference": "Bang & Fleming 2018; Fleming et al. 2018; Runyon et al. 2017",
+    },
+    "pfc_pregenual_accumbens": {
+        "reservoir_density": 0.45, "recurrent_pct": 0.25, "has_inhibition": True,
+        "description": "Pregenual ACC: positive-network confidence and self-performance evaluation",
+        "capability": ['confidence_estimate', 'self_evaluate', 'affect_tag'],
+        "task_hint_pool": ['confidence_report', 'self_evaluate'],
+        "lead_task_hint": "self_evaluate",
+        "neurotransmitter": "glutamate",
+        "brain_region": "pregenual_anterior_cingulate",
+        "species_source": ['human', 'macaque'],
+        "allen_class": "",
+        "biological_reference": "Bang & Fleming 2018; De Martino et al. 2013; Lebreton et al. 2015",
+    },
+    "pfc_frontal_pole": {
+        "reservoir_density": 0.6, "recurrent_pct": 0.3, "has_inhibition": False,
+        "description": "Lateral frontal pole: maps a private sense of confidence onto a public report",
+        "capability": ['confidence_map_public', 'context_dependent_report', 'task_switch'],
+        "task_hint_pool": ['confidence_report', 'social_calibrate', 'context_rule'],
+        "lead_task_hint": "confidence_map_public",
+        "neurotransmitter": "glutamate",
+        "brain_region": "lateral_frontal_pole",
+        "species_source": ['human', 'macaque'],
+        "allen_class": "",
+        "biological_reference": "Bang & Fleming 2018; De Martino et al. 2013; Fleming et al. 2012",
+    },
     "amygdala_lateral": {
         "reservoir_density": 0.5, "recurrent_pct": 0.22, "has_inhibition": True,
         "description": "Lateral amygdala: fear input, sensory encoding, fear conditioning",
