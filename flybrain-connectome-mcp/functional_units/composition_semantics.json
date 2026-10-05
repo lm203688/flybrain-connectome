@@ -2,7 +2,7 @@
   "schema_version": "1.0",
   "purpose": "Whether the library can be assembled. `composable_with` decides which units may be wired together, and until now nothing checked it: gate 9 verifies the units are well formed, gate 11 checks functional coverage, gate 12 checks the cost axis, and none of them asked whether a declared combination can actually form.",
   "measurements": {
-    "units": 115,
+    "units": 116,
     "declarations": 163,
     "consistent_reciprocal_and_ports_meet": 28,
     "one_way_or_unreachable": 135,
@@ -10,8 +10,8 @@
     "declared_but_unreachable": 97,
     "distinct_usable_pairs_mutual": 23,
     "distinct_usable_pairs_one_way_reachable": 28,
-    "port_coverage_in": 115,
-    "port_coverage_out": 115
+    "port_coverage_in": 116,
+    "port_coverage_out": 116
   },
   "builder_behaviour": {
     "file": "functional_units.py",

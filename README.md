@@ -336,7 +336,7 @@ MLflow2PROV, and MIT Sloan provenance tooling.
 
 ## Blueprint & module library
 
-**25 blueprints** across three categories, composed from **264 modules**:
+**25 blueprints** across three categories, composed from **270 modules**:
 **10 cognitive-function modules** (sensory / memory / motor / integration / attention /
 working_memory / reward / punishment / habit / metacognition) + **190 cross-species
 neuron types** spanning cortical pyramidal (L2/3 CX1/CX5, L4b/L4c, L5 basal tuft, L6 reticulo-thalamic,
@@ -408,7 +408,7 @@ single neuron type does nothing on its own, and wiring two of them together mean
 nothing. What composes is a **function with a known interface**. So the library is
 split into two tiers, and the upper tier is the one you actually build from:
 
-- **115 functional units** — each is ONE function (phototransduction, action
+- **116 functional units** — each is ONE function (phototransduction, action
   selection, theta pacing, gliotransmission, sparse mushroom-body coding, ring-attractor
   heading, song timing, Mauthner escape, active electrolocation, camouflage, leech swim
   rhythm, infrared thermal imaging, climbing-fibre error teaching, sleep/wake switching …)
@@ -764,7 +764,7 @@ value cites nothing, or when any type loses its energy entry.
 
 ### Function axis (v2.37.0) — coverage by function, not by species
 
-The library is organised by taxon. Its 115 units carry 48 distinct `system`
+The library is organised by taxon. Its 116 units carry 48 distinct `system`
 values and 60+ distinct `function` values, and their names are anatomical:
 `cortical_`, `retinal_`, `larv_`, `cel_`, `frog_`, `birdsong_`. That is a
 catalogue of species circuits, not a function library, and `PROJECT_VISION.md`
@@ -779,12 +779,42 @@ Of the 15 categories PROJECT_VISION requires:
 
 | status | categories |
 |---|---|
-| **missing** | `metacognition` |
-| thin (<3 units) | `attention` (2) · `habit` (1) · `punishment` (1) · `working_memory` (1) · `motor_command` (2) · `motor_relay` (1) |
+| **missing** | **none** (v2.41.0 closed the last one, `metacognition`) |
+| thin (<3 units) | `attention` (2) · `habit` (1) · `metacognition` (1) · `punishment` (1) · `working_memory` (1) · `motor_command` (2) · `motor_relay` (1) |
 | covered | `integration` (4) · `prediction` (6) · `reward` (5) · `associative_learn` (9, 4 taxa) · `memory_encode` (11) · `memory_readout` (5) · `sensory_relay` (16) · `sensory_transduction` (6) |
 
+**The honest measure is taxon breadth, and it is the library's biggest gap.**
+`covered` counts units, so a category carried by a single species reads as
+covered. Splitting it by how many taxa actually carry each required category:
+
+> **Only 1 of the 15 required categories — `associative_learn` — spans 3 or more
+> taxa. The other 14 are single-taxon implementations.**
+
+GATE 11 derives that split from the matrix and fails if it is hand-written or
+silently improves. The library can generate 115 circuits; it cannot yet
+generalise a function across species, which is what a morphology generator
+needs. Closing it means new units with real evidence — roughly 14 more, each
+with literature verification, a JEV run and a profile registration.
+
+### Metacognition, the last missing category (v2.41.0)
+
+A sweep of all 116 units for `confidence`, `uncertainty`, `metacognit`,
+`precision` and `attentional` in their name, function and description returned
+**nothing** — the gap was real, and the 48 untagged units could not fill it
+(their capabilities are mechanism verbs like `oscillate` and `reflex`). So it
+needed a unit: `prefrontal_metacognitive_unit`, with six profiles.
+
+The literature separates two networks rather than one "confidence centre":
+dACC and insula carry objective uncertainty and correlate **negatively** with
+reported confidence; VMPFC and pgACC carry the subjective sense and correlate
+**positively**; and the lateral frontal pole maps a private estimate onto a
+public report — a stage separable from confidence itself. JEV returned
+**PARTIAL** (lit 0.76, model 0.56, score 4): well documented, not
+computationally validated. Two fail-closed gates fired on the way in (no JEV
+verdict, then members not in `MODULE_PROFILES`) and neither was bypassed.
+
 **The honest summary of this axis: only 2 of 24 categories are carried by three
-or more taxa** (`associative_learn`, `credit_assign`), and 48 of 115 units
+or more taxa** (`associative_learn`, `credit_assign`), and 48 of 116 units
 belong to no category at all. Cross-taxon coverage is this library's weakest
 dimension, and that is now a number rather than an impression. A tag means the
 unit declares a mechanism implementing the category — it is a coverage label,
@@ -810,12 +840,17 @@ example `amygdala_fear_unit` exposes `out: limbic.fear` while
 `hypothalamic_arousal_unit` accepts only `arousal.state` / `rhythm.circadian` —
 no overlap, so that composition cannot be built.
 
-**This is not a latent risk; it is current behaviour.**
-`functional_units.py:163` builds `starter_edges` straight from
-`composable_with` with `reason: "declared_composable"`, checking neither
-reciprocity nor ports, so the 97 unreachable declarations are being emitted as
-valid edges today. GATE 13 records this and **does not change the builder** —
-that is a behaviour change and belongs in its own release.
+**Fixed in v2.41.0.** The builder no longer takes a declaration at face
+value: `suggest_composition` now emits an edge only when the other unit declared
+it back **or** the port types actually meet, and records everything it dropped
+in `skipped_edges` with the reason — so a discarded composition is visible
+rather than silent. `strict=False` restores the old behaviour. On the `memory`
+query: strict keeps 2 edges and drops 1 with
+`reason: ports_cannot_meet_and_not_reciprocated`; legacy kept 3.
+
+GATE 13 enforces it **behaviourally**, not by grepping source: it calls
+`suggest_composition` and checks that strict never returns more edges than
+legacy and that nothing appears in both the kept and skipped lists.
 
 What *is* clean: `internal_wiring` has **0 dangling role references**, and
 **115/115 units expose both an input and an output port**.
@@ -840,7 +875,7 @@ it is named after? `functional_units/malecns_anchors.json` (built by
 `scripts/build_malecns_anchors.py`) answers it, for the part where an answer is
 honest.
 
-- **Presence.** **37 of 115 units** have member populations that resolve to real
+- **Presence.** **37 of 116 units** have member populations that resolve to real
   annotated MaleCNS v1.0 cell types. Across the whole library that is
   **58 of 204 neuron populations** covering **107,558 real cells**: the `kc` role of
   the mushroom-body unit is 4,064 real Kenyon cells over 15 real KC types

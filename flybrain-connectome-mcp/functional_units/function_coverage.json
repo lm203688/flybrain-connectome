@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_utc": "2026-10-04T08:50:29Z",
+  "generated_utc": "2026-10-05T13:55:23Z",
   "purpose": "Function-axis classification of the unit library. Every unit is tagged with the function categories its own `capability` and `task_hint_pool` fields claim, so coverage can be read by function instead of by species. The point is not the tags; it is the coverage matrix and the gap list, which turn PROJECT_VISION's module plan into a measured work queue.",
   "method": {
     "source_fields": [
@@ -11,10 +11,10 @@
     "category_rules": "scripts/extract_function_coverage.py :: CATEGORY_KEYWORDS"
   },
   "library": {
-    "units": 115,
-    "capability_tokens_distinct": 456,
-    "capability_tokens_total": 554,
-    "units_with_any_category": 67,
+    "units": 116,
+    "capability_tokens_distinct": 466,
+    "capability_tokens_total": 564,
+    "units_with_any_category": 68,
     "units_with_no_category": [
       "antennal_lobe_central_complex_feedback_unit",
       "aplysia_gill_withdrawal_unit",
@@ -67,20 +67,6 @@
     ]
   },
   "coverage_matrix": [
-    {
-      "family": "learning",
-      "category": "metacognition",
-      "vision_required": true,
-      "definition": "estimates confidence or performance of the system itself",
-      "units": 0,
-      "species": 0,
-      "species_labels": {},
-      "connectome_traced_units": 0,
-      "cross_species": false,
-      "units_listed": [],
-      "example_units": [],
-      "status": "missing"
-    },
     {
       "family": "control",
       "category": "attention",
@@ -178,6 +164,26 @@
       ],
       "example_units": [
         "frog_tectal_prey_capture_unit"
+      ],
+      "status": "thin"
+    },
+    {
+      "family": "learning",
+      "category": "metacognition",
+      "vision_required": true,
+      "definition": "estimates confidence or performance of the system itself",
+      "units": 1,
+      "species": 1,
+      "species_labels": {
+        "human": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "prefrontal_metacognitive_unit"
+      ],
+      "example_units": [
+        "prefrontal_metacognitive_unit"
       ],
       "status": "thin"
     },
@@ -707,12 +713,11 @@
     "categories_total": 24,
     "covered": 14,
     "vision_required_total": 15,
-    "vision_required_missing": [
-      "metacognition"
-    ],
+    "vision_required_missing": [],
     "vision_required_thin": [
       "attention",
       "habit",
+      "metacognition",
       "punishment",
       "working_memory",
       "motor_command",
@@ -721,6 +726,25 @@
     "cross_species_categories": [
       "associative_learn",
       "credit_assign"
+    ],
+    "vision_required_single_taxon": [
+      "attention",
+      "integration",
+      "prediction",
+      "habit",
+      "metacognition",
+      "punishment",
+      "reward",
+      "memory_encode",
+      "memory_readout",
+      "working_memory",
+      "motor_command",
+      "motor_relay",
+      "sensory_relay",
+      "sensory_transduction"
+    ],
+    "vision_required_three_plus_taxa": [
+      "associative_learn"
     ],
     "connectome_traced_categories": [
       "memory_encode",

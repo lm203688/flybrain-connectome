@@ -19,6 +19,50 @@ The **schema version** is versioned separately from the **package version**:
 
 ---
 
+## [2.41.0] — 2026-10-05
+
+### 补齐 metacognition（唯一真正缺失的类别）+ 构建器接口校验
+
+**① `metacognition` 补上了，缺失类别归零。** v2.40.0 的覆盖矩阵里 15 个 vision
+必需类别只有 1 个 `missing`——就是它。先确认缺口是真的：对全部 115 个单元的
+name / function / description 扫 `confidence`、`uncertainty`、`metacognit`、
+`precision`、`attentional`，**返回空**。也确认了 48 个无标签单元不能拿来充数
+（它们的 capability 是 `oscillate` / `escape_swim` / `reflex` 这类机制动词，
+没有一条是元认知）——**所以这个缺口不能靠放宽映射解决，只能补单元。**
+
+新增 `prefrontal_metacognitive_unit` + 6 个剖面（`pfc_dorsal_accumbens` /
+`pfc_insula` / `pfc_dorsolateral` / `pfc_ventromedial` /
+`pfc_pregenual_accumbens` / `pfc_frontal_pole`），每条带文献出处。文献支持的是：
+dACC + 岛叶 = 负网络（客观不确定性与错误检测，与报告的信心**负相关**）；
+VMPFC + pgACC = 正网络（主观信心与自我评估，**正相关**）；DLPFC 承载证据整合；
+外侧额极负责**把内在信心映射成外显报告**（这一层与信心本身可分离）。
+诚实边界：全部是**人类 fMRI 为主**，没有连接组能分辨这些节点，所以是
+`curated-cross-species` 概念单元，覆盖矩阵照实报它 `traced=0`。
+
+**JEV 真实判定：PARTIAL（lit_p=0.76, mod_p=0.56, score=4）。** 不是 SUPPORTED——
+文献充分但缺计算模型验证，如实记录。
+
+**两道 fail-closed 都被正确触发**：新单元没有 JEV 判定 → 生成器拒绝写盘；
+成员 neuron 不在 `MODULE_PROFILES` → 拒绝写盘。**没有绕过任何一个**，
+而是去跑真实的 `jev_validate_units.py` 拿到判定、补上剖面登记，才放行。
+
+**② 构建器现在校验接口。** v2.40.0 记录了 97 条「声明了但端口接不上」的组合，
+而 `functional_units.py` 还在照单全收生成 `starter_edges`。现在一条声明要成为
+边，必须满足**对方也声明了**（互反）**或端口类型真的对得上**；不满足的进
+`skipped_edges` 并附原因，**丢弃是可见的而不是静默的**。`strict=False` 保留旧
+行为。实测 memory 任务：strict 2 边 / 跳过 1 条，legacy 3 边。
+**GATE 13 从「记个 note」升级为硬约束，而且做的是行为检查不是源码检查**——
+真的跑一遍 `suggest_composition`，验证 strict 不会比 legacy 多、验证被跳过的
+边不会同时出现在保留列表里。
+
+**③ 但真正的缺口现在被量化了，而且不小。** `covered` 判据数单元个数，
+所以**单类群的类别会读成「已覆盖」**。加了类群宽度维度后真相是：
+**15 个必需类别里只有 1 个（`associative_learn`）跨 3+ 类群，14 个是单类群实现。**
+GATE 11 现在断言这个拆分必须由矩阵派生、不得手写，且**不允许静默改善**。
+这是本库最大的结构性缺口：它能生成 115 条回路，但**几乎不能跨物种泛化**。
+
+FUNCTIONAL_UNITS **115 → 116**。门禁 **13/13**。
+
 ## [2.40.0] — 2026-10-05
 
 ### 方向③ 堆叠验证：GATE 13 组合语义——库到底能不能拼起来

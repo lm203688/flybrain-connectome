@@ -501,6 +501,16 @@ def main() -> int:
             "vision_required_thin": thin_required,
             "cross_species_categories": [r["category"] for r in matrix
                                          if r["cross_species"]],
+            # `covered` counts units; a category carried by one taxon is a
+            # single implementation no matter how many units it has.  The
+            # cross-taxon split is the honest measure of whether the library
+            # generalises, and at v2.41.0 almost nothing does.
+            "vision_required_single_taxon": [
+                r["category"] for r in matrix
+                if r["vision_required"] and r["species"] < 3],
+            "vision_required_three_plus_taxa": [
+                r["category"] for r in matrix
+                if r["vision_required"] and r["species"] >= 3],
             "connectome_traced_categories": [r["category"] for r in matrix
                                              if r["connectome_traced_units"] > 0],
         },
