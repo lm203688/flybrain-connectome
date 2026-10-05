@@ -5357,6 +5357,68 @@
     "evidence_confidence": 0.02
   },
   {
+    "name": "prefrontal_metacognitive_unit",
+    "system": "metacognition",
+    "species_source": [
+      "human",
+      "macaque",
+      "rat"
+    ],
+    "embodied": false,
+    "evidence_weight_before": null,
+    "jev_status": 200,
+    "jev_elapsed_s": 0.776,
+    "answers": {
+      "literature_support": {
+        "type": "noul",
+        "noul": 0.76
+      },
+      "evidence_strength": {
+        "type": "score",
+        "score": 4.75,
+        "confidence": 0.77,
+        "legend": {
+          "0": "No published evidence",
+          "1": "Speculative hypothesis only",
+          "2": "1 preliminary paper",
+          "3": "2-3 papers, preliminary",
+          "4": "4-6 papers, consensus forming",
+          "5": "7-10 papers, well-characterized",
+          "6": "Textbook entry, cross-species"
+        },
+        "probabilities": {
+          "0": 0.01,
+          "1": 0.04,
+          "2": 0.0,
+          "3": 0.01,
+          "4": 0.13,
+          "5": 0.74,
+          "6": 0.07
+        }
+      },
+      "model_validation": {
+        "type": "noul",
+        "noul": 0.53
+      }
+    },
+    "evidence_score": 4,
+    "evidence_label": "preliminary",
+    "literature_p": 0.76,
+    "model_p": 0.53,
+    "jev_fallback": false,
+    "verdict": "PARTIAL",
+    "evidence_legend": {
+      "0": "No published evidence",
+      "1": "Speculative hypothesis only",
+      "2": "1 preliminary paper",
+      "3": "2-3 papers, preliminary",
+      "4": "4-6 papers, consensus forming",
+      "5": "7-10 papers, well-characterized",
+      "6": "Textbook entry, cross-species"
+    },
+    "evidence_confidence": 0.77
+  },
+  {
     "name": "red_nucleus_coordination_unit",
     "system": "brainstem",
     "species_source": [
