@@ -19,6 +19,43 @@ The **schema version** is versioned separately from the **package version**:
 
 ---
 
+## [2.40.0] — 2026-10-05
+
+### 方向③ 堆叠验证：GATE 13 组合语义——库到底能不能拼起来
+
+前 12 条门禁没有一条问过「组合起来行为对不对」。`composable_with` 这个字段决定
+哪些单元能接在一起，**从来没被检查过**。本轮补上。
+
+**实测结果（115 单元 / 163 条声明）**
+
+| 状态 | 数量 |
+|---|---|
+| 互相声明 **且** 端口类型对得上 | **28** |
+| 单向声明，但端口能对上 | **38** |
+| **声明了但没有任何端口类型能对上** | **97** |
+
+**真正可用的组合只有 23 对互反 + 28 对单向可达**。举例：`amygdala_fear_unit`
+的 `out` 端口是 `limbic.fear`，而 `hypothalamic_arousal_unit` 的 `in` 端口只接
+`arousal.state` / `rhythm.circadian`——**没有任何交集，这条组合建不起来**。
+
+**而且这不是潜在风险，是当前行为。** `functional_units.py:163` 直接从
+`u["composable_with"]` 生成 `starter_edges`（`reason: "declared_composable"`），
+**既不检查互反也不检查端口**。所以 97 条不可达的声明**今天就在被当作合法边生成**。
+GATE 13 记录这个事实但**不改构建器**——改行为属于独立的版本，不能塞进门禁。
+
+**好消息**：引用完整性是干净的（`internal_wiring` 的 from/to **0 悬空 role**），
+**115/115 单元都暴露了 in 和 out 端口**。
+
+**门禁自己要能扛住坏数据。** 第一版在遇到「composable_with 指向不存在的单元」
+时直接崩了（`ports.get(b)` 返回 `None`，`set & None` → TypeError）——
+**一个坏引用就让门禁无法报告其余所有问题**。修好后重新注入两个缺陷验证：
+悬空 role 引用 + 指向不存在的单元，**两个都被抓到并同时报告**，退出 1。
+
+门禁同时写 `composition_semantics.json`——**只打印的门禁等于把测量留在没人读的
+日志里**。CLI `flybrain composition [--examples] [--caveat]`。
+
+门禁 **13/13**。
+
 ## [2.39.0] — 2026-10-05
 
 ### 代价轴接进优化器：它能指挥优化器吗？——能，但只在连接类型粒度上

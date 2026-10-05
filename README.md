@@ -211,6 +211,7 @@ flybrain larva-clusters --caveat    # what "covered" does and does not mean
 ### 7. Read the MaleCNS male-dimorphic ledger
 
 ```bash
+flybrain composition               # can declared combinations actually form?
 flybrain costs                      # latency/energy per connection type
 flybrain function                   # coverage by FUNCTION, not by species
 flybrain function --vision          # only what PROJECT_VISION requires
@@ -788,6 +789,41 @@ belong to no category at all. Cross-taxon coverage is this library's weakest
 dimension, and that is now a number rather than an impression. A tag means the
 unit declares a mechanism implementing the category — it is a coverage label,
 not a claim that the unit performs the function well.
+
+### Composition semantics (v2.40.0) — can the library be assembled?
+
+`composable_with` decides which units may be wired together, and until
+v2.40.0 nothing checked it. Gates 1–12 verified units are well formed, that
+function coverage is measured, that latencies are cited — none of them asked
+whether a declared combination can actually form.
+
+Of **163** declarations across 115 units:
+
+| state | count |
+|---|---|
+| reciprocal **and** port types meet | **28** |
+| one-way, but the ports would meet | **38** |
+| **declared while no port type can meet** | **97** |
+
+**Usable combinations: 23 mutual pairs plus 28 one-way-but-reachable.** For
+example `amygdala_fear_unit` exposes `out: limbic.fear` while
+`hypothalamic_arousal_unit` accepts only `arousal.state` / `rhythm.circadian` —
+no overlap, so that composition cannot be built.
+
+**This is not a latent risk; it is current behaviour.**
+`functional_units.py:163` builds `starter_edges` straight from
+`composable_with` with `reason: "declared_composable"`, checking neither
+reciprocity nor ports, so the 97 unreachable declarations are being emitted as
+valid edges today. GATE 13 records this and **does not change the builder** —
+that is a behaviour change and belongs in its own release.
+
+What *is* clean: `internal_wiring` has **0 dangling role references**, and
+**115/115 units expose both an input and an output port**.
+
+The gate also had to survive bad data: its first version crashed on a
+`composable_with` entry naming a unit that does not exist, and a gate that dies
+on one bad reference cannot report the rest. With that fixed, injecting both a
+dangling role reference and a dangling target reports **both** and exits 1.
 
 **GATE 11 keeps it honest.** It is the first gate that asks whether the library
 covers what the vision requires. It does not fail for having gaps — the gap

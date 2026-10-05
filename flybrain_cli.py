@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.38.0"
+__version__ = "2.40.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -652,6 +652,63 @@ def cmd_costs(args) -> int:
     return 0
 
 
+def cmd_composition(args) -> int:
+    """v2.40.0 -- can the library actually be assembled?
+
+    `composable_with` decides which units may be wired together, and until
+    v2.40.0 nothing checked it.  The measured answer: of 163 declarations, 28
+    are reciprocal AND their ports meet, 38 are one-way but would still connect,
+    and 97 are declared while no port type can meet.
+
+    The combination builder acts on the weak statement today -- it reads
+    `composable_with` and emits `starter_edges` with reason=declared_composable
+    without checking reciprocity or ports.  This command reports that; it does
+    not change the builder, because that is a behaviour change.
+    """
+    path = MCP_DIR / "functional_units" / "composition_semantics.json"
+    if not path.exists():
+        print("composition semantics artifact missing: %s" % path)
+        print("run: python scripts/check_composition.py")
+        return 2
+    with open(path, encoding="utf-8") as f:
+        doc = json.load(f)
+
+    if args.caveat:
+        for c in doc["caveat"]:
+            print("! %s" % c)
+        print()
+
+    m = doc["measurements"]
+    print("composition semantics: %d units, %d composable_with declarations"
+          % (m["units"], m["declarations"]))
+    print("    reciprocal AND ports meet : %3d" % m["consistent_reciprocal_and_ports_meet"])
+    print("    one-way, ports would meet : %3d" % m["one_way_ports_would_meet"])
+    print("    declared but unreachable  : %3d" % m["declared_but_unreachable"])
+    print("    distinct usable pairs     : %d mutual + %d one-way-but-reachable"
+          % (m["distinct_usable_pairs_mutual"],
+             m["distinct_usable_pairs_one_way_reachable"]))
+    print("    port coverage             : %d/%d in, %d/%d out"
+          % (m["port_coverage_in"], m["units"],
+             m["port_coverage_out"], m["units"]))
+
+    b = doc["builder_behaviour"]
+    print()
+    print("builder (%s): reads %s, emits %s, checks reciprocity=%s, checks ports=%s"
+          % (b["file"], b["reads"], b["emits"],
+             b["checks_reciprocity"], b["checks_port_compatibility"]))
+    print("    %s" % b["note"])
+
+    ex = doc.get("unreachable_examples") or []
+    if ex and args.examples:
+        print()
+        print("declared but no port type can meet:")
+        for e in ex:
+            print("    %-40s -> %-40s" % (e["from"], e["to"]))
+            print("        out=%s  in=%s" % (e["from_out_ports"][:2],
+                                            e["to_in_ports"][:2]))
+    return 0
+
+
 def cmd_info(args) -> int:
     """Report what this launcher resolved — the one command that diagnoses
     a broken install (wrong toolkit root, missing data dir, missing snapshot)."""
@@ -770,6 +827,14 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--caveat", action="store_true",
                    help="print the cost-axis caveats first")
     s.set_defaults(func=cmd_costs)
+
+    s = sub.add_parser("composition",
+                       help="can declared unit combinations actually form?")
+    s.add_argument("--examples", action="store_true",
+                   help="print the declarations no port can satisfy")
+    s.add_argument("--caveat", action="store_true",
+                   help="print the composition caveats first")
+    s.set_defaults(func=cmd_composition)
 
     s = sub.add_parser("verify", help="run the end-to-end smoke test")
     s.set_defaults(func=cmd_verify)

@@ -90,6 +90,11 @@ def main() -> int:
         "GATE 12 — every connection latency cited; design abstractions carry none",
         [py, str(SCRIPTS / "check_connection_costs.py")])[0]))
 
+    # ---- Gate 13: composition semantics (stdlib only, runs in --quick) ----
+    results.append(("gate13 composition", run(
+        "GATE 13 — wiring resolves, ports complete, one-way declarations counted",
+        [py, str(SCRIPTS / "check_composition.py")])[0]))
+
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
         "GATE 9 — functional units + connection types + composer fail-closed",
