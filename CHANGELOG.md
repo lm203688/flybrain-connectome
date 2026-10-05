@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.37.0` | the toolkit as a whole |
+| package | `2.38.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -18,6 +18,58 @@ The **schema version** is versioned separately from the **package version**:
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [2.38.0] — 2026-10-05
+
+### 连接类型代价轴：让「优化任何目标」有第二个可优化维度
+
+v2.37.0 转向的第一块基石是功能分类轴。第二块是中间件/连接方式这一层，
+按「效率与效果」补上**代价/时延轴**。
+
+**为什么必须做**：`PROJECT_VISION.md` 主张生成器可以「优化任何目标」，
+但 Phase 3 实测：优化器**只在结构一个维度上赢**（线成本 −84%），
+而核心的计算力主张**实测为负（0/7 拓扑优于随机）**。根因不在优化器，
+在词汇表：66 个连接类型只有 `delay_class`（`immediate`/`short`/`long` 三个
+符号值）和无单位的 `parameters`。**时延是类别、能耗缺席 → 唯一可交易的轴
+只剩结构。** 那个负结果是关于这套词汇表的，不是关于生物学的。
+
+**新增 `extract_connection_costs.py` + `connection_costs.json`**，按依据分级：
+
+| basis | 时延 | 出处 |
+|---|---|---|
+| 化学突触 | **0.5–4 ms** | Guyton & Hall 2008 p.570 给 0.5 ms 最小值；典型 0.5–4 ms |
+| 电突触 | **0.05–0.2 ms** | 通行引用 < 0.2 ms，常称近瞬时 |
+| 体积传递 | 10–1000 ms | 扩散云，**跨度本身就是机制** |
+| 逆行信使 | 1–60 ms | 慢于正向释放，快于体积扩散 |
+| 回路模式 / 宏观几何 / 可塑性规则 | **无 — `unknown`** | 不是接触点，模式的代价是涌现的 |
+
+**16/66 有时延，50 没有——这个分布本身就是结论。** 全部有时延的都是真实接触点
+（micro 9/10、electrical 3/7、modulatory 4/6）；20 个回路模式、13 个宏观几何、
+10 个可塑性规则**一个都没有**，因为对模式而言「单接触时延」不是定义良好的量
+——把成员的时延加起来，模式的时延自然得出。**能耗 66/66 全有**，
+因为能耗对模式可组合、时延不可组合。**这个不对称就是设计。**
+
+**21 个类型按规则不给时延。** 它们被标 `abstraction_only`：winner-take-all /
+half-center 振荡器是**设计模式不是生物接触点**；自突触在化学上就是化学突触，
+但作为*设计模式*没有文献能给出时延。首轮跑抽取器时**断言当场抓到 3 个**
+（`autapse_recurrent` / `gliotransmission_calcium_wave` /
+`mixed_electrical_chemical_synapse` 拿到了时延）——已改路由到无时延基。
+它们的 `delay_class` 保留在 `designed_cost` 下，**假设永不与测量混算**。
+时延是**区间不是点值**：跨度就是权衡，选快速突触就是拿可靠性去换。
+
+**GATE 12（`check_connection_costs.py`）** 守住这些：设计抽象获得时延 / 区间畸形 /
+最快电突触不快于最慢化学突触（轴存在的理由就是这个序）/ 有分级无引用 /
+任一类型丢失能耗条目 → 报红。**注入缺陷验证**：给 `autapse_recurrent`
+（`abstraction_only`）塞一个 0.5–4 ms 时延 → 报
+`abstraction_only type autapse_recurrent carries a latency`，退出 1。
+
+**没有编造任何数字**：所有时延都带文献出处（Guyton & Hall 2008 / Kandel 等），
+没被这些覆盖的一律 `unknown` 并说明为什么未知。能耗用相对三档
+（cheap / typical / expensive）而非焦耳——每脉冲焦耳数需要本库没有的
+细胞类型与温度修正，**错的绝对值比诚实的相对值更坏**。
+
+无新增连接类型/单元，CONNECTION_TYPES 仍 **66**、FUNCTIONAL_UNITS 仍 **115**。
+CLI `flybrain costs [--family] [--caveat]`。门禁 **12/12**。
 
 ## [2.37.0] — 2026-10-04
 
