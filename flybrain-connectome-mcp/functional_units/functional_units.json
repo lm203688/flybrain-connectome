@@ -422,9 +422,9 @@
     }
   },
   "stats": {
-    "functional_units": 115,
+    "functional_units": 116,
     "connection_types": 66,
-    "neural_members_referenced": 250,
+    "neural_members_referenced": 256,
     "systems": [
       "antennal_lobe",
       "antennal_mechanosensory",
@@ -454,6 +454,7 @@
       "leech_ganglion",
       "limbic",
       "locus_coeruleus",
+      "metacognition",
       "modulatory",
       "motor",
       "mushroom_body",
@@ -522,6 +523,202 @@
     "3. validate with compose_from_units(); it checks port type compatibility, required-port satisfaction and acyclicity policy."
   ],
   "units": [
+    {
+      "name": "prefrontal_metacognitive_unit",
+      "display": "前额叶元认知单元",
+      "function": "confidence_evaluation",
+      "system": "metacognition",
+      "description": "背侧前扣带皮层、双侧岛叶与背外侧前额叶编码客观不确定性与错误检测，腹内侧前额叶与前膝部扣带把决策相关信号聚合成主观信心，外侧额极负责把内在信心映射成可外显的判断报告。",
+      "members": [
+        {
+          "role": "dacc",
+          "neuron": "pfc_dorsal_accumbens",
+          "count_ratio": 0.22
+        },
+        {
+          "role": "insula",
+          "neuron": "pfc_insula",
+          "count_ratio": 0.18
+        },
+        {
+          "role": "dlpfc",
+          "neuron": "pfc_dorsolateral",
+          "count_ratio": 0.24
+        },
+        {
+          "role": "vmpfc",
+          "neuron": "pfc_ventromedial",
+          "count_ratio": 0.2
+        },
+        {
+          "role": "pgacc",
+          "neuron": "pfc_pregenual_accumbens",
+          "count_ratio": 0.1
+        },
+        {
+          "role": "fpl",
+          "neuron": "pfc_frontal_pole",
+          "count_ratio": 0.06
+        }
+      ],
+      "internal_wiring": [
+        {
+          "from": "dlpfc",
+          "to": "dacc",
+          "type": "feedforward_excitatory",
+          "weight": 0.8
+        },
+        {
+          "from": "dacc",
+          "to": "insula",
+          "type": "feedforward_excitatory",
+          "weight": 0.7
+        },
+        {
+          "from": "insula",
+          "to": "dacc",
+          "type": "feedback_inhibitory",
+          "weight": 0.4
+        },
+        {
+          "from": "vmpfc",
+          "to": "dlpfc",
+          "type": "feedforward_excitatory",
+          "weight": 0.6
+        },
+        {
+          "from": "pgacc",
+          "to": "vmpfc",
+          "type": "feedforward_inhibitory",
+          "weight": 0.5
+        },
+        {
+          "from": "fpl",
+          "to": "vmpfc",
+          "type": "feedforward_excitatory",
+          "weight": 0.5
+        },
+        {
+          "from": "dlpfc",
+          "to": "dlpfc",
+          "type": "recurrent_excitatory",
+          "weight": 0.4
+        },
+        {
+          "from": "dacc",
+          "to": "vmpfc",
+          "type": "mutual_inhibitory",
+          "weight": 0.3
+        }
+      ],
+      "ports": {
+        "in": [
+          {
+            "name": "evidence_in",
+            "type": "cortex.input",
+            "required": true
+          },
+          {
+            "name": "outcome_in",
+            "type": "basal_ganglia.value",
+            "required": false
+          }
+        ],
+        "out": [
+          {
+            "name": "confidence_out",
+            "type": "cortex.output",
+            "required": true
+          },
+          {
+            "name": "certainty_out",
+            "type": "cortex.feedback",
+            "required": false
+          }
+        ]
+      },
+      "size_range": [
+        200,
+        4000
+      ],
+      "motif_source": [
+        "feedback_inhibitory",
+        "feedforward_excitatory",
+        "feedforward_inhibitory",
+        "mutual_inhibitory",
+        "recurrent_excitatory"
+      ],
+      "capability": [
+        "confidence_estimate",
+        "self_monitor",
+        "metacognition",
+        "uncertainty_signal",
+        "confidence_calibration",
+        "error_monitor"
+      ],
+      "task_hint_pool": [
+        "confidence_report",
+        "self_evaluate",
+        "uncertainty_track",
+        "stop_deciding"
+      ],
+      "lead_task_hint": "confidence_evaluation",
+      "neurotransmitter": [
+        "glutamate",
+        "gaba"
+      ],
+      "species_source": [
+        "human",
+        "macaque",
+        "rat"
+      ],
+      "biological_reference": "Fleming & Dolan 2012; Bang & Fleming 2018; Bang et al. 2017; White & Engel 2014;Runyon et al. 2017; Fernandes et al. 2013; Vogels et al. 2015",
+      "composable_with": [],
+      "provenance": {
+        "class": "curated-cross-species",
+        "extracted_from_malecns": false,
+        "basis": "comparative-neuroscience literature, not a trained classifier",
+        "function_axis": {
+          "artifact": "function_coverage.json",
+          "categories": [
+            "metacognition"
+          ],
+          "vision_required_categories": [
+            "metacognition"
+          ],
+          "definitions": {
+            "metacognition": "estimates confidence or performance of the system itself"
+          },
+          "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
+          "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
+        },
+        "embodied_in_malecns": false,
+        "embodiment_basis": "members are ordinary neuron types, but from a species the MaleCNS v1.0 dataset does not cover, so no anchor exists to check",
+        "unanchored_reason": "taxon_no_malecns_data",
+        "evidence_weight": "textbook",
+        "n_literature_refs": 7
+      },
+      "jev_validation": {
+        "verdict": "PARTIAL",
+        "literature_p": 0.76,
+        "model_p": 0.53,
+        "evidence_score": 4,
+        "evidence_label": "preliminary",
+        "jev_fallback": false,
+        "validated_at": "2026-09-30T09:55:00+08:00",
+        "model_version": "jev-1.13.0"
+      },
+      "embodiment": {
+        "populations_anchored": 0,
+        "populations_total": 6,
+        "real_cells_anchored": 0,
+        "anchored": {},
+        "structural_support": [],
+        "support_resolution": null,
+        "regions": null,
+        "anchors_file": "malecns_anchors.json"
+      }
+    },
     {
       "name": "retinal_phototransduction_unit",
       "display": "视网膜光转导单元",
