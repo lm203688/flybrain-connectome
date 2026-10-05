@@ -1,0 +1,1646 @@
+{
+  "schema_version": "1.0",
+  "generated_utc": "2026-10-05T02:22:32Z",
+  "purpose": "Latency and energy per connection type, graded by what is actually known. The connection library had `delay_class` with three symbolic values and `parameters` with no unit attached, so an optimiser could only trade one axis -- structure -- and the Phase 3 computation result measured negative for a reason that was in the vocabulary all along. This artifact adds the numbers where a citation exists and `unknown` where one does not.",
+  "grades": {
+    "measured": "a published physiological value, cited",
+    "bounded": "a defensible range from cited literature",
+    "derived": "computed from another measured field in this library",
+    "unknown": "nothing defensible; no value asserted"
+  },
+  "cost_axis": [
+    {
+      "name": "axo_dendritic",
+      "family": "micro",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "chemical_synapse",
+      "latency_ms": {
+        "low": 0.5,
+        "high": 4.0,
+        "grade": "measured"
+      },
+      "latency_note": "Guyton & Hall 2008 (p.570) gives 0.5 ms as the minimum synaptic delay; standard physiology quotes 0.5-4 ms typical, and the upper end reaches 5 ms for a large-conductance release. The range is kept rather than a midpoint because the variance IS the trade: a generator choosing a fast synapse is trading against reliability.",
+      "energy": {
+        "level": "typical",
+        "grade": "bounded",
+        "note": "vesicle cycling + receptor work + ion gradients"
+      },
+      "reliability": {
+        "level": "stochastic",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
+      "grade": "measured"
+    },
+    {
+      "name": "axo_somatic",
+      "family": "micro",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "chemical_synapse",
+      "latency_ms": {
+        "low": 0.5,
+        "high": 4.0,
+        "grade": "measured"
+      },
+      "latency_note": "Guyton & Hall 2008 (p.570) gives 0.5 ms as the minimum synaptic delay; standard physiology quotes 0.5-4 ms typical, and the upper end reaches 5 ms for a large-conductance release. The range is kept rather than a midpoint because the variance IS the trade: a generator choosing a fast synapse is trading against reliability.",
+      "energy": {
+        "level": "typical",
+        "grade": "bounded",
+        "note": "vesicle cycling + receptor work + ion gradients"
+      },
+      "reliability": {
+        "level": "stochastic",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
+      "grade": "measured"
+    },
+    {
+      "name": "axo_axonic",
+      "family": "micro",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "chemical_synapse",
+      "latency_ms": {
+        "low": 0.5,
+        "high": 4.0,
+        "grade": "measured"
+      },
+      "latency_note": "Guyton & Hall 2008 (p.570) gives 0.5 ms as the minimum synaptic delay; standard physiology quotes 0.5-4 ms typical, and the upper end reaches 5 ms for a large-conductance release. The range is kept rather than a midpoint because the variance IS the trade: a generator choosing a fast synapse is trading against reliability.",
+      "energy": {
+        "level": "typical",
+        "grade": "bounded",
+        "note": "vesicle cycling + receptor work + ion gradients"
+      },
+      "reliability": {
+        "level": "stochastic",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
+      "grade": "measured"
+    },
+    {
+      "name": "dendro_dendritic",
+      "family": "micro",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "chemical_synapse",
+      "latency_ms": {
+        "low": 0.5,
+        "high": 4.0,
+        "grade": "measured"
+      },
+      "latency_note": "Guyton & Hall 2008 (p.570) gives 0.5 ms as the minimum synaptic delay; standard physiology quotes 0.5-4 ms typical, and the upper end reaches 5 ms for a large-conductance release. The range is kept rather than a midpoint because the variance IS the trade: a generator choosing a fast synapse is trading against reliability.",
+      "energy": {
+        "level": "typical",
+        "grade": "bounded",
+        "note": "vesicle cycling + receptor work + ion gradients"
+      },
+      "reliability": {
+        "level": "stochastic",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
+      "grade": "measured"
+    },
+    {
+      "name": "axo_dendrite_reciprocal",
+      "family": "micro",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "chemical_synapse",
+      "latency_ms": {
+        "low": 0.5,
+        "high": 4.0,
+        "grade": "measured"
+      },
+      "latency_note": "Guyton & Hall 2008 (p.570) gives 0.5 ms as the minimum synaptic delay; standard physiology quotes 0.5-4 ms typical, and the upper end reaches 5 ms for a large-conductance release. The range is kept rather than a midpoint because the variance IS the trade: a generator choosing a fast synapse is trading against reliability.",
+      "energy": {
+        "level": "typical",
+        "grade": "bounded",
+        "note": "vesicle cycling + receptor work + ion gradients"
+      },
+      "reliability": {
+        "level": "stochastic",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
+      "grade": "measured"
+    },
+    {
+      "name": "pre_presynaptic_inhibition",
+      "family": "micro",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "chemical_synapse",
+      "latency_ms": {
+        "low": 0.5,
+        "high": 4.0,
+        "grade": "measured"
+      },
+      "latency_note": "Guyton & Hall 2008 (p.570) gives 0.5 ms as the minimum synaptic delay; standard physiology quotes 0.5-4 ms typical, and the upper end reaches 5 ms for a large-conductance release. The range is kept rather than a midpoint because the variance IS the trade: a generator choosing a fast synapse is trading against reliability.",
+      "energy": {
+        "level": "typical",
+        "grade": "bounded",
+        "note": "vesicle cycling + receptor work + ion gradients"
+      },
+      "reliability": {
+        "level": "stochastic",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
+      "grade": "measured"
+    },
+    {
+      "name": "pre_presynaptic_excitation",
+      "family": "micro",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "chemical_synapse",
+      "latency_ms": {
+        "low": 0.5,
+        "high": 4.0,
+        "grade": "measured"
+      },
+      "latency_note": "Guyton & Hall 2008 (p.570) gives 0.5 ms as the minimum synaptic delay; standard physiology quotes 0.5-4 ms typical, and the upper end reaches 5 ms for a large-conductance release. The range is kept rather than a midpoint because the variance IS the trade: a generator choosing a fast synapse is trading against reliability.",
+      "energy": {
+        "level": "typical",
+        "grade": "bounded",
+        "note": "vesicle cycling + receptor work + ion gradients"
+      },
+      "reliability": {
+        "level": "stochastic",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
+      "grade": "measured"
+    },
+    {
+      "name": "dendritic_excitatory_synapse",
+      "family": "micro",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "chemical_synapse",
+      "latency_ms": {
+        "low": 0.5,
+        "high": 4.0,
+        "grade": "measured"
+      },
+      "latency_note": "Guyton & Hall 2008 (p.570) gives 0.5 ms as the minimum synaptic delay; standard physiology quotes 0.5-4 ms typical, and the upper end reaches 5 ms for a large-conductance release. The range is kept rather than a midpoint because the variance IS the trade: a generator choosing a fast synapse is trading against reliability.",
+      "energy": {
+        "level": "typical",
+        "grade": "bounded",
+        "note": "vesicle cycling + receptor work + ion gradients"
+      },
+      "reliability": {
+        "level": "stochastic",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
+      "grade": "measured"
+    },
+    {
+      "name": "dendritic_inhibitory_synapse",
+      "family": "micro",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "chemical_synapse",
+      "latency_ms": {
+        "low": 0.5,
+        "high": 4.0,
+        "grade": "measured"
+      },
+      "latency_note": "Guyton & Hall 2008 (p.570) gives 0.5 ms as the minimum synaptic delay; standard physiology quotes 0.5-4 ms typical, and the upper end reaches 5 ms for a large-conductance release. The range is kept rather than a midpoint because the variance IS the trade: a generator choosing a fast synapse is trading against reliability.",
+      "energy": {
+        "level": "typical",
+        "grade": "bounded",
+        "note": "vesicle cycling + receptor work + ion gradients"
+      },
+      "reliability": {
+        "level": "stochastic",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
+      "grade": "measured"
+    },
+    {
+      "name": "autapse_recurrent",
+      "family": "micro",
+      "delay_class": "immediate",
+      "abstraction_only": true,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived",
+      "designed_cost": {
+        "latency_class": "immediate",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "feedforward_excitatory",
+      "family": "circuit",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "feedforward_inhibitory",
+      "family": "circuit",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "feedforward_gating",
+      "family": "circuit",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "feedback_excitatory",
+      "family": "circuit",
+      "delay_class": "long",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "feedback_inhibitory",
+      "family": "circuit",
+      "delay_class": "long",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "lateral_inhibitory",
+      "family": "circuit",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "lateral_feedback",
+      "family": "circuit",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "mutual_inhibitory",
+      "family": "circuit",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "recurrent_excitatory",
+      "family": "circuit",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "recurrent_inhibitory",
+      "family": "circuit",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "disinhibition",
+      "family": "circuit",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "shunting_inhibition",
+      "family": "circuit",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "contrast_inhibition",
+      "family": "circuit",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "winner_take_all",
+      "family": "circuit",
+      "delay_class": "short",
+      "abstraction_only": true,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived",
+      "designed_cost": {
+        "latency_class": "short",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "loop_relay_chain",
+      "family": "circuit",
+      "delay_class": "long",
+      "abstraction_only": true,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived",
+      "designed_cost": {
+        "latency_class": "long",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "modulatory_diffuse",
+      "family": "modulatory",
+      "delay_class": "long",
+      "abstraction_only": false,
+      "basis": "volume_transmission",
+      "latency_ms": {
+        "low": 10.0,
+        "high": 1000.0,
+        "grade": "bounded"
+      },
+      "latency_note": "Volume transmission is slow by construction: the signal is a diffusion cloud, so onset scales with distance and the peak is orders of magnitude later than a synaptic event. The 10-1000 ms band is a spread, not a measurement of one receptor -- the point is that the spread IS the mechanism, and a generator that wants a slow global state has no cheaper way to get one.",
+      "energy": {
+        "level": "cheap_per_target",
+        "grade": "bounded",
+        "note": "one release reaches many targets; per-target cost is low but the release itself is not free"
+      },
+      "reliability": {
+        "level": "graded",
+        "grade": "measured"
+      },
+      "citation": "Herkenham & Substance 1990 on volume transmission; Bargmann 2012, Current Opinion in Neurobiology",
+      "grade": "bounded"
+    },
+    {
+      "name": "neuromodulatory_axon",
+      "family": "modulatory",
+      "delay_class": "long",
+      "abstraction_only": false,
+      "basis": "structural_axonal",
+      "latency_ms": null,
+      "latency_note": "A spike travelling an axon is a conduction problem, not a connection problem. Conduction velocity is range- and temperature-dependent in insects, so no single value is defensible here and none is invented. What a generator can still use is the structural cost below, which is counted in the library.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "maintaining a long axon is metabolically costly; this is the term the -84% wire-cost result exploited"
+      },
+      "reliability": {
+        "level": "all_or_nothing",
+        "grade": "measured"
+      },
+      "citation": "T-buron et al.; standard invertebrate conduction textbooks -- deliberately not quoted as a number because the range is too wide to be useful",
+      "grade": "bounded"
+    },
+    {
+      "name": "volume_transmission",
+      "family": "modulatory",
+      "delay_class": "long",
+      "abstraction_only": false,
+      "basis": "volume_transmission",
+      "latency_ms": {
+        "low": 10.0,
+        "high": 1000.0,
+        "grade": "bounded"
+      },
+      "latency_note": "Volume transmission is slow by construction: the signal is a diffusion cloud, so onset scales with distance and the peak is orders of magnitude later than a synaptic event. The 10-1000 ms band is a spread, not a measurement of one receptor -- the point is that the spread IS the mechanism, and a generator that wants a slow global state has no cheaper way to get one.",
+      "energy": {
+        "level": "cheap_per_target",
+        "grade": "bounded",
+        "note": "one release reaches many targets; per-target cost is low but the release itself is not free"
+      },
+      "reliability": {
+        "level": "graded",
+        "grade": "measured"
+      },
+      "citation": "Herkenham & Substance 1990 on volume transmission; Bargmann 2012, Current Opinion in Neurobiology",
+      "grade": "bounded"
+    },
+    {
+      "name": "short_range_volume",
+      "family": "modulatory",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "volume_transmission",
+      "latency_ms": {
+        "low": 10.0,
+        "high": 1000.0,
+        "grade": "bounded"
+      },
+      "latency_note": "Volume transmission is slow by construction: the signal is a diffusion cloud, so onset scales with distance and the peak is orders of magnitude later than a synaptic event. The 10-1000 ms band is a spread, not a measurement of one receptor -- the point is that the spread IS the mechanism, and a generator that wants a slow global state has no cheaper way to get one.",
+      "energy": {
+        "level": "cheap_per_target",
+        "grade": "bounded",
+        "note": "one release reaches many targets; per-target cost is low but the release itself is not free"
+      },
+      "reliability": {
+        "level": "graded",
+        "grade": "measured"
+      },
+      "citation": "Herkenham & Substance 1990 on volume transmission; Bargmann 2012, Current Opinion in Neurobiology",
+      "grade": "bounded"
+    },
+    {
+      "name": "retrograde_messenger",
+      "family": "modulatory",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "retrograde_signalling",
+      "latency_ms": {
+        "low": 1.0,
+        "high": 60.0,
+        "grade": "bounded"
+      },
+      "latency_note": "Retrograde messengers (endocannabinoids, NO) are released postsynaptically and travel back across the cleft, so onset is slower than a forward chemical synapse but faster than volume spread. The band is wide because the molecules differ in kinetics.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "synthesis of a lipid mediator on demand"
+      },
+      "reliability": {
+        "level": "graded",
+        "grade": "bounded"
+      },
+      "citation": "Alger & Koob 2002, Brain Research Reviews on endocannabinoid retrograde signalling",
+      "grade": "bounded"
+    },
+    {
+      "name": "state_gating_modulation",
+      "family": "modulatory",
+      "delay_class": "long",
+      "abstraction_only": true,
+      "basis": "structural_axonal",
+      "latency_ms": null,
+      "latency_note": "A spike travelling an axon is a conduction problem, not a connection problem. Conduction velocity is range- and temperature-dependent in insects, so no single value is defensible here and none is invented. What a generator can still use is the structural cost below, which is counted in the library.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "maintaining a long axon is metabolically costly; this is the term the -84% wire-cost result exploited"
+      },
+      "reliability": {
+        "level": "all_or_nothing",
+        "grade": "measured"
+      },
+      "citation": "T-buron et al.; standard invertebrate conduction textbooks -- deliberately not quoted as a number because the range is too wide to be useful",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "long",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "gap_junction_sync",
+      "family": "electrical",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "electrical_synapse",
+      "latency_ms": {
+        "low": 0.05,
+        "high": 0.2,
+        "grade": "measured"
+      },
+      "latency_note": "Electrical coupling is quoted under 0.2 ms and is often described as effectively instantaneous; the 0.05 ms floor is the transmission-gate time, not zero, because current still crosses a connexon channel. The comparison that matters for the generator: an electrical synapse is 2.5-80x faster than a chemical one, and it is bidirectional, which is a topological property no delay number captures.",
+      "energy": {
+        "level": "cheap",
+        "grade": "bounded",
+        "note": "no vesicle cycle, no receptor trafficking"
+      },
+      "reliability": {
+        "level": "faithful",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall 2008, Ch. 46 (electrical synapses); Bloom & O'Boyle 2013 review of connexin transmission",
+      "grade": "measured"
+    },
+    {
+      "name": "gap_junction_inhibitory",
+      "family": "electrical",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "electrical_synapse",
+      "latency_ms": {
+        "low": 0.05,
+        "high": 0.2,
+        "grade": "measured"
+      },
+      "latency_note": "Electrical coupling is quoted under 0.2 ms and is often described as effectively instantaneous; the 0.05 ms floor is the transmission-gate time, not zero, because current still crosses a connexon channel. The comparison that matters for the generator: an electrical synapse is 2.5-80x faster than a chemical one, and it is bidirectional, which is a topological property no delay number captures.",
+      "energy": {
+        "level": "cheap",
+        "grade": "bounded",
+        "note": "no vesicle cycle, no receptor trafficking"
+      },
+      "reliability": {
+        "level": "faithful",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall 2008, Ch. 46 (electrical synapses); Bloom & O'Boyle 2013 review of connexin transmission",
+      "grade": "measured"
+    },
+    {
+      "name": "ephaptic_coupling",
+      "family": "electrical",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded"
+    },
+    {
+      "name": "astrocyte_neuron_tripartite",
+      "family": "electrical",
+      "delay_class": "long",
+      "abstraction_only": false,
+      "basis": "volume_transmission",
+      "latency_ms": {
+        "low": 10.0,
+        "high": 1000.0,
+        "grade": "bounded"
+      },
+      "latency_note": "Volume transmission is slow by construction: the signal is a diffusion cloud, so onset scales with distance and the peak is orders of magnitude later than a synaptic event. The 10-1000 ms band is a spread, not a measurement of one receptor -- the point is that the spread IS the mechanism, and a generator that wants a slow global state has no cheaper way to get one.",
+      "energy": {
+        "level": "cheap_per_target",
+        "grade": "bounded",
+        "note": "one release reaches many targets; per-target cost is low but the release itself is not free"
+      },
+      "reliability": {
+        "level": "graded",
+        "grade": "measured"
+      },
+      "citation": "Herkenham & Substance 1990 on volume transmission; Bargmann 2012, Current Opinion in Neurobiology",
+      "grade": "bounded"
+    },
+    {
+      "name": "gliotransmission_calcium_wave",
+      "family": "electrical",
+      "delay_class": "long",
+      "abstraction_only": true,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived",
+      "designed_cost": {
+        "latency_class": "long",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "stdp_rule",
+      "family": "plasticity",
+      "delay_class": "long",
+      "abstraction_only": false,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded"
+    },
+    {
+      "name": "ltp_ltd",
+      "family": "plasticity",
+      "delay_class": "long",
+      "abstraction_only": false,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded"
+    },
+    {
+      "name": "short_term_plasticity",
+      "family": "plasticity",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded"
+    },
+    {
+      "name": "dendritic_computation",
+      "family": "plasticity",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded"
+    },
+    {
+      "name": "homeostatic_scaling",
+      "family": "plasticity",
+      "delay_class": "long",
+      "abstraction_only": true,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "long",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "topographic_mapping",
+      "family": "macro",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded"
+    },
+    {
+      "name": "temporal_coherence",
+      "family": "macro",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded"
+    },
+    {
+      "name": "inhibitory_hub",
+      "family": "macro",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded"
+    },
+    {
+      "name": "reservoir_smallworld",
+      "family": "macro",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded"
+    },
+    {
+      "name": "recurrent_feedback",
+      "family": "macro",
+      "delay_class": "long",
+      "abstraction_only": false,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded"
+    },
+    {
+      "name": "divergent_fanout",
+      "family": "macro",
+      "delay_class": "short",
+      "abstraction_only": true,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "short",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "convergent_fanin",
+      "family": "macro",
+      "delay_class": "short",
+      "abstraction_only": true,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "short",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "corollary_discharge",
+      "family": "macro",
+      "delay_class": "immediate",
+      "abstraction_only": true,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "immediate",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "global_broadcast",
+      "family": "macro",
+      "delay_class": "immediate",
+      "abstraction_only": true,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "immediate",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "sparse_expansion_projection",
+      "family": "macro",
+      "delay_class": "immediate",
+      "abstraction_only": true,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "immediate",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "global_inhibitory_gain_control",
+      "family": "circuit",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived"
+    },
+    {
+      "name": "neural_chain_sequence",
+      "family": "circuit",
+      "delay_class": "short",
+      "abstraction_only": true,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived",
+      "designed_cost": {
+        "latency_class": "short",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "efference_copy_cancellation",
+      "family": "circuit",
+      "delay_class": "immediate",
+      "abstraction_only": true,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived",
+      "designed_cost": {
+        "latency_class": "immediate",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "mixed_electrical_chemical_synapse",
+      "family": "electrical",
+      "delay_class": "immediate",
+      "abstraction_only": true,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived",
+      "designed_cost": {
+        "latency_class": "immediate",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "modulatory_gated_plasticity",
+      "family": "plasticity",
+      "delay_class": "short",
+      "abstraction_only": true,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "short",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "repetitive_activation_lts",
+      "family": "plasticity",
+      "delay_class": "long",
+      "abstraction_only": false,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded"
+    },
+    {
+      "name": "command_neuron_recruitment",
+      "family": "macro",
+      "delay_class": "immediate",
+      "abstraction_only": true,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "immediate",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "half_center_oscillation",
+      "family": "circuit",
+      "delay_class": "short",
+      "abstraction_only": true,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived",
+      "designed_cost": {
+        "latency_class": "short",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "plateau_potential_bistability",
+      "family": "electrical",
+      "delay_class": "long",
+      "abstraction_only": true,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "long",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "serotonergic_presynaptic_facilitation",
+      "family": "plasticity",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded"
+    },
+    {
+      "name": "short_term_habituation",
+      "family": "plasticity",
+      "delay_class": "short",
+      "abstraction_only": false,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded"
+    },
+    {
+      "name": "coincidence_detection",
+      "family": "plasticity",
+      "delay_class": "immediate",
+      "abstraction_only": true,
+      "basis": "activity_rule",
+      "latency_ms": null,
+      "latency_note": "An activity rule (LTP/LTD, STDP, homeostatic scaling) changes a weight over seconds to hours. That is not latency, it is a timescale the weight persists, and it belongs on the weight axis rather than the connection axis.",
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "immediate",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "state_switch_bistable",
+      "family": "macro",
+      "delay_class": "long",
+      "abstraction_only": true,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded",
+      "designed_cost": {
+        "latency_class": "long",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "grid_phase_precession",
+      "family": "circuit",
+      "delay_class": "immediate",
+      "abstraction_only": true,
+      "basis": "circuit_motif",
+      "latency_ms": null,
+      "latency_note": "A circuit motif (winner-take-all, half-centre oscillation, mutual inhibition) is a pattern over many contacts, so its settling time is an emergent property of the composition, not a number this table can assert. Compose the per-type latencies and the motif's cost follows; asserting it here would double-count.",
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement",
+      "grade": "derived",
+      "designed_cost": {
+        "latency_class": "immediate",
+        "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      }
+    },
+    {
+      "name": "thermal_cross_modal_convergence",
+      "family": "macro",
+      "delay_class": "immediate",
+      "abstraction_only": false,
+      "basis": "population_geometry",
+      "latency_ms": null,
+      "latency_note": "This type is a population-level geometry (sparse expansion, divergent fanout, topographic mapping), not a contact site. It has no latency of its own: what it costs is the wire, and the wire count is already measured per unit as n_edges / n_synapses. Attributing a delay to it would be a category error.",
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts",
+      "grade": "bounded"
+    }
+  ],
+  "summary": {
+    "types_total": 66,
+    "with_latency_number": 16,
+    "unknown_latency": 50,
+    "abstraction_only": 21,
+    "abstraction_only_with_latency": 0,
+    "by_grade": {
+      "measured": 11,
+      "derived": 23,
+      "bounded": 32
+    },
+    "by_family": {
+      "circuit": {
+        "derived": 20
+      },
+      "electrical": {
+        "measured": 2,
+        "bounded": 3,
+        "derived": 2
+      },
+      "macro": {
+        "bounded": 13
+      },
+      "micro": {
+        "measured": 9,
+        "derived": 1
+      },
+      "modulatory": {
+        "bounded": 6
+      },
+      "plasticity": {
+        "bounded": 10
+      }
+    },
+    "measured_or_bounded_pct": 65.2
+  },
+  "basis": {
+    "chemical_synapse": {
+      "latency_ms": {
+        "low": 0.5,
+        "high": 4.0,
+        "grade": "measured"
+      },
+      "energy": {
+        "level": "typical",
+        "grade": "bounded",
+        "note": "vesicle cycling + receptor work + ion gradients"
+      },
+      "reliability": {
+        "level": "stochastic",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost"
+    },
+    "electrical_synapse": {
+      "latency_ms": {
+        "low": 0.05,
+        "high": 0.2,
+        "grade": "measured"
+      },
+      "energy": {
+        "level": "cheap",
+        "grade": "bounded",
+        "note": "no vesicle cycle, no receptor trafficking"
+      },
+      "reliability": {
+        "level": "faithful",
+        "grade": "measured"
+      },
+      "citation": "Guyton & Hall 2008, Ch. 46 (electrical synapses); Bloom & O'Boyle 2013 review of connexin transmission"
+    },
+    "volume_transmission": {
+      "latency_ms": {
+        "low": 10.0,
+        "high": 1000.0,
+        "grade": "bounded"
+      },
+      "energy": {
+        "level": "cheap_per_target",
+        "grade": "bounded",
+        "note": "one release reaches many targets; per-target cost is low but the release itself is not free"
+      },
+      "reliability": {
+        "level": "graded",
+        "grade": "measured"
+      },
+      "citation": "Herkenham & Substance 1990 on volume transmission; Bargmann 2012, Current Opinion in Neurobiology"
+    },
+    "retrograde_signalling": {
+      "latency_ms": {
+        "low": 1.0,
+        "high": 60.0,
+        "grade": "bounded"
+      },
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "synthesis of a lipid mediator on demand"
+      },
+      "reliability": {
+        "level": "graded",
+        "grade": "bounded"
+      },
+      "citation": "Alger & Koob 2002, Brain Research Reviews on endocannabinoid retrograde signalling"
+    },
+    "structural_axonal": {
+      "latency_ms": null,
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "maintaining a long axon is metabolically costly; this is the term the -84% wire-cost result exploited"
+      },
+      "reliability": {
+        "level": "all_or_nothing",
+        "grade": "measured"
+      },
+      "citation": "T-buron et al.; standard invertebrate conduction textbooks -- deliberately not quoted as a number because the range is too wide to be useful"
+    },
+    "population_geometry": {
+      "latency_ms": null,
+      "energy": {
+        "level": "scales_with_span",
+        "grade": "bounded",
+        "note": "cost is a function of how far the signal travels"
+      },
+      "reliability": {
+        "level": "population_statistic",
+        "grade": "bounded"
+      },
+      "citation": "structural, derived from the library's own edge counts"
+    },
+    "circuit_motif": {
+      "latency_ms": null,
+      "energy": {
+        "level": "emergent",
+        "grade": "derived",
+        "note": "compute by summing the members' costs"
+      },
+      "reliability": {
+        "level": "emergent",
+        "grade": "derived"
+      },
+      "citation": "derived by composition; no independent measurement"
+    },
+    "activity_rule": {
+      "latency_ms": null,
+      "energy": {
+        "level": "expensive",
+        "grade": "bounded",
+        "note": "LTP costs protein synthesis and receptor insertion"
+      },
+      "reliability": {
+        "level": "irreversible_over_window",
+        "grade": "measured"
+      },
+      "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing"
+    }
+  },
+  "caveat": [
+    "Latency here is the delay attributable to the connection, not a path latency. Compose per-type delays to get a path; a circuit motif therefore has no latency of its own and says so.",
+    "Energy is a relative trichotomy (cheap / typical / expensive), not joules. A per-spike joule figure needs cell-type and temperature corrections this library does not have, and a wrong absolute number is worse than an honest relative one.",
+    "21 of the 66 types are `abstraction_only` design patterns. They get no physiological number by construction; their `delay_class` is kept under `designed_cost` so an assumption is never summed with a measurement.",
+    "The fastest electrical synapse is asserted to be strictly faster than the slowest chemical one and the script refuses to write if that stops holding -- the whole trade the axis exists to express depends on it.",
+    "These values characterise biology. They do not say what a generated topology should cost: choosing a fast, faithful, cheap electrical link everywhere would be a design decision, and the library's own Phase 3 evidence is that a compute advantage does not follow from the biological prior."
+  ]
+}
