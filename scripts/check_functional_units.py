@@ -266,7 +266,11 @@ def main() -> int:
 
     # ---------------------------------------------------------------- 6
     # 115 = 103 curated + 4 C. elegans + 8 Drosophila larva (v2.29.0).
-    check("unit count is 115", len(units) == 115, str(len(units)))
+    # v2.41.0: 115 -> 116, prefrontal_metacognitive_unit.  The count is a
+    # literal rather than a derived expectation on purpose -- a gate that
+    # recomputes what it is checking is not a gate -- so growing the library
+    # means moving this number, which is exactly the friction it should have.
+    check("unit count is 116", len(units) == 116, str(len(units)))
     check("connection-type count is 66", len(conns) == 66, str(len(conns)))
     used = {w["type"] for u in units for w in u["internal_wiring"]}
     fams = {c["family"] for c in conns}
