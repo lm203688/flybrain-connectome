@@ -124,6 +124,38 @@ def main() -> int:
         warns.append("PROJECT_VISION.md not found; cannot cross-check the "
                      "required set against the source of truth")
 
+    # ---- 3b. the taxon split must be stated, and must match the matrix ---- #
+    # `covered` counts units, so a category carried by one taxon reads as
+    # covered even though it is a single implementation.  The cross-taxon
+    # split is the honest measure of whether the library generalises, and at
+    # v2.41.0 only ONE of fifteen required categories is carried by three or
+    # more taxa.  Recording that is the point; the gate requires it to be
+    # derived rather than asserted, and it must not silently improve.
+    s_ = cov.get("summary", {})
+    single = s_.get("vision_required_single_taxon")
+    multi = s_.get("vision_required_three_plus_taxa")
+    if single is None or multi is None:
+        fails.append("summary does not report the taxon split; a category with "
+                     "one taxon must not read as covered without saying so")
+    else:
+        derived_single = {r["category"] for r in required
+                          if (r.get("species") or 0) < 3}
+        derived_multi = {r["category"] for r in required
+                         if (r.get("species") or 0) >= 3}
+        check(set(single) == derived_single,
+              "vision_required_single_taxon (%d) disagrees with the matrix (%d)"
+              % (len(single), len(derived_single)))
+        check(set(multi) == derived_multi,
+              "vision_required_three_plus_taxa (%d) disagrees with the matrix "
+              "(%d)" % (len(multi), len(derived_multi)))
+        check(not (set(single) & set(multi)),
+              "a category is reported as both single-taxon and 3+-taxon")
+        print("  taxon breadth: %d of %d required categories span 3+ taxa; "
+              "%d are single-taxon implementations"
+              % (len(multi), len(required), len(single)))
+        if single:
+            print("    single-taxon: %s" % ", ".join(sorted(single)))
+
     # ---- 4. per-unit tagging must cover every unit exactly once ------------ #
     lib = cov.get("library", {})
     tagged = lib.get("units_with_any_category")
