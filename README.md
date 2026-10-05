@@ -721,6 +721,41 @@ kept under `designed_cost` so an assumption is never summed with a measurement.
 Latency is a **range, not a point**: the spread is the trade, since choosing a
 fast synapse trades against reliability.
 
+**Does the axis actually steer an optimiser? (v2.39.0)** Data nobody optimises
+over is decoration, so `cost_aware_optimization_experiment.py` runs the same GA
+twice — same space, same budget, same evaluation seed — changing only the
+objective, and asks whether the latency penalty actually lowers latency.
+
+**At unit granularity it cannot be tested, and that is a measured fact:** only
+**14 of 115 units** have every connection type on the latency axis. The other 101
+carry unknown-latency types with a **median unknown share of 100%**, so a
+5–6 unit organism almost always contains one and has no latency figure at all.
+
+**At connection-type granularity it works.** With a fixed 6-edge budget:
+
+| | struct_only | cost_aware |
+|---|---|---|
+| edges | 6.00 | **6.00** (unchanged) |
+| latency | 1536.62 ms | **16.40 ms (−98.9%)** |
+| energy | 0.414 | **0.383 (−7.4%)** |
+
+A 99% latency cut bought with **no extra wire and less energy** — a Pareto
+improvement, because the fast types (electrical, 0.05–0.2 ms) are also the cheap
+ones. Across four parameter settings: k=6 gives −98.9% twice identically, k=8
+gives −51.2%, and **k=10 gives +73% — the axis stops working**, because 16
+latency-bearing types cannot fill a 10-type candidate from the fast end. The
+capacity boundary is in the artifact rather than averaged away.
+
+Three measurement holes were found by the optimiser, all of them mine:
+treating `unknown` as 0 ms (so the cheapest way to win was to select what cannot
+be measured — reported as a bogus −99.9%); charging it the slowest latency
+instead (GA learned to *add* unmeasured types, and latency rose 16–19% across
+three runs); and a floating candidate size (GA shrank every candidate to one
+type and reported a 99.9% win by deleting the topology). The fix in all three is
+the same: an unmeasured type is **incomparable**, not cheap and not expensive,
+so topologies containing one are left out of the latency ranking, and the
+candidate size is asserted rather than assumed.
+
 **GATE 12** enforces this. It fails when a design abstraction gains a latency,
 when a range is malformed, when the fastest electrical is not strictly faster
 than the slowest chemical (the trade the axis exists to express), when a graded

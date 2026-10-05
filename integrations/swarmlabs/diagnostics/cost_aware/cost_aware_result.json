@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "purpose": "Test whether the connection cost axis gives the optimiser something to trade. v2.38.0 added cited latency and energy per connection type; an axis nobody optimises over is decoration. Two runs, same space, same budget, same evaluation seed, one objective changed.",
+  "method": {
+    "objective_a": "wire cost + capability coverage (the Phase 3 shape)",
+    "objective_b": "objective A + latency penalty + energy penalty",
+    "seeds": 8,
+    "generations": 60,
+    "population": 40,
+    "evaluation_seed": 7,
+    "search_space": "unit names whose internal wiring names connection types"
+  },
+  "results": {
+    "identical_topology_rate": 0.0,
+    "struct_only": {
+      "edges_mean": 31.62,
+      "edges_sd": 0.99,
+      "latency_ms_mean": 0.0,
+      "energy_mean": 0.512,
+      "fitness_mean": 1.2349
+    },
+    "cost_aware": {
+      "edges_mean": 31.25,
+      "edges_sd": 0.83,
+      "latency_ms_mean": 0.0,
+      "energy_mean": 0.425,
+      "fitness_mean": 1.1499
+    },
+    "latency_change_pct": 0.0,
+    "edge_change_pct": 1.19
+  },
+  "type_granularity": {
+    "note": "Unit granularity is where the library's own units live and it is NOT testable: only 14 of 115 units have every connection type on the latency axis. The type-level run is the one with authority, and the two are never pooled.",
+    "latency_bearing_types": 16,
+    "k": 6,
+    "struct_only": {
+      "edges": 6.0,
+      "latency_ms": 1536.62,
+      "energy": 0.414
+    },
+    "cost_aware": {
+      "edges": 6.0,
+      "latency_ms": 16.4,
+      "energy": 0.383
+    },
+    "latency_change_pct": 98.93,
+    "identical_topology_rate": 0.0,
+    "axis_works": true
+  },
+  "verdict": "WEAK: the two objectives never picked the same organism, but neither is better on latency. The axis reshuffles the search without steering it, which is noise dressed as a result.",
+  "axis_works": false,
+  "direction_check": {
+    "note": "The claim under test is 'the axis steers the optimiser'. A run where the latency penalty ends up with HIGHER latency has failed regardless of how many seeds picked a different topology.",
+    "latency_improved": false,
+    "latency_change_pct": 0.0,
+    "wire_cost_change_pct": 1.19,
+    "bought_latency_with_wire": false,
+    "struct_only_unranked": 8,
+    "cost_aware_unranked": 8,
+    "ranked_struct_only": 0,
+    "ranked_cost_aware": 0
+  },
+  "caveat": [
+    "This measures whether the OPTIMISER RESPONDS to the axis, not whether the outcome beats biology. Phase 3's negative computation result is untouched by this script and nothing here revises it.",
+    "Latency is summed from cited ranges, so every figure is a band. A topology containing an `unknown`-latency type has no latency figure and is reported as such, never assigned a default.",
+    "The two fitness values are NOT comparable across objectives: each is normalised inside its own objective, so `cost_aware` scores lower by construction (it carries two extra penalty terms). Only the topologies and the axis values are compared.",
+    "The search space is unit names, not connection types. A future version should let the GA pick connection types directly; this one can only trade at the granularity the unit library offers."
+  ]
+}
