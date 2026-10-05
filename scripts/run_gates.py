@@ -85,6 +85,11 @@ def main() -> int:
         "GATE 11 — PROJECT_VISION function coverage measured, gaps declared",
         [py, str(SCRIPTS / "check_function_coverage.py")])[0]))
 
+    # ---- Gate 12: the connection cost axis (stdlib only, runs in --quick) ----
+    results.append(("gate12 connection costs", run(
+        "GATE 12 — every connection latency cited; design abstractions carry none",
+        [py, str(SCRIPTS / "check_connection_costs.py")])[0]))
+
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
         "GATE 9 — functional units + connection types + composer fail-closed",
