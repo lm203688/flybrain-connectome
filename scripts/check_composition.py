@@ -115,18 +115,49 @@ def main() -> int:
             else:
                 one_way_bad.append(rec)
 
-    # ---- 4. the builder must not be acting on unchecked declarations ---- #
+    # ---- 4. the builder must not emit an unreachable edge ---------------- #
+    # v2.41.0.  This used to be a note.  The builder emitted every
+    # composable_with entry as a starter edge, so the 97 declarations no port
+    # can satisfy were becoming edges; now the builder checks the interface and
+    # the gate requires it to keep doing so.  `strict=False` remains as an
+    # escape hatch and is not what the default path uses.
     if BUILDER.exists():
         src = BUILDER.read_text(encoding="utf-8")
         if "composable_with" in src and "declared_composable" in src:
-            print("note: functional_units.py builds starter_edges from "
-                  "composable_with with reason=declared_composable and does "
-                  "not verify reciprocity or port compatibility; %d one-way and "
-                  "%d unreachable declarations flow through it."
-                  % (len(one_way_ok) + len(one_way_bad), 0))
-            print("      GATE 13 records them; it does not change the builder. "
-                  "Making the builder require reciprocity is a behaviour change "
-                  "and belongs in its own release.")
+            for needle, msg in (
+                ("def _composable", "the builder has no interface check"),
+                ("skipped_edges", "the builder does not record skipped edges"),
+                ("strict: bool = True", "the interface check is not the default"),
+            ):
+                if needle not in src:
+                    fails.append("%s: %s (looked for %r)"
+                                 % (BUILDER.name, msg, needle))
+            print("builder check: interface gate present, skipped edges "
+                  "recorded, strict is the default")
+        # Behavioural check, not a source check: run it and confirm the drop
+        # actually happens.
+        try:
+            import importlib.util
+            spec = importlib.util.spec_from_file_location(
+                "_fu_gate13", BUILDER)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            strict = mod.suggest_composition("memory")
+            legacy = mod.suggest_composition("memory", strict=False)
+            if len(strict["starter_edges"]) > len(legacy["starter_edges"]):
+                fails.append("strict mode produced MORE edges than legacy; the "
+                             "interface gate is inverted")
+            kept = {(e["from"], e["to"]) for e in strict["starter_edges"]}
+            for e in strict.get("skipped_edges", []):
+                if (e["from"], e["to"]) in kept:
+                    fails.append("%s -> %s is both kept and skipped"
+                                 % (e["from"], e["to"]))
+            print("behaviour: strict keeps %d, drops %d, legacy kept %d"
+                  % (len(strict["starter_edges"]),
+                     len(strict.get("skipped_edges", [])),
+                     len(legacy["starter_edges"])))
+        except Exception as exc:            # noqa: BLE001
+            fails.append("the builder could not be exercised: %r" % (exc,))
 
     # ---- 5. every unit must expose both directions ------------------------ #
     for u in units:
