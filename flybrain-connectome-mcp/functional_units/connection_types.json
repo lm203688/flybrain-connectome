@@ -11,9 +11,9 @@
     "macro": "population-level projection geometry"
   },
   "stats": {
-    "functional_units": 115,
+    "functional_units": 116,
     "connection_types": 66,
-    "neural_members_referenced": 250,
+    "neural_members_referenced": 256,
     "systems": [
       "antennal_lobe",
       "antennal_mechanosensory",
@@ -43,6 +43,7 @@
       "leech_ganglion",
       "limbic",
       "locus_coeruleus",
+      "metacognition",
       "modulatory",
       "motor",
       "mushroom_body",
