@@ -505,7 +505,80 @@ def U(name, display, function, system, desc, members, wiring, in_ports, out_port
     }
 
 
+# ---------------------------------------------------------------------------
+# v2.41.0 — metacognition, the one category PROJECT_VISION requires that the
+# library had nothing for at all.
+#
+# The coverage matrix (function_coverage.json, v2.37.0) put 8 of 15 required
+# categories as covered, 6 as thin and exactly one as missing:
+# `metacognition`.  A sweep of all 115 units for `confidence`, `uncertainty`,
+# `metacognit`, `precision` and `attentional` in the name, function and
+# description returned **nothing** -- the gap is real and not a labelling
+# artefact.  The 48 untagged units are tagged with mechanism verbs
+# (`oscillate`, `escape_swim`, `reflex`, `rhythm_generate`), none of which is
+# metacognitive, so the gap could not be closed by widening the mapping.  It
+# needed a unit.
+#
+# What the literature supports, and what it does not:
+#
+#   * A negative prefrontal network (dACC, bilateral insula, dmPFC, dlPFC)
+#     encodes objective uncertainty and error detection, and correlates
+#     NEGATIVELY with reported confidence.
+#   * A positive network centred on VMPFC and pgACC is positively associated
+#     with confidence and self-performance evaluation.
+#   * Lateral PFC -- specifically the lateral frontal pole -- supports mapping
+#     a private (internal) sense of confidence onto a public report, which is
+#     the social/metric part of metacognition and is separable from the private
+#     part.
+#   * Subjective confidence tracks the PRECISION of a decoded probability
+#     distribution in visual cortex, not merely a point estimate, which is
+#     direct evidence that a representation, not a scalar, feeds the judgement.
+#
+# The caveat matters and is carried on the unit: every finding above is human
+# and mostly fMRI.  There is no connectome in which these nodes are resolved
+# individually, so this is a curated cross-species concept unit, not a traced
+# one -- the same status as the other literature units in the library, and it
+# is the reason the coverage matrix reports it as carrying zero connectome
+# trace rather than pretending otherwise.
+# ---------------------------------------------------------------------------
 FUNCTIONAL_UNITS = [
+    # ================= METACOGNITION (1, v2.41.0) ================= #
+    U("prefrontal_metacognitive_unit", "前额叶元认知单元",
+      "confidence_evaluation", "metacognition",
+      "背侧前扣带皮层、双侧岛叶与背外侧前额叶编码客观不确定性与错误检测，"
+      "腹内侧前额叶与前膝部扣带把决策相关信号聚合成主观信心，"
+      "外侧额极负责把内在信心映射成可外显的判断报告。",
+      [("dacc", "pfc_dorsal_accumbens", 0.22),
+       ("insula", "pfc_insula", 0.18),
+       ("dlpfc", "pfc_dorsolateral", 0.24),
+       ("vmpfc", "pfc_ventromedial", 0.20),
+       ("pgacc", "pfc_pregenual_accumbens", 0.10),
+       ("fpl", "pfc_frontal_pole", 0.06)],
+      [("dlpfc", "dacc", "feedforward_excitatory", 0.8),
+       ("dacc", "insula", "feedforward_excitatory", 0.7),
+       ("insula", "dacc", "feedback_inhibitory", 0.4),
+       ("vmpfc", "dlpfc", "feedforward_excitatory", 0.6),
+       ("pgacc", "vmpfc", "feedforward_inhibitory", 0.5),
+       ("fpl", "vmpfc", "feedforward_excitatory", 0.5),
+       ("dlpfc", "dlpfc", "recurrent_excitatory", 0.4),
+       ("dacc", "vmpfc", "mutual_inhibitory", 0.3)],
+      [("evidence_in", "cortex.input", True),
+       ("outcome_in", "basal_ganglia.value", False)],
+      [("confidence_out", "cortex.output", True),
+       ("certainty_out", "cortex.feedback", False)],
+      (200, 4000),
+      ["confidence_estimate", "self_monitor", "metacognition",
+       "uncertainty_signal", "confidence_calibration", "error_monitor"],
+      ["confidence_report", "self_evaluate", "uncertainty_track", "stop_deciding"],
+      "confidence_evaluation",
+      ["glutamate", "gaba"],
+      ("Fleming & Dolan 2012; Bang & Fleming 2018; Bang et al. 2017; "
+       "White & Engel 2014;Runyon et al. 2017; Fernandes et al. 2013; "
+       "Vogels et al. 2015"),
+      ["human", "macaque", "rat"], ()),
+]
+
+FUNCTIONAL_UNITS += [
     # ================= SENSORY FRONT-ENDS (8) ================= #
     U("retinal_phototransduction_unit", "视网膜光转导单元", "phototransduction", "sensory",
       "锥体/杆体双极细胞把光强转为分级电位，经水平细胞做增益控制后由 midget 节细胞输出高分辨率空间信号。",
