@@ -32,7 +32,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.37.0"
+__version__ = "2.38.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -592,6 +592,66 @@ def cmd_function(args) -> int:
     return 0
 
 
+def cmd_costs(args) -> int:
+    """v2.38.0 -- latency and energy per connection type, graded by evidence.
+
+    The connection library carried `delay_class` with three symbolic values and
+    a `parameters` block with no units, so an optimiser could only trade one
+    axis: structure.  Phase 3 measured the resulting computation claim as
+    negative, 0/7.  This command prints what is now known and, more usefully,
+    what is not: 16 of 66 types carry a cited latency, the other 50 are
+    circuit patterns and geometries where a contact delay is not a defined
+    quantity, and 21 are design abstractions that must never carry one.
+
+    A latency is a range, not a point.  The spread is the trade: a generator
+    choosing a fast synapse is trading against reliability, and a point value
+    would hide exactly that.
+    """
+    path = MCP_DIR / "functional_units" / "connection_costs.json"
+    if not path.exists():
+        print("connection cost artifact missing: %s" % path)
+        print("run: python scripts/extract_connection_costs.py")
+        return 2
+    with open(path, encoding="utf-8") as f:
+        doc = json.load(f)
+
+    if args.caveat:
+        for c in doc["caveat"]:
+            print("! %s" % c)
+        print()
+
+    s = doc["summary"]
+    print("cost axis: %d types / %d with a latency / %d energy-complete"
+          % (s["types_total"], s["with_latency_number"],
+             sum(1 for r in doc["cost_axis"] if r.get("energy"))))
+    print("  grades: %s" % s["by_grade"])
+    print("  grounded (measured or bounded): %s%%" % s["measured_or_bounded_pct"])
+    print()
+
+    fam = {}
+    for r in doc["cost_axis"]:
+        fam.setdefault(r["family"], []).append(r)
+    for f in sorted(fam):
+        rows = fam[f]
+        got = sum(1 for r in rows if r.get("latency_ms"))
+        print("  %-12s %d/%d types with a latency" % (f, got, len(rows)))
+        if not got:
+            print("      %s" % (rows[0].get("latency_note", "")[:100]))
+
+    print()
+    print("latency-bearing types (a range, not a point):")
+    for r in doc["cost_axis"]:
+        lat = r.get("latency_ms")
+        if not lat:
+            continue
+        if args.family and r["family"] != args.family:
+            continue
+        print("    %-32s %-8s %8.2f - %-8.2f ms  %-8s %s"
+              % (r["name"], r["family"], lat["low"], lat["high"], lat["grade"],
+                 "(design abstraction)" if r.get("abstraction_only") else ""))
+    return 0
+
+
 def cmd_info(args) -> int:
     """Report what this launcher resolved — the one command that diagnoses
     a broken install (wrong toolkit root, missing data dir, missing snapshot)."""
@@ -702,6 +762,14 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--caveat", action="store_true",
                    help="print the coverage caveats first")
     s.set_defaults(func=cmd_function)
+
+    s = sub.add_parser("costs",
+                       help="latency/energy per connection type, graded")
+    s.add_argument("--family", default=None,
+                   help="only this family (micro/circuit/modulatory/...)")
+    s.add_argument("--caveat", action="store_true",
+                   help="print the cost-axis caveats first")
+    s.set_defaults(func=cmd_costs)
 
     s = sub.add_parser("verify", help="run the end-to-end smoke test")
     s.set_defaults(func=cmd_verify)

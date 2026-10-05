@@ -211,6 +211,7 @@ flybrain larva-clusters --caveat    # what "covered" does and does not mean
 ### 7. Read the MaleCNS male-dimorphic ledger
 
 ```bash
+flybrain costs                      # latency/energy per connection type
 flybrain function                   # coverage by FUNCTION, not by species
 flybrain function --vision          # only what PROJECT_VISION requires
 flybrain dimorphism                 # 2,368 cells nobody has looked at
@@ -682,6 +683,48 @@ Nothing in it supports "larger in males", and the artifact says so in its own
 types are *listed* in an anchored profile's own type list (someone looked at
 them), while all **479** sit inside some anchored `^XXX` family rule — family
 membership is not tracing.
+
+### Connection cost axis (v2.38.0) — what each connection costs, and what we cannot say
+
+`PROJECT_VISION.md` claims the generator can optimise *any* goal against the
+biological library as prior. Phase 3 tested that and found the optimiser could
+only win on structure (−84% wire cost) while the headline computation claim
+measured **negative, 0/7 topologies beating random**.
+
+The cause was in the vocabulary rather than in the optimiser. The 66 connection
+types carried `delay_class` with three symbolic values — `immediate` / `short` /
+`long` — and a `parameters` block with no units. With latency a category and
+energy absent, the only axis left to trade was structure. `flybrain costs` adds
+the numbers where a citation exists, and `unknown` where one does not.
+
+| basis | latency | source |
+|---|---|---|
+| chemical synapse | **0.5–4 ms** | Guyton & Hall 2008 p.570 gives 0.5 ms as the minimum; 0.5–4 ms typical |
+| electrical synapse | **0.05–0.2 ms** | quoted under 0.2 ms, often called instantaneous |
+| volume transmission | 10–1000 ms | diffusion cloud; the spread *is* the mechanism |
+| retrograde messenger | 1–60 ms | slower than forward release, faster than volume spread |
+| circuit motif / macro geometry / plasticity rule | **none — `unknown`** | not a contact; a pattern whose cost is emergent |
+
+**16 of 66 types carry a latency; 50 do not, and that split is the finding.**
+Every type with a number is an actual contact site (micro 9/10, electrical 3/7,
+modulatory 4/6). All 20 circuit motifs, 13 macro geometries and 10 plasticity
+rules have none, because a single-contact delay is not a defined quantity for a
+pattern — compose the members' delays and the motif's cost follows. **Energy is
+present for all 66**, because energy composes over a motif while latency does
+not. That asymmetry is the design.
+
+**21 types carry no latency by rule.** They are flagged `abstraction_only` — a
+winner-take-all or a half-centre oscillator is a design pattern, not a
+biological contact, and an autapse is chemically a chemical synapse but as a
+*design pattern* has no delay literature can supply. Their `delay_class` is
+kept under `designed_cost` so an assumption is never summed with a measurement.
+Latency is a **range, not a point**: the spread is the trade, since choosing a
+fast synapse trades against reliability.
+
+**GATE 12** enforces this. It fails when a design abstraction gains a latency,
+when a range is malformed, when the fastest electrical is not strictly faster
+than the slowest chemical (the trade the axis exists to express), when a graded
+value cites nothing, or when any type loses its energy entry.
 
 ### Function axis (v2.37.0) — coverage by function, not by species
 
