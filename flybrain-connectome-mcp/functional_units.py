@@ -134,7 +134,37 @@ def get_unit(name: str) -> dict | None:
     return _index_units().get(name)
 
 
-def suggest_composition(task_hint: str, limit: int = 6) -> dict:
+def _port_types(unit, direction):
+    """Port type strings a unit exposes in one direction."""
+    if not isinstance(unit, dict):
+        return []
+    ports = unit.get("ports") or {}
+    return sorted({q.get("type") for q in (ports.get(direction) or [])
+                   if isinstance(q, dict) and q.get("type")})
+
+
+def _composable(a: dict, b) -> bool:
+    """True when wiring a -> b is defensible.
+
+    Two sufficient conditions, either one accepted:
+      * b declared a back (a mutual claim -- both units asked for this), or
+      * their ports meet (the interface allows it even though only a asked)
+
+    A port-type string match is the weakest available reading of "can connect":
+    a real composition may still be impossible for reasons a type does not
+    capture.  It is used because it is the only reading the library's own data
+    supports, and because the alternative -- taking the declaration at face
+    value -- was measured at 97 unreachable pairs out of 163.
+    """
+    if not b:
+        return False
+    if a.get("name") in (b.get("composable_with") or []):
+        return True
+    return bool(set(_port_types(a, "out")) & set(_port_types(b, "in")))
+
+
+def suggest_composition(task_hint: str, limit: int = 6,
+                            strict: bool = True) -> dict:
     """Rank units by how well their task hints match a free-text hint.
 
     Deterministic: score = 3*lead_task_hint match + 2*hint-pool match +
@@ -156,16 +186,53 @@ def suggest_composition(task_hint: str, limit: int = 6) -> dict:
     top = scored[:limit]
     # Deterministic starter chain: the highest-scoring unit, then anything it
     # declares itself composable with that also scored.
+    #
+    # v2.41.0.  GATE 13 measured what this loop used to do: it took every
+    # `composable_with` entry at face value, so of 163 declarations across the
+    # library, **97 name a pair whose ports cannot meet** -- `amygdala_fear_unit`
+    # offers `out: limbic.fear` and `hypothalamic_arousal_unit` accepts only
+    # `arousal.state` / `rhythm.circadian`.  Those edges were being emitted as
+    # `declared_composable` anyway, which made a declared intent look like a
+    # buildable connection.
+    #
+    # A declaration is now checked against the interface before it becomes an
+    # edge.  Two things are still accepted:
+    #   * the other unit declared it back (a mutual claim), or
+    #   * the ports actually meet (the connection is possible even if only one
+    #     side asked)
+    # Everything else is dropped from `starter_edges` and counted in
+    # `skipped_edges` with the reason, so the drop is visible rather than
+    # silent.  `strict=False` restores the old behaviour for callers that
+    # depended on it.
     picked = [t[1] for t in top]
+    index = _index_units()
     edges = []
+    skipped = []
     for name in picked:
-        u = _index_units()[name]
-        for other in u["composable_with"]:
-            if other in picked:
-                edges.append({"from": name, "to": other, "reason": "declared_composable"})
-    return {"query": task_hint, "ranked": [
+        u = index[name]
+        for other in u.get("composable_with") or []:
+            if other not in picked:
+                continue
+            if strict and not _composable(u, index.get(other)):
+                skipped.append({
+                    "from": name, "to": other,
+                    "reason": "ports_cannot_meet_and_not_reciprocated",
+                    "from_out": _port_types(u, "out"),
+                    "to_in": _port_types(index.get(other), "in"),
+                })
+                continue
+            edges.append({"from": name, "to": other,
+                          "reason": "declared_composable"})
+    out = {"query": task_hint, "ranked": [
         {"score": s, "unit": n, "system": sy, "lead_task_hint": lh} for s, n, sy, lh in top
     ], "starter_edges": edges}
+    if strict:
+        out["skipped_edges"] = skipped
+        out["composition_policy"] = (
+            "a declaration becomes an edge only if the other unit declared it "
+            "back or the ports meet; see gate13 / composition_semantics.json "
+            "for the measurement this came from")
+    return out
 
 
 # ---------------------------------------------------------------------- #
