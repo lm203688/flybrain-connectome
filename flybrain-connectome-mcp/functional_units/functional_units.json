@@ -1268,12 +1268,14 @@
         "function_axis": {
           "artifact": "function_coverage.json",
           "categories": [
+            "homeostasis",
             "sensory_transduction"
           ],
           "vision_required_categories": [
             "sensory_transduction"
           ],
           "definitions": {
+            "homeostasis": "keeps an internal variable inside a workable range",
             "sensory_transduction": "converts a physical stimulus into neural activity"
           },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
@@ -4285,6 +4287,7 @@
           "categories": [
             "associative_learn",
             "memory_encode",
+            "neuromodulation",
             "sensory_gating"
           ],
           "vision_required_categories": [
@@ -4294,6 +4297,7 @@
           "definitions": {
             "associative_learn": "links a cue to a consequence so the pairing changes future behaviour",
             "memory_encode": "writes an experience into a persistent representation",
+            "neuromodulation": "broadcasts a diffusible signal that changes the gain of many targets",
             "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
           },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
@@ -6472,9 +6476,13 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "function_axis": {
           "artifact": "function_coverage.json",
-          "categories": [],
+          "categories": [
+            "neuromodulation"
+          ],
           "vision_required_categories": [],
-          "definitions": {},
+          "definitions": {
+            "neuromodulation": "broadcasts a diffusible signal that changes the gain of many targets"
+          },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
           "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
@@ -6734,9 +6742,13 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "function_axis": {
           "artifact": "function_coverage.json",
-          "categories": [],
+          "categories": [
+            "homeostasis"
+          ],
           "vision_required_categories": [],
-          "definitions": {},
+          "definitions": {
+            "homeostasis": "keeps an internal variable inside a workable range"
+          },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
           "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
@@ -6889,9 +6901,15 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "function_axis": {
           "artifact": "function_coverage.json",
-          "categories": [],
+          "categories": [
+            "homeostasis",
+            "neuromodulation"
+          ],
           "vision_required_categories": [],
-          "definitions": {},
+          "definitions": {
+            "homeostasis": "keeps an internal variable inside a workable range",
+            "neuromodulation": "broadcasts a diffusible signal that changes the gain of many targets"
+          },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
           "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
@@ -9047,9 +9065,13 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "function_axis": {
           "artifact": "function_coverage.json",
-          "categories": [],
+          "categories": [
+            "homeostasis"
+          ],
           "vision_required_categories": [],
-          "definitions": {},
+          "definitions": {
+            "homeostasis": "keeps an internal variable inside a workable range"
+          },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
           "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
@@ -12498,9 +12520,13 @@
         "basis": "comparative-neuroscience literature, not a trained classifier",
         "function_axis": {
           "artifact": "function_coverage.json",
-          "categories": [],
+          "categories": [
+            "homeostasis"
+          ],
           "vision_required_categories": [],
-          "definitions": {},
+          "definitions": {
+            "homeostasis": "keeps an internal variable inside a workable range"
+          },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
           "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
@@ -12647,11 +12673,13 @@
           "artifact": "function_coverage.json",
           "categories": [
             "arousal",
+            "neuromodulation",
             "sensory_gating"
           ],
           "vision_required_categories": [],
           "definitions": {
             "arousal": "sets the global activation level of the system",
+            "neuromodulation": "broadcasts a diffusible signal that changes the gain of many targets",
             "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
           },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
@@ -16356,11 +16384,13 @@
           "artifact": "function_coverage.json",
           "categories": [
             "arousal",
+            "neuromodulation",
             "sensory_gating"
           ],
           "vision_required_categories": [],
           "definitions": {
             "arousal": "sets the global activation level of the system",
+            "neuromodulation": "broadcasts a diffusible signal that changes the gain of many targets",
             "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
           },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
@@ -20115,9 +20145,13 @@
         },
         "function_axis": {
           "artifact": "function_coverage.json",
-          "categories": [],
+          "categories": [
+            "neuromodulation"
+          ],
           "vision_required_categories": [],
-          "definitions": {},
+          "definitions": {
+            "neuromodulation": "broadcasts a diffusible signal that changes the gain of many targets"
+          },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
           "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         },
@@ -20455,10 +20489,12 @@
         "function_axis": {
           "artifact": "function_coverage.json",
           "categories": [
+            "neuromodulation",
             "sensory_gating"
           ],
           "vision_required_categories": [],
           "definitions": {
+            "neuromodulation": "broadcasts a diffusible signal that changes the gain of many targets",
             "sensory_gating": "filters incoming sensory information before it reaches downstream pools"
           },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
@@ -25576,11 +25612,13 @@
         "function_axis": {
           "artifact": "function_coverage.json",
           "categories": [
-            "arousal"
+            "arousal",
+            "neuromodulation"
           ],
           "vision_required_categories": [],
           "definitions": {
-            "arousal": "sets the global activation level of the system"
+            "arousal": "sets the global activation level of the system",
+            "neuromodulation": "broadcasts a diffusible signal that changes the gain of many targets"
           },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
           "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
@@ -33741,9 +33779,13 @@
         },
         "function_axis": {
           "artifact": "function_coverage.json",
-          "categories": [],
+          "categories": [
+            "neuromodulation"
+          ],
           "vision_required_categories": [],
-          "definitions": {},
+          "definitions": {
+            "neuromodulation": "broadcasts a diffusible signal that changes the gain of many targets"
+          },
           "method": "No unit is classified from its description prose. The two fields above already exist on all 115 units and are the unit's own declaration of what it can do. A unit with neither field naming a category is simply not in that category -- absence here is not a verdict on the unit, it is the absence of a claim.",
           "caveat": "A tag means the unit's own `capability` / `task_hint_pool` fields declare the mechanism that implements the category. It is a coverage label, not a performance claim, and the whole matrix is measured in function_coverage.json."
         }
