@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.39.0` | the toolkit as a whole |
+| package | `2.42.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -16,6 +16,60 @@ The **schema version** is versioned separately from the **package version**:
 | functional-unit **embodiment block** | `1.2` | adds `provenance.evidence_weight` (2.3.0) to the v2.2.0 `support_tier` + `type_pair_support` + `unanchored_reason` |
 | MaleCNS anchor schema | `1.0` | embodiment layer: measured anchors + connectivity matrices (1.7.0) |
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
+
+---
+
+## [2.42.0] — 2026-10-06
+
+### 覆盖率关键词修复 + 命中证据：矩阵第一次能被独立复算
+
+**两个类别报 0 单元，但库里早就有了。** `homeostasis` 的关键词表是
+`homeostasis` / `thermoregulation` / `circadian_rhythm` / `fluid_balance`，
+而库把同一个概念写成 `circadian_pace` / `oscillate_circadian` /
+`circadian_track` / `sleep_wake` / `metabolic_support`——一个都没匹配上。
+`neuromodulation` 同理：原表 6 个 token 命中 0 个，而 12 个单元正在用
+`modulate` / `modulation` / `peptide_release` / `calcium_wave` 声明它。
+两者都读成 `missing`，工作队列于是说「去造这两个板块」，**而库里已经有 16 个
+单元在声明它们**。
+
+修法是补库的真实词汇，不是放宽匹配器。先对每个候选 token 跑一遍全库 capability
+字符串，**两个被拒**，拒绝理由写进 artifact 的 `keyword_repairs.rejected` 让它
+留成防线：
+
+| token | 原本会归入 | 拒绝理由 |
+|---|---|---|
+| `rhythm_generate` | homeostasis | 全 token 匹配会命中所有 CP 和节律发生器（`spinal_cpg_unit`、`respiratory_rhythm_cpg_unit`、`buccal_feeding_cpg_unit`、`leech_swim_cpg_unit`、`electric_organ_discharge_unit`、`courtship_song_pattern_unit`、`ascidian_larval_escape_swim_unit`、`cortical_inhibitory_gain_unit`）——那是**节律生成**，运动输出，不是「把内部变量保持在可工作区间内」 |
+| `broadcast` | neuromodulation | `value_broadcast` / `arousal_broadcast` 是**指令广播**（推向效应器的运动/努力信号），不是「改变大量目标增益的弥散信号」。这个类别的定义就是弥散增益那种，两个词共享后缀但意思不同——**子串陷阱以整词形式复现** |
+
+加进去的 13 个 token（homeostasis 6 + neuromodulation 7）全部先探针验证：
+`homeostasis` 0→5 单元（human 4 / drosophila 1），`neuromodulation` 0→9
+（drosophila 5 / human 4）。全局 24 类别现在 **0 missing**，`covered` 14→16。
+
+**每个标签现在带命中证据。** `match_evidence[unit] = ["cap <- token", …]`，
+GATE 11 从单元自己的 `capability` / `task_hint_pool` 字段**重新推导全部 213 个
+配对**并逐条验证；任何无法复现的标签一律拒写退出 3。故障注入测试：给
+`spinal_cpg_unit` 塞一条伪造的 `rhythm_generate <- circadian`，GATE 11 报
+`the tag was not earned`。抽侧器侧同样 fail-closed：标签数 ≠ 有证据的单元数
+→ 拒写；证据字符串格式不对 → 拒写；capability 不在该单元声明里 → 拒写；
+token 在整词规则下实际匹配不上 → 拒写。
+
+**为什么这条重要**：v2.37–v2.41 连续三个版本，覆盖矩阵都出现过「矩阵说的
+库里没有」——先是子串匹配（`meta` 命中 `metabolic_support`），再是字典键空间
+撞车（`per_unit` 同时当 `unit→categories` 和 `category→units` 用，报出
+85+51≠115）。两次数都对、语义错，比数字错更难发现。现在标签本身不再可自证，
+门禁从单元的原始字段重新算一遍。**教训：覆盖率数字若不能从源字段独立复算，
+它就不是测量，是断言。**
+
+### 版本号补齐
+
+v2.41.0 漏改了版本号声明（`pyproject.toml` / `flybrain_cli.py` /
+`mcp_connectome/api_server.py` / `mcp_connectome/server.py` 都停在 2.40.0）。
+四处一并补到 2.42.0。
+
+### 未变
+
+FUNCTIONAL_UNITS 116、CONNECTION_TYPES 66、MODULE_PROFILES 270 不变——本轮
+只修轴，不加单元。门禁 13/13 全绿。
 
 ---
 

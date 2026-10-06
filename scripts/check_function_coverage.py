@@ -176,6 +176,87 @@ def main() -> int:
             fails.append("category %s claims cross_species with %s species"
                          % (row.get("category"), row.get("species")))
 
+    # ---- 6. every tag must be traceable to a firing token --------------- #
+    # v2.42.0.  This is the difference between a coverage matrix and a
+    # coincidence report.  Three releases ago a keyword match manufactured a
+    # fully "covered" matrix twice -- `encode` inside `high_res_encode`, then
+    # `meta` inside `metabolic_support` -- and both looked correct to anyone
+    # reading the summary numbers.  The matrix carries the exact
+    # `cap <- token` pair that earned each tag, so the gate can re-derive the
+    # match from the unit's own fields instead of trusting it.
+    caps_by_unit: dict[str, set] = {}
+    for u in units:
+        n = u.get("name", "?")
+        caps = set()
+        for f in ("capability", "task_hint_pool"):
+            v = u.get(f)
+            if isinstance(v, list):
+                caps |= {str(x) for x in v}
+            elif isinstance(v, str):
+                caps.add(v)
+        caps_by_unit[n] = caps
+
+    def token_hits(cap: str, tok: str) -> bool:
+        return (cap == tok or cap.startswith(tok + "_")
+                or cap.endswith("_" + tok) or ("_" + tok + "_") in cap)
+
+    total_pairs = 0
+    no_evidence = 0
+    for row in matrix:
+        cat = row.get("category")
+        listed = row.get("units_listed")
+        # units_listed is the full list; example_units is a truncated preview.
+        check(isinstance(listed, list),
+              "category %s has no units_listed" % cat)
+        if isinstance(listed, list):
+            check(len(listed) == (row.get("units") or 0),
+                  "category %s: units_listed has %d entries against a unit "
+                  "count of %s" % (cat, len(listed), row.get("units")))
+            for name in listed:
+                check(name in unit_names,
+                      "category %s lists an unknown unit: %s" % (cat, name))
+        ev = row.get("match_evidence")
+        check(isinstance(ev, dict),
+              "category %s has no match_evidence; a tag nobody can trace is "
+              "not a tag" % cat)
+        if not isinstance(ev, dict):
+            continue
+        claimed = row.get("evidence_units")
+        if claimed is None:
+            fails.append("category %s has no evidence_units count" % cat)
+            continue
+        if row.get("units") and claimed != row["units"]:
+            fails.append("category %s lists %d units but only %d carry a "
+                         "recorded firing token"
+                         % (cat, row["units"], claimed))
+        if (row.get("units") or 0) != len(ev):
+            fails.append("category %s: %d units but %d evidence entries"
+                         % (cat, row.get("units") or 0, len(ev)))
+        for name, pairs in ev.items():
+            if not isinstance(pairs, list) or not pairs:
+                no_evidence += 1
+                fails.append("category %s / unit %s has no firing token; "
+                             "its tag cannot be reproduced" % (cat, name))
+                continue
+            for pair in pairs:
+                total_pairs += 1
+                if not isinstance(pair, str) or " <- " not in pair:
+                    fails.append("category %s / unit %s has a malformed "
+                                 "evidence entry %r" % (cat, name, pair))
+                    continue
+                cap, tok = pair.split(" <- ", 1)
+                if cap not in caps_by_unit.get(name, set()):
+                    fails.append("category %s / unit %s claims it fired on "
+                                 "%r, which that unit does not declare"
+                                 % (cat, name, cap))
+                elif not token_hits(cap, tok):
+                    fails.append("category %s / unit %s evidence %r does not "
+                                 "match under the whole-token rule; the tag "
+                                 "was not earned" % (cat, name, pair))
+    if total_pairs == 0 and not no_evidence:
+        fails.append("match_evidence is empty for every category; the trace "
+                     "is absent")
+
     # ---- report ------------------------------------------------------------ #
     fam = Counter(r.get("family") for r in matrix)
     print("function axis: %d units, %d categories in %d families"
@@ -196,6 +277,22 @@ def main() -> int:
     if untagged:
         print("    %s" % ", ".join(sorted(untagged)[:8])
               + (" ..." if len(untagged) > 8 else ""))
+    if total_pairs:
+        print("  match evidence: %d 'cap <- token' pairs re-derived from the "
+              "units' own capability fields and verified" % total_pairs)
+        if no_evidence:
+            print("    %d tagged unit/category cells carry no traceable token"
+                  % no_evidence)
+    kr = cov.get("keyword_repairs") or {}
+    if kr:
+        rej = kr.get("rejected") or []
+        print("  keyword repairs: %s added"
+              % ", ".join("%s+%d" % (k, len(v))
+                          for k, v in sorted((kr.get("added") or {}).items())))
+        if rej:
+            print("    rejected as false-positive sources: %s"
+                  % ", ".join("%s(%s)" % (r.get("token"), r.get("target"))
+                              for r in rej))
     for w in warns:
         print("WARN  %s" % w)
 
