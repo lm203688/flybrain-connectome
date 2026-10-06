@@ -779,7 +779,7 @@ Of the 15 categories PROJECT_VISION requires:
 
 | status | categories |
 |---|---|
-| **missing** | **none** (v2.41.0 closed the last one, `metacognition`) |
+| **missing** | **none** (v2.41.0 closed the last one, `metacognition`; v2.42.0 closed the two non-vision ones, `homeostasis` and `neuromodulation`) |
 | thin (<3 units) | `attention` (2) · `habit` (1) · `metacognition` (1) · `punishment` (1) · `working_memory` (1) · `motor_command` (2) · `motor_relay` (1) |
 | covered | `integration` (4) · `prediction` (6) · `reward` (5) · `associative_learn` (9, 4 taxa) · `memory_encode` (11) · `memory_readout` (5) · `sensory_relay` (16) · `sensory_transduction` (6) |
 
@@ -814,11 +814,40 @@ computationally validated. Two fail-closed gates fired on the way in (no JEV
 verdict, then members not in `MODULE_PROFILES`) and neither was bypassed.
 
 **The honest summary of this axis: only 2 of 24 categories are carried by three
-or more taxa** (`associative_learn`, `credit_assign`), and 48 of 116 units
+or more taxa** (`associative_learn`, `credit_assign`), and 41 of 116 units
 belong to no category at all. Cross-taxon coverage is this library's weakest
 dimension, and that is now a number rather than an impression. A tag means the
 unit declares a mechanism implementing the category — it is a coverage label,
 not a claim that the unit performs the function well.
+
+### Keyword repair and match evidence (v2.42.0) — the matrix had to be believed
+
+v2.42.0 caught two categories reporting **0 units** while the library already
+declared them. `homeostasis`' keyword list was `homeostasis`,
+`thermoregulation`, `circadian_rhythm`, `fluid_balance` — and the library writes
+that concept as `circadian_pace`, `oscillate_circadian`, `circadian_track`,
+`sleep_wake`, `metabolic_support`. Same story for `neuromodulation`, whose six
+tokens matched nothing while twelve units declared it as `modulate`,
+`modulation`, `peptide_release`, `calcium_wave`. Both read `missing`, so the
+work queue said "build these" when the library already had them.
+
+The fix was to add the library's actual words, not to loosen the matcher. Two
+candidate tokens were **rejected after probing every capability string**, and
+the rejections are recorded in `function_coverage.json` so they stay visible:
+
+| token | would have gone to | why it was refused |
+|---|---|---|
+| `rhythm_generate` | homeostasis | matches every CP and pattern generator (`spinal_cpg_unit`, `respiratory_rhythm_cpg_unit`, `courtship_song_pattern_unit` …) — rhythm *generation*, a motor output, not keeping an internal variable in range |
+| `broadcast` | neuromodulation | `value_broadcast` and `arousal_broadcast` are command broadcasts, not a diffusible signal changing the gain of many targets — the substring trap reappearing as a whole token |
+
+Each tag now carries its firing token: `match_evidence[unit] = ["cap <- token", …]`.
+GATE 11 re-derives all **213 pairs** from the units' own `capability` /
+`task_hint_pool` fields and refuses to write any tag it cannot reproduce. A
+fault-injection test that gave `spinal_cpg_unit` a fabricated
+`rhythm_generate <- circadian` evidence entry made the gate fail with
+`the tag was not earned`. That is the difference between a coverage matrix and
+a coincidence report — the matrix had overstated itself three times before this
+gate existed.
 
 ### Composition semantics (v2.40.0) — can the library be assembled?
 
