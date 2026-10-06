@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0",
-  "generated_utc": "2026-10-05T13:55:23Z",
+  "generated_utc": "2026-10-06T14:56:19Z",
   "purpose": "Function-axis classification of the unit library. Every unit is tagged with the function categories its own `capability` and `task_hint_pool` fields claim, so coverage can be read by function instead of by species. The point is not the tags; it is the coverage matrix and the gap list, which turn PROJECT_VISION's module plan into a measured work queue.",
   "method": {
     "source_fields": [
@@ -14,17 +14,15 @@
     "units": 116,
     "capability_tokens_distinct": 466,
     "capability_tokens_total": 564,
-    "units_with_any_category": 68,
+    "units_with_any_category": 75,
     "units_with_no_category": [
       "antennal_lobe_central_complex_feedback_unit",
       "aplysia_gill_withdrawal_unit",
       "ascidian_larval_escape_swim_unit",
-      "astrocyte_tripartite_unit",
       "barrel_cortex_whisking_unit",
       "birdsong_hvc_timing_unit",
       "birdsong_ra_motor_unit",
       "buccal_feeding_cpg_unit",
-      "cb_endocrine_modulation_unit",
       "cb_sensory_motor_unit",
       "cel_amphid_chemosensory_unit",
       "cel_nociceptive_avoidance_unit",
@@ -32,7 +30,6 @@
       "central_complex_steering_unit",
       "cephalopod_arm_motor_unit",
       "cephalopod_chromatophore_control_unit",
-      "circadian_clock_unit",
       "courtship_song_pattern_unit",
       "electric_organ_discharge_unit",
       "electrosensory_electrolocation_unit",
@@ -40,10 +37,8 @@
       "frog_escape_swim_unit",
       "gamma_spindle_loop_unit",
       "hypothalamic_arousal_unit",
-      "insect_clock_pacemaker_unit",
       "johnston_organ_wind_unit",
       "larv_gustatory_feeding_program_unit",
-      "larv_mushroom_body_feedback_unit",
       "lateral_horn_innate_odour_unit",
       "leech_swim_cpg_unit",
       "leg_motor_pool_unit",
@@ -54,8 +49,6 @@
       "passive_electroreception_unit",
       "respiratory_rhythm_cpg_unit",
       "septo_hippocampal_theta_unit",
-      "serotonergic_mood_unit",
-      "sleep_wake_flipflop_unit",
       "spinal_cpg_unit",
       "spinal_reflex_arc_unit",
       "startle_escape_command_unit",
@@ -88,7 +81,18 @@
         "cortical_l6_feedback_unit",
         "retinal_motion_onset_unit"
       ],
-      "status": "thin"
+      "status": "thin",
+      "match_evidence": {
+        "cortical_l6_feedback_unit": [
+          "top_down <- top_down",
+          "top_down_regulate <- top_down"
+        ],
+        "retinal_motion_onset_unit": [
+          "novelty_event <- novelty_event",
+          "saccade_cue <- saccade_cue"
+        ]
+      },
+      "evidence_units": 2
     },
     {
       "family": "control",
@@ -115,7 +119,26 @@
         "cortical_highorder_integration_unit",
         "cortical_l23_association_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "cephalopod_vertical_lobe_learning_unit": [
+          "multimodal_bind <- multimodal_bind"
+        ],
+        "cerebellar_cortical_unit": [
+          "converge <- converge",
+          "feature_converge <- converge"
+        ],
+        "cortical_highorder_integration_unit": [
+          "cross_modal_arbitrate <- cross_modal_arbitrate",
+          "high_order_represent <- high_order_represent",
+          "multimodal_bind <- multimodal_bind"
+        ],
+        "cortical_l23_association_unit": [
+          "context_gate <- context_gate",
+          "switch_state <- switch_state"
+        ]
+      },
+      "evidence_units": 4
     },
     {
       "family": "control",
@@ -145,7 +168,29 @@
         "cortical_l6_feedback_unit",
         "hippocampal_spatial_map_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "cerebellar_climbing_fibre_teaching_unit": [
+          "error_teaching <- error_teaching",
+          "error_teaching <- teaching"
+        ],
+        "cerebellar_cortical_unit": [
+          "motor_refine <- motor_refine"
+        ],
+        "cerebellar_purkinje_ltd_unit": [
+          "predictive_learn <- predictive_learn"
+        ],
+        "cortical_l6_feedback_unit": [
+          "predictive_regulate <- predictive_regulate"
+        ],
+        "hippocampal_spatial_map_unit": [
+          "spatial_map <- spatial_map"
+        ],
+        "retinal_direction_selective_unit": [
+          "temporal_filter <- temporal_filter"
+        ]
+      },
+      "evidence_units": 6
     },
     {
       "family": "learning",
@@ -165,7 +210,13 @@
       "example_units": [
         "frog_tectal_prey_capture_unit"
       ],
-      "status": "thin"
+      "status": "thin",
+      "match_evidence": {
+        "frog_tectal_prey_capture_unit": [
+          "fixed_action_pattern <- fixed_action"
+        ]
+      },
+      "evidence_units": 1
     },
     {
       "family": "learning",
@@ -185,7 +236,14 @@
       "example_units": [
         "prefrontal_metacognitive_unit"
       ],
-      "status": "thin"
+      "status": "thin",
+      "match_evidence": {
+        "prefrontal_metacognitive_unit": [
+          "metacognition <- metacognition",
+          "self_monitor <- self_monitor"
+        ]
+      },
+      "evidence_units": 1
     },
     {
       "family": "learning",
@@ -205,7 +263,14 @@
       "example_units": [
         "striatal_indirect_pathway_unit"
       ],
-      "status": "thin"
+      "status": "thin",
+      "match_evidence": {
+        "striatal_indirect_pathway_unit": [
+          "conflict_hold <- conflict_hold",
+          "gate_close <- gate_close"
+        ]
+      },
+      "evidence_units": 1
     },
     {
       "family": "learning",
@@ -234,7 +299,25 @@
         "pharyngeal_gustatory_unit",
         "striatal_direct_pathway_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "basal_ganglia_selection_unit": [
+          "value_gate <- value_gate"
+        ],
+        "dopaminergic_value_unit": [
+          "reward_predict <- reward"
+        ],
+        "mushroom_body_associative_memory_unit": [
+          "reward_punish <- reward"
+        ],
+        "pharyngeal_gustatory_unit": [
+          "appetitive_sense <- appetitive"
+        ],
+        "striatal_direct_pathway_unit": [
+          "value_gate <- value_gate"
+        ]
+      },
+      "evidence_units": 5
     },
     {
       "family": "memory",
@@ -269,7 +352,47 @@
         "cortical_highorder_integration_unit",
         "cortical_l23_association_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "amygdala_fear_unit": [
+          "risk_associate <- associate",
+          "threat_associate <- associate"
+        ],
+        "cephalopod_vertical_lobe_learning_unit": [
+          "associative_learn <- associative_learn",
+          "multimodal_bind <- bind",
+          "multimodal_bind <- multimodal_bind"
+        ],
+        "cerebellar_purkinje_ltd_unit": [
+          "predictive_learn <- predictive_learn"
+        ],
+        "cortical_highorder_integration_unit": [
+          "high_order_represent <- high_order_represent",
+          "multimodal_bind <- bind",
+          "multimodal_bind <- multimodal_bind"
+        ],
+        "cortical_l23_association_unit": [
+          "associate <- associate",
+          "bind <- bind",
+          "context_bind <- bind"
+        ],
+        "hippocampal_ca2_autoassoc_unit": [
+          "associate_context <- associate",
+          "context_associate <- associate"
+        ],
+        "hippocampal_trisynaptic_unit": [
+          "auto_associate <- auto_associate",
+          "auto_associate <- associate",
+          "episode_bind <- bind"
+        ],
+        "mushroom_body_associative_memory_unit": [
+          "associative_learn <- associative_learn"
+        ],
+        "pit_viper_strike_unit": [
+          "cross_modal_bind <- bind"
+        ]
+      },
+      "evidence_units": 9
     },
     {
       "family": "memory",
@@ -304,7 +427,49 @@
         "entorhinal_spatial_map_unit",
         "hippocampal_ca2_autoassoc_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "amygdala_fear_unit": [
+          "risk_associate <- associate",
+          "threat_associate <- associate"
+        ],
+        "antennal_lobe_glomerular_unit": [
+          "pattern_separate <- pattern_separate"
+        ],
+        "cortical_l23_association_unit": [
+          "associate <- associate"
+        ],
+        "entorhinal_spatial_map_unit": [
+          "metric_map <- metric_map"
+        ],
+        "hippocampal_ca2_autoassoc_unit": [
+          "associate_context <- associate",
+          "context_associate <- associate",
+          "social_encode <- social_encode"
+        ],
+        "hippocampal_trisynaptic_unit": [
+          "episodic_encode <- episodic_encode",
+          "memory_encode <- memory_encode",
+          "pattern_separate <- pattern_separate",
+          "auto_associate <- associate"
+        ],
+        "larv_olfactory_associative_learning_unit": [
+          "sparse_expansion <- sparse_expansion"
+        ],
+        "mushroom_body_associative_memory_unit": [
+          "memory_write <- memory_write"
+        ],
+        "mushroom_body_sparse_code_unit": [
+          "pattern_separate <- pattern_separate"
+        ],
+        "retinal_phototransduction_unit": [
+          "high_res_encode <- high_res_encode"
+        ],
+        "somatosensory_dorsalhorn_unit": [
+          "touch_encode <- touch_encode"
+        ]
+      },
+      "evidence_units": 11
     },
     {
       "family": "memory",
@@ -333,7 +498,29 @@
         "mushroom_body_associative_memory_unit",
         "red_nucleus_coordination_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "cortical_l5_output_unit": [
+          "multi_target_output <- multi_target_output",
+          "multi_target_output <- output",
+          "output_gate <- output"
+        ],
+        "hippocampal_output_unit": [
+          "memory_readout <- memory_readout",
+          "memory_readout <- readout",
+          "route_readout <- readout"
+        ],
+        "hippocampal_trisynaptic_unit": [
+          "recall_cue <- recall_cue"
+        ],
+        "mushroom_body_associative_memory_unit": [
+          "valence_readout <- readout"
+        ],
+        "red_nucleus_coordination_unit": [
+          "ramp_output <- output"
+        ]
+      },
+      "evidence_units": 5
     },
     {
       "family": "memory",
@@ -353,7 +540,13 @@
       "example_units": [
         "central_complex_heading_unit"
       ],
-      "status": "thin"
+      "status": "thin",
+      "match_evidence": {
+        "central_complex_heading_unit": [
+          "ring_attractor <- ring_attractor"
+        ]
+      },
+      "evidence_units": 1
     },
     {
       "family": "motor",
@@ -375,7 +568,16 @@
         "cel_forward_locomotion_command_unit",
         "larv_descending_motor_command_unit"
       ],
-      "status": "thin"
+      "status": "thin",
+      "match_evidence": {
+        "cel_forward_locomotion_command_unit": [
+          "locomotion_command <- locomotion_command"
+        ],
+        "larv_descending_motor_command_unit": [
+          "motor_command <- motor_command"
+        ]
+      },
+      "evidence_units": 2
     },
     {
       "family": "motor",
@@ -395,7 +597,13 @@
       "example_units": [
         "motor_thalamic_relay_unit"
       ],
-      "status": "thin"
+      "status": "thin",
+      "match_evidence": {
+        "motor_thalamic_relay_unit": [
+          "motor_relay <- motor_relay"
+        ]
+      },
+      "evidence_units": 1
     },
     {
       "family": "sensing",
@@ -435,7 +643,75 @@
         "cerebellar_cortical_unit",
         "cortical_l4_input_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "antennal_lobe_glomerular_unit": [
+          "channel_relay <- relay"
+        ],
+        "auditory_song_reception_unit": [
+          "auditory_relay <- auditory_relay",
+          "mechano_relay <- mechano_relay",
+          "auditory_relay <- relay",
+          "mechano_relay <- relay"
+        ],
+        "auditory_thalamic_relay_unit": [
+          "auditory_relay <- auditory_relay",
+          "auditory_relay <- relay"
+        ],
+        "cerebellar_cortical_unit": [
+          "converge <- converge",
+          "expand <- expand",
+          "feature_converge <- converge",
+          "signal_expand <- expand"
+        ],
+        "cortical_l4_input_unit": [
+          "feedforward_inhibit <- feedforward_inhibit",
+          "sensory_ingest <- sensory_ingest"
+        ],
+        "cortical_l5_output_unit": [
+          "descend <- descend"
+        ],
+        "efferent_command_bus_unit": [
+          "bimanual_relay <- relay"
+        ],
+        "larv_respiratory_relay_unit": [
+          "relay <- relay",
+          "respiratory_relay <- relay"
+        ],
+        "larv_thermosensory_relay_unit": [
+          "relay <- relay"
+        ],
+        "larv_visual_relay_unit": [
+          "visual_relay <- visual_relay",
+          "relay <- relay",
+          "visual_relay <- relay"
+        ],
+        "motor_thalamic_relay_unit": [
+          "motor_relay <- relay"
+        ],
+        "mushroom_body_sparse_code_unit": [
+          "high_dim_expand <- expand"
+        ],
+        "somatosensory_thalamic_relay_unit": [
+          "somatosensory_relay <- somatosensory_relay",
+          "somatosensory_relay <- relay",
+          "somatotopic_relay <- relay"
+        ],
+        "thalamocortical_relay_unit": [
+          "sensory_relay <- sensory_relay",
+          "relay <- relay",
+          "sensory_relay <- relay"
+        ],
+        "visual_target_detection_unit": [
+          "visual_relay <- visual_relay",
+          "visual_relay <- relay"
+        ],
+        "visual_thalamic_relay_unit": [
+          "visual_relay <- visual_relay",
+          "visual_relay <- relay"
+        ]
+      },
+      "evidence_units": 16
     },
     {
       "family": "sensing",
@@ -465,35 +741,31 @@
         "retinal_irradiance_unit",
         "retinal_phototransduction_unit"
       ],
-      "status": "covered"
-    },
-    {
-      "family": "modulatory",
-      "category": "homeostasis",
-      "vision_required": false,
-      "definition": "keeps an internal variable inside a workable range",
-      "units": 0,
-      "species": 0,
-      "species_labels": {},
-      "connectome_traced_units": 0,
-      "cross_species": false,
-      "units_listed": [],
-      "example_units": [],
-      "status": "missing"
-    },
-    {
-      "family": "modulatory",
-      "category": "neuromodulation",
-      "vision_required": false,
-      "definition": "broadcasts a diffusible signal that changes the gain of many targets",
-      "units": 0,
-      "species": 0,
-      "species_labels": {},
-      "connectome_traced_units": 0,
-      "cross_species": false,
-      "units_listed": [],
-      "example_units": [],
-      "status": "missing"
+      "status": "covered",
+      "match_evidence": {
+        "cochlear_amplification_unit": [
+          "frequency_sharpen <- frequency_sharpen",
+          "mechanical_amplify <- mechanical_amplify"
+        ],
+        "compound_lamina_relay_unit": [
+          "photorelay <- photorelay"
+        ],
+        "olfactory_transduction_unit": [
+          "odorant_encode <- odorant_encode"
+        ],
+        "retinal_irradiance_unit": [
+          "irradiance_sense <- irradiance_sense"
+        ],
+        "retinal_phototransduction_unit": [
+          "photorelay <- photorelay",
+          "transduce <- transduce"
+        ],
+        "vestibular_transduction_unit": [
+          "acceleration_sense <- acceleration_sense",
+          "gravity_reference <- gravity_reference"
+        ]
+      },
+      "evidence_units": 6
     },
     {
       "family": "emotion",
@@ -524,7 +796,33 @@
         "locus_coeruleus_arousal_unit",
         "mushroom_body_dopamine_arousal_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "buccal_efferent_feedback_unit": [
+          "diffuse_arousal <- arousal"
+        ],
+        "cholinergic_arousal_unit": [
+          "arousal_set <- arousal",
+          "cortical_arousal <- arousal"
+        ],
+        "gustatory_centrifugal_unit": [
+          "arousal_broadcast <- arousal"
+        ],
+        "locus_coeruleus_arousal_unit": [
+          "global_arousal <- arousal"
+        ],
+        "mushroom_body_dopamine_arousal_unit": [
+          "arousal_state <- arousal",
+          "mb_dopamine_arousal <- arousal"
+        ],
+        "oa_visual_modulation_unit": [
+          "arousal_link <- arousal"
+        ],
+        "octopamine_arousal_unit": [
+          "arousal_modulate <- arousal"
+        ]
+      },
+      "evidence_units": 7
     },
     {
       "family": "emotion",
@@ -551,7 +849,27 @@
         "mushroom_body_associative_memory_unit",
         "striatal_direct_pathway_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "basal_ganglia_selection_unit": [
+          "arbitrate <- arbitrate",
+          "candidate_arbitrate <- arbitrate",
+          "select_action <- select_action",
+          "value_gate <- value_gate"
+        ],
+        "cortical_highorder_integration_unit": [
+          "cross_modal_arbitrate <- arbitrate"
+        ],
+        "mushroom_body_associative_memory_unit": [
+          "valence_assign <- valence_assign",
+          "valence_readout <- valence_readout"
+        ],
+        "striatal_direct_pathway_unit": [
+          "value_gate <- value_gate",
+          "value_gated_action <- value_gated_action"
+        ]
+      },
+      "evidence_units": 4
     },
     {
       "family": "learning",
@@ -582,7 +900,29 @@
         "cerebellar_error_teaching_unit",
         "mushroom_body_associative_memory_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "basal_ganglia_selection_unit": [
+          "resolve_conflict <- resolve_conflict"
+        ],
+        "birdsong_basal_ganglia_learning_unit": [
+          "credit_assign <- credit_assign"
+        ],
+        "cerebellar_climbing_fibre_teaching_unit": [
+          "credit_assign <- credit_assign"
+        ],
+        "cerebellar_error_teaching_unit": [
+          "credit_assign <- credit_assign"
+        ],
+        "mushroom_body_associative_memory_unit": [
+          "credit_assign <- credit_assign"
+        ],
+        "striatal_direct_pathway_unit": [
+          "gate_open <- gate_open",
+          "value_gated_action <- value_gated_action"
+        ]
+      },
+      "evidence_units": 6
     },
     {
       "family": "memory",
@@ -613,7 +953,152 @@
         "larv_olfactory_associative_learning_unit",
         "mushroom_body_sparse_code_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "antennal_lobe_glomerular_unit": [
+          "pattern_separate <- pattern_separate"
+        ],
+        "cortical_l4_input_unit": [
+          "sparsify <- sparsify"
+        ],
+        "hippocampal_trisynaptic_unit": [
+          "pattern_separate <- pattern_separate"
+        ],
+        "larv_olfactory_associative_learning_unit": [
+          "sparse_expansion <- sparse_expansion"
+        ],
+        "mushroom_body_sparse_code_unit": [
+          "pattern_separate <- pattern_separate"
+        ],
+        "olfactory_transduction_unit": [
+          "sparsify <- sparsify"
+        ],
+        "retinal_phototransduction_unit": [
+          "high_res_encode <- high_res_encode"
+        ]
+      },
+      "evidence_units": 7
+    },
+    {
+      "family": "modulatory",
+      "category": "homeostasis",
+      "vision_required": false,
+      "definition": "keeps an internal variable inside a workable range",
+      "units": 5,
+      "species": 2,
+      "species_labels": {
+        "human": 4,
+        "drosophila": 1
+      },
+      "connectome_traced_units": 0,
+      "cross_species": false,
+      "units_listed": [
+        "astrocyte_tripartite_unit",
+        "circadian_clock_unit",
+        "insect_clock_pacemaker_unit",
+        "retinal_irradiance_unit",
+        "sleep_wake_flipflop_unit"
+      ],
+      "example_units": [
+        "astrocyte_tripartite_unit",
+        "circadian_clock_unit",
+        "insect_clock_pacemaker_unit",
+        "retinal_irradiance_unit",
+        "sleep_wake_flipflop_unit"
+      ],
+      "status": "covered",
+      "match_evidence": {
+        "astrocyte_tripartite_unit": [
+          "metabolic_support <- metabolic_support"
+        ],
+        "circadian_clock_unit": [
+          "circadian_track <- circadian",
+          "entrain_light <- entrain_light",
+          "oscillate_circadian <- circadian",
+          "phase_set <- phase_set"
+        ],
+        "insect_clock_pacemaker_unit": [
+          "circadian_pace <- circadian",
+          "phase_lock <- phase_lock"
+        ],
+        "retinal_irradiance_unit": [
+          "circadian_drive <- circadian",
+          "circadian_light_input <- circadian"
+        ],
+        "sleep_wake_flipflop_unit": [
+          "sleep_wake <- sleep_wake"
+        ]
+      },
+      "evidence_units": 5
+    },
+    {
+      "family": "modulatory",
+      "category": "neuromodulation",
+      "vision_required": false,
+      "definition": "broadcasts a diffusible signal that changes the gain of many targets",
+      "units": 9,
+      "species": 2,
+      "species_labels": {
+        "drosophila": 5,
+        "human": 4
+      },
+      "connectome_traced_units": 1,
+      "cross_species": false,
+      "units_listed": [
+        "astrocyte_tripartite_unit",
+        "cb_endocrine_modulation_unit",
+        "hippocampal_ca2_autoassoc_unit",
+        "larv_mushroom_body_feedback_unit",
+        "locus_coeruleus_arousal_unit",
+        "mushroom_body_dopamine_arousal_unit",
+        "octopamine_arousal_unit",
+        "serotonergic_mood_unit",
+        "vnc_endocrine_modulation_unit"
+      ],
+      "example_units": [
+        "astrocyte_tripartite_unit",
+        "cb_endocrine_modulation_unit",
+        "hippocampal_ca2_autoassoc_unit",
+        "larv_mushroom_body_feedback_unit",
+        "locus_coeruleus_arousal_unit"
+      ],
+      "status": "covered",
+      "match_evidence": {
+        "astrocyte_tripartite_unit": [
+          "calcium_wave <- calcium_wave",
+          "slow_modulate <- modulate"
+        ],
+        "cb_endocrine_modulation_unit": [
+          "endocrine_release <- endocrine_release",
+          "peptide_burst <- peptide_burst",
+          "state_modulate <- modulate"
+        ],
+        "hippocampal_ca2_autoassoc_unit": [
+          "stress_modulate <- modulate"
+        ],
+        "larv_mushroom_body_feedback_unit": [
+          "modulation <- modulation"
+        ],
+        "locus_coeruleus_arousal_unit": [
+          "gain_modulation <- modulation"
+        ],
+        "mushroom_body_dopamine_arousal_unit": [
+          "dopamine_modulation <- modulation"
+        ],
+        "octopamine_arousal_unit": [
+          "arousal_modulate <- modulate"
+        ],
+        "serotonergic_mood_unit": [
+          "mood_modulate <- modulate",
+          "rhythm_modulate <- modulate"
+        ],
+        "vnc_endocrine_modulation_unit": [
+          "neurohormone_diffuse <- neurohormone_diffuse",
+          "peptide_release <- peptide_release",
+          "state_modulate <- modulate"
+        ]
+      },
+      "evidence_units": 9
     },
     {
       "family": "motor",
@@ -638,7 +1123,19 @@
         "larv_somatosensory_escape_unit",
         "vestibular_transduction_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "giant_fiber_escape_unit": [
+          "escape_reflex <- escape_reflex"
+        ],
+        "larv_somatosensory_escape_unit": [
+          "escape_reflex <- escape_reflex"
+        ],
+        "vestibular_transduction_unit": [
+          "balance_reflex <- balance_reflex"
+        ]
+      },
+      "evidence_units": 3
     },
     {
       "family": "sensing",
@@ -686,7 +1183,90 @@
         "cb_efferent_command_unit",
         "centrifugal_visual_feedback_unit"
       ],
-      "status": "covered"
+      "status": "covered",
+      "match_evidence": {
+        "amygdala_fear_unit": [
+          "safety_gate <- gate"
+        ],
+        "basal_ganglia_selection_unit": [
+          "value_gate <- gate"
+        ],
+        "buccal_efferent_feedback_unit": [
+          "reciprocal_gate <- gate"
+        ],
+        "cb_efferent_command_unit": [
+          "reciprocal_gate <- gate"
+        ],
+        "centrifugal_visual_feedback_unit": [
+          "gain_control <- gain_control"
+        ],
+        "cortical_inhibitory_gain_unit": [
+          "disinhibit <- disinhibit",
+          "gain_control <- gain_control",
+          "shunt <- shunt",
+          "state_gate <- gate"
+        ],
+        "cortical_l23_association_unit": [
+          "context_gate <- gate"
+        ],
+        "cortical_l4_input_unit": [
+          "sparsify <- sparsify"
+        ],
+        "cortical_l5_output_unit": [
+          "output_gate <- gate"
+        ],
+        "cortical_l6_feedback_unit": [
+          "gain_control <- gain_control"
+        ],
+        "courtship_decision_unit": [
+          "behaviour_gate <- gate"
+        ],
+        "hippocampal_ca2_autoassoc_unit": [
+          "stress_gate <- gate"
+        ],
+        "locus_coeruleus_arousal_unit": [
+          "state_gate <- gate"
+        ],
+        "medulla_centripetal_gain_unit": [
+          "visual_gain_control <- gain_control"
+        ],
+        "motor_thalamic_relay_unit": [
+          "action_gate <- gate"
+        ],
+        "mushroom_body_sparse_code_unit": [
+          "gain_control <- gain_control"
+        ],
+        "octopamine_arousal_unit": [
+          "gain_control <- gain_control"
+        ],
+        "olfactory_transduction_unit": [
+          "gain_normalise <- gain_normalise",
+          "sparsify <- sparsify"
+        ],
+        "retinal_phototransduction_unit": [
+          "gain_control <- gain_control"
+        ],
+        "somatosensory_dorsalhorn_unit": [
+          "pain_gate <- gate"
+        ],
+        "striatal_direct_pathway_unit": [
+          "gate_open <- gate",
+          "go_gate <- gate",
+          "value_gate <- gate"
+        ],
+        "striatal_indirect_pathway_unit": [
+          "gate_close <- gate",
+          "no_go_gate <- gate"
+        ],
+        "thalamocortical_relay_unit": [
+          "gate <- gate",
+          "gate_control <- gate"
+        ],
+        "vnc_endocrine_modulation_unit": [
+          "segmental_gate <- gate"
+        ]
+      },
+      "evidence_units": 24
     },
     {
       "family": "social",
@@ -706,12 +1286,18 @@
       "example_units": [
         "auditory_song_reception_unit"
       ],
-      "status": "thin"
+      "status": "thin",
+      "match_evidence": {
+        "auditory_song_reception_unit": [
+          "social_signal <- social_signal"
+        ]
+      },
+      "evidence_units": 1
     }
   ],
   "summary": {
     "categories_total": 24,
-    "covered": 14,
+    "covered": 16,
     "vision_required_total": 15,
     "vision_required_missing": [],
     "vision_required_thin": [
@@ -751,6 +1337,7 @@
       "motor_command",
       "sensory_relay",
       "pattern_separate",
+      "neuromodulation",
       "reflex"
     ]
   },
@@ -769,5 +1356,54 @@
     "Categories are assigned by keyword match over declared capability strings, so a unit whose function is real but named differently is absent rather than misfiled. That direction of error is visible in `library.units_with_no_category` and is fixable; the opposite error -- a unit placed in a category it does not implement -- cannot happen from a keyword match.",
     "Cross-species count uses a token heuristic on the unit's name and declared reference, so it undercounts species whose name does not carry a species token. Treat `cross_species` as a lower bound.",
     "No unit was added, renamed or reclassified. The unit count is unchanged; this artifact only adds an axis and measures coverage on it."
-  ]
+  ],
+  "keyword_repairs": {
+    "note": "Tokens that were probed for homeostasis and neuromodulation in v2.42.0, with the outcome.  The original keyword lists for those two categories matched ZERO units, so both read `missing` while the library declared them; the fix is to add the library's actual words, not to loosen the matcher.  Every token here was run against every capability string in the library before it was accepted, and two of them were REJECTED for manufacturing the same class of error the earlier releases had.",
+    "added": {
+      "homeostasis": [
+        "circadian",
+        "entrain_light",
+        "phase_set",
+        "phase_lock",
+        "sleep_wake",
+        "metabolic_support"
+      ],
+      "neuromodulation": [
+        "modulation",
+        "modulate",
+        "neurohormone_diffuse",
+        "peptide_release",
+        "endocrine_release",
+        "peptide_burst",
+        "calcium_wave"
+      ]
+    },
+    "rejected": [
+      {
+        "token": "rhythm_generate",
+        "target": "homeostasis",
+        "why_rejected": "Whole-token matching reaches every CP and pattern-generating unit that declares `rhythm_generate` -- spinal, respiratory, buccal, leech swim, electric-organ, courtship-song.  Those are rhythm GENERATORS, a motor output function, not keeping an internal variable in range.  It would have added eight motion units to homeostasis and silently closed a real gap.",
+        "hits_if_added": [
+          "spinal_cpg_unit",
+          "leech_swim_cpg_unit",
+          "buccal_feeding_cpg_unit",
+          "respiratory_rhythm_cpg_unit",
+          "electric_organ_discharge_unit",
+          "courtship_song_pattern_unit",
+          "ascidian_larval_escape_swim_unit",
+          "cortical_inhibitory_gain_unit"
+        ]
+      },
+      {
+        "token": "broadcast",
+        "target": "neuromodulation",
+        "why_rejected": "`value_broadcast` and `arousal_broadcast` are command broadcasts -- a motor/effort signal pushed to effectors, not a diffusible signal that changes the gain of many targets.  The definition of this category is the diffusible-gain one, and the two words share a suffix while meaning different things.  This is the substring trap reappearing as a whole token.",
+        "hits_if_added": [
+          "dopaminergic_value_unit",
+          "gustatory_centrifugal_unit"
+        ]
+      }
+    ],
+    "method": "`scripts/extract_function_coverage.py :: firing()`; match_evidence on each matrix row records the exact `cap <- token` pair for every tagged unit, so a tag can always be traced back to the string that earned it."
+  }
 }
