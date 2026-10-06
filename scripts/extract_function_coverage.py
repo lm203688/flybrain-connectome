@@ -162,6 +162,24 @@ def verb_hit(verbs, cap: str) -> bool:
     return False
 
 
+def firing(cap_set: set, kws) -> list:
+    """Sorted ['cap <- token', ...] for every whole-token hit.
+
+    v2.42.0: a coverage tag without a recorded firing token is a tag nobody can
+    check, and this is the third release in which a coverage matrix reported
+    something the library does not contain.  Recording the exact pair makes the
+    match reproducible from the unit's own fields, and GATE 11 asserts it.
+    """
+    out = []
+    for kw in kws:
+        for cap in cap_set:
+            if (cap == kw or cap.startswith(kw + "_")
+                    or cap.endswith("_" + kw)
+                    or ("_" + kw + "_") in cap):
+                out.append("%s <- %s" % (cap, kw))
+    return sorted(set(out))
+
+
 def slug(text: str) -> str:
     return re.sub(r"_+", "_", str(text).strip().lower()).strip("_")
 
@@ -278,14 +296,44 @@ def main() -> int:
                           "courtship_song", "song_learning"),
         "neuromodulation": ("neuromodulation", "neuromodulator_release",
                             "octopamine_modulation", "dopaminergic_value",
-                            "neuropeptide_release", "modulatory_broadcast"),
+                            "neuropeptide_release", "modulatory_broadcast",
+                            # v2.42.0 -- the original six tokens matched ZERO
+                            # units, so neuromodulation read as `missing` while
+                            # a dozen units in the library were declaring it in
+                            # their own vocabulary.  These are the library's
+                            # actual words, probed against every capability
+                            # string before they were added.
+                            "modulation", "modulate",
+                            "neurohormone_diffuse", "peptide_release",
+                            "endocrine_release", "peptide_burst",
+                            "calcium_wave"),
         "homeostasis": ("homeostasis", "thermoregulation", "circadian_rhythm",
-                        "fluid_balance"),
+                        "fluid_balance",
+                        # v2.42.0 -- `circadian_rhythm` as one token never
+                        # matched: the library splits the concept
+                        # (`circadian_pace`, `oscillate_circadian`,
+                        # `circadian_track`).  `circadian` as a whole token
+                        # catches all of them, and cannot reach
+                        # `metabolic_support` -- which is exactly the trap that
+                        # made substring matching unsafe.
+                        "circadian", "entrain_light", "phase_set", "phase_lock",
+                        "sleep_wake", "metabolic_support"),
     }
 
     per_unit: dict[str, list] = {}
     category_units: dict[str, list] = defaultdict(list)
     units_by_name = {u.get("name", "?"): u for u in units}
+    # evidence[category][unit] = the 'cap <- token' pairs that put the unit in
+    # that category.  Kept as a set per cell so the two paths below cannot
+    # double-record.
+    evidence: dict[str, dict[str, list]] = defaultdict(
+        lambda: defaultdict(list))
+
+    def note(cat, name, caps, kws):
+        for pair in firing(caps, kws):
+            if pair not in evidence[cat][name]:
+                evidence[cat][name].append(pair)
+
     for u in units:
         name = u.get("name", "?")
         caps = cap_index.get(name, set())
@@ -294,6 +342,7 @@ def main() -> int:
         per_unit[name] = hit
         for c in hit:
             category_units[c].append(name)
+            note(c, name, caps, CATEGORY_KEYWORDS[c])
 
     # ------------------------------------------------------------------ #
     # 2b. the library's own vocabulary is a MECHANISM vocabulary
@@ -373,9 +422,28 @@ def main() -> int:
                           "courtship_song", "song_learning"),
         "neuromodulation": ("neuromodulation", "neuromodulator_release",
                             "octopamine_modulation", "dopaminergic_value",
-                            "neuropeptide_release", "modulatory_broadcast"),
+                            "neuropeptide_release", "modulatory_broadcast",
+                            # v2.42.0 -- the original six tokens matched ZERO
+                            # units, so neuromodulation read as `missing` while
+                            # a dozen units in the library were declaring it in
+                            # their own vocabulary.  These are the library's
+                            # actual words, probed against every capability
+                            # string before they were added.
+                            "modulation", "modulate",
+                            "neurohormone_diffuse", "peptide_release",
+                            "endocrine_release", "peptide_burst",
+                            "calcium_wave"),
         "homeostasis": ("homeostasis", "thermoregulation", "circadian_rhythm",
-                        "fluid_balance"),
+                        "fluid_balance",
+                        # v2.42.0 -- `circadian_rhythm` as one token never
+                        # matched: the library splits the concept
+                        # (`circadian_pace`, `oscillate_circadian`,
+                        # `circadian_track`).  `circadian` as a whole token
+                        # catches all of them, and cannot reach
+                        # `metabolic_support` -- which is exactly the trap that
+                        # made substring matching unsafe.
+                        "circadian", "entrain_light", "phase_set", "phase_lock",
+                        "sleep_wake", "metabolic_support"),
     }
 
 
@@ -386,6 +454,7 @@ def main() -> int:
         for cat, verbs in MECHANISM_VERBS.items():
             if any(verb_hit(verbs, cap) for cap in caps):
                 mech_units[cat].append(name)
+                note(cat, name, caps, verbs)
     for cat, names in mech_units.items():
         # merged into category_units, NOT into per_unit: per_unit is keyed by
         # unit name, and a first cut of this block wrote `per_unit[cat] = ...`
@@ -434,6 +503,16 @@ def main() -> int:
         row["example_units"] = sorted(names)[:5]
         row["status"] = ("covered" if len(names) >= 3 else
                          "thin" if names else "missing")
+        # v2.42.0 -- the tag is not the claim, the firing token is.  A reader
+        # must be able to point at the exact capability string that put a unit
+        # in a category, because three releases in a row have shipped a
+        # coverage matrix that the library could not back.  Empty evidence for
+        # a listed unit is a bug, and GATE 11 refuses to write it.
+        ev = {}
+        for n in names:
+            ev[n] = evidence[cat][n]
+        row["match_evidence"] = ev
+        row["evidence_units"] = sum(1 for n in names if evidence[cat][n])
         matrix.append(row)
     matrix.sort(key=lambda r: (not r["vision_required"], r["status"] != "missing",
                                r["family"], r["category"]))
@@ -541,6 +620,63 @@ def main() -> int:
             "unchanged; this artifact only adds an axis and measures coverage "
             "on it.",
         ],
+        "keyword_repairs": {
+            "note": ("Tokens that were probed for homeostasis and "
+                     "neuromodulation in v2.42.0, with the outcome.  The "
+                     "original keyword lists for those two categories matched "
+                     "ZERO units, so both read `missing` while the library "
+                     "declared them; the fix is to add the library's actual "
+                     "words, not to loosen the matcher.  Every token here was "
+                     "run against every capability string in the library "
+                     "before it was accepted, and two of them were REJECTED "
+                     "for manufacturing the same class of error the earlier "
+                     "releases had."),
+            "added": {
+                "homeostasis": [
+                    "circadian", "entrain_light", "phase_set", "phase_lock",
+                    "sleep_wake", "metabolic_support"],
+                "neuromodulation": [
+                    "modulation", "modulate", "neurohormone_diffuse",
+                    "peptide_release", "endocrine_release", "peptide_burst",
+                    "calcium_wave"],
+            },
+            "rejected": [
+                {"token": "rhythm_generate", "target": "homeostasis",
+                 "why_rejected": ("Whole-token matching reaches every CP and "
+                                  "pattern-generating unit that declares "
+                                  "`rhythm_generate` -- spinal, respiratory, "
+                                  "buccal, leech swim, electric-organ, "
+                                  "courtship-song.  Those are rhythm "
+                                  "GENERATORS, a motor output function, not "
+                                  "keeping an internal variable in range.  "
+                                  "It would have added eight motion units to "
+                                  "homeostasis and silently closed a real gap."),
+                 "hits_if_added": ["spinal_cpg_unit", "leech_swim_cpg_unit",
+                                   "buccal_feeding_cpg_unit",
+                                   "respiratory_rhythm_cpg_unit",
+                                   "electric_organ_discharge_unit",
+                                   "courtship_song_pattern_unit",
+                                   "ascidian_larval_escape_swim_unit",
+                                   "cortical_inhibitory_gain_unit"]},
+                {"token": "broadcast", "target": "neuromodulation",
+                 "why_rejected": ("`value_broadcast` and `arousal_broadcast` "
+                                  "are command broadcasts -- a motor/effort "
+                                  "signal pushed to effectors, not a "
+                                  "diffusible signal that changes the gain of "
+                                  "many targets.  The definition of this "
+                                  "category is the diffusible-gain one, and "
+                                  "the two words share a suffix while meaning "
+                                  "different things.  This is the substring "
+                                  "trap reappearing as a whole token."),
+                 "hits_if_added": ["dopaminergic_value_unit",
+                                   "gustatory_centrifugal_unit"]},
+            ],
+            "method": ("`scripts/extract_function_coverage.py :: firing()`; "
+                       "match_evidence on each matrix row records the exact "
+                       "`cap <- token` pair for every tagged unit, so a tag "
+                       "can always be traced back to the string that earned "
+                       "it."),
+        },
     }
 
     # ------------------------------------------------------------------ #
@@ -567,6 +703,42 @@ def main() -> int:
                   "%d units" % (r["category"], r["species"], r["units"]),
                   file=sys.stderr)
             return 3
+    # Every listed unit must carry evidence, and every evidence string must be
+    # a real 'cap <- token' pair over a capability that unit actually declares.
+    # A tag with no traceable firing token is the failure mode of v2.37-2.41:
+    # the matrix said something the library could not back.
+    for r in matrix:
+        if r["units"] != r["evidence_units"]:
+            print("REFUSING TO WRITE: category %s lists %d units but only %d "
+                  "have a recorded firing token"
+                  % (r["category"], r["units"], r["evidence_units"]),
+                  file=sys.stderr)
+            return 3
+        caps_by_unit = {u.get("name", "?"): cap_index.get(u.get("name", "?"),
+                                                          set())
+                        for u in units}
+        for n, pairs in r["match_evidence"].items():
+            if n not in caps_by_unit:
+                print("REFUSING TO WRITE: category %s has evidence for an "
+                      "unknown unit %s" % (r["category"], n), file=sys.stderr)
+                return 3
+            for pair in pairs:
+                if " <- " not in pair:
+                    print("REFUSING TO WRITE: category %s has a malformed "
+                          "evidence entry %r" % (r["category"], pair),
+                          file=sys.stderr)
+                    return 3
+                cap, tok = pair.split(" <- ", 1)
+                if cap not in caps_by_unit[n]:
+                    print("REFUSING TO WRITE: category %s claims unit %s fired "
+                          "on %r, which that unit does not declare"
+                          % (r["category"], n, cap), file=sys.stderr)
+                    return 3
+                if not verb_hit([tok], cap):
+                    print("REFUSING TO WRITE: category %s evidence %r does not "
+                          "actually match under the whole-token rule"
+                          % (r["category"], pair), file=sys.stderr)
+                    return 3
 
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(out, ensure_ascii=False, indent=2),
