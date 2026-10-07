@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.45.0` | the toolkit as a whole |
+| package | `2.46.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -19,33 +19,34 @@ The **schema version** is versioned separately from the **package version**:
 
 ---
 
-## [2.45.0] — 2026-10-07
+## [2.46.0] — 2026-10-07
 
-**GATE 14: taxonomy.system 受控词表收词**
+**斑马鱼全脑 EM 连接组：可行性核实 + 抽取器骨架**
 
-`system` 字段在 116 单元 / 14 物种上累计了 47 个自由文本值（`sensory` 12 次、`optic_lobe` 9 次、`cortex` 6 次…），没有词表约束，新单元可以标任何字符串，分类轴静默碎裂。
+不做数据拉取。这一版只把决策点写清楚，避免以后再讨论时散在对话里。
 
-新增 `flybrain-connectome-mcp/functional_units/taxonomy_systems.json`：11 个 top-level domain × 47 个 subvalue，每个都有 `definition` 和 `note`。所有现有 47 个值**全部保留原名不动**，只是分组到 domain 下：
+新增 `docs/zebrafish_connectome_feasibility.md`：
 
-- `sensory_peripheral` 6 值 / `sensory_relay` 4 值 / `motor_command` 4 值
-- `reflex_cpg` 7 值 / `associative_learning` 5 值 / `memory_cognition` 8 值
-- `navigation_spatial` 2 值 / `neuromodulation` 3 值 / `homeostasis_state` 4 值
-- `vocalization_social` 1 值 / `motor_output` 3 值
+- **数据源核实**：Petkova 2025（Janelia，`fish1-release.storage.googleapis.com`，180k soma / 40k annotated / 30M synapses，CC-BY-NC 4.0）、Zhang/Li 2025（上海交大，170k cells / 25M synapses，含 NA/DA/5HT/orexin/glycine 五种神经调节分子标注）。
+- **独有维度**：三个已有连接组（MaleCNS / Witvliet 2020 / Winding 2023）都没有 E/I 极性；斑马鱼是唯一 vertebrate EM 级证据。
+- **许可冲突**：CC-BY-NC 4.0 与本项目 MIT 主许可不兼容，列出三个隔离选项让用户拍板。
+- **采样策略**：全量 8 GB 落 Tier-2 不合适；采样集 ~600 MB（元数据 + 分子标签 + 3 个示范 circuit 邻域）符合当前体量。
+- **不替代现有证据**：116 单元的 37 条锚定全部来自 MaleCNS；斑马鱼是独立第四源，只作跨物种一致性检查。
 
-新增 `scripts/check_taxonomy.py`（GATE 14，stdlib only，跑在 `--quick`）：
+新增 `scripts/extract_zebrafish_profiles.py`（骨架，不下载数据）：
 
-- 词汇表完整性——domain 无重复 id / system 只在一个 domain / 每个都有 definition 和 note
-- 每个 unit.system 必须在词表内（否则 FAIL，并列出错配）
-- 每个 unit 必须有 system 字段（空值 FAIL）
-- 每 domain 覆盖率打印，空洞 domain 记为 fact 不 FAIL
+- 声明期望输入格式（`somas.csv` / `edges.csv` / `circuits.json`）
+- 声明期望输出结构（对齐 `larva_profiles.json` / `cel_profiles.json`）
+- 内置分子标签解析（`vglut2a` → excitatory / `gad1b` → inhibitory / 两者都有 → ambiguous / 都没有 → unannotated）
+- fail-closed：`ZEBRAFISH_DATA_DIR` 未设 → 打印 SKIPPED exit 0（不 FAIL 门禁）；设了但目录空 → FAILED exit 3
+- 骨架跑起来已验证：`SKIPPED: ZEBRAFISH_DATA_DIR not set` + 三条决策提示
 
-**故障注入**（未注入的断言不算断言）：`bogus_never_declared` 注入 → FAIL 1；`del units[1].system` 注入 → FAIL 1；还原后 PASS。
+**为什么骨架不 FAIL 门禁**：与 `extract_larva_profiles.py` 不同——larva/cel 是本地数据源，斑马鱼是远程 Google Cloud，需要显式授权。未设目录是明确的「尚未激活」状态，不是错误。
 
-**为什么不改任何单元名字**：47 个值是 load-bearing（`flybrain` CLI、13 门禁、每个已发 artifact 都按名索引），改一次牵一发动全身。词表的价值不在于重命名，而在于**新单元只能从词表选**，漂移从此不再静默。
+**下一步（用户拍板后）**：授权边界 → 采样数据落 Tier-2 → 填 `_load()` / `_emit()` 实现 → 抽 3-5 个 circuit（lateral line / hindbrain / tegmental）→ 新增单元并挂跨物种证据。
 
-门禁 12 → 13 → **14**（GATE 13 行为学验证在 v2.44.0；GATE 14 词表校验在此）。FUNCTIONAL_UNITS 116 / MODULE_PROFILES 264 / CONNECTION_TYPES 66 不变。
+门禁不变（14/14 PASS），单元/剖面/连接类型计数不变。
 
-Gates 14/14 PASS。
 
 ## [2.43.0] — 2026-10-07
 
