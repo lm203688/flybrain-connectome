@@ -2,6 +2,12 @@
 
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
+[![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
+[![version](https://img.shields.io/badge/version-2.43.0-orange.svg)](CHANGELOG.md)
+[![docker](https://img.shields.io/badge/docker-2.43.0-2496ED.svg)](#docker)
+[![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
+
+**v2.43.0 · 2026-10-07 · 116 functional units · 264 module profiles · 13 gates**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
@@ -67,8 +73,9 @@ Honesty is a feature. The reproducible experiment scripts live in
 
 ## Install
 
-The toolkit is **standard-library only** — no `requirements.txt`, nothing to
-build. Pick either setup:
+The toolkit needs one runtime dependency (`numpy`, because the connectome
+engine imports it at module level) plus optional extras for provenance and
+columnar IO. No other third-party code is required. Pick either setup:
 
 > **Note (2026-09-22):** this repo is **private** until the git-history
 > rewrite is complete. You need a GitHub account with access to
@@ -1026,12 +1033,101 @@ for client configs, the 45-tool reference, and troubleshooting.
 
 ## Development & testing
 
-**One command runs every offline gate** — the same set CI runs, so "green
-locally" and "green in CI" cannot diverge:
+### One command runs every offline gate
+
+The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
-python scripts/run_gates.py              # 5 gates, no dataset needed
+python scripts/run_gates.py              # 10 gates, no dataset needed
 python scripts/run_gates.py --with-data  # + `flybrain verify` (70 assertions)
+```
+
+### Makefile shortcuts (v2.43.0)
+
+```bash
+make help          # all targets
+make setup         # create .venv, install [dev]
+make lint          # ruff check + black --check
+make format        # ruff --fix + black
+make typecheck     # mypy on shipped code
+make test          # pytest --cov
+make gates         # = python scripts/run_gates.py
+make gates-data    # + flybrain verify
+make smoke         # generate a smoke organism
+make build         # build dist/{sdist,wheel}
+make publish       # twine upload
+```
+
+### Docker (v2.43.0)
+
+Two flavors in one image. The dataset is never baked in — mount it:
+
+```bash
+docker build -t flybrain-connectome .
+
+# MCP stdio server
+docker run --rm flybrain-connectome
+
+# HTTP API on :8799
+docker run --rm -p 8799:8799 \
+  -v "$(pwd)/male_cns:/data/male_cns:ro" \
+  -e FLYBRAIN_DATA_DIR=/data/male_cns \
+  flybrain-connectome serve-http
+```
+
+`docker-compose.yml` also ships a `dev` / `api` / `mcp` / `gates` service
+matrix — one command per use case:
+
+```bash
+docker compose up --build dev      # shell into the dev container
+docker compose run --rm gates      # offline CI-equivalent gates
+```
+
+### Dev container / Codespaces
+
+Open in VS Code or Codespaces; `.devcontainer.json` installs everything and
+runs `make gates` on entry.
+
+### Pre-commit
+
+```bash
+pre-commit install       # one time
+pre-commit run --all-files
+```
+
+Hooks: ruff + ruff-format + black + trailing-whitespace + end-of-file-fixer +
+check-yaml/toml/json + check-merge-conflict + debug-statements +
+detect-secrets (against `.secrets.baseline`).
+
+### Individually: each gate
+
+```bash
+# credential gate — MUST pass before any push (see CHANGELOG 1.0.0)
+python scripts/check_no_secrets.py
+
+# docs-vs-code drift gate: tool count/names, versions, schema, blueprint count
+python scripts/check_docs_consistency.py
+
+# every advertised MCP tool must actually respond (needs FLYBRAIN_DATA_DIR)
+python scripts/check_mcp_tools.py
+
+# a missing OPTIONAL dependency must degrade, not crash — and must not
+# silently skip producing provenance when the dependency IS installed
+python scripts/check_degraded_mode.py
+
+# the generated artifact is structurally real (not just "exit code 0")
+python scripts/check_generated_artifact.py --dir <out-dir> --name <organism>
+
+# end-to-end smoke test (needs FLYBRAIN_DATA_DIR -> your data)
+flybrain verify
+
+# consistency between this repo and any downstream consumer
+python integrations/swarmlabs/check_swarmlabs_sync.py
+
+# reproducible experiments
+python integrations/swarmlabs/diagnostics/fault_isolation_experiment.py --quick
+python integrations/swarmlabs/diagnostics/snn_energy_experiment.py
+python integrations/swarmlabs/diagnostics/multi_readout_experiment.py
 ```
 
 Individually:
