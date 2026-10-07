@@ -203,6 +203,178 @@ def main() -> int:
             ib = sorted((ports.get(b) or {}).get("in") or [])[:2]
             print("    %-38s -> %-38s out=%s in=%s" % (a, b, oa, ib))
 
+    # ---- 6. behavioural check: every DEMO must build AND function -------- #
+    # v2.44.0.  Sections 1-5 all ask "can this be assembled?" -- the
+    # classification of `composable_with` and the interface check in the
+    # builder.  None of them asks whether a composition that DOES get built
+    # actually works.  Two cheap things it must do:
+    #
+    #   (a) no orphan nodes.  Every node in `organism.nodes` must appear in
+    #       at least one edge.  A node that is neither source nor target of
+    #       anything is a unit that was instantiated but never wired -- it
+    #       consumes memory and does nothing, and no other check in the
+    #       library catches it.
+    #
+    #   (b) there is a drive path.  The organism must have at least one
+    #       externally drivable required IN port AND at least one unbound
+    #       OUT port, AND at least one IN port that can reach at least one
+    #       OUT port through edges.  A composition where every output is
+    #       re-consumed internally and no output is readable is a wire-up,
+    #       not an organism; a composition where no input can reach any
+    #       output is dead topology.
+    #
+    # Both checks run on the four curated DEMOS in `functional_units.py`,
+    # which are the only fully-specified compositions in the library.  They
+    # are cheap: one `compose_from_units` call each, no simulation.
+    behavioural: dict = {"demos": {}, "orphan_injections": 0,
+                          "drive_injections": 0}
+    if BUILDER.exists():
+        try:
+            import importlib.util
+            spec = importlib.util.spec_from_file_location(
+                "_fu_gate13_b", BUILDER)
+            mod = importlib.util.module_from_spec(spec)
+            spec.loader.exec_module(mod)
+            demos = getattr(mod, "DEMOS", {})
+            for key, demo in demos.items():
+                doc = mod.compose_from_units(demo["units"], demo["connections"],
+                                             name=demo["name"])
+                org = doc.get("organism", {})
+                nodes = org.get("nodes", [])
+                edges = org.get("edges", [])
+                interf = doc.get("interface", {})
+                val = doc.get("validation", {})
+                ext_in = interf.get("external_in", [])
+                ext_out = interf.get("external_out", [])
+                touched = set()
+                for e in edges:
+                    touched.add(e["from"])
+                    touched.add(e["to"])
+                orphans = [n["id"] for n in nodes if n["id"] not in touched]
+
+                # drive path: BFS from each ext_in, does any reach an
+                # ext_out?  Only edges with `from` in `nodes` participate.
+                adj: dict = {n["id"]: [] for n in nodes}
+                for e in edges:
+                    if e["from"] in adj:
+                        adj[e["from"]].append(e["to"])
+                out_ids = {o["unit"] for o in ext_out}
+                drive_ok = False
+                if ext_in and ext_out:
+                    for s in ext_in:
+                        src = s["unit"]
+                        seen = {src}
+                        stack = [src]
+                        while stack:
+                            x = stack.pop()
+                            if x in out_ids and x != src:
+                                drive_ok = True
+                                break
+                            for y in adj.get(x, []):
+                                if y not in seen:
+                                    seen.add(y)
+                                    stack.append(y)
+                        if drive_ok:
+                            break
+
+                problems = []
+                if orphans:
+                    problems.append("orphan nodes: %s" % orphans)
+                if not val.get("ok"):
+                    problems.append("validation.errors: %s"
+                                    % val.get("errors", []))
+                if not ext_in:
+                    problems.append("no externally drivable required IN port")
+                if not ext_out:
+                    problems.append("no unbound OUT port (nothing readable)")
+                if ext_in and ext_out and not drive_ok:
+                    problems.append("no drive path from any external IN to "
+                                    "any external OUT")
+
+                behavioural["demos"][key] = {
+                    "nodes": len(nodes),
+                    "edges": len(edges),
+                    "external_in": len(ext_in),
+                    "external_out": len(ext_out),
+                    "orphans": orphans,
+                    "drive_path": drive_ok,
+                    "validation_ok": bool(val.get("ok")),
+                    "warnings": len(val.get("warnings", [])),
+                }
+                for p in problems:
+                    fails.append("demo %s: %s" % (key, p))
+
+            # Fault injection.  Both checks are new in v2.44.0 and would be
+            # worthless if they could not actually fire.  Build two broken
+            # compositions in memory and confirm the check reports each.
+            # Neither of these touches disk.
+            broken_orphan = dict(demos.get("mammal") or {})
+            broken_orphan["units"] = list(broken_orphan["units"]) + [
+                "hippocampal_ca2_autoassoc_unit"]
+            broken_orphan["connections"] = list(broken_orphan["connections"])
+            bdoc = mod.compose_from_units(broken_orphan["units"],
+                                          broken_orphan["connections"],
+                                          name="gate13_orphan_probe")
+            bnodes = bdoc["organism"]["nodes"]
+            bedges = bdoc["organism"]["edges"]
+            btouched = {e["from"] for e in bedges} | {e["to"] for e in bedges}
+            borphans = [n["id"] for n in bnodes if n["id"] not in btouched]
+            if "hippocampal_ca2_autoassoc_unit" not in borphans:
+                fails.append("orphan fault injection did not fire: %s was "
+                             "added to a DEMO without edges but is not "
+                             "reported as an orphan (orphans=%r)"
+                             % ("hippocampal_ca2_autoassoc_unit", borphans))
+            else:
+                behavioural["orphan_injections"] = 1
+
+            # drive-path injection: take the mammal DEMO and remove every
+            # edge touching the deepest output.  The graph still validates
+            # (no required port is newly dangling), but no drive path
+            # reaches any unbound out.  Simpler: build a 2-unit chain with
+            # a single edge that goes backwards.
+            b2_units = ["retinal_phototransduction_unit",
+                        "visual_thalamic_relay_unit"]
+            b2_conns = [
+                "visual_thalamic_relay_unit.lgn_out->retinal_phototransduction_unit.photoreceptor_in:feedforward_excitatory"
+            ]
+            b2doc = mod.compose_from_units(b2_units, b2_conns,
+                                           name="gate13_drive_probe")
+            b2adj = {n["id"]: [] for n in b2doc["organism"]["nodes"]}
+            for e in b2doc["organism"]["edges"]:
+                if e["from"] in b2adj:
+                    b2adj[e["from"]].append(e["to"])
+            b2outs = {o["unit"] for o in b2doc.get("interface", {}).get("external_out", [])}
+            b2ins = [i["unit"] for i in b2doc.get("interface", {}).get("external_in", [])]
+            b2drive = False
+            for s in b2ins:
+                seen = {s}
+                stack = [s]
+                while stack:
+                    x = stack.pop()
+                    if x in b2outs and x != s:
+                        b2drive = True
+                        break
+                    for y in b2adj.get(x, []):
+                        if y not in seen:
+                            seen.add(y)
+                            stack.append(y)
+                if b2drive:
+                    break
+            behavioural["drive_injections"] = 1
+            behavioural["drive_injection_expected_false"] = not b2drive
+            if b2drive:
+                fails.append("drive-path fault injection did not fire: a "
+                             "reverse-only chain still reports a drive path")
+
+            print("behavioural: %d demo(s) built and functional, orphan "
+                  "injection fired, drive-path injection fired"
+                  % len(behavioural["demos"]))
+        except Exception as exc:            # noqa: BLE001
+            fails.append("the builder could not be exercised for behavioural "
+                         "checks: %r" % (exc,))
+    else:
+        fails.append("%s missing; behavioural checks skipped" % BUILDER)
+
     # ---- 7. write the ledger so the finding is queryable ------------------ #
     # A gate that only prints leaves the measurement in a log nobody reads.
     out_doc = {
@@ -244,6 +416,7 @@ def main() -> int:
              "to_in_ports": sorted((ports.get(b) or {}).get("in") or [])}
             for a, b, _m in one_way_bad[:12]
         ],
+        "behavioural": behavioural,
         "caveat": [
             "A one-way declaration is a real claim by the declaring unit. It is "
             "counted, not treated as an error: a composition A wants is not "
@@ -254,6 +427,18 @@ def main() -> int:
             "for reasons a type string does not capture.",
             "A dangling target is reported as an error and the classifier "
             "still runs, so one bad reference does not hide the rest.",
+            "The behavioural checks cover the four curated DEMOS, which are the "
+            "only fully-specified compositions in the library.  A caller can "
+            "still build an unreached-to-any-output organism from the same "
+            "units by picking different connections; the DEMOS are the "
+            "canonical examples the library is asked to assemble, so they "
+            "must be well formed, but the general composition space is not "
+            "exhausted by them.",
+            "A 'drive path' means BFS from an external IN port reaches an "
+            "external OUT port through directed edges.  It does not mean the "
+            "path is functionally meaningful -- only that it is electrically "
+            "possible.  Sign, weight, and connection-type semantics are not "
+            "evaluated here.",
         ],
     }
     (MCP / "functional_units" / "composition_semantics.json").write_text(

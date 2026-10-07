@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.43.0` | the toolkit as a whole |
+| package | `2.44.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -18,6 +18,38 @@ The **schema version** is versioned separately from the **package version**:
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [2.44.0] — 2026-10-07
+
+GATE 13 got a second layer: from "can this be assembled?" to "does the
+assembly actually work?".  The four canonical DEMOS are now built through
+`compose_from_units` and checked for two things the builder does not catch
+on its own:
+
+- **no orphan nodes** — every node in `organism.nodes` must appear in at
+  least one edge.  The builder accepts a composition where a unit was
+  instantiated but never wired (verified: `validation.ok` stays `True`), so
+  the gate reports it.  The check is exercised on a fault-injected
+  composition so a regression cannot silently turn the check off.
+- **a drive path exists** — BFS from each external IN port must reach an
+  external OUT port through directed edges.  A composition where every
+  output is re-consumed internally, or where no input can reach any
+  output, is dead topology and is reported.
+
+Both checks are cheap (one `compose_from_units` call per DEMO, no
+simulation).  The ledger now carries a `behavioural` block per DEMO with
+nodes, edges, external_in/out counts, orphan list, drive-path flag, and
+warning count.  The two injections (`hippocampal_ca2_autoassoc_unit`
+added to the mammal DEMO without edges; a 2-unit reverse-only chain) both
+fire as expected.
+
+Why this was worth its own release: sections 1-5 of the gate answer a
+wiring question; section 6 answers a topology question, and the two can
+disagree.  The builder's own `validation.ok` accepts both the orphan and
+the reverse-only cases, so relying on the builder to catch them would
+leave the gate blind.
+
+Function/unit/profile counts unchanged. Gates 12/12 PASS.
 
 ## [2.43.0] — 2026-10-07
 
