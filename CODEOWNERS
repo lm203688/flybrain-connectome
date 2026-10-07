@@ -1,0 +1,27 @@
+# CODEOWNERS — default owners.
+# Syntax: pattern <owner>
+# GitHub uses these for mandatory-review routing and for security advisories.
+
+# Everything defaults to the maintainer.
+*                 @lm203688
+
+# Security and contribution policies are maintainer-only.
+/SECURITY.md      @lm203688
+/CONTRIBUTING.md  @lm203688
+/CODE_OF_CONDUCT.md @lm203688
+/LICENSE*          @lm203688
+
+# The gate suite is the repo's contract. Any change here gets a review.
+/scripts/check_*.py          @lm203688
+/scripts/run_gates.py        @lm203688
+/.github/workflows/ci.yml    @lm203688
+
+# The shipped library and its counts.
+/flybrain_cli.py             @lm203688
+/flybrain-connectome-mcp/    @lm203688
+/pyproject.toml              @lm203688
+
+# The provenance contract — schema changes ripple through generated artifacts.
+/flybrain-connectome-mcp/functional_units.py @lm203688
+/flybrain-connectome-mcp/functional_units/   @lm203688
+/flybrain-connectome-mcp/motifs/             @lm203688
