@@ -1,0 +1,50 @@
+# The dataset — 5.63 GB. Never in an image.
+male_cns/
+drosophila_connectome/data/
+drosophila_connectome/dataset/
+cel_data/
+larva_data/
+
+# VCS + IDE
+.git/
+.gitignore
+.idea/
+.vscode/
+*.swp
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+.python-version
+.venv/
+venv/
+env/
+
+# Build + install artifacts
+build/
+dist/
+*.egg-info/
+*.egg
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+coverage.xml
+htmlcov/
+
+# Archive — historical snapshots, not needed to build
+archive/
+.workbuddy/
+
+# Runtime logs
+*.log
+api_runtime.log
+
+# Local overrides
+*.local.json
+config.local.json
+
+# Smoke outputs
+_smoke_out/
+/tmp/
