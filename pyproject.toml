@@ -1,25 +1,47 @@
 [build-system]
-requires = ["setuptools>=61"]
+requires = ["setuptools>=61", "wheel"]
 build-backend = "setuptools.build_meta"
 
 [project]
 name = "flybrain-connectome"
-version = "2.42.0"
+version = "2.43.0"
 description = "Traceable synthetic bio-topology generator grounded in the real Drosophila male-brain connectome (MaleCNS v1.0, 166,700 neurons / 124,177,617 synapses)."
 readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
-authors = [{ name = "Lexing (厉兴)" }]
+authors = [
+    { name = "Lexing (厉兴)", email = "lm203688@users.noreply.github.com" },
+]
+maintainers = [
+    { name = "Lexing (厉兴)" },
+]
 keywords = [
     "connectome", "multi-agent", "topology", "provenance", "drosophila",
-    "swarm", "neuroscience", "complex-systems", "W3C-PROV",
+    "swarm", "neuroscience", "complex-systems", "W3C-PROV", "MCP",
+    "flybrain", "MaleCNS", "male-cns",
 ]
-dependencies = []  # standard library only — zero third-party requirements
+dependencies = [
+    # Standard-library-first by design. The single runtime dep is numpy,
+    # because the connectome engine (flybrain-connectome-mcp/mcp_connectome/core.py)
+    # imports it at module level. Everything else degrades gracefully.
+    "numpy>=1.24",
+]
 classifiers = [
-    "License :: OSI Approved :: MIT License",
-    "Programming Language :: Python :: 3",
-    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Development Status :: 5 - Production/Stable",
     "Intended Audience :: Science/Research",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Topic :: Scientific/Engineering :: Bio-Informatics",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+    "Topic :: Scientific/Engineering :: Visualization",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+    "Topic :: Scientific/Engineering :: Neural Networks",
 ]
 
 [project.optional-dependencies]
@@ -30,21 +52,169 @@ classifiers = [
 # project makes, so install the extra when you intend to consume provenance:
 #     pip install "flybrain-connectome[prov]"
 # Both arms are covered by scripts/check_degraded_mode.py.
-#
-# NOTE: this table MUST stay last among the [project.*] tables — every key that
-# follows a `[table]` header belongs to that table, so putting it above
-# `classifiers` would silently define a bogus `classifiers` extra (a list of
-# strings is not a valid requirement) and make `pip install ".[prov]"` fail
-# while leaving the metadata looking fine to the eye.
 prov = ["dataprov>=3.0.0"]
+# Columnar connectome IO (MaleCNS feather files, ~5.6 GB). The extraction
+# scripts that read the real connectome use it; the generator itself does not.
+data = ["pyarrow>=13.0", "pandas>=2.0", "openpyxl>=3.1"]
+# Full CI: linters + formatters + test runner + coverage + type checker.
+# `pip install -e ".[dev]"` and then `make lint test`.
+dev = [
+    "ruff>=0.5",
+    "black>=24.0",
+    "mypy>=1.10",
+    "pytest>=8.0",
+    "pytest-cov>=5.0",
+    "pre-commit>=3.7",
+    "build>=1.0",
+    "twine>=5.0",
+    "numpy>=1.24",
+    "pandas>=2.0",
+    "openpyxl>=3.1",
+    "dataprov>=3.0.0",
+]
 
 [project.urls]
 Homepage = "https://github.com/lm203688/flybrain-connectome"
 Repository = "https://github.com/lm203688/flybrain-connectome"
+Issues = "https://github.com/lm203688/flybrain-connectome/issues"
+Changelog = "https://github.com/lm203688/flybrain-connectome/blob/main/CHANGELOG.md"
 Documentation = "https://github.com/lm203688/flybrain-connectome/blob/main/docs/arxiv_paper.md"
+Citation = "https://github.com/lm203688/flybrain-connectome/blob/main/CITATION.cff"
+"Bug Tracker" = "https://github.com/lm203688/flybrain-connectome/issues"
+"Source Code" = "https://github.com/lm203688/flybrain-connectome"
 
 [project.scripts]
 flybrain = "flybrain_cli:main"
 
 [tool.setuptools]
 py-modules = ["flybrain_cli"]
+include-package-data = true
+
+[tool.setuptools.packages.find]
+include = ["flybrain-connectome-mcp*", "integrations*"]
+exclude = ["tests*", "scripts*", "archive*", "docs*", "male_cns*", "drosophila_connectome*"]
+
+# ---------------------------------------------------------------------------
+# ruff — the default linter. Line-length is deliberately 100 because the codebase
+# predates black's default 88 and reflowing 30+ MB of scripts for the sake of
+# style would swamp the next meaningful diff. `select` mirrors what CI runs.
+# ---------------------------------------------------------------------------
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+extend-exclude = [
+    "archive",
+    "drosophila_connectome/data",
+    "drosophila_connectome/dataset",
+    "male_cns",
+    "cel_data",
+    "larva_data",
+    "generated_organisms",
+    "flybrain-connectome-mcp/generated_organisms",
+    "flybrain-connectome-mcp/module_combinator.cache",
+    ".workbuddy",
+]
+src = ["flybrain_cli.py", "flybrain-connectome-mcp", "integrations", "scripts"]
+
+[tool.ruff.lint]
+# E4/E7/E9 = pycodestyle errors + warnings (syntax-level, always worth catching)
+# F    = pyflakes (unused imports, undefined names, etc.)
+# I    = isort
+# UP   = pyupgrade (Python 3.10+ syntax modernization)
+# B    = flake8-bugbear (real bugs)
+# SIM  = flake8-simplify
+select = ["E4", "E7", "E9", "F", "I", "UP", "B", "SIM"]
+ignore = [
+    "E501",   # line-too-long, handled by formatter not linter
+    "B008",   # function-call-in-default-argument (heavy use of argparse defaults)
+    "SIM108", # ternary-instead-of-if-statement (style preference, not a bug)
+    "UP007",  # X | Y union syntax (mixed with Optional in 40k LOC; migrate in one pass)
+]
+
+[tool.ruff.lint.per-file-ignores]
+"scripts/_probe*.py" = ["F401", "F841"]          # ad-hoc exploration
+"scripts/expand_*.py" = ["F841"]                 # batch generators, unused locals OK
+"scripts/check_*.py" = ["B011"]                  # fail-closed asserts are the point
+"flybrain-connectome-mcp/generated_organisms/**" = ["E501"]
+
+# ---------------------------------------------------------------------------
+# black — formatter. Match line-length with ruff so they don't fight.
+# ---------------------------------------------------------------------------
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+extend-exclude = '''
+/(
+    archive
+    | drosophila_connectome/(data|dataset)
+    | male_cns
+    | cel_data
+    | larva_data
+    | generated_organisms
+    | flybrain-connectome-mcp/(generated_organisms|module_combinator\.cache)
+    | .workbuddy
+)/
+'''
+
+# ---------------------------------------------------------------------------
+# mypy — type checker, non-strict by default. `ignore_missing_imports` covers
+# the third-party scientific stack (numpy, pandas) that does not ship py.typed
+# uniformly.
+# ---------------------------------------------------------------------------
+[tool.mypy]
+python_version = "3.10"
+ignore_missing_imports = true
+follow_imports = "silent"
+show_error_codes = true
+warn_redundant_casts = true
+warn_unused_ignores = true
+warn_return_any = true
+no_implicit_optional = true
+check_untyped_defs = false    # strict=false by default; opt-in per-file
+disallow_untyped_defs = false
+strict = false
+
+[[tool.mypy.overrides]]
+module = [
+    "flybrain_cli",
+    "scripts.check_*",
+]
+check_untyped_defs = true
+
+# ---------------------------------------------------------------------------
+# pytest — the tests/ tree (once it grows) and the acceptance scripts in
+# scripts/. Coverage is off by default; `pytest --cov` enables it via [dev].
+# ---------------------------------------------------------------------------
+[tool.pytest.ini_options]
+minversion = "8.0"
+addopts = [
+    "-ra",
+    "--strict-markers",
+    "--strict-config",
+]
+testpaths = ["tests"]
+markers = [
+    "slow: marks tests as slow (deselect with '-m \"not slow\"')",
+    "data: requires FLYBRAIN_DATA_DIR to point at a MaleCNS v1.0 checkout",
+]
+filterwarnings = [
+    "error::DeprecationWarning",
+    "ignore::PendingDeprecationWarning",
+]
+
+# ---------------------------------------------------------------------------
+# coverage
+# ---------------------------------------------------------------------------
+[tool.coverage.run]
+branch = true
+source = ["flybrain_cli", "flybrain-connectome-mcp", "integrations"]
+omit = [
+    "*/generated_organisms/*",
+    "*/module_combinator.cache/*",
+]
+
+[tool.coverage.report]
+show_missing = true
+skip_covered = true
+precision = 2
+fail_under = 40   # ratcheting; see docs/maintainer.md

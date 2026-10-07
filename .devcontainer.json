@@ -1,0 +1,53 @@
+# dev-container.json — GitHub Codespaces / VS Code Dev Containers / `docker compose`
+#
+# One-click environment for a new contributor:
+#   git clone && code .  →  Codespaces auto-uses this file
+#   docker compose run dev → local CLI session
+#
+# The container mirrors the CI image (Python 3.12, `[dev]` extras installed).
+
+{
+  "name": "flybrain-connectome",
+  "build": {
+    "dockerfile": "Dockerfile.dev"
+  },
+  "customizedCommand": "flybrain --help",
+  "workspaceFolder": "/opt/flybrain",
+  "workspaceMount": "${localWorkspaceFolder}:/opt/flybrain:cached",
+  "containerUser": "flybrain",
+  "remoteUser": "flybrain",
+  "portsAttributes": {
+    "8799": {
+      "label": "flybrain HTTP API",
+      "protocol": "tcp",
+      "onAutoForward": "notify"
+    }
+  },
+  "postCreateCommand": "python -m pip install -e '.[prov,dev]' && python scripts/run_gates.py --quick",
+  "shutdownAction": "stopContainer",
+  "features": {
+    "github.vscode-remote-release-notes": "stable"
+  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "ms-python.python",
+        "ms-python.black-formatter",
+        "charliermarsh.ruff",
+        "detachhead.basedpyright",
+        "mechatronics.roo-cline"
+      ],
+      "settings": {
+        "python.analysis.typeCheckingMode": "basic",
+        "python.analysis.extraPaths": [
+          "${workspaceFolder}",
+          "${workspaceFolder}/flybrain-connectome-mcp"
+        ],
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "ms-python.black-formatter",
+        "files.insertFinalNewline": true,
+        "files.trimTrailingWhitespace": true
+      }
+    }
+  }
+}

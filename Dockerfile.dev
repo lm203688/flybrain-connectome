@@ -1,0 +1,45 @@
+# syntax=docker/dockerfile:1.6
+# Development image: base image + dev deps + pre-commit + editable install.
+#
+# Used by .devcontainer.json and `docker compose run dev`. Do NOT ship this
+# to production — it contains linters, test runners, and editable installs.
+
+FROM python:3.12-slim
+
+ENV PYTHONDONTWRITEBYTECODE=1 \
+    PYTHONUNBUFFERED=1 \
+    PIP_NO_CACHE_DIR=1 \
+    FLYBRAIN_DATA_DIR=/data/male_cns \
+    FLYBRAIN_HOME=/opt/flybrain
+
+RUN apt-get update && apt-get install -y --no-install-recommends \
+        git \
+        build-essential \
+        curl \
+    && rm -rf /var/lib/apt/lists/* \
+    && useradd --uid 10001 --create-home --shell /bin/bash flybrain \
+    && mkdir -p /opt/flybrain /data \
+    && chown -R flybrain:flybrain /opt/flybrain /data
+
+WORKDIR /opt/flybrain
+
+USER flybrain
+
+# Install dev tooling first so a code change never invalidates it.
+RUN pip install --upgrade pip setuptools wheel \
+    && pip install --no-cache-dir \
+        "ruff>=0.5" \
+        "black>=24.0" \
+        "mypy>=1.10" \
+        "pytest>=8.0" \
+        "pytest-cov>=5.0" \
+        "pre-commit>=3.7" \
+        "numpy>=1.24" \
+        "pandas>=2.0" \
+        "openpyxl>=3.1" \
+        "dataprov>=3.0.0" \
+        "build>=1.0" \
+        "twine>=5.0" \
+    && pre-commit install-hooks || true
+
+CMD ["bash"]

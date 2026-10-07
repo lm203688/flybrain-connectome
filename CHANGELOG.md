@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.42.0` | the toolkit as a whole |
+| package | `2.43.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -18,6 +18,75 @@ The **schema version** is versioned separately from the **package version**:
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+## [2.43.0] — 2026-10-07
+
+### 工程化基线：把脚本仓库升级成工程级应用
+
+**这不是新科学结论，是一次工程侧的地基加固。** 库本身没有改：116 单元 /
+264 剖面 / 66 连接类型 / 13 门禁，全部沿用 v2.42.0。这一版做的是让
+「别人也能上手」这件事从「读 README」变成「clone 就能跑」。
+
+新增的工程配置（全部走 `[tool.ruff]` / `[tool.black]` / `[tool.mypy]` /
+`[tool.pytest]` 声明在 `pyproject.toml`，不再散在多个文件里）：
+
+| 新增 | 用途 |
+|---|---|
+| `Makefile` | 12 个 target：setup / lint / format / test / gates / smoke / mcp / api / build / publish / clean |
+| `Dockerfile` | 生产镜像：MCP stdio + HTTP :8799，non-root，含冒烟测试证明镜像能跑 |
+| `Dockerfile.dev` | 开发镜像：预装 ruff/black/mypy/pytest/pre-commit，供 devcontainer 使用 |
+| `docker-compose.yml` | 4 个服务：dev / api / mcp / gates，一条命令起本地栈 |
+| `.devcontainer.json` | VS Code / Codespaces 一键接入 |
+| `.pre-commit-config.yaml` | 10 个 hook：ruff / black / detect-secrets / 换行 / 尾空格 / JSON/YAML/TOML 语法 |
+| `.editorconfig` | 全语言缩进、换行、尾空格统一 |
+| `CONTRIBUTING.md` | 贡献范围、什么不接受、分支和提交规范、版本升级四处必改 |
+| `SECURITY.md` | 漏洞上报流程（72h 确认 / 14d 修补计划 / 30d 修复）、支持版本表 |
+| `CODE_OF_CONDUCT.md` | Contributor Covenant v2.1 |
+| `CODEOWNERS` | 强制 review 路由：`scripts/check_*.py` / `ci.yml` / `pyproject.toml` 强制 maintainer 过目 |
+| `.env.example` | 五个环境变量：FLYBRAIN_DATA_DIR / FLYBRAIN_HOME / FLYBRAIN_API_PORT / FLYBRAIN_HMAC_KEY |
+| `.dockerignore` | 5.63 GB 数据集 + 全部 archive / tmp / .workbuddy / __pycache__ 排除 |
+| `.secrets.baseline` | detect-secrets 空基线，新密钥必须显式加入 |
+| `.github/ISSUE_TEMPLATE/` | bug / feature / PR 三套模板，PR 模板要求选一个 gate 声明 |
+
+**门禁数量不变**，工程配置全部**非阻断**：`make setup` 装完 dev extras
+后跑 `make gates`，与 `python scripts/run_gates.py` 完全等价（10 门禁
+全绿），任何配置错误只影响开发者体验、不影响运行时。
+
+**pyproject.toml 重写**：加了 `authors.email` / `maintainers` / 3 个新
+extras（`prov` / `data` / `dev`）/ 3 个官方 URL（Issues / Changelog /
+Citation / Bug Tracker / Source Code）/ ruff + black + mypy + pytest +
+coverage 全套 `[tool.*]` 段。ruff 选 `E4,E7,E9,F,I,UP,B,SIM`，line-length
+100（对齐既有代码，避免把 30 MB 脚本为风格重构一次）。
+
+**目录清扫**（不改任何运行时路径）：
+- `tmp/` 15 MB → `archive/swept-20261007/tmp/`（含 20 个 `probe_v*.py`、
+  30+ `.bak`/`.log`/`.pyc`/`.txt` 探针和 CI 输出）
+- `ops/` → `archive/swept-20261007/ops/`（2026-08-31 workspace 的 verify 输出）
+- `.backups/` → `archive/`
+- 根目录 `*.log`（.gate.log、.gate2.log、gates_2_27.log、motif_extract.log）
+  → `archive/swept-20261007/stray/`
+- `flybrain-connectome-mcp/__pycache__` 两个 → `archive/swept-20261007/stray/`
+- `flybrain-connectome-mcp/api_runtime.log` 是运行中文件，保留（重启后归档）
+- `archive/swept-*` 加入 `.gitignore`，本地留作审计轨迹、不入 git
+
+**根目录现在 30 个条目**（原 40+），每个都能说清「这是什么」：5 个
+顶层文档（README / CHANGELOG / LICENSE / LICENSE-CLAUSE / CITATION）
++ 6 个工程配置（pyproject / Makefile / Dockerfile / docker-compose /
+.editorconfig / .devcontainer.json）+ 3 个安全配置（.gitignore /
+.pre-commit-config.yaml / CODEOWNERS / SECURITY / CONTRIBUTING /
+CODE_OF_CONDUCT / .secrets.baseline / .env.example / .dockerignore）
++ 3 个 Python 入口（flybrain_cli.py / pyproject.toml / 顶层 py-modules）
++ 数据目录 6 个 + 代码目录 3 个 + 文档目录 1 个 + 归档 1 个 + `.workbuddy/`
++ `.github/` + `.git/`。
+
+**没做的事**（诚实边界）：
+- 没加 CI 新作业（ruff / mypy / coverage）——CI 目前是 4 个 job、
+  2026-10-05 上线、10 门禁全绿，改 CI 会引入新的不稳定窗口，本次
+  不动，单独一版再上。
+- 没删 `DATA_MANIFEST.json`（35 MB 根目录遗留）——那是数据可追溯
+  的证据，不是垃圾，等它被 `make clean` 之类的规则覆盖再谈。
+- 没删任何 `scripts/*.py`——42 个脚本全部 load-bearing，任何一个是
+  某个门禁的直接依赖；分类归整留到有 `scripts/README.md` 索引后再做。
 
 ## [2.42.0] — 2026-10-06
 

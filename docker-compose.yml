@@ -1,0 +1,62 @@
+# docker-compose.yml — one-file local dev.
+#
+# Usage:
+#   docker compose up --build dev              # shell into the dev container
+#   docker compose run --rm api                # run the HTTP API on :8799
+#   docker compose run --rm mcp                # MCP stdio server (attach to stdin)
+#   docker compose run --rm gates              # offline CI-equivalent gates
+#
+# The MaleCNS dataset is NEVER baked in. Mount it read-only:
+#   docker compose run --env-file .env gates-data
+
+services:
+  dev:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/opt/flybrain
+    working_dir: /opt/flybrain
+    environment:
+      FLYBRAIN_DATA_DIR: /data/male_cns
+      FLYBRAIN_HOME: /opt/flybrain
+    stdin_open: true
+    tty: true
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8799:8799"
+    volumes:
+      - ./male_cns:/data/male_cns:ro
+    environment:
+      FLYBRAIN_DATA_DIR: /data/male_cns
+      FLYBRAIN_API_PORT: "8799"
+    command: ["api"]
+
+  mcp:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    volumes:
+      - ./male_cns:/data/male_cns:ro
+    environment:
+      FLYBRAIN_DATA_DIR: /data/male_cns
+    # Attach to stdin for MCP stdio protocol.
+    stdin_open: true
+    tty: true
+    command: ["mcp"]
+
+  gates:
+    build:
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - .:/opt/flybrain
+      - ./male_cns:/data/male_cns:ro
+    working_dir: /opt/flybrain
+    environment:
+      FLYBRAIN_DATA_DIR: /data/male_cns
+    command: ["python", "scripts/run_gates.py"]

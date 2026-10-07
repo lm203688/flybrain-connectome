@@ -94,6 +94,51 @@ flybrain-connectome-mcp/ops/
 .workbuddy/
 
 # ---------------------------------------------------------------------------
+# Swept archives — historical consolidation snapshots, never shipped.
+# .backups/ was moved into archive/swept-20260917/ (v2.43.0 cleanup).
+# archive/swept-20261007/ holds the 15 MB tmp/, ops/, *.log and __pycache__
+# swept on 2026-10-07; kept local for audit trail but never committed.
+# ---------------------------------------------------------------------------
+archive/swept-*/
+archive/20260917-flybrain-consolidation/
+
+# Local env / secrets / CI credentials
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+
+# Editor / OS
+.vscode/
+.idea/
+*.swp
+*.swo
+.DS_Store
+Thumbs.db
+
+# Test / coverage artifacts
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.tox/
+.coverage
+coverage.xml
+htmlcov/
+coverage.json
+
+# Docker
+Dockerfile.local
+.docker/
+
+# Dev container
+.devcontainer/.env
+
+# Smoke / scratch outputs
+_smoke_out/
+
+# ---------------------------------------------------------------------------
 # OS / editor
 # ---------------------------------------------------------------------------
 .DS_Store
