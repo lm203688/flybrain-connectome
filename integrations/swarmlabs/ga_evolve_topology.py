@@ -87,6 +87,126 @@ R_COMBO_LEN = (1, 4)
 
 
 # --------------------------------------------------------------------------- #
+# v2.43.0 — 代价轴接线：延迟只当「诊断量」，不进适应度
+# --------------------------------------------------------------------------- #
+# 决定性的实测（v2.43.0，600 个随机基因组，见下方 latency_audit()）：
+#   主 GA 的边只有 kind ∈ {reservoir, recurrent, inhibitory}，
+#   边上没有任何连接类型字段（探过 type / connection_type / conn_type /
+#   wire_type / synapse_type，全部为空）。三个 kind 按库内定义都是
+#   「有权重的化学突触」——guardrails 第 2 条写着
+#   "weight < 0 的边是硬刹车"，即抑制也是化学突触。
+#   所以三个 kind 全部落在 cost axis 的 `micro` 家族（0.5–4 ms）。
+#   个体延迟 = n_edges × (0.5 .. 4.0)，与 n_edges 严格共线。
+#
+# 结论：把延迟加成适应度项 = 给 WIRE_COST 加一份副本，零信息量，而且会
+# 重新打开 v2.39.0 实测证明过可被利用的两个洞：
+#   unknown → 0 ms    : GA 选不可测类型，报出假的 −99.9%
+#   unknown → 1000 ms : GA 反而去「添加」不可测类型，latency 涨 16–19%
+# 唯一存活的政策是「不可比」：任一边测不了 → 整个个体不可比，报 None，
+# 不参与排序。所以这里只做诊断报告，GATE 14 用注入式校验把这条钉死。
+COST_AXIS_PATH = MCP_DIR / "functional_units" / "connection_costs.json"
+
+# kind → cost axis family。映射依据是库内定义，不是猜测：
+#   reservoir  : 前馈数据共享（"data_share"），加权点-点连接 = 化学突触
+#   recurrent  : 模块内自环反馈（"state_feedback"），化学突触
+#   inhibitory : guardrails 明写 "weight < 0 的边是硬刹车" = 抑制性化学突触
+# 三个 kind 指向同一个 family，这正是延迟与 n_edges 共线的根因。
+KIND_TO_COST_FAMILY = {
+    "reservoir": "micro",
+    "recurrent": "micro",
+    "inhibitory": "micro",
+}
+
+
+def load_cost_axis(path: Path = COST_AXIS_PATH) -> dict:
+    """family -> {type_name: (low_ms, high_ms)}，只保留有 latency_ms 的类型。
+
+    没有 latency_ms 的类型（`abstraction_only` 那 21 个）不进这个表 ——
+    它们本来就声明自己"没有自己的延迟"，所以「不可比」是正确状态，
+    不是缺失。
+    """
+    doc = json.loads(Path(path).read_text(encoding="utf-8"))
+    fam: dict = {}
+    for r in doc.get("cost_axis", []):
+        lat = r.get("latency_ms")
+        if not lat:
+            continue
+        fam.setdefault(r.get("family"), {})[r["name"]] = (lat["low"], lat["high"])
+    return fam
+
+
+COST_AXIS = load_cost_axis()
+
+
+def compute_latency_band(edges: list, cost_axis: dict = COST_AXIS) -> dict:
+    """一个个体的延迟区间，用唯一存活的政策「不可比」。
+
+    返回 {"lo", "hi", "comparable", "n_edges", "untyped_edges",
+          "families", "policy"}。
+
+    lo 取每条边所在 family 的下界之和，hi 取上界之和 —— 与
+    diagnostics/cost_aware_optimization_experiment.py 的 latency_band()
+    同口径，这样两条路径测出来的数可以直接比。
+    """
+    fams = set()
+    untyped = 0
+    lo = hi = 0.0
+    for e in edges:
+        f = KIND_TO_COST_FAMILY.get(e.get("kind"))
+        types = cost_axis.get(f) if f else None
+        if not types:
+            untyped += 1
+            continue
+        fams.add(f)
+        lo += min(v[0] for v in types.values())
+        hi += max(v[1] for v in types.values())
+    comparable = (untyped == 0) and (len(edges) > 0)
+    return {
+        "lo": lo if comparable else None,
+        "hi": hi if comparable else None,
+        "comparable": comparable,
+        "n_edges": len(edges),
+        "untyped_edges": untyped,
+        "families": sorted(fams),
+        "policy": "incomparable",
+    }
+
+
+def latency_audit(n_samples: int = 300, seed: int = 2026) -> dict:
+    """在主 GA 自己的基因组上证明：延迟与 n_edges 共线，不能当优化目标。
+
+    返回相关性 + 不可比个体占比。GATE 14 断言相关性 ≈ 1.0，否则说明
+    有人改了 kind→family 映射，延迟突然有了独立信息量，必须重新论证
+    能不能当适应度项。
+    """
+    rng = random.Random(seed)
+    all_bp = list(c1.BLUEPRINTS.keys())
+    pairs = []
+    incomparable = 0
+    for _ in range(n_samples):
+        g = random_genome(rng, all_bp)
+        r = evaluate(g, c1.doc_cached(), {"schema_version": "1.0"})
+        b = r["latency"]
+        if b["comparable"]:
+            pairs.append((b["n_edges"], b["lo"]))
+        else:
+            incomparable += 1
+    if len(pairs) < 3:
+        return {"n": len(pairs), "pearson": None, "incomparable": incomparable}
+    xs = [p[0] for p in pairs]
+    ys = [p[1] for p in pairs]
+    mx = sum(xs) / len(xs)
+    my = sum(ys) / len(ys)
+    num = sum((x - mx) * (y - my) for x, y in pairs)
+    dx = sum((x - mx) ** 2 for x in xs) ** 0.5
+    dy = sum((y - my) ** 2 for y in ys) ** 0.5
+    r = num / (dx * dy) if dx > 0 and dy > 0 else 0.0
+    return {"n": len(pairs), "pearson": r, "incomparable": incomparable,
+            "k_families": len({f for _x, _y in pairs for f in
+                               KIND_TO_COST_FAMILY.values()})}
+
+
+# --------------------------------------------------------------------------- #
 # 基因组操作
 # --------------------------------------------------------------------------- #
 def random_genome(rng: random.Random, all_bp: list[str]) -> dict:
