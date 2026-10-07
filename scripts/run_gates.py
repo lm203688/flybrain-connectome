@@ -17,6 +17,10 @@ Gates, in order of cheapness:
   8  tiering      physical tiering (public MIT tree vs private Tier-2 repo)
   9  unit library functional units + connection types + composer fail-closed
  10  embodiment   anchors + measured matrices + acknowledged contradictions
+ 11  function     every unit tagged with function axis from PROJECT_VISION
+ 12  costs        every connection type has a latency/cost with source
+ 13  composition  wiring resolves, ports complete, one-way declarations counted
+ 14  taxonomy     every unit.system is in taxonomy_systems.json
 
 Gates 4 and 5 generate a throwaway organism into a temp dir, so they need no
 dataset. The data-backed smoke test (`flybrain verify`, 70 assertions) is *not*
@@ -94,6 +98,11 @@ def main() -> int:
     results.append(("gate13 composition", run(
         "GATE 13 — wiring resolves, ports complete, one-way declarations counted",
         [py, str(SCRIPTS / "check_composition.py")])[0]))
+
+    # ---- Gate 14: taxonomy.system controlled vocabulary (stdlib only, --quick) ----
+    results.append(("gate14 taxonomy", run(
+        "GATE 14 — every unit.system is in taxonomy_systems.json (no silent drift)",
+        [py, str(SCRIPTS / "check_taxonomy.py")])[0]))
 
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(

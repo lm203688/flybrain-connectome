@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.44.0` | the toolkit as a whole |
+| package | `2.45.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -19,37 +19,33 @@ The **schema version** is versioned separately from the **package version**:
 
 ---
 
-## [2.44.0] — 2026-10-07
+## [2.45.0] — 2026-10-07
 
-GATE 13 got a second layer: from "can this be assembled?" to "does the
-assembly actually work?".  The four canonical DEMOS are now built through
-`compose_from_units` and checked for two things the builder does not catch
-on its own:
+**GATE 14: taxonomy.system 受控词表收词**
 
-- **no orphan nodes** — every node in `organism.nodes` must appear in at
-  least one edge.  The builder accepts a composition where a unit was
-  instantiated but never wired (verified: `validation.ok` stays `True`), so
-  the gate reports it.  The check is exercised on a fault-injected
-  composition so a regression cannot silently turn the check off.
-- **a drive path exists** — BFS from each external IN port must reach an
-  external OUT port through directed edges.  A composition where every
-  output is re-consumed internally, or where no input can reach any
-  output, is dead topology and is reported.
+`system` 字段在 116 单元 / 14 物种上累计了 47 个自由文本值（`sensory` 12 次、`optic_lobe` 9 次、`cortex` 6 次…），没有词表约束，新单元可以标任何字符串，分类轴静默碎裂。
 
-Both checks are cheap (one `compose_from_units` call per DEMO, no
-simulation).  The ledger now carries a `behavioural` block per DEMO with
-nodes, edges, external_in/out counts, orphan list, drive-path flag, and
-warning count.  The two injections (`hippocampal_ca2_autoassoc_unit`
-added to the mammal DEMO without edges; a 2-unit reverse-only chain) both
-fire as expected.
+新增 `flybrain-connectome-mcp/functional_units/taxonomy_systems.json`：11 个 top-level domain × 47 个 subvalue，每个都有 `definition` 和 `note`。所有现有 47 个值**全部保留原名不动**，只是分组到 domain 下：
 
-Why this was worth its own release: sections 1-5 of the gate answer a
-wiring question; section 6 answers a topology question, and the two can
-disagree.  The builder's own `validation.ok` accepts both the orphan and
-the reverse-only cases, so relying on the builder to catch them would
-leave the gate blind.
+- `sensory_peripheral` 6 值 / `sensory_relay` 4 值 / `motor_command` 4 值
+- `reflex_cpg` 7 值 / `associative_learning` 5 值 / `memory_cognition` 8 值
+- `navigation_spatial` 2 值 / `neuromodulation` 3 值 / `homeostasis_state` 4 值
+- `vocalization_social` 1 值 / `motor_output` 3 值
 
-Function/unit/profile counts unchanged. Gates 12/12 PASS.
+新增 `scripts/check_taxonomy.py`（GATE 14，stdlib only，跑在 `--quick`）：
+
+- 词汇表完整性——domain 无重复 id / system 只在一个 domain / 每个都有 definition 和 note
+- 每个 unit.system 必须在词表内（否则 FAIL，并列出错配）
+- 每个 unit 必须有 system 字段（空值 FAIL）
+- 每 domain 覆盖率打印，空洞 domain 记为 fact 不 FAIL
+
+**故障注入**（未注入的断言不算断言）：`bogus_never_declared` 注入 → FAIL 1；`del units[1].system` 注入 → FAIL 1；还原后 PASS。
+
+**为什么不改任何单元名字**：47 个值是 load-bearing（`flybrain` CLI、13 门禁、每个已发 artifact 都按名索引），改一次牵一发动全身。词表的价值不在于重命名，而在于**新单元只能从词表选**，漂移从此不再静默。
+
+门禁 12 → 13 → **14**（GATE 13 行为学验证在 v2.44.0；GATE 14 词表校验在此）。FUNCTIONAL_UNITS 116 / MODULE_PROFILES 264 / CONNECTION_TYPES 66 不变。
+
+Gates 14/14 PASS。
 
 ## [2.43.0] — 2026-10-07
 
