@@ -163,9 +163,58 @@
       ]
     }
   ],
+  "behavioural": {
+    "demos": {
+      "mammal": {
+        "nodes": 9,
+        "edges": 10,
+        "external_in": 1,
+        "external_out": 2,
+        "orphans": [],
+        "drive_path": true,
+        "validation_ok": true,
+        "warnings": 1
+      },
+      "insect": {
+        "nodes": 6,
+        "edges": 6,
+        "external_in": 3,
+        "external_out": 2,
+        "orphans": [],
+        "drive_path": true,
+        "validation_ok": true,
+        "warnings": 1
+      },
+      "electrosensory": {
+        "nodes": 4,
+        "edges": 3,
+        "external_in": 3,
+        "external_out": 2,
+        "orphans": [],
+        "drive_path": true,
+        "validation_ok": true,
+        "warnings": 0
+      },
+      "swim": {
+        "nodes": 3,
+        "edges": 3,
+        "external_in": 3,
+        "external_out": 3,
+        "orphans": [],
+        "drive_path": true,
+        "validation_ok": true,
+        "warnings": 0
+      }
+    },
+    "orphan_injections": 1,
+    "drive_injections": 1,
+    "drive_injection_expected_false": true
+  },
   "caveat": [
     "A one-way declaration is a real claim by the declaring unit. It is counted, not treated as an error: a composition A wants is not wrong merely because B never reciprocated.",
     "Port compatibility is checked by type string. Two units whose ports share a type are recorded as meeting, which is the weakest available reading -- a real composition may still be impossible for reasons a type string does not capture.",
-    "A dangling target is reported as an error and the classifier still runs, so one bad reference does not hide the rest."
+    "A dangling target is reported as an error and the classifier still runs, so one bad reference does not hide the rest.",
+    "The behavioural checks cover the four curated DEMOS, which are the only fully-specified compositions in the library.  A caller can still build an unreached-to-any-output organism from the same units by picking different connections; the DEMOS are the canonical examples the library is asked to assemble, so they must be well formed, but the general composition space is not exhausted by them.",
+    "A 'drive path' means BFS from an external IN port reaches an external OUT port through directed edges.  It does not mean the path is functionally meaningful -- only that it is electrically possible.  Sign, weight, and connection-type semantics are not evaluated here."
   ]
 }
