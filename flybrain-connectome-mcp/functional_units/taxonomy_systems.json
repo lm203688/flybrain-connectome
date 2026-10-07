@@ -1,0 +1,122 @@
+{
+  "schema_version": "1.0",
+  "generated_utc": "2026-10-07T21:20:00Z",
+  "purpose": "Controlled vocabulary for the unit field `system`. 47 free-text values accumulated across 116 units across ~14 species; without a vocabulary a new unit can be tagged with any string and the taxonomy silently fragments. This file is the single source of truth: `system` is a two-level value (domain > system) where domain is one of the 12 top-level families, and system is the anatomical/functional subvalue. Both levels are enforced by GATE 14.",
+  "method": "Every existing value is preserved as-is (no renaming). Domains are grouped by mechanism: peripheral transduction, central relay, motor command, reflex/CPG, associative learning, memory/cognition, navigation, neuromodulation, homeostasis/state, vocalization/social, motor output, other. GATE 14 fails closed if any unit.system is not in this file.",
+  "caveat": "Domain is a human-authored classification, not derived from any algorithm. Moving a system between domains requires a version bump and a CHANGELOG entry. Coverage is reported per-domain so gaps are visible.",
+  "domains": [
+    {
+      "id": "sensory_peripheral",
+      "definition": "Peripheral sensory transduction: stimulus-to-neural conversion at or near the sense organ.",
+      "systems": [
+        {"id": "optic_lobe", "note": "Insect compound-eye lamina/medulla/lobula"},
+        {"id": "sensory", "note": "Generic sense-organ / receptor pool (retinal, glomerular, electrosensory, etc.)"},
+        {"id": "antennal_lobe", "note": "Insect olfactory glomeruli"},
+        {"id": "antennal_mechanosensory", "note": "Antennal vibration/airflow sensing"},
+        {"id": "infrared_pit", "note": "Pit-organ IR sensing (trigeminal infrared map)"},
+        {"id": "electrosensory", "note": "Passive and active electroreception"}
+      ]
+    },
+    {
+      "id": "sensory_relay",
+      "definition": "Central relay or gating stage between periphery and higher association cortex/ganglia.",
+      "systems": [
+        {"id": "thalamus", "note": "Thalamocortical relay"},
+        {"id": "subesophageal_zone", "note": "Insect SEZ gustatory/olfactory relay"},
+        {"id": "brainstem", "note": "Brainstem sensory relay (e.g. red nucleus coordination)"},
+        {"id": "brain", "note": "Distributed whole-brain relay (cb_sensory_motor, etc.)"}
+      ]
+    },
+    {
+      "id": "motor_command",
+      "definition": "Explicit motor command that drives an effector pool; can be feedforward or goal-directed.",
+      "systems": [
+        {"id": "motor", "note": "Generic motor-command pool"},
+        {"id": "ventral_nerve_cord", "note": "Insect VNC motor relay/giant-fiber"},
+        {"id": "spinal_cord", "note": "Vertebrate spinal motor pool / reflex arc"},
+        {"id": "arm_cord", "note": "Cephalopod arm cord"}
+      ]
+    },
+    {
+      "id": "reflex_cpg",
+      "definition": "Stereotyped rhythmic or reflexive circuits: central pattern generators, escape-startle, withdrawal, feeding CPGs.",
+      "systems": [
+        {"id": "respiratory", "note": "Respiratory rhythm CPG"},
+        {"id": "reticulospinal", "note": "Reticulo-spinal escape command (frog escape swim)"},
+        {"id": "startle_circuit", "note": "Acoustic or visual startle-escape command"},
+        {"id": "leech_ganglion", "note": "Leech swimming CPG"},
+        {"id": "buccal_ganglion", "note": "Aplysia feeding CPG"},
+        {"id": "aplysia_ganglion", "note": "Aplysia gill withdrawal reflex"},
+        {"id": "ascidian_larva", "note": "Ascidian larval escape-swim"}
+      ]
+    },
+    {
+      "id": "associative_learning",
+      "definition": "Reward/punishment-driven conditioning, sensory-to-valence association, odor/food learning.",
+      "systems": [
+        {"id": "mushroom_body", "note": "Insect MB sparse-code associative learning"},
+        {"id": "learning", "note": "Generic associative learning tag (larv_olfactory_associative_learning)"},
+        {"id": "lateral_horn", "note": "Insect LH innate odor response + learning modulation"},
+        {"id": "vertical_lobe", "note": "Cephalopod VLM associative learning"},
+        {"id": "lateral_protocerebrum", "note": "Courtship decision / reward evaluation"}
+      ]
+    },
+    {
+      "id": "memory_cognition",
+      "definition": "Higher-order memory, spatial map, decision, prediction, metacognition. Includes cerebellar timing because climbing-fibre teaching is a memory-forming operation.",
+      "systems": [
+        {"id": "cortex", "note": "Mammalian neocortex layers"},
+        {"id": "barrel_cortex", "note": "S1 barrel-column whisking (motor + somatosensory)"},
+        {"id": "hippocampus", "note": "Hippocampal trisynaptic circuit, CA fields"},
+        {"id": "limbic", "note": "Amygdala fear/valence tagging"},
+        {"id": "basal_ganglia", "note": "Striatal direct/indirect pathway, habit/selection"},
+        {"id": "metacognition", "note": "Prefrontal metacognitive self-evaluation"},
+        {"id": "cerebellum", "note": "Cerebellar cortical learning / mossy-climbing pairing"},
+        {"id": "olivocerebellar", "note": "Climbing-fibre teaching signal"}
+      ]
+    },
+    {
+      "id": "navigation_spatial",
+      "definition": "Spatial orientation, path integration, heading estimation, spatial mapping.",
+      "systems": [
+        {"id": "central_complex", "note": "Insect CC heading / path integration"},
+        {"id": "entorhinal", "note": "Entorhinal spatial map / place cells"}
+      ]
+    },
+    {
+      "id": "neuromodulation",
+      "definition": "Diffusible monoamine / amine neuromodulator broadcasts: dopamine, octopamine, serotonergic, noradrenergic.",
+      "systems": [
+        {"id": "neuromodulatory", "note": "Generic neuromodulatory broadcast"},
+        {"id": "modulatory", "note": "Non-monoamine modulators (e.g. octopamine arousal)"},
+        {"id": "locus_coeruleus", "note": "Noradrenergic LC arousal"}
+      ]
+    },
+    {
+      "id": "homeostasis_state",
+      "definition": "Whole-body state setting: arousal, sleep/wake flip-flop, circadian, thermal, and glial scaffolding.",
+      "systems": [
+        {"id": "arousal_switch", "note": "Sleep/wake flip-flop state"},
+        {"id": "circadian", "note": "Circadian pacemaker"},
+        {"id": "hypothalamus", "note": "Hypothalamic arousal set-point"},
+        {"id": "glia", "note": "Glia / astrocyte tripartite scaffolding"}
+      ]
+    },
+    {
+      "id": "vocalization_social",
+      "definition": "Species-specific vocalization and social signaling circuits.",
+      "systems": [
+        {"id": "song_system", "note": "Birdsong HVC/RA/RA motor"}
+      ]
+    },
+    {
+      "id": "motor_output",
+      "definition": "Non-locomotor effector output: pigmentary control, prey-capture aim, vestibulo-ocular stabilisation.",
+      "systems": [
+        {"id": "chromatophore", "note": "Cephalopod chromatophore control"},
+        {"id": "optic_tectum", "note": "Frog tectal prey-capture aim"},
+        {"id": "vestibular", "note": "VOR vestibulo-ocular reflex"}
+      ]
+    }
+  ]
+}
