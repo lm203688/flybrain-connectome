@@ -3,11 +3,11 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-2.46.0-orange.svg)](CHANGELOG.md)
-[![docker](https://img.shields.io/badge/docker-2.46.0-2496ED.svg)](#docker)
+[![version](https://img.shields.io/badge/version-2.47.0-orange.svg)](CHANGELOG.md)
+[![docker](https://img.shields.io/badge/docker-2.47.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.46.0 · 2026-10-07 · 116 functional units · 264 module profiles · 13 gates**
+**v2.47.0 · 2026-10-07 · 116 functional units · 264 module profiles · 13 gates**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
@@ -43,6 +43,57 @@ before you quote it.
 The killer offline feature: **`generate` needs no data** — it composes
 topologies from a 7 KB derived motif snapshot. The connectome data is only
 needed if you want to *query* the real brain.
+
+---
+
+## Honest status of the unit library
+
+The 116 functional units are split cleanly by how their evidence comes
+together. This is the number to remember when reading any downstream
+claim:
+
+| Bucket | Count | Meaning |
+|---|---|---|
+| Anchored to real *Drosophila* male-brain cells | **37 / 116 (31.9 %)** | `embodiment.real_cells_anchored > 0` — each edge traces to actual MaleCNS v1.0 neurons |
+| Cross-species declarations, unanchored | **79 / 116 (68.1 %)** | `provenance.unanchored_reason` = `identity_not_in_drosophila` or `taxon_no_malecns_data` — the circuit exists in the literature for another species, not in the MaleCNS connectome |
+
+The 68.1 % bucket is not a defect and not a hidden error. It is a
+**comparative-neuroscience scaffold**: bird song, mammalian cortical
+layers, fish Mauthner, cephalopod vertical lobe, Aplysia and leech
+CPGs, insect mushroom-body — all are wired into the library with named
+references and can be composed like the anchored ones, but they are
+**not** measured in a real connectome the way the 37 anchored units
+are. Reading the library correctly means reading those two numbers
+together, not the 116 by itself.
+
+## How to use this — tiered by what you can actually get today
+
+Rather than a single "this is a X" pitch, the useful things this
+project does break down into three tiers. Which one you actually need
+depends on what you are building.
+
+**Tier 1 — usable today, offline, no data download.**
+Neuron-circuit search across 3 species × 4 axes (`system` / `function` /
+`species` / `provenance`); compose a virtual-organism topology from any
+subset of units; run the four canonical DEMOs (mammal, insect,
+electrosensory, swim) end-to-end. This is the *developer tool* the
+project actually is. `flybrain search`, `flybrain compose`, `flybrain
+generate` cover it.
+
+**Tier 2 — for people designing AI-agent scaffolds.**
+The composed topologies trace back to real circuitry via W3C PROV-JSON,
+which means a downstream agent framework (LangGraph / CrewAI / AutoGen
+/ SwarmLabs) can pick up a starting topology and audit where each
+wiring decision came from. **This is not a general agent infra** — it
+is a biology-prior layer you plug into one.
+
+**Tier 3 — what this project explicitly does not do.**
+It does not beat biology at anything (Phase 3 measured negative and
+is not claimed). It does not replace any EM reconstruction pipeline.
+It does not ship a trained model or a spiking simulator. If someone
+reads a v1.x changelog entry that promises any of those, the honest
+answer is "that was aspirational; the withdrawal is documented in
+`docs/PROJECT_REALITY_ASSESSMENT.md`".
 
 ---
 
