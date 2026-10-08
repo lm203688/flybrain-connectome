@@ -10,6 +10,7 @@ public surfaces:
   query      call one connectome tool over HTTP
   motifs     export / pull the derived SwarmLabs motif document
   generate   compose a synthetic bio-topology (pass-through to the generator)
+  profile    structural profile of a generated organism (topology-aware)
   verify     run the end-to-end smoke test (_verify.py)
   info       report the resolved toolkit / data / snapshot paths
 
@@ -32,7 +33,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.47.0"
+__version__ = "2.48.0"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -709,6 +710,61 @@ def cmd_composition(args) -> int:
     return 0
 
 
+def cmd_profile(args) -> int:
+    """Structural profile of a generated organism — the topology-aware layer.
+
+    Answers the first question a downstream consumer asks: *what shape is this
+    organism, and what does the shape imply?* Every number here is a property
+    of the wiring diagram only. `not_measured` names what the profile is NOT
+    (dynamics, energy, task performance) so a structural number is never read
+    as a functional claim.
+
+    Metrics: density, degree spread, reciprocity, weak components, Newman
+    modularity Q (over the declared module labels), transitivity, spectral
+    radius (|weight| adjacency, by power iteration — no numpy), feedback-edge
+    fraction, directed 3-node motif census, inhibition ratio, and a
+    deterministic structural signature.
+    """
+    _add_paths()
+    _require_toolkit()
+    try:
+        from topology_profile import profile, compare
+    except Exception as e:  # noqa: BLE001
+        sys.stderr.write("ERROR: topology_profile unavailable: %r\n" % (e,))
+        return 2
+
+    try:
+        pa = profile(args.organism)
+    except Exception as e:  # noqa: BLE001
+        sys.stderr.write("ERROR: cannot profile %s: %r\n" % (args.organism, e))
+        return 2
+
+    if args.compare:
+        print(json.dumps(compare(pa, profile(args.compare)),
+                         ensure_ascii=False, indent=2))
+        return 0
+    if args.json:
+        print(json.dumps(pa, ensure_ascii=False, indent=2))
+        return 0
+
+    s = pa["size"]
+    print("topology profile  %s" % pa["source"])
+    print("-" * 56)
+    print("  nodes %-5d edges %-5d density %s  modules %s"
+          % (s["n_nodes"], s["n_edges"], s["density"], s["n_modules"]))
+    print("  spectral_radius      %s" % pa["spectral_radius"])
+    print("  modularity_q         %s" % pa["modularity_q"])
+    print("  reciprocity          %s" % pa["reciprocity"])
+    print("  transitivity         %s" % pa["clustering_transitivity"])
+    print("  feedback_edge_frac   %s" % pa["feedback_edge_fraction"])
+    print("  inhibition_ratio     %s" % pa["inhibition_ratio"])
+    print("  motifs               %s" % pa["motifs"])
+    print("  strongly_connected   %s" % pa["components"]["is_strongly_connected"])
+    print("  signature            %s..." % pa["profile_signature"][:34])
+    print("  not_measured         %s" % ", ".join(pa["not_measured"]))
+    return 0
+
+
 def cmd_info(args) -> int:
     """Report what this launcher resolved — the one command that diagnoses
     a broken install (wrong toolkit root, missing data dir, missing snapshot)."""
@@ -835,6 +891,15 @@ def build_parser() -> argparse.ArgumentParser:
     s.add_argument("--caveat", action="store_true",
                    help="print the composition caveats first")
     s.set_defaults(func=cmd_composition)
+
+    s = sub.add_parser("profile",
+                       help="structural profile of a generated organism")
+    s.add_argument("organism", help="path to a generated organism .json")
+    s.add_argument("--json", action="store_true",
+                   help="emit the full structural profile as JSON")
+    s.add_argument("--compare", metavar="OTHER",
+                   help="compare against a second organism (b - a)")
+    s.set_defaults(func=cmd_profile)
 
     s = sub.add_parser("verify", help="run the end-to-end smoke test")
     s.set_defaults(func=cmd_verify)

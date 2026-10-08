@@ -30,6 +30,7 @@ PYPROJECT = ROOT / "pyproject.toml"
 README = ROOT / "README.md"
 MCP_JSON = Path.home() / ".workbuddy" / "mcp.json"
 MCP = ROOT / "flybrain-connectome-mcp"
+SCRIPTS = ROOT / "scripts"
 
 problems: list[str] = []
 notes: list[str] = []
@@ -270,10 +271,33 @@ def main() -> int:
             bad("%s count parse" % label, "constant not found")
             continue
         found = sorted({int(m) for m in re.findall(pat, readme, flags=re.I)})
-        if n not in found:
-            bad("README %s count" % label, "README says %s, code has %d" % (found or "nothing", n))
+        # STRICT: every stated count must equal the code, not merely one of
+        # them. The lax form ("n in found") is how the badge line said
+        # "264 module profiles" while the body said "270 modules" and neither
+        # was flagged: both numbers matched the same regex, so membership held.
+        wrong = [v for v in found if v != n]
+        if not found:
+            bad("README %s count" % label, "README never states a %s count" % label)
+        elif wrong:
+            bad("README %s count" % label,
+                "README says %s, code has %d" % (wrong, n))
         else:
             ok("README %s count" % label, "%d" % n)
+
+    # The badge line states a gate count that nothing was checking (the gate
+    # count drifted 13 -> 14 silently). Source of truth = the gate numbers
+    # run_gates.py actually invokes, parsed from its "GATE N" labels.
+    gate_nums = {int(m) for m in re.findall(r"GATE (\d+)", read(SCRIPTS / "run_gates.py"))}
+    n_gates = len(gate_nums)
+    badge = next((ln for ln in readme.splitlines() if "functional units" in ln), "")
+    stated = re.findall(r"(\d+)\s+gates?\b", badge, flags=re.I)
+    if not stated:
+        bad("README badge gate count", "badge line states no gate count")
+    elif sorted({int(x) for x in stated}) != [n_gates]:
+        bad("README badge gate count",
+            "badge says %s, run_gates.py invokes %d gates" % (stated, n_gates))
+    else:
+        ok("README badge gate count", "%d" % n_gates)
 
     # bio-prior bookkeeping: README claims every non-bio blueprint is marked
     if motif_map and n_blueprints:

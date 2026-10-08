@@ -1,0 +1,887 @@
+{
+  "schema_version": "1.0",
+  "policy": "Every declared composable_with pair that is interface-incompatible AND not reciprocated MUST be listed here with a suggested fix, or the build fails (GATE 17). Remove an entry only after the declaration is fixed in functional_units.json.",
+  "count": 61,
+  "exceptions": [
+    {
+      "from": "retinal_motion_onset_unit",
+      "to": "visual_thalamic_relay_unit",
+      "from_out": [
+        "sensory.visual.motion"
+      ],
+      "to_in": [
+        "cortex.feedback",
+        "sensory.visual"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type sensory.visual.motion to visual_thalamic_relay_unit (A already exposes it)"
+    },
+    {
+      "from": "olfactory_transduction_unit",
+      "to": "cortical_l4_input_unit",
+      "from_out": [
+        "sensory.olfactory"
+      ],
+      "to_in": [
+        "cortex.input"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type sensory.olfactory to cortical_l4_input_unit (A already exposes it)"
+    },
+    {
+      "from": "vestibular_transduction_unit",
+      "to": "spinal_reflex_arc_unit",
+      "from_out": [
+        "sensory.vestibular"
+      ],
+      "to_in": [
+        "motor.command",
+        "sensory.nociceptive"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type sensory.vestibular to spinal_reflex_arc_unit (A already exposes it)"
+    },
+    {
+      "from": "somatosensory_dorsalhorn_unit",
+      "to": "spinal_reflex_arc_unit",
+      "from_out": [
+        "sensory.somatosensory"
+      ],
+      "to_in": [
+        "motor.command",
+        "sensory.nociceptive"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type sensory.somatosensory to spinal_reflex_arc_unit (A already exposes it)"
+    },
+    {
+      "from": "cortical_inhibitory_gain_unit",
+      "to": "cortical_l23_association_unit",
+      "from_out": [
+        "cortex.interneuron"
+      ],
+      "to_in": [
+        "arousal.state",
+        "cortex.feedback",
+        "cortex.input"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type cortex.interneuron to cortical_l23_association_unit (A already exposes it)"
+    },
+    {
+      "from": "cortical_inhibitory_gain_unit",
+      "to": "cortical_l5_output_unit",
+      "from_out": [
+        "cortex.interneuron"
+      ],
+      "to_in": [
+        "cortex.association",
+        "cortex.input"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type cortex.interneuron to cortical_l5_output_unit (A already exposes it)"
+    },
+    {
+      "from": "cortical_highorder_integration_unit",
+      "to": "cortical_l23_association_unit",
+      "from_out": [
+        "cortex.output"
+      ],
+      "to_in": [
+        "arousal.state",
+        "cortex.feedback",
+        "cortex.input"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type cortex.output to cortical_l23_association_unit (A already exposes it)"
+    },
+    {
+      "from": "cortical_highorder_integration_unit",
+      "to": "cortical_l5_output_unit",
+      "from_out": [
+        "cortex.output"
+      ],
+      "to_in": [
+        "cortex.association",
+        "cortex.input"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type cortex.output to cortical_l5_output_unit (A already exposes it)"
+    },
+    {
+      "from": "hippocampal_ca2_autoassoc_unit",
+      "to": "hippocampal_trisynaptic_unit",
+      "from_out": [
+        "hippocampal.output"
+      ],
+      "to_in": [
+        "hippocampal.input",
+        "rhythm.theta"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type hippocampal.output to hippocampal_trisynaptic_unit (A already exposes it)"
+    },
+    {
+      "from": "entorhinal_spatial_map_unit",
+      "to": "vestibular_transduction_unit",
+      "from_out": [
+        "hippocampal.input",
+        "spatial.map"
+      ],
+      "to_in": [
+        "sensory.vestibular"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type hippocampal.input to vestibular_transduction_unit (A already exposes it)"
+    },
+    {
+      "from": "amygdala_fear_unit",
+      "to": "somatosensory_dorsalhorn_unit",
+      "from_out": [
+        "limbic.fear"
+      ],
+      "to_in": [
+        "sensory.nociceptive",
+        "sensory.somatosensory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type limbic.fear to somatosensory_dorsalhorn_unit (A already exposes it)"
+    },
+    {
+      "from": "amygdala_fear_unit",
+      "to": "hypothalamic_arousal_unit",
+      "from_out": [
+        "limbic.fear"
+      ],
+      "to_in": [
+        "arousal.state",
+        "rhythm.circadian"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type limbic.fear to hypothalamic_arousal_unit (A already exposes it)"
+    },
+    {
+      "from": "red_nucleus_coordination_unit",
+      "to": "cerebellar_cortical_unit",
+      "from_out": [
+        "motor.command"
+      ],
+      "to_in": [
+        "cerebellar.input",
+        "error.teaching"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.command to cerebellar_cortical_unit (A already exposes it)"
+    },
+    {
+      "from": "dopaminergic_value_unit",
+      "to": "striatal_direct_pathway_unit",
+      "from_out": [
+        "modulatory.dopamine"
+      ],
+      "to_in": [
+        "basal_ganglia.value",
+        "cortex.output"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.dopamine to striatal_direct_pathway_unit (A already exposes it)"
+    },
+    {
+      "from": "dopaminergic_value_unit",
+      "to": "striatal_indirect_pathway_unit",
+      "from_out": [
+        "modulatory.dopamine"
+      ],
+      "to_in": [
+        "basal_ganglia.value",
+        "cortex.output"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.dopamine to striatal_indirect_pathway_unit (A already exposes it)"
+    },
+    {
+      "from": "serotonergic_mood_unit",
+      "to": "septo_hippocampal_theta_unit",
+      "from_out": [
+        "modulatory.serotonin"
+      ],
+      "to_in": [
+        "arousal.state"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.serotonin to septo_hippocampal_theta_unit (A already exposes it)"
+    },
+    {
+      "from": "serotonergic_mood_unit",
+      "to": "hypothalamic_arousal_unit",
+      "from_out": [
+        "modulatory.serotonin"
+      ],
+      "to_in": [
+        "arousal.state",
+        "rhythm.circadian"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.serotonin to hypothalamic_arousal_unit (A already exposes it)"
+    },
+    {
+      "from": "cholinergic_arousal_unit",
+      "to": "cortical_l23_association_unit",
+      "from_out": [
+        "modulatory.acetylcholine"
+      ],
+      "to_in": [
+        "arousal.state",
+        "cortex.feedback",
+        "cortex.input"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.acetylcholine to cortical_l23_association_unit (A already exposes it)"
+    },
+    {
+      "from": "cholinergic_arousal_unit",
+      "to": "septo_hippocampal_theta_unit",
+      "from_out": [
+        "modulatory.acetylcholine"
+      ],
+      "to_in": [
+        "arousal.state"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.acetylcholine to septo_hippocampal_theta_unit (A already exposes it)"
+    },
+    {
+      "from": "astrocyte_tripartite_unit",
+      "to": "cortical_l5_output_unit",
+      "from_out": [
+        "glial.support"
+      ],
+      "to_in": [
+        "cortex.association",
+        "cortex.input"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type glial.support to cortical_l5_output_unit (A already exposes it)"
+    },
+    {
+      "from": "astrocyte_tripartite_unit",
+      "to": "cortical_inhibitory_gain_unit",
+      "from_out": [
+        "glial.support"
+      ],
+      "to_in": [
+        "arousal.state",
+        "cortex.association"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type glial.support to cortical_inhibitory_gain_unit (A already exposes it)"
+    },
+    {
+      "from": "cephalopod_vertical_lobe_learning_unit",
+      "to": "cephalopod_chromatophore_control_unit",
+      "from_out": [
+        "motor.command"
+      ],
+      "to_in": [
+        "cortex.output",
+        "sensory.visual"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.command to cephalopod_chromatophore_control_unit (A already exposes it)"
+    },
+    {
+      "from": "cephalopod_vertical_lobe_learning_unit",
+      "to": "cephalopod_arm_motor_unit",
+      "from_out": [
+        "motor.command"
+      ],
+      "to_in": [
+        "cortex.output"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.command to cephalopod_arm_motor_unit (A already exposes it)"
+    },
+    {
+      "from": "aplysia_gill_withdrawal_unit",
+      "to": "buccal_feeding_cpg_unit",
+      "from_out": [
+        "motor.gill"
+      ],
+      "to_in": [
+        "gating.hunger",
+        "motor.command"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.gill to buccal_feeding_cpg_unit (A already exposes it)"
+    },
+    {
+      "from": "frog_tectal_prey_capture_unit",
+      "to": "frog_escape_swim_unit",
+      "from_out": [
+        "motor.command",
+        "motor.strike"
+      ],
+      "to_in": [
+        "motor.swim",
+        "rhythm.swim",
+        "sensory.auditory.startle",
+        "sensory.visual"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.command to frog_escape_swim_unit (A already exposes it)"
+    },
+    {
+      "from": "cerebellar_purkinje_ltd_unit",
+      "to": "vestibulo_ocular_reflex_unit",
+      "from_out": [
+        "cerebellar.output"
+      ],
+      "to_in": [
+        "error.teaching",
+        "sensory.vestibular"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type cerebellar.output to vestibulo_ocular_reflex_unit (A already exposes it)"
+    },
+    {
+      "from": "respiratory_rhythm_cpg_unit",
+      "to": "sleep_wake_flipflop_unit",
+      "from_out": [
+        "motor.respiration",
+        "rhythm.respiratory"
+      ],
+      "to_in": [
+        "arousal.sleep",
+        "clock.phase"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.respiration to sleep_wake_flipflop_unit (A already exposes it)"
+    },
+    {
+      "from": "lobula_plate_optic_flow_unit",
+      "to": "central_complex_heading_unit",
+      "from_out": [
+        "sensory.visual.motion"
+      ],
+      "to_in": [
+        "clock.phase",
+        "navigation.steering",
+        "sensory.skylight_compass"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type sensory.visual.motion to central_complex_heading_unit (A already exposes it)"
+    },
+    {
+      "from": "visual_target_detection_unit",
+      "to": "giant_fiber_escape_unit",
+      "from_out": [
+        "motor.command"
+      ],
+      "to_in": [
+        "sensory.somatosensory",
+        "sensory.visual"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.command to giant_fiber_escape_unit (A already exposes it)"
+    },
+    {
+      "from": "courtship_decision_unit",
+      "to": "antennal_lobe_glomerular_unit",
+      "from_out": [
+        "motor.command"
+      ],
+      "to_in": [
+        "modulatory.histamine",
+        "sensory.olfactory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.command to antennal_lobe_glomerular_unit (A already exposes it)"
+    },
+    {
+      "from": "octopamine_arousal_unit",
+      "to": "courtship_decision_unit",
+      "from_out": [
+        "modulatory.octopamine"
+      ],
+      "to_in": [
+        "sensory.auditory",
+        "sensory.olfactory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.octopamine to courtship_decision_unit (A already exposes it)"
+    },
+    {
+      "from": "octopamine_arousal_unit",
+      "to": "central_complex_heading_unit",
+      "from_out": [
+        "modulatory.octopamine"
+      ],
+      "to_in": [
+        "clock.phase",
+        "navigation.steering",
+        "sensory.skylight_compass"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.octopamine to central_complex_heading_unit (A already exposes it)"
+    },
+    {
+      "from": "looming_detection_unit",
+      "to": "giant_fiber_escape_unit",
+      "from_out": [
+        "motor.command"
+      ],
+      "to_in": [
+        "sensory.somatosensory",
+        "sensory.visual"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.command to giant_fiber_escape_unit (A already exposes it)"
+    },
+    {
+      "from": "looming_detection_unit",
+      "to": "lobula_plate_optic_flow_unit",
+      "from_out": [
+        "motor.command"
+      ],
+      "to_in": [
+        "sensory.visual.motion"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.command to lobula_plate_optic_flow_unit (A already exposes it)"
+    },
+    {
+      "from": "pharyngeal_gustatory_unit",
+      "to": "lateral_horn_innate_odour_unit",
+      "from_out": [
+        "motor.feeding"
+      ],
+      "to_in": [
+        "sensory.olfactory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.feeding to lateral_horn_innate_odour_unit (A already exposes it)"
+    },
+    {
+      "from": "leg_motor_pool_unit",
+      "to": "vnc_sensory_reflex_unit",
+      "from_out": [
+        "motor.leg"
+      ],
+      "to_in": [
+        "sensory.proprioceptive",
+        "sensory.somatosensory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.leg to vnc_sensory_reflex_unit (A already exposes it)"
+    },
+    {
+      "from": "wing_flight_control_unit",
+      "to": "giant_fiber_escape_unit",
+      "from_out": [
+        "motor.wing"
+      ],
+      "to_in": [
+        "sensory.somatosensory",
+        "sensory.visual"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.wing to giant_fiber_escape_unit (A already exposes it)"
+    },
+    {
+      "from": "johnston_organ_wind_unit",
+      "to": "auditory_song_reception_unit",
+      "from_out": [
+        "motor.command"
+      ],
+      "to_in": [
+        "sensory.auditory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.command to auditory_song_reception_unit (A already exposes it)"
+    },
+    {
+      "from": "vnc_endocrine_modulation_unit",
+      "to": "vnc_sensory_reflex_unit",
+      "from_out": [
+        "modulatory.endocrine",
+        "motor.leg"
+      ],
+      "to_in": [
+        "sensory.proprioceptive",
+        "sensory.somatosensory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.endocrine to vnc_sensory_reflex_unit (A already exposes it)"
+    },
+    {
+      "from": "vnc_endocrine_modulation_unit",
+      "to": "leg_motor_pool_unit",
+      "from_out": [
+        "modulatory.endocrine",
+        "motor.leg"
+      ],
+      "to_in": [
+        "sensory.proprioceptive",
+        "sensory.somatosensory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.endocrine to leg_motor_pool_unit (A already exposes it)"
+    },
+    {
+      "from": "vnc_endocrine_modulation_unit",
+      "to": "cb_endocrine_modulation_unit",
+      "from_out": [
+        "modulatory.endocrine",
+        "motor.leg"
+      ],
+      "to_in": [
+        "arousal.state"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.endocrine to cb_endocrine_modulation_unit (A already exposes it)"
+    },
+    {
+      "from": "efferent_command_bus_unit",
+      "to": "giant_fiber_escape_unit",
+      "from_out": [
+        "motor.escape",
+        "motor.leg",
+        "motor.wing"
+      ],
+      "to_in": [
+        "sensory.somatosensory",
+        "sensory.visual"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.escape to giant_fiber_escape_unit (A already exposes it)"
+    },
+    {
+      "from": "efferent_command_bus_unit",
+      "to": "leg_motor_pool_unit",
+      "from_out": [
+        "motor.escape",
+        "motor.leg",
+        "motor.wing"
+      ],
+      "to_in": [
+        "sensory.proprioceptive",
+        "sensory.somatosensory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.escape to leg_motor_pool_unit (A already exposes it)"
+    },
+    {
+      "from": "efferent_command_bus_unit",
+      "to": "central_complex_steering_unit",
+      "from_out": [
+        "motor.escape",
+        "motor.leg",
+        "motor.wing"
+      ],
+      "to_in": [
+        "memory.associative",
+        "modulatory.orexin",
+        "navigation.ego_speed",
+        "navigation.heading",
+        "olfactory.learned_valence"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.escape to central_complex_steering_unit (A already exposes it)"
+    },
+    {
+      "from": "cb_efferent_command_unit",
+      "to": "central_complex_steering_unit",
+      "from_out": [
+        "modulatory.endocrine",
+        "motor.command"
+      ],
+      "to_in": [
+        "memory.associative",
+        "modulatory.orexin",
+        "navigation.ego_speed",
+        "navigation.heading",
+        "olfactory.learned_valence"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.endocrine to central_complex_steering_unit (A already exposes it)"
+    },
+    {
+      "from": "cb_efferent_command_unit",
+      "to": "lateral_horn_innate_odour_unit",
+      "from_out": [
+        "modulatory.endocrine",
+        "motor.command"
+      ],
+      "to_in": [
+        "sensory.olfactory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.endocrine to lateral_horn_innate_odour_unit (A already exposes it)"
+    },
+    {
+      "from": "cb_efferent_command_unit",
+      "to": "cb_sensory_motor_unit",
+      "from_out": [
+        "modulatory.endocrine",
+        "motor.command"
+      ],
+      "to_in": [
+        "sensory.gustatory",
+        "sensory.mechanovibratory",
+        "sensory.somatosensory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.endocrine to cb_sensory_motor_unit (A already exposes it)"
+    },
+    {
+      "from": "centrifugal_visual_feedback_unit",
+      "to": "oa_visual_modulation_unit",
+      "from_out": [
+        "modulatory.acetylcholine"
+      ],
+      "to_in": [
+        "modulatory.octopamine"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.acetylcholine to oa_visual_modulation_unit (A already exposes it)"
+    },
+    {
+      "from": "centrifugal_visual_feedback_unit",
+      "to": "elementary_motion_detection_unit",
+      "from_out": [
+        "modulatory.acetylcholine"
+      ],
+      "to_in": [
+        "sensory.visual"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.acetylcholine to elementary_motion_detection_unit (A already exposes it)"
+    },
+    {
+      "from": "centrifugal_visual_feedback_unit",
+      "to": "looming_detection_unit",
+      "from_out": [
+        "modulatory.acetylcholine"
+      ],
+      "to_in": [
+        "sensory.somatosensory",
+        "sensory.visual.motion"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.acetylcholine to looming_detection_unit (A already exposes it)"
+    },
+    {
+      "from": "buccal_efferent_feedback_unit",
+      "to": "pharyngeal_gustatory_unit",
+      "from_out": [
+        "modulatory.octopamine",
+        "motor.feeding"
+      ],
+      "to_in": [
+        "sensory.gustatory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.octopamine to pharyngeal_gustatory_unit (A already exposes it)"
+    },
+    {
+      "from": "buccal_efferent_feedback_unit",
+      "to": "cb_sensory_motor_unit",
+      "from_out": [
+        "modulatory.octopamine",
+        "motor.feeding"
+      ],
+      "to_in": [
+        "sensory.gustatory",
+        "sensory.mechanovibratory",
+        "sensory.somatosensory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.octopamine to cb_sensory_motor_unit (A already exposes it)"
+    },
+    {
+      "from": "wing_flight_steering_unit",
+      "to": "giant_fiber_escape_unit",
+      "from_out": [
+        "motor.leg",
+        "motor.posture",
+        "motor.wing"
+      ],
+      "to_in": [
+        "sensory.somatosensory",
+        "sensory.visual"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.leg to giant_fiber_escape_unit (A already exposes it)"
+    },
+    {
+      "from": "wing_flight_steering_unit",
+      "to": "vnc_sensory_reflex_unit",
+      "from_out": [
+        "motor.leg",
+        "motor.posture",
+        "motor.wing"
+      ],
+      "to_in": [
+        "sensory.proprioceptive",
+        "sensory.somatosensory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type motor.leg to vnc_sensory_reflex_unit (A already exposes it)"
+    },
+    {
+      "from": "gustatory_centrifugal_unit",
+      "to": "pharyngeal_gustatory_unit",
+      "from_out": [
+        "modulatory.endocrine",
+        "motor.command"
+      ],
+      "to_in": [
+        "sensory.gustatory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.endocrine to pharyngeal_gustatory_unit (A already exposes it)"
+    },
+    {
+      "from": "gustatory_centrifugal_unit",
+      "to": "vnc_sensory_reflex_unit",
+      "from_out": [
+        "modulatory.endocrine",
+        "motor.command"
+      ],
+      "to_in": [
+        "sensory.proprioceptive",
+        "sensory.somatosensory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.endocrine to vnc_sensory_reflex_unit (A already exposes it)"
+    },
+    {
+      "from": "gustatory_centrifugal_unit",
+      "to": "cb_sensory_motor_unit",
+      "from_out": [
+        "modulatory.endocrine",
+        "motor.command"
+      ],
+      "to_in": [
+        "sensory.gustatory",
+        "sensory.mechanovibratory",
+        "sensory.somatosensory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.endocrine to cb_sensory_motor_unit (A already exposes it)"
+    },
+    {
+      "from": "mushroom_body_lateral_horn_reciprocal_unit",
+      "to": "mushroom_body_associative_memory_unit",
+      "from_out": [
+        "olfactory.learned_valence"
+      ],
+      "to_in": [
+        "modulatory.dopamine",
+        "olfactory.sparse_code"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type olfactory.learned_valence to mushroom_body_associative_memory_unit (A already exposes it)"
+    },
+    {
+      "from": "mushroom_body_lateral_horn_reciprocal_unit",
+      "to": "lateral_horn_innate_odour_unit",
+      "from_out": [
+        "olfactory.learned_valence"
+      ],
+      "to_in": [
+        "sensory.olfactory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type olfactory.learned_valence to lateral_horn_innate_odour_unit (A already exposes it)"
+    },
+    {
+      "from": "antennal_lobe_central_complex_feedback_unit",
+      "to": "antennal_lobe_glomerular_unit",
+      "from_out": [
+        "navigation.heading",
+        "navigation.steering"
+      ],
+      "to_in": [
+        "modulatory.histamine",
+        "sensory.olfactory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type navigation.heading to antennal_lobe_glomerular_unit (A already exposes it)"
+    },
+    {
+      "from": "mushroom_body_dopamine_arousal_unit",
+      "to": "lateral_horn_innate_odour_unit",
+      "from_out": [
+        "modulatory.dopamine",
+        "olfactory.learned_valence"
+      ],
+      "to_in": [
+        "sensory.olfactory"
+      ],
+      "reciprocated": false,
+      "shared_types": [],
+      "suggested_fix": "add an `in` port of type modulatory.dopamine to lateral_horn_innate_odour_unit (A already exposes it)"
+    }
+  ]
+}

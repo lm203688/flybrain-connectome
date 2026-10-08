@@ -1,12 +1,13 @@
-# 斑马鱼全脑 EM 连接组：可行性核实（v2.46.0 待实施）
+# Zebrafish Whole-Brain EM Connectome: Feasibility (v2.46.0) + Authorization (v2.48.0)
 
-**目的**：判断「加入第四个连接组 = 斑马鱼全脑 EM」是否可行，与已有三个连接组的分工，以及拉数据之前必须先确认的事。
+**目的**：判断"加入第四个连接组 = 斑马鱼全脑 EM"是否可行，与已有三个连接组的分工，以及拉数据之前必须先确认的事。
 
 **结论先行**：
 - ✅ **数据可访问**：两个 2025 年公开 EM 源，Google Cloud / 中科院开放平台，CC-BY-NC 4.0
 - ⚠️ **数据量级不适合本地全量**：30M synapses / 180k soma，需要采样策略
 - ✅ **补齐的维度真实**：三个已有连接组都没有分子级 E/I 标注，斑马鱼是**脊椎动物首次 EM 级证据**
 - ⚠️ **不能替代 MaleCNS 主力锚定**：116 单元的锚定 37 条全部来自 MaleCNS，斑马鱼是**独立证据源**，用来跨物种验证 circuit 是否守恒
+- ✅ **本轮已拉采样数据**（v2.48.0）：Petkova 2025 fish1-release 的 TEN + HMI 分析包已落 Tier-2
 
 ---
 
@@ -20,6 +21,7 @@
 - **许可**：CC-BY-NC 4.0（禁止商业使用，与本项目 MIT 主许可冲突，需要单独处理）
 
 **规模**：
+
 | 维度 | 数值 |
 |---|---|
 | 分节 soma | >180,000 |
@@ -36,8 +38,8 @@
 
 **作者示范的三个 circuit**（可直接抽成 unit 模板）：
 - **侧线水流方向编码**（lateral line water flow）——本项目没有侧线单元，是新功能类别
-- **后脑运动整合器**（hindbrain motion integrator）——recurrent excitation + contralateral inhibition，可对比本项目已有的视觉通路
-- **被盖兴奋核远距离投射**（tegmental excitatory nucleus）——功能相关的长距离 projection，可对比本项目已有的 association cortex 单元
+- **后脑运动整合器**（hindbrain motion integrator, HMI）——recurrent excitation + contralateral inhibition，可对比本项目已有的视觉通路
+- **被盖兴奋核远距离投射**（tegmental excitatory nucleus, TEN）——功能相关的长距离 projection，可对比本项目已有的 association cortex 单元
 
 ### 源 B：Zhang / Li et al. 2025（上海交大 / 中科院）
 
@@ -45,6 +47,7 @@
 - **许可**：bioRxiv preprint，数据源未在摘要中给出（需二次核实）
 
 **规模**：
+
 | 维度 | 数值 |
 |---|---|
 | 分节神经元 | >170,000 |
@@ -97,79 +100,63 @@
 
 ---
 
-## 必须先与用户确认的三个问题
+## CC-BY-NC 授权边界决策（v2.48.0 定稿）
 
-1. **数据授权**：CC-BY-NC 4.0 与本项目 MIT 冲突。项目 MIT 承诺允许任意使用，但 Petkova 数据**只允许非商业**。选项：
-   - (a) 单元声明里标注数据源为 CC-BY-NC，单元本身走 MIT
-   - (b) 斑马鱼单元放入独立的 `data_cc_by_nc/` 目录，与 MIT 主体分离
-   - (c) 只用 Zhang/Li 的数据（许可待核实）
+Petkova 2025 走 CC-BY-NC 4.0（非商业），本项目主许可走 MIT（含商业）。这是**代码许可 vs 数据许可**的分离问题——不是代码本身的商业性，是**数据再分发**的边界。
 
-2. **拉多少数据**：全量 8 GB 落 Tier-2 私有仓需要用户确认（现有 MaleCNS 5.63 GB 已经占了大部分空间）。建议先只拉 600 MB 采样集，验证可行后再决定是否扩到全量。
+**已核实的事实**：
+- Google Cloud 桶 `fish1-release.storage.googleapis.com` **匿名可读**（HEAD 200 + ListBucket 成功）
+- 桶根目录只放 HTML 页面 + paper_data 三个小 zip（HMI 1.4 MB / TEN 3.5 MB / vast segmentation 3.5 GB 不下载）
+- 全量 30M synapse 数据**不在桶里**，走 `brain-wire-test.org` CAVE 平台，需要 OAuth token
 
-3. **抽取器实现范围**：
-   - (a) 只写骨架（`extract_zebrafish_profiles.py` 带 TODO + 输入接口 + 空返回），等数据授权后再填实现——**推荐**
-   - (b) 完整实现（含下载 + 解析 + 分子标签映射）——需要用户明确授权拉数据
-   - (c) 只做可行性文档，不写抽取器——最保守
+**决策：方案 (a) — 数据存 Tier-2 私有仓，代码保持 MIT，README 显式声明数据源许可**
 
----
+理由：
+1. **MIT 代码 + CC-BY-NC 数据可以共存**——MIT 只约束本项目代码本身；数据源许可在数据的 `provenance.source_license` 里显式声明，与代码库主许可正交
+2. **Tier-2 私有仓保护数据边界**——`flybrain-connectome-core` 私有仓承载 `zebrafish_data/`（本次只落采样包，~5 MB），公开仓 `flybrain-connectome` 只放代码 + 骨架 + 抽样统计；不复制作者原始数据到公开层
+3. **不新增 CONNECTION_TYPES**（v2.48.0 决策）——TEN + HMI 单元在 v2.48.0 只声明**统计性描述**（soma 数 / 分子分布 / 内/外部边比例），不落到 `CONNECTION_TYPES` 词汇。等 3-5 个电路全部落地并复核后再补 `excitatory_synapse` / `inhibitory_synapse`
 
-## 抽取器骨架（v2.46.0 建议）
-
-`scripts/extract_zebrafish_profiles.py` 骨架设计：
-
-```python
-"""v2.46.0 — extract circuit profiles from the zebrafish connectome.
-
-Source (待实施)：Petkova et al. 2025, Janelia Fish Connectome
-（180k soma / 40k annotated / 30M synapses，CC-BY-NC 4.0）
-
-本文件是骨架，不下载数据。落地前必须：
-1. 与用户确认 CC-BY-NC 授权边界（本项目 MIT 主体如何隔离）
-2. 用户明确授权拉数据（采样集 ~600 MB）
-3. 决定抽取哪 3-5 个 circuit（示范：lateral line / hindbrain / tegmental）
-
-骨架只做两件事：
-- 声明期望的输入格式（避免以后重构）
-- 声明期望的输出（对齐 zebrafish_profiles.json 结构，与 larva/cel 一致）
-
-跑起来时：如果 ZEBRAFISH_DATA_DIR 未设，输出 SKIPPED 并说明下一步；
-如果设了但目录为空，输出 FAILED 并说明缺哪个文件。
-"""
-import os, sys, json
-from pathlib import Path
-
-ZEBRAFISH_DATA_DIR = os.environ.get("ZEBRAFISH_DATA_DIR")
-if not ZEBRAFISH_DATA_DIR:
-    print("SKIPPED: ZEBRAFISH_DATA_DIR not set")
-    print("下一步：与用户确认授权 → 采样数据 → 落 Tier-2")
-    sys.exit(0)
-
-# 期望的输入格式（作者平台导出的 CSV 或 JSON）：
-#   somas.csv: soma_id, x, y, z, region, vglut2a_label, gad1b_label
-#   edges.csv: source_soma_id, target_soma_id, synapse_count, drive_in, drive_out
-#   circuits.json: {"lateral_line": [...soma_ids], "hindbrain": [...], "tegmental": [...]}
-
-# 期望的输出（对齐 larva_profiles.json / cel_profiles.json）：
-#   zebrafish_profiles.json:
-#     {"schema_version": "1.0", "source": "Petkova 2025",
-#      "somas_total": 180000, "annotated": 40000, "synapses": 30000000,
-#      "profiles": {
-#         "lateral_line_water_flow": {
-#            "somas": 350, "synapses": 12000,
-#            "excitatory_fraction": 0.72, "inhibitory_fraction": 0.28,
-#            "connections": [...], "caveat": "sampled from 180k somas"
-#         }, ...
-#      }}
-```
+**隔离措施**：
+- `zebrafish_data/` 目录走 `.gitignore`（不进主仓）；本地 Tier-2 存
+- 抽样统计落到 `zebrafish_profiles.json`，走 MIT（数据派生的元信息不受原许可约束，同 MaleCNS / Winding 处理）
+- 每个 zf.* 单元在 `provenance.source_license` 显式声明 `"CC-BY-NC 4.0 — Petkova 2025"`
+- `docs/zebrafish_connectome_feasibility.md` 顶部标"数据源 CC-BY-NC 4.0；本 doc 与代码 MIT"
 
 ---
 
-## 结论
+## 本轮实际落地（v2.48.0）
 
-- **技术可行**：数据可访问，规模可控（采样集 600 MB）
-- **科学价值真实**：补脊椎动物 + E/I 极性 + 神经调节分子三轴
-- **许可需注意**：CC-BY-NC 与 MIT 冲突，需要用户在三个选项里拍板
-- **不替代现有证据**：独立第四源，只用作跨物种一致性检查
-- **下一步需要用户确认**：授权边界 + 数据量 + 抽取范围
+**已拉数据**：
+- `zebrafish_data/paper_data/HMI_analysis.zip` (1.4 MB) — Hindbrain Motion Integrator 分析包
+- `zebrafish_data/paper_data/TEN_analysis.zip` (3.5 MB) — Tegmental Excitatory Nucleus 分析包
+- **不下载**：`vast/OC_left.vsseg` + `OC_right.vsseg` (3.5 GB)，全量矩阵在 CAVE 平台不在桶里
 
-**在用户明确授权前不拉数据、不落 Tier-2、不新增单元**。骨架可以先建（v2.46.0），把决策点写在文件里而不是散在对话里。
+**已抽 2 个 zf 单元**（`flybrain-connectome-mcp/functional_units/zebrafish_profiles.json`）：
+1. `zf_tegmental_excitatory_nucleus_unit`（TEN，110 neurons / 4 class / 26 intra-TEN edges / 5156 external endpoints，是**远距离投射核**不是 recurrent loop——重要发现）
+2. `zf_hindbrain_motion_integrator_unit`（HMI，178 fully reconstructed / 60 VGluT2 excitatory + 75 Gad1B inhibitory，带 forward/turning motion spine 分类）
+
+**未抽**：侧线水流方向编码（lateral line）——数据里只有 HMI + TEN 两个示范分析包，侧线需要另拉数据源（作者平台 CAVE 或 Zhang/Li 2025 未核实入口）
+
+**FUNCTIONAL_UNITS 变化**：116 → 118。14 门禁全绿。
+
+---
+
+## 下一步（v2.49+）
+
+1. **补第三个 zf 单元**：从 CAVE 平台拉 lateral line 数据（需要用户提供 OAuth token 或走 Zhang/Li 2025 独立入口）
+2. **补 neuromodulation 亚型**：从 Zhang/Li 2025 拉 NA/DA/5HT/orexin/glycine 五种神经调节分子标注，扩到 `neuromodulatory` domain
+3. **补 CONNECTION_TYPES 词汇**：把 `excitatory_synapse` / `inhibitory_synapse` 加入 `CONNECTION_TYPES`，把 TEN/HMI 单元的内部边从"统计描述"升级到"词汇声明"
+4. **跨物种证据链**：把 zf.* 单元的 `cross_species_evidence` 字段挂到本项目已有的 mammalian / insect 同类单元上，实现"同一 circuit 三个物种都验证"的证据等级
+
+---
+
+## 附录：与本项目现有代码的接入点
+
+| 目标 | 位置 | 现状 |
+|---|---|---|
+| 数据存放 | `zebrafish_data/paper_data/` | 已落（v2.48.0） |
+| Extractor | `scripts/extract_zebrafish_profiles.py` | 已填实现（v2.48.0） |
+| Unit 落地 | `flybrain-connectome-mcp/functional_units/zebrafish_profiles.json` | 已生成（v2.48.0） |
+| Gen 接入 | `scripts/gen_functional_units.py::_load_connectome_units` | 已注册（v2.48.0） |
+| 门禁断言 | `scripts/check_functional_units.py` | 单元数 116 → 118（v2.48.0） |
+| README 声明 | `README.md` 顶部 | 已加 CC-BY-NC 数据源声明（v2.48.0） |

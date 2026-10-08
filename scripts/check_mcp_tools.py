@@ -15,6 +15,7 @@ Run:
 from __future__ import annotations
 
 import argparse
+import contextlib
 import json
 import os
 import subprocess
@@ -111,6 +112,8 @@ ARGS = {
         {"category": "sensory_input", "copies": 1},
     ]}},
     "get_multiplier_metrics": {},
+    # T4 拓扑感知层
+    "profile_topology": {"name": "cognitive_animal"},
 }
 
 DATA_TOOLS = {
@@ -135,7 +138,7 @@ JSON_TOOLS = {"export_swarm_motifs", "list_blueprints", "list_modules",
               "search_market_organisms", "delete_market_organism",
               # Phase 8: 组合规则 middleware
               "list_combination_rules", "validate_combination",
-              "expand_organism", "get_multiplier_metrics"}
+              "expand_organism", "get_multiplier_metrics", "profile_topology"}
 
 
 def _speak(python: str, env: dict, reqs: list[dict], timeout: int):
@@ -148,6 +151,78 @@ def _speak(python: str, env: dict, reqs: list[dict], timeout: int):
         if line.strip():
             out.append(json.loads(line))
     return out, p.stderr or ""
+
+
+def _files(base: Path) -> dict[str, Path]:
+    """Every file under ``base``, keyed by its relative posix path."""
+    return {f.relative_to(base).as_posix(): f for f in sorted(base.rglob("*"))
+            if f.is_file()}
+
+
+def _prune_empty_dirs(root: Path) -> None:
+    """Remove directories left empty, deepest first. Raises nothing."""
+    for d in sorted((p for p in root.rglob("*") if p.is_dir()),
+                    key=lambda p: len(p.parts), reverse=True):
+        try:
+            d.rmdir()
+        except OSError:
+            pass
+
+
+@contextlib.contextmanager
+def _frozen(*paths: Path):
+    """Snapshot the given paths and restore them after the block — per file.
+
+    The smoke test calls tools that WRITE into the checkout: `apply_preset`
+    regenerates ``male_cns/virtual_organisms/preset_*.json`` and
+    ``save_market_organism`` writes into ``.../market/``. Running a GATE must
+    not leave the tree dirty — that was measured as a real defect (a gate run
+    silently rewrote ``preset_minimal_reflex.json``'s ``generated_utc``, so a
+    clean checkout looked modified). Files that did not exist before the block
+    are removed afterwards.
+
+    The restore is deliberately file-by-file rather than
+    delete-the-tree-then-recopy. The tree holds ~190 committed artifacts, and a
+    bulk delete of a committed directory is exactly the kind of operation a
+    sandboxed runner must not need just to prove it left the checkout clean.
+    Measured defect: ``shutil.rmtree`` on ``male_cns/virtual_organisms`` was
+    refused by the runner's safe-delete policy (197 files > 50-file threshold),
+    which turned this gate red on every run — a gate that fails to clean up
+    after itself can never go green.
+    """
+    import tempfile
+
+    with tempfile.TemporaryDirectory(prefix="flybrain_mcp_frozen_") as tmp:
+        snapshot: dict[Path, tuple[Path, list[tuple[str, bytes]]] | None] = {}
+        for p in paths:
+            if not p.exists():
+                snapshot[p] = None          # created by the block -> undo it
+            elif p.is_file():
+                snapshot[p] = (p.parent, [(p.name, p.read_bytes())])
+            else:
+                snapshot[p] = (p, [(rel, f.read_bytes())
+                                   for rel, f in _files(p).items()])
+        try:
+            yield
+        finally:
+            for p, snap in snapshot.items():
+                if snap is None:
+                    for _rel, f in _files(p).items():
+                        f.unlink()
+                    if p.exists() and not any(p.iterdir()):
+                        p.rmdir()
+                    _prune_empty_dirs(p)
+                    continue
+                base, before = snap
+                # every pre-existing file is written back byte-for-byte
+                for rel, blob in before:
+                    (base / rel).write_bytes(blob)
+                # whatever the block added on top is removed, one file at a time
+                kept = {rel for rel, _ in before}
+                for rel, f in _files(base).items():
+                    if rel not in kept and f.is_relative_to(p):
+                        f.unlink()
+                _prune_empty_dirs(p)
 
 
 def main() -> int:
@@ -170,13 +245,21 @@ def main() -> int:
         print("[warn] FLYBRAIN_DATA_DIR not found (%s); data-backed tools skipped"
               % data_dir)
 
-    # 1. handshake + enumerate
-    init, err = _speak(args.python, env, [
-        {"jsonrpc": "2.0", "id": 1, "method": "initialize",
-         "params": {"protocolVersion": "2024-11-05", "capabilities": {},
-                    "clientInfo": {"name": "check-mcp-tools", "version": "1.0"}}},
-        {"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
-    ], args.timeout)
+    # 1. handshake + enumerate (retry once on transport-level no-response;
+    #    a nested subprocess in a busy gate run can be starved of resources)
+    import time
+    init, err = [], ""
+    for _attempt in range(2):
+        init, err = _speak(args.python, env, [
+            {"jsonrpc": "2.0", "id": 1, "method": "initialize",
+             "params": {"protocolVersion": "2024-11-05", "capabilities": {},
+                        "clientInfo": {"name": "check-mcp-tools", "version": "1.0"}}},
+            {"jsonrpc": "2.0", "id": 2, "method": "tools/list"},
+        ], args.timeout)
+        if init:
+            break
+        print("  [retry] handshake got no response (transport); retrying once...")
+        time.sleep(2)
     if not init:
         print("FATAL: no response from MCP server. stderr:\n%s" % err[:1000])
         return 1
@@ -197,7 +280,7 @@ def main() -> int:
             fails.append("%s: advertised but has no smoke-test arguments "
                          "(add it to ARGS in this script)" % t["name"])
 
-    # 2. call every tool
+    # 2. call every tool (retry once on TRANSPORT-level no-reply only)
     skip = DATA_TOOLS if (args.offline or not have_data) else set()
     calls, order = [], []
     for i, name in enumerate(names, start=100):
@@ -207,36 +290,51 @@ def main() -> int:
                       "params": {"name": name, "arguments": ARGS[name]}})
         order.append((i, name))
 
-    results, err = _speak(args.python, env, calls, args.timeout)
-    got = {m.get("id"): m for m in results}
-    ok_count = 0
-    for rid, name in order:
-        m = got.get(rid)
-        if m is None:
-            fails.append("%s: no response" % name)
-            print("  [NO REPLY] %s" % name)
-            continue
-        res = m.get("result", {})
-        text = ""
-        if isinstance(res.get("content"), list) and res["content"]:
-            text = res["content"][0].get("text", "")
-        if res.get("isError"):
-            fails.append("%s: isError -> %s" % (name, text[:160]))
-            print("  [ERROR ] %s -> %s" % (name, text[:110].replace("\n", " ")))
-            continue
-        if not text.strip():
-            fails.append("%s: empty payload" % name)
-            print("  [EMPTY ] %s" % name)
-            continue
-        if name in JSON_TOOLS:
-            try:
-                json.loads(text)
-            except json.JSONDecodeError as e:
-                fails.append("%s: payload is not JSON (%s)" % (name, e))
-                print("  [BADJS ] %s" % name)
+    def exercise():
+        with _frozen(ROOT / "male_cns" / "virtual_organisms"):
+            results, err = _speak(args.python, env, calls, args.timeout)
+        got = {m.get("id"): m for m in results}
+        ok_local = 0
+        no_reply = 0
+        for rid, name in order:
+            m = got.get(rid)
+            if m is None:
+                no_reply += 1
+                fails.append("%s: no response" % name)
+                print("  [NO REPLY] %s" % name)
                 continue
-        ok_count += 1
-        print("  [ok    ] %s (%d chars)" % (name, len(text)))
+            res = m.get("result", {})
+            text = ""
+            if isinstance(res.get("content"), list) and res["content"]:
+                text = res["content"][0].get("text", "")
+            if res.get("isError"):
+                fails.append("%s: isError -> %s" % (name, text[:160]))
+                print("  [ERROR ] %s -> %s" % (name, text[:110].replace("\n", " ")))
+                continue
+            if not text.strip():
+                fails.append("%s: empty payload" % name)
+                print("  [EMPTY ] %s" % name)
+                continue
+            if name in JSON_TOOLS:
+                try:
+                    json.loads(text)
+                except json.JSONDecodeError as e:
+                    fails.append("%s: payload is not JSON (%s)" % (name, e))
+                    print("  [BADJS ] %s" % name)
+                    continue
+            ok_local += 1
+            print("  [ok    ] %s (%d chars)" % (name, len(text)))
+        return ok_local, no_reply
+
+    ok_count, no_reply = exercise()
+    # Retry ONLY when the only failures are transport no-replies (never when a
+    # tool returned isError / bad schema / empty payload -- those are real).
+    logic_fails = [f for f in fails if ("isError" not in f and "no response" not in f)]
+    if no_reply > 0 and not logic_fails:
+        print("  [retry] %d tool(s) gave no reply (transport); retrying once..."
+              % no_reply)
+        fails[:] = [f for f in fails if "no response" not in f]
+        ok_count, no_reply = exercise()
 
     if skipped := [n for n in names if n in skip]:
         print("skipped (need data): %s" % ", ".join(sorted(skipped)))

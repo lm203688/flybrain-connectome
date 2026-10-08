@@ -1,0 +1,649 @@
+{
+  "targets": 3,
+  "records": [
+    {
+      "spec_version": "1.0",
+      "spec": {
+        "arm": "local_afferent",
+        "horizon": 2,
+        "quality_threshold": 0.8,
+        "require_local_readout": true,
+        "neurons": [
+          0,
+          1,
+          2,
+          3,
+          4
+        ],
+        "task": "parity_prefix",
+        "global_baseline": null,
+        "label": "",
+        "spec_version": "1.0"
+      },
+      "result": {
+        "arm": "local_afferent",
+        "spec_version": "1.0",
+        "horizon": 2,
+        "quality_threshold": 0.8,
+        "curve": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 0.5
+        },
+        "steps_to_quality": 1,
+        "decides_within_horizon": true,
+        "peak_accuracy": 1.0,
+        "n_steps_measured": 4,
+        "baseline_arm": "global",
+        "baseline_steps_to_quality": null,
+        "baseline_curve": {
+          "1": 0.5,
+          "2": 0.5,
+          "3": 0.5,
+          "4": 0.5
+        },
+        "advantage_steps": -1,
+        "advantage_label": "this arm reaches the threshold; baseline does not"
+      },
+      "structural_fingerprint": {
+        "n_nodes": 20,
+        "n_edges": 48,
+        "density": 0.126316,
+        "n_modules": 4,
+        "spectral_radius": 1.0515,
+        "modularity_q": 0.6457,
+        "reciprocity": 0.5,
+        "feedback_edge_fraction": 0.4375,
+        "motifs": {
+          "mutual_dyad": 11,
+          "feedforward_loop": 28,
+          "three_cycle": 14
+        },
+        "signature": "sha256:34045117de52fb56b38632c5efd64388cd9ad4858cacd070225e8c6c68b0f7dc",
+        "local_spectral_by_module": {
+          "0": 1.0374,
+          "1": 1.0387,
+          "2": 1.1408,
+          "3": 1.1762
+        },
+        "afferent_module": 0,
+        "remote_module": 1,
+        "wire_distance_afferent_to_remote": null
+      },
+      "not_measured": [
+        "dynamics",
+        "energy",
+        "task_performance",
+        "biological_validity"
+      ],
+      "caveat": "Steps are recurrent integration steps, not milliseconds; there is no clock in this framework. 'Decides within horizon' means a linear readout trained on that many integration steps clears the stated accuracy bar -- it is not a claim about a running system, a spiking network, or a biological neuron.",
+      "topology": "bp_predictive_coding",
+      "regime": "propagation",
+      "n_nodes": 20,
+      "n_modules": 4,
+      "afferent_module_size": 5,
+      "remote_module_size": 5,
+      "wire_distance_afferent_to_remote": null,
+      "channel_noise_p": 0.12,
+      "leak": 0.9,
+      "n_trials": 12,
+      "global_reference": {
+        "arm": "global",
+        "spec_version": "1.0",
+        "horizon": 2,
+        "quality_threshold": 0.8,
+        "curve": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 1.0,
+          "4": 0.5
+        },
+        "steps_to_quality": 1,
+        "decides_within_horizon": true,
+        "peak_accuracy": 1.0,
+        "n_steps_measured": 4
+      },
+      "routing_tax_steps": null,
+      "sleep_control": {
+        "sleep_steps": 24,
+        "curve": {
+          "1": 1.0,
+          "2": 0.8333,
+          "3": 0.5,
+          "4": 0.8333
+        },
+        "steps_to_quality": 1,
+        "wake_steps_to_quality": 1,
+        "delta_steps": 0
+      },
+      "reservoir_sweep": {
+        "regime": "delay_line_reservoir",
+        "delay": 1,
+        "rho": 1.0,
+        "afferent": {
+          "2": 0.4791666666666667,
+          "3": 0.5208333333333334,
+          "4": 0.5208333333333334,
+          "5": 0.4583333333333333,
+          "6": 0.5416666666666666
+        },
+        "global": {
+          "2": 0.5833333333333334,
+          "3": 0.4375,
+          "4": 0.5,
+          "5": 0.5625,
+          "6": 0.4583333333333333
+        }
+      }
+    },
+    {
+      "spec_version": "1.0",
+      "spec": {
+        "arm": "local_afferent",
+        "horizon": 2,
+        "quality_threshold": 0.8,
+        "require_local_readout": true,
+        "neurons": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task": "parity_prefix",
+        "global_baseline": null,
+        "label": "",
+        "spec_version": "1.0"
+      },
+      "result": {
+        "arm": "local_afferent",
+        "spec_version": "1.0",
+        "horizon": 2,
+        "quality_threshold": 0.8,
+        "curve": {
+          "1": 1.0,
+          "2": 0.6667,
+          "3": 1.0,
+          "4": 0.8333
+        },
+        "steps_to_quality": 1,
+        "decides_within_horizon": true,
+        "peak_accuracy": 1.0,
+        "n_steps_measured": 4,
+        "baseline_arm": "global",
+        "baseline_steps_to_quality": null,
+        "baseline_curve": {
+          "1": 0.5,
+          "2": 0.5,
+          "3": 0.5,
+          "4": 0.5
+        },
+        "advantage_steps": -1,
+        "advantage_label": "this arm reaches the threshold; baseline does not"
+      },
+      "structural_fingerprint": {
+        "n_nodes": 30,
+        "n_edges": 100,
+        "density": 0.114943,
+        "n_modules": 5,
+        "spectral_radius": 1.7692,
+        "modularity_q": 0.7784,
+        "reciprocity": 0.7158,
+        "feedback_edge_fraction": 0.42,
+        "motifs": {
+          "mutual_dyad": 34,
+          "feedforward_loop": 170,
+          "three_cycle": 64
+        },
+        "signature": "sha256:a16669c704e737c16f4ffaab9c3fad45ee06c254bad2fce3a952e2a9d8daa016",
+        "local_spectral_by_module": {
+          "0": 1.908,
+          "1": 1.882,
+          "2": 1.722,
+          "3": 1.3612,
+          "4": 1.6191
+        },
+        "afferent_module": 0,
+        "remote_module": 1,
+        "wire_distance_afferent_to_remote": null
+      },
+      "not_measured": [
+        "dynamics",
+        "energy",
+        "task_performance",
+        "biological_validity"
+      ],
+      "caveat": "Steps are recurrent integration steps, not milliseconds; there is no clock in this framework. 'Decides within horizon' means a linear readout trained on that many integration steps clears the stated accuracy bar -- it is not a claim about a running system, a spiking network, or a biological neuron.",
+      "topology": "modular_isolation",
+      "regime": "propagation",
+      "n_nodes": 30,
+      "n_modules": 5,
+      "afferent_module_size": 6,
+      "remote_module_size": 6,
+      "wire_distance_afferent_to_remote": null,
+      "channel_noise_p": 0.12,
+      "leak": 0.9,
+      "n_trials": 12,
+      "global_reference": {
+        "arm": "global",
+        "spec_version": "1.0",
+        "horizon": 2,
+        "quality_threshold": 0.8,
+        "curve": {
+          "1": 1.0,
+          "2": 0.6667,
+          "3": 1.0,
+          "4": 0.8333
+        },
+        "steps_to_quality": 1,
+        "decides_within_horizon": true,
+        "peak_accuracy": 1.0,
+        "n_steps_measured": 4
+      },
+      "routing_tax_steps": null,
+      "sleep_control": {
+        "sleep_steps": 24,
+        "curve": {
+          "1": 0.6667,
+          "2": 1.0,
+          "3": 0.6667,
+          "4": 0.5
+        },
+        "steps_to_quality": 2,
+        "wake_steps_to_quality": 1,
+        "delta_steps": 1
+      },
+      "reservoir_sweep": {
+        "regime": "delay_line_reservoir",
+        "delay": 1,
+        "rho": 1.0,
+        "afferent": {
+          "2": 0.4791666666666667,
+          "3": 0.4791666666666667,
+          "4": 0.4166666666666667,
+          "5": 0.4583333333333333,
+          "6": 0.6666666666666666
+        },
+        "global": {
+          "2": 0.625,
+          "3": 0.4791666666666667,
+          "4": 0.4791666666666667,
+          "5": 0.5833333333333334,
+          "6": 0.6458333333333334
+        }
+      }
+    },
+    {
+      "spec_version": "1.0",
+      "spec": {
+        "arm": "local_afferent",
+        "horizon": 2,
+        "quality_threshold": 0.8,
+        "require_local_readout": true,
+        "neurons": [
+          0,
+          1,
+          2,
+          3,
+          4,
+          5
+        ],
+        "task": "parity_prefix",
+        "global_baseline": null,
+        "label": "",
+        "spec_version": "1.0"
+      },
+      "result": {
+        "arm": "local_afferent",
+        "spec_version": "1.0",
+        "horizon": 2,
+        "quality_threshold": 0.8,
+        "curve": {
+          "1": 1.0,
+          "2": 0.6667,
+          "3": 1.0,
+          "4": 0.5
+        },
+        "steps_to_quality": 1,
+        "decides_within_horizon": true,
+        "peak_accuracy": 1.0,
+        "n_steps_measured": 4,
+        "baseline_arm": "global",
+        "baseline_steps_to_quality": null,
+        "baseline_curve": {
+          "1": 0.5,
+          "2": 0.5,
+          "3": 0.5,
+          "4": 0.5
+        },
+        "advantage_steps": -1,
+        "advantage_label": "this arm reaches the threshold; baseline does not"
+      },
+      "structural_fingerprint": {
+        "n_nodes": 30,
+        "n_edges": 100,
+        "density": 0.114943,
+        "n_modules": 5,
+        "spectral_radius": 1.5967,
+        "modularity_q": 0.7617,
+        "reciprocity": 0.6737,
+        "feedback_edge_fraction": 0.41,
+        "motifs": {
+          "mutual_dyad": 32,
+          "feedforward_loop": 154,
+          "three_cycle": 59
+        },
+        "signature": "sha256:a61aac615302b60de7537aeb0eef20e060d1e17f0084688d2c913aebaf790a7a",
+        "local_spectral_by_module": {
+          "0": 1.813,
+          "1": 1.7224,
+          "2": 1.722,
+          "3": 1.3612,
+          "4": 1.6191
+        },
+        "afferent_module": 0,
+        "remote_module": 1,
+        "wire_distance_afferent_to_remote": null
+      },
+      "not_measured": [
+        "dynamics",
+        "energy",
+        "task_performance",
+        "biological_validity"
+      ],
+      "caveat": "Steps are recurrent integration steps, not milliseconds; there is no clock in this framework. 'Decides within horizon' means a linear readout trained on that many integration steps clears the stated accuracy bar -- it is not a claim about a running system, a spiking network, or a biological neuron.",
+      "topology": "robust_redundant",
+      "regime": "propagation",
+      "n_nodes": 30,
+      "n_modules": 5,
+      "afferent_module_size": 6,
+      "remote_module_size": 6,
+      "wire_distance_afferent_to_remote": null,
+      "channel_noise_p": 0.12,
+      "leak": 0.9,
+      "n_trials": 12,
+      "global_reference": {
+        "arm": "global",
+        "spec_version": "1.0",
+        "horizon": 2,
+        "quality_threshold": 0.8,
+        "curve": {
+          "1": 1.0,
+          "2": 0.6667,
+          "3": 1.0,
+          "4": 0.5
+        },
+        "steps_to_quality": 1,
+        "decides_within_horizon": true,
+        "peak_accuracy": 1.0,
+        "n_steps_measured": 4
+      },
+      "routing_tax_steps": null,
+      "sleep_control": {
+        "sleep_steps": 24,
+        "curve": {
+          "1": 1.0,
+          "2": 1.0,
+          "3": 0.8333,
+          "4": 0.8333
+        },
+        "steps_to_quality": 1,
+        "wake_steps_to_quality": 1,
+        "delta_steps": 0
+      },
+      "reservoir_sweep": {
+        "regime": "delay_line_reservoir",
+        "delay": 1,
+        "rho": 1.0,
+        "afferent": {
+          "2": 0.5625,
+          "3": 0.4375,
+          "4": 0.3541666666666667,
+          "5": 0.6458333333333334,
+          "6": 0.6666666666666666
+        },
+        "global": {
+          "2": 0.6041666666666666,
+          "3": 0.5833333333333334,
+          "4": 0.5833333333333334,
+          "5": 0.5833333333333334,
+          "6": 0.6875
+        }
+      }
+    }
+  ],
+  "fingerprints": [
+    {
+      "topology": "bp_predictive_coding",
+      "fingerprint": {
+        "n_nodes": 20,
+        "n_edges": 48,
+        "density": 0.126316,
+        "n_modules": 4,
+        "spectral_radius": 1.0515,
+        "modularity_q": 0.6457,
+        "reciprocity": 0.5,
+        "feedback_edge_fraction": 0.4375,
+        "motifs": {
+          "mutual_dyad": 11,
+          "feedforward_loop": 28,
+          "three_cycle": 14
+        },
+        "signature": "sha256:34045117de52fb56b38632c5efd64388cd9ad4858cacd070225e8c6c68b0f7dc",
+        "local_spectral_by_module": {
+          "0": 1.0374,
+          "1": 1.0387,
+          "2": 1.1408,
+          "3": 1.1762
+        },
+        "afferent_module": 0,
+        "remote_module": 1,
+        "wire_distance_afferent_to_remote": null
+      }
+    },
+    {
+      "topology": "modular_isolation",
+      "fingerprint": {
+        "n_nodes": 30,
+        "n_edges": 100,
+        "density": 0.114943,
+        "n_modules": 5,
+        "spectral_radius": 1.7692,
+        "modularity_q": 0.7784,
+        "reciprocity": 0.7158,
+        "feedback_edge_fraction": 0.42,
+        "motifs": {
+          "mutual_dyad": 34,
+          "feedforward_loop": 170,
+          "three_cycle": 64
+        },
+        "signature": "sha256:a16669c704e737c16f4ffaab9c3fad45ee06c254bad2fce3a952e2a9d8daa016",
+        "local_spectral_by_module": {
+          "0": 1.908,
+          "1": 1.882,
+          "2": 1.722,
+          "3": 1.3612,
+          "4": 1.6191
+        },
+        "afferent_module": 0,
+        "remote_module": 1,
+        "wire_distance_afferent_to_remote": null
+      }
+    },
+    {
+      "topology": "robust_redundant",
+      "fingerprint": {
+        "n_nodes": 30,
+        "n_edges": 100,
+        "density": 0.114943,
+        "n_modules": 5,
+        "spectral_radius": 1.5967,
+        "modularity_q": 0.7617,
+        "reciprocity": 0.6737,
+        "feedback_edge_fraction": 0.41,
+        "motifs": {
+          "mutual_dyad": 32,
+          "feedforward_loop": 154,
+          "three_cycle": 59
+        },
+        "signature": "sha256:a61aac615302b60de7537aeb0eef20e060d1e17f0084688d2c913aebaf790a7a",
+        "local_spectral_by_module": {
+          "0": 1.813,
+          "1": 1.7224,
+          "2": 1.722,
+          "3": 1.3612,
+          "4": 1.6191
+        },
+        "afferent_module": 0,
+        "remote_module": 1,
+        "wire_distance_afferent_to_remote": null
+      }
+    }
+  ],
+  "per_step_rows": [
+    {
+      "topology": "bp_predictive_coding",
+      "arm": "local_afferent",
+      "steps_to_quality": 1,
+      "afferent_spectral": 1.0374,
+      "remote_spectral": 1.0387,
+      "wire_distance": null,
+      "acc_s1": 1.0,
+      "acc_s2": 1.0,
+      "acc_s3": 1.0,
+      "acc_s4": 0.5
+    },
+    {
+      "topology": "bp_predictive_coding",
+      "arm": "local_remote",
+      "steps_to_quality": null,
+      "afferent_spectral": 1.0374,
+      "remote_spectral": 1.0387,
+      "wire_distance": null,
+      "acc_s1": 0.5,
+      "acc_s2": 0.5,
+      "acc_s3": 0.5,
+      "acc_s4": 0.5
+    },
+    {
+      "topology": "bp_predictive_coding",
+      "arm": "global",
+      "steps_to_quality": 1,
+      "afferent_spectral": 1.0374,
+      "remote_spectral": 1.0387,
+      "wire_distance": null,
+      "acc_s1": 1.0,
+      "acc_s2": 1.0,
+      "acc_s3": 1.0,
+      "acc_s4": 0.5
+    },
+    {
+      "topology": "modular_isolation",
+      "arm": "local_afferent",
+      "steps_to_quality": 1,
+      "afferent_spectral": 1.908,
+      "remote_spectral": 1.882,
+      "wire_distance": null,
+      "acc_s1": 1.0,
+      "acc_s2": 0.6667,
+      "acc_s3": 1.0,
+      "acc_s4": 0.8333
+    },
+    {
+      "topology": "modular_isolation",
+      "arm": "local_remote",
+      "steps_to_quality": null,
+      "afferent_spectral": 1.908,
+      "remote_spectral": 1.882,
+      "wire_distance": null,
+      "acc_s1": 0.5,
+      "acc_s2": 0.5,
+      "acc_s3": 0.5,
+      "acc_s4": 0.5
+    },
+    {
+      "topology": "modular_isolation",
+      "arm": "global",
+      "steps_to_quality": 1,
+      "afferent_spectral": 1.908,
+      "remote_spectral": 1.882,
+      "wire_distance": null,
+      "acc_s1": 1.0,
+      "acc_s2": 0.6667,
+      "acc_s3": 1.0,
+      "acc_s4": 0.8333
+    },
+    {
+      "topology": "robust_redundant",
+      "arm": "local_afferent",
+      "steps_to_quality": 1,
+      "afferent_spectral": 1.813,
+      "remote_spectral": 1.7224,
+      "wire_distance": null,
+      "acc_s1": 1.0,
+      "acc_s2": 0.6667,
+      "acc_s3": 1.0,
+      "acc_s4": 0.5
+    },
+    {
+      "topology": "robust_redundant",
+      "arm": "local_remote",
+      "steps_to_quality": null,
+      "afferent_spectral": 1.813,
+      "remote_spectral": 1.7224,
+      "wire_distance": null,
+      "acc_s1": 0.5,
+      "acc_s2": 0.5,
+      "acc_s3": 0.5,
+      "acc_s4": 0.5
+    },
+    {
+      "topology": "robust_redundant",
+      "arm": "global",
+      "steps_to_quality": 1,
+      "afferent_spectral": 1.813,
+      "remote_spectral": 1.7224,
+      "wire_distance": null,
+      "acc_s1": 1.0,
+      "acc_s2": 0.6667,
+      "acc_s3": 1.0,
+      "acc_s4": 0.5
+    }
+  ],
+  "k_steps": 4,
+  "n_trials": 12,
+  "horizon": 2,
+  "threshold": 0.8,
+  "channel_noise_p": 0.12,
+  "leak": 0.9,
+  "summary": {
+    "n_records": 3,
+    "local_afferent_reaches_threshold": 3,
+    "local_afferent_within_horizon": 3,
+    "local_afferent_1_step": 3,
+    "local_remote_reaches_threshold": 0,
+    "local_remote_within_horizon": 0,
+    "routing_tax_measured": 0,
+    "routing_tax_mean_steps": null,
+    "routing_tax_min_steps": null,
+    "routing_tax_max_steps": null,
+    "global_never_reaches": 0,
+    "sleep_measured_pairs": 3,
+    "sleep_shortened_budget": 0,
+    "sleep_lengthened_budget": 1,
+    "sleep_no_change": 2,
+    "sleep_mean_delta_steps": 0.333,
+    "d2_pairs": 3,
+    "d2_afferent_spectral_vs_steps_spearman": 0.5,
+    "d2b_pairs": 0,
+    "d2b_distance_vs_remote_steps_spearman": null
+  },
+  "elapsed_sec": 0.1,
+  "not_measured": [
+    "energy",
+    "biological_validity"
+  ],
+  "caveat": "steps are recurrent integration steps, not time; the readout is online (no future look-ahead); channel noise is a bit-flip proxy, not a biological noise model; the offline phase is pre-integration, not memory consolidation."
+}

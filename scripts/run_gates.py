@@ -21,6 +21,12 @@ Gates, in order of cheapness:
  12  costs        every connection type has a latency/cost with source
  13  composition  wiring resolves, ports complete, one-way declarations counted
  14  taxonomy     every unit.system is in taxonomy_systems.json
+ 15  topology     topology_profile layer is self-consistent and honest
+ 16  signature    every generated artifact carries a recomputable structure signature
+ 17  comp closure declared-incompatible pairs are registered; no silent wiring drift
+ 18  fast decision north-star D1 spec is self-consistent (fast_decision.py --selftest)
+ 19  function tax every unit.function maps to the 24-category controlled vocabulary
+ 20  sources      connectome source adapters present; zebrafish profiles built
 
 Gates 4 and 5 generate a throwaway organism into a temp dir, so they need no
 dataset. The data-backed smoke test (`flybrain verify`, 70 assertions) is *not*
@@ -29,9 +35,10 @@ run unless you pass --with-data, because it needs a local MaleCNS v1.0 copy
 committed anchor artifact, and only recomputes from raw data under --with-data.
 
 Usage:
-    python scripts/run_gates.py                  # offline, CI-equivalent
-    python scripts/run_gates.py --with-data      # adds `flybrain verify`
-    python scripts/run_gates.py --quick          # gates 1+2 only
+    python scripts/run_gates.py                  # 19 gates, no dataset needed
+    python scripts/run_gates.py --with-data      # 20 gates (+ `flybrain verify`)
+    python scripts/run_gates.py --quick          # 16 gates: skips 3, 4, 5 (no numpy,
+                                                 #   no server spawn, no generated artifact)
 """
 
 from __future__ import annotations
@@ -68,7 +75,7 @@ def main() -> int:
     ap = argparse.ArgumentParser(description=__doc__,
                                  formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument("--quick", action="store_true",
-                    help="only the two dependency-free gates")
+                    help="skip gates 3/4/5 (no numpy, no server spawn, no artifact)")
     ap.add_argument("--with-data", action="store_true",
                     help="also run `flybrain verify` (needs FLYBRAIN_DATA_DIR)")
     args = ap.parse_args()
@@ -103,6 +110,32 @@ def main() -> int:
     results.append(("gate14 taxonomy", run(
         "GATE 14 — every unit.system is in taxonomy_systems.json (no silent drift)",
         [py, str(SCRIPTS / "check_taxonomy.py")])[0]))
+
+    # ---- Gate 15: topology-aware layer (stdlib only, runs even in --quick) ----
+    results.append(("gate15 topology", run(
+        "GATE 15 — topology profile layer is self-consistent and honest",
+        [py, str(SCRIPTS / "check_topology_profile.py")])[0]))
+
+    # ---- Gate 17: composition closure (stdlib only, runs even in --quick) ----
+    results.append(("gate17 composition closure", run(
+        "GATE 17 — declared-incompatible pairs registered; compatibility matrix intact",
+        [py, str(SCRIPTS / "check_composition_closure.py")])[0]))
+
+    # ---- Gate 18: north-star fast-decision spec (stdlib only, --quick) ----
+    results.append(("gate18 fast decision spec", run(
+        "GATE 18 — north-star D1 fast-decision spec is self-consistent",
+        [py, str(ROOT / "flybrain-connectome-mcp" / "fast_decision.py"),
+         "--selftest"])[0]))
+
+    # ---- Gate 19: function controlled vocabulary (stdlib only, --quick) ----
+    results.append(("gate19 function taxonomy", run(
+        "GATE 19 — every unit.function maps to the 24-category controlled vocabulary",
+        [py, str(SCRIPTS / "check_function_canonical.py")])[0]))
+
+    # ---- Gate 20: connectome source adapters (stdlib only, --quick) ----
+    results.append(("gate20 sources", run(
+        "GATE 20 — connectome source adapters present; zebrafish profiles built",
+        [py, str(SCRIPTS / "check_sources.py")])[0]))
 
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
@@ -166,6 +199,11 @@ def main() -> int:
     results.append(("gate8 tiering", run(
         "GATE 8 — physical tiering architecture (core_bridge + LICENSE clause)",
         [py, str(SCRIPTS / "check_physical_tiering.py")])[0]))
+
+    # ---- Gate 16: structure signature in artifacts (needs numpy: generates) ----
+    results.append(("gate16 structure signature", run(
+        "GATE 16 — generated artifacts carry a recomputable structure signature",
+        [py, str(SCRIPTS / "check_topology_signature.py")])[0]))
 
     print("=" * 72)
     print("gate summary")

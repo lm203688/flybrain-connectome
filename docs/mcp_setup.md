@@ -66,7 +66,7 @@ has `numpy` and `pyarrow`; the toolkit itself has no dependencies.
 
 ---
 
-## 2. The 45 tools
+## 2. The 46 tools
 
 **Real-connectome queries** — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`;
 `export_swarm_motifs` works from the bundled snapshot (only `refresh=true`
@@ -89,7 +89,7 @@ reads the data):
 `save_market_organism` · `load_market_organism` · `list_market_organisms` ·
 `rate_market_organism` · `search_market_organisms` · `delete_market_organism` ·
 `list_combination_rules` · `validate_combination` · `expand_organism` ·
-`get_multiplier_metrics`
+`get_multiplier_metrics` · `profile_topology`
 
 **Functional-unit composition library** — offline, Tier-1, stdlib-only. This is
 the layer that actually composes: 115 functional units (each ONE function,

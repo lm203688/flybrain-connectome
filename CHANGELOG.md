@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.47.0` | the toolkit as a whole |
+| package | `2.48.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -34,9 +34,121 @@ The **schema version** is versioned separately from the **package version**:
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
 
+## [2.48.0] — 2026-10-08
+
+**技术筑基路线图 100% 落地：T1/T2/T4/T5/T6/M4 全线交付，门禁 14 → 20**
+
+基线：`docs/FOUNDATION_ROADMAP.md`（能力优先版，v2.47.0）。本轮把路线图上除
+T3（Tier-2 中间件，**阻塞于私有仓缺失**）外的全部交付物落地，并逐条配上"注入缺陷即报红"的门禁。
+
+### 新增 MCP 工具（45 → 46）
+
+- **`profile_topology`**：拓扑感知层（`topology_profile.py`）正式暴露为 MCP 工具，
+  与 CLI `flybrain profile` 同源。README / `docs/mcp_setup.md` / `~/.workbuddy/mcp.json`
+  三处文档已同步（Gate 2 校验 46/46 工具名 + 总数）。
+
+### T2 · 功能板块齐备化
+
+- 新增 `flybrain-connectome-mcp/function_canonical.py`：**24 个 canonical function 类别**
+  的关键词分类器（单一事实源）。
+- 新增 `scripts/check_function_canonical.py` = **Gate 19**：116 单元 **100% 映射**到
+  24 个类别（0 落入 `other`）；产出 `docs/function_coverage.json`（24 × 类群 × 证据等级
+  齐备度矩阵），**9 个缺口类别显式声明**而非静默空缺。
+- 复核：`system` 词表**已 0 越界**（Gate 14，v2.45.0）——路线图原文"~150 个词表外值"
+  为过时信息，已标注更正。
+
+### T4 · 拓扑感知层产品化
+
+- `synthetic_bio_topology.py`：生成时写入 `topology_profile.signature`
+  （`profile()` + `profile_signature()`，stdlib only）。
+- `topology_profile.py` 新增 **`StructureSignatureIndex`**：同结构去重 / 版本 diff / 持久化；
+  CLI 新增 `--index <path>` 与 `--list-dups`。自检 14 → **18 项全绿**。
+- 新增 `scripts/check_topology_signature.py` = **Gate 16**：新生成产物签名**可从接线复算**；
+  签名索引去重/diff/持久化可用；191 个历史产物按 **legacy** 报告（不为此手改已提交的
+  研究产物），但历史产物**声称签名却复算不符**会报红。
+
+### T5 · 组合代数闭环
+
+- 新增 `scripts/build_compatibility_matrix.py`：产出 `docs/compatibility_matrix.json`
+  ——**116×116 端口兼容矩阵**（500 个可连接接口对）+ 对不匹配声明的**自动改端口建议**。
+- 新增 `composition_exceptions.json`：**61 条"声明但不可拼"** 逐条登记。
+- 新增 `scripts/check_composition_closure.py` = **Gate 17**：不可拼接的声明必须显式登记，
+  未登记即报红。
+
+### T1 · 连接组源扩展
+
+- 新增 `flybrain-connectome-mcp/connectome_sources/` 适配器包：`base.SourceAdapter`
+  抽象 + `zebrafish`（**真实抽取**，读 `zebrafish_data/` 的 TEN 突触 CSV + HMI xlsx）
+  + `h01` / `microns`（离线安全，缺数据即 fail-closed）。
+- 新增 `scripts/build_zebrafish_profiles.py`（可复现重建）→
+  `functional_units/zebrafish_profiles.json`：**1123 神经元 / 142,882 突触**，带 E/I 分子极性。
+- 新增 `scripts/check_sources.py` = **Gate 20**：3 个适配器齐全、斑马鱼 profile 已生成；
+  H01/MICrONS `available()=False` 时**显式打印而非静默产空**。
+- **许可分层已写入 provenance**：Petkova 斑马鱼 = CC-BY-NC（不可商用）；H01 / MICrONS = CC-BY。
+
+### M4 · 北极星研究纲领 D1–D4 可执行化
+
+- 新增 `flybrain-connectome-mcp/fast_decision.py`：D1 操作化定义
+  （`DecisionSpec(arm, horizon, quality_threshold, require_local_readout, neurons)`；
+  `steps_to_quality` = **首次穿越**阈值步数，非最优）。自检 **22 项全绿** = **Gate 18**。
+- 新增 `integrations/swarmlabs/diagnostics/fast_decision_experiment.py`：D2 结构指纹扫描 +
+  D3 时间-质量曲线（局部 afferent / 局部 remote / 全局三支 × 传播 + 时滞水库两体制）+
+  D4 离线"做梦"对照（24 步预积分，同输入同噪声）。
+- 产出 `FAST_DECISION_REPORT.md` + `fast_decision_results.json`，含 **7 条诚实边界**：
+  步 ≠ 毫秒、读出在线无未来回看、噪声是信道翻转、未达标打印 `null` 不静默丢弃、
+  离线预积分 ≠ 记忆巩固、测的是接线决定的路由代价而非认知主张、n=3 仅提示性。
+- 本轮实测：局部 afferent 3/3 达阈值且 **1 步即达**；remote 0/3；
+  D2 Spearman(afferent_spectral, steps)=0.5（n=3，**不结论**）；D4 delta = 0 缩短 / 1 延长 / 2 持平。
+
+### 门禁卫生
+
+- **修复 Gate 3 恒红**：`check_mcp_tools.py` 的 `_frozen()` 原先用 `shutil.rmtree` 整目录
+  恢复 `male_cns/virtual_organisms`（192 文件），被沙箱批量删除保护
+  （`SAFE_DELETE_BULK_CONFIRM_REQUIRED`，阈值 50）拦截。改为**逐文件快照 / 逐文件还原**，
+  仅对块内新增文件逐个 `unlink`。
+- `scripts/run_gates.py` 注册 **Gate 16 / 17 / 18 / 19 / 20**；门禁编号 1–20
+  （Gate 5 含 5a/5b 两步，故 results 条目 19 条）。
+- README 徽章 `15 gates` → `20 gates`（Gate 2 从 `run_gates.py` 动态解析门禁数，故不会再次静默漂移）。
+
+### 已交付证据（可复算）
+
+- `python scripts/run_gates.py` → **19/19 PASS**（含数据门禁 3/4/5/7/8/9/10/16，已在本环境复验）
+- 唯一未完成**主线**：**T3 中间件引擎** —— 阻塞于私有仓
+  `lm203688/flybrain-connectome-core` 与 Tier-2 数据（`flybrain_core` 未安装、
+  `male_cns/discovered_modules.json` 不在本地、`FLYBRAIN_CORE` 未设）。
+- 其余"未推进"任务（M3 #12/#13/#14/#15、T2、T5 #4、T4.2-a）**全部硬阻塞于外部条件**
+  （缺数据 / 缺私有仓 / 已证伪），**非编码可完成、亦不编造数据**。逐条阻塞点与处理
+  方式见 `docs/FOUNDATION_ROADMAP.md` §七「本轮梳理：未推进任务与硬阻塞点」。
+- 斑马鱼产物 `zebrafish_profiles.json` 的 `note` 新增**模态覆盖 / 缺口**诚实说明：
+  捆绑 TEN+HMI 子集仅含 E/I 分子极性（Gad1B/VGluT2）+ 网络层级 + `spn_*` 脊髓运动亚群；
+  侧线系统与命名神经调节分子不在子集内，列为数据采集待办（与 H01/MICrONS 同阻塞类）。
+
+功能单元 116 / 模块剖面 270 / 连接类型 66 / 数据锚定均不变；schema 版本仍为
+organism `1.2.1`、`motif_provenance` `1.2.0`、combinator `1.1`。
+
+## [Unreleased]
+
+（空 —— v2.48.0 为当前最新）
+
 ## [2.47.0] — 2026-10-08
 
-**把评估结论写回产品面：三层用途 + 68.1 % 诚实声明 + 转向公开**
+### 技术筑基起点：拓扑感知层 + 自验证门禁 + 文档漂移门禁加严
+
+- 新增 `flybrain-connectome-mcp/topology_profile.py`：Tier-1、**零依赖**的拓扑感知层。
+  指标：密度 / 度分布 / 互反性 / 弱连通分量 / 模块度 Q / 传递性 / **谱半径 ρ**（幂迭代，
+  不依赖 numpy）/ **反馈边比例** / **有向 3 节点模体普查** / 抑制比 / 结构签名（sha256）。
+  `--selftest` **14/14 通过**；`not_measured` 显式声明结构剖面**不能**回答的维度
+  （dynamics / energy / task_performance / biological_validity）。
+- 新增 **Gate 15** `scripts/check_topology_profile.py`：拓扑层自洽性 + 诚实性契约
+  （ρ 非常量、DAG 检测、签名确定且敏感、`not_measured` 必含 `dynamics`、CLI 契约）。
+- CLI 新增 `flybrain profile <organism> [--json] [--compare OTHER]`。
+- **Gate 2 加严**（本次扫描实测出的门禁盲区）：模块/蓝图计数由"有一处相等即可"
+  改为"**每一处都必须等于代码**"——旧写法下徽章写 264、正文写 270 都不报红；
+  并新增 README 徽章行**门禁数量**校验（此前 13→14 漂移无人发现）。
+- README 修正漂移：`264 module profiles · 13 gates` → `270 module profiles · 15 gates`；
+  离线门禁数改为准确值（默认 14 / `--quick` 11）；新增 Quickstart §9（profile）。
+
+### 评估结论写回产品面：三层用途 + 68.1 % 诚实声明 + 转向公开
 
 上一版（v2.46.0）产出的 `docs/PROJECT_REALITY_ASSESSMENT.md` 提出了三条建议，
 这一版把三条都落到 README 和 CHANGELOG，不改任何单元、门禁、数据、代码。

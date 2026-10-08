@@ -4864,6 +4864,10 @@ def design_organism(spec: dict, motifs: dict | None = None,
                             for m, p in module_profile_map.items()},
         "organism": organism,
         "metrics": metrics,
+        # T4: every artifact carries its own structural signature, so two
+        # artifacts are comparable for structural identity and a renamed copy
+        # of the same wiring is recognisable as a duplicate.
+        "topology_profile": _structural_profile(organism),
     }
     _org_for_prov["prov_json"] = _prov_json(
         _org_for_prov["motif_provenance"],
@@ -4921,6 +4925,41 @@ def _metrics(org: dict, n_modules: int, module_profile_map: dict | None = None) 
         "profile_breakdown": {
             k: v for k, v in profile_edges.items()
         },
+    }
+
+
+def _structural_profile(org: dict) -> dict:
+    """Structural profile + deterministic signature of a generated organism.
+
+    T4 of the foundation roadmap asks that every generated artifact *carry* its
+    structural signature, so that two artifacts can be compared for structural
+    identity without re-deriving anything, and so a renamed copy of the same
+    topology is recognisable as a duplicate. The profile itself is computed by
+    ``topology_profile`` (stdlib only, power-iteration spectral radius) and is
+    a property of the wiring diagram alone.
+
+    Degrades to ``{"status": "unavailable", "reason": ...}`` rather than
+    raising: provenance and generation must never break because a structural
+    convenience is missing — but the honest reason is recorded so nobody reads
+    a missing signature as a missing structure.
+    """
+    try:
+        from topology_profile import profile as _profile
+    except Exception as exc:  # noqa: BLE001
+        return {"status": "unavailable", "reason": "topology_profile import failed: %r" % (exc,)}
+    try:
+        prof = _profile(dict(org))
+    except Exception as exc:  # noqa: BLE001
+        return {"status": "unavailable", "reason": "profile computation failed: %r" % (exc,)}
+    return {
+        "status": "ok",
+        "signature": prof.get("profile_signature"),
+        "size": prof.get("size", {}),
+        "spectral_radius": prof.get("spectral_radius"),
+        "modularity_q": prof.get("modularity_q"),
+        "reciprocity": prof.get("reciprocity"),
+        "feedback_edge_fraction": prof.get("feedback_edge_fraction"),
+        "not_measured": prof.get("not_measured", []),
     }
 
 

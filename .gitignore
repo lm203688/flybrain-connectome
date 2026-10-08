@@ -11,11 +11,14 @@ male_cns/flat-connectome/
 drosophila_connectome/data/
 drosophila_connectome/dataset/
 # Raw third-party connectome downloads for the extraction scripts
-# (cel_data/ = WormWiring xlsx, larva_data/ = fly_larva csv.zip).
+# (cel_data/ = WormWiring xlsx, larva_data/ = fly_larva csv.zip,
+# zebrafish_data/ = Petkova 2025 TEN/HMI, CC-BY-NC 4.0).
 # The derived JSON they produce IS committed (cel_profiles.json /
-# larva_profiles.json); the downloads themselves are not.
+# larva_profiles.json / zebrafish_profiles.json); the downloads
+# themselves are not — CC-BY-NC source data stays out of this MIT tree.
 cel_data/
 larva_data/
+zebrafish_data/
 .backups/
 archive/
 ops/
@@ -153,6 +156,11 @@ male_cns/stacked_organisms/
 # Raw worm connectome zips (Cook 2019, Emmons Lab mirror) — source data,
 # not redistributed under MIT. Fetch with curl from networks.skewed.de.
 data/worm/raw/*.zip
+
+# Local snapshots of the private Tier-2 repo
+# (lm203688/flybrain-connectome-core) — closed-tier data that must never
+# land in this MIT tree.
+flybrain-tier2-backup-*/
 
 # User-generated organism instances — contain fingerprinted payloads;
 # do NOT commit to public repos.
