@@ -580,6 +580,26 @@ TOOLS = [
         "description": "返回三义乘数的当前实测值：combinatorial (C(19,4)=4032)、structural (故障隔离 25/27)、performance (⚠️ 未经证实)。",
         "inputSchema": {"type": "object", "properties": {}},
     },
+    # ---- T4 拓扑感知层 (2026-10-08) ----
+    {
+        "name": "profile_topology",
+        "description": ("对任一生成物（virtual organism / swarmlabs 拓扑 / 蓝图产物）做结构画像："
+                        "密度、度分布、互反性、弱连通分量、模块度 Q、传递性、谱半径 ρ、反馈边比例、"
+                        "有向 3-节点模体、抑制比、结构签名（sha256）。所有指标均为接线图的结构属性，"
+                        "不含动力学/能耗/任务表现（见 not_measured）。可由 name 或 organism 直接传入。"),
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string",
+                         "description": "已注册生成物的名字（list_virtual_organisms 中的一项）；"
+                                        "与 organism 二选一"},
+                "organism": {"type": "object",
+                              "description": "直接传入 {nodes, edges} 结构；与 name 二选一"},
+                "index": {"type": "string",
+                           "description": "可选：结构签名索引文件路径，写入后报告是否重复"},
+            },
+        },
+    },
 ]
 
 
@@ -1160,6 +1180,46 @@ def _compose_from_units(args):
     )
 
 
+def _profile_topology(args: dict) -> dict:
+    """T4 entry point: structural profile of a virtual organism (MCP tool)."""
+    try:
+        import sys as _sys
+        from pathlib import Path as _P
+        _sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+        from topology_profile import profile, StructureSignatureIndex  # noqa
+    except Exception as e:  # pragma: no cover
+        return {"status": "error", "error": "topology_profile import failed: %r" % e}
+
+    name = args.get("name")
+    organism = args.get("organism")
+    if organism is None and name:
+        candidate = os.path.join(_MODULE_DIR,
+                                 name if name.endswith(".json") else name + ".json")
+        if not os.path.exists(candidate):
+            return {"status": "error", "error": "no such organism: %s" % name}
+        organism = candidate
+    if organism is None:
+        return {"status": "error", "error": "provide `name` or `organism`"}
+
+    try:
+        prof = profile(organism)
+    except Exception as e:
+        return {"status": "error", "error": "profile failed: %r" % e}
+
+    out: dict = {"status": "ok", "profile": prof}
+    idx_path = args.get("index")
+    if idx_path:
+        try:
+            idx = StructureSignatureIndex.load(idx_path)
+            status, existing = idx.add(name or "inline", prof)
+            idx.save(idx_path)
+            out["index_status"] = status
+            out["index_duplicate_of"] = existing
+        except Exception as e:
+            out["index_error"] = repr(e)
+    return out
+
+
 def _list_virtual_organisms():
     if not os.path.exists(_MODULE_DIR):
         return {"organisms": [], "count": 0}
@@ -1373,6 +1433,8 @@ def handle_call(name, args):
         return json.dumps(_expand_organism(args), ensure_ascii=False)
     if name == "get_multiplier_metrics":
         return json.dumps(_get_multiplier_metrics(args), ensure_ascii=False)
+    if name == "profile_topology":
+        return json.dumps(_profile_topology(args), ensure_ascii=False)
     raise ValueError("unknown tool: %s" % name)
 
 
@@ -1395,7 +1457,7 @@ def main():
             resp = {"jsonrpc": "2.0", "id": rid, "result": {
                 "protocolVersion": PROTOCOL_VERSION,
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "drosophila-connectome", "version": "2.47.0"},
+                "serverInfo": {"name": "drosophila-connectome", "version": "2.48.0"},
             }}
         elif method == "notifications/initialized":
             continue
