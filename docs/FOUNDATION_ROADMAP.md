@@ -2,7 +2,7 @@
 
 **制定日期**：2026-10-08
 **基线**：commit `89a0c4f`（v2.47.0）
-**最近一次全量复验**：2026-10-08，`python scripts/run_gates.py` → **19/19 PASS**（门禁 1–20 编号，Gate 5 含 5a/5b 两步）
+**最近一次全量复验**：2026-10-09，`python scripts/run_gates.py` → **20/20 PASS**（门禁 1–21 编号，Gate 5 含 5a/5b 两步）
 **战略前提**：**本阶段不考虑商业化。** 目标是把硬实力做出来、把技术壁垒做出来、把地基打穿。
 **配套文档**：`docs/PROJECT_ENHANCEMENT_REPORT_2026-10-08.md`（全面扫描与评估）
 
@@ -116,7 +116,7 @@ H01/MICrONS 在无数据时 `available()=False` 并由门禁显式打印，**不
 |---|---|---|---|
 | `system` 无受控词表 | 48 个值，~150 个单元用了词表外的值 | 白名单校验（479 值） | ✅ Gate 14 已实现（v2.45.0）；本轮复核 0 越界 |
 | `function` 是散文 | 110 个值，104 个只用一次 | 强制映射 24 个 canonical 类别 | ✅ 已交付（`function_canonical.py` + Gate 19，116/116 覆盖） |
-| `capability` 基本无复用 | 256 个值，60 个只用一次 | 改枚举或废弃 | ⬜ 待做（本轮判定：低优先级，`capability` 当前未被任何门禁消费） |
+| `capability` 基本无复用 | 331 个值，300 个只用一次 | 改枚举或废弃 | ✅ 已交付（`capability_canonical.py` + Gate 21，116/116 覆盖，331/331 高置信度） |
 | 跨类群覆盖弱 | 15 个必需类别只有 1 个跨 3+ 类群 | 每类别补类群宽度 | ✅ 矩阵已产出，9 个缺口**显式声明**而非静默空缺 |
 
 **交付物**：
@@ -302,7 +302,7 @@ Tier-2 数据（`male_cns/discovered_modules.json` 等）。**本地均不存在
 Tier-2 数据不在本地、`FLYBRAIN_CORE` 未设）→ **T3 暂不可推进**，其余主线不受影响。
 
 **已交付证据（可复算）**：
-- `python scripts/run_gates.py`（项目正式解释器）→ **19/19 PASS**
+- `python scripts/run_gates.py`（项目正式解释器）→ **20/20 PASS**
 - `python scripts/check_topology_profile.py` → Gate 15 全绿
 - `python scripts/check_docs_consistency.py` → 加严后先报红（264 / 13），修 README 后转绿（现 21 项断言全绿）
 
@@ -325,7 +325,7 @@ Tier-2 数据不在本地、`FLYBRAIN_CORE` 未设）→ **T3 暂不可推进**�
 | 13 | **T4 MCP 工具 `profile_topology`** | 45 → 46；三处文档同步 | ✅ `server.py` + README + `docs/mcp_setup.md` + `~/.workbuddy/mcp.json`（Gate 2 全绿） |
 | 14 | **T5 组合闭环门禁** | 例外登记 + 注入缺陷报红 | ✅ `composition_exceptions.json`（61 条）+ `build_compatibility_matrix.py` + **Gate 17** |
 | 15 | **M4 北极星 D1–D4 可执行化** | 判据自洽 + 结构指纹 + 时间-质量曲线 + 离线对照 | ✅ `fast_decision.py`（22 项自检，**Gate 18**）+ `fast_decision_experiment.py` + `FAST_DECISION_REPORT.md` |
-| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16/17/18/19/20 已注册；README 徽章 20 gates；`run_gates.py` → **19/19 PASS** |
+| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16/17/18/19/20/21 已注册；README 徽章 21 gates；`run_gates.py` → **20/20 PASS** |
 | 17 | **Gate 3 沙箱修复** | 门禁快照还原不得依赖批量删除 | ✅ `_frozen()` 改逐文件快照/逐文件还原（`SAFE_DELETE_BULK_CONFIRM_REQUIRED`，阈值 50） |
 
 **T1 许可分层（已写入 provenance）**：斑马鱼 Petkova 2025 = **CC-BY-NC**（不可商用）；
@@ -392,7 +392,7 @@ H01 / MICrONS = **CC-BY**（可商用）。适配器在 `available()` 为 False 
 ## 七、本轮梳理（2026-10-08）· 未推进任务与硬阻塞点
 
 > 用户要求"全面 100% 实施 + 梳理 + 完成未推进任务"。经逐条核对：T1/T2/T4/T5/T6/M4
-> 的**交付物已落地且门禁 19/19 PASS**（含数据门禁 3/4/5/7/8/9/10/16，已在本环境复验）。
+> 的**交付物已落地且门禁 20/20 PASS**（含数据门禁 3/4/5/7/8/9/10/16，已在本环境复验）。
 > 真正的"未推进"集中在 M3 与 T3，且**绝大多数硬阻塞于外部条件（私有仓 / 缺失数据）**，
 > 不能靠编码完成，也不应编造数据。逐条登记如下，作为下一步工作队列。
 
@@ -403,11 +403,12 @@ H01 / MICrONS = **CC-BY**（可商用）。适配器在 `available()` 为 False 
 | M3 #13 | MICrONS 小鼠视皮层接入 | ⬜ 数据阻塞 | 适配器 `microns.py` 已就绪；CAVE 平台数据未采样。同 fail-closed 策略。 |
 | M3 #14 | 斑马鱼侧线 + 5 种神经调节分子 | ⬜ **数据缺口（非代码缺口）** | 捆绑的 TEN+HMI 子集**只含** E/I 分子极性（Gad1B/VGluT2）+ 网络层级 + `spn_*` 脊髓运动亚群；**侧线系统**与命名神经调节分子（DA/5-HT/ACh/NE/HA）**不在子集内**。本轮已把"模态覆盖 / 缺口"写进 `zebrafish_profiles.json` 的 `note`（诚实边界），**不编造**。需完整 Petkova 2025 发布。 |
 | M3 #15 | `excitatory_synapse` / `inhibitory_synapse` 入词表 | ✅ **意图已实质覆盖** | `connection_types.json` 已有 `dendritic_excitatory_synapse(+)` / `dendritic_inhibitory_synapse(-)` 两条带 `jev_validation` 的 sign-aware 条目；斑马鱼源已用 `neurotype` 标 E/I。新增泛化 E/I 突触会与现有接触点类型**冗余**且需重验 Gate 12 —— 按"不堆冗余空壳"铁律，**判为已覆盖 / 刻意暂缓**，不强行新增。 |
-| T2 | `capability` 字段受控化 | ⬜ 低优先级 | 256 个值、60 个只用一次，且**未被任何门禁消费**（路线图原判定）。保留为自由文本机制动词词表，不强行枚举或门禁化。 |
+| T2 | `capability` 字段受控化 | ✅ **已交付（v2.49.0）** | 实测 **331 个值、300 个只用一次**（原登记 256/60 为旧数）。已建 `capability_canonical.py`（**22 类** = 20 功能 + `provenance_marker` + `other_unspecified`）+ **Gate 21** + `docs/capability_coverage.json`。三处诚实修正：① token-based 分类修掉子串方向 bug（`associative_learn in associate` 因关键词更长而漏匹配）；② `traced_connectome`/`measure_synapses` 各 12 个单元是**溯源标记污染了 capability 字段**（描述"怎么得来的"而非"做什么"），已路由到独立 `provenance_marker` 类而非当功能计入；③ 11 个缺口类别**显式声明**（`gaps`），不静默空缺。Gate 21 带 **8 个 fail-closed 注入**，证明每个断言都会真红。 |
 | T5 #4 | 堆叠语义 `a+(b+c)` 嵌套 + 跨物种 role 绑定 | ⬜ 连带阻塞 | 依赖 T3 中间件；T3 阻塞 → 此项连带阻塞。 |
 | T4.2-a | 故障隔离预测器 | ❌ 已试，负结果 | 纯结构仅把准确率从 25/27 提到 **26/27**（决定性事实：H3 与 H1 结构几乎相同却判定相反）。已关闭，不重复；若加"模块→读出结构可达性"第 10 特征仍停在 26/27 则彻底关闭。 |
 
-**结论**：可编码完成的待办**仅 M3 #14 的诚实边界（已做）**；其余全部是"等数据 / 等私有仓"的外部阻塞。
+**结论**：可编码完成的待办**已全部做完**（M3 #14 的诚实边界 + **T2 capability 受控化 / Gate 21**）；
+其余全部是"等数据 / 等私有仓"的外部阻塞。
 当前版本的"地基"已实质到位，剩余工作是**扩展证据源**与**解冻 T3 中间件**两条外部依赖线。
 
 ---

@@ -1,0 +1,293 @@
+{
+  "schema_version": "1.0",
+  "n_canonical": 22,
+  "n_units": 116,
+  "n_capability_strings": 331,
+  "coverage_pct": 100.0,
+  "clade_totals": {
+    "human": 41,
+    "vertebrate_mouse": 7,
+    "insect": 46,
+    "vertebrate_fish": 4,
+    "unknown": 14,
+    "worm": 4
+  },
+  "gaps": [
+    "provenance_marker",
+    "associative_learning",
+    "working_memory",
+    "valuation",
+    "inhibitory_control",
+    "arousal_state",
+    "emotional_state",
+    "homeostatic_reg",
+    "navigation",
+    "interoception",
+    "other_unspecified"
+  ],
+  "provenance_contamination": {
+    "traced_connectome": 12,
+    "measure_synapses": 12
+  },
+  "matrix": {
+    "provenance_marker": {
+      "label": "Provenance marker (NOT a capability)",
+      "n_units": 0,
+      "clade_width": 0,
+      "clades": {},
+      "evidence_fraction": 0.0,
+      "low_confidence": 0,
+      "gap": true
+    },
+    "sensory_transduce": {
+      "label": "Sensory transduction",
+      "n_units": 11,
+      "clade_width": 5,
+      "clades": {
+        "human": 4,
+        "unknown": 3,
+        "vertebrate_mouse": 1,
+        "worm": 2,
+        "insect": 1
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "sensory_feature": {
+      "label": "Sensory feature extraction",
+      "n_units": 14,
+      "clade_width": 3,
+      "clades": {
+        "vertebrate_mouse": 2,
+        "human": 4,
+        "insect": 8
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "relay_route": {
+      "label": "Relay / routing",
+      "n_units": 5,
+      "clade_width": 2,
+      "clades": {
+        "human": 4,
+        "insect": 1
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "motor_rhythm_gen": {
+      "label": "Motor rhythm generation",
+      "n_units": 14,
+      "clade_width": 5,
+      "clades": {
+        "vertebrate_mouse": 1,
+        "human": 5,
+        "insect": 4,
+        "vertebrate_fish": 1,
+        "unknown": 3
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "motor_command": {
+      "label": "Motor command",
+      "n_units": 26,
+      "clade_width": 6,
+      "clades": {
+        "human": 4,
+        "insect": 11,
+        "vertebrate_fish": 2,
+        "unknown": 6,
+        "vertebrate_mouse": 1,
+        "worm": 2
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "associative_learning": {
+      "label": "Associative learning",
+      "n_units": 2,
+      "clade_width": 1,
+      "clades": {
+        "human": 2
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": true
+    },
+    "memory_storage": {
+      "label": "Memory storage / readout",
+      "n_units": 13,
+      "clade_width": 3,
+      "clades": {
+        "insect": 7,
+        "vertebrate_mouse": 1,
+        "human": 5
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "working_memory": {
+      "label": "Working memory",
+      "n_units": 0,
+      "clade_width": 0,
+      "clades": {},
+      "evidence_fraction": 0.0,
+      "low_confidence": 0,
+      "gap": true
+    },
+    "attention_gain": {
+      "label": "Attention / gain control",
+      "n_units": 4,
+      "clade_width": 2,
+      "clades": {
+        "human": 1,
+        "insect": 3
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "valuation": {
+      "label": "Valuation",
+      "n_units": 2,
+      "clade_width": 1,
+      "clades": {
+        "human": 2
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": true
+    },
+    "action_selection": {
+      "label": "Action selection",
+      "n_units": 4,
+      "clade_width": 2,
+      "clades": {
+        "human": 3,
+        "insect": 1
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "cognitive_control": {
+      "label": "Cognitive control",
+      "n_units": 4,
+      "clade_width": 3,
+      "clades": {
+        "human": 2,
+        "vertebrate_mouse": 1,
+        "vertebrate_fish": 1
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "inhibitory_control": {
+      "label": "Inhibitory control",
+      "n_units": 0,
+      "clade_width": 0,
+      "clades": {},
+      "evidence_fraction": 0.0,
+      "low_confidence": 0,
+      "gap": true
+    },
+    "arousal_state": {
+      "label": "Arousal / state regulation",
+      "n_units": 2,
+      "clade_width": 1,
+      "clades": {
+        "human": 2
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": true
+    },
+    "emotional_state": {
+      "label": "Emotional state",
+      "n_units": 1,
+      "clade_width": 1,
+      "clades": {
+        "human": 1
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": true
+    },
+    "homeostatic_reg": {
+      "label": "Homeostatic regulation",
+      "n_units": 2,
+      "clade_width": 1,
+      "clades": {
+        "insect": 2
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": true
+    },
+    "navigation": {
+      "label": "Navigation",
+      "n_units": 2,
+      "clade_width": 1,
+      "clades": {
+        "insect": 2
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": true
+    },
+    "communication": {
+      "label": "Communication",
+      "n_units": 3,
+      "clade_width": 2,
+      "clades": {
+        "unknown": 1,
+        "insect": 2
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "interoception": {
+      "label": "Interoception",
+      "n_units": 2,
+      "clade_width": 1,
+      "clades": {
+        "insect": 2
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": true
+    },
+    "plasticity": {
+      "label": "Structural / synaptic plasticity",
+      "n_units": 5,
+      "clade_width": 3,
+      "clades": {
+        "human": 2,
+        "insect": 2,
+        "unknown": 1
+      },
+      "evidence_fraction": 1.0,
+      "low_confidence": 0,
+      "gap": false
+    },
+    "other_unspecified": {
+      "label": "Other / unspecified",
+      "n_units": 0,
+      "clade_width": 0,
+      "clades": {},
+      "evidence_fraction": 0.0,
+      "low_confidence": 0,
+      "gap": true
+    }
+  }
+}

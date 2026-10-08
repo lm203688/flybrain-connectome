@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.48.0` | the toolkit as a whole |
+| package | `2.49.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,70 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.49.0] — 2026-10-09
+
+**T2 capability 受控化落地：331 个自由文本值 → 22 类受控词表，门禁 20 → 21**
+
+本轮只做一件事：把路线图上唯一剩下的可编码待办（T2）做完，并给它配上
+"注入缺陷即报红"的门禁。**未新增任何连接组、任何功能单元、任何 MCP 工具。**
+
+### T2 · capability 受控化（路线图原判定"低优先级"→ 已交付）
+
+- **实测数据修正**：原登记写的是"256 个值、60 个只用一次"，实测为
+  **331 个值、300 个只用一次**——旧数是早期快照，已同步修正。
+- **`flybrain-connectome-mcp/capability_canonical.py`**：22 个 canonical
+  类别（20 功能 + `provenance_marker` + `other_unspecified`），确定性
+  token-based 分类器，116/116 单元覆盖、331/331 能力字符串**高置信度**。
+- **三处诚实修正（都不是美化）**：
+  1. **子串方向 bug**：关键词规则写成 `if "associative_learn" in cap`，
+     当能力字符串比关键词**短**时（`associate`）永远漏匹配。改为按 `_`
+     切 token 再求交集。
+  2. **溯源标记污染**：`traced_connectome` 与 `measure_synapses` 各出现在
+     **12 个单元**的 capability 字段里——它们描述单元是**怎么得来的**
+     （从追踪连接组 / 带实测突触数），不是单元**做什么**。已路由到独立
+     `provenance_marker` 类，门禁断言"任何单元不得以它为 primary"。
+  3. **缺口显式化**：11 个缺口类别写进 `gaps` 数组
+     （`associative_learning`/`working_memory`/`valuation`/
+     `inhibitory_control`/`arousal_state`/`emotional_state`/
+     `homeostatic_reg`/`navigation`/`interoception` 等），**空就空着写出来**，
+     不静默当已覆盖。
+- **诚实边界**：300 个只用一次的自由文本值不是被"解决了"，而是被**给了一个
+  检索轴**。这个分类器买来的是可检索性，不是免于人工策展。
+
+### 新增门禁：Gate 21
+
+- `scripts/check_capability_canonical.py`：22 类受控、116 单元全覆盖、
+  331 能力字符串全高置信、溯源标记不得当功能、provenance 不得当 primary。
+- **8 个 fail-closed 注入**（证明门禁真会红）：类别被删 / 类别被加 /
+  能力字符串掉到低置信 / 溯源标记被路由到功能类 / `provenance_contamination()`
+  被掏空 / 某单元 primary 变 provenance / 单元映射表变空 / 精确覆盖表被清空。
+- **1 个回归见证**：断言短形式 `associate` 仍解析到 `associative_learning`，
+  防止将来有人改回子串匹配。
+- 产出 `docs/capability_coverage.json`（22 × 类群 × 证据就绪矩阵）。
+
+### 门禁卫生
+
+- 门禁 **20 → 21**；`run_gates.py` → **20/20 PASS**，`--quick` → **17/17**，
+  `--with-data` → 21 条。
+- 计数文档同步：README 徽章 + 用法段（19→20 / 16→17）、`run_gates.py`
+  docstring、`docs/FOUNDATION_ROADMAP.md` 三处"19/19"、§七 T2 行与结论。
+- 修掉 `capability_canonical.py` 里"21 类"的注释与实际 22 类的不一致。
+- **版本 2.48.0 → 2.49.0**（pyproject.toml / README ×3 / server.py serverInfo）。
+
+### 已交付证据（可复算）
+
+- `python scripts/check_capability_canonical.py` → **PASS**，
+  22 categories / 116 units / 331 capability strings / 11 gap categories /
+  8 fail-closed injections confirmed red
+- `python scripts/run_gates.py`（项目正式解释器）→ **20/20 PASS**
+
+### 未变
+
+- MCP 工具数仍 **46**；功能单元仍 **116**；模块剖面仍 **270**；
+  连接类型仍 **66**；端口仍 **83**。
+- T3 中间件、M3 #12/#13/#14、T5 #4 的阻塞状态与 v2.48.0 完全一致，
+  逐条登记见 `docs/FOUNDATION_ROADMAP.md` §七。
 
 ## [2.48.0] — 2026-10-08
 
@@ -128,7 +192,7 @@ organism `1.2.1`、`motif_provenance` `1.2.0`、combinator `1.1`。
 
 ## [Unreleased]
 
-（空 —— v2.48.0 为当前最新）
+（空 —— v2.49.0 为当前最新）
 
 ## [2.47.0] — 2026-10-08
 
