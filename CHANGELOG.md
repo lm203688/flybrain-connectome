@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.46.0` | the toolkit as a whole |
+| package | `2.47.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -18,6 +18,44 @@ The **schema version** is versioned separately from the **package version**:
 | fingerprint signing | `sha256` / `hmac-sha256` | unsigned local-dev / keyed service-side |
 
 ---
+
+> **Direction shift, v2.27.0 onward.** The project's original vision
+> (`PROJECT_VISION.md`, Phase 3) promised a computer-optimised Agent topology
+> that beats biology. That claim was withdrawn after matched-control
+> benchmarking measured it negative (0/7 topologies beat random; see v1.x
+> experiments and the "What we explicitly do *not* claim" table in
+> `README.md`). From **v2.27.0** the main line quietly shifted to
+> **evidence-driven circuit library + gate hardening**: seven consecutive
+> releases (v2.30.0–v2.36.0) were audits that corrected earlier
+> mis-announcements rather than added features, and four new gates (11,
+> 12, 13, 14) were added to lock in what was learned. This is a library of
+> evidence-backed circuits, not an engine that claims to outperform
+> biology. **This shift is not announced at the top of the changelog until
+> v2.47.0 — the assessment that discovered it lives in
+> `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.47.0] — 2026-10-08
+
+**把评估结论写回产品面：三层用途 + 68.1 % 诚实声明 + 转向公开**
+
+上一版（v2.46.0）产出的 `docs/PROJECT_REALITY_ASSESSMENT.md` 提出了三条建议，
+这一版把三条都落到 README 和 CHANGELOG，不改任何单元、门禁、数据、代码。
+
+- **CHANGELOG 顶端加"方向转向"声明**：v2.27.0 起主线从"进化速度证明"变成
+  "证据驱动的电路库 + 门禁加固"，7 个连续版本（v2.30-v2.36）都是审计
+  纠正而不是新功能。这个转向以前没宣告，现在写在最顶部，读者一次看清。
+- **README 加 `Honest status of the unit library` 表**：显式告知
+  **37 / 116（31.9 %）有真实 MaleCNS 神经元锚定**、**79 / 116（68.1 %）是
+  跨物种声明**（`identity_not_in_drosophila` / `taxon_no_malecns_data`）。
+  这不是错误，也不是隐藏问题——68.1 % 的宽度是"声明性"的，不是"验证性"的。
+- **README 加 `How to use this — tiered by what you can actually get today`**：
+  Tier 1 神经元电路检索 + 拓扑合成（今天就能用）；Tier 2 AI Agent 框架的
+  生物学先验层（不是通用 Agent Infra）；Tier 3 明确不做什么（超越生物 /
+  EM 重建 / 训练好的模型）。
+
+功能、单元数、剖面数、门禁数、数据全都**不变**——116 单元 / 264 剖面 /
+66 连接类型 / 14 门禁全绿。这一版纯粹是让"评估文档里发现的诚实性缺口"
+不再散在 docs/ 里，写回产品面。
 
 ## [2.46.0] — 2026-10-07
 
