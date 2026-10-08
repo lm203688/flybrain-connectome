@@ -27,6 +27,7 @@ Gates, in order of cheapness:
  18  fast decision north-star D1 spec is self-consistent (fast_decision.py --selftest)
  19  function tax every unit.function maps to the 24-category controlled vocabulary
  20  sources      connectome source adapters present; zebrafish profiles built
+ 21  cap tax      every capability maps to the 22-category controlled vocabulary
 
 Gates 4 and 5 generate a throwaway organism into a temp dir, so they need no
 dataset. The data-backed smoke test (`flybrain verify`, 70 assertions) is *not*
@@ -35,9 +36,9 @@ run unless you pass --with-data, because it needs a local MaleCNS v1.0 copy
 committed anchor artifact, and only recomputes from raw data under --with-data.
 
 Usage:
-    python scripts/run_gates.py                  # 19 gates, no dataset needed
-    python scripts/run_gates.py --with-data      # 20 gates (+ `flybrain verify`)
-    python scripts/run_gates.py --quick          # 16 gates: skips 3, 4, 5 (no numpy,
+    python scripts/run_gates.py                  # 20 gates, no dataset needed
+    python scripts/run_gates.py --with-data      # 21 gates (+ `flybrain verify`)
+    python scripts/run_gates.py --quick          # 17 gates: skips 3, 4, 5 (no numpy,
                                                  #   no server spawn, no generated artifact)
 """
 
@@ -136,6 +137,11 @@ def main() -> int:
     results.append(("gate20 sources", run(
         "GATE 20 — connectome source adapters present; zebrafish profiles built",
         [py, str(SCRIPTS / "check_sources.py")])[0]))
+
+    # ---- Gate 21: capability controlled vocabulary (stdlib only, --quick) ----
+    results.append(("gate21 capability taxonomy", run(
+        "GATE 21 — every capability maps to the 22-category controlled vocabulary",
+        [py, str(SCRIPTS / "check_capability_canonical.py")])[0]))
 
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
