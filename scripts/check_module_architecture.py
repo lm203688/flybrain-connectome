@@ -97,9 +97,17 @@ def main() -> int:
             check("envelope carries no rule payload",
                   "rules" not in env and "COMBINATION_RULES" not in env)
         else:
-            check("live combinator returns rules", "rules" in env, str(list(env.keys())))
-            check("live combinator rules >= 12", len(env.get("rules", [])) >= 12,
-                  str(len(env.get("rules", []))))
+            check("live combinator returns rules", "combination_rules" in env,
+                  str(list(env.keys())))
+            check("live combinator >= 12 combination rules",
+                  len(env.get("combination_rules", [])) >= 12,
+                  str(len(env.get("combination_rules", []))))
+            check("live combinator >= 7 nesting rules",
+                  len(env.get("nesting_rules", [])) >= 7,
+                  str(len(env.get("nesting_rules", []))))
+            check("live combinator == 4 multiplier semantics",
+                  len(env.get("multiplier_semantics", {})) == 4,
+                  str(len(env.get("multiplier_semantics", {}))))
         m = mc.get_multiplier_metrics()
         if isinstance(m, dict) and m.get("status") == "tier2_required":
             check("get_multiplier_metrics() degrades gracefully", True)

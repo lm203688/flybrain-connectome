@@ -3,11 +3,11 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-2.51.0-orange.svg)](CHANGELOG.md)
-[![docker](https://img.shields.io/badge/docker-2.51.0-2496ED.svg)](#docker)
+[![version](https://img.shields.io/badge/version-2.52.0-orange.svg)](CHANGELOG.md)
+[![docker](https://img.shields.io/badge/docker-2.52.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.51.0 · 2026-10-09 · 116 functional units · 270 module profiles · 23 gates**
+**v2.52.0 · 2026-10-09 · 116 functional units · 270 module profiles · 24 gates**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
@@ -1107,9 +1107,9 @@ for client configs, the 46-tool reference, and troubleshooting.
 The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
-python scripts/run_gates.py              # 22 gates, no dataset needed
-python scripts/run_gates.py --quick      # the 19 gates that don't need numpy / a server
-python scripts/run_gates.py --with-data  # 23 gates: + `flybrain verify` (70 assertions)
+python scripts/run_gates.py              # 23 gates, no dataset needed
+python scripts/run_gates.py --quick      # the 20 gates that don't need numpy / a server
+python scripts/run_gates.py --with-data  # 24 gates: + `flybrain verify` (70 assertions)
 ```
 
 ### Makefile shortcuts (v2.43.0)

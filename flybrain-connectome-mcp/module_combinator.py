@@ -78,6 +78,15 @@ def _gated(fn_name):
 
 def _passthrough(fn_name, *args, **kwargs):
     """Use the real implementation when present, else degrade gracefully."""
+    # Ensure the private checkout (env or sibling) is on sys.path before the
+    # import below — core_bridge.core_available() triggers discovery, which is
+    # what actually adds the checkout to sys.path. Without this, _core() fails
+    # to import even when the core is installed/configured.
+    try:
+        from core_bridge import core_available
+        core_available()
+    except Exception:
+        pass
     m = _core()
     if m is not None and hasattr(m, fn_name):
         return getattr(m, fn_name)(*args, **kwargs)

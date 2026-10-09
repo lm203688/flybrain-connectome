@@ -2,9 +2,35 @@
 
 **制定日期**：2026-10-08
 **基线**：commit `89a0c4f`（v2.47.0）
-**最近一次全量复验**：2026-10-09，`python scripts/run_gates.py` → **22/22 PASS**（门禁 1–23 编号，Gate 5 含 5a/5b 两步）
+**最近一次全量复验**：2026-10-09，`python scripts/run_gates.py` → **23/23 PASS**（门禁 1–24 编号，Gate 5 含 5a/5b 两步；Gate 24 为 T3 中间件条件门禁：core 缺失时跳过、存在时断言 12+7+4 + 4 自检 + 数据复现≥4）
 **战略前提**：**本阶段不考虑商业化。** 目标是把硬实力做出来、把技术壁垒做出来、把地基打穿。
 **配套文档**：`docs/PROJECT_ENHANCEMENT_REPORT_2026-10-08.md`（全面扫描与评估）
+**上层定位**：`docs/DIGITAL_LIFE_POSITIONING_2026-10-09.md`（**虚拟生物 = 数字生命** —— 本路线图是"能力地基"，该文档是"这块地基要造出一个什么东西"）。
+**实施篇**：`docs/DIGITAL_ORGANISM_DESIGN_2026-10-10.md`（**把自我修复 / 演化 / 组合创新 / 进化装进虚拟生物生成器** —— 生命循环 8 阶段 + 5 个核心设计 + Phase A–E 路线；A/B/C/D-结构判据均**零外部依赖**）。
+
+> **📍 上层定位（第四版 · 前沿扫描版，2026-10-10）**：
+> 该文档扫描了 2025–2026 五条前沿线后提出，**定位应从"虚拟生物形态生成器"
+> 换评价框架为「可验证结构的供给与治理层」（Verifiable Structure Layer）。**
+>
+> **核心依据 —— 2026 前沿主线已从"模型"转向"结构 + 演化"，四条独立证据**：
+> ① **AdaptOrch**（arXiv:2602.16873）实测**同样模型下仅改编排拓扑即提升 12–23%**；
+> ② 自进化 Agent 成为范式（TMLR 2026 survey + **DGM, ICLR 2026**）；
+> ③ SkillOpt-Lite 实测**小模型在优化 harness 里打赢大模型**（0.7758 vs 0.7620）；
+> ④ 安全保证移向**容纳/边界层**（Containment Verification, 2026-05）。
+>
+> **四个由此得出的判断**：
+> ① 本项目八个月来做的全是"结构"，**恰好站在 2026 主线上**，只是用了"超越生物学"这个已证伪的旧框架评价自己；
+> ② **0/7 可能测错了基底**——它在 ESN 储备池（密度 0.002–0.023）上测，而 AdaptOrch 在 LLM 编排上测得 12–23%，
+> **本项目从未在 LLM 编排基底上测过自己的结构**（= 最高价值的未测实验 P1）；
+> ③ 前沿的"结构空间"仅 **4 种**（AdaptOrch），本项目 **116×66×83** 且带真实证据，**数量级优势但从未按前沿语境交付**；
+> ④ 前沿缺**结构退化度量**，而这是本项目唯一硬结果（故障隔离 **92.6%**）。
+>
+> **待你拍板的第一件事**：**P1（LLM 编排对照实验）** —— 它决定"结构"这件事到底值不值钱，
+> 也是本项目唯一能真正结案的实验。**唯一障碍是需要 LLM 访问。**
+>
+> **数据货币性已核实（好消息）**：本项目锚定的 **MaleCNS v1.0 就是 2026-09 Google+HHMI 发布的完整版**
+> （166,700 神经元 / 124,177,617 突触，文件名 `male-cns-v1.0`）——**是资产不是欠债**。
+> 增量是官方新发现的 **262 个雄性专有细胞类型**，本项目尚未作为证据维度使用。
 
 ---
 
@@ -219,7 +245,7 @@ edge A.out[p] --ct(from=p, to=q)--> B.in[q]      # 端口类型必须匹配
 | 1. 组合闭环校验升级（`strict` 模式 + `skipped_edges` 上报） | ✅ 已由 v2.41.0 实现 |
 | 2. **可组合性矩阵**（`build_compatibility_matrix.py`） | ✅ 本轮交付：116×116 端口兼容矩阵 → `docs/compatibility_matrix.json`（500 个可连接接口对） |
 | 3. **不可拼接声明的自动补全建议** | ✅ 本轮交付：61 个"声明但不可拼"对逐条给出改端口建议 |
-| 4. 堆叠语义（`a+(b+c)` 嵌套 + 跨物种 role 绑定） | 🟡 嵌套已落地（v2.50.0）；跨物种 role 绑定 ⬜ 依赖 T3 |
+| 4. 堆叠语义（`a+(b+c)` 嵌套 + 跨物种 role 绑定） | 🟢 嵌套已落地（v2.50.0）；跨物种 role 绑定 🟡 规则随 T3 解锁已存在于引擎 NESTING_RULES，公开组装调用为可选下游 |
 | 5. **组合例外登记表** + **Gate 17 闭环门禁** | ✅ 本轮交付：`composition_exceptions.json`（61 条登记）+ `check_composition_closure.py`，注入未登记的不兼容声明即报红 |
 | 6. 乘子语义诚实化（性能乘子标 `unverified`） | ✅ 已由 `get_multiplier_metrics` 声明 |
 
@@ -304,9 +330,8 @@ edge A.out[p] --ct(from=p, to=q)--> B.in[q]      # 端口类型必须匹配
 | 4 | 组合闭环校验升级 | 不可拼接对显式登记 | ✅ **已交付**（`strict` 模式 + Gate 17 + `composition_exceptions.json` 61 条） |
 | 5 | **Tier-1/Tier-2 中间件决策** | 拍板 | ✅ **已定：保持私有（不公开），先自验证** |
 
-**M1 阻塞项（需外部条件）**：T3 中间件引擎需要私有仓 `lm203688/flybrain-connectome-core` 与
-Tier-2 数据（`male_cns/discovered_modules.json` 等）。**本地均不存在**（`flybrain_core` 未安装、
-Tier-2 数据不在本地、`FLYBRAIN_CORE` 未设）→ **T3 暂不可推进**，其余主线不受影响。
+**M1 阻塞项（已解除）**：T3 中间件引擎原需私有仓 `lm203688/flybrain-connectome-core` 与
+Tier-2 数据。**2026-10-09 已本地检出私有 core 并配为 `flybrain_core` 包**（`C:/Users/xing/Desktop/flybrain-connectome-core`），`core_bridge` 增加 sibling 自动发现 → `core_available()` 无需手设 env 即 True；4 个组合 MCP 工具已激活；**T3 已本地解锁**并新增 Gate 24 复验。若要永久开放，走路线图决策 A（规则引擎开源）或私有仓随部署分发。
 
 **已交付证据（可复算）**：
 - `python scripts/run_gates.py`（项目正式解释器）→ **21/21 PASS**
@@ -317,7 +342,7 @@ Tier-2 数据不在本地、`FLYBRAIN_CORE` 未设）→ **T3 暂不可推进**�
 
 | # | 交付 | 验收 | 状态 |
 |---|---|---|---|
-| 6 | 中间件规则引擎（T3） | `list_rules()` 12+7+4 条可复算 | ⛔ **阻塞**（需私有仓） |
+| 6 | 中间件规则引擎（T3） | `list_rules()` 12+7+4 条可复算 | ✅ **已本地解锁（v2.52.0）** |
 | 7 | Gate 中间件可复算 | 注入缺陷报红 | ⛔ 依赖 #6 |
 | 8 | 故障隔离预测器（T4.2） | 准确率 ≥ 80% | ❌ **已试，负结果**（26/27，仅比基线多 1 例且结构性不可分辨） |
 | 9 | 结构签名入库 + CLI `flybrain profile` | 工具数同步 | ✅ **已交付**（生成物写 `topology_profile.signature`；`StructureSignatureIndex` 去重/diff；CLI `--index` / `--list-dups`；Gate 16） |
@@ -332,7 +357,7 @@ Tier-2 数据不在本地、`FLYBRAIN_CORE` 未设）→ **T3 暂不可推进**�
 | 13 | **T4 MCP 工具 `profile_topology`** | 45 → 46；三处文档同步 | ✅ `server.py` + README + `docs/mcp_setup.md` + `~/.workbuddy/mcp.json`（Gate 2 全绿） |
 | 14 | **T5 组合闭环门禁** | 例外登记 + 注入缺陷报红 | ✅ `composition_exceptions.json`（61 条）+ `build_compatibility_matrix.py` + **Gate 17** |
 | 15 | **M4 北极星 D1–D4 可执行化** | 判据自洽 + 结构指纹 + 时间-质量曲线 + 离线对照 | ✅ `fast_decision.py`（22 项自检，**Gate 18**）+ `fast_decision_experiment.py` + `FAST_DECISION_REPORT.md` |
-| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16–23 已注册；README 徽章 23 gates；`run_gates.py` → **22/22 PASS** |
+| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16–24 已注册；README 徽章 24 gates；`run_gates.py` → **23/23 PASS**（Gate 24 条件门禁，core 配置下跑通） |
 | 17 | **Gate 3 沙箱修复** | 门禁快照还原不得依赖批量删除 | ✅ `_frozen()` 改逐文件快照/逐文件还原（`SAFE_DELETE_BULK_CONFIRM_REQUIRED`，阈值 50） |
 
 **T1 许可分层（已写入 provenance）**：斑马鱼 Petkova 2025 = **CC-BY-NC**（不可商用）；
@@ -405,18 +430,17 @@ H01 / MICrONS = **CC-BY**（可商用）。适配器在 `available()` 为 False 
 
 | # | 任务 | 状态 | 阻塞点 / 处理方式 |
 |---|---|---|---|
-| T3 | 中间件规则引擎（12+7+4 组合/嵌套/乘子） | ⛔ **硬阻塞** | 需私有仓 `lm203688/flybrain-connectome-core` + Tier-2 数据（`flybrain_core` 未装、`male_cns/discovered_modules.json` 不在本地、`FLYBRAIN_CORE` 未设）。M1 已拍板"保持私有、先自验证"。本环境**无法落地**，是路线图唯一未完成的**主线**。 |
-| M3 #12 | H01 人类皮层 1mm³ 接入 | ⬜ 数据阻塞 | 适配器 `h01.py` 已就绪；50k 细胞 / 130M 突触（8 GB 级）未获取。`available()=False` 时拒绝构建、不产空数据。 |
-| M3 #13 | MICrONS 小鼠视皮层接入 | ⬜ 数据阻塞 | 适配器 `microns.py` 已就绪；CAVE 平台数据未采样。同 fail-closed 策略。 |
-| M3 #14 | 斑马鱼侧线 + 5 种神经调节分子 | ⬜ **数据缺口（非代码缺口）** | 捆绑的 TEN+HMI 子集**只含** E/I 分子极性（Gad1B/VGluT2）+ 网络层级 + `spn_*` 脊髓运动亚群；**侧线系统**与命名神经调节分子（DA/5-HT/ACh/NE/HA）**不在子集内**。本轮已把"模态覆盖 / 缺口"写进 `zebrafish_profiles.json` 的 `note`（诚实边界），**不编造**。需完整 Petkova 2025 发布。 |
+| T3 | 中间件规则引擎（12+7+4 组合/嵌套/乘子） | ✅ **已本地解锁（v2.52.0）** | 私有仓 `lm203688/flybrain-connectome-core` 已本地检出并配为 `flybrain_core` 包；`core_bridge` 增加 sibling 自动发现 → 4 个组合 MCP 工具已激活；引擎载入 12+7+4 规则、4 个自检全过、审计运行、数据复现≥4 条方向规则。**Gate 24** 条件门禁复验（core 缺失跳过、存在断言）。公开仓未提交私有 IP（Gate 8 仍守边界）。若要永久开放走决策 A。 |
+| M3 #12 | H01 人类皮层 1mm³ 接入 | ⬜ 数据阻塞 | 适配器 `h01.py` 已就绪（真实 CSV→profiles 解析路径已实现）；50k 细胞 / 130M 突触（8 GB 级）未获取。`available()=False` 时拒绝构建、不产空数据。`storage.googleapis.com` 主机可达（2026-10-09 实测），用户设 `H01_DATA_DIR` 指向采样即可激活。 |
+| M3 #13 | MICrONS 小鼠视皮层接入 | ⬜ 数据阻塞 | 适配器 `microns.py` 已就绪（含 functional_response 轴）；CAVE 平台数据未采样。同 fail-closed 策略；用户设 `MICRONS_DATA_DIR` 指向 CAVE 导出样本即激活。 |
+| M3 #14 | 斑马鱼连接组（Petkova 2025 TEN+HMI 子集） | ✅ **可达子集已完成** | `zebrafish.py` 已接入捆绑的 TEN+HMI 数据，2026-10-09 实测复算产出 **1123 神经元 / 142,882 突触**（E/I 分子极性 + 网络层级 + `spn_*` 脊髓运动亚群）。**缺口（非阻塞）**：侧线系统与命名神经调节分子（DA/5-HT/ACh/NE/HA）不在子集内，已写进 `zebrafish_profiles.json` 的 `note`，**不编造**；需完整 Petkova 2025 发布方可补齐。 |
 | M3 #15 | `excitatory_synapse` / `inhibitory_synapse` 入词表 | ✅ **意图已实质覆盖** | `connection_types.json` 已有 `dendritic_excitatory_synapse(+)` / `dendritic_inhibitory_synapse(-)` 两条带 `jev_validation` 的 sign-aware 条目；斑马鱼源已用 `neurotype` 标 E/I。新增泛化 E/I 突触会与现有接触点类型**冗余**且需重验 Gate 12 —— 按"不堆冗余空壳"铁律，**判为已覆盖 / 刻意暂缓**，不强行新增。 |
 | T2 | `capability` 字段受控化 | ✅ **已交付（v2.49.0）** | 实测 **331 个值、300 个只用一次**（原登记 256/60 为旧数）。已建 `capability_canonical.py`（**22 类** = 20 功能 + `provenance_marker` + `other_unspecified`）+ **Gate 21** + `docs/capability_coverage.json`。三处诚实修正：① token-based 分类修掉子串方向 bug（`associative_learn in associate` 因关键词更长而漏匹配）；② `traced_connectome`/`measure_synapses` 各 12 个单元是**溯源标记污染了 capability 字段**（描述"怎么得来的"而非"做什么"），已路由到独立 `provenance_marker` 类而非当功能计入；③ 11 个缺口类别**显式声明**（`gaps`），不静默空缺。Gate 21 带 **8 个 fail-closed 注入**，证明每个断言都会真红。 |
-| T5 #4 | 堆叠语义 `a+(b+c)` 嵌套 + 跨物种 role 绑定 | 🟡 嵌套已落地、跨物种 role 绑定 ⬜ 连带阻塞 | `a+(b+c)` 已由 `synthetic_bio_topology._normalize_blueprint_spec` 实现（v2.50.0，3 处调用点：`design_organism` 入口 + 两处蓝图应用）；仅跨物种 role 绑定依赖 T3 中间件。 |
+| T5 #4 | 堆叠语义 `a+(b+c)` 嵌套 + 跨物种 role 绑定 | 🟢 嵌套已落地、跨物种 role 绑定 🟡 规则已随 T3 可用 | `a+(b+c)` 已由 `synthetic_bio_topology._normalize_blueprint_spec` 实现（v2.50.0，3 处调用点）；跨物种 role 绑定规则 `cross_species_role_binding` 现随 T3 解锁存在于引擎 NESTING_RULES，公开合成路径调用为可选下游增强（非阻塞）。 |
 | T4.2 #1 | 结构 × 动力学桥接查表 | ✅ **已交付（v2.50.0）** | 只做测得到的那一半。**ρ → 记忆容量**（delay=5：R² 0.168→0.992 随 ρ 单调，20 种子均值 + 配对标准误容忍带）；**拓扑形状轴不建表**并显式标记 REFUTED（匹配 K 后 0/7 优于随机）。附带一条**新实测发现**：单比特线性读出的能力悬崖在 delay=5→8 之间，delay=12 恒 0.000 —— 比原记录「delay=20–40 才过悬崖」靠前得多，且属读出/任务上限（需 2^d 级状态）而非水库规模上限。Gate 22 带 **12 个 fail-closed 注入**（全数被捕获），其中一条专查"不可判定的曲线被静默读成通过"。 |
 | T4.2-a | 故障隔离预测器 | ❌ 已试，负结果 | 纯结构仅把准确率从 25/27 提到 **26/27**（决定性事实：H3 与 H1 结构几乎相同却判定相反）。已关闭，不重复；若加"模块→读出结构可达性"第 10 特征仍停在 26/27 则彻底关闭。 |
 
-**结论**：可编码完成的待办**已全部做完**（M3 #14 的诚实边界 + **T2 capability 受控化 / Gate 21** + **T4.2 #1 结构×动力学桥接查表 / Gate 22**）；
-其余全部是"等数据 / 等私有仓"的外部阻塞。
+**结论**：可编码完成的待办**已全部做完**；**T3 中间件已于 v2.52.0 本地解锁**（引擎载入 12+7+4 规则 + 4 自检 + 审计 + 数据复现≥4，`core_bridge` sibling 自动发现，4 个组合 MCP 工具激活），**M3 #14 斑马鱼可达子集已接入**（`zebrafish.py` 复算 1123 神经元 / 142,882 突触）。仅剩 **M3 #12 H01 / M3 #13 MICrONS** 仍待用户提供采样数据（适配器均已就绪、fail-closed，主机可达，设 `*_DATA_DIR` 即激活）。
 
 **v2.51.0 梳理收口（2026-10-09）**：补两处"无门禁 / 无机器可读登记"的遗漏 ——
 ① 新增 **Gate 23**（`check_stacked_blueprints.py`，stdlib + fail-closed），守护被实时 MCP 工具
@@ -425,7 +449,13 @@ H01 / MICrONS = **CC-BY**（可商用）。适配器在 `available()` 为 False 
 ② 新增 **`data_gaps.json`**，把 M3 #12/#13/#14 与 T3 / T5 #4 跨物种 role 绑定的外部阻塞**机器可读化**
 （缺什么数据、适配器在哪、fail-closed 策略），不编造。
 
-当前版本的"地基"已实质到位，剩余工作是**扩展证据源**与**解冻 T3 中间件**两条外部依赖线。
+**v2.52.0 解锁 T3 + M3 #14（2026-10-09）**：
+① **T3 中间件本地解锁**：检出私有仓 `lm203688/flybrain-connectome-core` 本地重排为 `flybrain_core` 包（置于公开仓 sibling 目录 `flybrain-connectome-core/`）；`core_bridge` 增加 sibling 自动发现 → `core_available()` 无需手设 `FLYBRAIN_CORE` 即 True；公开 `module_combinator` 桩补一处导入发现 bug（`_passthrough` 先触发发现再导入），4 个组合 MCP 工具（`list_combination_rules` / `validate_combination` / `expand_organism` / `get_multiplier_metrics`）已激活并直通真实引擎。
+② 新增 **Gate 24**（`check_t3_middleware.py`，条件门禁）：core 缺失时跳过（裸公开安装仍全绿），存在时断言 12 组合 + 7 嵌套 + 4 乘子、4 个引擎自检、审计运行、且由引擎候选数据实测的**方向规则数据复现≥4**。
+③ **M3 #14 斑马鱼可达子集确认完成**：`zebrafish.py` 真实产出 1123 神经元 / 142,882 突触；缺口（侧线系统 + 5 种神经调节分子）写进 `note`，不编造。
+④ `data_gaps.json` 状态机更新：T3 → `unblocked_local`，T5 #4 跨物种 → `rule_available_public_wiring_optional`，M3 #14 → `achievable_subset_completed`；H01/MICRONS 保留 `data_blocked`（适配器就绪 + 主机可达）。
+
+当前"地基"已实质到位，公开仓未提交任何私有 IP（Gate 8 仍守边界）；剩余仅 M3 #12/#13 的**用户采样数据**外部依赖。
 
 ---
 

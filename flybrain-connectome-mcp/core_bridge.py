@@ -81,10 +81,23 @@ ROOT = Path(__file__).resolve().parents[1]
 
 
 def _discover_local_core() -> bool:
+    """Make a local private checkout discoverable without manual env wiring.
+
+    Search order:
+      1. $FLYBRAIN_CORE (explicit checkout path)
+      2. a sibling ``flybrain-connectome-core`` directory next to the public
+         repo root (the conventional layout produced by pulling the private
+         repo beside the MIT repo). Only activates when it actually carries a
+         ``flybrain_core`` package, so a bare public install still degrades.
+    """
     local = os.environ.get("FLYBRAIN_CORE")
-    if local and Path(local).exists():
-        sys.path.insert(0, str(Path(local).resolve()))
-        return True
+    candidates = [Path(local)] if local else []
+    # sibling private checkout (outside the public tree — no IP leak)
+    candidates.append(ROOT.parent / "flybrain-connectome-core")
+    for c in candidates:
+        if c and (c / "flybrain_core" / "__init__.py").exists():
+            sys.path.insert(0, str(c.resolve()))
+            return True
     return False
 
 

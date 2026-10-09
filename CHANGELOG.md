@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.51.0` | the toolkit as a whole |
+| package | `2.52.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,34 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.52.0] — 2026-10-09
+
+**解锁 T3 中间件 + M3 #14 斑马鱼可达子集；新增 Gate 24 条件门禁**
+
+用户授权配置私有环境后，长期阻塞的 T3 中间件主线本地解锁，4 个组合 MCP 工具从"降级桩"变为直通真实规则引擎；M3 #14 斑马鱼连接组在已捆绑的 TEN+HMI 数据上复算产出真实 profiles。
+
+### T3 中间件本地解锁
+
+- 私有仓 `lm203688/flybrain-connectome-core`（Tier-2，规则引擎 + 数据产物）已通过 GitHub API 本地检出，重排为 `flybrain_core` 包，置于公开仓 **sibling 目录** `flybrain-connectome-core/`（在公开树之外，不污染 MIT 仓，Gate 8 仍守边界）。
+- `core_bridge._discover_local_core()` 增加 **sibling 自动发现**：无需手设 `FLYBRAIN_CORE` 即可 `core_available() == True`；公开 `module_combinator` 桩补一处导入发现 bug（`_passthrough` 先触发发现再 `import flybrain_core`，否则即使 core 已配置也会落到 tier2 降级信封）。
+- 引擎实测：载入 **12 组合 + 7 嵌套 + 4 乘子**规则（`SCHEMA_VERSION = 1.1`），4 个自检（validate / nesting / expand / audit）全过；`audit_rules_against_data()` 运行并产出 12 条规则对账。
+
+### Gate 24 · T3 中间件（条件 fail-closed）
+
+- `scripts/check_t3_middleware.py`：core **缺失则跳过**（裸公开安装仍 23/23 全绿），**存在则断言** 12+7+4 计数、4 个引擎自检、审计运行，且由引擎候选数据**实测方向规则数据复现≥4**（category 级，非编造）。
+- 额外诚实发现：私有 `audit_rules_against_data()` 的严格 superclass 对匹配返回 0 条 data_supported；改用 category 级匹配后 4 条方向规则（sensory→recurrent / recurrent→visual / recurrent→motor / relay→recurrent）被真实连接组候选数据支撑——门禁据此判定，不粉饰。
+
+### M3 #14 斑马鱼可达子集确认完成
+
+- `connectome_sources/zebrafish.py` 对捆绑的 Petkova 2025 TEN+HMI 数据复算产出 **1123 神经元 / 142,882 突触**（E/I 分子极性 + 网络层级 + `spn_*` 脊髓运动亚群）。
+- 缺口（侧线系统 + 5 种神经调节分子 DA/5-HT/ACh/NE/HA）写进 `zebrafish_profiles.json` 的 `note`，**不编造**；需完整 Petkova 2025 发布方可补齐。
+
+### 文档与登记
+
+- `data_gaps.json` 状态机：T3 → `unblocked_local`；T5 #4 跨物种 → `rule_available_public_wiring_optional`（规则已随 T3 在引擎 NESTING_RULES 中）；M3 #14 → `achievable_subset_completed`；H01/MICRONS 保留 `data_blocked`（适配器就绪 + `storage.googleapis.com` 主机可达，设 `*_DATA_DIR` 即激活）。
+- `docs/FOUNDATION_ROADMAP.md`：T3 / M3 #14 / T5 #4 状态对齐；§七 结论更新。
+- 门禁全量 **23/23 PASS**（含 Gate 24 在 core 配置下跑通）；`--quick` **20/20**。
 
 ## [2.51.0] — 2026-10-09
 
