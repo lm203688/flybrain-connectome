@@ -2,7 +2,7 @@
 
 **制定日期**：2026-10-08
 **基线**：commit `89a0c4f`（v2.47.0）
-**最近一次全量复验**：2026-10-09，`python scripts/run_gates.py` → **20/20 PASS**（门禁 1–21 编号，Gate 5 含 5a/5b 两步）
+**最近一次全量复验**：2026-10-09，`python scripts/run_gates.py` → **21/21 PASS**（门禁 1–22 编号，Gate 5 含 5a/5b 两步）
 **战略前提**：**本阶段不考虑商业化。** 目标是把硬实力做出来、把技术壁垒做出来、把地基打穿。
 **配套文档**：`docs/PROJECT_ENHANCEMENT_REPORT_2026-10-08.md`（全面扫描与评估）
 
@@ -176,7 +176,14 @@ feedback_edge_frac 0.2121 · motifs {mutual 2, FFL 4, 3-cycle 0}
 ```
 
 **下一步（T4.2）**：
-1. **结构 × 动力学桥接**：把 ρ、反馈边比例与 ESN 记忆容量/收敛速度的实测关系固化成查表 —— ⬜ 待做
+1. ✅ **结构 × 动力学桥接**（v2.50.0 交付）：`dynamics_bridge_calibration.py` →
+   `DYNAMICS_BRIDGE_LOOKUP.json` + **Gate 22**。只做测得到的那一半：
+   **ρ → 记忆容量**（delay=5 校准曲线 R² 0.168→0.992，随 ρ 单调上升）。
+   **拓扑形状轴显式不建表** —— 复核 C 匹配非零元素总数 K 后 **0/7** 拓扑优于随机
+   （差 0.001–0.018，在种子噪声内），把已证伪的关系固化成"看似有用"的查表不做。
+   另实测到一条比原记录**更靠前的能力悬崖**：单比特线性读出在 delay=5→8 之间
+   R² 直接塌到 ~0（delay=12 恒 0.000）。这是**读出/任务上限**（要区分 2^d 级状态），
+   不是水库规模上限。真正的杠杆是**密度**（模块代表层仅 0.002–0.023），不是形状。
 2. ~~**故障隔离预测器**~~ → **已试，负结果**（见下）
 3. ✅ **结构签名入库**（本轮交付）：`synthetic_bio_topology.py` 生成时写入 `topology_profile.signature`；
    `StructureSignatureIndex` 支持同结构去重 / 版本 diff / 持久化；CLI `topology_profile.py --index` 已接通
@@ -302,7 +309,7 @@ Tier-2 数据（`male_cns/discovered_modules.json` 等）。**本地均不存在
 Tier-2 数据不在本地、`FLYBRAIN_CORE` 未设）→ **T3 暂不可推进**，其余主线不受影响。
 
 **已交付证据（可复算）**：
-- `python scripts/run_gates.py`（项目正式解释器）→ **20/20 PASS**
+- `python scripts/run_gates.py`（项目正式解释器）→ **21/21 PASS**
 - `python scripts/check_topology_profile.py` → Gate 15 全绿
 - `python scripts/check_docs_consistency.py` → 加严后先报红（264 / 13），修 README 后转绿（现 21 项断言全绿）
 
@@ -325,7 +332,7 @@ Tier-2 数据不在本地、`FLYBRAIN_CORE` 未设）→ **T3 暂不可推进**�
 | 13 | **T4 MCP 工具 `profile_topology`** | 45 → 46；三处文档同步 | ✅ `server.py` + README + `docs/mcp_setup.md` + `~/.workbuddy/mcp.json`（Gate 2 全绿） |
 | 14 | **T5 组合闭环门禁** | 例外登记 + 注入缺陷报红 | ✅ `composition_exceptions.json`（61 条）+ `build_compatibility_matrix.py` + **Gate 17** |
 | 15 | **M4 北极星 D1–D4 可执行化** | 判据自洽 + 结构指纹 + 时间-质量曲线 + 离线对照 | ✅ `fast_decision.py`（22 项自检，**Gate 18**）+ `fast_decision_experiment.py` + `FAST_DECISION_REPORT.md` |
-| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16/17/18/19/20/21 已注册；README 徽章 21 gates；`run_gates.py` → **20/20 PASS** |
+| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16–22 已注册；README 徽章 22 gates；`run_gates.py` → **21/21 PASS** |
 | 17 | **Gate 3 沙箱修复** | 门禁快照还原不得依赖批量删除 | ✅ `_frozen()` 改逐文件快照/逐文件还原（`SAFE_DELETE_BULK_CONFIRM_REQUIRED`，阈值 50） |
 
 **T1 许可分层（已写入 provenance）**：斑马鱼 Petkova 2025 = **CC-BY-NC**（不可商用）；
@@ -345,8 +352,8 @@ H01 / MICrONS = **CC-BY**（可商用）。适配器在 `available()` 为 False 
 | 11 | 斑马鱼（Petkova 2025）接入 | ≥2 单元 + provenance 带 CC-BY-NC | ✅ 本轮交付（1123 神经元，E/I 分子极性，`zebrafish_profiles.json`） |
 | 12 | H01 接入（人类源） | ≥2 单元 + provenance 带 CC-BY | ⬜ 适配器已就绪，**缺数据**（Google Cloud 公开桶，50k 细胞 / 130M 突触，8 GB 级需采样） |
 | 13 | MICrONS 接入（功能源） | 补"结构→功能"维度 | ⬜ 适配器已就绪，**缺数据**（CAVE 平台，需采样） |
-| 14 | 斑马鱼侧线 + 神经调节分子 | 补齐 `neuromodulatory` 域 | ⬜ 待做 |
-| 15 | `excitatory/inhibitory_synapse` 入词表 | 过 Gate 12 | ⬜ 待做（Gate 12 代价轴已有框架） |
+| 14 | 斑马鱼侧线 + 神经调节分子 | 补齐 `neuromodulatory` 域 | ⚠️ **数据缺口，非代码缺口** —— 全树检索（TEN csv 7 个 + HMI xlsx）无任何侧线/调节分子条目；缺口已写进 `zebrafish_profiles.json` 的 `note`，**不编造**。详见 §七 |
+| 15 | `excitatory/inhibitory_synapse` 入词表 | 过 Gate 12 | ✅ **意图已覆盖** —— 已有 `dendritic_excitatory_synapse(+)` / `dendritic_inhibitory_synapse(-)` 两条 sign-aware 条目，新增泛化 E/I 会冗余且需重验 Gate 12，判为刻意暂缓。详见 §七 |
 
 ### M4（12 周+）· 北极星研究 —— **本轮已 D1–D4 全部可执行化**
 
@@ -392,7 +399,7 @@ H01 / MICrONS = **CC-BY**（可商用）。适配器在 `available()` 为 False 
 ## 七、本轮梳理（2026-10-08）· 未推进任务与硬阻塞点
 
 > 用户要求"全面 100% 实施 + 梳理 + 完成未推进任务"。经逐条核对：T1/T2/T4/T5/T6/M4
-> 的**交付物已落地且门禁 20/20 PASS**（含数据门禁 3/4/5/7/8/9/10/16，已在本环境复验）。
+> 的**交付物已落地且门禁 21/21 PASS**（含数据门禁 3/4/5/7/8/9/10/16，已在本环境复验）。
 > 真正的"未推进"集中在 M3 与 T3，且**绝大多数硬阻塞于外部条件（私有仓 / 缺失数据）**，
 > 不能靠编码完成，也不应编造数据。逐条登记如下，作为下一步工作队列。
 
@@ -405,9 +412,10 @@ H01 / MICrONS = **CC-BY**（可商用）。适配器在 `available()` 为 False 
 | M3 #15 | `excitatory_synapse` / `inhibitory_synapse` 入词表 | ✅ **意图已实质覆盖** | `connection_types.json` 已有 `dendritic_excitatory_synapse(+)` / `dendritic_inhibitory_synapse(-)` 两条带 `jev_validation` 的 sign-aware 条目；斑马鱼源已用 `neurotype` 标 E/I。新增泛化 E/I 突触会与现有接触点类型**冗余**且需重验 Gate 12 —— 按"不堆冗余空壳"铁律，**判为已覆盖 / 刻意暂缓**，不强行新增。 |
 | T2 | `capability` 字段受控化 | ✅ **已交付（v2.49.0）** | 实测 **331 个值、300 个只用一次**（原登记 256/60 为旧数）。已建 `capability_canonical.py`（**22 类** = 20 功能 + `provenance_marker` + `other_unspecified`）+ **Gate 21** + `docs/capability_coverage.json`。三处诚实修正：① token-based 分类修掉子串方向 bug（`associative_learn in associate` 因关键词更长而漏匹配）；② `traced_connectome`/`measure_synapses` 各 12 个单元是**溯源标记污染了 capability 字段**（描述"怎么得来的"而非"做什么"），已路由到独立 `provenance_marker` 类而非当功能计入；③ 11 个缺口类别**显式声明**（`gaps`），不静默空缺。Gate 21 带 **8 个 fail-closed 注入**，证明每个断言都会真红。 |
 | T5 #4 | 堆叠语义 `a+(b+c)` 嵌套 + 跨物种 role 绑定 | ⬜ 连带阻塞 | 依赖 T3 中间件；T3 阻塞 → 此项连带阻塞。 |
+| T4.2 #1 | 结构 × 动力学桥接查表 | ✅ **已交付（v2.50.0）** | 只做测得到的那一半。**ρ → 记忆容量**（delay=5：R² 0.168→0.992 随 ρ 单调，20 种子均值 + 配对标准误容忍带）；**拓扑形状轴不建表**并显式标记 REFUTED（匹配 K 后 0/7 优于随机）。附带一条**新实测发现**：单比特线性读出的能力悬崖在 delay=5→8 之间，delay=12 恒 0.000 —— 比原记录「delay=20–40 才过悬崖」靠前得多，且属读出/任务上限（需 2^d 级状态）而非水库规模上限。Gate 22 带 **12 个 fail-closed 注入**（全数被捕获），其中一条专查"不可判定的曲线被静默读成通过"。 |
 | T4.2-a | 故障隔离预测器 | ❌ 已试，负结果 | 纯结构仅把准确率从 25/27 提到 **26/27**（决定性事实：H3 与 H1 结构几乎相同却判定相反）。已关闭，不重复；若加"模块→读出结构可达性"第 10 特征仍停在 26/27 则彻底关闭。 |
 
-**结论**：可编码完成的待办**已全部做完**（M3 #14 的诚实边界 + **T2 capability 受控化 / Gate 21**）；
+**结论**：可编码完成的待办**已全部做完**（M3 #14 的诚实边界 + **T2 capability 受控化 / Gate 21** + **T4.2 #1 结构×动力学桥接查表 / Gate 22**）；
 其余全部是"等数据 / 等私有仓"的外部阻塞。
 当前版本的"地基"已实质到位，剩余工作是**扩展证据源**与**解冻 T3 中间件**两条外部依赖线。
 

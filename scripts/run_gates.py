@@ -36,9 +36,9 @@ run unless you pass --with-data, because it needs a local MaleCNS v1.0 copy
 committed anchor artifact, and only recomputes from raw data under --with-data.
 
 Usage:
-    python scripts/run_gates.py                  # 20 gates, no dataset needed
-    python scripts/run_gates.py --with-data      # 21 gates (+ `flybrain verify`)
-    python scripts/run_gates.py --quick          # 17 gates: skips 3, 4, 5 (no numpy,
+    python scripts/run_gates.py                  # 21 gates, no dataset needed
+    python scripts/run_gates.py --with-data      # 22 gates (+ `flybrain verify`)
+    python scripts/run_gates.py --quick          # 18 gates: skips 3, 4, 5 (no numpy,
                                                  #   no server spawn, no generated artifact)
 """
 
@@ -142,6 +142,11 @@ def main() -> int:
     results.append(("gate21 capability taxonomy", run(
         "GATE 21 — every capability maps to the 22-category controlled vocabulary",
         [py, str(SCRIPTS / "check_capability_canonical.py")])[0]))
+
+    # ---- Gate 22: structure x dynamics bridge lookup (stdlib only, --quick) ----
+    results.append(("gate22 dynamics bridge", run(
+        "GATE 22 — rho->capacity calibration table complete; refuted axis stays refuted",
+        [py, str(SCRIPTS / "check_dynamics_bridge.py")])[0]))
 
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(

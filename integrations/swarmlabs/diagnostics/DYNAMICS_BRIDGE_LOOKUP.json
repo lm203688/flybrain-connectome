@@ -1,0 +1,363 @@
+{
+  "artifact": "dynamics_bridge_lookup",
+  "version": 1,
+  "purpose": "Instrument calibration curve for reservoir spectral radius, NOT a prediction of dynamics for the module-representative topologies this library emits.",
+  "reservoir": {
+    "kind": "textbook random-Gaussian",
+    "n_units": 150,
+    "task": "Bernoulli delay line (single +-1 bit)",
+    "seeds": 20,
+    "seed_base": 20261009,
+    "w_seed": 20261009
+  },
+  "grid": {
+    "rho": [
+      0.5,
+      0.6,
+      0.7,
+      0.8,
+      0.9,
+      0.95,
+      1.0
+    ],
+    "delay": [
+      1,
+      3,
+      5,
+      8,
+      12
+    ]
+  },
+  "rho_calibration": {
+    "rho=0.50|delay=1": {
+      "mean_r2": 0.9999997378287793,
+      "std_r2": 1.3353297722743812e-07
+    },
+    "rho=0.50|delay=3": {
+      "mean_r2": 0.9997510989034339,
+      "std_r2": 9.173304717062793e-05
+    },
+    "rho=0.50|delay=5": {
+      "mean_r2": 0.16770702495602025,
+      "std_r2": 0.051348572981517085
+    },
+    "rho=0.50|delay=8": {
+      "mean_r2": 0.0009687618795707232,
+      "std_r2": 0.0031570942243318886
+    },
+    "rho=0.50|delay=12": {
+      "mean_r2": 0.0,
+      "std_r2": 0.0
+    },
+    "rho=0.60|delay=1": {
+      "mean_r2": 0.9999996955042201,
+      "std_r2": 1.643998607496984e-07
+    },
+    "rho=0.60|delay=3": {
+      "mean_r2": 0.9998704139776313,
+      "std_r2": 4.52368029428174e-05
+    },
+    "rho=0.60|delay=5": {
+      "mean_r2": 0.5806170258653843,
+      "std_r2": 0.09360306653736779
+    },
+    "rho=0.60|delay=8": {
+      "mean_r2": 0.0011597244806034134,
+      "std_r2": 0.0030099876863375528
+    },
+    "rho=0.60|delay=12": {
+      "mean_r2": 0.0,
+      "std_r2": 0.0
+    },
+    "rho=0.70|delay=1": {
+      "mean_r2": 0.9999996528636513,
+      "std_r2": 1.8851618453284182e-07
+    },
+    "rho=0.70|delay=3": {
+      "mean_r2": 0.9999047591040439,
+      "std_r2": 2.6090388748922636e-05
+    },
+    "rho=0.70|delay=5": {
+      "mean_r2": 0.8830198509225816,
+      "std_r2": 0.0459045104634151
+    },
+    "rho=0.70|delay=8": {
+      "mean_r2": 0.0010750583933498703,
+      "std_r2": 0.003554506799463873
+    },
+    "rho=0.70|delay=12": {
+      "mean_r2": 0.0,
+      "std_r2": 0.0
+    },
+    "rho=0.80|delay=1": {
+      "mean_r2": 0.999999613768266,
+      "std_r2": 1.8953248496895417e-07
+    },
+    "rho=0.80|delay=3": {
+      "mean_r2": 0.999914882806652,
+      "std_r2": 2.246078169619112e-05
+    },
+    "rho=0.80|delay=5": {
+      "mean_r2": 0.9659521138449753,
+      "std_r2": 0.016190056803243084
+    },
+    "rho=0.80|delay=8": {
+      "mean_r2": 0.0011162854773407894,
+      "std_r2": 0.0045379662879901075
+    },
+    "rho=0.80|delay=12": {
+      "mean_r2": 0.0,
+      "std_r2": 0.0
+    },
+    "rho=0.90|delay=1": {
+      "mean_r2": 0.999999568079958,
+      "std_r2": 2.140393305381881e-07
+    },
+    "rho=0.90|delay=3": {
+      "mean_r2": 0.9999190550372615,
+      "std_r2": 2.4311410889840918e-05
+    },
+    "rho=0.90|delay=5": {
+      "mean_r2": 0.9853548341271416,
+      "std_r2": 0.006913487463236021
+    },
+    "rho=0.90|delay=8": {
+      "mean_r2": 0.0016569318565769486,
+      "std_r2": 0.00588325485980238
+    },
+    "rho=0.90|delay=12": {
+      "mean_r2": 0.0,
+      "std_r2": 0.0
+    },
+    "rho=0.95|delay=1": {
+      "mean_r2": 0.9999995267070586,
+      "std_r2": 2.3894904016058767e-07
+    },
+    "rho=0.95|delay=3": {
+      "mean_r2": 0.9999191605101941,
+      "std_r2": 2.542373017416679e-05
+    },
+    "rho=0.95|delay=5": {
+      "mean_r2": 0.9894088461885671,
+      "std_r2": 0.004627115218199901
+    },
+    "rho=0.95|delay=8": {
+      "mean_r2": 0.002506836511883015,
+      "std_r2": 0.007810914768975214
+    },
+    "rho=0.95|delay=12": {
+      "mean_r2": 0.0,
+      "std_r2": 0.0
+    },
+    "rho=1.00|delay=1": {
+      "mean_r2": 0.9999994641788902,
+      "std_r2": 2.739513861776693e-07
+    },
+    "rho=1.00|delay=3": {
+      "mean_r2": 0.9999182290208296,
+      "std_r2": 2.652890639231493e-05
+    },
+    "rho=1.00|delay=5": {
+      "mean_r2": 0.9919498742084214,
+      "std_r2": 0.0031436563936224344
+    },
+    "rho=1.00|delay=8": {
+      "mean_r2": 0.004715683389316544,
+      "std_r2": 0.01220762529704341
+    },
+    "rho=1.00|delay=12": {
+      "mean_r2": 0.0,
+      "std_r2": 0.0
+    }
+  },
+  "monotonicity": {
+    "delay=1": {
+      "means": [
+        0.9999997378287793,
+        0.9999996955042201,
+        0.9999996528636513,
+        0.999999613768266,
+        0.999999568079958,
+        0.9999995267070586,
+        0.9999994641788902
+      ],
+      "measured_drops": [
+        4.232455919073175e-08,
+        4.2640568742591256e-08,
+        3.909538537349988e-08,
+        4.5688307914737436e-08,
+        4.137289943972888e-08,
+        6.252816842078346e-08
+      ],
+      "max_drop": 6.252816842078346e-08,
+      "tolerance": 0.0,
+      "pairs_below_floor": [],
+      "assertable": true,
+      "monotone_within_tolerance": true
+    },
+    "delay=3": {
+      "means": [
+        0.9997510989034339,
+        0.9998704139776313,
+        0.9999047591040439,
+        0.999914882806652,
+        0.9999190550372615,
+        0.9999191605101941,
+        0.9999182290208296
+      ],
+      "measured_drops": [
+        -0.00011931507419737919,
+        -3.4345126412538285e-05,
+        -1.0123702608111351e-05,
+        -4.17223060955596e-06,
+        -1.0547293260998458e-07,
+        9.31489364530691e-07
+      ],
+      "max_drop": 9.31489364530691e-07,
+      "tolerance": 4.6e-05,
+      "pairs_below_floor": [],
+      "assertable": true,
+      "monotone_within_tolerance": true
+    },
+    "delay=5": {
+      "means": [
+        0.16770702495602025,
+        0.5806170258653843,
+        0.8830198509225816,
+        0.9659521138449753,
+        0.9853548341271416,
+        0.9894088461885671,
+        0.9919498742084214
+      ],
+      "measured_drops": [
+        -0.4129100009093641,
+        -0.3024028250571973,
+        -0.08293226292239364,
+        -0.019402720282166386,
+        -0.004054012061425416,
+        -0.002541028019854341
+      ],
+      "max_drop": -0.002541028019854341,
+      "tolerance": 0.047746,
+      "pairs_below_floor": [],
+      "assertable": true,
+      "monotone_within_tolerance": true
+    },
+    "delay=8": {
+      "means": [
+        0.0009687618795707232,
+        0.0011597244806034134,
+        0.0010750583933498703,
+        0.0011162854773407894,
+        0.0016569318565769486,
+        0.002506836511883015,
+        0.004715683389316544
+      ],
+      "measured_drops": [],
+      "max_drop": null,
+      "tolerance": null,
+      "pairs_below_floor": [
+        "rho 0.50->0.60 (below R2 floor 0.005)",
+        "rho 0.60->0.70 (below R2 floor 0.005)",
+        "rho 0.70->0.80 (below R2 floor 0.005)",
+        "rho 0.80->0.90 (below R2 floor 0.005)",
+        "rho 0.90->0.95 (below R2 floor 0.005)",
+        "rho 0.95->1.00 (below R2 floor 0.005)"
+      ],
+      "assertable": false,
+      "monotone_within_tolerance": null
+    },
+    "delay=12": {
+      "means": [
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0,
+        0.0
+      ],
+      "measured_drops": [],
+      "max_drop": null,
+      "tolerance": null,
+      "pairs_below_floor": [
+        "rho 0.50->0.60 (below R2 floor 0.005)",
+        "rho 0.60->0.70 (below R2 floor 0.005)",
+        "rho 0.70->0.80 (below R2 floor 0.005)",
+        "rho 0.80->0.90 (below R2 floor 0.005)",
+        "rho 0.90->0.95 (below R2 floor 0.005)",
+        "rho 0.95->1.00 (below R2 floor 0.005)"
+      ],
+      "assertable": false,
+      "monotone_within_tolerance": null
+    }
+  },
+  "capacity_cliff": {
+    "status": "measured",
+    "from_delay": 5,
+    "to_delay": 8,
+    "note": "Capacity collapses to ~0 between delay=5 and delay=8 for a single-bit linear readout at N=150. Longer delays need ~2^d distinguishable states, so this is a readout/task limit, not a reservoir-size limit."
+  },
+  "measurable_delays": [
+    1,
+    3,
+    5
+  ],
+  "collapsed_delays": [
+    8,
+    12
+  ],
+  "r2_floor": 0.005,
+  "per_cell_seed_std": {
+    "median": 0.0,
+    "max": 0.0936,
+    "note": "std across seeds within one (rho,delay) cell: large near the knee (~0.2), ~0 where the clamp pins R2 at 0. Monotonicity tolerance is derived per adjacent pair from the cell stds, NOT from this median -- a single global band is too tight on the flat part and too loose on the knee."
+  },
+  "knee_region": [
+    {
+      "rho": 0.5,
+      "delay": 5,
+      "mean_r2": 0.16770702495602025
+    },
+    {
+      "rho": 0.6,
+      "delay": 5,
+      "mean_r2": 0.5806170258653843
+    },
+    {
+      "rho": 0.7,
+      "delay": 5,
+      "mean_r2": 0.8830198509225816
+    }
+  ],
+  "topology_shape_axis": {
+    "status": "REFUTED, not tabulated",
+    "claim": "feedback edge fraction / motif shape predicts dynamics",
+    "evidence": "Matched-K control in dyn_calibration_probe.py: after matching total non-zero elements, 0/7 topologies significantly beat random; differences 0.001-0.018, inside seed noise.",
+    "why_no_table": "Tabulating a relationship that has been measured to be null would freeze a refuted claim into a lookup that looks useful. The table exists only for the axis that is actually measured.",
+    "source": "integrations/swarmlabs/diagnostics/dyn_calibration_probe.py (probe C)"
+  },
+  "density_boundary": {
+    "module_representative_layer": {
+      "density_range": [
+        0.002,
+        0.023
+      ],
+      "finding": "structurally insufficient to carry temporal dynamics"
+    },
+    "real_lever": "density, not shape"
+  },
+  "not_predicted_by": [
+    "feedback_edge_frac",
+    "motif_counts",
+    "reciprocity",
+    "modularity_q",
+    "topology_signature"
+  ],
+  "how_to_use": "Compare a densified (cell-level) build's measured R² against this curve to locate it on the known rho->capacity axis. Do not use it to rank module-representative topologies: that ranking is the null result recorded above.",
+  "not_measured": [
+    "energy",
+    "task_performance",
+    "biological_validity"
+  ]
+}
