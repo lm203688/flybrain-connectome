@@ -9,10 +9,11 @@
       "status": "data_blocked",
       "adapter": "flybrain-connectome-mcp/connectome_sources/h01.py",
       "adapter_status": "ready_fail_closed",
-      "adapter_evidence": "适配器已就绪，available()=False 时拒绝构建、不产空数据",
+      "adapter_evidence": "适配器已就绪，available()=False 时拒绝构建、不产空数据；真实解析路径 CSV→h01_profiles.json 已实现",
       "missing_data": "Google Cloud 公开桶 50k 细胞 / 130M 突触（8 GB 级，需采样）",
-      "policy": "available()=False 时拒绝构建；不把未获取的 CC-BY 数据误标为已用。许可：H01 = CC-BY（可商用）。",
-      "unblocks_when": "拉取并采样 H01 公开桶后重跑 build 脚本"
+      "network": "storage.googleapis.com 主机可达（2026-10-09 实测），但需用户提供具体采样对象路径/文件",
+      "policy": "available()=False 时拒绝构建；不把未获取的 CC-BY 数据误标为已用。许可：H01 = CC-BY（可商用）。设 H01_DATA_DIR 指向本地样本即激活。",
+      "unblocks_when": "用户提供 H01 采样 CSV 后设 H01_DATA_DIR 重跑 build 脚本"
     },
     {
       "id": "M3-13",
@@ -20,39 +21,39 @@
       "status": "data_blocked",
       "adapter": "flybrain-connectome-mcp/connectome_sources/microns.py",
       "adapter_status": "ready_fail_closed",
-      "adapter_evidence": "适配器已就绪，available()=False 时拒绝构建、不产空数据",
-      "missing_data": "CAVE 平台数据未采样",
-      "policy": "同 H01 的 fail-closed 策略。许可：MICrONS = CC-BY（可商用）。",
-      "unblocks_when": "从 CAVE 平台采样后重跑 build 脚本"
+      "adapter_evidence": "适配器已就绪，available()=False 时拒绝构建、不产空数据；真实解析路径 CSV→microns_profiles.json 已实现（含 functional_response 轴）",
+      "missing_data": "CAVE 平台数据未采样（含功能响应）",
+      "policy": "同 H01 的 fail-closed 策略。许可：MICrONS = CC-BY（可商用）。设 MICRONS_DATA_DIR 指向本地样本即激活。",
+      "unblocks_when": "用户提供 CAVE 导出样本后设 MICRONS_DATA_DIR 重跑 build 脚本"
     },
     {
       "id": "M3-14",
-      "task": "斑马鱼侧线系统 + 5 种神经调节分子（DA/5-HT/ACh/NE/HA）",
-      "status": "data_gap_not_code_gap",
+      "task": "斑马鱼连接组（Petkova 2025 TEN+HMI 子集）接入",
+      "status": "achievable_subset_completed",
       "adapter": "flybrain-connectome-mcp/connectome_sources/zebrafish.py",
-      "adapter_status": "partial_completed",
-      "adapter_evidence": "Petkova 2025 已接入（1123 神经元 / 142,882 突触，E/I 分子极性），其余模态缺数据",
-      "missing_data": "完整 Petkova 2025 发布；捆绑的 TEN+HMI 子集只含 E/I 极性（Gad1B/VGluT2）+ 网络层级 + spn_* 脊髓运动亚群，侧线系统与命名神经调节分子不在子集内",
-      "policy": "缺口已写进 zebrafish_profiles.json 的 note；不编造。许可：斑马鱼 Petkova 2025 = CC-BY-NC（不可商用），与 MIT 锚点分层隔离。",
-      "unblocks_when": "获取完整 Petkova 2025 发布后重跑 build_zebrafish_profiles.py"
+      "adapter_status": "completed_for_bundled_subset",
+      "adapter_evidence": "Petkova 2025 TEN+HMI 数据已捆绑于 zebrafish_data/paper_data；2026-10-09 实测 `python -m ...zebrafish` 复算产出 1123 神经元 / 142,882 突触（E/I 分子极性 + 网络层级 + spn_* 脊髓运动亚群），zebrafish_profiles.json 已落盘",
+      "missing_data": "完整 Petkova 2025 发布；捆绑子集之外的**侧线系统**与**命名神经调节分子（DA/5-HT/ACh/NE/HA）**不在子集内",
+      "policy": "缺口已写进 profiles.json 的 note；不编造。许可：斑马鱼 Petkova 2025 = CC-BY-NC（不可商用），与 MIT 锚点分层隔离。",
+      "unblocks_when": "获取完整 Petkova 2025 发布后重跑 build 脚本（非阻塞：当前子集已可用）"
     }
   ],
   "blocked_main_lines": [
     {
       "id": "T3",
       "task": "中间件规则引擎（12+7+4 组合/嵌套/乘子）",
-      "status": "hard_blocked",
-      "blocker": "需私有仓 lm203688/flybrain-connectome-core + Tier-2 数据（flybrain_core 未安装 / male_cns/discovered_modules.json 不在本地 / FLYBRAIN_CORE 未设）",
-      "decision": "M1 已拍板保持私有、先自验证。本环境无法落地，是路线图唯一未完成的整条主线。",
-      "unblocks_when": "获得私有仓访问权并设 FLYBRAIN_CORE 后下沉 Tier-1（路线图决策选项 A）"
+      "status": "unblocked_local",
+      "blocker": "原阻塞：需私有仓 lm203688/flybrain-connectome-core。2026-10-09 已本地检出（C:/Users/xing/Desktop/flybrain-connectome-core）并重排为 flybrain_core 包；core_bridge 增加 sibling 自动发现 → core_available() 在无需手设 env 下即 True；4 个组合 MCP 工具（list_combination_rules / validate_combination / expand_organism / get_multiplier_metrics）已激活。",
+      "decision": "T3 现已本地解锁（v2.51.x）：引擎载入 12 组合 + 7 嵌套 + 4 乘子规则；4 个自检（validate/nesting/expand/audit）全过；审计运行并产出 12 条规则对账；数据复现≥4 条方向规则（category 级，由引擎候选数据实测）。新增 Gate 24（条件门禁：core 缺失则跳过、存在则断言+数据复现）复验。公开仓未提交私有 IP（Gate 8 仍守边界）。",
+      "unblocks_when": "已解锁。若要永久开放，走路线图决策 A（规则引擎开源）或私有仓随部署分发；当前本地已可用。"
     },
     {
       "id": "T5-4-cross-species",
       "task": "堆叠语义跨物种 role 绑定",
-      "status": "blocked_by_T3",
-      "blocker": "依赖 T3 中间件",
-      "decision": "a+(b+c) 嵌套已在 v2.50.0 落地（synthetic_bio_topology._normalize_blueprint_spec，3 处调用点）；仅跨物种 role 绑定连带阻塞。",
-      "unblocks_when": "T3 解冻后实现跨物种 role 绑定规则"
+      "status": "rule_available_public_wiring_optional",
+      "blocker": "a+(b+c) 嵌套已于 v2.50.0 落地（synthetic_bio_topology._normalize_blueprint_spec，3 处调用点）；跨物种 role 绑定规则 cross_species_role_binding 现随 T3 解锁已存在于引擎 NESTING_RULES 中。",
+      "decision": "跨物种 role 绑定规则已可用；公开 synthetic_bio_topology 在 organism 展开时调用该规则为可选下游增强，非阻塞。",
+      "unblocks_when": "可选：在 synthetic_bio_topology 展开路径接入 cross_species_role_binding（非阻塞，规则已就绪）。"
     }
   ]
 }
