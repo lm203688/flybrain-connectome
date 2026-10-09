@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.52.0` | the toolkit as a whole |
+| package | `2.53.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,33 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.53.0] — 2026-10-10
+
+**T5 #4 跨物种 role 绑定落地 + Gate 24 补 dispatch 层与降级路径守护**
+
+v2.52.0 解锁 T3 后，路线图只剩 T5 #4 的跨物种 role 绑定还标为"可选下游增强"。本版把它从引擎侧规则变成**产物上真实可读的标注**，并把此前 24 条门禁都没覆盖的 MCP 分发层纳入守护。
+
+### T5 #4 跨物种 role 绑定
+
+- `synthetic_bio_topology.cross_species_role_binding()`：按 Tier-2 引擎的 `cross_species_role_binding` 规则，把模块按**物种无关**的 `(wiring_role, topology_position)` 归组。`binding_key` / `ignore_fields` 直接从规则读取，不从本地硬编码——规则一漂移门禁即报红。
+- 全部字段派生自 profile 的真实数据：`wiring_role` ← `capability[0]`，`topology_position` ← `capability` 经三层漏斗（sensory / relay / motor，与引擎 `conserved_categories` 同名）匹配，物种轴 ← `species_source`（210 个 profile 中 200 个带该字段，47 种组合，跨果蝇/鼠/人/鱼/章鱼/水蛭/海兔/文昌鱼/雀等）。**无一条分类是编造的**。
+- 实测：物种混合剖面下 **6/6 归组跨物种可替代**；全库 210 profile 为 **184 组中 141 组跨 ≥2 物种**。
+- `design_organism()` 产物新增顶层 `role_binding` 字段（与 `topology_profile` 同级），生成的虚拟生物标本现在自带跨物种绑定信息。
+- **诚实降级**：Tier-2 core 不可达时返回 `{"status":"unavailable","reason":...}`，不 raise、不谎报 `ok`——与 `_structural_profile` 的降级约定一致。
+
+### Gate 24 加固
+
+- **dispatch 层守护**（此前 24 条门禁全部只直接调 module，从未碰 dispatch 层——而 v2.52.0 那个静默降级 bug 恰好藏在那里）：`server._list_combination_rules()` 必须等于引擎规则表；`server._get_multiplier_metrics({})` 必须逐字等于 stub 信封。2 个注入（`tier2_required` 降级信封 / 被掏空的规则表）均确认报红。
+- **T5 #4 断言**：`binding_key` / `ignore_fields` / `multiplier_semantic` 三者不得与引擎规则漂移；漏斗层级只能是 sensory/relay/motor；归组非空；跨物种组数 ≥4。
+- **降级注入**：阻断 `module_combinator` 导入后必须得到 `status=unavailable` + `reason`，不得 raise、不得返回 `ok`。
+
+### 版本与门禁
+
+- 版本号 7 处同步 2.52.0 → 2.53.0（pyproject / flybrain_cli / server / api_server / README 徽章×2 / 摘要行），CHANGELOG schema 表同步。
+- 完整门禁 **23/23 PASS**；`--quick` **20/20 PASS**。
+
+---
 
 ## [2.52.0] — 2026-10-09
 
