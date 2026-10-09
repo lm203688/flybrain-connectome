@@ -2,7 +2,7 @@
 
 **制定日期**：2026-10-08
 **基线**：commit `89a0c4f`（v2.47.0）
-**最近一次全量复验**：2026-10-09，`python scripts/run_gates.py` → **21/21 PASS**（门禁 1–22 编号，Gate 5 含 5a/5b 两步）
+**最近一次全量复验**：2026-10-09，`python scripts/run_gates.py` → **22/22 PASS**（门禁 1–23 编号，Gate 5 含 5a/5b 两步）
 **战略前提**：**本阶段不考虑商业化。** 目标是把硬实力做出来、把技术壁垒做出来、把地基打穿。
 **配套文档**：`docs/PROJECT_ENHANCEMENT_REPORT_2026-10-08.md`（全面扫描与评估）
 
@@ -219,7 +219,7 @@ edge A.out[p] --ct(from=p, to=q)--> B.in[q]      # 端口类型必须匹配
 | 1. 组合闭环校验升级（`strict` 模式 + `skipped_edges` 上报） | ✅ 已由 v2.41.0 实现 |
 | 2. **可组合性矩阵**（`build_compatibility_matrix.py`） | ✅ 本轮交付：116×116 端口兼容矩阵 → `docs/compatibility_matrix.json`（500 个可连接接口对） |
 | 3. **不可拼接声明的自动补全建议** | ✅ 本轮交付：61 个"声明但不可拼"对逐条给出改端口建议 |
-| 4. 堆叠语义（`a+(b+c)` 嵌套 + 跨物种 role 绑定） | ⬜ 待做（依赖 T3） |
+| 4. 堆叠语义（`a+(b+c)` 嵌套 + 跨物种 role 绑定） | 🟡 嵌套已落地（v2.50.0）；跨物种 role 绑定 ⬜ 依赖 T3 |
 | 5. **组合例外登记表** + **Gate 17 闭环门禁** | ✅ 本轮交付：`composition_exceptions.json`（61 条登记）+ `check_composition_closure.py`，注入未登记的不兼容声明即报红 |
 | 6. 乘子语义诚实化（性能乘子标 `unverified`） | ✅ 已由 `get_multiplier_metrics` 声明 |
 
@@ -332,7 +332,7 @@ Tier-2 数据不在本地、`FLYBRAIN_CORE` 未设）→ **T3 暂不可推进**�
 | 13 | **T4 MCP 工具 `profile_topology`** | 45 → 46；三处文档同步 | ✅ `server.py` + README + `docs/mcp_setup.md` + `~/.workbuddy/mcp.json`（Gate 2 全绿） |
 | 14 | **T5 组合闭环门禁** | 例外登记 + 注入缺陷报红 | ✅ `composition_exceptions.json`（61 条）+ `build_compatibility_matrix.py` + **Gate 17** |
 | 15 | **M4 北极星 D1–D4 可执行化** | 判据自洽 + 结构指纹 + 时间-质量曲线 + 离线对照 | ✅ `fast_decision.py`（22 项自检，**Gate 18**）+ `fast_decision_experiment.py` + `FAST_DECISION_REPORT.md` |
-| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16–22 已注册；README 徽章 22 gates；`run_gates.py` → **21/21 PASS** |
+| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16–23 已注册；README 徽章 23 gates；`run_gates.py` → **22/22 PASS** |
 | 17 | **Gate 3 沙箱修复** | 门禁快照还原不得依赖批量删除 | ✅ `_frozen()` 改逐文件快照/逐文件还原（`SAFE_DELETE_BULK_CONFIRM_REQUIRED`，阈值 50） |
 
 **T1 许可分层（已写入 provenance）**：斑马鱼 Petkova 2025 = **CC-BY-NC**（不可商用）；
@@ -411,12 +411,20 @@ H01 / MICrONS = **CC-BY**（可商用）。适配器在 `available()` 为 False 
 | M3 #14 | 斑马鱼侧线 + 5 种神经调节分子 | ⬜ **数据缺口（非代码缺口）** | 捆绑的 TEN+HMI 子集**只含** E/I 分子极性（Gad1B/VGluT2）+ 网络层级 + `spn_*` 脊髓运动亚群；**侧线系统**与命名神经调节分子（DA/5-HT/ACh/NE/HA）**不在子集内**。本轮已把"模态覆盖 / 缺口"写进 `zebrafish_profiles.json` 的 `note`（诚实边界），**不编造**。需完整 Petkova 2025 发布。 |
 | M3 #15 | `excitatory_synapse` / `inhibitory_synapse` 入词表 | ✅ **意图已实质覆盖** | `connection_types.json` 已有 `dendritic_excitatory_synapse(+)` / `dendritic_inhibitory_synapse(-)` 两条带 `jev_validation` 的 sign-aware 条目；斑马鱼源已用 `neurotype` 标 E/I。新增泛化 E/I 突触会与现有接触点类型**冗余**且需重验 Gate 12 —— 按"不堆冗余空壳"铁律，**判为已覆盖 / 刻意暂缓**，不强行新增。 |
 | T2 | `capability` 字段受控化 | ✅ **已交付（v2.49.0）** | 实测 **331 个值、300 个只用一次**（原登记 256/60 为旧数）。已建 `capability_canonical.py`（**22 类** = 20 功能 + `provenance_marker` + `other_unspecified`）+ **Gate 21** + `docs/capability_coverage.json`。三处诚实修正：① token-based 分类修掉子串方向 bug（`associative_learn in associate` 因关键词更长而漏匹配）；② `traced_connectome`/`measure_synapses` 各 12 个单元是**溯源标记污染了 capability 字段**（描述"怎么得来的"而非"做什么"），已路由到独立 `provenance_marker` 类而非当功能计入；③ 11 个缺口类别**显式声明**（`gaps`），不静默空缺。Gate 21 带 **8 个 fail-closed 注入**，证明每个断言都会真红。 |
-| T5 #4 | 堆叠语义 `a+(b+c)` 嵌套 + 跨物种 role 绑定 | ⬜ 连带阻塞 | 依赖 T3 中间件；T3 阻塞 → 此项连带阻塞。 |
+| T5 #4 | 堆叠语义 `a+(b+c)` 嵌套 + 跨物种 role 绑定 | 🟡 嵌套已落地、跨物种 role 绑定 ⬜ 连带阻塞 | `a+(b+c)` 已由 `synthetic_bio_topology._normalize_blueprint_spec` 实现（v2.50.0，3 处调用点：`design_organism` 入口 + 两处蓝图应用）；仅跨物种 role 绑定依赖 T3 中间件。 |
 | T4.2 #1 | 结构 × 动力学桥接查表 | ✅ **已交付（v2.50.0）** | 只做测得到的那一半。**ρ → 记忆容量**（delay=5：R² 0.168→0.992 随 ρ 单调，20 种子均值 + 配对标准误容忍带）；**拓扑形状轴不建表**并显式标记 REFUTED（匹配 K 后 0/7 优于随机）。附带一条**新实测发现**：单比特线性读出的能力悬崖在 delay=5→8 之间，delay=12 恒 0.000 —— 比原记录「delay=20–40 才过悬崖」靠前得多，且属读出/任务上限（需 2^d 级状态）而非水库规模上限。Gate 22 带 **12 个 fail-closed 注入**（全数被捕获），其中一条专查"不可判定的曲线被静默读成通过"。 |
 | T4.2-a | 故障隔离预测器 | ❌ 已试，负结果 | 纯结构仅把准确率从 25/27 提到 **26/27**（决定性事实：H3 与 H1 结构几乎相同却判定相反）。已关闭，不重复；若加"模块→读出结构可达性"第 10 特征仍停在 26/27 则彻底关闭。 |
 
 **结论**：可编码完成的待办**已全部做完**（M3 #14 的诚实边界 + **T2 capability 受控化 / Gate 21** + **T4.2 #1 结构×动力学桥接查表 / Gate 22**）；
 其余全部是"等数据 / 等私有仓"的外部阻塞。
+
+**v2.51.0 梳理收口（2026-10-09）**：补两处"无门禁 / 无机器可读登记"的遗漏 ——
+① 新增 **Gate 23**（`check_stacked_blueprints.py`，stdlib + fail-closed），守护被实时 MCP 工具
+`list_stacked_blueprints` / `get_stacked_feasibility` 直接读取、却此前零门禁的 `male_cns/stacked_blueprints.json`
+（5 个预置堆叠蓝图）；本门禁独立重算 `summary` 并与文件自报结论对比，8 个注入全捕获。
+② 新增 **`data_gaps.json`**，把 M3 #12/#13/#14 与 T3 / T5 #4 跨物种 role 绑定的外部阻塞**机器可读化**
+（缺什么数据、适配器在哪、fail-closed 策略），不编造。
+
 当前版本的"地基"已实质到位，剩余工作是**扩展证据源**与**解冻 T3 中间件**两条外部依赖线。
 
 ---
