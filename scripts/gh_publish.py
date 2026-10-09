@@ -211,6 +211,13 @@ def main():
             continue
         with open(full, "rb") as fh:
             content = fh.read()
+        # core.autocrlf=true would otherwise push CRLF bytes to the remote while
+        # the git blob (and thus the repo checkout) is LF — the previous release
+        # shipped CRLF on the remote with a real-content-diff of 0. Normalize
+        # CRLF -> LF for text files so the remote matches the repository; binary
+        # files (null bytes present) are left untouched.
+        if b"\x00" not in content[:65536] and b"\r\n" in content:
+            content = content.replace(b"\r\n", b"\n")
         if not push_file(token, rel, content, args.message, args.branch):
             all_ok = False
     return 0 if all_ok else 1
