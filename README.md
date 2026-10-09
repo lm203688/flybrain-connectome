@@ -3,11 +3,11 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-2.49.0-orange.svg)](CHANGELOG.md)
-[![docker](https://img.shields.io/badge/docker-2.49.0-2496ED.svg)](#docker)
+[![version](https://img.shields.io/badge/version-2.50.0-orange.svg)](CHANGELOG.md)
+[![docker](https://img.shields.io/badge/docker-2.50.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.49.0 · 2026-10-09 · 116 functional units · 270 module profiles · 21 gates**
+**v2.50.0 · 2026-10-09 · 116 functional units · 270 module profiles · 22 gates**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
@@ -1108,8 +1108,8 @@ The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
 python scripts/run_gates.py              # 20 gates, no dataset needed
-python scripts/run_gates.py --quick      # the 17 gates that don't need numpy / a server
-python scripts/run_gates.py --with-data  # 21 gates: + `flybrain verify` (70 assertions)
+python scripts/run_gates.py --quick      # the 18 gates that don't need numpy / a server
+python scripts/run_gates.py --with-data  # 22 gates: + `flybrain verify` (70 assertions)
 ```
 
 ### Makefile shortcuts (v2.43.0)
