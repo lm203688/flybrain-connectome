@@ -83,6 +83,26 @@ def main() -> int:
     assert r4["total_copies"] == 5, f"expand expected 5 copies, got {r4['total_copies']}"
     print("  engine self-tests (validate / nesting / expand) OK")
 
+    # MCP dispatch layer: server.py -> stub -> core must return REAL engine
+    # output, not a degraded tier2_required envelope. This is the layer where
+    # the silent-degradation bug actually lived (the stub imported flybrain_core
+    # before core_bridge ran its path discovery), so asserting it here is what
+    # closes the hole — every other gate only exercised the module directly.
+    sys.path.insert(0, str(REPO_ROOT / "flybrain-connectome-mcp" / "mcp_connectome"))
+    import server  # noqa: WPS433
+
+    dl = server._list_combination_rules()
+    assert dl.get("combination_rules") == combo, \
+        "dispatch returns different rules than the engine (silent degradation?)"
+    assert "combination_rules" in dl, \
+        f"dispatch envelope not the real rule list: {sorted(dl)[:6]}"
+    d3 = server._get_multiplier_metrics({})
+    assert d3 == stub.get_multiplier_metrics(), \
+        "server dispatch must return the stub's multiplier envelope verbatim"
+    assert list(d3.get("semantics", {}).keys()) == list(mult.keys()), \
+        f"dispatch semantics payload mismatch: {sorted(d3.get('semantics', {}))}"
+    print("  MCP dispatch layer returns real engine output (no silent degradation)")
+
     # Audit runs and covers all 12 combination rules with a structured report.
     audit = stub.audit_rules_against_data()
     assert "audit" in audit and len(audit["audit"]) == 12, \
