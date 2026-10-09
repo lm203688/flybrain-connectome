@@ -4868,6 +4868,10 @@ def design_organism(spec: dict, motifs: dict | None = None,
         # artifacts are comparable for structural identity and a renamed copy
         # of the same wiring is recognisable as a duplicate.
         "topology_profile": _structural_profile(organism),
+        # T5 #4: cross-species role binding annotation. Derived from the
+        # profiles' real capability / species_source; the binding key comes from
+        # the Tier-2 rule, so it degrades honestly when the core is absent.
+        "role_binding": cross_species_role_binding(module_profile_map),
     }
     _org_for_prov["prov_json"] = _prov_json(
         _org_for_prov["motif_provenance"],
@@ -4925,6 +4929,113 @@ def _metrics(org: dict, n_modules: int, module_profile_map: dict | None = None) 
         "profile_breakdown": {
             k: v for k, v in profile_edges.items()
         },
+    }
+
+
+# --------------------------------------------------------------------------- #
+# T5 #4 — cross-species role binding
+# --------------------------------------------------------------------------- #
+
+# Funnel-tier hints for `topology_position`. The engine's cross_species_consistency()
+# names a three-layer funnel -- sensory -> inter -> motor (conserved_categories
+# = ["sensory","relay","motor"]) -- so a profile's position is that tier, not a
+# species-specific brain region. Hints match against the profile's species-agnostic
+# `capability` tokens; anything matching neither lands in the middle "relay" tier,
+# which is the honest catch-all of a three-layer funnel rather than a claim about
+# its actual wiring.
+_MOTOR_TIER_HINTS = (
+    "motor_output", "muscle", "_drive", "motor_neuron", "escape_command",
+    "descending_command", "locomotor", "locomotion", "vocal_motor",
+    "tongue_strike", "motor_planning", "kinematics", "movement_sequence",
+)
+_SENSORY_TIER_HINTS = (
+    "photoreceptor", "photoreception", "phototransduce", "perceive", "ingest",
+    "transduce", "_sense", "transduction", "flow_detect", "odorant",
+    "tactile_sense", "touch_sense", "taste_encode", "infrared",
+    "thermal_imaging", "mechanotransduce", "proprioception", "proprioceptive",
+)
+
+
+def _topology_position(caps) -> str:
+    """Map a species-agnostic capability list to a funnel tier."""
+    joined = " ".join(caps or [])
+    if any(h in joined for h in _MOTOR_TIER_HINTS):
+        return "motor"
+    if any(h in joined for h in _SENSORY_TIER_HINTS):
+        return "sensory"
+    return "relay"
+
+
+def _load_cross_species_rule():
+    """Fetch the cross_species_role_binding rule from the Tier-2 engine.
+
+    Returns (rule, None) when available, else (None, reason). Degrades to a
+    reason string rather than raising: an organism artifact must not fail to
+    generate because a Tier-2 rule is absent -- but the honest reason is kept so
+    nobody reads a skipped binding as a confirmed one.
+    """
+    try:
+        import module_combinator as mc  # noqa: WPS433  (same-dir public stub)
+    except Exception as exc:  # noqa: BLE001
+        return None, "module_combinator import failed: %r" % (exc,)
+    for r in (mc.list_rules().get("nesting_rules") or []):
+        if r.get("rule_id") == "cross_species_role_binding":
+            return r, None
+    return None, "cross_species_role_binding rule not present in engine"
+
+
+def cross_species_role_binding(module_profile_map: dict) -> dict:
+    """Bind modules by species-agnostic wiring role (T5 #4).
+
+    The Tier-2 rule says two modules may substitute across species when they agree
+    on `binding_key` (wiring_role + topology_position) and differ only in
+    `ignore_fields` (cell_type_label / species / lineage). Everything here is
+    derived from the profiles' real `capability` and `species_source` fields -- no
+    taxonomy is invented -- and the rule itself is read from the engine, so the
+    binding key can never drift from what the middleware claims.
+    """
+    rule, reason = _load_cross_species_rule()
+    if rule is None:
+        return {"status": "unavailable", "reason": reason,
+                "note": "Tier-2 core not configured; role binding skipped."}
+
+    groups = {}  # (role, position) -> aggregate
+    for m in sorted(module_profile_map or {}, key=lambda k: str(k)):
+        prof = module_profile_map[m]
+        caps = prof.get("capability") or []
+        if not caps:
+            continue
+        key = (caps[0], _topology_position(caps))
+        g = groups.setdefault(key, {"profiles": set(), "species": set(), "modules": []})
+        g["profiles"].add(prof.get("name", "?"))
+        g["species"] |= set(prof.get("species_source") or [])
+        g["modules"].append(m)
+
+    group_list = []
+    for (role, pos), g in groups.items():
+        group_list.append({
+            "wiring_role": role,
+            "topology_position": pos,
+            "n_profiles": len(g["profiles"]),
+            "profiles": sorted(g["profiles"]),
+            "species": sorted(g["species"]),
+            "n_species": len(g["species"]),
+            "cross_species_substitutable": len(g["species"]) >= 2,
+            "modules": [str(x) for x in sorted(g["modules"])],
+        })
+    group_list.sort(key=lambda x: (-x["n_species"], -x["n_profiles"], x["wiring_role"]))
+    substitutable = [x for x in group_list if x["cross_species_substitutable"]]
+
+    return {
+        "status": "ok",
+        "rule_id": rule.get("rule_id"),
+        "multiplier_semantic": rule.get("multiplier_semantic"),
+        "binding_key": list(rule.get("binding_key") or []),
+        "ignore_fields": list(rule.get("ignore_fields") or []),
+        "tiers": ("sensory", "relay", "motor"),
+        "n_groups": len(group_list),
+        "n_cross_species_groups": len(substitutable),
+        "groups": group_list,
     }
 
 

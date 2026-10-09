@@ -14,6 +14,7 @@ are backed by the shipped connectome data — the ROADMAP T3 deliverable
 """
 from __future__ import annotations
 
+import builtins as _builtins
 import sys
 from pathlib import Path
 
@@ -117,6 +118,55 @@ def main() -> int:
         f"category-level data support too low: {supported} (expected >= 4)"
     print(f"  data reproduction: {supported} directional rules backed by "
           f"shipped connectome data OK")
+
+    # ---- T5 #4: cross-species role binding annotation ----------------- #
+    # The public synthesis path must bind modules by the engine rule's
+    # binding_key (wiring_role + topology_position), derived from the
+    # profiles' real capability / species_source fields — never a hardcoded
+    # taxonomy. The binding key is read from the rule, so a drift between what
+    # the middleware claims and what the artifact reports is caught here.
+    import synthetic_bio_topology as sbot
+
+    rule = next(r for r in nest if r.get("rule_id") == "cross_species_role_binding")
+    rb = sbot.cross_species_role_binding(
+        {i: dict(sbot.MODULE_PROFILES[n], name=n) for i, n in enumerate(
+            ("pyramidal_l23", "mauthner_cell", "lateral_line_hair_cell",
+             "spinal_motor_alpha", "retinal_gc", "dopaminergic_vta"))})
+    assert rb.get("status") == "ok", f"role binding must resolve when core is live: {rb}"
+    assert rb["binding_key"] == rule["binding_key"], \
+        f"binding_key drifted from the engine rule: {rb['binding_key']} != {rule['binding_key']}"
+    assert rb["ignore_fields"] == rule["ignore_fields"], "ignore_fields drifted from the rule"
+    assert rb["multiplier_semantic"] == rule["multiplier_semantic"], "multiplier_semantic drifted"
+    assert rb["n_groups"] >= 6, f"expected >= 6 binding groups, got {rb['n_groups']}"
+    assert rb["n_cross_species_groups"] >= 4, \
+        f"cross-species binding too thin: {rb['n_cross_species_groups']}"
+    for g in rb["groups"]:
+        assert g["topology_position"] in {"sensory", "relay", "motor"}, \
+            f"unknown funnel tier: {g['topology_position']}"
+        assert g["n_profiles"] >= 1 and len(g["modules"]) >= 1, f"empty binding group: {g}"
+    print(f"  T5 #4 role binding: {rb['n_cross_species_groups']}/"
+          f"{rb['n_groups']} groups cross-species substitutable OK")
+
+    # The annotation must actually be carried by generated organisms, and it
+    # must degrade honestly (not raise) when the Tier-2 rule is unreachable.
+    org = sbot.design_organism({"n_modules": 3, "agents_per_module": 3, "seed": 7})
+    assert "role_binding" in org, "design_organism must carry the role_binding annotation"
+    fake = _builtins.__import__
+
+    def _blocked(name, *a, **k):
+        if name == "module_combinator":
+            raise ImportError("injection: Tier-2 core unreachable")
+        return fake(name, *a, **k)
+
+    _builtins.__import__ = _blocked
+    try:
+        deg = sbot.cross_species_role_binding(
+            {0: dict(sbot.MODULE_PROFILES["pyramidal_l23"], name="pyramidal_l23")})
+    finally:
+        _builtins.__import__ = fake
+    assert deg.get("status") == "unavailable" and "reason" in deg, \
+        f"missing core must degrade to a reason, not raise or claim ok: {deg}"
+    print("  role binding degrades to a reason (no raise, no false 'ok') OK")
 
     print("GATE 24 — PASS")
     return 0

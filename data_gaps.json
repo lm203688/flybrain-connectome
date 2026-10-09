@@ -1,6 +1,6 @@
 {
   "schema_version": "1.0.0",
-  "generated_at": "2026-10-09",
+  "generated_at": "2026-10-10",
   "note": "本文件登记**无法在本仓库内用代码关闭**的外部阻塞项。它们不是缺陷，也不许编造数据来'完成'。每个条目记录缺什么数据、适配器在哪、以及 fail-closed 策略。路线图 §七 的机器可读版本。",
   "data_blocked": [
     {
@@ -50,10 +50,10 @@
     {
       "id": "T5-4-cross-species",
       "task": "堆叠语义跨物种 role 绑定",
-      "status": "rule_available_public_wiring_optional",
-      "blocker": "a+(b+c) 嵌套已于 v2.50.0 落地（synthetic_bio_topology._normalize_blueprint_spec，3 处调用点）；跨物种 role 绑定规则 cross_species_role_binding 现随 T3 解锁已存在于引擎 NESTING_RULES 中。",
-      "decision": "跨物种 role 绑定规则已可用；公开 synthetic_bio_topology 在 organism 展开时调用该规则为可选下游增强，非阻塞。",
-      "unblocks_when": "可选：在 synthetic_bio_topology 展开路径接入 cross_species_role_binding（非阻塞，规则已就绪）。"
+      "status": "completed",
+      "blocker": "无外部阻塞。a+(b+c) 嵌套 v2.50.0 落地（synthetic_bio_topology._normalize_blueprint_spec，3 处调用点）；跨物种 role 绑定规则 cross_species_role_binding 随 T3 解锁存在于引擎 NESTING_RULES。",
+      "decision": "v2.53.0 已落地：synthetic_bio_topology.cross_species_role_binding() 按引擎规则的 binding_key（wiring_role + topology_position）把模块按物种无关键归组，binding_key/ignore_fields 从规则直读（漂移即报红）。wiring_role ← capability[0]、topology_position ← 三层漏斗（sensory/relay/motor，与引擎 conserved_categories 同名）、物种轴 ← species_source（210 profile 中 200 个带该字段、47 种组合），无编造分类。实测：混合剖面 6/6 组跨物种可替代；全库 184 组中 141 组跨 ≥2 物种。design_organism() 产物顶层新增 role_binding 字段；core 不可达时降级为 status:unavailable + reason，不 raise、不谎报 ok。",
+      "unblocks_when": "已交付（v2.53.0）。Gate 24 带 3 组断言 + 1 降级注入守护。"
     }
   ]
 }

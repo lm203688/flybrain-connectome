@@ -245,7 +245,7 @@ edge A.out[p] --ct(from=p, to=q)--> B.in[q]      # 端口类型必须匹配
 | 1. 组合闭环校验升级（`strict` 模式 + `skipped_edges` 上报） | ✅ 已由 v2.41.0 实现 |
 | 2. **可组合性矩阵**（`build_compatibility_matrix.py`） | ✅ 本轮交付：116×116 端口兼容矩阵 → `docs/compatibility_matrix.json`（500 个可连接接口对） |
 | 3. **不可拼接声明的自动补全建议** | ✅ 本轮交付：61 个"声明但不可拼"对逐条给出改端口建议 |
-| 4. 堆叠语义（`a+(b+c)` 嵌套 + 跨物种 role 绑定） | 🟢 嵌套已落地（v2.50.0）；跨物种 role 绑定 🟡 规则随 T3 解锁已存在于引擎 NESTING_RULES，公开组装调用为可选下游 |
+| 4. 堆叠语义（`a+(b+c)` 嵌套 + 跨物种 role 绑定） | ✅ **全部落地**：嵌套 v2.50.0；跨物种 role 绑定 v2.53.0（`cross_species_role_binding()`，产物顶层 `role_binding` 字段，Gate 24 断言） |
 | 5. **组合例外登记表** + **Gate 17 闭环门禁** | ✅ 本轮交付：`composition_exceptions.json`（61 条登记）+ `check_composition_closure.py`，注入未登记的不兼容声明即报红 |
 | 6. 乘子语义诚实化（性能乘子标 `unverified`） | ✅ 已由 `get_multiplier_metrics` 声明 |
 
@@ -436,11 +436,11 @@ H01 / MICrONS = **CC-BY**（可商用）。适配器在 `available()` 为 False 
 | M3 #14 | 斑马鱼连接组（Petkova 2025 TEN+HMI 子集） | ✅ **可达子集已完成** | `zebrafish.py` 已接入捆绑的 TEN+HMI 数据，2026-10-09 实测复算产出 **1123 神经元 / 142,882 突触**（E/I 分子极性 + 网络层级 + `spn_*` 脊髓运动亚群）。**缺口（非阻塞）**：侧线系统与命名神经调节分子（DA/5-HT/ACh/NE/HA）不在子集内，已写进 `zebrafish_profiles.json` 的 `note`，**不编造**；需完整 Petkova 2025 发布方可补齐。 |
 | M3 #15 | `excitatory_synapse` / `inhibitory_synapse` 入词表 | ✅ **意图已实质覆盖** | `connection_types.json` 已有 `dendritic_excitatory_synapse(+)` / `dendritic_inhibitory_synapse(-)` 两条带 `jev_validation` 的 sign-aware 条目；斑马鱼源已用 `neurotype` 标 E/I。新增泛化 E/I 突触会与现有接触点类型**冗余**且需重验 Gate 12 —— 按"不堆冗余空壳"铁律，**判为已覆盖 / 刻意暂缓**，不强行新增。 |
 | T2 | `capability` 字段受控化 | ✅ **已交付（v2.49.0）** | 实测 **331 个值、300 个只用一次**（原登记 256/60 为旧数）。已建 `capability_canonical.py`（**22 类** = 20 功能 + `provenance_marker` + `other_unspecified`）+ **Gate 21** + `docs/capability_coverage.json`。三处诚实修正：① token-based 分类修掉子串方向 bug（`associative_learn in associate` 因关键词更长而漏匹配）；② `traced_connectome`/`measure_synapses` 各 12 个单元是**溯源标记污染了 capability 字段**（描述"怎么得来的"而非"做什么"），已路由到独立 `provenance_marker` 类而非当功能计入；③ 11 个缺口类别**显式声明**（`gaps`），不静默空缺。Gate 21 带 **8 个 fail-closed 注入**，证明每个断言都会真红。 |
-| T5 #4 | 堆叠语义 `a+(b+c)` 嵌套 + 跨物种 role 绑定 | 🟢 嵌套已落地、跨物种 role 绑定 🟡 规则已随 T3 可用 | `a+(b+c)` 已由 `synthetic_bio_topology._normalize_blueprint_spec` 实现（v2.50.0，3 处调用点）；跨物种 role 绑定规则 `cross_species_role_binding` 现随 T3 解锁存在于引擎 NESTING_RULES，公开合成路径调用为可选下游增强（非阻塞）。 |
+| T5 #4 | 堆叠语义 `a+(b+c)` 嵌套 + 跨物种 role 绑定 | ✅ **已交付（v2.50.0 + v2.53.0）** | `a+(b+c)` 已由 `synthetic_bio_topology._normalize_blueprint_spec` 实现（v2.50.0，3 处调用点）。跨物种 role 绑定 v2.53.0 落地：`cross_species_role_binding()` 按 Tier-2 引擎 `cross_species_role_binding` 规则的 `binding_key`（wiring_role + topology_position）把模块按**物种无关**键归组，`binding_key`/`ignore_fields` 从规则直读（漂移即报红）；`wiring_role` ← `capability[0]`、`topology_position` ← 三层漏斗（sensory/relay/motor，与引擎 `conserved_categories` 同名）、物种轴 ← `species_source`（210 profile 中 200 个带该字段、47 种组合），**无编造分类**。实测：混合剖面 **6/6 组跨物种可替代**；全库 184 组中 **141 组跨 ≥2 物种**。产物顶层新增 `role_binding` 字段；core 不可达时降级为 `status:unavailable` + reason，不 raise、不谎报 ok。Gate 24 带 3 组断言 + 1 降级注入。 |
 | T4.2 #1 | 结构 × 动力学桥接查表 | ✅ **已交付（v2.50.0）** | 只做测得到的那一半。**ρ → 记忆容量**（delay=5：R² 0.168→0.992 随 ρ 单调，20 种子均值 + 配对标准误容忍带）；**拓扑形状轴不建表**并显式标记 REFUTED（匹配 K 后 0/7 优于随机）。附带一条**新实测发现**：单比特线性读出的能力悬崖在 delay=5→8 之间，delay=12 恒 0.000 —— 比原记录「delay=20–40 才过悬崖」靠前得多，且属读出/任务上限（需 2^d 级状态）而非水库规模上限。Gate 22 带 **12 个 fail-closed 注入**（全数被捕获），其中一条专查"不可判定的曲线被静默读成通过"。 |
 | T4.2-a | 故障隔离预测器 | ❌ 已试，负结果 | 纯结构仅把准确率从 25/27 提到 **26/27**（决定性事实：H3 与 H1 结构几乎相同却判定相反）。已关闭，不重复；若加"模块→读出结构可达性"第 10 特征仍停在 26/27 则彻底关闭。 |
 
-**结论**：可编码完成的待办**已全部做完**；**T3 中间件已于 v2.52.0 本地解锁**（引擎载入 12+7+4 规则 + 4 自检 + 审计 + 数据复现≥4，`core_bridge` sibling 自动发现，4 个组合 MCP 工具激活），**M3 #14 斑马鱼可达子集已接入**（`zebrafish.py` 复算 1123 神经元 / 142,882 突触）。仅剩 **M3 #12 H01 / M3 #13 MICrONS** 仍待用户提供采样数据（适配器均已就绪、fail-closed，主机可达，设 `*_DATA_DIR` 即激活）。
+**结论**：可编码完成的待办**已全部做完**。**T3 中间件 v2.52.0 本地解锁**（引擎载入 12+7+4 规则 + 4 自检 + 审计 + 数据复现≥4，`core_bridge` sibling 自动发现，4 个组合 MCP 工具激活）；**T5 #4 跨物种 role 绑定 v2.53.0 落地**（`cross_species_role_binding()` + 产物顶层 `role_binding` 字段，全库 184 组中 141 组跨 ≥2 物种）；**M3 #14 斑马鱼可达子集已接入**（`zebrafish.py` 复算 1123 神经元 / 142,882 突触）。仅剩 **M3 #12 H01 / M3 #13 MICrONS** 仍待用户提供采样数据（适配器均已就绪、fail-closed，主机可达，设 `*_DATA_DIR` 即激活）。
 
 **v2.51.0 梳理收口（2026-10-09）**：补两处"无门禁 / 无机器可读登记"的遗漏 ——
 ① 新增 **Gate 23**（`check_stacked_blueprints.py`，stdlib + fail-closed），守护被实时 MCP 工具
@@ -455,7 +455,14 @@ H01 / MICrONS = **CC-BY**（可商用）。适配器在 `available()` 为 False 
 ③ **M3 #14 斑马鱼可达子集确认完成**：`zebrafish.py` 真实产出 1123 神经元 / 142,882 突触；缺口（侧线系统 + 5 种神经调节分子）写进 `note`，不编造。
 ④ `data_gaps.json` 状态机更新：T3 → `unblocked_local`，T5 #4 跨物种 → `rule_available_public_wiring_optional`，M3 #14 → `achievable_subset_completed`；H01/MICRONS 保留 `data_blocked`（适配器就绪 + 主机可达）。
 
-当前"地基"已实质到位，公开仓未提交任何私有 IP（Gate 8 仍守边界）；剩余仅 M3 #12/#13 的**用户采样数据**外部依赖。
+**v2.53.0 收尾 T5 #4 + 门禁补漏（2026-10-10）**：
+① **T5 #4 跨物种 role 绑定落地**：`synthetic_bio_topology.cross_species_role_binding()` 按 Tier-2 引擎规则的 `binding_key`（`wiring_role` + `topology_position`）把模块按**物种无关**键归组；`binding_key` / `ignore_fields` 从规则直读，不从本地硬编码（规则漂移即报红）。`wiring_role` ← `capability[0]`，`topology_position` ← 三层漏斗（sensory / relay / motor，与引擎 `conserved_categories` 同名），物种轴 ← `species_source`（210 个 profile 中 200 个带该字段、47 种组合，跨果蝇/鼠/人/鱼/章鱼/水蛭/海兔/文昌鱼/雀等）——**无一条分类是编造的**。实测：物种混合剖面 **6/6 组跨物种可替代**；全库 184 组中 **141 组跨 ≥2 物种**。`design_organism()` 产物顶层新增 `role_binding` 字段；Tier-2 core 不可达时降级为 `status:unavailable` + reason，不 raise、不谎报 `ok`。
+② **Gate 24 补 dispatch 层守护**：此前 24 条门禁**全部只直接调 module**，从未碰 MCP 分发层——而 v2.52.0 那个静默降级 bug 恰好藏在那里。新增断言：`server._list_combination_rules()` 必须等于引擎规则表；`server._get_multiplier_metrics({})` 必须逐字等于 stub 信封。2 个注入（`tier2_required` 降级信封 / 被掏空的规则表）均确认报红。
+③ **Gate 24 补 T5 #4 断言 + 降级注入**：`binding_key` / `ignore_fields` / `multiplier_semantic` 三者不得与引擎规则漂移；漏斗层级只能是 sensory/relay/motor；归组非空；跨物种组数 ≥4；阻断 `module_combinator` 导入后必须得到 `status:unavailable` + `reason`。
+④ `data_gaps.json` 状态机更新：T5 #4 跨物种 → `completed`。**路线图上不再有"可选下游增强"项**——可编码完成的待办确已清零。
+⑤ 完整门禁 **23/23 PASS**；`--quick` **20/20 PASS**。
+
+当前"地基"已实质到位，公开仓未提交任何私有 IP（Gate 8 仍守边界）；剩余仅 M3 #12/#13 的**用户采样数据**外部依赖，及需 LLM 访问的 P1 结案实验。
 
 ---
 
