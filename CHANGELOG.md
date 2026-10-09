@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.49.0` | the toolkit as a whole |
+| package | `2.50.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,80 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.50.0] — 2026-10-09
+
+**T4.2 #1 结构 × 动力学桥接查表落地：只做测得到的那一半，门禁 21 → 22**
+
+路线图 T4.2 的 #1 是唯一还挂着 `⬜ 待做` 的可编码项。交付它时做的第一个决定
+是**砍范围**：原要求把「ρ、反馈边比例 → ESN 记忆容量/收敛速度」都固化成查表，
+但复核 C 的匹配-K 对照已经实测出拓扑形状轴为**零**（0/7 拓扑优于随机，
+差值 0.001–0.018 在种子噪声内）。**把一条已证伪的关系固化成"看似有用"的查表**
+正是本项目一路在避免的错误，所以那一半不建表，而是显式标记 REFUTED。
+
+### T4.2 #1 · 结构 × 动力学桥接查表
+
+- **`integrations/swarmlabs/diagnostics/dynamics_bridge_calibration.py`** →
+  `DYNAMICS_BRIDGE_LOOKUP.json`：7 ρ × 5 delay = **35 格**，20 种子均值 + 标准差。
+- **ρ → 记忆容量（delay=5 是校准曲线）**：R² 从 ρ=0.50 的 **0.168** 单调升到
+  ρ=1.00 的 **0.992**（0.168 → 0.581 → 0.883 → 0.966 → 0.985 → 0.989 → 0.992）。
+  这是"测得到的那一半"，也是本查表唯一真正可查的东西。
+- **单调性判据用配对标准误**，不用全局 std 中位数。后者会把拐点处的大噪声
+  （0.19–0.23）摊薄到平坦段，使平坦段容忍带过窄而**假红**，在拐点段又太宽。
+  两个相邻 ρ 各自独立取种子，均值差标准误 = `hypot(se_a, se_b)`，
+  `se = std/sqrt(n_seeds)`。
+- **新实测发现：能力悬崖比原记录靠前得多**。`dyn_calibration_probe.py` 文档写
+  "delay=20–40 已过能力悬崖"，实测本任务的悬崖在 **delay=5 与 8 之间**：
+  delay=8 全列 R² ≤ 0.005，**delay=12 恒 0.000**。这是**读出/任务上限**
+  （单比特线性读出要预测 delay 步前，需区分 2^d 级状态），不是水库规模上限。
+- **截断伪影必须显式排除**：`r2_score` 末尾的 `max(0.0, …)` 让 R² 在 0 附近
+  只产生数值差值，那不是动力学测量。低于 `r2_floor=0.005` 的相邻对不参与
+  单调性断言，但**必须登记**出来 —— 静默跳过等于隐藏曲线在哪一段不可测。
+  塌零列也不是"不可判定的空段"，是**一条量级为零的实测结论**。
+- **杠杆是密度不是形状**：模块代表层密度仅 0.002–0.023，`real_lever` 记为
+  `density, not shape`。
+
+### Gate 22 · 结构 × 动力学桥接查表
+
+- **`scripts/check_dynamics_bridge.py`**（stdlib-only，进 `--quick`）。
+- 三层断言：**A 形状完整**（网格满、数值在界内、噪声量已登记）；
+  **B 定性不变量**（可测区间的 ρ 单调性不得被谎报为通过）；
+  **C 已证伪的轴不许偷偷翻案**（`topology_shape_axis` 必须保持 REFUTED、
+  0/7 数字不能丢、`not_predicted_by` 不能静默清空）。
+- **12 个 fail-closed 注入，全数被捕获**。其中一条专查"不可判定的曲线被静默读成
+  通过"：把一列的 `pairs_below_floor` 清空而保留 `monotone_within_tolerance=None`，
+  门禁必须报红 —— 否则"我没测"会被读者读成"我通过了"。
+- 注入与还原是**两个独立动作**：每次都在深拷贝上动手，原始 dict 全程不被改，
+  因此不存在 apply/restore 叠加的风险。
+- **`run_gates.py` → 21/21 PASS**（含数据门禁 3/4/5/7/8/9/10/16）；
+  `--quick` 17 → **18**。
+
+### 文档一致性
+
+- **`docs/FOUNDATION_ROADMAP.md` §七 已修正**：M3 #14 由 `⬜ 待做` 改为
+  **数据缺口（非代码缺口）**；M3 #15 由 `⬜ 待做` 改为**意图已实质覆盖**。
+  原先 §四 M3 表与 §七 结论**互相矛盾**（同一文件内两处对同一任务的判定不同），
+  现已对齐。
+- **`scripts/motif_ext.py`（未跟踪，48 行）判定为非本项目产物**：只 import
+  pandas/numpy，读 `C:/Users/xing/AppData/Local/Temp/motif_cohort_full*`
+  （实测不存在），与项目 3 个既有 motif 脚本无任何接口关联。
+  留在工作区、不进仓库、不删除（未跟踪文件，不属于可清理的仓库内容）。
+
+### 版本
+
+- **2.49.0 → 2.50.0**（pyproject.toml / flybrain_cli.py / server.py serverInfo /
+  api_server.py / README 徽章 ×2）。
+- 门禁计数文档同步：README（顶部摘要 + 用法段）、`run_gates.py` docstring
+  （20→21 / 21→22 / 17→18）、路线图 M4 表门禁行、路线图顶部复验行、
+  路线图 M1「已交付证据」行。
+- **最终一致性核对补修 3 处遗留漂移**：README 用法段仍写 `--quick` 为
+  17 gates（实为 18）；`docs/FOUNDATION_ROADMAP.md` 顶部复验行与 M1
+  「已交付证据」两处仍停在 `20/20 PASS`（实为 21/21，门禁编号已扩到 1–22）。
+  这三处都不在本轮改动清单内，是靠 `grep` 全仓数出来的。**CHANGELOG v2.49.0
+  条目里的 `20/20` / `17/17` 保留不改** —— 那是历史事实，不是漂移。
+- **未变**：MCP 工具 46 / 单元 116 / 剖面 270 / 连接类型 66 / 端口 83。
+
+---
 
 ## [2.49.0] — 2026-10-09
 
