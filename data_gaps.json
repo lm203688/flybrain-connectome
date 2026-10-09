@@ -1,0 +1,58 @@
+{
+  "schema_version": "1.0.0",
+  "generated_at": "2026-10-09",
+  "note": "本文件登记**无法在本仓库内用代码关闭**的外部阻塞项。它们不是缺陷，也不许编造数据来'完成'。每个条目记录缺什么数据、适配器在哪、以及 fail-closed 策略。路线图 §七 的机器可读版本。",
+  "data_blocked": [
+    {
+      "id": "M3-12",
+      "task": "H01 人类皮层 1mm³ 接入",
+      "status": "data_blocked",
+      "adapter": "flybrain-connectome-mcp/connectome_sources/h01.py",
+      "adapter_status": "ready_fail_closed",
+      "adapter_evidence": "适配器已就绪，available()=False 时拒绝构建、不产空数据",
+      "missing_data": "Google Cloud 公开桶 50k 细胞 / 130M 突触（8 GB 级，需采样）",
+      "policy": "available()=False 时拒绝构建；不把未获取的 CC-BY 数据误标为已用。许可：H01 = CC-BY（可商用）。",
+      "unblocks_when": "拉取并采样 H01 公开桶后重跑 build 脚本"
+    },
+    {
+      "id": "M3-13",
+      "task": "MICrONS 小鼠视皮层接入（结构+功能联合）",
+      "status": "data_blocked",
+      "adapter": "flybrain-connectome-mcp/connectome_sources/microns.py",
+      "adapter_status": "ready_fail_closed",
+      "adapter_evidence": "适配器已就绪，available()=False 时拒绝构建、不产空数据",
+      "missing_data": "CAVE 平台数据未采样",
+      "policy": "同 H01 的 fail-closed 策略。许可：MICrONS = CC-BY（可商用）。",
+      "unblocks_when": "从 CAVE 平台采样后重跑 build 脚本"
+    },
+    {
+      "id": "M3-14",
+      "task": "斑马鱼侧线系统 + 5 种神经调节分子（DA/5-HT/ACh/NE/HA）",
+      "status": "data_gap_not_code_gap",
+      "adapter": "flybrain-connectome-mcp/connectome_sources/zebrafish.py",
+      "adapter_status": "partial_completed",
+      "adapter_evidence": "Petkova 2025 已接入（1123 神经元 / 142,882 突触，E/I 分子极性），其余模态缺数据",
+      "missing_data": "完整 Petkova 2025 发布；捆绑的 TEN+HMI 子集只含 E/I 极性（Gad1B/VGluT2）+ 网络层级 + spn_* 脊髓运动亚群，侧线系统与命名神经调节分子不在子集内",
+      "policy": "缺口已写进 zebrafish_profiles.json 的 note；不编造。许可：斑马鱼 Petkova 2025 = CC-BY-NC（不可商用），与 MIT 锚点分层隔离。",
+      "unblocks_when": "获取完整 Petkova 2025 发布后重跑 build_zebrafish_profiles.py"
+    }
+  ],
+  "blocked_main_lines": [
+    {
+      "id": "T3",
+      "task": "中间件规则引擎（12+7+4 组合/嵌套/乘子）",
+      "status": "hard_blocked",
+      "blocker": "需私有仓 lm203688/flybrain-connectome-core + Tier-2 数据（flybrain_core 未安装 / male_cns/discovered_modules.json 不在本地 / FLYBRAIN_CORE 未设）",
+      "decision": "M1 已拍板保持私有、先自验证。本环境无法落地，是路线图唯一未完成的整条主线。",
+      "unblocks_when": "获得私有仓访问权并设 FLYBRAIN_CORE 后下沉 Tier-1（路线图决策选项 A）"
+    },
+    {
+      "id": "T5-4-cross-species",
+      "task": "堆叠语义跨物种 role 绑定",
+      "status": "blocked_by_T3",
+      "blocker": "依赖 T3 中间件",
+      "decision": "a+(b+c) 嵌套已在 v2.50.0 落地（synthetic_bio_topology._normalize_blueprint_spec，3 处调用点）；仅跨物种 role 绑定连带阻塞。",
+      "unblocks_when": "T3 解冻后实现跨物种 role 绑定规则"
+    }
+  ]
+}

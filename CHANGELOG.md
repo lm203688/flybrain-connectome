@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.50.0` | the toolkit as a whole |
+| package | `2.51.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,44 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.51.0] — 2026-10-09
+
+**梳理收口：补最后一个无门禁交付物（Gate 23）+ 数据阻塞机器可读登记（data_gaps.json）**
+
+路线图 §七 梳理确认可编码待办已清零，剩余全是外部阻塞（T3 私有仓 / M3 #12 #13 数据）。
+本轮把两处"无守护 / 无登记"的遗漏补上，并把 T5 #4 状态对齐代码实情。
+
+### Gate 23 · 预置堆叠蓝图完整性
+
+- **`scripts/check_stacked_blueprints.py`**（stdlib-only，进 `--quick`）。
+- `male_cns/stacked_blueprints.json` 是 T5 组合代数「堆叠语义」的预置产物，被实时 MCP 工具
+  `list_stacked_blueprints` / `get_stacked_feasibility` 直接读取（server.py 懒加载），
+  此前**零门禁**。本门禁独立重算 `summary`（all_feasible / n_feasible / n_stability_ok /
+  total_fanout_edges）并与文件自报结论对比，任何篡改都被捕获。
+- **8 个 fail-closed 注入，全数被捕获**（翻转 feasible、改 n_stacks、改 fanout 和、删必填键、
+  改 feasibility.combination、n_components 失配、删 feasibility 键、summary 失同步）。
+- **`run_gates.py` → 22/22 PASS**（含数据门禁 3/4/5/7/8/9/10/16）；`--quick` 18 → **19**。
+
+### 数据阻塞登记（诚实边界，不编造）
+
+- **`data_gaps.json`**：机器可读登记 M3 #12（H01）/ #13（MICrONS）/ #14（斑马鱼侧线+神经调节分子）
+  与 T3 / T5 #4 跨物种 role 绑定的外部阻塞——缺什么数据、适配器在哪、fail-closed 策略。
+
+### T5 #4 · 状态对齐
+
+- `a+(b+c)` 嵌套已由 `synthetic_bio_topology._normalize_blueprint_spec` 实现（v2.50.0，3 处调用点），
+  路线图中 `⬜ 待做` 改为 **嵌套已落地**；仅跨物种 role 绑定仍 ⬜ 依赖 T3。
+
+### 版本与文档
+
+- **2.50.0 → 2.51.0**（pyproject.toml / flybrain_cli.py / server.py serverInfo /
+  api_server.py / README 徽章 ×2 / README 摘要行 / CHANGELOG schema 表）。
+- 门禁计数文档同步：README（顶部摘要 + 用法段）、`run_gates.py` docstring、路线图顶部复验行、
+  M2.5 #16 行、§七 结论段。
+- **未变**：MCP 工具 46 / 单元 116 / 剖面 270 / 连接类型 66 / 端口 83。
+
+---
 
 ## [2.50.0] — 2026-10-09
 
