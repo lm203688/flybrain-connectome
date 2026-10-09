@@ -115,18 +115,24 @@ def main() -> int:
         check("names the private repo", PRIVATE_REPO.replace("/", "-") in text
               or "flybrain-connectome-core" in text)
 
-    # 2. Graceful degradation + tool-count contract
+    # 2. Graceful degradation + tool-count contract (state-aware: this gate must
+    #    pass on a bare public install AND on a full install with flybrain_core).
     print(NL + "-- 2. core_bridge degradation & tool-count contract --")
     check("core_available() callable", callable(cb.core_available))
-    env = cb.require_core("list_combination_rules")
-    check("require_core returns a tier2_required envelope",
-          isinstance(env, dict) and env.get("status") == "tier2_required")
-    bare = TOTAL_TOOLS - len(cb.CORE_DEPENDENT_TOOLS)
-    check("functional_tool_count degrades to %d bare (45 - %d tier-2 tools)"
-          % (bare, len(cb.CORE_DEPENDENT_TOOLS)),
-          cb.functional_tool_count() == bare
-          and cb.functional_tool_count() == (TOTAL_TOOLS if cb.core_available() else bare),
-          str(cb.functional_tool_count()))
+    if cb.core_available():
+        env = cb.require_core("list_combination_rules")
+        check("require_core returns None when core present (proceed signal)",
+              env is None)
+        check("functional_tool_count == %d with core present" % TOTAL_TOOLS,
+              cb.functional_tool_count() == TOTAL_TOOLS, str(cb.functional_tool_count()))
+    else:
+        env = cb.require_core("list_combination_rules")
+        check("require_core returns a tier2_required envelope when core absent",
+              isinstance(env, dict) and env.get("status") == "tier2_required")
+        bare = TOTAL_TOOLS - len(cb.CORE_DEPENDENT_TOOLS)
+        check("functional_tool_count degrades to %d bare (45 - %d tier-2 tools)"
+              % (bare, len(cb.CORE_DEPENDENT_TOOLS)),
+              cb.functional_tool_count() == bare, str(cb.functional_tool_count()))
     check("CORE_DEPENDENT_TOOLS scoped to the 4 combinator tools",
           set(cb.CORE_DEPENDENT_TOOLS) == {"list_combination_rules", "validate_combination",
                                            "expand_organism", "get_multiplier_metrics"},
