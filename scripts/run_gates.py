@@ -169,6 +169,12 @@ def main() -> int:
         "(with 3 injected-defect tests)",
         [py, str(SCRIPTS / "check_runtime.py")])[0]))
 
+    # ---- Gate 26: Phase B damage + repair (B1–B4) ----
+    results.append(("gate26 repair", run(
+        "GATE 26 — Phase B damage injection + repair: damage.py + repair.py "
+        "(with 5 injected-defect tests)",
+        [py, str(SCRIPTS / "check_repair.py")])[0]))
+
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
         "GATE 9 — functional units + connection types + composer fail-closed",
