@@ -2,7 +2,7 @@
 
 **制定日期**：2026-10-08
 **基线**：commit `89a0c4f`（v2.47.0）
-**最近一次全量复验**：2026-10-09，`python scripts/run_gates.py` → **23/23 PASS**（门禁 1–24 编号，Gate 5 含 5a/5b 两步；Gate 24 为 T3 中间件条件门禁：core 缺失时跳过、存在时断言 12+7+4 + 4 自检 + 数据复现≥4）
+**最近一次全量复验**：2026-10-10，`python scripts/run_gates.py` → **29/29 PASS**（门禁 1–29 编号，Gate 5 含 5a/5b 两步；`--quick` 25/25 PASS。Gate 24 为 T3 中间件条件门禁：core 缺失时跳过、存在时断言 12+7+4 + 4 自检 + 数据复现≥4。Gate 25–28 = Phase A/B/D/C；**Gate 29 = Phase E3 NCA 式局部发育**）
 **战略前提**：**本阶段不考虑商业化。** 目标是把硬实力做出来、把技术壁垒做出来、把地基打穿。
 **配套文档**：`docs/PROJECT_ENHANCEMENT_REPORT_2026-10-08.md`（全面扫描与评估）
 **上层定位**：`docs/DIGITAL_LIFE_POSITIONING_2026-10-09.md`（**虚拟生物 = 数字生命** —— 本路线图是"能力地基"，该文档是"这块地基要造出一个什么东西"）。
@@ -272,6 +272,15 @@ edge A.out[p] --ct(from=p, to=q)--> B.in[q]      # 端口类型必须匹配
 | Gate 19 · function 受控词表 | 116 单元 100% 映射到 24 个 canonical 类别；缺口显式声明 | ✅ 本轮交付（`check_function_canonical.py`） |
 | Gate 20 · 连接组源适配器 | 3 个适配器齐全；斑马鱼 profile 已生成；H01/MICrONS 缺数据即 fail-closed | ✅ 本轮交付（`check_sources.py`） |
 | ~~Gate 18 文档漂移（扩展）~~ | README 徽章行 / 版本号四处一致 | 已并入 **Gate 2**（`check_docs_consistency.py`，21 项断言，徽章门禁数动态从 run_gates.py 解析） |
+| Gate 21 · capability 受控词表 | 331 值 → 22 类 canonical；覆盖 20/20 类；11 缺口显式声明 | ✅ 已交付（v2.49.0） |
+| Gate 22 · structure×dynamics bridge | ρ→capacity 单调表；拓扑形状轴显式 REFUTED 不建表 | ✅ 已交付（v2.50.0） |
+| Gate 23 · 堆叠蓝图完整性 | 5 预置堆叠蓝图内部自洽；summary 由门禁重算 | ✅ 已交付（v2.51.0） |
+| Gate 24 · T3 中间件规则引擎 | 12+7+4 规则 + 数据支撑 + dispatch 层防漂移；条件门禁（core 缺失 SKIP） | ✅ 已交付（v2.52.0；T5 #4 断言 v2.53.0） |
+| Gate 25 · Phase A runtime | 代谢循环 + 边界强制 + 持续监护 + 代谢计量（含 3 注入） | ✅ 已交付（v2.54.0） |
+| Gate 26 · Phase B repair | 3 类损伤 + 4 种原子补丁 + 修复循环 + 结构验收（含 5 注入） | ✅ 已交付（v2.55.0） |
+| Gate 27 · Phase D combination | T3 规则反应引擎 + 签名单一性 + 8 类模体普查（含 4 注入） | ✅ 已交付（v2.56.0） |
+| Gate 28 · Phase C population | 世系树 + 存活判据 + DGM 档案 + 死亡回收 + 负结果护栏（含 4 注入） | ✅ 已交付（v2.56.0） |
+| **Gate 29 · Phase E3 development** | GrowthRule + NCAGrower.grow + DevelopmentReport；4 收敛原因全可达；5 项 fail-closed；产物兼容 Runtime.step（含 4 注入） | ✅ **已交付（v2.57.0）** |
 
 **纪律（沿用项目既有）**：
 - 新门禁**先注入缺陷证明会报红**，再合入
@@ -361,7 +370,7 @@ Tier-2 数据。**2026-10-09 已本地检出私有 core 并配为 `flybrain_core
 | 13 | **T4 MCP 工具 `profile_topology`** | 45 → 46；三处文档同步 | ✅ `server.py` + README + `docs/mcp_setup.md` + `~/.workbuddy/mcp.json`（Gate 2 全绿） |
 | 14 | **T5 组合闭环门禁** | 例外登记 + 注入缺陷报红 | ✅ `composition_exceptions.json`（61 条）+ `build_compatibility_matrix.py` + **Gate 17** |
 | 15 | **M4 北极星 D1–D4 可执行化** | 判据自洽 + 结构指纹 + 时间-质量曲线 + 离线对照 | ✅ `fast_decision.py`（22 项自检，**Gate 18**）+ `fast_decision_experiment.py` + `FAST_DECISION_REPORT.md` |
-| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16–28 已注册；README 徽章 28 gates；`run_gates.py --quick` → **24/24 PASS**（Gate 24 条件门禁 + Gate 25/26/27/28 Phase A/B/D/C 全绿） |
+| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16–29 已注册；README 徽章 29 gates；`run_gates.py --with-data` → **29/29 PASS**（Gate 24 条件门禁 + Gate 25/26/27/28 Phase A/B/D/C + Gate 29 Phase E3 全绿） |
 | 17 | **Gate 3 沙箱修复** | 门禁快照还原不得依赖批量删除 | ✅ `_frozen()` 改逐文件快照/逐文件还原（`SAFE_DELETE_BULK_CONFIRM_REQUIRED`，阈值 50） |
 
 **T1 许可分层（已写入 provenance）**：斑马鱼 Petkova 2025 = **CC-BY-NC**（不可商用）；
