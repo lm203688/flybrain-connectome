@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.54.0` | the toolkit as a whole |
+| package | `2.55.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,76 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.55.0] — 2026-10-10
+
+**Phase B 交付：虚拟生物从会代谢变成会自愈（damage.py + repair.py + Gate 26）**
+
+`docs/DIGITAL_ORGANISM_DESIGN_2026-10-10.md` §四 定义的 Phase B 四个交付项（B1–B4）全部落地。Phase A 给虚拟生物装上了心跳，Phase B 给它装上了**免疫系统**——能感知损伤、能开处方、能验证疗效、能回滚无效治疗。
+
+### B1 · 损伤注入器（damage.py）
+
+- 新模块 `flybrain-connectome-mcp/damage.py`（stdlib-only，与 runtime.py 同一承诺）。
+- 三种可复现损伤，全部 seed 驱动：
+  - `module_fail(module_id)` — 模块权重归零，模拟"神经元死亡"；**改变拓扑签名**
+  - `edge_break(edge_index)` — 删除一条连线；**改变拓扑签名**
+  - `port_poison(port_id, value)` — 绕过 `Port.write` 范围守卫直接写入非法值；**不改拓扑签名**（状态损伤而非结构损伤）——这条区分很重要：结构损伤走签名检测，状态损伤走轨迹检测
+- 每次注入返回 `DamageReport`（含 before/after 签名 + 签名变化标志），便于审计。
+- **失败即抛**：索引越界抛 `IndexError`，未知端口抛 `KeyError`，损伤未产生预期签名变化抛 `DamageIneffectiveError`——不静默通过。
+- **确定性**：同 seed 同损伤必得同签名；`random_damage(seed)` 也确定。
+
+### B2 · 修复算子（repair.py）
+
+- 新模块 `flybrain-connectome-mcp/repair.py`（stdlib-only）。
+- 三种原子补丁，全部**可枚举、可回放、可反向**：
+  - `add_unit(name, function, n_nodes, ...)` — 添加模块（自动分配下一个可用 id，可选 `edges_out` 自动接线）
+  - `rewire(from_mod, to_mod, kind, weight, edge_index=None)` — 新增边（`edge_index=None`）或替换边（`edge_index` 给定）
+  - `drop_unit(module_id)` — 删除模块及其所有连线
+  - `restore_params(module_id, parameters)` — 恢复模块参数（专门用于撤销 `module_fail`）
+- **补丁是纯数据**（`Patch` dataclass）：`apply(organism)` 和 `reverse(organism)` 都返回**新** Organism，源对象永不修改——所以修复可以重放、diff、回滚。
+- **补丁序列化**：`as_dict()` / `from_dict()` 支持 JSON 往返；序列化后的补丁行为与原始补丁等价。
+- **签名距离**：`signature_distance(a, b)` = sha256 十六进制串的 Hamming 距离，归一到 [0, 1]。对称、零自距。
+- **修复改进度**：`repair_improvement(pre, damaged, repaired)` = `1 - distance(repaired, pre) / distance(damaged, pre)`。1.0 = 完全恢复，0.0 = 无变化，<0 = 恶化。
+
+### B3 · 四步修复循环（RepairLoop）
+
+- 轨迹 → 探索 → 共识挖掘最小补丁 → 验证。
+- 接受损伤后 Organism + 损伤签名 + 损伤前签名，在 `max_steps`（默认 20）步内搜索候选补丁。
+- `enumerate_candidates(max_candidates, seed)` 混合三种补丁类型（restore_params / rewire / add_unit）确保共识有找到可行修复的机会。
+- 每个候选：apply → 算签名 → `RepairValidator.evaluate` → 接受则保留并继续探索，拒绝则丢弃。
+- **绝不留坏状态**：如果某补丁被接受但最终回退（后续补丁让情况更糟），`reverse` 会按逆序回滚所有已应用补丁，恢复到损伤前状态。
+- 返回 `RepairResult`（accepted / patches_applied / improvement / reason / attempts），可序列化。
+
+### B4 · 结构性验收 + 统计死区 + 回滚（RepairValidator）
+
+- 核心判据：`improvement >= dead_zone`（默认 0.02）且 `improvement >= 0`。
+- **退化补丁 100% 被拒**：`improvement < 0` → "regression" 理由拒绝。
+- **噪声 100% 被拒**：`0 <= improvement < dead_zone` → "dead-zone" 理由拒绝（统计上无意义）。
+- **回滚保证**：被接受的补丁必须可逆；`RepairLoop` 在最终回退时按逆序 `reverse` 所有已应用补丁，恢复到损伤前签名。
+- **死区 0.02 不是魔数**：topology profile 把 10 个指标舍入到 4 位小数，2% 的签名距离变化是跨越这些舍入边界的最小可区分变化。按任务调，**不要按运行调**。
+
+### Gate 26 · 门禁（含 5 注入缺陷）
+
+新门禁 `scripts/check_repair.py`，接入 `run_gates.py --quick`（`--quick` 现在 22 条，完整 25 条）。
+
+- **B1 断言**：module_fail / edge_break / port_poison 三种损伤的签名变化行为、确定性、失败即抛。
+- **B2 断言**：三种补丁 + restore_params 的 apply/reverse 完全逆运算不变式（reverse 恢复原签名）、序列化往返等价、签名距离/改进度数学不变式。
+- **B3+B4 断言**：RepairLoop 在 module_fail 损伤上的完整闭环、枚举产生多种类型、dead-zone 拒绝近邻噪声、回归拒绝、RepairResult 序列化。
+- **5 注入缺陷测试**（"错误的断言比没断言更糟"纪律）：
+  1. 绕过 `Port.write` 直接 `motor.last_value = 2.0` → 断言 `[-1, 1]` 边界必须触发
+  2. `PortViolationError` 被替换成 `_WrongError` → 边界错误类型变化必须触发
+  3. `Runtime.step` 被 patch 成静默丢弃未知端口 → 必须报 `INJECTED DEFECT 3 did not fire`
+  4. `drop_unit.reverse` 被 patch 成破坏可逆性 → 必须检测到签名不匹配
+  5. `RepairValidator.dead_zone` 被 patch 成 0（接受噪声）→ 必须检测到 dead-zone 失效
+- 全部注入都确认报红（"不响则门禁本身是坏的"）。
+
+### 版本与门禁
+
+- 版本号 7 处同步 2.54.0 → 2.55.0（pyproject / flybrain_cli / server / api_server / README 徽章×2 / README 摘要 / CHANGELOG schema 表）。
+- 完整门禁 **25/25 PASS**；`--quick` **22/22 PASS**。
+- **完全封闭期**：按 2026-10-10 用户拍板决策，Phase A–D 期间不对外沟通、不发论文、不发 preprint。
+
+---
 
 ## [2.54.0] — 2026-10-10
 
