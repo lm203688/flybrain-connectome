@@ -361,7 +361,7 @@ Tier-2 数据。**2026-10-09 已本地检出私有 core 并配为 `flybrain_core
 | 13 | **T4 MCP 工具 `profile_topology`** | 45 → 46；三处文档同步 | ✅ `server.py` + README + `docs/mcp_setup.md` + `~/.workbuddy/mcp.json`（Gate 2 全绿） |
 | 14 | **T5 组合闭环门禁** | 例外登记 + 注入缺陷报红 | ✅ `composition_exceptions.json`（61 条）+ `build_compatibility_matrix.py` + **Gate 17** |
 | 15 | **M4 北极星 D1–D4 可执行化** | 判据自洽 + 结构指纹 + 时间-质量曲线 + 离线对照 | ✅ `fast_decision.py`（22 项自检，**Gate 18**）+ `fast_decision_experiment.py` + `FAST_DECISION_REPORT.md` |
-| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16–24 已注册；README 徽章 24 gates；`run_gates.py` → **23/23 PASS**（Gate 24 条件门禁，core 配置下跑通） |
+| 16 | **门禁注册与复验** | 新门禁全部进 `run_gates.py`；计数文档一致 | ✅ Gate 16–28 已注册；README 徽章 28 gates；`run_gates.py --quick` → **24/24 PASS**（Gate 24 条件门禁 + Gate 25/26/27/28 Phase A/B/D/C 全绿） |
 | 17 | **Gate 3 沙箱修复** | 门禁快照还原不得依赖批量删除 | ✅ `_frozen()` 改逐文件快照/逐文件还原（`SAFE_DELETE_BULK_CONFIRM_REQUIRED`，阈值 50） |
 
 **T1 许可分层（已写入 provenance）**：斑马鱼 Petkova 2025 = **CC-BY-NC**（不可商用）；

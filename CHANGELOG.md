@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.55.0` | the toolkit as a whole |
+| package | `2.56.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,75 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.56.0] — 2026-10-10
+
+**Phase A–D 全部交付：虚拟生物从静态 JSON 变成活的、会自愈的、会繁殖演化的、会组合出新物种的种群（4 个新模块 + 4 个新门禁 + 16 项缺陷注入）**
+
+这是本项目"数字生命"路线图的**首次完整交付**。此前 `flybrain generate` 产出的是一个带 `generated_utc` 的静态 JSON——它有器官、有血管、有出生证明，但没有心跳。v2.56.0 把它变成**能跑代谢循环、会自己修好自己、会繁殖会死会逐代改变、会组合出新物种**的种群。
+
+### 新增 4 个 Phase 模块（全部 stdlib-only）
+
+| Phase | 模块 | 行数 | 核心交付 |
+|---|---|---|---|
+| **A** 让个体活起来 | `runtime.py` | 935 | Runtime + Organism + Port + Monitor + MetabolismCounter + Trajectory + 三个异常类 |
+| **B** 让个体会自愈 | `damage.py` + `repair.py` | 407 + 875 | DamageInjector（3 类损伤）+ Patch（4 种原子补丁）+ RepairLoop（Trace→Explore→Consensus→Validate）+ RepairValidator（死区+回滚） |
+| **D** 组合出新物种 | `combination_reaction.py` | 800+ | ReactionEngine（T3 规则 × 66 连接类型）+ SpeciesRegistry（签名单一性）+ MotifCensus（8 类有向 3 节点模体普查） |
+| **C** 让种群繁殖演化 | `population.py` | 700+ | Population（spawn/clone/mutate + 世系树）+ DGMArchive（保留非最优）+ NegativeResultGuard（负结果护栏） |
+
+### 新增 4 个门禁（Gate 25–28）
+
+| Gate | 名称 | 检查项 | 注入缺陷 |
+|---|---|---|---|
+| **25** | Phase A runtime | A1 代谢循环 + A2 边界强制 + A3 持续监护 + A4 代谢计量 | 3 个（runtime 内部缺陷） |
+| **26** | Phase B repair | B1 损伤注入 + B2 修复算子 + B3 修复循环 + B4 结构性验收 | 5 个（含 drop_unit.reverse 不可逆） |
+| **27** | Phase D combination | D1 端口反应引擎 + D2 新物种登记 + D3 模体普查 | 4 个（含非法 rule_id / connection_type 绕过） |
+| **28** | Phase C population | C1 世系树 + C2 存活判据 + C3 DGM 档案库 + C4 死亡回收 + C5 负结果护栏 | 4 个（含 clone 签名漂移 / can_survive 永远 True / guard 从不触发） |
+
+**全库现共 28 门禁**（Gate 24 为条件门禁，`--quick` 下 24/24 PASS；完整 28/28 PASS）。
+
+### 新增模块的关键设计决策（都是刻意的，不是意外）
+
+- **Phase A**：**stdlib-only**，权重矩阵是 list-of-list-of-float，用 `math.tanh` 做状态更新——沿用 `topology_profile.py` 的契约，不引 numpy。
+- **Phase B**：`Patch` 是原子操作（`add_unit` / `rewire` / `drop_unit` / `restore_params`），**每个 patch 都必须可 reverse**——不可逆的补丁被 `PatchNotReversibleError` 拒绝。
+- **Phase C**：**存活判据是二分的，不是 fitness**——个体要么能跑通 N 步代谢循环，要么不能。本项目 2025-10 已实测任何 fitness 都退化成"更多边更好"，明确不重复这条路。**档案库保留所有个体**（DGM 式），不删除；死亡只打标签，血统封存。
+- **Phase D**：**反应引擎不猜"能不能拼"**——每条拟议的模块对连接都必须先通过 `module_combinator.find_rule` 拿到至少一条 T3 规则；拿不到就抛 `IllegalReactionError`。**新能力判据是结构判据**（模体层），不是功能判据——回答"这个结构形状是不是亲代都没有过"，不是"能不能做亲代都做不到的事"。
+- **负结果护栏（C5）**：`NegativeResultGuard` 是**唯一**有权触发关闭的类，连续 N 代结构增益为 0 即抛 `NegativeResultTriggered`，且必须留下负结果记录——反"希望它会变好"机制。
+
+### 门禁纪律（沿用本项目"注入缺陷证明会报红"标准）
+
+- 每个新门禁**先注入缺陷证明会报红，再扩容**
+- **门禁必须串行**（并发 quick+full 会让瞬红，非代码缺陷）
+- **门禁自己要扛坏数据**——只打印的门禁等于把测量留在没人读的日志里
+- **apply/restore 必须是两个独立闭包**（同一 callable 调两次对 pop/append/clear 是叠加不是还原）
+
+### 版本一致性（7 处同步）
+
+- `pyproject.toml` / `flybrain_cli.py` / `server.py` / `api_server.py` → **2.56.0**
+- `README.md` 徽章 26→28 gates + 版本号
+- `run_gates.py` 顶部注释 24→28 gates
+- `FOUNDATION_ROADMAP.md` 门禁计数行
+
+### 数据规模（未变，仅新增结构层）
+
+- 116 功能单元 / 270 模块剖面 / 66 连接类型 / 83 端口 / 45 系统 / 37 embodied
+- 3 连接组：MaleCNS 成虫（166,700 神经元 / 124,177,617 突触）| C. elegans Witvliet 2020（全 8 重建）| 幼虫 Winding 2023（2,956 节点 / 352,611 突触）
+- 157 声明边 = 149 SUPPORTED + 7 FRAGILE + 1 CONTRADICTED
+- 25 蓝图 / 5 预置堆叠蓝图 / 46 MCP 工具
+
+### 对外节奏（**完全封闭期**）
+
+Phase A–D 全部在**完全封闭期**内交付，不做对外沟通、不发论文、不发 preprint、不接触 VITAL / KAIST 等外部学术圈。**对外启动时机 = Phase E（需要 LLM 访问）完成之后**——即四条数字生命特征至少各有一条实测非零结果。
+
+### 诚实边界（本版本新增）
+
+1. **数字生命 ≠ 意识**：本项目不主张意识、感受或哲学意义上的"活着"。数字生命 = 一组可测的工程判据。
+2. **不宣称计算力/能耗优势**（0/7、0/24 实测为负）。本版本不重开这两条；P1（LLM 编排对照）可能解释 0/7 是基底问题而非结构无效——**待验，不是结论**。
+3. **"出新东西"必须落到三条可测判据之一**，测不出就发负结果。不接受"感觉上更强了"。
+4. **演化可能失败**：谷歌 SUBLEQ 反例（数十亿次执行不涌现）；C5 已预先声明关闭条件。
+5. **外部数字来源强度**：AdaptOrch 是单作者预印本；谷歌 2024 论文自陈非生物起源证据——方向性可用，具体数值对外引用前须核对原文。
+
+---
 
 ## [2.55.0] — 2026-10-10
 
