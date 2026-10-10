@@ -280,6 +280,19 @@
 | E2 | **P1 对照实验**：本项目拓扑 vs 随机 vs AdaptOrch 4 种，在 LLM 编排基底上测 | **需 LLM 访问**（唯一新外部依赖） | ⏸ 未启动 |
 | E3 | **NCA 式发育**：局部规则迭代生长，替代一次性生成 | 无 | ✅ **v2.57.0**（`development.py`：GrowthRule + NCAGrower.grow + DevelopmentReport；20 个 ATTACHABLE_FUNCTIONS 白名单；4 收敛原因全可达；5/5 门禁 + 4/4 注入缺陷；产物直接兼容 `Runtime.step`） |
 
+### 收官实证 · Phase A–D+E3 端到端生命闭环（v2.58.0）
+
+`flybrain-connectome-mcp/lifecycle.py`（~600 行，stdlib-only）把 Phase A–D+E3 的 6 个模块（`runtime` / `damage` / `repair` / `population` / `development` / `combination_reaction`）串成一条可运行的 **8 阶段数字生命闭环**：
+
+```
+birth (E3) → live (A) → damage (B1) → repair (B3)
+   → reproduce (C1) → select (C2+D3) → die (C4) → guard (C5)
+```
+
+**实测（seed=42, n_steps=5）：8/8 阶段 ok，`converged=True`，15 模块 / 14 边个体完整走完生命周期，同 seed 两次跑出生签名 `sha256:26c767...` 完全一致**。这是"数字生命特征"作为**整体**（不是单个 Phase）成立的实证。
+
+`lifecycle.py --self-test` 提供 12 项断言做进程内 sanity check；`--run` 输出完整 JSON 审计轨迹。
+
 > **E2 是本项目唯一能真正结案的实验**——0/7 到底是"结构无效"还是"测错基底"，测完就知道。
 
 ---
