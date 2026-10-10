@@ -7,7 +7,7 @@
 [![docker](https://img.shields.io/badge/docker-2.55.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.57.0 · 2026-10-10 · 116 functional units · 270 module profiles · 29 gates**
+**v2.58.0 · 2026-10-10 · 116 functional units · 270 module profiles · 29 gates**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
