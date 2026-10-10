@@ -7,7 +7,7 @@
 [![docker](https://img.shields.io/badge/docker-2.55.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.56.0 · 2026-10-10 · 116 functional units · 270 module profiles · 28 gates**
+**v2.57.0 · 2026-10-10 · 116 functional units · 270 module profiles · 29 gates**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
@@ -1107,9 +1107,9 @@ for client configs, the 46-tool reference, and troubleshooting.
 The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
-python scripts/run_gates.py              # 23 gates, no dataset needed
-python scripts/run_gates.py --quick      # the 20 gates that don't need numpy / a server
-python scripts/run_gates.py --with-data  # 28 gates: + `flybrain verify` (70 assertions)
+python scripts/run_gates.py              # 29 gates, no dataset needed
+python scripts/run_gates.py --quick      # the 25 gates that don't need numpy / a server
+python scripts/run_gates.py --with-data  # 29 gates: + `flybrain verify` (70 assertions)
 ```
 
 ### Makefile shortcuts (v2.43.0)
