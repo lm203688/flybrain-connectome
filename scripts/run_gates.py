@@ -42,8 +42,8 @@ committed anchor artifact, and only recomputes from raw data under --with-data.
 
 Usage:
     python scripts/run_gates.py                  # 23 gates, no dataset needed
-    python scripts/run_gates.py --with-data      # 28 gates (+ `flybrain verify`)
-    python scripts/run_gates.py --quick          # 20 gates: skips 3, 4, 5 (no numpy,
+    python scripts/run_gates.py --with-data      # 29 gates (+ `flybrain verify`)
+    python scripts/run_gates.py --quick          # 25 gates: skips 3, 4, 5 (no numpy,
                                                  #   no server spawn, no generated artifact)
 """
 
@@ -186,6 +186,13 @@ def main() -> int:
         "GATE 28 — Phase C population dynamics: clone/mutate + lineage + "
         "selection + archive + death (with 4 injected-defect tests)",
         [py, str(SCRIPTS / "check_population.py")])[0]))
+
+    # ---- Gate 29: Phase E3 NCA-style local development ----
+    results.append(("gate29 development", run(
+        "GATE 29 — Phase E3 NCA-style local development: growth rules + "
+        "audit trail + 4 convergence reasons + fail-closed "
+        "(with 4 injected-defect tests)",
+        [py, str(SCRIPTS / "check_development.py")])[0]))
 
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(

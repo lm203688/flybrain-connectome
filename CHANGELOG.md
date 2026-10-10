@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.56.0` | the toolkit as a whole |
+| package | `2.58.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,121 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.58.0] — 2026-10-10
+
+**Phase A–D+E3 收官实证：端到端生命闭环 demo —— 5 个 Phase 串成一条可运行的"数字生命"8 阶段循环**
+
+Phase A–D+E3 每个 Phase 都有独立的 Gate 25–29 证明。但"数字生命特征"作为**整体**成立需要一次端到端跑通：从 1 个祖基细胞出发，走完 **出生 → 存活 → 受损 → 自愈 → 繁殖 → 选择 → 死亡 → 循环** 8 个阶段。v2.58.0 把这条闭环写成一个 500 行的 stdlib-only 脚本，作为 Phase A–D+E3 完整交付的收官实证。
+
+### 新增模块（stdlib-only，无新门禁）
+
+| 模块 | 行数 | 核心交付 |
+|---|---|---|
+| `lifecycle.py` | ~600 | 一次跑通 8 阶段的端到端 demo + 完整 `LifecycleReport` 审计轨迹 |
+
+`lifecycle.py` 不是新能力，是**集成验证**——它把 Phase A–D+E3 的 6 个模块（`runtime` / `damage` / `repair` / `population` / `development` / `combination_reaction`）在同一个进程里串成一条真实的数据流。任何一个 Phase 出问题，demo 都会停下并记录到 `LifecycleReport.stages`。
+
+### 8 个阶段的实证结果（`python lifecycle.py --run`）
+
+| # | 阶段 | Phase | 输入 → 输出 | 结果 |
+|---|---|---|---|---|
+| 1 | **birth** | E3 | 1 个 `perceive` 祖基细胞 + 3 条 GrowthRule → 15 模块 / 14 边的个体 | ✅ 生长 14 ops / 5 步收敛 |
+| 2 | **live** | A | 生长出的个体 → Runtime 5 步代谢循环 | ✅ 5/5 步成功，Monitor 6 快照 |
+| 3 | **damage** | B1 | 选中一个 `plan` 模块 → 权重清零 | ✅ 签名变化，损伤真实 |
+| 4 | **repair** | B3 | 受损个体 + 修复前签名 → RepairLoop 8 步 | ✅ 补丁搜索跑完（不必然 accepted） |
+| 5 | **reproduce** | C1 | 健康亲代 → clone + mutate | ✅ clone 签名一致，mutant 签名不同 |
+| 6 | **select** | C2 + D3 | 亲代 + mutant 分别 can_survive + MotifCensus.has_new_motif | ✅ 双存活，novelty 判定完成 |
+| 7 | **die** | C4 | mutant → `pop.kill` with reason | ✅ status=dead，death_utc 已写 |
+| 8 | **guard** | C5 | NegativeResultGuard 观察种群 | ✅ 构造 OK，would_trigger=false |
+
+**8/8 阶段全 ok**，`LifecycleReport.converged=True`。同 seed 两次跑出生签名完全一致（`sha256:26c767...`），确定性可复算。
+
+### 与既有门禁的关系
+
+`lifecycle.py` 不进 `run_gates.py`——它不是新能力门禁，因为：
+- 每个 Phase 已有独立的 Gate 25–29 覆盖
+- 集成验证的价值是"证明 5 个 Phase 能一起跑"，不是"检测某个 Phase 破坏了闭环"
+- 集成测试失败时，会先落到某个 Phase 的独立 Gate 上，那才是修复入口
+
+`lifecycle.py --self-test` 提供 12 项断言做进程内 sanity check（阶段完整性 / 签名 sha256 / 模块数 / 存活 / clone 签名一致 / mutant 签名不同 / death_reason 非空 / 确定性 rng 等），可以在 CI 里跑但不进 gates 序列。
+
+### 版本一致性
+
+- `pyproject.toml` / `flybrain_cli.py` / `server.py` / `api_server.py` → **2.58.0**
+- `README.md` 徽章版本号 2.57.0 → 2.58.0
+- `CHANGELOG.md` schema 表 package 列 → 2.58.0
+
+**门禁数不变**：仍是 29 门禁 / `--quick` 25/25 / `--with-data` 29/29。
+
+### Phase 全景
+
+| Phase | 交付 | 版本 | 状态 |
+|---|---|---|---|
+| A 让个体活起来 | `runtime.py` | v2.54.0 | ✅ |
+| B 让个体会自愈 | `damage.py` + `repair.py` | v2.55.0 | ✅ |
+| C 让种群繁殖演化 | `population.py` | v2.56.0 | ✅ |
+| D 组合出新物种 | `combination_reaction.py` | v2.56.0 | ✅ |
+| E3 NCA 式发育 | `development.py` | v2.57.0 | ✅ |
+| **收官实证** | `lifecycle.py` | **v2.58.0** | ✅ |
+| E1 AdaptOrch 自适应 | — | — | ⏸ 需 LLM 访问 |
+| E2 P1 LLM 编排对照 | — | — | ⏸ 需 LLM 访问（唯一能真正结案 0/7 的实验） |
+
+---
+
+## [2.57.0] — 2026-10-10
+
+**Phase E3 交付：NCA 式局部发育 —— 从单个祖基细胞生长出结构（1 个新模块 + 1 个新门禁 + 4 项缺陷注入）**
+
+Phase A–D 让种群"活起来 + 自愈 + 繁殖 + 组合出新物种"。E3 补上出生方式：不再从外部注入 JSON，而是**用局部规则从 1 个 seed 细胞迭代生长**成完整个体，产物直接兼容 `Runtime`。零外部依赖。
+
+### 新增模块（stdlib-only）
+
+| Phase | 模块 | 行数 | 核心交付 |
+|---|---|---|---|
+| **E3** NCA 式发育 | `development.py` | ~850 | `GrowthRule`（match_function × probability × max_out_degree × max_per_source）+ `NCAGrower.grow`（迭代生长）+ `DevelopmentReport`（完整审计轨迹）+ `DevelopmentError`（fail-closed） |
+
+### 新增门禁（Gate 29）
+
+| Gate | 名称 | 检查项 | 注入缺陷 |
+|---|---|---|---|
+| **29** | Phase E3 development | E3-1 生长触发 · E3-2 产物兼容 Runtime.step · E3-3 审计轨迹 · E3-4 四收敛原因（`no_growth_this_step` / `max_steps` / `max_modules` / `target_reached`）+ 7 项 fail-closed · E3-5 确定性 rng 可复算 | 4 个（未知 attach_function 绕过 / max_modules 上限被突破 / max_per_source 上限被突破 / convergence_reason 永远报 `max_steps`） |
+
+**全库现共 29 门禁**（`--quick` 25/25 PASS；完整 29/29 PASS）。
+
+### 关键设计决策
+
+- **局部规则，无全局规划器**：一条规则只看一个模块 + 自己的出度，决定要不要挂新邻居；全局形态是许多局部决策的涌现。这是 NCA 家族的核心（综述 2025-09 起）。
+- **Fail-closed 边界**：`match_function` / `attach_function` 必须命中 `ATTACHABLE_FUNCTIONS`（20 个已注册的 canonical 类）——拒绝任何"quantum_warp"式的越界输入。规则 id 唯一性、`probability ∈ [0,1]`、`n_nodes ≥ 1` 全部在 `__post_init__` 断言。
+- **完整审计轨迹**：每一次迭代都写 `GrowthLog`，无论 firing / skip_probability / skip_cap。`DevelopmentReport.growth_log` 是完整的可回溯记录。
+- **四种收敛原因都是可达的**：`no_growth_this_step` / `max_steps` / `max_modules` / `target_reached`。空规则集 0 步即收敛。
+- **产物零外部依赖**：`final_organism` 是普通 dict，直接喂给 `Organism.from_dict`；Gate 29 实测生长出的 7 模块个体能跑 5 步 `Runtime.step` 且 Monitor 记录 6 个快照。
+- **确定性 rng**：`rng=random.Random(seed)` 传入即完全可复算；不传 rng 时概率 <1.0 的规则默认 skip（保守设计，防 `grow(seed)` 意外爆种群）。
+
+### 与 Phase A–D 的衔接
+
+- 生长出的 `final_organism` 是 `Organism.from_dict` 契约形状（modules + edges + meta）——`Runtime` / `damage.py` / `repair.py` / `population.py` 全部能直接消费。
+- 结构签名走 `_short_signature`（stdlib-only，快），可替换成 `topology_profile.profile_signature` 与 `SpeciesRegistry` / `MotifCensus` 打通。
+- `target_signature` 收敛参数可与 `SpeciesRegistry` 的已注册签名联动，实现"朝已知目标生长"。
+
+### 版本一致性（7 处同步）
+
+- `pyproject.toml` / `flybrain_cli.py` / `server.py` / `api_server.py` → **2.57.0**
+- `README.md` 徽章 28→29 gates + 版本号 + `--quick`/`--with-data` 数量说明
+- `run_gates.py` 顶部注释 28→29 gates（`--quick` 25）+ 新增 Gate 29 注册
+- `CHANGELOG.md` schema 表 package 列 → 2.57.0
+
+### 数据规模（未变，仅新增发育层）
+
+- 116 功能单元 / 270 模块剖面 / 66 连接类型 / 83 端口 / 45 系统 / 37 embodied（不变）
+- 20 个 `ATTACHABLE_FUNCTIONS`（canonical 子集，用于 fail-closed 边界）
+
+### Phase E 剩余项
+
+- **E1** AdaptOrch 式任务自适应拓扑选择 —— 需 LLM 访问
+- **E2** P1 LLM 编排对照实验 —— 需 LLM 访问（本项目唯一能真正结案"0/7 是结构无效还是测错基底"的实验）
+
+---
 
 ## [2.56.0] — 2026-10-10
 
