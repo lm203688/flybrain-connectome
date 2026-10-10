@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.53.0` | the toolkit as a whole |
+| package | `2.54.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,62 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.54.0] — 2026-10-10
+
+**Phase A 交付：虚拟生物从静态 JSON 变成活体代谢循环（runtime.py + Gate 25）**
+
+`docs/DIGITAL_ORGANISM_DESIGN_2026-10-10.md` §四 定义的 Phase A 四个交付项（A1–A4）全部落地。此前 `flybrain generate` 产出的是一个带 `generated_utc` 的静态 JSON——有器官、有血管、有出生证明，但没有心跳。本版给它装上了心跳。
+
+### A1 · 代谢循环（runtime.py）
+
+- 新模块 `flybrain-connectome-mcp/runtime.py`（stdlib-only，无 numpy 依赖，与 `topology_profile.py` 同一承诺）。
+- `Runtime.step(inputs)` 一次代谢循环：外部输入 → 状态更新 → 输出信号。
+- 每个模块维护一个 `state` 向量，长度等于 `n_nodes`。递推式 `x(t+1) = tanh(W_rec · x(t) · recurrent_pct + W_in · u(t))`——与 v1.x 已实测的 reservoir 基底完全一致，Phase A 不更换动力学契约，只让它**可运行**。
+- 权重初始化从 `reservoir_density` / `recurrent_pct` / `has_inhibition` 三个既有参数派生；`math.tanh` 激活。
+- 确定性：相同 seed 下相同输入必得相同输出（20/20 selftest 之一断言）。
+- 输出通过 motor 模块的 `_w_out` 线性读出，`Port.write` 钳制到 `[-1, 1]`。
+
+### A2 · 边界强制（typed port boundary，fail-closed）
+
+- `Port.write(value)` 是唯一合法写入入口。范围 `[-1, 1]`，`NaN` / `inf` / 非数值 / 超范围均抛 `OutOfRangeError`。
+- `Module.state` 是 property，返回防御性副本；直接赋值 `module.state = [...]` 抛 `PortViolationError`。
+- 未知端口名抛 `UnknownPortError`（fail-closed，**不静默丢弃**——这是本版本最重要的纪律之一）。
+- `Module.__setattr__` 拦截所有非白名单属性赋值。
+- 这是 `docs/DIGITAL_LIFE_POSITIONING_2026-10-09.md` 承诺的"typed port boundary"从约定变成运行时强制。
+
+### A3 · 持续监护（Monitor）
+
+- 每 `monitor_every` 步调 `topology_profile.profile()` 计算当前拓扑签名。
+- step 0 记录 baseline；后续签名与 baseline 不同即标 `degraded=True`。
+- 签名稳定性：**固定 seed 下 recurrent edges 每次调用完全一致**，签名不变——这是"稳定基线"的前提，不稳定的基线会使对比毫无意义。
+- 不发明阈值（ρ > X、modularity < Y）——那是 Phase B4 的活；这里只提供**结构是否变了**这个诚实信号。
+- 内置 bonus 断言：改变拓扑后签名必须不同（防签名退化成常量）。
+
+### A4 · 代谢计量（MetabolismCounter）
+
+- 四项指标：`in_events` / `out_events` / `internal_updates` / `active_ratio_history`。
+- `active_ratio` = `|state[i]| ≥ 0.1` 的节点比例，逐步追加历史。
+- 快照字段 `active_ratio_min ≤ active_ratio_mean ≤ active_ratio_max` 的单调性作为纪律性断言。
+
+### Gate 25 · 门禁（含 3 注入缺陷）
+
+新门禁 `scripts/check_runtime.py`，接入 `run_gates.py --quick`（`--quick` 现在 21 条，完整 24 条）。
+
+- **A1–A4 逐项断言**（合成最小体 + 真实生成体双通道；真实体来自 `male_cns/virtual_organisms/`，无数据时自动降级为合成体，不谎报）。
+- **3 注入缺陷测试**（"错误的断言比没断言更糟"纪律）：
+  1. 绕过 `Port.write` 直接 `motor.last_value = 2.0` → 断言 `[-1, 1]` 边界必须触发
+  2. `PortViolationError` 被替换成 `_WrongError` → 边界错误类型变化必须触发
+  3. `Runtime.step` 被 patch 成静默丢弃未知端口 → 必须报 `INJECTED DEFECT 3 did not fire`
+- 全部注入都确认报红（"不响则门禁本身是坏的"）。
+
+### 版本与门禁
+
+- 版本号 7 处同步 2.53.0 → 2.54.0（pyproject / flybrain_cli / server / api_server / README 徽章×2 / 摘要行），CHANGELOG schema 表同步。
+- 完整门禁 **24/24 PASS**；`--quick` **21/21 PASS**。
+- **完全封闭期**：按 2026-10-10 用户拍板决策，Phase A–D 期间不对外沟通、不发论文、不发 preprint。
+
+---
 
 ## [2.53.0] — 2026-10-10
 

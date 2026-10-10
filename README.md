@@ -3,11 +3,11 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-2.53.0-orange.svg)](CHANGELOG.md)
-[![docker](https://img.shields.io/badge/docker-2.53.0-2496ED.svg)](#docker)
+[![version](https://img.shields.io/badge/version-2.54.0-orange.svg)](CHANGELOG.md)
+[![docker](https://img.shields.io/badge/docker-2.54.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.53.0 · 2026-10-10 · 116 functional units · 270 module profiles · 24 gates**
+**v2.54.0 · 2026-10-10 · 116 functional units · 270 module profiles · 25 gates**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
