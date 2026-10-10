@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.57.0` | the toolkit as a whole |
+| package | `2.58.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,67 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+## [2.58.0] — 2026-10-10
+
+**Phase A–D+E3 收官实证：端到端生命闭环 demo —— 5 个 Phase 串成一条可运行的"数字生命"8 阶段循环**
+
+Phase A–D+E3 每个 Phase 都有独立的 Gate 25–29 证明。但"数字生命特征"作为**整体**成立需要一次端到端跑通：从 1 个祖基细胞出发，走完 **出生 → 存活 → 受损 → 自愈 → 繁殖 → 选择 → 死亡 → 循环** 8 个阶段。v2.58.0 把这条闭环写成一个 500 行的 stdlib-only 脚本，作为 Phase A–D+E3 完整交付的收官实证。
+
+### 新增模块（stdlib-only，无新门禁）
+
+| 模块 | 行数 | 核心交付 |
+|---|---|---|
+| `lifecycle.py` | ~600 | 一次跑通 8 阶段的端到端 demo + 完整 `LifecycleReport` 审计轨迹 |
+
+`lifecycle.py` 不是新能力，是**集成验证**——它把 Phase A–D+E3 的 6 个模块（`runtime` / `damage` / `repair` / `population` / `development` / `combination_reaction`）在同一个进程里串成一条真实的数据流。任何一个 Phase 出问题，demo 都会停下并记录到 `LifecycleReport.stages`。
+
+### 8 个阶段的实证结果（`python lifecycle.py --run`）
+
+| # | 阶段 | Phase | 输入 → 输出 | 结果 |
+|---|---|---|---|---|
+| 1 | **birth** | E3 | 1 个 `perceive` 祖基细胞 + 3 条 GrowthRule → 15 模块 / 14 边的个体 | ✅ 生长 14 ops / 5 步收敛 |
+| 2 | **live** | A | 生长出的个体 → Runtime 5 步代谢循环 | ✅ 5/5 步成功，Monitor 6 快照 |
+| 3 | **damage** | B1 | 选中一个 `plan` 模块 → 权重清零 | ✅ 签名变化，损伤真实 |
+| 4 | **repair** | B3 | 受损个体 + 修复前签名 → RepairLoop 8 步 | ✅ 补丁搜索跑完（不必然 accepted） |
+| 5 | **reproduce** | C1 | 健康亲代 → clone + mutate | ✅ clone 签名一致，mutant 签名不同 |
+| 6 | **select** | C2 + D3 | 亲代 + mutant 分别 can_survive + MotifCensus.has_new_motif | ✅ 双存活，novelty 判定完成 |
+| 7 | **die** | C4 | mutant → `pop.kill` with reason | ✅ status=dead，death_utc 已写 |
+| 8 | **guard** | C5 | NegativeResultGuard 观察种群 | ✅ 构造 OK，would_trigger=false |
+
+**8/8 阶段全 ok**，`LifecycleReport.converged=True`。同 seed 两次跑出生签名完全一致（`sha256:26c767...`），确定性可复算。
+
+### 与既有门禁的关系
+
+`lifecycle.py` 不进 `run_gates.py`——它不是新能力门禁，因为：
+- 每个 Phase 已有独立的 Gate 25–29 覆盖
+- 集成验证的价值是"证明 5 个 Phase 能一起跑"，不是"检测某个 Phase 破坏了闭环"
+- 集成测试失败时，会先落到某个 Phase 的独立 Gate 上，那才是修复入口
+
+`lifecycle.py --self-test` 提供 12 项断言做进程内 sanity check（阶段完整性 / 签名 sha256 / 模块数 / 存活 / clone 签名一致 / mutant 签名不同 / death_reason 非空 / 确定性 rng 等），可以在 CI 里跑但不进 gates 序列。
+
+### 版本一致性
+
+- `pyproject.toml` / `flybrain_cli.py` / `server.py` / `api_server.py` → **2.58.0**
+- `README.md` 徽章版本号 2.57.0 → 2.58.0
+- `CHANGELOG.md` schema 表 package 列 → 2.58.0
+
+**门禁数不变**：仍是 29 门禁 / `--quick` 25/25 / `--with-data` 29/29。
+
+### Phase 全景
+
+| Phase | 交付 | 版本 | 状态 |
+|---|---|---|---|
+| A 让个体活起来 | `runtime.py` | v2.54.0 | ✅ |
+| B 让个体会自愈 | `damage.py` + `repair.py` | v2.55.0 | ✅ |
+| C 让种群繁殖演化 | `population.py` | v2.56.0 | ✅ |
+| D 组合出新物种 | `combination_reaction.py` | v2.56.0 | ✅ |
+| E3 NCA 式发育 | `development.py` | v2.57.0 | ✅ |
+| **收官实证** | `lifecycle.py` | **v2.58.0** | ✅ |
+| E1 AdaptOrch 自适应 | — | — | ⏸ 需 LLM 访问 |
+| E2 P1 LLM 编排对照 | — | — | ⏸ 需 LLM 访问（唯一能真正结案 0/7 的实验） |
+
+---
 
 ## [2.57.0] — 2026-10-10
 
