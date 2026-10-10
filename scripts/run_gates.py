@@ -163,6 +163,12 @@ def main() -> int:
         "GATE 24 — Tier-2 middleware rule engine functional + data-backed (skips if core absent)",
         [py, str(SCRIPTS / "check_t3_middleware.py")])[0]))
 
+    # ---- Gate 25: Phase A runtime — metabolic loop + boundary + monitor + metabolism ----
+    results.append(("gate25 runtime", run(
+        "GATE 25 — Phase A runtime: metabolic loop + boundary + monitor + metabolism "
+        "(with 3 injected-defect tests)",
+        [py, str(SCRIPTS / "check_runtime.py")])[0]))
+
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
         "GATE 9 — functional units + connection types + composer fail-closed",
