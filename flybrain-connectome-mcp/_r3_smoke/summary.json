@@ -1,0 +1,123 @@
+{
+  "n_results": 12,
+  "per_cell_accuracy": {
+    "align=-1.00|deepseek-v4-flash|hub": {
+      "accuracy": 1.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 0.4333
+    },
+    "align=-1.00|deepseek-v4-flash|reachability": {
+      "accuracy": 1.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 0.3333
+    },
+    "align=0.00|deepseek-v4-flash|hub": {
+      "accuracy": 1.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 0.35
+    },
+    "align=0.00|deepseek-v4-flash|reachability": {
+      "accuracy": 1.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 0.5833
+    },
+    "align=0.25|deepseek-v4-flash|hub": {
+      "accuracy": 1.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 0.1875
+    },
+    "align=0.25|deepseek-v4-flash|reachability": {
+      "accuracy": 1.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 1.0
+    },
+    "align=0.50|deepseek-v4-flash|hub": {
+      "accuracy": 1.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 0.1667
+    },
+    "align=0.50|deepseek-v4-flash|reachability": {
+      "accuracy": 1.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 1.0
+    },
+    "align=0.75|deepseek-v4-flash|hub": {
+      "accuracy": 1.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 0.1071
+    },
+    "align=0.75|deepseek-v4-flash|reachability": {
+      "accuracy": 0.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 0.75
+    },
+    "align=1.00|deepseek-v4-flash|hub": {
+      "accuracy": 0.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 0.7917
+    },
+    "align=1.00|deepseek-v4-flash|reachability": {
+      "accuracy": 1.0,
+      "n_cells": 1,
+      "mean_structural_alignment": 0.2
+    }
+  },
+  "gain_curves": {
+    "deepseek-v4-flash|hub": {
+      "baseline_accuracy": 1.0,
+      "level_accuracies": {
+        "-1.0": 1.0,
+        "0.0": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0,
+        "0.75": 1.0,
+        "1.0": 0.0
+      },
+      "level_counts": {
+        "-1.0": 1,
+        "0.0": 1,
+        "0.25": 1,
+        "0.5": 1,
+        "0.75": 1,
+        "1.0": 1
+      },
+      "gains": {
+        "0.0": 0.0,
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "0.75": 0.0,
+        "1.0": -1.0
+      },
+      "threshold_a_star": null,
+      "verdict": "no_threshold_found"
+    },
+    "deepseek-v4-flash|reachability": {
+      "baseline_accuracy": 1.0,
+      "level_accuracies": {
+        "-1.0": 1.0,
+        "0.0": 1.0,
+        "0.25": 1.0,
+        "0.5": 1.0,
+        "0.75": 0.0,
+        "1.0": 1.0
+      },
+      "level_counts": {
+        "-1.0": 1,
+        "0.0": 1,
+        "0.25": 1,
+        "0.5": 1,
+        "0.75": 1,
+        "1.0": 1
+      },
+      "gains": {
+        "0.0": 0.0,
+        "0.25": 0.0,
+        "0.5": 0.0,
+        "0.75": -1.0,
+        "1.0": 0.0
+      },
+      "threshold_a_star": null,
+      "verdict": "no_threshold_found"
+    }
+  }
+}
