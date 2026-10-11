@@ -23,10 +23,10 @@
       "quantitative_prediction": "P1: GA/随机的性能比随密度单调上升，并在某d*处穿越1.0。P2: 景观粗糙度（自相关长度/局部最优数）随密度下降",
       "falsification_condition": "若GA在所有密度下都不优于随机→'密度决定可搜索性'不成立，应改为'此适应度定义本身无信息量'",
       "reproduction_command": "python scripts/r2_density_scan.py --sweep 0.05,0.10,0.15,0.20,0.30,0.50,0.80 --n-samples 100 --output-dir ./_r2_density_scan",
-      "sample_size": "50 per density (current) → 100 (target)",
+      "sample_size": "200 per density × 7 densities = 1400 samples (full run, v2.63.0)",
       "random_seed": 42,
-      "boundary_statement": "GA 8/8 seeds lost to random (+29% fitness); density sweep covers 0.05-0.80; no cliff found in sweep range (need wider range or different metric)",
-      "status": "in_progress",
+      "boundary_statement": "FULL RUN (v2.63.0, N=200): hub_success=100%, reachability_success=100% at ALL densities (0.05-0.80). NO capability cliff found in sweep range. Transitivity rises monotonically with density (0.109→0.778). Diameter decreases (3.2→2.0). The 'no cliff' result is CONSISTENT with R1 falsification: task success is NOT density-dependent in this range. Need to test even higher densities (>0.8) or different metrics (e.g., learning rate, convergence speed) to find a cliff.",
+      "status": "complete",
       "external_dependency": "none"
     },
     {
@@ -49,9 +49,9 @@
       "quantitative_prediction": "敏感性边界：节点重编号不变（应不变）；边权微小变化（应变化）；模体替换（应变化）",
       "falsification_condition": "若指纹在节点重编号后变化→归一化失败；若边权变化后指纹不变→敏感性不足",
       "reproduction_command": "python scripts/r4_sensitivity_scan.py --n-blueprints 10 --perturbation-steps 0.1,0.2,0.3,0.5,0.8 --output-dir ./_r4_sensitivity_scan",
-      "sample_size": "10 blueprints × 5 perturbation steps × 4 types = 200 results (current)",
+      "sample_size": "50 blueprints × 5 perturbation steps × 4 types = 1000 results (full run, v2.63.0)",
       "random_seed": 42,
-      "boundary_statement": "Robustness boundaries: flip@0.2 (fp_dist=0.307), add@0.2 (fp_dist=0.361), remove@0.1 (fp_dist=0.367), node_delete@0.5 (fp_dist=0.456)",
+      "boundary_statement": "FULL RUN (v2.63.0, N=50): Robustness boundaries — flip@0.2 (fp_dist=0.401, reach_chg=49.0%), add@0.1 (fp_dist=0.301, reach_chg=38.7%), remove@0.1 (fp_dist=0.667, reach_chg=39.6%), node_delete@0.3 (fp_dist=0.277, reach_chg=57.4%). Most sensitive: remove@0.1 (fp_dist=0.667, highest fingerprint distance at lowest strength). Most robust: node_delete@0.3 (requires highest strength to trigger change). At strength=0.8: node_delete most disruptive (reach_chg=97.6%), remove least (reach_chg=48.7%).",
       "status": "complete",
       "external_dependency": "none"
     },
