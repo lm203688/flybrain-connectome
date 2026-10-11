@@ -89,6 +89,14 @@ def main() -> int:
     py = sys.executable
     results: list[tuple[str, bool]] = []
 
+    # ---- Gate 38: dependency self-check (runs FIRST — distinguishes env from code) ----
+    gate38_args = [py, str(SCRIPTS / "check_dependencies.py")]
+    if args.quick:
+        gate38_args.append("--quick")
+    results.append(("gate38 dependencies", run(
+        "GATE 38 — dependency self-check (missing numpy = env problem, not code defect)",
+        gate38_args)[0]))
+
     results.append(("gate1 secrets", run(
         "GATE 1 — no hardcoded credentials",
         [py, str(SCRIPTS / "check_no_secrets.py")])[0]))
