@@ -12,7 +12,7 @@
       "reproduction_command": "python scripts/r1_expansion.py --n-topologies 100 --seeds 50 --output-dir ./_r1_expansion",
       "sample_size": "30 topologies (initial), target 100",
       "random_seed": 42,
-      "boundary_statement": "R1 FALSIFIED (2026-10-11): P1 R²=0.025 (no improvement), P2 std=0.0 (no readout dependency), P3 slope=+0.23 (positive not negative). Mean isolation=0.967 (96.7% topologies >0.3). 'Structure × task alignment' hypothesis falsified per pre-declared condition. Direction closed, negative result registered.",
+      "boundary_statement": "R1 FALSIFIED (2026-10-11): P1 R²=0.025, P2 std=0.0, P3 slope=+0.226. 2026-10-12: Hypothesis A (critical edge sparsity) also falsified. KEY FINDING: isolation_effect_size is a STEP FUNCTION (0 or 1), not continuous — at n=6: 29/30=1.0, 1/30=0.0; at n=10: 50/50=1.0. The 92.6% is \"29/30 fully isolated\". No continuous variance for correlation. FOURTH mechanism falsified, but due to METRIC DESIGN, not mechanism absence. L3 theoretical layer remains open: isolation is binary, not graded.",
       "status": "negative_result",
       "external_dependency": "none",
       "falsified_mechanisms": [
@@ -36,6 +36,13 @@
           "test": "P3: linear regression isolation_effect_size ~ edge_density",
           "result": "slope=+0.226 (positive, not negative), R²=0.0031",
           "verdict": "falsified"
+        },
+        {
+          "mechanism": "critical_edge_sparsity",
+          "hypothesis": "关键边稀疏性（bridge fraction / edge connectivity）与隔离效应量正相关",
+          "test": "Hypothesis A: bridge_fraction, n_bridges, n_articulation_points, edge_connectivity vs isolation_effect_size",
+          "result": "All four critical edge features: R²=0.0000. ROOT CAUSE: isolation_effect_size is a STEP FUNCTION (0 or 1), not continuous. At n=6: 29/30 topologies have iso=1.0, 1 has iso=0.0. At n=10: 50/50 have iso=1.0. The 92.6% figure is essentially \"29/30 fully isolated\". No continuous variance exists for correlation analysis. This is a fundamental limitation of the isolation_effect_size metric, not a mechanism failure.",
+          "verdict": "falsified_design_flaw"
         }
       ]
     },
@@ -58,26 +65,26 @@
       "statement": "同一结构的价值不是结构的固有属性，而是「结构-任务对齐度」的函数。对齐度低于阈值时结构增益趋于0（甚至为负）；高于阈值时增益显著",
       "quantitative_prediction": "P1: 构造对齐度递增的任务族，结构增益随对齐度单调上升。P2: 存在对齐度阈值a*，低于它时'本项目结构vs随机结构'无显著差异",
       "falsification_condition": "若在高对齐任务上本项目结构仍不优于随机→假说错（但KAIST已给出反例，故概率低）",
-      "reproduction_command": "python scripts/p1_experiment.py --mode real --n-blueprints 25 --n-tasks 3 --timeout-s 20 --output-dir ./_p1_full",
-      "sample_size": "1540 results (1525/1800 cells); hub +5.1pp, reachability +5.6pp, motif_family excluded (S6)",
+      "reproduction_command": "python flybrain-connectome-mcp/r3_alignment_gradient.py --mode real --n-blueprints 3 --topologies sequential,fan_out --models deepseek-v4-flash --timeout-s 30 --output-dir ./_r3_full",
+      "sample_size": "72 results (6 cells/level, 6 levels, 2 topologies, 1 model, 1 trial) — insufficient",
       "random_seed": 42,
-      "boundary_statement": "P1 NOT established structure gain (motif_family excluded per S6); hub/reachability show ~+5pp small consistent effect; insufficient to overturn 0/7 negative result",
-      "status": "negative_result",
+      "boundary_statement": "R3 INCONCLUSIVE (2026-10-11): alignment gradient experiment (72 cells, 5 levels + baseline, 2 topologies, 1 model) shows NON-MONOTONIC pattern with peak at a=0.50 (hub +16.7pp, reachability +33.3pp) but N=6/cell is insufficient for statistical significance (binomial P(6/6|p=5/6)≈0.335). Single model, single trial. Cannot distinguish true threshold from noise. Needs: (1) N>=30/cell, (2) >=3 trials, (3) cross-model validation, (4) >=4 topologies.",
+      "status": "inconclusive_needs_more_data",
       "external_dependency": "LLM access (deepseek-v4-flash via 127.0.0.1:8788)",
       "falsified_mechanisms": [
         {
           "mechanism": "alignment_threshold",
           "hypothesis": "存在对齐度阈值a*，低于它时本项目结构vs随机结构无显著差异",
-          "test": "P1: single-point high-alignment LLM orchestration experiment",
-          "result": "motif_family +97.3pp (S6 artifact, excluded); hub +5.1pp; reachability +5.6pp; overall +33.4pp (artifact-driven)",
-          "verdict": "falsified_per_S6_correction"
+          "test": "R3: alignment gradient 0.0-1.0, 5 levels + no-blueprint baseline",
+          "result": "non-monotonic gain: peak at a=0.50 (hub +16.7pp, reachability +33.3pp), a=1.0 NOT best; BUT N=6/cell, P(6/6|p=5/6)≈0.335 — cannot distinguish threshold from noise",
+          "verdict": "inconclusive_sample_too_small"
         },
         {
           "mechanism": "monotonic_alignment_gain",
           "hypothesis": "对齐度递增任务族中结构增益单调上升",
-          "test": "P1: single-point alignment only (no gradient)",
-          "result": "insufficient data — only one alignment level tested, no gradient to verify monotonicity",
-          "verdict": "inconclusive_needs_gradient_design"
+          "test": "R3: 5 alignment levels with gain curves",
+          "result": "gain is NON-MONOTONIC: 0.0→0, 0.25→0, 0.50→+16.7pp, 0.75→0, 1.0→-0 (hub); 0.0→0, 0.25→0, 0.50→+33.3pp, 0.75→0, 1.0→+33.3pp (reachability). Peak at a=0.50, not at a=1.0. This CONTRADICTS monotonic hypothesis.",
+          "verdict": "falsified_non_monotonic"
         }
       ]
     },
