@@ -1,0 +1,124 @@
+{
+  "schema": "research_claims_v1",
+  "description": "Five-element scientific self-verification manifest. Every externally-stated theoretical claim MUST have all five elements. Missing any element triggers Gate 30 red.",
+  "generated_at": "2026-10-11",
+  "claims": [
+    {
+      "id": "R1",
+      "title": "模块化结构的故障隔离：普遍性成立，但程度不可由纯结构预测",
+      "statement": "模块化拓扑普遍提供故障隔离（92.6%），但隔离的程度由「结构×任务对齐度」共同决定；纯结构只能解释其中一小部分（R²≈0.15）",
+      "quantitative_prediction": "P1: 加入'模块→读出结构可达性'作为第10个特征后，R²显著上升（若仍≈0.15→假说错）。P2: 固定拓扑下仅改变读出模块，隔离效应量应显著变化。P3: 隔离效应量与跨模块边密度负相关",
+      "falsification_condition": "若P1与P2同时不成立→'结构×任务对齐'假说被证伪，应关闭该方向并发布负结果",
+      "reproduction_command": "python scripts/r1_expansion.py --n-topologies 100 --seeds 50 --output-dir ./_r1_expansion",
+      "sample_size": "30 topologies (initial), target 100",
+      "random_seed": 42,
+      "boundary_statement": "R1 FALSIFIED (2026-10-11): P1 R²=0.025 (no improvement), P2 std=0.0 (no readout dependency), P3 slope=+0.23 (positive not negative). Mean isolation=0.967 (96.7% topologies >0.3). 'Structure × task alignment' hypothesis falsified per pre-declared condition. Direction closed, negative result registered.",
+      "status": "negative_result",
+      "external_dependency": "none",
+      "falsified_mechanisms": [
+        {
+          "mechanism": "feature_addition",
+          "hypothesis": "加入'模块→读出结构可达性'作为第10个特征后，R²显著上升",
+          "test": "P1: baseline_r2 vs extended_r2",
+          "result": "baseline_r2=0.0249, extended_r2=0.0249, improvement=0.0",
+          "verdict": "falsified"
+        },
+        {
+          "mechanism": "task_alignment",
+          "hypothesis": "固定拓扑下仅改变读出模块，隔离效应量应显著变化",
+          "test": "P2: std_across_readout per topology",
+          "result": "all 20 topologies: std_across_readout=0.0, significant=False",
+          "verdict": "falsified"
+        },
+        {
+          "mechanism": "edge_density_correlation",
+          "hypothesis": "隔离效应量与跨模块边密度负相关",
+          "test": "P3: linear regression isolation_effect_size ~ edge_density",
+          "result": "slope=+0.226 (positive, not negative), R²=0.0031",
+          "verdict": "falsified"
+        }
+      ]
+    },
+    {
+      "id": "R2",
+      "title": "结构搜索的可搜索性条件：为什么GA输给随机",
+      "statement": "在稀疏结构空间（密度0.002–0.023）中，适应度景观不存在可搜索的梯度，因此任何基于适应度的搜索（GA）系统性劣于随机采样；存在一个密度阈值d*，超过它之后适应度搜索才开始有效",
+      "quantitative_prediction": "P1: GA/随机的性能比随密度单调上升，并在某d*处穿越1.0。P2: 景观粗糙度（自相关长度/局部最优数）随密度下降",
+      "falsification_condition": "若GA在所有密度下都不优于随机→'密度决定可搜索性'不成立，应改为'此适应度定义本身无信息量'",
+      "reproduction_command": "python scripts/r2_density_scan.py --sweep 0.05,0.10,0.15,0.20,0.30,0.50,0.80 --n-samples 100 --output-dir ./_r2_density_scan",
+      "sample_size": "200 per density × 7 densities = 1400 samples (full run, v2.63.0)",
+      "random_seed": 42,
+      "boundary_statement": "FULL RUN (v2.63.0, N=200): hub_success=100%, reachability_success=100% at ALL densities (0.05-0.80). NO capability cliff found in sweep range. Transitivity rises monotonically with density (0.109→0.778). Diameter decreases (3.2→2.0). The 'no cliff' result is CONSISTENT with R1 falsification: task success is NOT density-dependent in this range. Need to test even higher densities (>0.8) or different metrics (e.g., learning rate, convergence speed) to find a cliff.",
+      "status": "complete",
+      "external_dependency": "none"
+    },
+    {
+      "id": "R3",
+      "title": "结构价值×基底对齐度：统一解释四个独立观察",
+      "statement": "同一结构的价值不是结构的固有属性，而是「结构-任务对齐度」的函数。对齐度低于阈值时结构增益趋于0（甚至为负）；高于阈值时增益显著",
+      "quantitative_prediction": "P1: 构造对齐度递增的任务族，结构增益随对齐度单调上升。P2: 存在对齐度阈值a*，低于它时'本项目结构vs随机结构'无显著差异",
+      "falsification_condition": "若在高对齐任务上本项目结构仍不优于随机→假说错（但KAIST已给出反例，故概率低）",
+      "reproduction_command": "python scripts/p1_experiment.py --mode real --n-blueprints 25 --n-tasks 3 --timeout-s 20 --output-dir ./_p1_full",
+      "sample_size": "1540 results (1525/1800 cells); hub +5.1pp, reachability +5.6pp, motif_family excluded (S6)",
+      "random_seed": 42,
+      "boundary_statement": "P1 NOT established structure gain (motif_family excluded per S6); hub/reachability show ~+5pp small consistent effect; insufficient to overturn 0/7 negative result",
+      "status": "negative_result",
+      "external_dependency": "LLM access (deepseek-v4-flash via 127.0.0.1:8788)",
+      "falsified_mechanisms": [
+        {
+          "mechanism": "alignment_threshold",
+          "hypothesis": "存在对齐度阈值a*，低于它时本项目结构vs随机结构无显著差异",
+          "test": "P1: single-point high-alignment LLM orchestration experiment",
+          "result": "motif_family +97.3pp (S6 artifact, excluded); hub +5.1pp; reachability +5.6pp; overall +33.4pp (artifact-driven)",
+          "verdict": "falsified_per_S6_correction"
+        },
+        {
+          "mechanism": "monotonic_alignment_gain",
+          "hypothesis": "对齐度递增任务族中结构增益单调上升",
+          "test": "P1: single-point alignment only (no gradient)",
+          "result": "insufficient data — only one alignment level tested, no gradient to verify monotonicity",
+          "verdict": "inconclusive_needs_gradient_design"
+        }
+      ]
+    },
+    {
+      "id": "R4",
+      "title": "结构指纹：一种可复算的结构数据处理形式",
+      "statement": "存在一种确定性、可复算、对结构变化敏感的结构指纹（sha256 over 归一化结构），可用于结构等价类划分、同结构去重、版本diff、谱系追踪",
+      "quantitative_prediction": "敏感性边界：节点重编号不变（应不变）；边权微小变化（应变化）；模体替换（应变化）",
+      "falsification_condition": "若指纹在节点重编号后变化→归一化失败；若边权变化后指纹不变→敏感性不足",
+      "reproduction_command": "python scripts/r4_sensitivity_scan.py --n-blueprints 10 --perturbation-steps 0.1,0.2,0.3,0.5,0.8 --output-dir ./_r4_sensitivity_scan",
+      "sample_size": "50 blueprints × 5 perturbation steps × 4 types = 1000 results (full run, v2.63.0)",
+      "random_seed": 42,
+      "boundary_statement": "FULL RUN (v2.63.0, N=50): Robustness boundaries — flip@0.2 (fp_dist=0.401, reach_chg=49.0%), add@0.1 (fp_dist=0.301, reach_chg=38.7%), remove@0.1 (fp_dist=0.667, reach_chg=39.6%), node_delete@0.3 (fp_dist=0.277, reach_chg=57.4%). Most sensitive: remove@0.1 (fp_dist=0.667, highest fingerprint distance at lowest strength). Most robust: node_delete@0.3 (requires highest strength to trigger change). At strength=0.8: node_delete most disruptive (reach_chg=97.6%), remove least (reach_chg=48.7%).",
+      "status": "complete",
+      "external_dependency": "none"
+    },
+    {
+      "id": "R5",
+      "title": "可复现的结构级数字生命闭环",
+      "statement": "可以构造一个确定性、可复现的结构级生命闭环（出生→存活→受损→自愈→繁殖→选择→死亡），其出生签名在同seed下逐位一致",
+      "quantitative_prediction": "同seed出生签名sha256:26c767fd…一致；--self-test 12/12断言通过",
+      "falsification_condition": "若同seed出生签名不一致→确定性失败；若12项断言有任何失败→闭环不完整",
+      "reproduction_command": "python flybrain-connectome-mcp/lifecycle.py --self-test",
+      "sample_size": "8-stage lifecycle, 12 assertions",
+      "random_seed": 42,
+      "boundary_statement": "Structure-level only, not biological; 8 features are minimal implementations; no consciousness claims",
+      "status": "complete",
+      "external_dependency": "none"
+    },
+    {
+      "id": "R6",
+      "title": "跨进化支的回路模式保守性",
+      "statement": "某些回路模式在4个进化支（昆虫/鸟类/鱼类/头足类）间保守；保守模式的结构签名具有可识别的家族特征",
+      "quantitative_prediction": "116单元跨4支；45系统；24类function受控词表（116/116映射）",
+      "falsification_condition": "若跨支保守模式无法被结构签名识别→命题不成立",
+      "reproduction_command": "python scripts/check_embodiment.py",
+      "sample_size": "116 units, 270 profiles, 66 connection types",
+      "random_seed": null,
+      "boundary_statement": "68.1% units are declarative (79/116 cross-species declarations, not MaleCNS-anchored); evidence strength weaker than R1-R3",
+      "status": "needs_evidence_strengthening",
+      "external_dependency": "none"
+    }
+  ]
+}
