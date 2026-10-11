@@ -428,10 +428,21 @@ class ReactionEngine:
         find_rule returns the first match; find_all_rules returns all. We
         deliberately take the full list so the engine can enumerate every
         legal connection type.
+
+        Note: when called through the MCP passthrough layer, find_rule and
+        find_all_rules may return a dict with status='tier2_required' instead
+        of a list of rules. We guard against that by checking the return type.
         """
         if hasattr(self._rules, "find_all_rules"):
-            return self._rules.find_all_rules(from_fn, to_fn) or []
+            result = self._rules.find_all_rules(from_fn, to_fn)
+            if isinstance(result, list):
+                return result
+            return []
         r = self._rules.find_rule(from_fn, to_fn)
+        if isinstance(r, list):
+            return r
+        if isinstance(r, dict):
+            return [r] if r.get("status") not in ("tier2_required", "error") else []
         return [r] if r else []
 
     # -- reaction discovery

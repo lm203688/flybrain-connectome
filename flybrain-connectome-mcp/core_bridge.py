@@ -87,13 +87,19 @@ def _discover_local_core() -> bool:
       1. $FLYBRAIN_CORE (explicit checkout path)
       2. a sibling ``flybrain-connectome-core`` directory next to the public
          repo root (the conventional layout produced by pulling the private
-         repo beside the MIT repo). Only activates when it actually carries a
-         ``flybrain_core`` package, so a bare public install still degrades.
+         repo beside the MIT repo)
+      3. a ``flybrain-connectome-core`` directory inside the public repo root
+         (this machine's layout; the directory is .gitignored, so the Tier-2
+         payload never enters the MIT tree)
+    Only activates when it actually carries a ``flybrain_core`` package, so
+    a bare public install still degrades.
     """
     local = os.environ.get("FLYBRAIN_CORE")
     candidates = [Path(local)] if local else []
     # sibling private checkout (outside the public tree — no IP leak)
     candidates.append(ROOT.parent / "flybrain-connectome-core")
+    # in-repo private checkout (gitignored — kept local for Tier-2 use only)
+    candidates.append(ROOT / "flybrain-connectome-core")
     for c in candidates:
         if c and (c / "flybrain_core" / "__init__.py").exists():
             sys.path.insert(0, str(c.resolve()))

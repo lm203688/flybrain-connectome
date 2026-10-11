@@ -3,11 +3,11 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-2.58.0-orange.svg)](CHANGELOG.md)
-[![docker](https://img.shields.io/badge/docker-2.58.0-2496ED.svg)](#docker)
+[![version](https://img.shields.io/badge/version-2.61.0-orange.svg)](CHANGELOG.md)
+[![docker](https://img.shields.io/badge/docker-2.61.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.58.0 · 2026-10-10 · 116 functional units · 270 module profiles · 29 gates**
+**v2.61.0 · 2026-10-11 · 116 functional units · 270 module profiles · 30 gates**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
@@ -35,7 +35,7 @@ before you quote it.
 
 | ✅ This project | ❌ Not this project |
 |---|---|
-| A connectome **query service** (46 tools over HTTP + MCP) | A spiking-neuron simulator |
+| A connectome **query service** (47 tools over HTTP + MCP) | A spiking-neuron simulator |
 | A **motif-extraction** pipeline (real fly → derived motif doc) | A repository of the raw 5.63 GB data |
 | A **synthetic topology generator** (bio-motifs → agent graphs) | A trained / fine-tuned model with weights |
 | **W3C PROV** provenance on every generated artifact | A claim that the "virtual organism" is alive |
@@ -313,7 +313,7 @@ flybrain-connectome/
 ├── pyproject.toml                  zero deps, `flybrain` console script
 ├── LICENSE · CITATION.cff · CHANGELOG.md
 ├── flybrain-connectome-mcp/
-│   ├── mcp_connectome/             query engine (core) + 46-tool MCP + HTTP API (:8799)
+│   ├── mcp_connectome/             query engine (core) + 47-tool MCP + HTTP API (:8799)
 │   ├── motifs/                     drop-in client + derived motif snapshot
 │   ├── synthetic_bio_topology.py   ★ C1 generator (motif → agent graph + config + PROV)
 │   ├── _verify.py                  end-to-end smoke test (70/70)
@@ -335,7 +335,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 | Endpoint | Auth | Purpose |
 |---|---|---|
 | `GET  /health` | none | liveness + version |
-| `GET  /tools`  | key  | list the 46 tools + descriptions |
+| `GET  /tools`  | key  | list the 47 tools + descriptions |
 | `POST /query`  | key  | `{"tool": <name>, "args": {...}}` → `{"ok": true, "result": ...}` |
 
 **Auth:** `Authorization: Bearer <key>` or `X-API-Key: <key>`. Keys come from
@@ -343,7 +343,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 server generates a temporary per-boot key and warns loudly — it never falls
 back to a key committed to source.
 
-**The 46 tools** (real names, do not invent — verified against `GET /tools`
+**The 47 tools** (real names, do not invent — verified against `GET /tools`
 by `scripts/check_docs_consistency.py`):
 
 *Real-connectome queries — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`:*
@@ -364,7 +364,7 @@ by `scripts/check_docs_consistency.py`):
 `organism_to_swarmlabs` · `get_module_agent_roles` ·
 `save_market_organism` · `load_market_organism` · `list_market_organisms` ·
 `rate_market_organism` · `search_market_organisms` · `delete_market_organism` ·
-`list_combination_rules` · `validate_combination` · `expand_organism` · `get_multiplier_metrics` · `profile_topology`
+`list_combination_rules` · `validate_combination` · `expand_organism` · `get_multiplier_metrics` · `profile_topology` · `profile_health`
 
 *Functional-unit composition library — the composable layer above neuron types:*
 
@@ -1096,7 +1096,7 @@ which claims were retracted, are in [`CHANGELOG.md`](CHANGELOG.md).
 **Using it from an MCP client:** see [`docs/mcp_setup.md`](docs/mcp_setup.md).
 **Module variants, SwarmLabs integration, and the organism market (v1.1.0):**
 see [`docs/module_factory.md`](docs/module_factory.md).
-for client configs, the 46-tool reference, and troubleshooting.
+for client configs, the 47-tool reference, and troubleshooting.
 
 ---
 
@@ -1107,9 +1107,9 @@ for client configs, the 46-tool reference, and troubleshooting.
 The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
-python scripts/run_gates.py              # 29 gates, no dataset needed
+python scripts/run_gates.py              # 30 gates, no dataset needed
 python scripts/run_gates.py --quick      # the 25 gates that don't need numpy / a server
-python scripts/run_gates.py --with-data  # 29 gates: + `flybrain verify` (70 assertions)
+python scripts/run_gates.py --with-data  # 30 gates: + `flybrain verify` (70 assertions)
 ```
 
 ### Makefile shortcuts (v2.43.0)

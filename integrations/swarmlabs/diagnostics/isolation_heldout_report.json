@@ -1,0 +1,23 @@
+{
+  "kind": "heldout_report",
+  "generated_utc": "2026-10-10T09:25:37Z",
+  "in_sample_r2": 0.3278,
+  "heldout_r2": 0.123,
+  "features_used": [
+    "density",
+    "mean_intra_density"
+  ],
+  "coef": [
+    0.29470229231960615,
+    -4.954399864482537,
+    1.7546944083225002
+  ],
+  "test_acc": [
+    10,
+    15
+  ],
+  "baseline_always_H1_test": [
+    7,
+    15
+  ]
+}

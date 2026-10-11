@@ -600,6 +600,22 @@ TOOLS = [
             },
         },
     },
+    # ---- Phase B: 结构退化度量 (2026-10-10) ----
+    {
+        "name": "profile_health",
+        "description": ("对单个模块做结构健康检查，返回 6 个维度指标 + 综合退化分 (0.0–1.0)：connectivity、"
+                        "evidence_ratio、port_satisfaction、orphan_rate、cycle_count、hub_concentration。"
+                        "这是国际前沿空白的'结构退化度量'——AdaptOrch/DGM/TMLR 2026 验证全是任务指标，"
+                        "本项目是唯一有结构健康度量的框架。模块名来自 MODULE_REGISTRY（sensory/memory/motor 等）。"),
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "profile": {"type": "string",
+                            "description": "模块名（如 sensory / memory / motor / attention 等）"},
+            },
+            "required": ["profile"],
+        },
+    },
 ]
 
 
@@ -1220,6 +1236,25 @@ def _profile_topology(args: dict) -> dict:
     return out
 
 
+def _profile_health(args: dict) -> dict:
+    """Phase B entry point: structural health check (MCP tool)."""
+    profile_name = args.get("profile", "")
+    if not profile_name:
+        return {"status": "error", "error": "'profile' is required"}
+    try:
+        import sys as _sys
+        from pathlib import Path as _P
+        _sys.path.insert(0, str(_P(__file__).resolve().parents[1]))
+        from profile_health import profile_health
+    except Exception as e:
+        return {"status": "error", "error": "profile_health import failed: %r" % e}
+    try:
+        result = profile_health(profile_name)
+        return {"status": "ok", **result}
+    except Exception as e:
+        return {"status": "error", "error": "profile_health failed: %r" % e}
+
+
 def _list_virtual_organisms():
     if not os.path.exists(_MODULE_DIR):
         return {"organisms": [], "count": 0}
@@ -1435,6 +1470,8 @@ def handle_call(name, args):
         return json.dumps(_get_multiplier_metrics(args), ensure_ascii=False)
     if name == "profile_topology":
         return json.dumps(_profile_topology(args), ensure_ascii=False)
+    if name == "profile_health":
+        return json.dumps(_profile_health(args), ensure_ascii=False)
     raise ValueError("unknown tool: %s" % name)
 
 
@@ -1457,7 +1494,7 @@ def main():
             resp = {"jsonrpc": "2.0", "id": rid, "result": {
                 "protocolVersion": PROTOCOL_VERSION,
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "drosophila-connectome", "version": "2.58.0"},
+                "serverInfo": {"name": "drosophila-connectome", "version": "2.61.0"},
             }}
         elif method == "notifications/initialized":
             continue

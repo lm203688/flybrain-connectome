@@ -194,6 +194,12 @@ def main() -> int:
         "(with 4 injected-defect tests)",
         [py, str(SCRIPTS / "check_development.py")])[0]))
 
+    # ---- Gate 30: E2-P1 orchestration base (task source + 4 topologies + trace discipline) ----
+    results.append(("gate30 llm orchestrator", run(
+        "GATE 30 — E2-P1 orchestration base: task source + evidence block + "
+        "4 topologies + trace discipline + 4 injected-defect tests",
+        [py, str(SCRIPTS / "check_llm_orchestrator.py")])[0]))
+
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
         "GATE 9 — functional units + connection types + composer fail-closed",
