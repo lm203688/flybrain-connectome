@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.64.0` | the toolkit as a whole |
+| package | `2.66.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -35,6 +35,53 @@ The **schema version** is versioned separately from the **package version**:
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
 
 ---
+
+## [2.66.0] — 2026-10-12
+
+**SCI 就绪度提升：依赖自检 + L3 机制检验 + 对外主张收窄**
+
+按 `docs/SCI_READINESS_AND_ENHANCEMENT_2026-10-12.md` 执行 S0 止血 + S1 机制阶段。
+
+| # | 项 | 交付 |
+|---|---|---|
+| 1 | **A3 依赖自检门禁** | `scripts/check_dependencies.py`（Gate 38，检测 numpy/scipy/pyarrow 等依赖，缺依赖时报"环境问题"而非"功能失败"） |
+| 2 | **A2 L3 机制假说 A 检验** | `scripts/r1_mechanism_a.py`（关键边稀疏性假说：bridge/cut edge vs 隔离效应） |
+| 3 | **关键发现：隔离效应是阶跃函数** | n=6 拓扑：29/30=1.0, 1/30=0.0；n=10 拓扑：50/50=1.0。92.6% 本质是"29/30 完全隔离"，非连续变量。**第四个机制证伪**（但源于度量设计而非机制缺失） |
+| 4 | **A5 收窄对外主张** | README 补 S6–S9 方法学章节 + 负结果库说明；arxiv_paper.md 修正"open-source toolkit"→"toolkit (currently private)" |
+| 5 | research_claims.json 更新 | R1 补 mechanism A 证伪记录 + 阶跃函数发现 |
+| 6 | Gate 38 注册 | `run_gates.py` 最前面运行依赖自检 |
+| 7 | 版本 | 7 处版本号 2.65.0 → 2.66.0 |
+
+**L3 理论层现状**：四个机制假说全部证伪（P1 feature addition, P2 task alignment, P3 edge density, H-A critical edge sparsity）。
+隔离效应是**阶跃现象**（0 或 1），不是连续变量——任何基于连续变量的相关性分析都会失败。
+**科学含义**：92.6% 不是"平均隔离程度"，而是"92.6% 拓扑完全隔离"。机制解释需要**二分类方法**而非相关性。
+
+**门禁**：37/37 PASS。
+
+## [2.65.0] — 2026-10-11
+
+**R3 对齐度梯度实验 + Gate 37 注册 + 单调假设证伪**
+
+按 `docs/R3_ALIGNMENT_GRADIENT_2026-10-11.md` 执行阶段 2 前沿突破实验。
+
+| # | 项 | 交付 |
+|---|---|---|
+| 1 | R3 对齐度梯度实验 | `flybrain-connectome-mcp/r3_alignment_gradient.py`（72 cells，5 对齐度档 + 无 blueprint 基线，2 拓扑，8-10 节点图） |
+| 2 | **单调假设证伪** | 增益峰值在 a=0.50（混合对齐度），**a=1.00（纯 evidence）并非最优**；直接否定"对齐度越高增益越大"的单调方向 |
+| 3 | 阈值假设未证实 | a=0.50 处 gain +16.7pp/+33.3pp，但 N=6/cell 下 P(6/6\|p=5/6)≈0.335，无法区分阈值与噪声 |
+| 4 | research_claims.json 更新 | R3 状态 → `inconclusive_needs_more_data`；falsified_mechanisms 补 monotonic_alignment_gain（证伪）+ alignment_threshold（未证实） |
+| 5 | Gate 37 R3 alignment gradient | `check_r3_alignment_gradient.py`（验证实验数据存在性 + 增益曲线非单调性 + 样本量预警） |
+| 6 | 版本 | 7 处版本号 2.64.0 → 2.65.0 |
+
+**R3 核心发现**：对齐度-增益关系**非单调**，峰值在 a=0.50 混合对齐度而非 a=1.00 纯 evidence。
+这意味着"结构注入策略"不应一味追求纯 evidence——**混合对齐度可能更优**。
+但样本量 N=6/cell 远不够统计显著，需要扩样到 N≥30 才能确认。
+
+**纪律教训（新增 S10）**：**脚本报告的"阈值 found"不等于统计显著**——
+算法判定（gain>5pp）≠ 统计检验（binomial power）。N=6 时 power≈0，
+任何"阈值"都可能是噪声。**门禁必须同时校验样本量**。
+
+**门禁**：36/36 PASS。
 
 ## [2.64.0] — 2026-10-11
 
