@@ -180,3 +180,8 @@ male_cns/virtual_organisms/market/
 # Runtime caches for combinator middleware (may hold large lookup tables)
 flybrain-connectome-mcp/__pycache__/
 flybrain-connectome-mcp/module_combinator.cache/
+
+# Fusion benchmark output dirs
+_fusion_a/
+_fusion_b/
+_gate31_r2/

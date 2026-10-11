@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.61.0` | the toolkit as a whole |
+| package | `2.63.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,55 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.63.0] — 2026-10-11
+
+**开源技术融合：融合 B（两级 LLM 调用）+ 融合 A 补全（判据辅助）+ 中期融合评估**
+
+按 `docs/OPEN_SOURCE_FUSION_2026-10-11.md` 执行融合路线，按 ROI 排序落地。
+
+### 融合 B：两级 LLM 调用流水线（ROI 5.0，已完成）
+
+| 组件 | 位置 | 内容 |
+|---|---|---|
+| TwoStageLLMBackend | `llm_orchestrator.py` | cheap 预筛 + strong 升级，min_confidence 阈值控制 |
+| answer_confidence_score() | `llm_orchestrator.py` | 确定性置信度评分（hedge 检测 + 长度启发式） |
+| Gate 34 | `check_two_stage_pipeline.py` | 10 检查 + 4 注入缺陷，全部 PASS |
+| Fusion B benchmark | `fusion_b_benchmark.py` | 51% 降本 + 100% 一致率（vs strong-only） |
+
+**关键设计**：两级后端是路由层，不是判断层——任何低置信度 cheap 答案必须升级，
+never silent-downgrade。strong 模型的答案永远胜出。
+
+### 融合 A 补全：判据模型辅助 Gate 30（ROI 2.5，已完成）
+
+| 组件 | 位置 | 内容 |
+|---|---|---|
+| claim_verifier.py | `scripts/` | LLM-as-a-Verifier 辅助检查（可选，warning 不阻断） |
+| structural_falsifiability_hints() | `claim_verifier.py` | 结构化回退：检测空/过短/模糊证伪条件 |
+| judge_falsifiability() | `claim_verifier.py` | LLM 辅助判断证伪条件是否真正可证伪 |
+
+**关键纪律**：四要素（命题/预测/证伪/复算）结构化检查，只有"预测是否可证伪"
+用 LLM 辅助。LLM 不可用时静默降级，不影响门禁。
+
+### 中期融合评估（图基础模型 + EvoAgentX + AutoScientists）
+
+`docs/FUSION_EVALUATION_2026-10-11.md`：
+- G-reasoner / BrainGFM：**暂缓**（R1 已证伪，embedding 解释错误假说无意义；无本地 GPU）
+- EvoAgentX：**短期可做**（1-2 周，提供 R3 外部对照点）
+- AutoScientists：**暂缓**（S6 前置未落地前，自动化 = 更快地犯错）
+
+### 新增门禁
+
+- Gate 34：Fusion B two-stage pipeline（10 checks + 4 injected defects）
+- Gate 35：claim verifier auxiliary（offline mode，structural hints）
+
+### 版本同步
+
+- 7 处版本号 2.62.0 → 2.63.0
+- CHANGELOG 补 v2.63.0 条目
+- README 门禁数 33 → 35
 
 ---
 

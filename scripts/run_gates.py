@@ -220,6 +220,19 @@ def main() -> int:
         [py, str(SCRIPTS / "r1_expansion.py"), "--n-topologies", "30",
          "--n-nodes", "6", "--output-dir", str(ROOT / "_gate33_r1")])[0]))
 
+    # ---- Gate 34: Fusion B two-stage LLM pipeline (cheap + strong) ----
+    results.append(("gate34 two-stage pipeline", run(
+        "GATE 34 — Fusion B two-stage LLM pipeline: cheap pre-screen + "
+        "strong escalation (10 checks + 4 injected-defect tests)",
+        [py, str(SCRIPTS / "check_two_stage_pipeline.py")])[0]))
+
+    # ---- Gate 35: Fusion A claim verifier auxiliary (structural hints) ----
+    results.append(("gate35 claim verifier", run(
+        "GATE 35 — Fusion A claim verifier: structural falsifiability hints "
+        "+ LLM-assisted optional (warning, not failure)",
+        [py, str(SCRIPTS / "claim_verifier.py"),
+         "--mode", "offline"])[0]))
+
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
         "GATE 9 — functional units + connection types + composer fail-closed",

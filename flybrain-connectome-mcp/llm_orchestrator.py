@@ -85,9 +85,10 @@ class StubLLM:
         script: dict[str, str] | list[tuple[str, str]],
         default_response: str = "unknown",
     ) -> None:
-        self.script: list[tuple[str, str]] = (
-            list(script) if isinstance(script, dict) else list(script)
-        )
+        if isinstance(script, dict):
+            self.script: list[tuple[str, str]] = list(script.items())
+        else:
+            self.script = list(script)
         self.default_response = default_response
         self.calls: list[tuple[str, str]] = []
 
@@ -202,6 +203,118 @@ class HTTPLLMBackend:
             "error": last_err,
         })
         raise RuntimeError(f"LLM backend failed after {1 + self.max_retries} attempts: {last_err}")
+
+
+# ============================================================== two-stage (cheap -> strong) pipeline
+
+# Fusion B (OPEN_SOURCE_FUSION_2026-10-11.md §4): a TwoStageLLMBackend
+# front-runs a cheap/open-source small model (Qwen / MiniCPM / Laya) and
+# only escalates to a strong model when the cheap answer looks low-confidence
+# or empty. This mirrors the two-tier pattern already proven on the JEV side
+# (Laya 421M replaces ~60 % of JEV calls).
+
+# Heuristics that decide whether the cheap answer is "good enough" to skip
+# escalation. All are STRONGLY CONSERVATIVE — when in doubt, escalate. That is
+# deliberate: the goal is cost reduction, not accuracy improvement, and a
+# wrong escalation decision costs us one cheap call (not a wrong answer).
+_HIGH_CONFIDENCE_MARKERS: tuple[str, ...] = (
+    # answer that is NOT a refusal / hedge
+    # we reject anything containing these tokens
+)
+_LOW_CONFIDENCE_MARKERS: tuple[str, ...] = (
+    "unknown", "i don't know", "idk", "i'm not sure", "not sure",
+    "cannot determine", "can't determine", "no answer", "unclear",
+    "insufficient information", "i need more", "cannot determine",
+)
+
+
+def answer_confidence_score(text: str) -> float:
+    """Return a 0..1 confidence estimate for a short LLM answer.
+
+    Heuristic, deliberately simple and deterministic. This is a *routing*
+    signal, not a judgement signal — see the "判据模型不是权威" caveat in
+    OPEN_SOURCE_FUSION §4 Fusion A. The score is used only to decide whether
+    to escalate to the strong backend; it is NEVER used as the answer itself.
+    """
+    if not text:
+        return 0.0
+    t = text.strip().lower()
+    if not t:
+        return 0.0
+    # very short, clean token → high confidence
+    if len(t) <= 40 and not any(m in t for m in _LOW_CONFIDENCE_MARKERS):
+        return 1.0
+    # long / vague / hedging → low confidence
+    if any(m in t for m in _LOW_CONFIDENCE_MARKERS):
+        return 0.0
+    # medium-length answer with no hedging markers: moderate confidence
+    return 0.5
+
+
+class TwoStageLLMBackend:
+    """Cheap-model-first backend with selective escalation to a strong model.
+
+    Usage:
+        cheap = HTTPLLMBackend(base_url=..., model="qwen-2.5-7b", max_tokens=64)
+        strong = HTTPLLMBackend(base_url=..., model="deepseek-v4-flash", max_tokens=128)
+        backend = TwoStageLLMBackend(cheap, strong, min_confidence=0.6)
+        orchestrator = SequentialOrchestrator(backend)  # works unchanged
+
+    The wrapper implements the LLMBackend protocol so any orchestrator can
+    use it transparently. `stats` exposes call counts for benchmarking.
+
+    Design notes (Fusion B discipline):
+    - Never drops an answer to save cost: any low-confidence cheap answer is
+      ESCALATED, not returned as-is. The strong model's answer always wins
+      when escalation fires.
+    - The two-stage routing is transparent to the caller: only `stats`
+      exposes the internal path taken.
+    - Fully deterministic: no randomness in the routing decision.
+    """
+
+    name = "two_stage"
+
+    def __init__(
+        self,
+        cheap: LLMBackend,
+        strong: LLMBackend,
+        min_confidence: float = 0.6,
+    ) -> None:
+        if not (0.0 <= min_confidence <= 1.0):
+            raise ValueError(f"min_confidence must be in [0,1]; got {min_confidence}")
+        self.cheap = cheap
+        self.strong = strong
+        self.min_confidence = float(min_confidence)
+        self.stats: dict[str, int] = {
+            "cheap_calls": 0,
+            "strong_calls": 0,
+            "escalations": 0,
+            "cheap_hits": 0,   # cheap answer accepted without escalation
+            "total_calls": 0,
+        }
+
+    def chat(self, system: str, user: str) -> str:
+        self.stats["cheap_calls"] += 1
+        self.stats["total_calls"] += 1
+        cheap_ans = self.cheap.chat(system, user)
+        score = answer_confidence_score(cheap_ans)
+        if score >= self.min_confidence:
+            self.stats["cheap_hits"] += 1
+            return cheap_ans
+        # Low confidence → escalate to the strong backend with the same prompt
+        self.stats["strong_calls"] += 1
+        self.stats["escalations"] += 1
+        strong_ans = self.strong.chat(system, user)
+        return strong_ans
+
+    # convenience: what fraction of calls ended at the cheap model
+    @property
+    def cheap_hit_rate(self) -> float:
+        return self.stats["cheap_hits"] / max(1, self.stats["total_calls"])
+
+    @property
+    def escalation_rate(self) -> float:
+        return self.stats["escalations"] / max(1, self.stats["total_calls"])
 
 
 # ============================================================== evidence injection
