@@ -1,0 +1,4998 @@
+{
+  "params": {
+    "n_blueprints": 8,
+    "n_nodes": 6,
+    "perturbation_steps": [
+      0.1,
+      0.2,
+      0.3,
+      0.5,
+      0.8
+    ],
+    "perturbation_types": [
+      "flip",
+      "add",
+      "remove",
+      "node_delete"
+    ],
+    "seed": 42
+  },
+  "curves": {
+    "flip": [
+      {
+        "strength": 0.1,
+        "n_samples": 8,
+        "mean_fp_distance": 0.18462301587301586,
+        "mean_hub_changed_rate": 0.375,
+        "mean_reachability_change_rate": 0.35
+      },
+      {
+        "strength": 0.2,
+        "n_samples": 8,
+        "mean_fp_distance": 0.3074964387464387,
+        "mean_hub_changed_rate": 0.25,
+        "mean_reachability_change_rate": 0.5
+      },
+      {
+        "strength": 0.3,
+        "n_samples": 8,
+        "mean_fp_distance": 0.38217288011695905,
+        "mean_hub_changed_rate": 0.5,
+        "mean_reachability_change_rate": 0.5583333333333333
+      },
+      {
+        "strength": 0.5,
+        "n_samples": 8,
+        "mean_fp_distance": 0.38844818376068374,
+        "mean_hub_changed_rate": 0.875,
+        "mean_reachability_change_rate": 0.7375
+      },
+      {
+        "strength": 0.8,
+        "n_samples": 8,
+        "mean_fp_distance": 0.33503261784511784,
+        "mean_hub_changed_rate": 0.5,
+        "mean_reachability_change_rate": 0.7541666666666667
+      }
+    ],
+    "add": [
+      {
+        "strength": 0.1,
+        "n_samples": 8,
+        "mean_fp_distance": 0.17099740537240538,
+        "mean_hub_changed_rate": 0.375,
+        "mean_reachability_change_rate": 0.3625
+      },
+      {
+        "strength": 0.2,
+        "n_samples": 8,
+        "mean_fp_distance": 0.3614714744740236,
+        "mean_hub_changed_rate": 0.5,
+        "mean_reachability_change_rate": 0.4916666666666667
+      },
+      {
+        "strength": 0.3,
+        "n_samples": 8,
+        "mean_fp_distance": 0.4326588860251927,
+        "mean_hub_changed_rate": 0.375,
+        "mean_reachability_change_rate": 0.6499999999999999
+      },
+      {
+        "strength": 0.5,
+        "n_samples": 8,
+        "mean_fp_distance": 0.6568069720595253,
+        "mean_hub_changed_rate": 0.5,
+        "mean_reachability_change_rate": 0.7083333333333333
+      },
+      {
+        "strength": 0.8,
+        "n_samples": 8,
+        "mean_fp_distance": 0.8864120370370371,
+        "mean_hub_changed_rate": 0.25,
+        "mean_reachability_change_rate": 0.7791666666666667
+      }
+    ],
+    "remove": [
+      {
+        "strength": 0.1,
+        "n_samples": 8,
+        "mean_fp_distance": 0.3666666666666667,
+        "mean_hub_changed_rate": 0.375,
+        "mean_reachability_change_rate": 0.43333333333333335
+      },
+      {
+        "strength": 0.2,
+        "n_samples": 8,
+        "mean_fp_distance": 0.9267361111111111,
+        "mean_hub_changed_rate": 0.625,
+        "mean_reachability_change_rate": 0.5916666666666667
+      },
+      {
+        "strength": 0.3,
+        "n_samples": 8,
+        "mean_fp_distance": 1.2027777777777777,
+        "mean_hub_changed_rate": 0.375,
+        "mean_reachability_change_rate": 0.6208333333333333
+      },
+      {
+        "strength": 0.5,
+        "n_samples": 8,
+        "mean_fp_distance": 1.2027777777777777,
+        "mean_hub_changed_rate": 0.375,
+        "mean_reachability_change_rate": 0.6208333333333333
+      },
+      {
+        "strength": 0.8,
+        "n_samples": 8,
+        "mean_fp_distance": 1.2027777777777777,
+        "mean_hub_changed_rate": 0.375,
+        "mean_reachability_change_rate": 0.6208333333333333
+      }
+    ],
+    "node_delete": [
+      {
+        "strength": 0.1,
+        "n_samples": 8,
+        "mean_fp_distance": 0.1236111111111111,
+        "mean_hub_changed_rate": 0.375,
+        "mean_reachability_change_rate": 0.4583333333333333
+      },
+      {
+        "strength": 0.2,
+        "n_samples": 8,
+        "mean_fp_distance": 0.20486111111111113,
+        "mean_hub_changed_rate": 0.75,
+        "mean_reachability_change_rate": 0.44166666666666665
+      },
+      {
+        "strength": 0.3,
+        "n_samples": 8,
+        "mean_fp_distance": 0.12384259259259259,
+        "mean_hub_changed_rate": 0.25,
+        "mean_reachability_change_rate": 0.4708333333333333
+      },
+      {
+        "strength": 0.5,
+        "n_samples": 8,
+        "mean_fp_distance": 0.4560185185185185,
+        "mean_hub_changed_rate": 0.875,
+        "mean_reachability_change_rate": 0.8916666666666667
+      },
+      {
+        "strength": 0.8,
+        "n_samples": 8,
+        "mean_fp_distance": 0.490625,
+        "mean_hub_changed_rate": 0.75,
+        "mean_reachability_change_rate": 0.9541666666666667
+      }
+    ]
+  },
+  "boundaries": {
+    "flip": {
+      "boundary_strength": 0.2,
+      "fp_distance_at_boundary": 0.3074964387464387,
+      "reachability_change_rate_at_boundary": 0.5,
+      "hub_changed_rate_at_boundary": 0.25
+    },
+    "add": {
+      "boundary_strength": 0.2,
+      "fp_distance_at_boundary": 0.3614714744740236,
+      "reachability_change_rate_at_boundary": 0.4916666666666667,
+      "hub_changed_rate_at_boundary": 0.5
+    },
+    "remove": {
+      "boundary_strength": 0.1,
+      "fp_distance_at_boundary": 0.3666666666666667,
+      "reachability_change_rate_at_boundary": 0.43333333333333335,
+      "hub_changed_rate_at_boundary": 0.375
+    },
+    "node_delete": {
+      "boundary_strength": 0.5,
+      "fp_distance_at_boundary": 0.4560185185185185,
+      "reachability_change_rate_at_boundary": 0.8916666666666667,
+      "hub_changed_rate_at_boundary": 0.875
+    }
+  },
+  "all_results": [
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.25277777777777777,
+      "hub_changed": false,
+      "reachability_changes": 16,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 6,
+        "density": 0.2,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.14722222222222223,
+      "hub_changed": false,
+      "reachability_changes": 21,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 9,
+        "density": 0.3,
+        "mean_out_degree": 1.5,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.08611111111111112,
+      "hub_changed": false,
+      "reachability_changes": 23,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 6,
+        "density": 0.2,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.29444444444444445,
+      "hub_changed": true,
+      "reachability_changes": 28,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 6,
+        "density": 0.2,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 0.20138888888888887,
+      "hub_changed": true,
+      "reachability_changes": 25,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 9,
+        "density": 0.3,
+        "mean_out_degree": 1.5,
+        "max_out_degree": 2,
+        "diameter": 2,
+        "transitivity": 0.375,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.16547619047619047,
+      "hub_changed": true,
+      "reachability_changes": 7,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 3,
+        "diameter": 5,
+        "transitivity": 0.14285714285714285,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.2739130434782609,
+      "hub_changed": true,
+      "reachability_changes": 14,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 13,
+        "density": 0.43333333333333335,
+        "mean_out_degree": 2.1666666666666665,
+        "max_out_degree": 3,
+        "diameter": 3,
+        "transitivity": 0.043478260869565216,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.4769607843137254,
+      "hub_changed": false,
+      "reachability_changes": 19,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 16,
+        "density": 0.5333333333333333,
+        "mean_out_degree": 2.6666666666666665,
+        "max_out_degree": 4,
+        "diameter": 3,
+        "transitivity": 0.4117647058823529,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.7353174603174603,
+      "hub_changed": false,
+      "reachability_changes": 23,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 22,
+        "density": 0.7333333333333333,
+        "mean_out_degree": 3.6666666666666665,
+        "max_out_degree": 5,
+        "diameter": 3,
+        "transitivity": 0.7619047619047619,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 23,
+      "fp_distance": 0.9972222222222222,
+      "hub_changed": false,
+      "reachability_changes": 23,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 30,
+        "density": 1.0,
+        "mean_out_degree": 5.0,
+        "max_out_degree": 5,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.325,
+      "hub_changed": false,
+      "reachability_changes": 25,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 4,
+        "density": 0.13333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 2,
+        "diameter": 2,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 1.0,
+      "hub_changed": true,
+      "reachability_changes": 29,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 1,
+        "density": 0.03333333333333333,
+        "mean_out_degree": 0.16666666666666666,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 5
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": false,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": false,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": false,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.08333333333333333,
+      "hub_changed": false,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 5,
+        "density": 0.25,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.05000000000000001,
+      "hub_changed": false,
+      "reachability_changes": 14,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 5,
+        "density": 0.25,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.1527777777777778,
+      "hub_changed": false,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 1,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.46388888888888885,
+      "hub_changed": true,
+      "reachability_changes": 29,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 3,
+        "n_edges": 1,
+        "density": 0.16666666666666666,
+        "mean_out_degree": 0.3333333333333333,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "ev_reservoir_smallworld_3657",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 4,
+      "fp_distance": 0.6361111111111111,
+      "hub_changed": false,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 2,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.33624338624338623,
+      "hub_changed": false,
+      "reachability_changes": 11,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 8,
+        "density": 0.26666666666666666,
+        "mean_out_degree": 1.3333333333333333,
+        "max_out_degree": 4,
+        "diameter": 3,
+        "transitivity": 0.42857142857142855,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.1611111111111111,
+      "hub_changed": false,
+      "reachability_changes": 9,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.27175925925925926,
+      "hub_changed": false,
+      "reachability_changes": 16,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 8,
+        "density": 0.26666666666666666,
+        "mean_out_degree": 1.3333333333333333,
+        "max_out_degree": 3,
+        "diameter": 3,
+        "transitivity": 0.375,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.32037037037037036,
+      "hub_changed": true,
+      "reachability_changes": 14,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 6,
+        "density": 0.2,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 5,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 0.23703703703703705,
+      "hub_changed": false,
+      "reachability_changes": 27,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 11,
+        "density": 0.36666666666666664,
+        "mean_out_degree": 1.8333333333333333,
+        "max_out_degree": 3,
+        "diameter": 4,
+        "transitivity": 0.26666666666666666,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.11111111111111109,
+      "hub_changed": false,
+      "reachability_changes": 5,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 4,
+        "diameter": 2,
+        "transitivity": 0.4,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.2522222222222222,
+      "hub_changed": false,
+      "reachability_changes": 16,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 13,
+        "density": 0.43333333333333335,
+        "mean_out_degree": 2.1666666666666665,
+        "max_out_degree": 4,
+        "diameter": 3,
+        "transitivity": 0.48,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.3022522522522522,
+      "hub_changed": false,
+      "reachability_changes": 21,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 16,
+        "density": 0.5333333333333333,
+        "mean_out_degree": 2.6666666666666665,
+        "max_out_degree": 4,
+        "diameter": 3,
+        "transitivity": 0.5135135135135135,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.39153439153439157,
+      "hub_changed": false,
+      "reachability_changes": 22,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 22,
+        "density": 0.7333333333333333,
+        "mean_out_degree": 3.6666666666666665,
+        "max_out_degree": 5,
+        "diameter": 2,
+        "transitivity": 0.6825396825396826,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 23,
+      "fp_distance": 0.6462962962962963,
+      "hub_changed": false,
+      "reachability_changes": 23,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 30,
+        "density": 1.0,
+        "mean_out_degree": 5.0,
+        "max_out_degree": 5,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.32222222222222224,
+      "hub_changed": false,
+      "reachability_changes": 6,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 4,
+        "density": 0.13333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 2,
+        "diameter": 2,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 1.0055555555555555,
+      "hub_changed": true,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 1,
+        "density": 0.03333333333333333,
+        "mean_out_degree": 0.16666666666666666,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 5
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.325925925925926,
+      "hub_changed": false,
+      "reachability_changes": 11,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.325925925925926,
+      "hub_changed": false,
+      "reachability_changes": 11,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.325925925925926,
+      "hub_changed": false,
+      "reachability_changes": 11,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.13703703703703704,
+      "hub_changed": true,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 2,
+        "diameter": 2,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.13703703703703704,
+      "hub_changed": true,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 2,
+        "diameter": 2,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.24814814814814815,
+      "hub_changed": false,
+      "reachability_changes": 11,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 2,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.47407407407407404,
+      "hub_changed": true,
+      "reachability_changes": 24,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 3,
+        "n_edges": 1,
+        "density": 0.16666666666666666,
+        "mean_out_degree": 0.3333333333333333,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_619176",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 4,
+      "fp_distance": 0.6592592592592593,
+      "hub_changed": true,
+      "reachability_changes": 28,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 2,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.01944444444444443,
+      "hub_changed": false,
+      "reachability_changes": 15,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 8,
+        "density": 0.26666666666666666,
+        "mean_out_degree": 1.3333333333333333,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.27777777777777773,
+      "hub_changed": false,
+      "reachability_changes": 16,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 11,
+        "density": 0.36666666666666664,
+        "mean_out_degree": 1.8333333333333333,
+        "max_out_degree": 4,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.5416666666666666,
+      "hub_changed": true,
+      "reachability_changes": 28,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 4,
+        "density": 0.13333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 1,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 3
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.052777777777777785,
+      "hub_changed": true,
+      "reachability_changes": 25,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 6,
+        "density": 0.2,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 0.5888888888888889,
+      "hub_changed": true,
+      "reachability_changes": 24,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 15,
+        "density": 0.5,
+        "mean_out_degree": 2.5,
+        "max_out_degree": 5,
+        "diameter": 2,
+        "transitivity": 0.5,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.15277777777777776,
+      "hub_changed": false,
+      "reachability_changes": 12,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 3,
+        "diameter": 5,
+        "transitivity": 0.06666666666666667,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.33596491228070174,
+      "hub_changed": true,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 13,
+        "density": 0.43333333333333335,
+        "mean_out_degree": 2.1666666666666665,
+        "max_out_degree": 4,
+        "diameter": 5,
+        "transitivity": 0.3157894736842105,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.46562499999999996,
+      "hub_changed": false,
+      "reachability_changes": 21,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 16,
+        "density": 0.5333333333333333,
+        "mean_out_degree": 2.6666666666666665,
+        "max_out_degree": 4,
+        "diameter": 3,
+        "transitivity": 0.34375,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.7411290322580646,
+      "hub_changed": false,
+      "reachability_changes": 19,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 22,
+        "density": 0.7333333333333333,
+        "mean_out_degree": 3.6666666666666665,
+        "max_out_degree": 5,
+        "diameter": 2,
+        "transitivity": 0.5967741935483871,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 1.0933333333333333,
+      "hub_changed": false,
+      "reachability_changes": 24,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 31,
+        "density": 1.0333333333333334,
+        "mean_out_degree": 5.166666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 0.96,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.5750000000000001,
+      "hub_changed": false,
+      "reachability_changes": 26,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 4,
+        "density": 0.13333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 1,
+        "diameter": 2,
+        "transitivity": 0.0,
+        "n_components": 3
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 1.0,
+      "hub_changed": true,
+      "reachability_changes": 29,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 1,
+        "density": 0.03333333333333333,
+        "mean_out_degree": 0.16666666666666666,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 5
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": false,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": false,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": false,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.1527777777777778,
+      "hub_changed": false,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 1,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.1527777777777778,
+      "hub_changed": false,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 1,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.1527777777777778,
+      "hub_changed": true,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 1,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.46388888888888885,
+      "hub_changed": true,
+      "reachability_changes": 29,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 3,
+        "n_edges": 1,
+        "density": 0.16666666666666666,
+        "mean_out_degree": 0.3333333333333333,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_8279",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 4,
+      "fp_distance": 0.3166666666666667,
+      "hub_changed": true,
+      "reachability_changes": 29,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 2,
+        "n_edges": 1,
+        "density": 0.5,
+        "mean_out_degree": 0.5,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.38055555555555554,
+      "hub_changed": true,
+      "reachability_changes": 9,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 6,
+        "density": 0.2,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.3333333333333333,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.21666666666666665,
+      "hub_changed": true,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 11,
+        "density": 0.36666666666666664,
+        "mean_out_degree": 1.8333333333333333,
+        "max_out_degree": 3,
+        "diameter": 3,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.18333333333333335,
+      "hub_changed": true,
+      "reachability_changes": 18,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 3,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.22286324786324788,
+      "hub_changed": true,
+      "reachability_changes": 25,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 3,
+        "diameter": 4,
+        "transitivity": 0.15384615384615385,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 0.0,
+      "hub_changed": false,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.13952991452991453,
+      "hub_changed": true,
+      "reachability_changes": 19,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 2,
+        "diameter": 4,
+        "transitivity": 0.15384615384615385,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.4173202614379085,
+      "hub_changed": true,
+      "reachability_changes": 11,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 13,
+        "density": 0.43333333333333335,
+        "mean_out_degree": 2.1666666666666665,
+        "max_out_degree": 4,
+        "diameter": 2,
+        "transitivity": 0.47058823529411764,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.40539215686274505,
+      "hub_changed": true,
+      "reachability_changes": 21,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 16,
+        "density": 0.5333333333333333,
+        "mean_out_degree": 2.6666666666666665,
+        "max_out_degree": 4,
+        "diameter": 3,
+        "transitivity": 0.38235294117647056,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.717440801457195,
+      "hub_changed": true,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 22,
+        "density": 0.7333333333333333,
+        "mean_out_degree": 3.6666666666666665,
+        "max_out_degree": 5,
+        "diameter": 2,
+        "transitivity": 0.7213114754098361,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 23,
+      "fp_distance": 0.9750000000000001,
+      "hub_changed": true,
+      "reachability_changes": 23,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 30,
+        "density": 1.0,
+        "mean_out_degree": 5.0,
+        "max_out_degree": 5,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.30833333333333335,
+      "hub_changed": true,
+      "reachability_changes": 5,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 4,
+        "density": 0.13333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 1,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.9777777777777779,
+      "hub_changed": true,
+      "reachability_changes": 12,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 1,
+        "density": 0.03333333333333333,
+        "mean_out_degree": 0.16666666666666666,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 5
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": true,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": true,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": true,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.016666666666666673,
+      "hub_changed": true,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 5,
+        "density": 0.25,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.07222222222222223,
+      "hub_changed": true,
+      "reachability_changes": 12,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 5,
+        "density": 0.25,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 2,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.07222222222222223,
+      "hub_changed": false,
+      "reachability_changes": 12,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 5,
+        "density": 0.25,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 2,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.25277777777777777,
+      "hub_changed": true,
+      "reachability_changes": 25,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 3,
+        "n_edges": 2,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_571412",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 4,
+      "fp_distance": 0.29444444444444445,
+      "hub_changed": true,
+      "reachability_changes": 28,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 2,
+        "n_edges": 1,
+        "density": 0.5,
+        "mean_out_degree": 0.5,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.01944444444444443,
+      "hub_changed": true,
+      "reachability_changes": 15,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 8,
+        "density": 0.26666666666666666,
+        "mean_out_degree": 1.3333333333333333,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.7111111111111111,
+      "hub_changed": false,
+      "reachability_changes": 28,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 3,
+        "density": 0.1,
+        "mean_out_degree": 0.5,
+        "max_out_degree": 2,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 4
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.2559941520467836,
+      "hub_changed": false,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 12,
+        "density": 0.4,
+        "mean_out_degree": 2.0,
+        "max_out_degree": 3,
+        "diameter": 3,
+        "transitivity": 0.05263157894736842,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.37222222222222223,
+      "hub_changed": true,
+      "reachability_changes": 26,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 12,
+        "density": 0.4,
+        "mean_out_degree": 2.0,
+        "max_out_degree": 4,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 0.06666666666666667,
+      "hub_changed": true,
+      "reachability_changes": 26,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.1869047619047619,
+      "hub_changed": false,
+      "reachability_changes": 15,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 3,
+        "diameter": 4,
+        "transitivity": 0.07142857142857142,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.4291666666666667,
+      "hub_changed": false,
+      "reachability_changes": 9,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 13,
+        "density": 0.43333333333333335,
+        "mean_out_degree": 2.1666666666666665,
+        "max_out_degree": 5,
+        "diameter": 5,
+        "transitivity": 0.375,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.46893939393939393,
+      "hub_changed": true,
+      "reachability_changes": 21,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 16,
+        "density": 0.5333333333333333,
+        "mean_out_degree": 2.6666666666666665,
+        "max_out_degree": 4,
+        "diameter": 3,
+        "transitivity": 0.36363636363636365,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.7194444444444444,
+      "hub_changed": true,
+      "reachability_changes": 21,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 22,
+        "density": 0.7333333333333333,
+        "mean_out_degree": 3.6666666666666665,
+        "max_out_degree": 5,
+        "diameter": 3,
+        "transitivity": 0.6666666666666666,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 1.0933333333333333,
+      "hub_changed": false,
+      "reachability_changes": 24,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 31,
+        "density": 1.0333333333333334,
+        "mean_out_degree": 5.166666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 0.96,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.4583333333333333,
+      "hub_changed": false,
+      "reachability_changes": 24,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 4,
+        "density": 0.13333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 3
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 1.2,
+      "hub_changed": false,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 1,
+        "density": 0.03333333333333333,
+        "mean_out_degree": 0.16666666666666666,
+        "max_out_degree": 1,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": true,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": true,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.3027777777777778,
+      "hub_changed": true,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.1527777777777778,
+      "hub_changed": true,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 1,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.1527777777777778,
+      "hub_changed": true,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 1,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.1527777777777778,
+      "hub_changed": false,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 1,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.46388888888888885,
+      "hub_changed": true,
+      "reachability_changes": 29,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 3,
+        "n_edges": 1,
+        "density": 0.16666666666666666,
+        "mean_out_degree": 0.3333333333333333,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "ev_recurrent_feedback_2615",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 4,
+      "fp_distance": 0.6361111111111111,
+      "hub_changed": true,
+      "reachability_changes": 30,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 5,
+        "transitivity": 0.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 2,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.2388888888888889,
+      "hub_changed": false,
+      "reachability_changes": 6,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 3,
+        "diameter": 3,
+        "transitivity": 0.16666666666666666,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.3416666666666666,
+      "hub_changed": true,
+      "reachability_changes": 16,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 3,
+        "density": 0.1,
+        "mean_out_degree": 0.5,
+        "max_out_degree": 1,
+        "diameter": 2,
+        "transitivity": 0.0,
+        "n_components": 3
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.16666666666666666,
+      "hub_changed": true,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 6,
+        "density": 0.2,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 3,
+        "diameter": 2,
+        "transitivity": 0.2,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.10277777777777776,
+      "hub_changed": true,
+      "reachability_changes": 18,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 8,
+        "density": 0.26666666666666666,
+        "mean_out_degree": 1.3333333333333333,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 0.30833333333333335,
+      "hub_changed": false,
+      "reachability_changes": 21,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 13,
+        "density": 0.43333333333333335,
+        "mean_out_degree": 2.1666666666666665,
+        "max_out_degree": 3,
+        "diameter": 3,
+        "transitivity": 0.4,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.19722222222222222,
+      "hub_changed": true,
+      "reachability_changes": 16,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 2,
+        "diameter": 4,
+        "transitivity": 0.25,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.30576923076923074,
+      "hub_changed": false,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 13,
+        "density": 0.43333333333333335,
+        "mean_out_degree": 2.1666666666666665,
+        "max_out_degree": 3,
+        "diameter": 3,
+        "transitivity": 0.38461538461538464,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.501951951951952,
+      "hub_changed": true,
+      "reachability_changes": 18,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 16,
+        "density": 0.5333333333333333,
+        "mean_out_degree": 2.6666666666666665,
+        "max_out_degree": 4,
+        "diameter": 2,
+        "transitivity": 0.3783783783783784,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.6753472222222223,
+      "hub_changed": true,
+      "reachability_changes": 19,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 22,
+        "density": 0.7333333333333333,
+        "mean_out_degree": 3.6666666666666665,
+        "max_out_degree": 4,
+        "diameter": 2,
+        "transitivity": 0.71875,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 23,
+      "fp_distance": 1.0166666666666668,
+      "hub_changed": true,
+      "reachability_changes": 23,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 30,
+        "density": 1.0,
+        "mean_out_degree": 5.0,
+        "max_out_degree": 5,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.18333333333333335,
+      "hub_changed": true,
+      "reachability_changes": 9,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 4,
+        "density": 0.13333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 1,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.6027777777777777,
+      "hub_changed": true,
+      "reachability_changes": 15,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 1,
+        "density": 0.03333333333333333,
+        "mean_out_degree": 0.16666666666666666,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 5
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 7,
+      "fp_distance": 0.8444444444444444,
+      "hub_changed": true,
+      "reachability_changes": 16,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 7,
+      "fp_distance": 0.8444444444444444,
+      "hub_changed": true,
+      "reachability_changes": 16,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 7,
+      "fp_distance": 0.8444444444444444,
+      "hub_changed": true,
+      "reachability_changes": 16,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.12222222222222219,
+      "hub_changed": false,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 7,
+        "density": 0.35,
+        "mean_out_degree": 1.4,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.16111111111111112,
+      "hub_changed": true,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 4,
+        "density": 0.2,
+        "mean_out_degree": 0.8,
+        "max_out_degree": 1,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.12222222222222219,
+      "hub_changed": false,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 7,
+        "density": 0.35,
+        "mean_out_degree": 1.4,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.31666666666666665,
+      "hub_changed": true,
+      "reachability_changes": 27,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 3,
+        "n_edges": 1,
+        "density": 0.16666666666666666,
+        "mean_out_degree": 0.3333333333333333,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_107175",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 4,
+      "fp_distance": 0.5111111111111111,
+      "hub_changed": true,
+      "reachability_changes": 28,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.25,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 2,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.037962962962962955,
+      "hub_changed": false,
+      "reachability_changes": 3,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 8,
+        "density": 0.26666666666666666,
+        "mean_out_degree": 1.3333333333333333,
+        "max_out_degree": 5,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.33774928774928775,
+      "hub_changed": false,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 11,
+        "density": 0.36666666666666664,
+        "mean_out_degree": 1.8333333333333333,
+        "max_out_degree": 5,
+        "diameter": 2,
+        "transitivity": 0.38461538461538464,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 1.4046296296296295,
+      "hub_changed": false,
+      "reachability_changes": 6,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.9060185185185184,
+      "hub_changed": true,
+      "reachability_changes": 28,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 8,
+        "density": 0.26666666666666666,
+        "mean_out_degree": 1.3333333333333333,
+        "max_out_degree": 3,
+        "diameter": 5,
+        "transitivity": 0.125,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 0.7703703703703703,
+      "hub_changed": true,
+      "reachability_changes": 24,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 9,
+        "density": 0.3,
+        "mean_out_degree": 1.5,
+        "max_out_degree": 3,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.25277777777777777,
+      "hub_changed": false,
+      "reachability_changes": 5,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 6,
+        "diameter": 2,
+        "transitivity": 0.6666666666666666,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.48611111111111116,
+      "hub_changed": false,
+      "reachability_changes": 24,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 13,
+        "density": 0.43333333333333335,
+        "mean_out_degree": 2.1666666666666665,
+        "max_out_degree": 6,
+        "diameter": 3,
+        "transitivity": 0.45,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.30672043010752686,
+      "hub_changed": false,
+      "reachability_changes": 15,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 16,
+        "density": 0.5333333333333333,
+        "mean_out_degree": 2.6666666666666665,
+        "max_out_degree": 6,
+        "diameter": 2,
+        "transitivity": 0.7096774193548387,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.5103535353535353,
+      "hub_changed": false,
+      "reachability_changes": 24,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 22,
+        "density": 0.7333333333333333,
+        "mean_out_degree": 3.6666666666666665,
+        "max_out_degree": 6,
+        "diameter": 3,
+        "transitivity": 0.8545454545454545,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 0.24444444444444446,
+      "hub_changed": false,
+      "reachability_changes": 24,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 31,
+        "density": 1.0333333333333334,
+        "mean_out_degree": 5.166666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.44722222222222224,
+      "hub_changed": false,
+      "reachability_changes": 2,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 4,
+        "density": 0.13333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 3,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 3
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 1.0333333333333334,
+      "hub_changed": false,
+      "reachability_changes": 5,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 1,
+        "density": 0.03333333333333333,
+        "mean_out_degree": 0.16666666666666666,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 5
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.4046296296296295,
+      "hub_changed": false,
+      "reachability_changes": 6,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.4046296296296295,
+      "hub_changed": false,
+      "reachability_changes": 6,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 7,
+      "fp_distance": 1.4046296296296295,
+      "hub_changed": false,
+      "reachability_changes": 6,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.20185185185185184,
+      "hub_changed": false,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 5,
+        "density": 0.25,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 5,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.862962962962963,
+      "hub_changed": true,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 1,
+        "density": 0.05,
+        "mean_out_degree": 0.2,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 4
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.03981481481481481,
+      "hub_changed": false,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 6,
+        "density": 0.3,
+        "mean_out_degree": 1.2,
+        "max_out_degree": 5,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.9046296296296297,
+      "hub_changed": true,
+      "reachability_changes": 24,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 3,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 3
+      }
+    },
+    {
+      "blueprint_name": "ev_inhibitory_hub_711",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 4,
+      "fp_distance": 0.3685185185185185,
+      "hub_changed": false,
+      "reachability_changes": 28,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 6,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      },
+      "perturbed_fp": {
+        "n_nodes": 2,
+        "n_edges": 1,
+        "density": 0.5,
+        "mean_out_degree": 0.5,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.19166666666666665,
+      "hub_changed": true,
+      "reachability_changes": 9,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 8,
+        "density": 0.26666666666666666,
+        "mean_out_degree": 1.3333333333333333,
+        "max_out_degree": 2,
+        "diameter": 4,
+        "transitivity": 0.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.26666666666666666,
+      "hub_changed": false,
+      "reachability_changes": 7,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 11,
+        "density": 0.36666666666666664,
+        "mean_out_degree": 1.8333333333333333,
+        "max_out_degree": 3,
+        "diameter": 3,
+        "transitivity": 0.3333333333333333,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.14722222222222223,
+      "hub_changed": true,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 4,
+        "density": 0.13333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 2,
+        "diameter": 2,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.8361111111111111,
+      "hub_changed": false,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "flip",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 24,
+      "fp_distance": 0.5075757575757576,
+      "hub_changed": false,
+      "reachability_changes": 21,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 13,
+        "density": 0.43333333333333335,
+        "mean_out_degree": 2.1666666666666665,
+        "max_out_degree": 5,
+        "diameter": 3,
+        "transitivity": 0.5454545454545454,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.1621794871794872,
+      "hub_changed": false,
+      "reachability_changes": 8,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 10,
+        "density": 0.3333333333333333,
+        "mean_out_degree": 1.6666666666666667,
+        "max_out_degree": 3,
+        "diameter": 3,
+        "transitivity": 0.07692307692307693,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.3913043478260869,
+      "hub_changed": true,
+      "reachability_changes": 18,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 13,
+        "density": 0.43333333333333335,
+        "mean_out_degree": 2.1666666666666665,
+        "max_out_degree": 4,
+        "diameter": 3,
+        "transitivity": 0.34782608695652173,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 9,
+      "fp_distance": 0.5334291187739464,
+      "hub_changed": false,
+      "reachability_changes": 20,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 16,
+        "density": 0.5333333333333333,
+        "mean_out_degree": 2.6666666666666665,
+        "max_out_degree": 4,
+        "diameter": 4,
+        "transitivity": 0.5172413793103449,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 15,
+      "fp_distance": 0.7638888888888888,
+      "hub_changed": true,
+      "reachability_changes": 22,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 22,
+        "density": 0.7333333333333333,
+        "mean_out_degree": 3.6666666666666665,
+        "max_out_degree": 5,
+        "diameter": 2,
+        "transitivity": 0.7,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "add",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 23,
+      "fp_distance": 1.0250000000000001,
+      "hub_changed": false,
+      "reachability_changes": 23,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 30,
+        "density": 1.0,
+        "mean_out_degree": 5.0,
+        "max_out_degree": 5,
+        "diameter": 1,
+        "transitivity": 1.0,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.3138888888888889,
+      "hub_changed": true,
+      "reachability_changes": 7,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 4,
+        "density": 0.13333333333333333,
+        "mean_out_degree": 0.6666666666666666,
+        "max_out_degree": 1,
+        "diameter": 2,
+        "transitivity": 0.0,
+        "n_components": 3
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 6,
+      "fp_distance": 0.5944444444444444,
+      "hub_changed": false,
+      "reachability_changes": 12,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 1,
+        "density": 0.03333333333333333,
+        "mean_out_degree": 0.16666666666666666,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 5
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 7,
+      "fp_distance": 0.8361111111111111,
+      "hub_changed": false,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 7,
+      "fp_distance": 0.8361111111111111,
+      "hub_changed": false,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "remove",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 7,
+      "fp_distance": 0.8361111111111111,
+      "hub_changed": false,
+      "reachability_changes": 13,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 6,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 6
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.1,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.12222222222222219,
+      "hub_changed": false,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 7,
+        "density": 0.35,
+        "mean_out_degree": 1.4,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 1
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.2,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.05000000000000001,
+      "hub_changed": true,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 5,
+        "density": 0.25,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.3,
+      "n_perturbed_edges": 1,
+      "fp_distance": 0.05000000000000001,
+      "hub_changed": true,
+      "reachability_changes": 10,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 5,
+        "n_edges": 5,
+        "density": 0.25,
+        "mean_out_degree": 1.0,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.5,
+      "n_perturbed_edges": 3,
+      "fp_distance": 0.3083333333333333,
+      "hub_changed": false,
+      "reachability_changes": 27,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 3,
+        "n_edges": 1,
+        "density": 0.16666666666666666,
+        "mean_out_degree": 0.3333333333333333,
+        "max_out_degree": 1,
+        "diameter": 1,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    },
+    {
+      "blueprint_name": "rnd_307419",
+      "perturbation_type": "node_delete",
+      "perturbation_strength": 0.8,
+      "n_perturbed_edges": 4,
+      "fp_distance": 0.5027777777777778,
+      "hub_changed": true,
+      "reachability_changes": 28,
+      "n_reachability_queries": 30,
+      "original_fp": {
+        "n_nodes": 6,
+        "n_edges": 7,
+        "density": 0.23333333333333334,
+        "mean_out_degree": 1.1666666666666667,
+        "max_out_degree": 2,
+        "diameter": 3,
+        "transitivity": 0.2,
+        "n_components": 2
+      },
+      "perturbed_fp": {
+        "n_nodes": 2,
+        "n_edges": 0,
+        "density": 0.0,
+        "mean_out_degree": 0.0,
+        "max_out_degree": 0,
+        "diameter": 0,
+        "transitivity": 0.0,
+        "n_components": 2
+      }
+    }
+  ]
+}

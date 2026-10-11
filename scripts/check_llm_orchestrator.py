@@ -500,6 +500,96 @@ def _check_s6_control_scoreability() -> list[str]:
     return []
 
 
+# ============================================================ 7. Five-element scientific self-verification
+
+
+def _check_five_elements() -> list[str]:
+    """Five-element scientific self-verification check (Gate 30 expansion).
+
+    Every externally-stated theoretical claim MUST have all five elements:
+      ① Statement (falsifiable form)
+      ② Quantitative prediction
+      ③ Falsification condition
+      ④ Reproduction command
+      ⑤ Sample size + random seed + boundary statement
+
+    Reads research_claims.json and validates each claim has all five elements.
+    Missing any element for a claim with status 'complete' or 'in_progress'
+    is a FAILURE. Claims with status 'negative_result' or 'needs_evidence_strengthening'
+    get a WARNING (they are honest declarations of failure or weakness).
+
+    Reference: docs/RESEARCH_DEEPENING_PLAN_2026-10-10.md §4.3
+    """
+    fails: list[str] = []
+    warnings: list[str] = []
+
+    # Load claims manifest
+    claims_path = REPO_ROOT / "research_claims.json"
+    if not claims_path.exists():
+        fails.append("research_claims.json not found — cannot verify five elements")
+        return fails
+
+    with open(claims_path, "r", encoding="utf-8") as f:
+        manifest = json.load(f)
+
+    claims = manifest.get("claims", [])
+    if not claims:
+        fails.append("research_claims.json has no claims — manifest is empty")
+        return fails
+
+    print(f"  [info] Checking {len(claims)} research claims for five-element completeness...")
+
+    required_fields = [
+        ("statement", "① Statement"),
+        ("quantitative_prediction", "② Quantitative prediction"),
+        ("falsification_condition", "③ Falsification condition"),
+        ("reproduction_command", "④ Reproduction command"),
+        ("sample_size", "⑤a Sample size"),
+        ("random_seed", "⑤b Random seed"),
+        ("boundary_statement", "⑤c Boundary statement"),
+    ]
+
+    for claim in claims:
+        claim_id = claim.get("id", "?")
+        title = claim.get("title", "?")[:40]
+        status = claim.get("status", "unknown")
+
+        # Check all required fields
+        for field, label in required_fields:
+            value = claim.get(field)
+            if value is None or (isinstance(value, str) and not value.strip()):
+                msg = f"[{claim_id}] {title}: missing {label}"
+                # Warnings for honest negative/weak claims, failures for others
+                if status in ("negative_result", "needs_evidence_strengthening"):
+                    warnings.append(msg)
+                else:
+                    fails.append(msg)
+
+        # Validate reproduction_command is actually executable
+        cmd = claim.get("reproduction_command", "")
+        if cmd and status in ("complete", "in_progress"):
+            # Check it's a valid python command
+            if not cmd.startswith("python") and not cmd.startswith("python3"):
+                warnings.append(f"[{claim_id}] reproduction_command doesn't start with 'python'")
+
+    # Print warnings (non-blocking)
+    for w in warnings:
+        print(f"  [WARN] {w}")
+
+    if fails:
+        print(f"  [FAIL] {len(fails)} claims missing five-element fields:")
+        for f in fails:
+            print(f"         - {f}")
+
+    if not fails and not warnings:
+        print(f"  [ok]   All {len(claims)} claims have complete five-element documentation")
+    elif not fails:
+        print(f"  [ok]   All active claims have complete five-element documentation "
+              f"({len(warnings)} warnings for negative/weak claims)")
+
+    return fails
+
+
 # ============================================================ main
 
 
@@ -515,6 +605,7 @@ def main() -> int:
         ("4. extract_answer", _check_extract_answer),
         ("5. HTTP backend wiring", _check_http_backend_wiring),
         ("6. S6 control scoreability", _check_s6_control_scoreability),
+        ("7. five-element verification", _check_five_elements),
     ]:
         try:
             failures = fn()
