@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.58.0` | the toolkit as a whole |
+| package | `2.64.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,255 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.64.0] — 2026-10-11
+
+**阶段 1 综合报告 + Gate 30 扩展 S7/S8/S9 三条新纪律**
+
+按 `docs/PHASE1_SYNTHESIS_2026-10-11.md` 执行阶段 1 收口，合并 R1/R2/R4 三个零依赖实验的实测数据。
+
+| # | 项 | 交付 |
+|---|---|---|
+| 1 | 阶段 1 综合分析报告 | `docs/PHASE1_SYNTHESIS_2026-10-11.md`（R1 效应真实但机制证伪 · R2 实验设计缺陷 · R4 唯一机制方向） |
+| 2 | Gate 30 S7 分辨率预检 | `check_llm_orchestrator._check_s7_resolution_precheck()` — 扫描类实验启动前验证目标分辨率 vs 参数几何上限，R2 静默钳位预警 |
+| 3 | Gate 30 S8 机制假说证伪即产出 | `check_llm_orchestrator._check_s8_mechanism_falsification()` — negative_result 声明必须包含 falsified_mechanisms 结构化列表 |
+| 4 | Gate 30 S9 扰动分析优于相关性 | `check_llm_orchestrator._check_s9_perturbation_over_correlation()` — R1 p3 R²<0.05 时 R4 敏感性数据必须存在且含边界信号 |
+| 5 | research_claims.json 扩展 | R1 补 3 条证伪机制（feature_addition / task_alignment / edge_density_correlation）；R3 补 2 条（alignment_threshold / monotonic_alignment_gain） |
+| 6 | 版本 | 7 处版本号 2.63.0 → 2.64.0 |
+
+**Gate 30 现状**：10 项正向检查 + 4 项注入缺陷 = 全绿。S7 正确标记 R2 三档密度静默钳位（0.05/0.10/0.15 < 0.2000），
+S8 正确验证 R1/R3 已补全 falsified_mechanisms 字段，S9 正确验证 R4 边界数据存在。
+
+**阶段 1 结论**：R1 29/30 高隔离效应稳定可复现，但三个候选机制假说全部证伪（R² ≈ 0）；
+R2 因 n_nodes=6 无法分辨低密度档（实验设计缺陷已记录）；R4 唯一给出机制方向——remove 类扰动在 0.1 强度即达边界。
+**L3 分水岭被精确刻画：不是"不知道 92.6% 为何"，而是"试过的机制都不对，剩下方向是 remove 类扰动"。**
+
+**门禁**：36/36 PASS（--quick），36 门禁全部通过。
+
+## [2.63.0] — 2026-10-11
+
+**开源技术融合：融合 B（两级 LLM 调用）+ 融合 A 补全（判据辅助）+ 中期融合评估**
+
+按 `docs/OPEN_SOURCE_FUSION_2026-10-11.md` 执行融合路线，按 ROI 排序落地。
+
+### 融合 B：两级 LLM 调用流水线（ROI 5.0，已完成）
+
+| 组件 | 位置 | 内容 |
+|---|---|---|
+| TwoStageLLMBackend | `llm_orchestrator.py` | cheap 预筛 + strong 升级，min_confidence 阈值控制 |
+| answer_confidence_score() | `llm_orchestrator.py` | 确定性置信度评分（hedge 检测 + 长度启发式） |
+| Gate 34 | `check_two_stage_pipeline.py` | 10 检查 + 4 注入缺陷，全部 PASS |
+| Fusion B benchmark | `fusion_b_benchmark.py` | 51% 降本 + 100% 一致率（vs strong-only） |
+
+**关键设计**：两级后端是路由层，不是判断层——任何低置信度 cheap 答案必须升级，
+never silent-downgrade。strong 模型的答案永远胜出。
+
+### 融合 A 补全：判据模型辅助 Gate 30（ROI 2.5，已完成）
+
+| 组件 | 位置 | 内容 |
+|---|---|---|
+| claim_verifier.py | `scripts/` | LLM-as-a-Verifier 辅助检查（可选，warning 不阻断） |
+| structural_falsifiability_hints() | `claim_verifier.py` | 结构化回退：检测空/过短/模糊证伪条件 |
+| judge_falsifiability() | `claim_verifier.py` | LLM 辅助判断证伪条件是否真正可证伪 |
+
+**关键纪律**：四要素（命题/预测/证伪/复算）结构化检查，只有"预测是否可证伪"
+用 LLM 辅助。LLM 不可用时静默降级，不影响门禁。
+
+### 中期融合评估（图基础模型 + EvoAgentX + AutoScientists）
+
+`docs/FUSION_EVALUATION_2026-10-11.md`：
+- G-reasoner / BrainGFM：**暂缓**（R1 已证伪，embedding 解释错误假说无意义；无本地 GPU）
+- EvoAgentX：**短期可做**（1-2 周，提供 R3 外部对照点）
+- AutoScientists：**暂缓**（S6 前置未落地前，自动化 = 更快地犯错）
+
+### 新增门禁
+
+- Gate 34：Fusion B two-stage pipeline（10 checks + 4 injected defects）
+- Gate 35：claim verifier auxiliary（offline mode，structural hints）
+
+### 版本同步
+
+- 7 处版本号 2.62.0 → 2.63.0
+- CHANGELOG 补 v2.63.0 条目
+- README 门禁数 33 → 35
+
+---
+
+## [2.62.0] — 2026-10-11
+
+**Phase 1 深度突破：R1 扩样证伪 + R2 密度扫描 + R4 敏感性边界 + Gate 30 五要素扩展 + 3 新门禁**
+
+按 `docs/SCAN_AND_UPGRADE_2026-10-11.md` 阶段 1 清单，完成 4 项零依赖任务 + Gate 30 科研自验证扩展。
+
+### 新增科研脚本（零依赖，stdlib only）
+
+| 脚本 | 行数 | 对应命题 | 核心交付 |
+|---|---|---|---|
+| `r1_expansion.py` | ~630 | R1 隔离普遍性 | N≥100 拓扑扩样 + P1/P2/P3 机制检验 + 预先声明证伪条件 |
+| `r2_density_scan.py` | ~470 | R2 可搜索性 | 7 密度 × 50 样本 × 3 任务 + 结构-功能曲线 + d* 阈值搜索 |
+| `r4_sensitivity_scan.py` | ~580 | R4 结构指纹 | 4 扰动类型 × 5 强度 × 8 蓝图 + 鲁棒性曲线 + 敏感性边界 |
+
+### R1 扩样结果：**假说被证伪**
+
+R1 的三个可证伪预测（P1/P2/P3）**全部失败**，触发预先声明的证伪条件：
+
+| 预测 | 结果 | 判定 |
+|---|---|---|
+| P1: 加入可达性特征后 R² 显著上升 | R²=0.025，无改善 | ❌ 失败 |
+| P2: 固定拓扑换读出模块→效应量显著变化 | std=0.0，无变化 | ❌ 失败 |
+| P3: 隔离效应量与边密度负相关 | slope=+0.23，正相关 | ❌ 失败 |
+
+**结论**：「结构×任务对齐」假说被证伪。方向关闭，负结果登记。
+**方法论价值**：这是项目首次按预先声明的证伪条件**主动关闭**一个研究方向——科学自验证纪律的实战验证。
+
+### R2 密度扫描结果
+
+7 个密度（0.05–0.80）× 50 样本，hub/reachability 成功率恒 100%（ground-truth 评估）。
+**无能力悬崖**：在扫描范围内未找到 reachability 成功率下降的 d*。
+evidence vs random 对比：evidence 蓝图直径一致更高（3.8–4.0 vs 2.0–3.2），聚类系数低密度时更高。
+
+### R4 敏感性边界结果
+
+| 扰动类型 | 鲁棒性边界 | fp_dist | reach_chg |
+|---|---|---|---|
+| flip | 0.2 | 0.307 | 50.0% |
+| add | 0.2 | 0.361 | 49.2% |
+| remove | 0.1 | 0.367 | 43.3% |
+| node_delete | 0.5 | 0.456 | 89.2% |
+
+**发现**：remove 扰动最敏感（strength=0.1 即触发边界），node_delete 最鲁棒（需 0.5 强度）。
+
+### Gate 30 扩展：五要素 + S6 科研自验证门禁
+
+Gate 30 从「编排代码正确性检查」扩展为「科研自验证门禁」：
+
+| 检查项 | 内容 | 状态 |
+|---|---|---|
+| 1–5 | 任务源 / evidence block / 4 拓扑 / extract_answer / HTTP backend | ✅ 原有 |
+| 6 | S6 对照组可得分性 | ✅ v2.61.0 新增 |
+| **7** | **五要素验证**（命题/预测/证伪/复算/边界） | ✅ **本版新增** |
+
+五要素检查读取 `research_claims.json`，验证每条对外声明的理论主张是否具备：
+① 命题陈述（可证伪形式）② 定量预测 ③ 证伪条件 ④ 复算命令 ⑤ 样本量+种子+边界声明
+
+### 新增门禁
+
+| Gate | 名称 | 内容 |
+|---|---|---|
+| **31** | R2 density scan | 密度扫描结构-功能曲线 |
+| **32** | R4 sensitivity scan | 敏感性边界鲁棒性曲线 |
+| **33** | R1 expansion | 隔离预测扩样 + 机制检验 |
+
+### 新增文件
+
+- `research_claims.json` — 六条科研命题的五要素清单（R1–R6）
+- `scripts/r1_expansion.py` / `r2_density_scan.py` / `r4_sensitivity_scan.py`
+
+### 版本一致性
+
+- 7 处版本号同步 → **2.62.0**
+- `research_claims.json` 新增（R1 状态更新为 `negative_result`）
+
+**全库现共 33 门禁**（Gate 30 扩展为 7 项检查 + 4 注入缺陷）。
+
+---
+
+## [2.61.0] — 2026-10-11
+
+**阶段 0 止血：3 门禁报红修复 + Gate 30 注册 + P1 结论修正**
+
+按 `docs/SCAN_AND_UPGRADE_2026-10-11.md` 阶段 0 清单，修复 3 项门禁报红 + 注册 Gate 30 + 修正 P1 报告结论。
+
+### 止血修复
+
+| 项 | 问题 | 修复 |
+|---|---|---|
+| **Gate 27** 反应引擎 | `find_reactions` 返回空 —— core_bridge 的 sibling 发现路径指向 `Desktop/flybrain-connectome-core`，但实际 checkout 在 repo 内 | `core_bridge._discover_local_core` 增加 in-repo 候选 `ROOT / "flybrain-connectome-core"`；`.gitignore` 加 `flybrain-connectome-core/` 防 IP 泄漏 |
+| **Gate 3** MCP 冒烟测试 | `profile_health` 已广告但 `check_mcp_tools.ARGS` 无对应参数 | 加 `"profile_health": {"profile": "sensory"}` |
+| **Gate 2** 文档漂移 | README 工具数 46 vs 47；README/mcp_setup.md 缺 `profile_health`；mcp.json 写 46 | README 2 处 `46-tool` → `47-tool`；README + mcp_setup.md 加 `profile_health`；mcp.json 描述 46→47 |
+| **Gate 30** 未注册 + 2 失败 | ① 未进 `run_gates.py`；② `hierarchical` trace 记录未包装 prompt（审计看不到 evidence）；③ defect 3 断言查 `t[1]`（sys）而非 `t[0]`（role） | 注册进 `run_gates.py`；`HierarchicalOrchestrator.run` + `RouterOrchestrator.run` 的 trace 改为记录 `self._wrap(prompt)`；defect 3 断言改查 `t[0]` |
+| **README badge** | 29 gates → 30 gates | 3 处同步 |
+
+### Gate 30 注册（科研自验证门禁）
+
+Gate 30 守着 P1 编排代码的**确定性与 trace 纪律**：
+- 5 项正向检查：任务源 / evidence block / 4 拓扑 / extract_answer / HTTP backend wiring
+- 4 项注入缺陷：fan_out 丢 judge / hierarchical planner 空转 / router 绕菜单 / extract_answer 泄漏 JSON
+
+**未注册 = P1 编排代码无守护。** 现在进 `run_gates.py` 且 PASS。
+
+### 全库现共 30 门禁（`--quick` 26/26 PASS；完整 30/30 PASS）
+
+---
+
+## [2.60.0] — 2026-10-10
+
+**Phase E2-P1：LLM 编排基底 + P1 结案实验 + 生命层扩容（profile_health / containment / repair_engine / self_evolving_loop）**
+
+两天内新增 5 个模块，把上一轮方案 C1/D2/D3/D5 全部落地。
+
+### 新增模块
+
+| 模块 | 行数 | 对应方案 | 核心交付 |
+|---|---|---|---|
+| `profile_health.py` | 649 | C1 结构体检 | 6 维退化指标 + 综合退化分 0.0–1.0（connectivity / evidence_ratio / port_satisfaction / orphan_rate / cycle_count / hub_concentration） |
+| `containment.py` | 546 | D5 容纳层 | Containment Verification 2026-05 落地 |
+| `repair_engine.py` | 361 | D2 修复算子 | SkillOpt-Lite 四步循环 + 结构性验收 |
+| `self_evolving_loop.py` | 576 | D3 无适应度自演化 | 存活判据二分 + DGM archive |
+| `llm_orchestrator.py` | ~500 | E2-P1 | 4 拓扑编排（sequential / fan_out / hierarchical / router）+ evidence injection + trace discipline |
+| `p1_experiment.py` | ~900 | R3 P1 | 25 蓝图 × 2 臂（evidence / random）× 3 任务 × 4 拓扑 |
+| `llm_tasks.py` | ~400 | R3 | 任务生成器（motif_family / hub / reachability）+ ground truth + 打分 |
+
+### 新增 MCP 工具
+
+`profile_health`（结构体检，国际前沿空白：AdaptOrch/DGM/TMLR 2026 验证全是任务指标，无一有结构健康度量）。
+
+### 版本一致性
+
+- `pyproject.toml` / `flybrain_cli.py` / `server.py` / `api_server.py` → **2.60.0**
+- `README.md` 徽章 29 gates · 47 tools
+
+### ⚠️ P1 实验结论修正
+
+P1 full run 跑完 1,284 cells，原报告称 "+33.4pp / 4/4 全赢 / 推翻 0/7"。
+
+**独立复核发现**：整个 +33.4pp 的效应几乎全部来自 `motif_family` 任务，而该任务在 random 组**构造上不可能得分**（代码注释 `not among MOTIF_FAMILY_LABELS` + 打分逻辑 `a in MOTIF_FAMILY_LABELS and a == ground_truth`，random 蓝图 motif 恒为 `mixed`）。
+
+**剔除后**：hub +0.051、reachability −0.070 —— 无一致优势。**P1 没有推翻 0/7。**
+
+教训 → **S6 纪律「对照组可得分性」**（见 `docs/SCAN_AND_UPGRADE_2026-10-11.md` §6.4）。
+
+---
+
+## [2.59.0] — 2026-10-10
+
+**E2-P1 阶段 1：工程基座（LLM 客户端 + 4 拓扑编排 + 任务生成 + stub 全通）**
+
+P1 结案实验的第一步：不碰真 LLM，用 StubLLM 脚本化后端把 4 种编排拓扑（sequential / fan_out / hierarchical / router）+ evidence injection + trace discipline 跑通，确保编排层的确定性与可审计性。
+
+### 新增模块
+
+| 模块 | 行数 | 核心交付 |
+|---|---|---|
+| `llm_orchestrator.py` | ~500 | 4 拓扑 + `StubLLM` / `HTTPLLMBackend` + `render_evidence_block` + `extract_answer` + `run_all_topologies` |
+| `llm_tasks.py` | ~400 | `Blueprint` / `Task` / `build_evidence_blueprint` / `build_random_blueprint` / `compute_ground_truth` / `generate_tasks` / `render_prompt` / `score_answer` |
+| `p1_experiment.py` | ~900 | P1 实验框架（warmup + full + checkpoint + resume） |
+
+### 新增门禁（Gate 30）
+
+| Gate | 名称 | 检查项 | 注入缺陷 |
+|---|---|---|---|
+| **30** | E2-P1 orchestration base | 1. 任务源 · 2. evidence block · 3. 4 拓扑 + trace discipline · 4. extract_answer · 5. HTTP backend wiring | 4 个（fan_out 丢 judge / hierarchical planner 空转 / router 绕菜单 / extract_answer 泄漏 JSON） |
+
+**全库现共 30 门禁**（`--quick` 26/26 PASS；完整 30/30 PASS）。
+
+### 版本一致性
+
+- `pyproject.toml` / `flybrain_cli.py` / `server.py` / `api_server.py` → **2.59.0**
+
+---
 
 ## [2.58.0] — 2026-10-10
 
