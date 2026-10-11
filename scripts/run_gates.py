@@ -194,6 +194,54 @@ def main() -> int:
         "(with 4 injected-defect tests)",
         [py, str(SCRIPTS / "check_development.py")])[0]))
 
+    # ---- Gate 30: E2-P1 orchestration base + scientific self-verification (S6-S9) ----
+    results.append(("gate30 llm orchestrator", run(
+        "GATE 30 — E2-P1 orchestration base: task source + evidence block + "
+        "4 topologies + trace discipline + S6 control scoreability + "
+        "five-element verification + S7 resolution precheck + "
+        "S8 mechanism falsification + S9 perturbation over correlation + "
+        "4 injected-defect tests",
+        [py, str(SCRIPTS / "check_llm_orchestrator.py")])[0]))
+
+    # ---- Gate 31: R2 density scan — structure-function curves and d* threshold ----
+    results.append(("gate31 r2 density scan", run(
+        "GATE 31 — R2 density scan: structure-function curves and d* threshold",
+        [py, str(SCRIPTS / "r2_density_scan.py"), "--n-samples", "50",
+         "--n-nodes", "6", "--output-dir", str(ROOT / "_gate31_r2")])[0]))
+
+    # ---- Gate 32: R4 sensitivity boundary analysis — robustness curves ----
+    results.append(("gate32 r4 sensitivity scan", run(
+        "GATE 32 — R4 sensitivity boundary: robustness curves",
+        [py, str(SCRIPTS / "r4_sensitivity_scan.py"), "--n-blueprints", "8",
+         "--n-nodes", "6", "--output-dir", str(ROOT / "_gate32_r4")])[0]))
+
+    # ---- Gate 33: R1 isolation predictor expansion — mechanism tests ----
+    results.append(("gate33 r1 expansion", run(
+        "GATE 33 — R1 isolation predictor: N≥100 topologies + mechanism tests "
+        "(P1/P2/P3 falsification checks)",
+        [py, str(SCRIPTS / "r1_expansion.py"), "--n-topologies", "30",
+         "--n-nodes", "6", "--output-dir", str(ROOT / "_gate33_r1")])[0]))
+
+    # ---- Gate 34: Fusion B two-stage LLM pipeline (cheap + strong) ----
+    results.append(("gate34 two-stage pipeline", run(
+        "GATE 34 — Fusion B two-stage LLM pipeline: cheap pre-screen + "
+        "strong escalation (10 checks + 4 injected-defect tests)",
+        [py, str(SCRIPTS / "check_two_stage_pipeline.py")])[0]))
+
+    # ---- Gate 35: Fusion A claim verifier auxiliary (structural hints) ----
+    results.append(("gate35 claim verifier", run(
+        "GATE 35 — Fusion A claim verifier: structural falsifiability hints "
+        "+ LLM-assisted optional (warning, not failure)",
+        [py, str(SCRIPTS / "claim_verifier.py"),
+         "--mode", "offline"])[0]))
+
+    # ---- Gate 36: EvoAgentX adapter POC (structure_health as fitness) ----
+    results.append(("gate36 evoagentx adapter", run(
+        "GATE 36 — EvoAgentX adapter POC: structure_health → fitness mapping "
+        "+ mutation + comparison data (dry-run, no EvoAgentX required)",
+        [py, str(SCRIPTS / "evoagentx_adapter.py"),
+         "--mode", "dry-run", "--n-generations", "3", "--n-population", "10"])[0]))
+
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
         "GATE 9 — functional units + connection types + composer fail-closed",
