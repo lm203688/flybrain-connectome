@@ -233,6 +233,13 @@ def main() -> int:
         [py, str(SCRIPTS / "claim_verifier.py"),
          "--mode", "offline"])[0]))
 
+    # ---- Gate 36: EvoAgentX adapter POC (structure_health as fitness) ----
+    results.append(("gate36 evoagentx adapter", run(
+        "GATE 36 — EvoAgentX adapter POC: structure_health → fitness mapping "
+        "+ mutation + comparison data (dry-run, no EvoAgentX required)",
+        [py, str(SCRIPTS / "evoagentx_adapter.py"),
+         "--mode", "dry-run", "--n-generations", "3", "--n-population", "10"])[0]))
+
     # ---- Gate 9: functional-unit library (stdlib only, runs even in --quick) ----
     results.append(("gate9 unit library", run(
         "GATE 9 — functional units + connection types + composer fail-closed",
