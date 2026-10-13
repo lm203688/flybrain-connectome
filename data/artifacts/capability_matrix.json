@@ -1,0 +1,80 @@
+{
+  "skeleton": true,
+  "dimensions": {
+    "reasoning": {
+      "categories": {
+        "basic": {
+          "declarations": 0,
+          "members": [],
+          "unit_count": 0
+        }
+      }
+    },
+    "memory": {
+      "categories": {
+        "basic": {
+          "declarations": 0,
+          "members": [],
+          "unit_count": 0
+        }
+      }
+    },
+    "perception": {
+      "categories": {
+        "basic": {
+          "declarations": 0,
+          "members": [],
+          "unit_count": 0
+        }
+      }
+    },
+    "planning": {
+      "categories": {
+        "basic": {
+          "declarations": 0,
+          "members": [],
+          "unit_count": 0
+        }
+      }
+    },
+    "communication": {
+      "categories": {
+        "basic": {
+          "declarations": 0,
+          "members": [],
+          "unit_count": 0
+        }
+      }
+    },
+    "action": {
+      "categories": {
+        "basic": {
+          "declarations": 0,
+          "members": [],
+          "unit_count": 0
+        }
+      }
+    },
+    "learning": {
+      "categories": {
+        "basic": {
+          "declarations": 0,
+          "members": [],
+          "unit_count": 0
+        }
+      }
+    },
+    "introspection": {
+      "categories": {
+        "basic": {
+          "declarations": 0,
+          "members": [],
+          "unit_count": 0
+        }
+      }
+    }
+  },
+  "totals": {
+    "declarations": 0
+  }
+}
