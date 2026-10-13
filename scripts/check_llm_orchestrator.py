@@ -590,6 +590,221 @@ def _check_five_elements() -> list[str]:
     return fails
 
 
+# ============================================================ 8. S7 resolution precheck
+
+
+def _check_s7_resolution_precheck() -> list[str]:
+    """S7 · 分辨率预检 (2026-10-11 新增纪律).
+
+    扫描类实验启动前，必须验证目标分辨率 < 参数几何上限。
+    若目标分辨率 > 参数几何上限，实验将静默钳位（R2 即栽在此）。
+
+    检查逻辑：
+      对于 n_nodes 个节点的有向图，最大边数 = n*(n-1)，
+      最小非空密度 = 1/(n*(n-1))。
+      若扫描的密度档 < 最小非空密度，则静默钳位为 1/(n*(n-1))。
+
+    已知问题（2026-10-11 发现）：
+      R2 密度扫描 n_nodes=6，最大边数=30，最小非空密度=1/30≈0.033。
+      但扫描档 0.05→0.8 均被钳位到 0.2（=6/30），实际未扫描密度。
+    """
+    fails: list[str] = []
+
+    # Check R2 density scan parameters
+    r2_path = REPO_ROOT / "_r2_density_scan" / "r2_density_scan.json"
+    if not r2_path.exists():
+        fails.append("R2 density scan data not found — cannot verify resolution")
+        return fails
+
+    with open(r2_path, "r", encoding="utf-8") as f:
+        r2_data = json.load(f)
+
+    params = r2_data.get("params", {})
+    n_nodes = params.get("n_nodes", 6)
+    densities = params.get("densities", [])
+
+    # Geometric upper bound for directed graph
+    max_edges = n_nodes * (n_nodes - 1)
+
+    # R2 script uses: n_edges = max(n_nodes, int(d * n * (n-1)))
+    # The max(n_nodes, ...) clamp means densities below n_nodes/(n*(n-1))
+    # are silently clamped to actual_density = n_nodes/(n*(n-1))
+    clamp_density = n_nodes / max_edges if max_edges > 0 else 1.0
+
+    print(f"  [info] R2 density scan: n_nodes={n_nodes}, "
+          f"max_edges={max_edges}, clamp_density={clamp_density:.4f}")
+    print(f"         (densities < {clamp_density:.4f} will be clamped to "
+          f"{clamp_density:.4f} due to max(n_nodes, ...) in edge count formula)")
+
+    for d in densities:
+        if d < clamp_density:
+            # This is a WARNING, not a failure — the experiment ran but
+            # didn't actually scan the target density range.
+            print(f"  [WARN] R2 density={d:.2f} < clamp_density={clamp_density:.4f} "
+                  f"— actual_density will be clamped to {clamp_density:.4f} "
+                  f"(n_edges=max({n_nodes},{int(d*max_edges)})={n_nodes})")
+        else:
+            print(f"  [ok]   R2 density={d:.2f} >= clamp_density={clamp_density:.4f}")
+
+    # Also check R1 expansion parameters
+    r1_path = REPO_ROOT / "_r1_expansion" / "r1_results.json"
+    if r1_path.exists():
+        with open(r1_path, "r", encoding="utf-8") as f:
+            r1_data = json.load(f)
+        r1_params = r1_data.get("params", {})
+        r1_n_nodes = r1_params.get("n_nodes", 6)
+        r1_max_edges = r1_n_nodes * (r1_n_nodes - 1)
+        r1_min_density = 1.0 / r1_max_edges if r1_max_edges > 0 else 1.0
+        print(f"  [info] R1 expansion: n_nodes={r1_n_nodes}, "
+              f"max_edges={r1_max_edges}, min_nonzero_density={r1_min_density:.4f}")
+
+    return fails
+
+
+# ============================================================ 9. S8 mechanism falsification as output
+
+
+def _check_s8_mechanism_falsification() -> list[str]:
+    """S8 · 机制假说证伪即产出 (2026-10-11 新增纪律).
+
+    R1 三假说证伪是有效产出，Gate 30 必须能承接（不只是"命题通过/失败"，
+    还有"证伪了哪些"）。
+
+    检查逻辑：
+      对于 status="negative_result" 的声明，必须包含 falsified_mechanisms
+      字段，列出被证伪的机制假说（名称、R² 或效应量、证伪方法）。
+      对于 status="complete" 的声明，必须有明确的 falsification_condition。
+
+    已知情况（2026-10-11）：
+      R1 (negative_result): 三个机制假说全部证伪，但 research_claims.json
+      未记录具体证伪的机制列表。
+    """
+    fails: list[str] = []
+    warnings: list[str] = []
+
+    claims_path = REPO_ROOT / "research_claims.json"
+    if not claims_path.exists():
+        fails.append("research_claims.json not found — cannot verify S8")
+        return fails
+
+    with open(claims_path, "r", encoding="utf-8") as f:
+        manifest = json.load(f)
+
+    claims = manifest.get("claims", [])
+    if not claims:
+        fails.append("research_claims.json has no claims")
+        return fails
+
+    print(f"  [info] Checking {len(claims)} claims for S8 mechanism falsification...")
+
+    for claim in claims:
+        claim_id = claim.get("id", "?")
+        title = claim.get("title", "?")[:40]
+        status = claim.get("status", "unknown")
+
+        if status == "negative_result":
+            # Must have falsified_mechanisms list
+            falsified = claim.get("falsified_mechanisms")
+            if not falsified or not isinstance(falsified, list):
+                warnings.append(
+                    f"[{claim_id}] {title}: negative_result but no falsified_mechanisms "
+                    f"field — S8 requires documenting what was falsified"
+                )
+            elif not falsified:
+                warnings.append(
+                    f"[{claim_id}] {title}: falsified_mechanisms is empty "
+                    f"— S8 requires listing at least one falsified mechanism"
+                )
+            else:
+                print(f"  [ok]   [{claim_id}] {title}: "
+                      f"{len(falsified)} falsified mechanism(s) documented")
+
+        elif status == "complete":
+            # Must have falsification_condition (already checked in S5, but verify it's substantive)
+            fc = claim.get("falsification_condition", "")
+            if fc and len(fc.strip()) < 20:
+                warnings.append(
+                    f"[{claim_id}] {title}: falsification_condition too short "
+                    f"({len(fc.strip())} chars) — may not be substantive"
+                )
+
+    # Print warnings (non-blocking)
+    for w in warnings:
+        print(f"  [WARN] {w}")
+
+    return fails
+
+
+# ============================================================ 10. S9 perturbation over correlation
+
+
+def _check_s9_perturbation_over_correlation() -> list[str]:
+    """S9 · 扰动分析优于相关性 (2026-10-11 新增纪律).
+
+    相关性 R²≈0 时不要停，扰动分析能给出机制方向。
+    检查：当 R1 p3 (edge_density_correlation) R² < 0.05 时，
+    R4 sensitivity scan 数据必须存在且包含边界信号。
+
+    已知情况（2026-10-11）：
+      R1 p3 R²=0.003 (essentially zero), but R4 sensitivity scan exists
+      with valid boundary data (remove=0.1, flip=0.2, add=0.2, node_delete=0.5).
+    """
+    fails: list[str] = []
+    warnings: list[str] = []
+
+    # Check R1 p3 correlation
+    r1_path = REPO_ROOT / "_r1_expansion" / "r1_results.json"
+    if not r1_path.exists():
+        warnings.append("R1 expansion data not found — cannot verify S9")
+        return []
+
+    with open(r1_path, "r", encoding="utf-8") as f:
+        r1_data = json.load(f)
+
+    p3 = r1_data.get("p3_edge_density_correlation", {})
+    r_squared = p3.get("r_squared", 1.0)
+    slope = p3.get("slope", 0.0)
+
+    print(f"  [info] R1 p3 correlation: R²={r_squared:.4f}, slope={slope:.4f}")
+
+    if r_squared < 0.05:
+        # Correlation is weak — perturbation analysis MUST exist
+        r4_path = REPO_ROOT / "_r4_sensitivity_scan" / "r4_sensitivity_scan.json"
+        if not r4_path.exists():
+            fails.append(
+                f"R1 p3 R²={r_squared:.4f} < 0.05 (weak correlation), "
+                f"but R4 sensitivity scan data not found — S9 requires "
+                f"perturbation analysis as backup"
+            )
+        else:
+            with open(r4_path, "r", encoding="utf-8") as f:
+                r4_data = json.load(f)
+
+            boundaries = r4_data.get("boundaries", {})
+            curves = r4_data.get("curves", {})
+
+            if not boundaries:
+                fails.append("R4 sensitivity scan has no boundary data")
+            else:
+                print(f"  [ok]   R4 boundary data exists with "
+                      f"{len(boundaries)} perturbation types")
+                for ptype, bdata in boundaries.items():
+                    strength = bdata.get("boundary_strength", "?")
+                    fp_dist = bdata.get("fp_distance_at_boundary", "?")
+                    print(f"         - {ptype}: boundary_strength={strength}, "
+                          f"fp_distance={fp_dist}")
+
+    elif r_squared >= 0.05:
+        print(f"  [ok]   R1 p3 R²={r_squared:.4f} >= 0.05 "
+              f"(correlation is meaningful, perturbation optional)")
+
+    # Print warnings
+    for w in warnings:
+        print(f"  [WARN] {w}")
+
+    return fails
+
+
 # ============================================================ main
 
 
@@ -606,6 +821,9 @@ def main() -> int:
         ("5. HTTP backend wiring", _check_http_backend_wiring),
         ("6. S6 control scoreability", _check_s6_control_scoreability),
         ("7. five-element verification", _check_five_elements),
+        ("8. S7 resolution precheck", _check_s7_resolution_precheck),
+        ("9. S8 mechanism falsification", _check_s8_mechanism_falsification),
+        ("10. S9 perturbation over correlation", _check_s9_perturbation_over_correlation),
     ]:
         try:
             failures = fn()

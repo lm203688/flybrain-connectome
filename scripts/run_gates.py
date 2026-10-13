@@ -89,6 +89,14 @@ def main() -> int:
     py = sys.executable
     results: list[tuple[str, bool]] = []
 
+    # ---- Gate 38: dependency self-check (runs FIRST — distinguishes env from code) ----
+    gate38_args = [py, str(SCRIPTS / "check_dependencies.py")]
+    if args.quick:
+        gate38_args.append("--quick")
+    results.append(("gate38 dependencies", run(
+        "GATE 38 — dependency self-check (missing numpy = env problem, not code defect)",
+        gate38_args)[0]))
+
     results.append(("gate1 secrets", run(
         "GATE 1 — no hardcoded credentials",
         [py, str(SCRIPTS / "check_no_secrets.py")])[0]))
@@ -194,11 +202,13 @@ def main() -> int:
         "(with 4 injected-defect tests)",
         [py, str(SCRIPTS / "check_development.py")])[0]))
 
-    # ---- Gate 30: E2-P1 orchestration base (task source + 4 topologies + trace discipline) ----
+    # ---- Gate 30: E2-P1 orchestration base + scientific self-verification (S6-S9) ----
     results.append(("gate30 llm orchestrator", run(
         "GATE 30 — E2-P1 orchestration base: task source + evidence block + "
         "4 topologies + trace discipline + S6 control scoreability + "
-        "five-element scientific self-verification + 4 injected-defect tests",
+        "five-element verification + S7 resolution precheck + "
+        "S8 mechanism falsification + S9 perturbation over correlation + "
+        "4 injected-defect tests",
         [py, str(SCRIPTS / "check_llm_orchestrator.py")])[0]))
 
     # ---- Gate 31: R2 density scan — structure-function curves and d* threshold ----

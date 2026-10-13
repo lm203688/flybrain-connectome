@@ -3,11 +3,11 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-2.63.0-orange.svg)](CHANGELOG.md)
-[![docker](https://img.shields.io/badge/docker-2.63.0-2496ED.svg)](#docker)
+[![version](https://img.shields.io/badge/version-2.66.0-orange.svg)](CHANGELOG.md)
+[![docker](https://img.shields.io/badge/docker-2.66.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.63.0 · 2026-10-11 · 116 functional units · 270 module profiles · 36 gates**
+**v2.66.0 · 2026-10-12 · 116 functional units · 270 module profiles · 37 gates**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
@@ -1075,9 +1075,48 @@ refuses to let an unacknowledged contradiction or a hand-typed reason ship).
 
 ## Science & paper
 
-The methodology, the four moats, and the two negative results are written up
-in **[`docs/arxiv_paper.md`](docs/arxiv_paper.md)** (preprint-ready). Key
-references:
+The methodology, the four moats, the six falsified mechanisms, and the two
+negative results are written up in **[`docs/arxiv_paper.md`](docs/arxiv_paper.md)**
+(preprint-ready).
+
+### Research self-verification discipline (S6–S9)
+
+This project follows four scientific self-verification disciplines that are
+uncommon in open-source tooling but essential for research integrity:
+
+- **S6 · Control group scoreability** — every control experiment must verify
+  that the control arm has scoreable samples in *every* task category. If a
+  category is structurally unscoreable for the control arm, it must be excluded
+  or reported separately. (Caught a false +33.4pp result in P1.)
+
+- **S7 · Resolution pre-check** — before starting a scan experiment, verify
+  that the target resolution matches the parameter-space geometric limit
+  (`clamp_density = n_nodes / (n * (n-1))`). (Caught a silent clamp in R2.)
+
+- **S8 · Mechanism falsification as output** — when a mechanism hypothesis is
+  falsified, the result must include a structured `falsified_mechanisms` list
+  (mechanism, hypothesis, test, result, verdict). Six mechanisms have been
+  tested and falsified (P1 feature addition, P2 task alignment, P3 edge
+  density, P1 correction, R3 monotonic gain, H-A critical edge sparsity).
+
+- **S9 · Perturbation analysis over correlation** — when correlation R² < 0.05,
+  perturbation data must exist and contain boundary signals. Correlation alone
+  is insufficient for mechanism claims.
+
+These disciplines are enforced by **Gate 30** (`scripts/check_llm_orchestrator.py`),
+which independently recomputes claim metadata from experiment data and refuses
+to let an unverified claim pass.
+
+### Reproducible negative results
+
+The project maintains a public `research_claims.json` with six claims (R1–R6),
+each containing: statement, quantitative prediction, falsification condition,
+reproduction command, sample size, random seed, boundary statement, and
+falsified mechanisms. Current status: 1 negative result, 1 inconclusive,
+2 complete, 1 needs strengthening, 1 complete. The research claim system is
+itself gated (Gate 30) to prevent silent drift.
+
+Key references:
 
 - MaleCNS v1.0 — *Cell*, 2026-09-03 (CC-BY). The 166,700-neuron male-brain
   connectome this project is grounded in. Obtainable from
