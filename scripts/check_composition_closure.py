@@ -16,7 +16,10 @@ trust the exceptions file), then diffs against the registry.
 from __future__ import annotations
 
 import json
+import shutil
 import sys
+import tempfile
+from copy import deepcopy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -95,5 +98,100 @@ def main() -> int:
               % len(broken))
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: mutate the exceptions registry and assert
+    the gate goes red. Each injection exercises one of the failure classes
+    the gate declares: unregistered broken declaration, stale exception,
+    matrix count drift, missing registry.
+
+    Apply and restore are structurally separate (tempfile + globals swap
+    + finally), so no injection leaks state into the next one.
+    """
+    bad = 0
+    n_inj = 0
+
+    real_exc = json.loads(EXC.read_text(encoding="utf-8"))
+    real_matrix = json.loads(MATRIX.read_text(encoding="utf-8"))
+
+    def expect(name, mutate_exc=None, mutate_matrix=None):
+        nonlocal bad, n_inj
+        n_inj += 1
+        td = Path(tempfile.mkdtemp(prefix="gate17_inj_"))
+        try:
+            exc = deepcopy(real_exc)
+            mat = deepcopy(real_matrix)
+            if mutate_exc:
+                mutate_exc(exc)
+            if mutate_matrix:
+                mutate_matrix(mat)
+            ep = td / "exc.json"
+            mp = td / "matrix.json"
+            ep.write_text(json.dumps(exc, ensure_ascii=False), encoding="utf-8")
+            mp.write_text(json.dumps(mat, ensure_ascii=False), encoding="utf-8")
+            old_exc = globals()["EXC"]
+            old_matrix = globals()["MATRIX"]
+            globals()["EXC"] = ep
+            globals()["MATRIX"] = mp
+            try:
+                rc = main()
+            finally:
+                globals()["EXC"] = old_exc
+                globals()["MATRIX"] = old_matrix
+        finally:
+            shutil.rmtree(td, ignore_errors=True)
+
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. Remove an exception -> a broken declaration becomes unregistered.
+    def _inj_remove_exc(doc):
+        if doc.get("exceptions"):
+            doc["exceptions"] = doc["exceptions"][:-1]
+
+    expect("a broken declaration is removed from the registry",
+           mutate_exc=_inj_remove_exc)
+
+    # 2. Add a bogus exception -> a stale exception appears.
+    def _inj_add_exc(doc):
+        doc["exceptions"] = (doc.get("exceptions") or []) + [
+            {"from": "__nonexistent_a__", "to": "__nonexistent_b__",
+             "reason": "injected stale"}
+        ]
+
+    expect("a bogus exception is added (stale)", mutate_exc=_inj_add_exc)
+
+    # 3. Matrix n_units drifts from the library size.
+    def _inj_matrix_count(doc):
+        doc["n_units"] = 9999
+
+    expect("matrix n_units drifts from the library", mutate_matrix=_inj_matrix_count)
+
+    # 4. The exceptions registry is missing entirely.
+    expect("the exceptions registry is missing entirely",
+           mutate_exc=lambda d: d.clear())
+
+    # State must be byte-clean after the battery.
+    assert EXC.exists(), "injections leaked EXC path"
+    assert MATRIX.exists(), "injections leaked MATRIX path"
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"GATE 17: FAIL -- {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_with_injections())

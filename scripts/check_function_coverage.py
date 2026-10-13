@@ -32,8 +32,11 @@ None of this fails the build for having gaps.  It fails for hiding them.
 from __future__ import annotations
 
 import json
+import shutil
 import sys
+import tempfile
 from collections import Counter
+from copy import deepcopy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -306,5 +309,109 @@ def main() -> int:
     return 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: mutate the coverage artifact and assert
+    the gate goes red. Each injection exercises one of the failure
+    classes declared in the module docstring.
+
+    Apply and restore are structurally separate (tempfile + globals swap
+    + finally), so no injection leaks state into the next one.
+    """
+    bad = 0
+    n_inj = 0
+
+    real_cov = json.loads(COVERAGE.read_text(encoding="utf-8"))
+
+    def expect(name, mutate_fn):
+        nonlocal bad, n_inj
+        n_inj += 1
+        td = Path(tempfile.mkdtemp(prefix="gate11_inj_"))
+        try:
+            cov = deepcopy(real_cov)
+            mutate_fn(cov)
+            fp = td / "coverage.json"
+            fp.write_text(json.dumps(cov, ensure_ascii=False), encoding="utf-8")
+            old_cov_path = globals()["COVERAGE"]
+            globals()["COVERAGE"] = fp
+            globals()["fails"].clear()
+            globals()["warns"].clear()
+            try:
+                rc = main()
+            finally:
+                globals()["COVERAGE"] = old_cov_path
+        finally:
+            shutil.rmtree(td, ignore_errors=True)
+
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. coverage_matrix is emptied (silent loss of the whole artifact).
+    def _inj_empty_matrix(cov):
+        cov["coverage_matrix"] = []
+
+    expect("coverage_matrix is emptied", _inj_empty_matrix)
+
+    # 2. A vision_required category silently loses its flag (target set
+    #    dropped from the artifact).
+    def _inj_no_required(cov):
+        for r in cov.get("coverage_matrix", []):
+            r["vision_required"] = False
+
+    expect("every vision_required flag is cleared", _inj_no_required)
+
+    # 3. A category claims units but lists none (count vs. evidence drift).
+    def _inj_count_vs_listed(cov):
+        for r in cov.get("coverage_matrix", []):
+            if r.get("units") and r.get("units_listed"):
+                r["units_listed"] = []
+                return
+
+    expect("a category claims units but lists none", _inj_count_vs_listed)
+
+    # 4. A category names a unit the library does not have.
+    def _inj_unknown_unit(cov):
+        matrix = cov.get("coverage_matrix", [])
+        for r in matrix:
+            if r.get("units_listed"):
+                r["units_listed"] = ["nonexistent_unit_zzz"]
+                r["units"] = 1
+                r.pop("match_evidence", None)
+                return
+
+    expect("a category names an unknown unit", _inj_unknown_unit)
+
+    # 5. The summary's taxon split disagrees with the matrix.
+    def _inj_taxon_drift(cov):
+        s = cov.get("summary", {})
+        if s:
+            s["vision_required_single_taxon"] = ["__fake_single__"]
+            s["vision_required_three_plus_taxa"] = ["__fake_multi__"]
+
+    expect("the summary's taxon split disagrees with the matrix", _inj_taxon_drift)
+
+    # State must be byte-clean after the battery.
+    assert COVERAGE.exists(), "injections leaked COVERAGE path"
+    fails.clear()
+    warns.clear()
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"GATE 11: FAIL -- {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(_run_with_injections())

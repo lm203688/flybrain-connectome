@@ -50,6 +50,9 @@ def main() -> int:
         return fail("canonical taxonomy has %d categories, expected 24" % len(cats))
 
     units = fc_mod.load_units()
+    if len(units) == 0:
+        return fail("unit library is empty — coverage silently lost "
+                    "(either load_units is broken or the source file vanished)")
     mp = fc_mod.build_map()
 
     if len(mp) != len(units):
@@ -120,5 +123,87 @@ def main() -> int:
               % (len(units), len(gaps)))
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject defects into the module state and
+    assert the gate goes red. Same pattern as its sibling
+    check_capability_canonical.py — apply/restore are structurally separate
+    so no injection leaks state into the next one.
+    """
+    bad = 0
+    n_inj = 0
+
+    real_cats = list(fc_mod.CANON_IDS)
+    real_load = fc_mod.load_units
+    real_build = fc_mod.build_map
+    real_clade = fc_mod.clade_of
+    first_unit_name = fc_mod.load_units()[0]["name"]
+
+    def expect(name, apply_fn, restore_fn):
+        nonlocal bad, n_inj
+        n_inj += 1
+        apply_fn()
+        try:
+            rc = main()
+        finally:
+            restore_fn()
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. A canonical category is removed (taxonomy shrinks).
+    expect("a canonical category is removed (taxonomy shrinks)",
+           lambda: setattr(fc_mod, "CANON_IDS", real_cats[:-1]),
+           lambda: setattr(fc_mod, "CANON_IDS", real_cats))
+
+    # 2. The unit loader returns an empty list (coverage silently lost).
+    expect("the unit loader returns empty (coverage silently lost)",
+           lambda: setattr(fc_mod, "load_units", lambda: []),
+           lambda: setattr(fc_mod, "load_units", real_load))
+
+    # 3. The map builder drops a unit (unit silently unmapped).
+    expect("the map builder drops a unit (unit silently unmapped)",
+           lambda: setattr(fc_mod, "build_map",
+                           lambda: {n: v for n, v in real_build().items()
+                                    if n != first_unit_name}),
+           lambda: setattr(fc_mod, "build_map", real_build))
+
+    # 4. The classifier routes everything to a category not in CANON_IDS
+    #    (unit mapped to unknown category).
+    expect("the classifier routes a unit to an unknown category",
+           lambda: setattr(fc_mod, "build_map",
+                           lambda: {first_unit_name:
+                                    {"category": "nonexistent_cat",
+                                     "confidence": "high", "reason": "injected"}
+                                    }),
+           lambda: setattr(fc_mod, "build_map", real_build))
+
+    # 5. The taxonomy is inflated with an extra category (count drifts off 24).
+    expect("the canonical taxonomy is inflated to 25 categories",
+           lambda: setattr(fc_mod, "CANON_IDS", real_cats + ["synthetic_extra"]),
+           lambda: setattr(fc_mod, "CANON_IDS", real_cats))
+
+    # State must be byte-clean after the battery.
+    assert fc_mod.CANON_IDS == real_cats, "injections leaked CANON_IDS"
+    assert fc_mod.load_units is real_load, "injections leaked load_units"
+    assert fc_mod.build_map is real_build, "injections leaked build_map"
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"GATE 19: FAIL -- {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_with_injections())

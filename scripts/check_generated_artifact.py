@@ -29,7 +29,10 @@ from __future__ import annotations
 
 import argparse
 import json
+import shutil
 import sys
+import tempfile
+from copy import deepcopy
 from pathlib import Path
 
 
@@ -174,5 +177,148 @@ def main() -> int:
     return 0
 
 
+def _make_valid_artifact(td: Path) -> tuple[Path, Path]:
+    """Create a minimal valid organism + swarm config pair in td."""
+    org = td / "test_org.json"
+    org.write_text(json.dumps({
+        "schema_version": "1.0.0",
+        "kind": "organism",
+        "metrics": {"n_nodes": 3, "n_edges": 2},
+        "organism": {
+            "nodes": [{"id": "n1"}, {"id": "n2"}, {"id": "n3"}],
+            "edges": [{"from": "n1", "to": "n2"}, {"from": "n2", "to": "n3"}]
+        },
+        "motif_provenance": {
+            "mode": "snapshot",
+            "doc_sha256": "abc123def456"
+        }
+    }), encoding="utf-8")
+
+    sw = td / "swarmlabs" / "test_org.swarm.json"
+    sw.parent.mkdir(parents=True, exist_ok=True)
+    sw.write_text(json.dumps({
+        "schema_version": "1.0.0",
+        "swarm": {
+            "agents": [{"id": "a1"}, {"id": "a2"}],
+            "edges": [{"from": "a1", "to": "a2"}],
+            "validation": {
+                "dangling_edges": 0,
+                "leader_is_module_member": False,
+                "weights_in_range": True
+            }
+        },
+        "prov_json": {
+            "wasAssociatedWith": "FlyCellAtlas",
+            "FlyCellAtlas": "https://example.com"
+        }
+    }), encoding="utf-8")
+
+    return org, sw
+
+
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject defects into generated artifacts
+    and assert the gate goes red. Each injection exercises one of the
+    failure classes the gate declares.
+
+    Apply and restore are structurally separate (tempfile + JSON mutate),
+    so no injection leaks state into the next one.
+    """
+    bad = 0
+    n_inj = 0
+
+    def expect(name, mutate_fn):
+        nonlocal bad, n_inj
+        n_inj += 1
+        td = Path(tempfile.mkdtemp(prefix="gate_artifact_inj_"))
+        try:
+            _make_valid_artifact(td)
+            # Find the JSON files and mutate them
+            for jf in td.rglob("*.json"):
+                doc = json.loads(jf.read_text(encoding="utf-8"))
+                mutate_fn(jf, doc)
+                jf.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+
+            # Run the checker via main() with --dir and --name
+            old_argv = sys.argv[:]
+            sys.argv = ["check_generated_artifact.py", "--dir", str(td), "--name", "test_org"]
+            try:
+                rc = main()
+            finally:
+                sys.argv = old_argv
+        finally:
+            shutil.rmtree(td, ignore_errors=True)
+
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. Organism has no schema_version.
+    def _inj_no_schema(jf, doc):
+        if jf.name.endswith(".swarm.json"):
+            return
+        doc.pop("schema_version", None)
+
+    expect("organism has no schema_version", _inj_no_schema)
+
+    # 2. metrics.n_nodes disagrees with actual node count.
+    def _inj_bad_n_nodes(jf, doc):
+        if jf.name.endswith(".swarm.json"):
+            return
+        doc["metrics"]["n_nodes"] = 99
+
+    expect("metrics.n_nodes disagrees with actual node count", _inj_bad_n_nodes)
+
+    # 3. motif_provenance.mode is missing.
+    def _inj_no_prov_mode(jf, doc):
+        if jf.name.endswith(".swarm.json"):
+            return
+        doc["motif_provenance"].pop("mode", None)
+
+    expect("motif_provenance.mode is missing", _inj_no_prov_mode)
+
+    # 4. validation.dangling_edges is non-zero.
+    def _inj_bad_dangling(jf, doc):
+        if not jf.name.endswith(".swarm.json"):
+            return
+        doc["swarm"]["validation"]["dangling_edges"] = 5
+
+    expect("validation.dangling_edges is non-zero", _inj_bad_dangling)
+
+    # 5. validation.leader_is_module_member is True (invariant violation).
+    def _inj_bad_leader(jf, doc):
+        if not jf.name.endswith(".swarm.json"):
+            return
+        doc["swarm"]["validation"]["leader_is_module_member"] = True
+
+    expect("validation.leader_is_module_member is True (invariant violation)",
+           _inj_bad_leader)
+
+    # 6. prov_json is missing the wasAssociatedWith token.
+    def _inj_bad_prov_json(jf, doc):
+        if not jf.name.endswith(".swarm.json"):
+            return
+        doc["prov_json"] = {"FlyCellAtlas": "https://example.com"}
+
+    expect("prov_json lost wasAssociatedWith token", _inj_bad_prov_json)
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"ARTIFACT GATE: FAIL -- {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_with_injections())

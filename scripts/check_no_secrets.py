@@ -29,9 +29,13 @@ Run before every push:
 from __future__ import annotations
 
 import argparse
+import json
+import os
 import re
+import shutil
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -111,6 +115,104 @@ def is_gitignored(rel: str) -> bool:
     return r.returncode == 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: write real-format fake secrets, assert they
+    are caught. Each case writes a payload to a temp dir, monkey-patches
+    ROOT + tracked_files() to point at it, re-runs main(), asserts
+    non-zero exit, restores state in a finally block.
+
+    Apply and restore are structurally separate (tempfile + globals swap
+    + finally), so no injection can leak state into the next one. This
+    mirrors the discipline applied by every other gate's injection
+    battery: a gate that stays green against a real defect is a gate
+    that was never going to catch anything.
+    """
+    bad = 0
+    n_inj = 0
+
+    def expect(name: str, payload: str, ext: str = ".py") -> None:
+        nonlocal bad, n_inj
+        n_inj += 1
+        td = Path(tempfile.mkdtemp(prefix="gate1_inj_"))
+        fp = td / ("fake_payload" + ext)
+        fp.write_text(payload, encoding="utf-8")
+
+        old_root = globals()["ROOT"]
+        old_tf = globals()["tracked_files"]
+        globals()["ROOT"] = td
+        globals()["tracked_files"] = lambda: [fp]
+        try:
+            rc = main()
+        finally:
+            globals()["ROOT"] = old_root
+            globals()["tracked_files"] = old_tf
+            shutil.rmtree(td, ignore_errors=True)
+
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    expect("a github classic token",
+           "TOKEN = 'ghp_AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA'\n")
+    expect("an AWS access key id",
+           "AWS = 'AKIAZZZZZZZZZZZZZZZZ'\n")
+    expect("a flybrain service key",
+           "K = 'flybrain_" + "a" * 64 + "'\n")
+    expect("a flybrain boot key",
+           "K = 'flybrain_boot_" + "a" * 20 + "'\n")
+    expect("a private key block",
+           "-----BEGIN RSA PRIVATE KEY-----\nabc\n-----END RSA PRIVATE KEY-----\n",
+           ext=".pem")
+    expect("an OpenAI-style key",
+           "K = 'sk-" + "a" * 40 + "'\n")
+    expect("an Anthropic-style key",
+           "K = 'sk-ant-" + "a" * 40 + "'\n")
+    expect("a Slack token",
+           "K = 'xoxb-" + "a" * 15 + "'\n")
+    expect("a github fine-grained PAT",
+           "K = 'github_pat_" + "a" * 50 + "'\n")
+
+    # Regression witness (not an injection): documented placeholders must
+    # NOT be flagged. If a future refactor loosens PLACEHOLDER matching to
+    # the point that a real-looking secret with a `<key>` comment next to
+    # it slips through, this witness catches it.
+    real_scan = globals()["scan"]
+    td = Path(tempfile.mkdtemp(prefix="gate1_wit_"))
+    fp = td / "placeholder.py"
+    fp.write_text("TOKEN = '<your-key-here>'\n", encoding="utf-8")
+    globals()["ROOT"] = td
+    globals()["tracked_files"] = lambda: [fp]
+    try:
+        witness_hits = real_scan([fp])
+    finally:
+        globals()["ROOT"] = ROOT
+        globals()["tracked_files"] = tracked_files
+        shutil.rmtree(td, ignore_errors=True)
+    witness_ok = len(witness_hits) == 0
+    print("    [%s] witness: placeholder '<your-key-here>' not flagged"
+          % ("PASS" if witness_ok else "FAIL"))
+    if not witness_ok:
+        bad += 1
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    """Wrapper: run main(), then the injection battery, then report."""
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"SECRET GATE: FAIL — {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--all", action="store_true",
@@ -147,4 +249,4 @@ def main() -> int:
 
 
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_with_injections())

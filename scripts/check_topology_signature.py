@@ -183,5 +183,102 @@ def main() -> int:
     return 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject a signature defect and assert the gate
+    goes red.
+
+    Each case writes a mutated organism artifact to a temp dir, monkey-patches
+    the ORGANISMS path, re-runs main(), asserts non-zero exit, restores state
+    in a finally block. Apply and restore are structurally separate (tempfile
+    + globals swap + finally), so no injection can leak state into the next one.
+    """
+    import tempfile
+    bad = 0
+    n_inj = 0
+
+    def expect(name: str, apply_fn, restore_fn) -> None:
+        nonlocal bad, n_inj
+        n_inj += 1
+        apply_fn()
+        try:
+            rc = main()
+        finally:
+            restore_fn()
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. Write an artifact that claims a signature it cannot reproduce —
+    #    the gate should catch the bad claim.
+    def _patch_bad_signature():
+        td = tempfile.mkdtemp(prefix="gate16_inj_")
+        fake = {
+            "organism": {"nodes": [{"id": "n1", "type": "neuron"},
+                                    {"id": "n2", "type": "neuron"}],
+                          "edges": [{"from": "n1", "to": "n2", "weight": 1.0}]},
+            "metrics": {"n_nodes": 2, "n_edges": 1},
+            "topology_profile": {"status": "ok",
+                                  "signature": "sha256:DEADBEEF00000000000000000000000000000000000000000000000000000000",
+                                  "size": {"n_nodes": 2, "n_edges": 1},
+                                  "not_measured": ["dynamics"]},
+        }
+        p = Path(td) / "fake_organism.json"
+        p.write_text(json.dumps(fake), encoding="utf-8")
+        globals()["ORGANISMS"] = Path(td)
+    def _restore_organisms():
+        globals()["ORGANISMS"] = ROOT / "male_cns" / "virtual_organisms"
+    expect("artifact claims un-reproducible signature (sha256:DEADBEEF...)",
+           _patch_bad_signature, _restore_organisms)
+
+    # 2. Write an artifact with a corrupted topology_profile.size — the gate
+    #    should catch the size mismatch.
+    def _patch_bad_size():
+        td = tempfile.mkdtemp(prefix="gate16_inj_")
+        fake = {
+            "organism": {"nodes": [{"id": "n1", "type": "neuron"},
+                                    {"id": "n2", "type": "neuron"},
+                                    {"id": "n3", "type": "neuron"}],
+                          "edges": [{"from": "n1", "to": "n2", "weight": 1.0}]},
+            "metrics": {"n_nodes": 3, "n_edges": 1},
+            "topology_profile": {"status": "ok",
+                                  "signature": "sha256:" + "a" * 64,
+                                  "size": {"n_nodes": 99, "n_edges": 99},
+                                  "not_measured": ["dynamics"]},
+        }
+        p = Path(td) / "fake_organism.json"
+        p.write_text(json.dumps(fake), encoding="utf-8")
+        globals()["ORGANISMS"] = Path(td)
+    expect("artifact topology_profile.size mismatch (99 vs 3/1)",
+           _patch_bad_size, _restore_organisms)
+
+    # 3. Write an artifact that omits 'dynamics' from not_measured — the gate
+    #    should catch the honesty boundary violation.
+    def _patch_no_dynamics():
+        td = tempfile.mkdtemp(prefix="gate16_inj_")
+        fake = {
+            "organism": {"nodes": [{"id": "n1", "type": "neuron"}],
+                          "edges": []},
+            "metrics": {"n_nodes": 1, "n_edges": 0},
+            "topology_profile": {"status": "ok",
+                                  "signature": "sha256:" + "b" * 64,
+                                  "size": {"n_nodes": 1, "n_edges": 0},
+                                  "not_measured": ["temporal"]},
+        }
+        p = Path(td) / "fake_organism.json"
+        p.write_text(json.dumps(fake), encoding="utf-8")
+        globals()["ORGANISMS"] = Path(td)
+    expect("artifact omits 'dynamics' from not_measured",
+           _patch_no_dynamics, _restore_organisms)
+
+    print()
+    if bad:
+        print("GATE 16 INJECTIONS: %d/%d FAILED (gate stayed green)" % (bad, n_inj))
+    else:
+        print("GATE 16 INJECTIONS: PASS — %d/%d defects caught" % (n_inj, n_inj))
+    return n_inj, bad
+
+
 if __name__ == "__main__":
     sys.exit(main())

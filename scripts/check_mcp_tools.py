@@ -351,5 +351,66 @@ def main() -> int:
     return 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject a defect and assert the gate goes red.
+
+    Each case monkey-patches the ARGS dict to remove a tool's smoke-test
+    arguments, re-runs main(), asserts non-zero exit, restores state in a
+    finally block. Apply and restore are structurally separate (globals swap
+    + finally), so no injection can leak state into the next one.
+    """
+    bad = 0
+    n_inj = 0
+    real_args = dict(ARGS)
+
+    def expect(name: str, apply_fn, restore_fn) -> None:
+        nonlocal bad, n_inj
+        n_inj += 1
+        apply_fn()
+        try:
+            rc = main()
+        finally:
+            restore_fn()
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. Remove smoke-test args for a tool — the gate should catch that an
+    #    advertised tool has no arguments defined.
+    def _patch_missing_args():
+        globals()["ARGS"].pop("list_blueprints", None)
+    def _restore_missing_args():
+        globals()["ARGS"]["list_blueprints"] = real_args["list_blueprints"]
+    expect("remove list_blueprints args (advertised but no smoke test)",
+           _patch_missing_args, _restore_missing_args)
+
+    # 2. Remove smoke-test args for a JSON tool — the gate should catch that
+    #    a JSON-expecting tool has no arguments defined.
+    def _patch_missing_json_args():
+        globals()["ARGS"].pop("list_presets", None)
+    def _restore_missing_json_args():
+        globals()["ARGS"]["list_presets"] = real_args["list_presets"]
+    expect("remove list_presets args (JSON tool without smoke test)",
+           _patch_missing_json_args, _restore_missing_json_args)
+
+    # 3. Remove smoke-test args for a data tool — the gate should catch that
+    #    a data tool has no arguments defined.
+    def _patch_missing_data_args():
+        globals()["ARGS"].pop("connectome_overview", None)
+    def _restore_missing_data_args():
+        globals()["ARGS"]["connectome_overview"] = real_args["connectome_overview"]
+    expect("remove connectome_overview args (data tool without smoke test)",
+           _patch_missing_data_args, _restore_missing_data_args)
+
+    print()
+    if bad:
+        print("MCP TOOL INJECTIONS: %d/%d FAILED (gate stayed green)" % (bad, n_inj))
+    else:
+        print("MCP TOOL INJECTIONS: PASS — %d/%d defects caught" % (n_inj, n_inj))
+    return n_inj, bad
+
+
 if __name__ == "__main__":
     sys.exit(main())

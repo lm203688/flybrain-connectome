@@ -31,8 +31,11 @@ this gate enforces the failures that would make the axis a guess:
 from __future__ import annotations
 
 import json
+import shutil
 import sys
+import tempfile
 from collections import Counter
+from copy import deepcopy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -159,5 +162,114 @@ def main() -> int:
     return 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: write mutated cost_axis JSON to temp,
+    monkey-patch COSTS, re-run main(), assert non-zero exit.
+
+    Each injection exercises one of the five failure classes declared in
+    the module docstring: abstraction-only-with-latency, malformed
+    latency range, missing citation, missing energy, count drift.
+    Apply and restore are structurally separate (tempfile + globals swap
+    + finally) so no injection leaks state into the next one.
+    """
+    bad = 0
+    n_inj = 0
+
+    real_doc = json.loads(COSTS.read_text(encoding="utf-8"))
+
+    def expect(name, mutate_fn):
+        nonlocal bad, n_inj
+        n_inj += 1
+        td = Path(tempfile.mkdtemp(prefix="gate12_inj_"))
+        try:
+            doc = deepcopy(real_doc)
+            mutate_fn(doc)
+            fp = td / "costs.json"
+            fp.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+            old_costs = globals()["COSTS"]
+            globals()["COSTS"] = fp
+            try:
+                # reset fails list each time (module-level mutable state)
+                globals()["fails"].clear()
+                rc = main()
+            finally:
+                globals()["COSTS"] = old_costs
+        finally:
+            shutil.rmtree(td, ignore_errors=True)
+
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. An abstraction_only type is given a latency (design abstraction
+    #    wearing a measurement's clothes).
+    def _inj_abstract_lat(doc):
+        rows = doc.get("cost_axis", [])
+        for r in rows:
+            if r.get("abstraction_only") and not r.get("latency_ms"):
+                r["latency_ms"] = {"low": 1.0, "high": 5.0, "grade": "measured"}
+                r["citation"] = "injected fake citation"
+                return
+
+    expect("an abstraction_only type is given a latency", _inj_abstract_lat)
+
+    # 2. A latency range is malformed (low > high).
+    def _inj_bad_range(doc):
+        for r in doc.get("cost_axis", []):
+            if r.get("latency_ms") and r["latency_ms"].get("low", 0) > 0:
+                r["latency_ms"]["low"] = r["latency_ms"]["high"] + 100
+                return
+
+    expect("a latency range is malformed (low > high)", _inj_bad_range)
+
+    # 3. A latency-bearing type loses its citation.
+    def _inj_no_citation(doc):
+        for r in doc.get("cost_axis", []):
+            if r.get("latency_ms"):
+                r["citation"] = ""
+                return
+
+    expect("a graded latency loses its citation", _inj_no_citation)
+
+    # 4. A type loses its energy entry.
+    def _inj_no_energy(doc):
+        rows = doc.get("cost_axis", [])
+        if rows:
+            rows[0]["energy"] = None
+
+    expect("a type loses its energy entry", _inj_no_energy)
+
+    # 5. Row count drifts from connection_types count (silent shrink).
+    def _inj_count_drift(doc):
+        rows = doc.get("cost_axis", [])
+        if len(rows) > 1:
+            doc["cost_axis"] = rows[:-1]
+
+    expect("cost_axis row count drifts (silent shrink)", _inj_count_drift)
+
+    # State must be byte-clean after the battery.
+    # (fails list is gate-local and gets cleared at the start of each
+    # injection; COSTS must be restored to the real path.)
+    assert COSTS.exists(), "injections leaked COSTS path"
+    fails.clear()
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"GATE 12: FAIL -- {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(_run_with_injections())

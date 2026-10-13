@@ -21,8 +21,11 @@ be added to the vocabulary first, in a version-bumped commit.
 from __future__ import annotations
 
 import json
+import shutil
 import sys
+import tempfile
 from collections import defaultdict
+from copy import deepcopy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -132,5 +135,121 @@ def main() -> int:
     return ok(f"{len(units)} units mapped across {len(domain_ids)} domains, vocabulary {len(legal_systems)} systems")
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject one defect at a time, assert it turns red.
+
+    Each case writes a mutated copy of the vocab/units to a temp dir,
+    monkey-patches the module-level UNITS/VOCAB paths, re-runs main(),
+    then asserts non-zero exit. Apply and restore are structurally
+    separate (via tempfile + globals swap + finally), so no injection
+    can leak state into the next one.
+
+    The battery mirrors GATE 14's declared fail-closed list (1–4 in the
+    docstring): rogue unit.system, duplicate system across domains,
+    missing note, missing unit.system field.
+    """
+    bad = 0
+    n_inj = 0
+
+    with VOCAB.open(encoding="utf-8") as f:
+        real_vocab = json.load(f)
+    with UNITS.open(encoding="utf-8") as f:
+        real_units = json.load(f)
+
+    def expect(name: str, mutate_fn) -> None:
+        nonlocal bad, n_inj
+        n_inj += 1
+        td = Path(tempfile.mkdtemp(prefix="gate14_inj_"))
+        try:
+            v_copy = deepcopy(real_vocab)
+            u_copy = deepcopy(real_units)
+            mutate_fn(v_copy, u_copy)
+
+            vp = td / "vocab.json"
+            up = td / "units.json"
+            vp.write_text(json.dumps(v_copy, ensure_ascii=False), encoding="utf-8")
+            up.write_text(json.dumps(u_copy, ensure_ascii=False), encoding="utf-8")
+
+            old_units, old_vocab = UNITS, VOCAB
+            globals()["UNITS"] = up
+            globals()["VOCAB"] = vp
+            try:
+                rc = main()
+            finally:
+                globals()["UNITS"] = old_units
+                globals()["VOCAB"] = old_vocab
+        finally:
+            shutil.rmtree(td, ignore_errors=True)
+
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    def _units_list(doc):
+        return doc.get("units", []) if isinstance(doc, dict) else (doc or [])
+
+    def _first_unit(doc):
+        ls = _units_list(doc)
+        return ls[0] if ls else None
+
+    # 1. A unit uses a system not in the vocabulary.
+    def _rogue_unit_system(v, u):
+        fu = _first_unit(u)
+        if fu is None:
+            return
+        fu["system"] = "nonexistent_system_zzz_gone"
+    expect("a unit.system value is not in the vocabulary", _rogue_unit_system)
+
+    # 2. A unit's system field is missing entirely.
+    def _missing_unit_system(v, u):
+        fu = _first_unit(u)
+        if fu is None:
+            return
+        fu.pop("system", None)
+    expect("a unit's `system` field is missing", _missing_unit_system)
+
+    # 3. A system id appears in two different domains (ambiguity).
+    def _duplicate_system(v, u):
+        domains = v.get("domains", [])
+        if len(domains) >= 2 and domains[0].get("systems"):
+            donor = dict(domains[0]["systems"][0])
+            domains[1]["systems"] = list(domains[1].get("systems", [])) + [donor]
+    expect("a system id is declared under two domains (ambiguity)", _duplicate_system)
+
+    # 4. A system entry lacks its `note`.
+    def _missing_note(v, u):
+        domains = v.get("domains", [])
+        if domains and domains[0].get("systems"):
+            domains[0]["systems"][0].pop("note", None)
+    expect("a system entry lacks its `note`", _missing_note)
+
+    # 5. The vocabulary is empty (no domains).
+    def _empty_vocab(v, u):
+        v["domains"] = []
+    expect("the vocabulary has no domains", _empty_vocab)
+
+    # State must be byte-clean after the battery.
+    assert UNITS == Path(str(UNITS)), "injections leaked UNITS path"
+    assert VOCAB == Path(str(VOCAB)), "injections leaked VOCAB path"
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    """Wrapper: run main(), then the injection battery, then report."""
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"GATE 14: FAIL — {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_with_injections())

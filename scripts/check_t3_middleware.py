@@ -172,5 +172,115 @@ def main() -> int:
     return 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject defects into the T3 middleware
+    module and assert the gate goes red. Each injection exercises one of
+    the failure classes the gate's assertions declare.
+
+    The gate uses bare `assert` statements, so AssertionError is caught
+    and treated as rc=1. Apply and restore are structurally separate
+    (monkey-patch + finally), so no injection leaks state into the next one.
+    """
+    import sys as _sys
+    bad = 0
+    n_inj = 0
+
+    # Ensure core is available for the injection tests
+    _sys.path.insert(0, str(REPO_ROOT / "flybrain-connectome-mcp"))
+    import core_bridge
+
+    if not core_bridge.core_available():
+        print("    [SKIP] core not available; cannot run injection tests")
+        return 0, 0
+
+    import module_combinator as stub
+
+    real_list_rules = stub.list_rules
+    real_validate = stub.validate_combination
+    real_expand = stub.expand_organism
+    real_audit = stub.audit_rules_against_data
+
+    def expect(name, apply_fn, restore_fn):
+        nonlocal bad, n_inj
+        n_inj += 1
+        apply_fn()
+        try:
+            try:
+                rc = main()
+            except AssertionError as e:
+                rc = 1
+        finally:
+            restore_fn()
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. Rule count drifts (wrong number of combination rules).
+    def _inj_bad_rule_count():
+        def _patched():
+            result = real_list_rules()
+            result["combination_rules"] = result["combination_rules"][:-3]
+            return result
+        stub.list_rules = _patched
+
+    expect("rule count drifts (wrong number of combination rules)",
+           _inj_bad_rule_count,
+           lambda: setattr(stub, "list_rules", real_list_rules))
+
+    # 2. Validation returns incompatible (engine rejects valid combos).
+    def _inj_bad_validation():
+        def _patched(combos):
+            return {"compatible": False, "reason": "injected failure"}
+        stub.validate_combination = _patched
+
+    expect("validation returns incompatible (engine rejects valid combos)",
+           _inj_bad_validation,
+           lambda: setattr(stub, "validate_combination", real_validate))
+
+    # 3. Expand returns wrong copy count.
+    def _inj_bad_expand():
+        def _patched(modules):
+            return {"total_copies": 99, "modules": []}
+        stub.expand_organism = _patched
+
+    expect("expand returns wrong copy count",
+           _inj_bad_expand,
+           lambda: setattr(stub, "expand_organism", real_expand))
+
+    # 4. Audit fails (wrong rule coverage).
+    def _inj_bad_audit():
+        def _patched():
+            return {"audit": []}
+        stub.audit_rules_against_data = _patched
+
+    expect("audit fails (wrong rule coverage)",
+           _inj_bad_audit,
+           lambda: setattr(stub, "audit_rules_against_data", real_audit))
+
+    # State must be byte-clean after the battery.
+    assert stub.list_rules is real_list_rules, "injections leaked list_rules"
+    assert stub.validate_combination is real_validate, "injections leaked validate_combination"
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if n_inj == 0:
+        print("    (skipped: core not available)")
+        return rc
+    if inj_bad:
+        print(f"GATE 24: FAIL -- {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_with_injections())

@@ -17,7 +17,10 @@ the zebrafish profile was deleted.
 from __future__ import annotations
 
 import json
+import shutil
 import sys
+import tempfile
+from copy import deepcopy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -76,5 +79,104 @@ def main() -> int:
               "h01/microns offline-ready" % n)
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: mutate zebrafish_profiles.json and assert
+    the gate goes red. Each injection exercises one of the failure
+    classes the gate declares in its docstring.
+
+    Apply and restore are structurally separate (tempfile + globals swap
+    + finally), so no injection leaks state into the next one.
+    """
+    bad = 0
+    n_inj = 0
+
+    real_doc = json.loads(PROFILES.read_text(encoding="utf-8"))
+
+    def expect(name, mutate_fn):
+        nonlocal bad, n_inj
+        n_inj += 1
+        td = Path(tempfile.mkdtemp(prefix="gate20_inj_"))
+        try:
+            doc = deepcopy(real_doc)
+            mutate_fn(doc)
+            fp = td / "profiles.json"
+            fp.write_text(json.dumps(doc, ensure_ascii=False), encoding="utf-8")
+            old_profiles = globals()["PROFILES"]
+            globals()["PROFILES"] = fp
+            try:
+                rc = main()
+            finally:
+                globals()["PROFILES"] = old_profiles
+        finally:
+            shutil.rmtree(td, ignore_errors=True)
+
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. The neuron count drops below the 100-neuron floor.
+    def _inj_low_count(doc):
+        doc["units"] = 3
+
+    expect("zebrafish_profiles.json has fewer than 100 neurons", _inj_low_count)
+
+    # 2. The license drifts away from CC-BY-NC.
+    def _inj_bad_license(doc):
+        doc["license"] = "MIT"
+
+    expect("zebrafish license drifts away from CC-BY-NC", _inj_bad_license)
+
+    # 3. The neuron_profiles key is removed.
+    def _inj_no_profiles(doc):
+        doc.pop("neuron_profiles", None)
+
+    expect("zebrafish_profiles.json loses its neuron_profiles key", _inj_no_profiles)
+
+    # 4. The registry loses the zebrafish adapter (monkey-patch list_sources).
+    import connectome_sources as cs
+    real_list_sources = cs.list_sources
+    saved_profiles = globals()["PROFILES"]
+
+    td = Path(tempfile.mkdtemp(prefix="gate20_inj_"))
+    try:
+        globals()["PROFILES"] = td / "missing.json"  # force the "missing" path
+        cs.list_sources = lambda: [s for s in real_list_sources()
+                                   if s["id"] != "zebrafish"]
+        try:
+            rc = main()
+        finally:
+            cs.list_sources = real_list_sources
+    finally:
+        globals()["PROFILES"] = saved_profiles
+        shutil.rmtree(td, ignore_errors=True)
+    if rc != 0:
+        print("    [PASS] injecting: zebrafish adapter missing from registry")
+        n_inj += 1
+    else:
+        bad += 1
+        n_inj += 1
+        print("    [FAIL] injecting: zebrafish adapter missing -> GATE STAYED GREEN")
+
+    # State must be byte-clean after the battery.
+    assert PROFILES.exists(), "injections leaked PROFILES path"
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"GATE 20: FAIL -- {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_with_injections())

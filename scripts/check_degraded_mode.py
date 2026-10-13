@@ -232,5 +232,60 @@ def main() -> int:
     return 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject a tool that returns isError when the
+    optional dependency is absent, and assert the gate goes red.
+
+    Each case monkey-patches the OFFLINE_TOOLS list to include a tool that
+    deliberately fails, re-runs main(), asserts non-zero exit, restores state
+    in a finally block. Apply and restore are structurally separate (globals
+    swap + finally), so no injection can leak state into the next one.
+    """
+    bad = 0
+    n_inj = 0
+    real_offline = list(OFFLINE_TOOLS)
+
+    def expect(name: str, apply_fn, restore_fn) -> None:
+        nonlocal bad, n_inj
+        n_inj += 1
+        apply_fn()
+        try:
+            rc = main()
+        finally:
+            restore_fn()
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. Inject a tool that returns isError in the blocked arm.
+    def _patch_bad_tool():
+        globals()["OFFLINE_TOOLS"] = list(real_offline) + ["fake_broken_tool"]
+        globals()["ARGS"]["fake_broken_tool"] = {}
+    def _restore_bad_tool():
+        globals()["OFFLINE_TOOLS"] = list(real_offline)
+        if "fake_broken_tool" in globals()["ARGS"]:
+            del globals()["ARGS"]["fake_broken_tool"]
+    expect("inject broken tool returning isError", _patch_bad_tool, _restore_bad_tool)
+
+    # 2. Inject a tool that returns non-JSON.
+    def _patch_nonjson():
+        globals()["OFFLINE_TOOLS"] = list(real_offline) + ["fake_nonjson_tool"]
+        globals()["ARGS"]["fake_nonjson_tool"] = {}
+    def _restore_nonjson():
+        globals()["OFFLINE_TOOLS"] = list(real_offline)
+        if "fake_nonjson_tool" in globals()["ARGS"]:
+            del globals()["ARGS"]["fake_nonjson_tool"]
+    expect("inject tool returning non-JSON", _patch_nonjson, _restore_nonjson)
+
+    print()
+    if bad:
+        print("DEGRADED-MODE INJECTIONS: %d/%d FAILED (gate stayed green)" % (bad, n_inj))
+    else:
+        print("DEGRADED-MODE INJECTIONS: PASS — %d/%d defects caught" % (n_inj, n_inj))
+    return n_inj, bad
+
+
 if __name__ == "__main__":
     sys.exit(main())

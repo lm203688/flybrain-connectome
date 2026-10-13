@@ -23,7 +23,10 @@ v2.38.0 起（骨架被 `gen_capability_matrix.py` 填充为真实 `from_units` 
 """
 
 import json
+import shutil
 import sys
+import tempfile
+from copy import deepcopy
 from pathlib import Path
 
 ROOT = Path(__file__).resolve().parent.parent
@@ -91,6 +94,8 @@ def main():
     for dim, categories in dims.items():
         if dim not in REQUIRED_DIMENSIONS:
             continue
+        if not isinstance(categories, dict):
+            continue  # ② 已记录违规；此处跳过避免二次崩溃
         for cat, meta in categories.items():
             if not isinstance(meta, dict):
                 violations.append(f"{dim}.{cat} 元数据不是 dict")
@@ -126,5 +131,116 @@ def main():
     return 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: mutate the capability_matrix artifact and
+    assert the gate goes red. Each injection exercises one of the failure
+    classes the gate declares in its docstring.
+
+    Apply and restore are structurally separate (tempfile + globals swap
+    + finally), so no injection leaks state into the next one.
+    """
+    bad = 0
+    n_inj = 0
+
+    real_matrix = json.loads(MATRIX_PATH.read_text(encoding="utf-8"))
+
+    def expect(name, mutate_fn):
+        nonlocal bad, n_inj
+        n_inj += 1
+        td = Path(tempfile.mkdtemp(prefix="gate12cap_inj_"))
+        try:
+            mat = deepcopy(real_matrix)
+            mutate_fn(mat)
+            fp = td / "matrix.json"
+            fp.write_text(json.dumps(mat, ensure_ascii=False), encoding="utf-8")
+            old_path = globals()["MATRIX_PATH"]
+            globals()["MATRIX_PATH"] = fp
+            try:
+                rc = main()
+            finally:
+                globals()["MATRIX_PATH"] = old_path
+        finally:
+            shutil.rmtree(td, ignore_errors=True)
+
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. A required capability dimension is removed.
+    def _inj_remove_dim(mat):
+        dims = mat.get("dimensions", {})
+        for dim in list(REQUIRED_DIMENSIONS):
+            if dim in dims:
+                del dims[dim]
+                return
+
+    expect("a required capability dimension is removed", _inj_remove_dim)
+
+    # 2. A dimension's categories is emptied (below the per-dimension floor).
+    def _inj_empty_cats(mat):
+        dims = mat.get("dimensions", {})
+        for dim in list(REQUIRED_DIMENSIONS):
+            if dim in dims and isinstance(dims[dim], dict):
+                dims[dim] = {}
+                return
+
+    expect("a dimension's categories are emptied", _inj_empty_cats)
+
+    # 3. A declaration count is negative (invalid non-negative constraint).
+    def _inj_negative(mat):
+        dims = mat.get("dimensions", {})
+        for dim in list(REQUIRED_DIMENSIONS):
+            if dim in dims and isinstance(dims[dim], dict):
+                for cat, meta in dims[dim].items():
+                    if isinstance(meta, dict):
+                        meta["declarations"] = -1
+                        return
+
+    expect("a declaration count is negative", _inj_negative)
+
+    # 4. Skeleton flag drifts from the actual content.
+    #    If we're in skeleton mode, inject non-zero declarations to trigger
+    #    the inconsistency check. If in content mode, zero them out.
+    def _inj_skeleton_mismatch(mat):
+        total = mat.get("totals", {}).get("declarations", 0)
+        is_skel = bool(mat.get("skeleton", True))
+        if is_skel:
+            mat["totals"]["declarations"] = max(1, total + 1)
+        else:
+            mat["totals"]["declarations"] = 0
+
+    expect("skeleton flag mismatches actual content", _inj_skeleton_mismatch)
+
+    # 5. A required dimension is present but categories is not a dict.
+    def _inj_not_dict(mat):
+        dims = mat.get("dimensions", {})
+        for dim in list(REQUIRED_DIMENSIONS):
+            if dim in dims:
+                dims[dim] = ["not", "a", "dict"]
+                return
+
+    expect("a dimension's categories is not a dict", _inj_not_dict)
+
+    # State must be byte-clean after the battery.
+    assert MATRIX_PATH.exists(), "injections leaked MATRIX_PATH"
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"[GATE 12] FAIL — {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_with_injections())

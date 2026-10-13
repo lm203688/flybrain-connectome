@@ -145,5 +145,93 @@ def main() -> int:
         return 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject a missing required dep and assert
+    the gate goes red. Since we can't uninstall packages mid-flight,
+    we monkey-patch _check_package to simulate a missing package.
+
+    Apply and restore are structurally separate (tempfile + globals swap
+    + finally), so no injection leaks state into the next one.
+    """
+    bad = 0
+    n_inj = 0
+
+    real_check = _check_package
+
+    # The gate honours argparse's --quick flag from the outer invocation:
+    # under --quick, required-dep failures return 0 (WARN) instead of 1.
+    # That would make the missing-numpy / low-scipy injections fail to
+    # prove fail-closed. Every main() call inside this battery runs with
+    # --quick cleared so argparse re-parses an argv that only contains
+    # the script name, forcing strict mode.
+    def expect(name, apply_fn, restore_fn):
+        nonlocal bad, n_inj
+        n_inj += 1
+        argv_before = sys.argv[:]
+        sys.argv = [sys.argv[0]]  # drop --quick and anything else
+        apply_fn()
+        try:
+            rc = main()
+        finally:
+            restore_fn()
+            sys.argv = argv_before
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. Simulate a required package being missing.
+    def _patch_missing_required():
+        globals()["_check_package"] = lambda name, mv, p: (
+            (False, f"  [FAIL] {name} not installed — injected")
+            if name == "numpy"
+            else real_check(name, mv, p)
+        )
+
+    expect("a required dependency (numpy) is missing",
+           _patch_missing_required,
+           lambda: globals().__setitem__("_check_package", real_check))
+
+    # 2. Simulate a required package having too low a version.
+    def _patch_low_version():
+        globals()["_check_package"] = lambda name, mv, p: (
+            (False, f"  [FAIL] {name}==0.0.1 (< {mv}) — injected low version")
+            if name == "scipy"
+            else real_check(name, mv, p)
+        )
+
+    expect("a required dependency (scipy) has too low a version",
+           _patch_low_version,
+           lambda: globals().__setitem__("_check_package", real_check))
+
+    # 3. Simulate Python version too low (patch _version_tuple).
+    real_vt = _version_tuple
+    def _patch_py_version():
+        globals()["_version_tuple"] = lambda s: (3, 9) if s.startswith("3.1") else real_vt(s)
+    expect("Python version is below 3.10",
+           _patch_py_version,
+           lambda: globals().__setitem__("_version_tuple", real_vt))
+
+    # State must be byte-clean after the battery.
+    assert _check_package is real_check, "injections leaked _check_package"
+    assert _version_tuple is real_vt, "injections leaked _version_tuple"
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"GATE 38: FAIL -- {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(_run_with_injections())

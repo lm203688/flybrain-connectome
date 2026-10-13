@@ -211,5 +211,85 @@ def main() -> int:
     return 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject a defect and assert the gate goes red.
+
+    Each case monkey-patches a module attribute or writes a corrupted file to
+    a temp dir, re-runs main(), asserts non-zero exit, restores state in a
+    finally block. Apply and restore are structurally separate (globals swap
+    + finally), so no injection can leak state into the next one.
+    """
+    import tempfile
+    bad = 0
+    n_inj = 0
+
+    # Ensure core_bridge is importable (the gate's main() does this too)
+    sys.path.insert(0, str(MCP))
+
+    def expect(name: str, apply_fn, restore_fn) -> None:
+        nonlocal bad, n_inj
+        n_inj += 1
+        apply_fn()
+        try:
+            rc = main()
+        finally:
+            restore_fn()
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. Corrupt the Tier-2 artifact manifest: remove entries to break the
+    #    "at least 10 artifacts" check.
+    import core_bridge as cb
+    real_tier2 = list(cb.TIER2_ARTIFACTS)
+    def _patch_tier2():
+        cb.TIER2_ARTIFACTS = []
+    def _restore_tier2():
+        cb.TIER2_ARTIFACTS = real_tier2
+    expect("empty TIER2_ARTIFACTS (no manifest entries)", _patch_tier2, _restore_tier2)
+
+    # 2. Inject duplicate paths into the manifest to break uniqueness.
+    def _patch_dup():
+        cb.TIER2_ARTIFACTS = [real_tier2[0], real_tier2[0]] + real_tier2[1:]
+    expect("duplicate TIER2_ARTIFACTS paths", _patch_dup, _restore_tier2)
+
+    # 3. Inject a stub file that leaks Tier-2 payload.
+    stubbed = [r for r, s in real_tier2 if s]
+    if stubbed:
+        stub_path = ROOT / stubbed[0]
+        if stub_path.exists():
+            real_text = stub_path.read_text(encoding="utf-8")
+            def _patch_leak():
+                stub_path.write_text(real_text + "\n# LEAKED: COMBINATION_RULES = [...]\n",
+                                      encoding="utf-8")
+            def _restore_leak():
+                stub_path.write_text(real_text, encoding="utf-8")
+            expect("stub leaks Tier-2 payload (COMBINATION_RULES)",
+                   _patch_leak, _restore_leak)
+
+    # 4. Remove a Tier-1 data file to break the boundary check.
+    test_file = ROOT / "male_cns" / "neuropil_stats.json"
+    if test_file.exists():
+        backup = tempfile.mktemp(prefix="gate7_backup_")
+        def _patch_missing_file():
+            import shutil
+            shutil.copy(str(test_file), backup)
+            test_file.unlink()
+        def _restore_missing_file():
+            import shutil
+            shutil.copy(backup, str(test_file))
+        expect("remove Tier-1 data file (neuropil_stats.json)",
+               _patch_missing_file, _restore_missing_file)
+
+    print()
+    if bad:
+        print("GATE 7 INJECTIONS: %d/%d FAILED (gate stayed green)" % (bad, n_inj))
+    else:
+        print("GATE 7 INJECTIONS: PASS — %d/%d defects caught" % (n_inj, n_inj))
+    return n_inj, bad
+
+
 if __name__ == "__main__":
     sys.exit(main())
