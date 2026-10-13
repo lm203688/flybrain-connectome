@@ -119,9 +119,9 @@
         "mean_transitivity": 0.24,
         "mean_diameter": 3.64,
         "motif_distribution": {
-          "recurrent_feedback": 14,
           "inhibitory_hub": 17,
-          "reservoir_smallworld": 19
+          "reservoir_smallworld": 19,
+          "recurrent_feedback": 14
         }
       },
       "random": {
@@ -140,9 +140,9 @@
         "mean_transitivity": 0.16,
         "mean_diameter": 3.96,
         "motif_distribution": {
-          "recurrent_feedback": 21,
           "inhibitory_hub": 13,
-          "reservoir_smallworld": 16
+          "reservoir_smallworld": 16,
+          "recurrent_feedback": 21
         }
       },
       "random": {
@@ -161,9 +161,9 @@
         "mean_transitivity": 0.18,
         "mean_diameter": 4.04,
         "motif_distribution": {
-          "recurrent_feedback": 23,
           "inhibitory_hub": 12,
-          "reservoir_smallworld": 15
+          "reservoir_smallworld": 15,
+          "recurrent_feedback": 23
         }
       },
       "random": {
@@ -182,9 +182,9 @@
         "mean_transitivity": 0.18,
         "mean_diameter": 3.88,
         "motif_distribution": {
-          "recurrent_feedback": 17,
           "inhibitory_hub": 14,
-          "reservoir_smallworld": 19
+          "reservoir_smallworld": 19,
+          "recurrent_feedback": 17
         }
       },
       "random": {
@@ -203,9 +203,9 @@
         "mean_transitivity": 0.3282121212121212,
         "mean_diameter": 3.78,
         "motif_distribution": {
-          "recurrent_feedback": 15,
           "inhibitory_hub": 14,
-          "reservoir_smallworld": 21
+          "reservoir_smallworld": 21,
+          "recurrent_feedback": 15
         }
       },
       "random": {
@@ -224,9 +224,9 @@
         "mean_transitivity": 0.27304545454545454,
         "mean_diameter": 3.76,
         "motif_distribution": {
-          "recurrent_feedback": 16,
           "inhibitory_hub": 14,
-          "reservoir_smallworld": 20
+          "reservoir_smallworld": 20,
+          "recurrent_feedback": 16
         }
       },
       "random": {
@@ -245,9 +245,9 @@
         "mean_transitivity": 0.2358787878787879,
         "mean_diameter": 4.04,
         "motif_distribution": {
-          "recurrent_feedback": 23,
           "inhibitory_hub": 11,
-          "reservoir_smallworld": 16
+          "reservoir_smallworld": 16,
+          "recurrent_feedback": 23
         }
       },
       "random": {
