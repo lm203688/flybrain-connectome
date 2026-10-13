@@ -215,7 +215,8 @@ def main() -> int:
     results.append(("gate31 r2 density scan", run(
         "GATE 31 — R2 density scan: structure-function curves and d* threshold",
         [py, str(SCRIPTS / "r2_density_scan.py"), "--n-samples", "50",
-         "--n-nodes", "6", "--output-dir", str(ROOT / "_gate31_r2")])[0]))
+         "--n-nodes", "20", "--strict-axis",
+         "--output-dir", str(ROOT / "_gate31_r2")])[0]))
 
     # ---- Gate 32: R4 sensitivity boundary analysis — robustness curves ----
     results.append(("gate32 r4 sensitivity scan", run(

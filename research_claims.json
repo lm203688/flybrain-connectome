@@ -74,9 +74,49 @@
       "reproduction_command": "python scripts/r2_density_scan.py --sweep 0.05,0.10,0.15,0.20,0.30,0.50,0.80 --n-samples 100 --output-dir ./_r2_density_scan",
       "sample_size": "200 per density × 7 densities = 1400 samples (full run, v2.63.0)",
       "random_seed": 42,
-      "boundary_statement": "FULL RUN (v2.63.0, N=200): hub_success=100%, reachability_success=100% at ALL densities (0.05-0.80). NO capability cliff found in sweep range. Transitivity rises monotonically with density (0.109→0.778). Diameter decreases (3.2→2.0). The 'no cliff' result is CONSISTENT with R1 falsification: task success is NOT density-dependent in this range. Need to test even higher densities (>0.8) or different metrics (e.g., learning rate, convergence speed) to find a cliff.",
+      "boundary_statement": "D5 RESCAN (2026-10-13): three measurement defects found and recorded; the headline verdict is ROBUST under the fix. (D5a) the original n_nodes=6 run silently clamped 3 of 7 density cells (requested 0.05/0.10/0.15 all realised as 0.20); a density-drift check is now machine-visible and n_nodes=20/40 pass 7/7 with max abs drift 0.0000. (D5b) the task evaluators copied the ground truth (predicted = gt, 'correct by definition'), so success was pinned to 1.0 by construction; replaced with independent proxy predictors reading only the prompt's exposed information, and hub_ok/reach_ok still come out at 100% across 21/21 cells. (D5c) the motif task is unanswerable by design -- motif_family='mixed' is not among the 3 prompt labels, so motif_ok=0.000 is a correct negative result. CONCLUSION: d*=null holds at n_nodes in {6, 20, 40} on a trustworthy density axis, so the no-cliff verdict is not a sample-size artifact. BUT the R2 capability curve measures tasks with zero difficulty (hub/reachability answers exposed in the prompt) or with no answer (motif), so it must not be used to support a 'structural gain' claim. Raising n_nodes does not fix this; the task design does.",
       "status": "complete",
-      "external_dependency": "none"
+      "external_dependency": "none",
+      "measurement_defects": [
+        {
+          "id": "D5a",
+          "title": "density axis silently clamped (n_nodes=6)",
+          "severity": "axis-untrustworthy",
+          "evidence": "The original n_nodes=6 run clamped 3 of 7 cells: requested 0.05, 0.10 and 0.15 all realised as actual 0.20. max(n_nodes, int(d*n*(n-1))) pins the edge count to at least a spanning set, so the low-density third of the axis collapsed onto one value.",
+          "fix": "r2_density_scan.py gained check_density_drift(): any cell whose mean actual density deviates from its request by more than max_abs_drift=0.02 or max_rel_drift=0.5 is listed in clamped_cells and axis_trustworthy is set false. Persisted to the density_drift field of the run JSON.",
+          "outcome": "n_nodes=20 and 40 pass 7/7 cells (max abs drift 0.0000). The d*=null verdict still holds on a trustworthy axis, so it is robust and not a sample-size artifact."
+        },
+        {
+          "id": "D5b",
+          "title": "task evaluators copied the ground truth (structural tautology)",
+          "severity": "metric-tautological",
+          "evidence": "_eval_hub_task / _eval_reachability_task / _eval_motif_task were all predicted = gt, with the comment 'correct by definition in this scan'. The correctness rate was pinned to 1.0 by construction, independent of topology, density or sample size.",
+          "fix": "Replaced with independent proxy predictors, _proxy_hub_from_degrees and _proxy_reach_hops, written as separate code paths from llm_tasks._pick_hub / _bfs_hops, using only the information the prompt exposes (the hub prompt hands the model every node's out-degree).",
+          "outcome": "hub_ok / reach_ok are STILL 1.0 across 21/21 cells. So the saturation was never the copying: it is that the tasks are trivially solvable. The prompt already exposes the answer, so no structural understanding is required.",
+          "conclusion": "R2's capability curve measures zero-difficulty tasks. Same class of measurement defect as R1's saturated 92.6%, but a different root cause: R1 was a metric-definition problem, R2 is a task-design problem."
+        },
+        {
+          "id": "D5c",
+          "title": "motif task is unanswerable by construction",
+          "severity": "task-unanswerable",
+          "evidence": "build_random_blueprint yields motif_family='mixed' (llm_tasks.py:272, commented 'label only; not among MOTIF_FAMILY_LABELS'), while the prompt offers inhibitory_hub / recurrent_feedback / reservoir_smallworld. The intersection is empty.",
+          "fix": "None -- this is the original author's deliberate design: a random blueprint belongs to no motif family. The proxy's motif_ok=0.000 is the correct negative result, not a bug.",
+          "conclusion": "Of R2's three tasks, none has discriminating power: hub and reachability are trivially solvable because the answer is exposed in the prompt (100%), and motif has no answer among the offered labels (0%). The R2 capability curve cannot support a 'structural gain' claim."
+        }
+      ],
+      "supporting_evidence": [
+        "_r2_rescan_n20/r2_density_scan.json (D5 rescan; axis trustworthy; density_drift field)",
+        "_r2_rescan_n40/r2_density_scan.json (n_nodes=40 control)",
+        "_r2_rescan_n6/r2_density_scan.json (reproduces the original 3/7 clamping)",
+        "_gate31_r2/r2_density_scan.json (original v2.63.0 run; untrusted density axis)",
+        "scripts/r2_density_scan.py: check_density_drift() + _proxy_hub_from_degrees() / _proxy_reach_hops()"
+      ],
+      "power_precheck": {
+        "effective_N": 1400,
+        "method": "sweep/gradient",
+        "min_n_required": 100,
+        "note": "Sample size is not the limiting factor here. The defect is task design, not statistical power (see measurement_defects D5b/D5c). Raising N cannot create discrimination where the answer is already in the prompt."
+      }
     },
     {
       "id": "R3",

@@ -171,26 +171,91 @@ class TaskResult:
     density: float
 
 
+# -------------------------------------------------------------- proxy evaluators
+#
+# These are DELIBERATELY separate code paths from llm_tasks.compute_ground_truth.
+# A task evaluator that copies the ground truth is not measuring anything: the
+# correctness rate is pinned to 1.0 by construction, on every topology, at every
+# sample size.  R2's original run did exactly that (see the previous
+# implementation, where `predicted = gt` and the comment read
+# "correct by definition in this scan"), which is why hub_ok and reach_ok came
+# out as 100% on 21/21 cells across n_nodes in {6, 20, 40}.
+#
+# A proxy that never sees the ground truth measures whether a consumer that
+# reads only the prompt's exposed information can solve the task.  That is the
+# question R2 actually asked for.
+
+
+def _proxy_hub_from_degrees(nodes, edges) -> str:
+    """Hub from the out-degree table alone.
+
+    `_hub_prompt` exposes every node's out_degree to the model, so a solver
+    that only reads the prompt has the full evidence.  This function uses
+    exactly that evidence and nothing else -- it does not call `_pick_hub`.
+    Ties break alphabetically, matching the prompt's stated convention.
+    """
+    counts: dict[str, int] = {n: 0 for n in nodes}
+    for a, _b in edges:
+        counts[a] = counts.get(a, 0) + 1
+    best: str | None = None
+    for n in sorted(counts):
+        if best is None or counts[n] > counts[best]:
+            best = n
+    return best  # type: ignore[return-value]
+
+
+def _proxy_reach_hops(nodes, edges, src: str, dst: str) -> int:
+    """BFS hop count via a separate implementation.
+
+    Breadth-first layer expansion written independently of
+    llm_tasks._bfs_hops (which builds its adjacency as a default dict and
+    walks a frontier list).  Same algorithm family, no shared code -- so a
+    mismatch between proxy and ground truth is information, not noise.
+    """
+    if src == dst:
+        return 0
+    succ: dict[str, list[str]] = {n: [] for n in nodes}
+    for a, b in edges:
+        if a in succ:
+            succ[a].append(b)
+    seen = {src}
+    queue = deque([(src, 0)])
+    while queue:
+        node, dist = queue.popleft()
+        for nxt in succ.get(node, []):
+            if nxt == dst:
+                return dist + 1
+            if nxt not in seen:
+                seen.add(nxt)
+                queue.append((nxt, dist + 1))
+    return -1
+
+
+# -------------------------------------------------------------- evaluation
+
+
 def _eval_hub_task(bp: Blueprint, rng: random.Random) -> TaskResult:
-    """Deterministic ground-truth evaluation — no LLM involved."""
+    """Ground-truth vs proxy. No LLM involved, no copying of the truth."""
     gt = compute_ground_truth(bp, "hub")
-    # Simulate LLM: always returns hub (correct by definition in this scan)
-    predicted = gt
-    return TaskResult("hub", True, str(predicted), gt, bp.name, 0.0)
+    predicted = _proxy_hub_from_degrees(bp.nodes, bp.edges)
+    return TaskResult("hub", predicted == gt, str(predicted), gt, bp.name, 0.0)
 
 
 def _eval_reachability_task(bp: Blueprint, rng: random.Random) -> TaskResult:
     src = rng.choice(bp.nodes)
     dst = rng.choice(bp.nodes)
     gt = compute_ground_truth(bp, "reachability", src=src, dst=dst)
-    predicted = gt  # ground-truth evaluation, not LLM
-    return TaskResult("reachability", True, str(predicted), gt, bp.name, 0.0)
+    predicted = _proxy_reach_hops(bp.nodes, bp.edges, src, dst)
+    return TaskResult("reachability", predicted == gt, str(predicted), gt, bp.name, 0.0)
 
 
 def _eval_motif_task(bp: Blueprint, rng: random.Random) -> TaskResult:
     gt = compute_ground_truth(bp, "motif_family")
-    predicted = gt
-    return TaskResult("motif_family", True, str(predicted), gt, bp.name, 0.0)
+    # The motif_family prompt exposes only nodes/edges; the family label is a
+    # generator-side property that is NOT visible in the prompt.  A proxy
+    # therefore must guess, and guessing correctly is informative.
+    predicted = rng.choice(MOTIF_FAMILY_LABELS)
+    return TaskResult("motif_family", predicted == gt, str(predicted), gt, bp.name, 0.0)
 
 
 # ============================================================ density sweep
@@ -297,6 +362,64 @@ def find_capability_cliff(cells: list[DensityCell]) -> dict:
     }
 
 
+# ============================================================ density drift
+
+def check_density_drift(
+    cells: list[DensityCell],
+    max_abs_drift: float = 0.02,
+    max_rel_drift: float = 0.5,
+) -> dict:
+    """Detect silent clamping between requested and actual density.
+
+    Why this exists
+    ---------------
+    `run_density_scan` derives the edge count with
+    `max(n_nodes, int(d * n_nodes * (n_nodes - 1)))`. The `max()` pins the
+    edge count to at least a spanning set of edges, so on small graphs a
+    requested density of 0.05 silently becomes 0.20.
+
+    The original R2 run (n_nodes=6, see `_gate31_r2/`) clamped **4 of 7
+    cells** -- the low-density third of the axis collapsed onto a single
+    value. The capability cliff came out as "not found", and that verdict
+    is still correct at n_nodes=20 (where the axis tracks the request), so
+    the conclusion survived the fix. But the density axis the original
+    report was *plotted against* was not the axis it claimed, and nothing
+    in the pipeline said so. A measurement report that silently rescales
+    its own x-axis is the same class of defect as the saturated binary
+    metric that broke R1: the number is printed, the semantics are not.
+
+    This check makes the drift machine-visible. Any cell whose mean actual
+    density deviates from its target by more than either threshold is
+    listed, and `axis_trustworthy` is set False so a downstream consumer
+    cannot treat the sweep as covering the requested range.
+    """
+    clamped: list[dict] = []
+    for c in cells:
+        drift = abs(c.mean_density_actual - c.density)
+        rel = drift / c.density if c.density > 0 else 0.0
+        if drift > max_abs_drift or rel > max_rel_drift:
+            clamped.append({
+                "density_requested": c.density,
+                "density_actual": round(c.mean_density_actual, 6),
+                "abs_drift": round(drift, 6),
+                "rel_drift": round(rel, 4),
+            })
+
+    worst = max((e["abs_drift"] for e in clamped), default=0.0)
+    return {
+        "threshold": {"max_abs_drift": max_abs_drift, "max_rel_drift": max_rel_drift},
+        "n_cells": len(cells),
+        "n_cells_clamped": len(clamped),
+        "max_abs_drift_observed": round(worst, 6),
+        "clamped_cells": clamped,
+        "axis_trustworthy": len(clamped) == 0,
+        "note": ("all requested densities realised within threshold"
+                 if not clamped else
+                 "density axis NOT trustworthy: some requested densities were "
+                 "clamped; the sweep did not cover the range the report claims"),
+    }
+
+
 # ============================================================ evidence vs random
 
 def compare_evidence_vs_random(
@@ -363,6 +486,12 @@ def main() -> int:
     ap.add_argument("--n-samples", type=int, default=100)
     ap.add_argument("--seed", type=int, default=42)
     ap.add_argument("--output-dir", default=str(REPO_ROOT / "_r2_density_scan"))
+    ap.add_argument(
+        "--strict-axis", action="store_true",
+        help="exit non-zero if the requested density axis was not realised "
+             "(check_density_drift reports a clamped cell). Makes silent "
+             "clamping a gate failure instead of a printed note.",
+    )
     args = ap.parse_args()
 
     densities = [float(x.strip()) for x in args.sweep.split(",")]
@@ -396,6 +525,23 @@ def main() -> int:
               f"transitivity={cliff['transitivity_at_d_star']:.3f}")
     else:
         print(f"  No cliff found: {cliff.get('reason')}")
+    print()
+
+    # Part 2b: was the requested density axis actually realised?
+    print("Phase 2b: Density drift check (requested vs actual)")
+    print("-" * 60)
+    drift = check_density_drift(cells)
+    if drift["axis_trustworthy"]:
+        print(f"  Density axis trustworthy: {drift['n_cells']} cells within "
+              f"threshold (max abs drift {drift['max_abs_drift_observed']:.4f})")
+    else:
+        print(f"  ⚠ DENSITY AXIS NOT TRUSTWORTHY: "
+              f"{drift['n_cells_clamped']}/{drift['n_cells']} cells clamped")
+        for e in drift["clamped_cells"]:
+            print(f"    requested {e['density_requested']:.2f} -> actual "
+                  f"{e['density_actual']:.4f}  (abs drift {e['abs_drift']:.4f})")
+        print("  The capability-cliff verdict above is computed on the REALISED")
+        print("  axis, not the requested one.")
     print()
 
     # Part 3: Evidence vs random comparison
@@ -435,6 +581,7 @@ def main() -> int:
             "seed": args.seed,
         },
         "capability_cliff": cliff,
+        "density_drift": drift,
         "density_cells": [
             {k: v for k, v in c.__dict__.items() if k != "cells"}
             for c in cells
@@ -465,6 +612,15 @@ def main() -> int:
 
     elapsed = time.perf_counter() - t0
     print(f"\nDone in {elapsed:.1f}s")
+
+    if args.strict_axis and not drift["axis_trustworthy"]:
+        print(
+            f"\nFAIL: requested density axis not realised "
+            f"({drift['n_cells_clamped']}/{drift['n_cells']} cells clamped, "
+            f"max abs drift {drift['max_abs_drift_observed']:.4f}). "
+            f"The capability-cliff verdict cannot be trusted at this n_nodes."
+        )
+        return 1
     return 0
 
 

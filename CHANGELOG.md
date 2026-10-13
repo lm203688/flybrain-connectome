@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.68.0` | the toolkit as a whole |
+| package | `2.69.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,32 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.69.0] — 2026-10-13
+
+**D5 修正重跑：三个测量学缺陷，头号结论稳健**
+
+R2 的 D5 缺口（n_nodes ≥ 20 重跑）做完后，发现的问题比"样本量不足"更根本。
+
+| # | 发现 | 证据 | 处置 |
+|---|---|---|---|
+| 1 | **密度轴静默钳位** | n_nodes=6 下 3/7 单元格被钳位（requested 0.05 / 0.10 / 0.15 → actual 全为 0.20）。`max(n_nodes, int(d*n*(n-1)))` 把边数钳到至少一条生成树，低密度档坍缩到同一值 | 新增 `check_density_drift()`，漂移机器可见化；n_nodes=20 与 40 均通过 7/7（max abs drift 0.0000） |
+| 2 | **任务评估抄真值** | `_eval_hub_task` / `_eval_reachability_task` / `_eval_motif_task` 三个函数均为 `predicted = gt`，注释写着 "correct by definition in this scan"。正确率由构造恒为 1.0，与拓扑、密度、样本量无关 | 改为独立代理预测器 `_proxy_hub_from_degrees` / `_proxy_reach_hops`，走与 `llm_tasks._pick_hub` / `_bfs_hops` 分离的代码路径，只使用 prompt 暴露的信息 |
+| 3 | **hub / reach 任务平凡可解** | 消除抄真值后 hub_ok 与 reach_ok **仍是 100%**（21/21 单元格）。`_hub_prompt` 把每个节点的出度表交给模型，hub 就是取最大值——答案已在 prompt 里 | 记录为任务设计缺陷：R2 的能力曲线测量的是难度为零的任务 |
+| 4 | **motif 任务不可答** | `build_random_blueprint` 产出 `motif_family='mixed'`（`llm_tasks.py:272`，注释 "label only; not among MOTIF_FAMILY_LABELS"），而 prompt 的 3 个标签是 inhibitory_hub / recurrent_feedback / reservoir_smallworld。交集为空 | 原作者有意设计（随机蓝图不属于任何 motif 家族）；代理随机猜测的 motif_ok=0.000 是正确的负结果，非 bug |
+| 5 | **门禁证据本身基于不可信轴** | `run_gates.py` 的 Gate 31 用 `--n-nodes 6` 重跑并覆写 `_gate31_r2/`，所以门禁证据的密度轴本身就是 3/7 钳位的那一条——门禁一直在给不可信数据背书 | Gate 31 切到 `--n-nodes 20 --strict-axis`；脚本新增 `--strict-axis`，轴不可信时 exit 1（n=6 → 1，n=20 → 0，双向已验证） |
+
+**关键结论**：`d*=null` 在 n_nodes ∈ {6, 20, 40} 且密度轴可信的情况下**依然成立** → "无能力悬崖"不是样本量伪影，是稳健的。但 R2 的三个任务没有一个具备区分力（hub / reachability 因 prompt 泄露答案而平凡可解，motif 因真值不在选项内而不可答），**该能力曲线不能用于支撑"结构增益"主张。扩大 n_nodes 救不了它，任务设计才行。**
+
+**与 R1 的对照**：R1 的饱和源于度量定义（`isolation_effect_size` 恒 1.0），R2 的饱和源于任务设计（prompt 泄露答案）。根因不同，但都是"数字打出来了，语义没打出来"。项目现已记录 **4 个测量学缺陷**。
+
+**证据文件**：`scripts/r2_density_scan.py` 新增 `check_density_drift()`、`--strict-axis`、`_proxy_hub_from_degrees`、`_proxy_reach_hops`；新增 3 个重扫证据目录 `_r2_rescan_n{6,20,40}/r2_density_scan.json`（工作区另含派生 `.csv`，按仓库约定不入 git）；`_gate31_r2/r2_density_scan.json` 切轴重生成。
+
+**注册 + 版本收口**：版本号 6 处 `2.68.0 → 2.69.0`（pyproject / cli / server / api_server / README docker badge / README 表头）；`research_claims.json` 的 R2 新增 `measurement_defects`（3 条）+ `supporting_evidence` + `power_precheck`，status 保持 `complete`（结论确实稳健）。
+
+**门禁**：`run_gates.py --quick` = **37/37 PASS**（exit 0）；Gate 42 中 R2 N=200 ≥ 30 PASS，R3 仍以 acknowledged WARN 追踪。
 
 ---
 
