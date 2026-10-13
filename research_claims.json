@@ -57,7 +57,13 @@
           "claim": "Critical-edge features discriminate well- vs poorly-isolated topologies (AUC=0.775, z=4.85 vs permutation null 0.589+/-0.038)",
           "script": "scripts/mechanism_binary.py"
         }
-      ]
+      ],
+      "power_precheck": {
+        "min_n": 30,
+        "method": "correlation",
+        "rationale": "Original R1 test used R² on 30 topologies (correlation/regression floor = 30). A2 re-analysis with graded metric + logistic regression used N=100 (classification floor = 40). Both thresholds satisfied. See _r1_mechanism_a/graded_isolation.json (N=50, variance confirmed) and _r1_mechanism_a/mechanism_binary.json (N=100, AUC=0.775, z=4.85).",
+        "verified_by": "Gate 42"
+      }
     },
     {
       "id": "R2",
