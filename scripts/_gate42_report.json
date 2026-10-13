@@ -1,0 +1,104 @@
+{
+  "schema_version": "1.0",
+  "gate_id": 42,
+  "claims_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\research_claims.json",
+  "thresholds": {
+    "correlation": 30,
+    "regression": 30,
+    "classification": 40,
+    "auc": 40,
+    "logistic": 40,
+    "gradient": 100,
+    "sweep": 100,
+    "threshold": 100,
+    "assertion": 1,
+    "invariant": 1,
+    "coverage": 5,
+    "count": 5,
+    "unknown": 30
+  },
+  "n_claims": 6,
+  "evaluations": [
+    {
+      "claim_id": "R1",
+      "status": "supported_after_metric_fix",
+      "status_kind": "positive",
+      "method": "correlation",
+      "method_keyword": "r²",
+      "effective_n": 30,
+      "n_source": "(\\d+)\\s+(?:topologies|samples|trials|runs|blueprints|organisms|units|profiles)",
+      "required_n": 30,
+      "verdict": "pass",
+      "reason": "effective N=30 >= required N=30 for method='correlation' (status='supported_after_metric_fix')"
+    },
+    {
+      "claim_id": "R2",
+      "status": "complete",
+      "status_kind": "positive",
+      "method": "correlation",
+      "method_keyword": "相关",
+      "effective_n": 200,
+      "n_source": "(\\d+)\\s+per\\s+(?:density|level|group|node)",
+      "required_n": 30,
+      "verdict": "pass",
+      "reason": "effective N=200 >= required N=30 for method='correlation' (status='complete')"
+    },
+    {
+      "claim_id": "R3",
+      "status": "inconclusive_needs_more_data",
+      "status_kind": "acknowledged",
+      "method": "gradient",
+      "method_keyword": "阈值",
+      "effective_n": 6,
+      "n_source": "(\\d+)\\s+cells?\\s*/\\s*(?:level|group|density|trial|repeat)",
+      "required_n": 100,
+      "verdict": "warn",
+      "reason": "acknowledged status='inconclusive_needs_more_data'; effective N=6 < required N=100 for method='gradient' (already tracked as a boundary case)"
+    },
+    {
+      "claim_id": "R4",
+      "status": "complete",
+      "status_kind": "positive",
+      "method": "unknown",
+      "method_keyword": "",
+      "effective_n": 50,
+      "n_source": "(\\d+)\\s+(?:topologies|samples|trials|runs|blueprints|organisms|units|profiles)",
+      "required_n": 30,
+      "verdict": "pass",
+      "reason": "effective N=50 >= required N=30 for method='unknown' (status='complete')"
+    },
+    {
+      "claim_id": "R5",
+      "status": "complete",
+      "status_kind": "positive",
+      "method": "invariant",
+      "method_keyword": "闭环",
+      "effective_n": 12,
+      "n_source": "(\\d+)\\s+(?:results|assertions|points|measurements|pairs)",
+      "required_n": 1,
+      "verdict": "pass",
+      "reason": "effective N=12 >= required N=1 for method='invariant' (status='complete')"
+    },
+    {
+      "claim_id": "R6",
+      "status": "needs_evidence_strengthening",
+      "status_kind": "acknowledged",
+      "method": "coverage",
+      "method_keyword": "跨进化支",
+      "effective_n": 116,
+      "n_source": "(\\d+)\\s+(?:topologies|samples|trials|runs|blueprints|organisms|units|profiles)",
+      "required_n": 5,
+      "verdict": "pass",
+      "reason": "effective N=116 >= required N=5 for method='coverage' (status='needs_evidence_strengthening')"
+    }
+  ],
+  "counts": {
+    "pass": 5,
+    "warn": 1,
+    "fail": 0
+  },
+  "injections": {
+    "total": 2,
+    "bad": 0
+  }
+}

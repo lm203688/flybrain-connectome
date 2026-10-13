@@ -165,5 +165,127 @@ def main() -> int:
     return 0
 
 
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject defects into the topology_profile
+    module and assert the gate goes red. Each injection exercises one of
+    the failure classes the gate's docstring declares.
+
+    Apply and restore are structurally separate (monkey-patch + finally),
+    so no injection leaks state into the next one.
+    """
+    import sys as _sys
+    bad = 0
+    n_inj = 0
+
+    # Load the module for monkey-patching
+    sys.path.insert(0, str(MCP))
+    import topology_profile as tp
+
+    real_profile = tp.profile
+
+    def expect(name, apply_fn, restore_fn):
+        nonlocal bad, n_inj
+        n_inj += 1
+        apply_fn()
+        try:
+            rc = main()
+        finally:
+            restore_fn()
+            failures.clear()
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. Zero out the spectral radius (constant, not real).
+    def _inj_zero_rho():
+        def _patched(org):
+            result = real_profile(org)
+            result["spectral_radius"] = 0.0
+            return result
+        tp.profile = _patched
+
+    expect("the spectral radius is zeroed (constant, not real)",
+           _inj_zero_rho,
+           lambda: setattr(tp, "profile", real_profile))
+
+    # 2. Drop the not_measured honesty field.
+    def _inj_drop_nm():
+        def _patched(org):
+            result = real_profile(org)
+            result.pop("not_measured", None)
+            return result
+        tp.profile = _patched
+
+    expect("the not_measured honesty field is dropped",
+           _inj_drop_nm,
+           lambda: setattr(tp, "profile", real_profile))
+
+    # 3. Make the signature non-deterministic (different each call).
+    def _inj_nondeterministic_sig():
+        # An incrementing call counter, NOT time.time_ns(). On Windows the
+        # clock resolution (~100 ns) makes two back-to-back calls return the
+        # SAME timestamp, so a clock-stamped signature is identical on the
+        # two calls the determinism check compares -- the injection never
+        # turned the gate red (the "1/5 injections did not turn red" bug).
+        # A counter is unique by construction and needs no clock resolution.
+        call = [0]
+
+        def _patched(org):
+            result = real_profile(org)
+            call[0] += 1
+            result["profile_signature"] = result["profile_signature"] + "_call_%d" % call[0]
+            return result
+        tp.profile = _patched
+
+    expect("the signature is non-deterministic (differs per call)",
+           _inj_nondeterministic_sig,
+           lambda: setattr(tp, "profile", real_profile))
+
+    # 4. Drop the caveat field.
+    def _inj_drop_caveat():
+        def _patched(org):
+            result = real_profile(org)
+            result["caveat"] = ""
+            return result
+        tp.profile = _patched
+
+    expect("the caveat field is emptied",
+           _inj_drop_caveat,
+           lambda: setattr(tp, "profile", real_profile))
+
+    # 5. Make chain feedback non-zero (break DAG detection).
+    def _inj_bad_feedback():
+        def _patched(org):
+            result = real_profile(org)
+            result["feedback_edge_fraction"] = 0.5
+            return result
+        tp.profile = _patched
+
+    expect("chain feedback is made non-zero (DAG detection broken)",
+           _inj_bad_feedback,
+           lambda: setattr(tp, "profile", real_profile))
+
+    # State must be byte-clean after the battery.
+    assert tp.profile is real_profile, "injections leaked tp.profile"
+    assert failures == [], "injections leaked failures list"
+
+    return bad, n_inj
+
+
+def _run_with_injections() -> int:
+    rc = main()
+    if rc != 0:
+        return rc
+    print("  -- fail-closed injections --")
+    inj_bad, n_inj = _injections()
+    if inj_bad:
+        print(f"GATE 15: FAIL -- {inj_bad}/{n_inj} injections did not turn red")
+        return 1
+    print(f"  ({n_inj}/{n_inj} fail-closed injections confirmed red)")
+    return rc
+
+
 if __name__ == "__main__":
-    sys.exit(main())
+    sys.exit(_run_with_injections())

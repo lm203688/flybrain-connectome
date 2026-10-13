@@ -128,7 +128,8 @@ def _module_index(bp: Blueprint) -> dict[str, int]:
 class GradedIsolation:
     """Graded (non-binary) fault-isolation metric for one topology."""
     drop_magnitude: float          # mean reachability drop across hubs, [0,1]
-    affected_module_count: int     # how many modules lost ≥1 reachable node
+    affected_module_count: int     # MAX over hubs of modules that lost ≥1 reachable node
+    affected_module_count_mean: float  # MEAN over hubs of modules that lost ≥1 reachable node
     mean_recovery_steps: float     # mean extra hops to reach same targets
     n_hubs_tested: int
     n_nodes: int
@@ -194,6 +195,9 @@ def compute_graded_isolation(bp: Blueprint, seed: int = 42) -> GradedIsolation:
     return GradedIsolation(
         drop_magnitude=sum(drops) / len(drops) if drops else 0.0,
         affected_module_count=max(affected_counts) if affected_counts else 0,
+        affected_module_count_mean=(
+            sum(affected_counts) / len(affected_counts) if affected_counts else 0.0
+        ),
         mean_recovery_steps=sum(recovery_steps) / len(recovery_steps) if recovery_steps else 0.0,
         n_hubs_tested=len(drops),
         n_nodes=len(bp.nodes),
@@ -338,6 +342,7 @@ def main() -> int:
             "origin": bp.origin,
             "drop_magnitude": round(g.drop_magnitude, 4),
             "affected_module_count": g.affected_module_count,
+            "affected_module_count_mean": round(g.affected_module_count_mean, 4),
             "mean_recovery_steps": round(g.mean_recovery_steps, 4),
             "n_hubs_tested": g.n_hubs_tested,
             "n_nodes": g.n_nodes,
@@ -351,6 +356,7 @@ def main() -> int:
     # --- variance check (the whole point of A1) ---
     drops = [r["drop_magnitude"] for r in results]
     affected = [r["affected_module_count"] for r in results]
+    affected_mean = [r["affected_module_count_mean"] for r in results]
     recovery = [r["mean_recovery_steps"] for r in results]
 
     def _var(xs):
@@ -359,6 +365,7 @@ def main() -> int:
 
     var_drop = _var(drops)
     var_affected = _var(affected)
+    var_affected_mean = _var(affected_mean)
     var_recovery = _var(recovery)
 
     print(f"\n{'=' * 70}")
@@ -366,12 +373,17 @@ def main() -> int:
     print(f"{'=' * 70}")
     print(f"  drop_magnitude       : mean={sum(drops)/len(drops):.4f} var={var_drop:.6f} "
           f"unique={len(set(round(x,4) for x in drops))}")
-    print(f"  affected_module_count: mean={sum(affected)/len(affected):.2f} var={var_affected:.4f} "
-          f"unique={len(set(affected))}")
+    print(f"  affected_modules MAX : mean={sum(affected)/len(affected):.2f} var={var_affected:.4f} "
+          f"unique={len(set(affected))}  (saturates on small topologies -- reference only)")
+    print(f"  affected_modules MEAN: mean={sum(affected_mean)/len(affected_mean):.4f} "
+          f"var={var_affected_mean:.4f} unique={len(set(round(x,4) for x in affected_mean))}")
     print(f"  mean_recovery_steps  : mean={sum(recovery)/len(recovery):.4f} var={var_recovery:.6f} "
           f"unique={len(set(round(x,4) for x in recovery))}")
 
-    saturated = var_drop == 0.0 and var_affected == 0.0 and var_recovery == 0.0
+    # NOTE: the acceptance criterion uses the MEAN statistic, not MAX.  MAX is a
+    # saturated statistic (it pins to n_modules on small dense topologies), which
+    # is exactly the kind of silent saturation A1 exists to avoid.
+    saturated = var_drop == 0.0 and var_affected_mean == 0.0 and var_recovery == 0.0
     verdict = "SATURATED" if saturated else "GRADED"
     print(f"\n  Verdict: {verdict}")
     if saturated:
@@ -386,6 +398,7 @@ def main() -> int:
         "variance": {
             "drop_magnitude": var_drop,
             "affected_module_count": var_affected,
+            "affected_module_count_mean": var_affected_mean,
             "mean_recovery_steps": var_recovery,
         },
         "verdict": verdict,

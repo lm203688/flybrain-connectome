@@ -318,6 +318,30 @@ def main() -> int:
         "GATE 16 — generated artifacts carry a recomputable structure signature",
         [py, str(SCRIPTS / "check_topology_signature.py")])[0]))
 
+    # ---- Gate 39: meta-gate — every check_*.py must carry an injected-defect test ----
+    results.append(("gate39 meta-gate injections", run(
+        "GATE 39 — meta-gate: every check_*.py must carry an injected-defect test "
+        "(V2 → V3 discipline; progressive mode with KNOWN_MISSING_INJECTIONS backlog)",
+        [py, str(SCRIPTS / "check_gate_injections.py")])[0]))
+
+    # ---- Gate 40: dual-implementation cross-check (SV-2) ----
+    results.append(("gate40 dual implementation", run(
+        "GATE 40 — every critical metric implemented twice with independent algorithms; "
+        "disagreement > 1e-9 goes red (SV-2)",
+        [py, str(SCRIPTS / "check_dual_implementation.py")])[0]))
+
+    # ---- Gate 41: metric discrimination (SV-3c, degenerate-attack suite) ----
+    results.append(("gate41 metric discrimination", run(
+        "GATE 41 — every registered metric has variance above its declared floor "
+        "on the standard suite (R1 legacy binary must saturate; SV-3c + SV-3d)",
+        [py, str(SCRIPTS / "check_metric_discrimination.py")])[0]))
+
+    # ---- Gate 42: statistical power pre-check (SV-5b) ----
+    results.append(("gate42 statistical power", run(
+        "GATE 42 — every significance/gradient claim in research_claims passes "
+        "the sample-size vs effect-size power pre-check (R3 N=6 must go red)",
+        [py, str(SCRIPTS / "check_statistical_power.py")])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:

@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.66.0` | the toolkit as a whole |
+| package | `2.68.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -35,6 +35,69 @@ The **schema version** is versioned separately from the **package version**:
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
 
 ---
+
+## [2.68.0] — 2026-10-13
+
+**M2 起点：SV-2 双实现交叉校验（Gate 40）**
+
+按 `docs/INNER_STRENGTH_ROADMAP_V2_2026-10-13.md` § 七 M2 #6 落地。Gate 40 把
+"度量算得对不对"（V1 门禁级）升级到"这个度量本身算法路径有没有隐藏假设"
+（V3 对抗级）。
+
+| # | 项 | 交付 |
+|---|---|---|
+| 1 | **SV-2 Gate 40「双实现一致性」** | `scripts/check_dual_implementation.py`。3 组度量对，**两套独立算法**：① `n_components`：BFS（邻接表）vs Union-Find（合并-查找）；② `is_connected`：BFS 从节点 0 vs Kruskal/Union-Find；③ `spectral_radius`：numpy `eigvalsh`（对称矩阵）vs **纯 Python 对 A² 做幂迭代 + Rayleigh 商**（无 numpy）。标准套件 5 拓扑（chain / star / full / disconnected_duo / path_plus_cycle），容差 1e-9。3 pairs 全部通过，max_delta 最大 5.23e-12（`spectral_radius` 对）。 |
+| 2 | **A² 迭代的技术细节** | 纯 Python 幂迭代**不能直接对 A 做**：对二分图（star / chain 等），A 的 ±λ_max 绝对值相同，迭代会在两状态间振荡，Rayleigh 商收敛到 0 而非 λ_max。**解法：对 A² 做迭代**——A² 的特征值 λ_i² 全非负，最大等于 λ_max²，最后取 sqrt 得谱半径。这是**独立算法路径**（numpy 用分块三对角化，纯 Python 用幂法 + Rayleigh 商），双实现价值最大。 |
+| 3 | **2/2 注入全 PASS** | ① monkey-patch Union-Find 加 1e-6 offset（&gt; 容差 1e-9 才能触发红）；② 把 power 迭代替换为常数 1.0。 |
+| 4 | **注册 + 版本收口** | `run_gates.py` 注册 Gate 40；README badge 40→41；版本号 7 处 `2.67.0 → 2.68.0`；CHANGELOG 新增 v2.68.0 条目。 |
+| 5 | **Gate 41 度量判别力 + 饱和统计量修正** | `scripts/check_metric_discrimination.py`。10 条度量注册 + 标准退化输入套件 14 例；含 1 个 **negative control**（R1 legacy 二元量，**必须**保持饱和 variance=0，若有人悄悄改语义导致方差上升则 alarm）。**修正**：affected-modules 度量原先注册 **MAX** 统计量——在小密度套件上 MAX 恒等于模块总数（每次 hub 移除都会孤立每个模块的至少一个节点），方差恒为 0，门禁自己报红。**改用 MEAN**（跨 hub 平均受影响模块数），实测 variance=0.644 / unique=8，语义不变但恢复信息量。`isolation_graded.py` 同步新增 `affected_module_count_mean`，A1 方差验收改用 MEAN（MAX 保留作参考）。 |
+| 6 | **Gate 15 注入缺陷修复** | Gate 15 的"签名非确定性"注入原本用 `time.time_ns()` 加时间戳，但 **Windows 时钟分辨率约 100 ns**，连续两次调用返回**同一个**时间戳，两次签名完全相同——注入永远无法让门禁转红（`1/5 injections did not turn red`）。**改用递增调用计数器**（`_call_%d`），构造上必然唯一，不依赖时钟分辨率。修后 5/5 注入全红。 |
+
+**门禁实测**：`run_gates.py --quick` = **37/37 PASS**（Gate 38–42 全部纳入）；Gate 39 meta-gate
+覆盖全部 `check_*.py`（V3 严格模式达成）；Gate 40 2/2 注入全 PASS；Gate 41 10 度量 +
+1 negative control + 2 注入全 PASS；Gate 42 5 pass + 1 诚实边界 WARN + 2 注入全 PASS。
+
+**M1 完成 + M2 首个核心门禁（SV-2）交付**。
+
+### 教训（本条最重要）
+1. **注入的扰动幅度必须 &gt; 容差**：Gate 40 的注入最初用 `+1e-12` 扰动 Union-Find，
+   但容差是 1e-9，`delta=1e-12 ≤ tol` 被判为 match，门禁没转红。**教训：写注入前先算扰动幅度，
+   保证 delta 显著超过容差**（本条 1000×）。
+2. **幂迭代在二分图上会振荡**：A 的 ±λ_max 绝对值相等，从 v=(1,0,…,0) 开始的迭代
+   会周期性回到原点。**解法：对 A² 迭代**——所有 λ_i² ≥ 0，幂法收敛。
+   这个技巧对**任何谱半径 / 谱间隙分析**都适用。
+3. **双实现的"算法路径"必须是真独立**：numpy `eigvalsh` 用对称矩阵分块三对角化，
+   幂迭代用矩阵-向量乘法 + Rayleigh 商，两条路径无共享代码。若两实现共享了同一个
+   `_bfs_dist` 辅助函数，就不算"独立"——这是设计纪律，不是代码洁癖。
+
+**M2 进度（截至本条）**：
+- ✅ **C1 分级隔离度量产品化**：`isolation_graded.py` 已注册进 Gate 41（见 #5）；N=50 拓扑实测 drop_magnitude variance=0.0242 / unique=37，Verdict=GRADED
+- **C2 二分类机制检验**（A2 已有 AUC=0.775 结果，写入 research_claims 五要素）
+- **R1 五要素更新**（当前 `supported_after_metric_fix`，需要 `power_precheck.min_n` 显式声明）
+
+
+
+## [2.67.0] — 2026-10-13
+
+**内功路线图 M1 收尾：度量分辨力 + 功效预检 + 门禁注入修复**
+
+按 `docs/INNER_STRENGTH_ROADMAP_V2_2026-10-13.md` § 七 M1 落地 SV-3 与 SV-5，
+把"92.6% 饱和量"这类教训固化成门禁，不再依赖人工评审。
+
+| # | 项 | 交付 |
+|---|---|---|
+| 1 | **SV-3 Gate 41「度量分辨力」** | `scripts/check_metric_discrimination.py`。度量注册表 + 标准退化输入套件（chain / star / full / redundant_grid / sparse_random / dense_random / isolated_plus_cluster）；每条度量声明 `min_variance` 下限，方差 &lt; 下限即报红。含 **negative control**：把 R1 旧版 `isolation_effect_size`（二元饱和量）注册进来，**必须**保持饱和（variance=0）；若未来有人悄悄改了语义导致 variance 突然上升，Gate 41 会 **alarm** 而非绿灯——把 R1 的教训变成机器守住的边界。 |
+| 2 | **SV-5 Gate 42「统计功效预检」** | `scripts/check_statistical_power.py`。解析 `research_claims.json`，对每条主张校验 `effective_N ≥ required_N(method)`。方法阈值表：correlation/regression=30, classification/auc/logistic=40, gradient/sweep/threshold=100, assertion/invariant=1, coverage/count=5。已声明 `inconclusive` / `needs_more_data` 的状态不 FAIL 只 WARN（诚实边界）；正向状态（complete/supported）但 N 不足则 FAIL。**R3 N=6** 正确报 WARN（已声明"insufficient"，被 tracked）；注入"正向状态 + N=4"立刻 FAIL，2/2 注入全红。 |
+| 3 | **Gate 38 注入修复** | 依赖自检门禁在 `--quick` 模式下，required-dep 缺失返回 WARN（rc=0），导致"缺 numpy / scipy 低版本"两个注入永远无法让门禁转红。修复：注入 harness 在 `main()` 前临时清空 `sys.argv` 强制严格模式，让 monkey-patched `_check_package` 的 `False` 真正触发 rc=1。修后 3/3 注入全 PASS。 |
+| 4 | **Gate 39 meta-gate 自动纳管** | `KNOWN_MISSING_INJECTIONS` 豁免表已清空。Gate 39 从 33 门禁自动升到 35 门禁扫描，100% 覆盖。**V3 严格模式 PASS**（`--v3` 门槛达成）。 |
+| 5 | **注册 + 版本收口** | `run_gates.py` 注册 Gate 41/42；README badge 38→40；版本号 7 处 `2.66.0 → 2.67.0`（pyproject / cli / server / api_server / README docker / README header / CHANGELOG）。 |
+
+**门禁实测**：`run_gates.py --quick` = **40/40 PASS**；Gate 39 = **35/35 有注入测试**（V3 阈值达成）；
+Gate 41 有 1 negative control（R1 legacy）+ 2 注入；Gate 42 有 2 注入。
+
+**M1 完成度**：SV-1 ✅ · SV-3 ✅ · SV-5 ✅ · 提交 v2.64–v2.66 ✅。**下一步 M2**：C1 分级隔离度量产品化 + SV-2 双实现交叉校验 + Gate 40。
+
+
 
 ## [2.66.0] — 2026-10-12
 

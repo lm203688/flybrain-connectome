@@ -1,0 +1,161 @@
+{
+  "schema_version": "1.0",
+  "gate_id": 40,
+  "tolerance": 1e-09,
+  "suite_size": 5,
+  "suite_inputs": [
+    "chain",
+    "star",
+    "full",
+    "disconnected_duo",
+    "path_plus_cycle"
+  ],
+  "metric_pairs": [
+    {
+      "name": "n_components",
+      "description": "number of weakly-connected components",
+      "impl_a": "BFS",
+      "impl_b": "Union-Find",
+      "max_delta": 0.0,
+      "tolerance": 1e-09,
+      "verdict": "pass",
+      "results": [
+        {
+          "suite": "chain",
+          "impl_a": 1.0,
+          "impl_b": 1.0,
+          "delta": 0.0,
+          "match": true
+        },
+        {
+          "suite": "star",
+          "impl_a": 1.0,
+          "impl_b": 1.0,
+          "delta": 0.0,
+          "match": true
+        },
+        {
+          "suite": "full",
+          "impl_a": 1.0,
+          "impl_b": 1.0,
+          "delta": 0.0,
+          "match": true
+        },
+        {
+          "suite": "disconnected_duo",
+          "impl_a": 2.0,
+          "impl_b": 2.0,
+          "delta": 0.0,
+          "match": true
+        },
+        {
+          "suite": "path_plus_cycle",
+          "impl_a": 1.0,
+          "impl_b": 1.0,
+          "delta": 0.0,
+          "match": true
+        }
+      ]
+    },
+    {
+      "name": "is_connected",
+      "description": "boolean: is the graph connected?",
+      "impl_a": "BFS from node 0",
+      "impl_b": "Kruskal / Union-Find",
+      "max_delta": 0.0,
+      "tolerance": 1e-09,
+      "verdict": "pass",
+      "results": [
+        {
+          "suite": "chain",
+          "impl_a": 1,
+          "impl_b": 1,
+          "delta": 0,
+          "match": true
+        },
+        {
+          "suite": "star",
+          "impl_a": 1,
+          "impl_b": 1,
+          "delta": 0,
+          "match": true
+        },
+        {
+          "suite": "full",
+          "impl_a": 1,
+          "impl_b": 1,
+          "delta": 0,
+          "match": true
+        },
+        {
+          "suite": "disconnected_duo",
+          "impl_a": 0,
+          "impl_b": 0,
+          "delta": 0,
+          "match": true
+        },
+        {
+          "suite": "path_plus_cycle",
+          "impl_a": 1,
+          "impl_b": 1,
+          "delta": 0,
+          "match": true
+        }
+      ]
+    },
+    {
+      "name": "spectral_radius",
+      "description": "largest eigenvalue of symmetrised adjacency matrix",
+      "impl_a": "numpy eigvalsh",
+      "impl_b": "pure-Python power iteration",
+      "max_delta": 5.233591338082988e-12,
+      "tolerance": 1e-09,
+      "verdict": "pass",
+      "results": [
+        {
+          "suite": "chain",
+          "impl_a": 1.8019377358048396,
+          "impl_b": 1.8019377358001423,
+          "delta": 4.697353617189037e-12,
+          "match": true
+        },
+        {
+          "suite": "star",
+          "impl_a": 2.23606797749979,
+          "impl_b": 2.23606797749979,
+          "delta": 0.0,
+          "match": true
+        },
+        {
+          "suite": "full",
+          "impl_a": 4.0,
+          "impl_b": 3.9999999999999734,
+          "delta": 2.6645352591003757e-14,
+          "match": true
+        },
+        {
+          "suite": "disconnected_duo",
+          "impl_a": 1.9999999999999996,
+          "impl_b": 1.999999999998636,
+          "delta": 1.3635759188446173e-12,
+          "match": true
+        },
+        {
+          "suite": "path_plus_cycle",
+          "impl_a": 2.334200531542928,
+          "impl_b": 2.3342005315376944,
+          "delta": 5.233591338082988e-12,
+          "match": true
+        }
+      ]
+    }
+  ],
+  "counts": {
+    "pass": 3,
+    "fail": 0
+  },
+  "injections": {
+    "total": 2,
+    "bad": 0
+  }
+}
