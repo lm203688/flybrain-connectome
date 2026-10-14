@@ -215,7 +215,8 @@ def main() -> int:
     results.append(("gate31 r2 density scan", run(
         "GATE 31 — R2 density scan: structure-function curves and d* threshold",
         [py, str(SCRIPTS / "r2_density_scan.py"), "--n-samples", "50",
-         "--n-nodes", "6", "--output-dir", str(ROOT / "_gate31_r2")])[0]))
+         "--n-nodes", "20", "--strict-axis",
+         "--output-dir", str(ROOT / "_gate31_r2")])[0]))
 
     # ---- Gate 32: R4 sensitivity boundary analysis — robustness curves ----
     results.append(("gate32 r4 sensitivity scan", run(
@@ -317,6 +318,62 @@ def main() -> int:
     results.append(("gate16 structure signature", run(
         "GATE 16 — generated artifacts carry a recomputable structure signature",
         [py, str(SCRIPTS / "check_topology_signature.py")])[0]))
+
+    # ---- Gate 39: meta-gate — every check_*.py must carry an injected-defect test ----
+    results.append(("gate39 meta-gate injections", run(
+        "GATE 39 — meta-gate: every check_*.py must carry an injected-defect test "
+        "(V2 → V3 discipline; progressive mode with KNOWN_MISSING_INJECTIONS backlog)",
+        [py, str(SCRIPTS / "check_gate_injections.py")])[0]))
+
+    # ---- Gate 40: dual-implementation cross-check (SV-2) ----
+    results.append(("gate40 dual implementation", run(
+        "GATE 40 — every critical metric implemented twice with independent algorithms; "
+        "disagreement > 1e-9 goes red (SV-2)",
+        [py, str(SCRIPTS / "check_dual_implementation.py")])[0]))
+
+    # ---- Gate 41: metric discrimination (SV-3c, degenerate-attack suite) ----
+    results.append(("gate41 metric discrimination", run(
+        "GATE 41 — every registered metric has variance above its declared floor "
+        "on the standard suite (R1 legacy binary must saturate; SV-3c + SV-3d)",
+        [py, str(SCRIPTS / "check_metric_discrimination.py")])[0]))
+
+    # ---- Gate 42: statistical power pre-check (SV-5b) ----
+    results.append(("gate42 statistical power", run(
+        "GATE 42 — every significance/gradient claim in research_claims passes "
+        "the sample-size vs effect-size power pre-check (R3 N=6 must go red)",
+        [py, str(SCRIPTS / "check_statistical_power.py")])[0]))
+
+    # ---- Gate 43: preregistered claims — manifest ↔ execution integrity (R-0.2) ----
+    results.append(("gate43 preregistered claims", run(
+        "GATE 43 — preregistered PR-x values in research_claims.json.preregistered "
+        "must match the execution JSON verbatim (threshold / features / split / "
+        "permutations / absolute label_definition); L3 outcome reported as WARN "
+        "so R-0.4 negative results stay visible without turning the pipeline red",
+        [py, str(SCRIPTS / "check_preregistered_claims.py")])[0]))
+
+    # ---- Gate 44: cross-family generalization boundary (PR-3 integrity + outcome) ----
+    results.append(("gate44 generalization matrix", run(
+        "GATE 44 — PR-3 generalization matrix integrity: five families must match "
+        "the manifest, malecns_subgraph (the real connectome anchor) must be "
+        "present, and the verdict must be consistent with the underlying counts. "
+        "R-0.4 negative outcome preserved verbatim",
+        [py, str(SCRIPTS / "check_generalization_matrix.py")])[0]))
+
+    # ---- Gate 45: self-intervention consistency (PR-2 integrity + outcome) ----
+    results.append(("gate45 intervention test", run(
+        "GATE 45 — PR-2 self-intervention integrity: action/control/predict_direction "
+        "must match the manifest; the intervention slice must be disjoint from the "
+        "PR-1 train/held-out slices; the verdict is recomputed from all_results so "
+        "a tampered hit rate cannot silently pass",
+        [py, str(SCRIPTS / "check_intervention_test.py")])[0]))
+
+    # ---- Gate 46: recovery dynamics non-degeneracy (PR-4 integrity + outcome) ----
+    results.append(("gate46 recovery dynamics", run(
+        "GATE 46 — PR-4 recovery-dynamics non-degeneracy: recovery_AUC zero_ratio "
+        "must stay below 30%, variance must exceed 1e-6, and all three compensation "
+        "mechanisms (R-a/R-b/R-c) must show non-zero ablation variance. "
+        "Stats are recomputed from all_results so a tampered summary cannot pass",
+        [py, str(SCRIPTS / "check_recovery_dynamics.py")])[0]))
 
     print("=" * 72)
     print("gate summary")
