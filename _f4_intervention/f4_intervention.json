@@ -1,0 +1,700 @@
+{
+  "summary": {
+    "params": {
+      "n_topologies": 30,
+      "start_idx": 100,
+      "n_nodes": 10,
+      "seed": 42
+    },
+    "predict_direction": "increase",
+    "action": "delete_bridge",
+    "control": "delete_nonbridge",
+    "success_criteria": {
+      "direction_hit_rate_min": 0.7,
+      "paired_z_min": 1.96
+    },
+    "held_out_generalization": {
+      "prereg_train_slice": "0:60",
+      "prereg_held_out_slice": "60:100",
+      "intervention_slice": "100:130",
+      "overlap_with_prereg": false
+    },
+    "protocol": "PR-2 · PREREGISTRATION_PROTOCOL_v1.md",
+    "methodology": "Self-Interventional Learning (arXiv:2608.14894)",
+    "counts": {
+      "n_pair": 18,
+      "skipped_no_bridge": 12,
+      "skipped_no_nonbridge": 0
+    },
+    "hits": {
+      "h1_hit_rate": 0.3888888888888889,
+      "h1_gt_h2_hit_rate": 0.2222222222222222,
+      "composite_hit_rate": 0.1111111111111111
+    },
+    "paired_test": {
+      "n": 18,
+      "mean_delta": -0.00959844006588386,
+      "mean_delta_se": 0.005545497295666642,
+      "z": -1.7308528981493265,
+      "n_pos": 4,
+      "n_neg": 13
+    },
+    "verdict": "FAIL"
+  },
+  "all_results": [
+    {
+      "topology_idx": 100,
+      "blueprint_name": "rnd_792280",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 5,
+      "drop_before": 0.13459706959706957,
+      "edge_removed_bridge": [
+        "n4",
+        "n0"
+      ],
+      "drop_after_bridge": 0.1378038628038628,
+      "delta_bridge": 0.0032067932067932348,
+      "edge_removed_nonbridge": [
+        "n5",
+        "n0"
+      ],
+      "drop_after_nonbridge": 0.14570429570429572,
+      "delta_nonbridge": 0.011107226107226142,
+      "direction_hit_h1": true,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 101,
+      "blueprint_name": "mix_reservoir_smallworld_101_65771",
+      "n_nodes": 10,
+      "n_edges": 20,
+      "n_bridges": 0,
+      "drop_before": 0.1509311740890688,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n9",
+        "n1"
+      ],
+      "drop_after_nonbridge": 0.2000539811066127,
+      "delta_nonbridge": 0.0491228070175439,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 102,
+      "blueprint_name": "ev_recurrent_feedback_5549",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 0,
+      "drop_before": 0.5555555555555556,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n7",
+        "n8"
+      ],
+      "drop_after_nonbridge": 0.40359505389328953,
+      "delta_nonbridge": -0.15196050166226605,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 103,
+      "blueprint_name": "rnd_277304",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 3,
+      "drop_before": 0.2571988795518207,
+      "edge_removed_bridge": [
+        "n9",
+        "n5"
+      ],
+      "drop_after_bridge": 0.21768115942028987,
+      "delta_bridge": -0.03951772013153082,
+      "edge_removed_nonbridge": [
+        "n6",
+        "n5"
+      ],
+      "drop_after_nonbridge": 0.24228826728826727,
+      "delta_nonbridge": -0.014910612263553419,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 104,
+      "blueprint_name": "mix_reservoir_smallworld_104_81205",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 2,
+      "drop_before": 0.16372334021327828,
+      "edge_removed_bridge": [
+        "n8",
+        "n2"
+      ],
+      "drop_after_bridge": 0.16801470588235295,
+      "delta_bridge": 0.004291365669074676,
+      "edge_removed_nonbridge": [
+        "n6",
+        "n7"
+      ],
+      "drop_after_nonbridge": 0.16801470588235295,
+      "delta_nonbridge": 0.004291365669074676,
+      "direction_hit_h1": true,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 105,
+      "blueprint_name": "ev_reservoir_smallworld_7606",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 0,
+      "drop_before": 0.5111111111111112,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n9",
+        "n0"
+      ],
+      "drop_after_nonbridge": 0.35744120773944343,
+      "delta_nonbridge": -0.15366990337166775,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 106,
+      "blueprint_name": "rnd_930358",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 2,
+      "drop_before": 0.14530228758169933,
+      "edge_removed_bridge": [
+        "n7",
+        "n0"
+      ],
+      "drop_after_bridge": 0.12655677655677655,
+      "delta_bridge": -0.01874551102492278,
+      "edge_removed_nonbridge": [
+        "n1",
+        "n4"
+      ],
+      "drop_after_nonbridge": 0.15382352941176472,
+      "delta_nonbridge": 0.00852124183006539,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 107,
+      "blueprint_name": "mix_reservoir_smallworld_107_80694",
+      "n_nodes": 10,
+      "n_edges": 12,
+      "n_bridges": 3,
+      "drop_before": 0.20540200138026227,
+      "edge_removed_bridge": [
+        "n9",
+        "n8"
+      ],
+      "drop_after_bridge": 0.18411506707946337,
+      "delta_bridge": -0.021286934300798893,
+      "edge_removed_nonbridge": [
+        "n2",
+        "n1"
+      ],
+      "drop_after_nonbridge": 0.19310017467912205,
+      "delta_nonbridge": -0.012301826701140217,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 108,
+      "blueprint_name": "ev_recurrent_feedback_7264",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 0,
+      "drop_before": 0.5555555555555556,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n9",
+        "n0"
+      ],
+      "drop_after_nonbridge": 0.40359505389328953,
+      "delta_nonbridge": -0.15196050166226605,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 109,
+      "blueprint_name": "rnd_289282",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 5,
+      "drop_before": 0.13908882783882784,
+      "edge_removed_bridge": [
+        "n3",
+        "n4"
+      ],
+      "drop_after_bridge": 0.14236263736263738,
+      "delta_bridge": 0.00327380952380954,
+      "edge_removed_nonbridge": [
+        "n5",
+        "n2"
+      ],
+      "drop_after_nonbridge": 0.14678113553113553,
+      "delta_nonbridge": 0.007692307692307693,
+      "direction_hit_h1": true,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 110,
+      "blueprint_name": "mix_inhibitory_hub_110_16505",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 5,
+      "drop_before": 0.16507223942208463,
+      "edge_removed_bridge": [
+        "n6",
+        "n4"
+      ],
+      "drop_after_bridge": 0.16751633986928105,
+      "delta_bridge": 0.0024441004471964234,
+      "edge_removed_nonbridge": [
+        "n9",
+        "n3"
+      ],
+      "drop_after_nonbridge": 0.16507223942208463,
+      "delta_nonbridge": 0.0,
+      "direction_hit_h1": true,
+      "direction_hit_h1_gt_h2": true,
+      "direction_hit_composite": true
+    },
+    {
+      "topology_idx": 111,
+      "blueprint_name": "ev_reservoir_smallworld_3538",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 0,
+      "drop_before": 0.5111111111111112,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n0",
+        "n1"
+      ],
+      "drop_after_nonbridge": 0.3607379110361467,
+      "delta_nonbridge": -0.15037320007496446,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 112,
+      "blueprint_name": "rnd_693169",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 2,
+      "drop_before": 0.25772285354821506,
+      "edge_removed_bridge": [
+        "n2",
+        "n5"
+      ],
+      "drop_after_bridge": 0.26679289232062847,
+      "delta_bridge": 0.009070038772413413,
+      "edge_removed_nonbridge": [
+        "n4",
+        "n7"
+      ],
+      "drop_after_nonbridge": 0.2228271766372453,
+      "delta_nonbridge": -0.03489567691096976,
+      "direction_hit_h1": true,
+      "direction_hit_h1_gt_h2": true,
+      "direction_hit_composite": true
+    },
+    {
+      "topology_idx": 113,
+      "blueprint_name": "mix_inhibitory_hub_113_14896",
+      "n_nodes": 10,
+      "n_edges": 12,
+      "n_bridges": 4,
+      "drop_before": 0.21473704572670743,
+      "edge_removed_bridge": [
+        "n8",
+        "n3"
+      ],
+      "drop_after_bridge": 0.19999171842650104,
+      "delta_bridge": -0.01474532730020639,
+      "edge_removed_nonbridge": [
+        "n3",
+        "n4"
+      ],
+      "drop_after_nonbridge": 0.2547370457267074,
+      "delta_nonbridge": 0.03999999999999998,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 114,
+      "blueprint_name": "ev_reservoir_smallworld_9726",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 0,
+      "drop_before": 0.5111111111111112,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n1",
+        "n2"
+      ],
+      "drop_after_nonbridge": 0.5111111111111111,
+      "delta_nonbridge": -1.1102230246251565e-16,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 115,
+      "blueprint_name": "rnd_32663",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 6,
+      "drop_before": 0.21303030303030304,
+      "edge_removed_bridge": [
+        "n0",
+        "n6"
+      ],
+      "drop_after_bridge": 0.19572644847412649,
+      "delta_bridge": -0.017303854556176557,
+      "edge_removed_nonbridge": [
+        "n9",
+        "n1"
+      ],
+      "drop_after_nonbridge": 0.2221212121212121,
+      "delta_nonbridge": 0.009090909090909066,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 116,
+      "blueprint_name": "mix_inhibitory_hub_116_71874",
+      "n_nodes": 10,
+      "n_edges": 17,
+      "n_bridges": 2,
+      "drop_before": 0.19505409487027134,
+      "edge_removed_bridge": [
+        "n3",
+        "n9"
+      ],
+      "drop_after_bridge": 0.1900944170771757,
+      "delta_bridge": -0.00495967779309564,
+      "edge_removed_nonbridge": [
+        "n9",
+        "n6"
+      ],
+      "drop_after_nonbridge": 0.15056211180124224,
+      "delta_nonbridge": -0.0444919830690291,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": true,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 117,
+      "blueprint_name": "ev_reservoir_smallworld_7433",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 0,
+      "drop_before": 0.5111111111111112,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n6",
+        "n7"
+      ],
+      "drop_after_nonbridge": 0.5054794520547945,
+      "delta_nonbridge": -0.005631659056316685,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 118,
+      "blueprint_name": "rnd_433914",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 3,
+      "drop_before": 0.19756493506493505,
+      "edge_removed_bridge": [
+        "n3",
+        "n0"
+      ],
+      "drop_after_bridge": 0.18464052287581698,
+      "delta_bridge": -0.012924412189118079,
+      "edge_removed_nonbridge": [
+        "n9",
+        "n2"
+      ],
+      "drop_after_nonbridge": 0.20252587991718424,
+      "delta_nonbridge": 0.004960944852249183,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 119,
+      "blueprint_name": "mix_recurrent_feedback_119_7861",
+      "n_nodes": 10,
+      "n_edges": 17,
+      "n_bridges": 1,
+      "drop_before": 0.20136986301369864,
+      "edge_removed_bridge": [
+        "n1",
+        "n8"
+      ],
+      "drop_after_bridge": 0.196875,
+      "delta_bridge": -0.004494863013698641,
+      "edge_removed_nonbridge": [
+        "n1",
+        "n3"
+      ],
+      "drop_after_nonbridge": 0.23386722866174922,
+      "delta_nonbridge": 0.032497365648050586,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 120,
+      "blueprint_name": "ev_reservoir_smallworld_6730",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 0,
+      "drop_before": 0.48641975308641977,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n1",
+        "n2"
+      ],
+      "drop_after_nonbridge": 0.3662550823427917,
+      "delta_nonbridge": -0.12016467074362808,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 121,
+      "blueprint_name": "rnd_162246",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 2,
+      "drop_before": 0.2588503136576159,
+      "edge_removed_bridge": [
+        "n9",
+        "n4"
+      ],
+      "drop_after_bridge": 0.2493845012977382,
+      "delta_bridge": -0.009465812359877701,
+      "edge_removed_nonbridge": [
+        "n5",
+        "n0"
+      ],
+      "drop_after_nonbridge": 0.25359799859021215,
+      "delta_nonbridge": -0.005252315067403757,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 122,
+      "blueprint_name": "mix_reservoir_smallworld_122_35054",
+      "n_nodes": 10,
+      "n_edges": 17,
+      "n_bridges": 1,
+      "drop_before": 0.2698315711173689,
+      "edge_removed_bridge": [
+        "n5",
+        "n2"
+      ],
+      "drop_after_bridge": 0.27003508771929824,
+      "delta_bridge": 0.0002035166019293544,
+      "edge_removed_nonbridge": [
+        "n1",
+        "n5"
+      ],
+      "drop_after_nonbridge": 0.2867807236597418,
+      "delta_nonbridge": 0.01694915254237289,
+      "direction_hit_h1": true,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 123,
+      "blueprint_name": "ev_inhibitory_hub_100",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 5,
+      "drop_before": 0.10181818181818184,
+      "edge_removed_bridge": [
+        "n0",
+        "n9"
+      ],
+      "drop_after_bridge": 0.10222222222222221,
+      "delta_bridge": 0.0004040404040403789,
+      "edge_removed_nonbridge": [
+        "n0",
+        "n3"
+      ],
+      "drop_after_nonbridge": 0.11181818181818182,
+      "delta_nonbridge": 0.009999999999999981,
+      "direction_hit_h1": true,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 124,
+      "blueprint_name": "rnd_394468",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 7,
+      "drop_before": 0.19833333333333333,
+      "edge_removed_bridge": [
+        "n8",
+        "n0"
+      ],
+      "drop_after_bridge": 0.19179271708683474,
+      "delta_bridge": -0.006540616246498598,
+      "edge_removed_nonbridge": [
+        "n9",
+        "n3"
+      ],
+      "drop_after_nonbridge": 0.1831547619047619,
+      "delta_nonbridge": -0.01517857142857143,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": true,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 125,
+      "blueprint_name": "mix_recurrent_feedback_125_79570",
+      "n_nodes": 10,
+      "n_edges": 17,
+      "n_bridges": 0,
+      "drop_before": 0.29396270396270396,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n6",
+        "n9"
+      ],
+      "drop_after_nonbridge": 0.26633145556074883,
+      "delta_nonbridge": -0.027631248401955133,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 126,
+      "blueprint_name": "ev_recurrent_feedback_5655",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 0,
+      "drop_before": 0.5555555555555556,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n9",
+        "n0"
+      ],
+      "drop_after_nonbridge": 0.40359505389328953,
+      "delta_nonbridge": -0.15196050166226605,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 127,
+      "blueprint_name": "rnd_414463",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 3,
+      "drop_before": 0.2838139534883721,
+      "edge_removed_bridge": [
+        "n9",
+        "n5"
+      ],
+      "drop_after_bridge": 0.27714285714285714,
+      "delta_bridge": -0.0066710963455149375,
+      "edge_removed_nonbridge": [
+        "n6",
+        "n1"
+      ],
+      "drop_after_nonbridge": 0.30474418604651166,
+      "delta_nonbridge": 0.020930232558139583,
+      "direction_hit_h1": false,
+      "direction_hit_h1_gt_h2": false,
+      "direction_hit_composite": false
+    },
+    {
+      "topology_idx": 128,
+      "blueprint_name": "mix_reservoir_smallworld_128_97912",
+      "n_nodes": 10,
+      "n_edges": 10,
+      "n_bridges": 0,
+      "drop_before": 0.1926750700280112,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n2",
+        "n9"
+      ],
+      "drop_after_nonbridge": 0.205,
+      "delta_nonbridge": 0.01232492997198878,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    },
+    {
+      "topology_idx": 129,
+      "blueprint_name": "ev_recurrent_feedback_3770",
+      "n_nodes": 10,
+      "n_edges": 11,
+      "n_bridges": 0,
+      "drop_before": 0.5555555555555556,
+      "edge_removed_bridge": null,
+      "drop_after_bridge": null,
+      "delta_bridge": null,
+      "edge_removed_nonbridge": [
+        "n9",
+        "n0"
+      ],
+      "drop_after_nonbridge": 0.40359505389328953,
+      "delta_nonbridge": -0.15196050166226605,
+      "direction_hit_h1": null,
+      "direction_hit_h1_gt_h2": null,
+      "direction_hit_composite": null
+    }
+  ]
+}
