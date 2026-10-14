@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.69.0` | the toolkit as a whole |
+| package | `2.72.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,128 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.72.0] — 2026-10-14
+
+**F3 泛化矩阵 n=50 扩展 + Tarjan 算法优化 + PR-3 验证数据更新**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 版本号 8 处 | `2.70.0 → 2.72.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+| PR-3 验证数据 | `n_nodes_tested: [10, 20] → [10, 20, 50]`；`boundary_cells: 9 → 13`；新增 `auc_matrix_summary` |
+| 性能优化 | `isolation_graded.py`: `_find_bridges` / `_find_articulation_points` 改用 Tarjan 算法（O(V+E)）；`_compute_edge_connectivity` 改用 min-degree 近似（O(V+E)），替代 O(2^m) 暴力枚举 |
+| n=50 实测 | ER 图 50 节点 357 边：`compute_graded_isolation` 0.025s / `compute_critical_edge_features` 0.001s / `_measure` 总计 0.028s（原超时 >120s） |
+| F3 完整实验 | 5 图族 × 3 节点规模 = 15 单元格；`elapsed: 0.78s`；verdict FAIL（1/5 families pass） |
+| 门禁 | 46 gates · 41/41 --quick PASS |
+
+### 科学结论
+
+PR-3 泛化矩阵实验（n_nodes={10, 20, 50}）确认 R1 的跨图族泛化失败：
+- **project_synthetic**：n=20 AUC=0.917 ✅, n=50 AUC=1.000 ✅（唯一通过图族）
+- **erdos_renyi / barabasi_albert / watts_strogatz / malecns_subgraph**：全部 AUC=0.500 ❌
+- **真实连接组（malecns_subgraph）**：三个规模均失败
+
+按 R-0.4 失败即发表纪律，R1 的机制范围收缩至 "within project-synthetic topology family at n_nodes in {20, 50}"。
+13 个边界单元格作为可发表的负结果保留。Gate 44 锁定此结论。
+
+### 技术债务修复
+
+原 `isolation_graded.py` 的 `_find_bridges`（O(E²)）和 `_find_articulation_points`（O(V²)）在 n=50 时超时。
+`_compute_edge_connectivity` 使用 `_combinations(edges, k)` 暴力枚举（O(2^m)），357 条边时指数爆炸。
+本次替换为：
+- **Tarjan 桥边算法**：单次 DFS + low/disc 数组，O(V+E)
+- **Tarjan 割点算法**：同一次 DFS 遍历，O(V+E)
+- **边连通度近似**：基于最小度 + 桥边检查，O(V+E)
+
+优化后 n=50 ER 图（357 边）从超时降至 0.028s/bp，为后续 n=100+ 扩展奠定基础。
+
+---
+
+## [2.70.0] — 2026-10-14
+
+**前沿价值增强 V2 全量执行：PR-1..PR-4 预注册四元组 + F1-F8 技术提升清单 + Gate 43-46**
+
+按 `docs/PREREGISTRATION_PROTOCOL_v1.md` 与 `docs/FRONTIER_VALUE_ENHANCEMENT_2026-10-14.md`
+全量执行。本轮把项目的证据等级从 L2（可执行测试）向 L3（前瞻性预测）推进，
+并在三个维度上诚实记录失败：L3 部分达成、L4（干预因果）未达成、跨图族泛化 FAIL。
+
+### 一、预注册四元组（PR-1..PR-4）
+
+| PR | 协议 | 对应门禁 | 当前 | 判据 | 结果 |
+|---|---|---|---|---|---|
+| PR-1 | R1 前瞻性预测（修 median split） | **Gate 43** | 🟡 WEAK | held-out AUC ≥ 0.70，z ≥ 3.0 | AUC=0.788 ≥ 0.70 ✅，z=1.53 < 3.0 ❌（200 置换） |
+| PR-2 | F4 干预实验（因果级证据） | **Gate 45** | 🔴 FAIL | 方向命中率 ≥ 70% | 命中率 38.9% < 70%（18 对/30 拓扑；12 个无桥边） |
+| PR-3 | F3 跨图族泛化（普适性） | **Gate 44** | 🔴 FAIL | ≥3 图族（含真实）AUC ≥ 0.65 | 仅 1/5 图族通过；真实连接组失败 |
+| PR-4 | F2 恢复动力学（修复退化分量） | **Gate 46** | 🟢 PASS | recovery_AUC 零值 < 30%，方差 > 1e-6 | 零值 0%（原 64%）；方差 0.0114；3 代偿机制均非退化 |
+
+**R-0.4 失败即发表纪律**：PR-1/PR-2/PR-3 的负结果全部如实记录在
+`research_claims.json.preregistered.PR-x.verification`，未修改判据使其通过。
+PR-4 达成是因为 F2 把静态 `mean_recovery_steps`（64% 零值）替换为
+动力学恢复曲线（`recovery_AUC` + `t_half`），引入三种代偿机制
+（R-a 旁路募集 / R-b 权重重分配 / R-c 稳态增益）并做消融。
+
+### 二、技术提升清单 F1-F8
+
+| F | 名称 | 产出 | 零依赖 | 结果 |
+|---|---|---|---|---|
+| **F1** | 结构可控性对接（Liu & Barabási 2011 → 2026 Nat Phys Rev） | `scripts/f1_controllability_features.py` → `_f1_controllability/` | ✅ | 可控性特征 AUC=0.5，与桥边特征打平；小图下 bridge = control-critical 特例 |
+| **F2** | 恢复 / 代偿动力学 | `scripts/f2_recovery_dynamics.py` → `_f2_recovery/` | ✅ | 零值 0%（原 64%）；3 代偿消融均非退化 |
+| **F3** | 规模与图族不变性扫描 | `scripts/f3_generalization_matrix.py` → `_f3_generalization/` | ✅ | 1/5 图族通过；9 个边界单元格 |
+| **F4** | 自干预实验协议 | `scripts/f4_intervention_test.py` → `_f4_intervention/` | ✅ | 命中率 38.9% < 70%（负结果） |
+| **F5** | 层级模块储备池 × 记忆容量 | `scripts/f5_hierarchical_reservoir.py` → `_f5_hierarchical_reservoir/` | ✅ | Pearson r(drop, memory) = -0.56（SIGNAL） |
+| **F6** | 子图计数特征消融 | `scripts/f6_motif_ablation.py` → `_f6_motif_ablation/` | ✅ | 系统 motif 计数与手工特征打平（tie） |
+| **F7** | MAS 故障注入基准 | `scripts/f7_mas_benchmark.py` → `_f7_mas_benchmark/` | ✅ | 20 拓扑 + 3 策略 + 外部用例 README |
+| **F8** | 审计披露自评 | `docs/AUDIT_DISCLOSURE.md` | ✅ | 对标 arXiv:2608.05179 15 项清单，披露完整性 55/70 |
+
+### 三、新增门禁（Gate 43-46）
+
+| 门禁 | 脚本 | 校验内容 | 注入数 |
+|---|---|---|---|
+| **Gate 43** | `check_preregistered_claims.py` | PR-1 阈值/特征/切片/置换/label_definition 与 research_claims.json 一致；label 必须绝对阈值 | 2 |
+| **Gate 44** | `check_generalization_matrix.py` | PR-3 五图族含 malecns_subgraph；verdict 与底层计数一致；负结果不得粉饰 | 3 |
+| **Gate 45** | `check_intervention_test.py` | PR-2 action/control/direction 一致；干预切片与 PR-1 切片无重叠；命中率从 all_results 独立复算 | 3 |
+| **Gate 46** | `check_recovery_dynamics.py` | PR-4 参数一致；3 代偿机制均消融；recovery_auc 从 all_results 独立复算 | 3 |
+
+**所有门禁均通过 fail-closed 注入验证**（Gate 43: 2/2，Gate 44: 3/3，Gate 45: 3/3，Gate 46: 3/3）。
+
+### 四、research_claims.json 预注册字段
+
+新增 `preregistered.PR1..PR4` 块，含冻结时间戳、阈值、判据、失败处置、验证结果。
+R-0.2 机器固化规则：预注册阈值写入 JSON 的 `preregistered` 字段，由 Gate 43/45/46 读取比对；
+脚本内硬编码阈值与 JSON 不一致 → 门禁 FAIL。
+
+### 五、五要素科学主张更新
+
+| 主张 | 状态 | 本轮变化 |
+|---|---|---|
+| R1 | `supported_after_metric_fix` → **不变** | PR-1 WEAK_PASS（AUC 达标但 z 不显著）；PR-3 FAIL（泛化收窄） |
+| R2 | `complete` → **不变** | 无新增实验 |
+| R3 | `inconclusive_needs_more_data` → **不变** | 无新增实验 |
+| R4 | `complete` → **不变** | 无新增实验 |
+| R5 | `complete` → **不变** | 无新增实验 |
+| R6 | `needs_evidence_strengthening` → **不变** | 无新增实验 |
+
+**本轮不升级任何主张状态**——PR-1/PR-2/PR-3 均为负结果，按 R-0.4 纪律如实记录。
+**下一步不是加更多门禁，而是扩大 n_nodes 和换用更细粒度的度量，把 PR-2/PR-3 的 FAIL 变成 PASS。**
+
+### 六、审计披露自评（F8）
+
+新增 `docs/AUDIT_DISCLOSURE.md`，对标 arXiv:2608.05179《Autonomous Research Agents …
+and the Verification Gap》的验证信号清单逐项自评。15 项清单中 11 项达标，
+4 项未达成（跨图族泛化 FAIL、干预因果 FAIL、解析理论 WEAK、第三方复现未做）。
+披露完整性评分 **55/70**：L1/L2 已达成（10/10 + 10/10），L3 部分达成（5/10），
+L4/L5 未达成（0/10 + 3/10），负结果诚实性 10/10。
+
+### 七、门禁与版本收口
+
+- `run_gates.py --quick` = **41/41 PASS**（exit 0）
+- README badge gate count 42→45
+- 版本号 7 处 `2.69.0 → 2.70.0`（pyproject / cli / server / api_server / README docker / README header / CHANGELOG）
+- `research_claims.json` 新增 `preregistered.PR1..PR4` 块（含冻结时间戳与验证结果）
 
 ---
 

@@ -1,0 +1,38 @@
+{
+  "protocol": "F7 · MAS topology fault-injection benchmark",
+  "methodology": "Single-point-of-failure injection + strategy grading",
+  "params": {
+    "n_topologies": 20,
+    "n_nodes": 10,
+    "seed": 42
+  },
+  "benchmark_card": {
+    "pool_size": 20,
+    "n_nodes": 10,
+    "n_edge_range": [
+      10,
+      20
+    ],
+    "strategies": [
+      "random",
+      "degree",
+      "bridge"
+    ],
+    "grading_metric": "MAE against actual_damage_radius (=drop_magnitude*100)",
+    "case_id": "topology_idx",
+    "critical_node_selection": "highest-degree, ties by bridge-count"
+  },
+  "mae": {
+    "random": 21.15,
+    "degree": 20.55,
+    "bridge": 21.85
+  },
+  "best_strategy": "degree",
+  "interpretation": "This is the project's MAS exit: a benchmark that any external multi-agent framework can consume. The three strategies give baseline MAEs; a real MAS controller is expected to beat the 'bridge' strategy. The benchmark is self-contained (JSON card + CSV case table + README) and requires no GPU.",
+  "success_criteria": {
+    "n_cases_min": 20,
+    "bridge_strategy_beats_random": true
+  },
+  "verdict": "WARN",
+  "elapsed_seconds": 0.031
+}

@@ -1,0 +1,29 @@
+{
+  "schema_version": "1.0",
+  "gate_id": 43,
+  "claims_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\research_claims.json",
+  "pr1_result_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\_r1_mechanism_prereg\\f1_preregistered.json",
+  "counts": {
+    "fail": 0,
+    "warn": 1,
+    "note": 8
+  },
+  "notes": [
+    "preregistered.PR1 present: threshold=0.25 features=4",
+    "execution JSON summary.params.threshold=0.25",
+    "threshold consistent: 0.25",
+    "features frozen: 4 features matched",
+    "train_idx consistent: 0:60",
+    "held_out_idx consistent: 60:100",
+    "permutations consistent: 200",
+    "label_definition is absolute: 'drop_magnitude > 0.25 (absolute, preregistered)'"
+  ],
+  "warnings": [
+    "L3 not yet reached: AUC=0.788 >= 0.7 but z=1.5291475014986193 < 3.0. Result is honest and preregistered — PR-1 remains weak-pass. Do NOT alter thresholds to force a pass (R-0.4)."
+  ],
+  "failures": [],
+  "injections": {
+    "total": 2,
+    "bad": 0
+  }
+}

@@ -2,6 +2,162 @@
   "schema": "research_claims_v1",
   "description": "Five-element scientific self-verification manifest. Every externally-stated theoretical claim MUST have all five elements. Missing any element triggers Gate 30 red.",
   "generated_at": "2026-10-11",
+  "preregistered": {
+    "protocol": "docs/PREREGISTRATION_PROTOCOL_v1.md",
+    "frozen_at": "2026-10-14",
+    "freeze_rules": {
+      "R-0.1": "Thresholds / sample sizes / criteria written before any test run. Modifications require a new version segment (PR-x v2) with a stated reason; in-place overwrite is prohibited.",
+      "R-0.2": "Preregistered values are the source of truth in this 'preregistered' block; scripts read them via CLI and echo them into their output JSON. Gate 43 FAILs on any mismatch.",
+      "R-0.3": "Held-out set is used ONCE. Any rerun must be declared as an independent second validation set with the first result stated.",
+      "R-0.4": "A preregistration FAIL must NOT be rescued by adjusting the criteria. The negative result is written to research_claims.json and CHANGELOG.md the same way as the 4 recorded measurement defects."
+    },
+    "PR1": {
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-1",
+      "claim_id": "R1",
+      "registered_at": "2026-10-14",
+      "outcome_metric": "drop_magnitude",
+      "threshold": 0.25,
+      "label_definition": "drop_magnitude > 0.25 (absolute, preregistered; positive = high isolation)",
+      "features": [
+        "n_bridges",
+        "bridge_fraction",
+        "n_articulation_points",
+        "edge_connectivity"
+      ],
+      "model": "logistic_regression + AUC",
+      "train_idx": "0:60",
+      "held_out_idx": "60:100",
+      "n_topologies": 100,
+      "n_nodes": 10,
+      "seed": 42,
+      "permutations": 200,
+      "success_criteria": {
+        "held_out_auc_min": 0.7,
+        "z_min": 3.0
+      },
+      "failure_action": "R1 status stays at L2 (supported_after_metric_fix, not upgraded to L3); record as negative result per R-0.4. Do NOT adjust criteria to force a pass.",
+      "verification": {
+        "verified_against": "_r1_mechanism_prereg/f1_preregistered.json",
+        "executed_at": "2026-10-14",
+        "held_out_auc": 0.7880,
+        "null_auc_mean": 0.4972,
+        "null_auc_std": 0.1902,
+        "z_score": 1.53,
+        "verdict": "WEAK_PASS",
+        "notes": "AUC cleared the 0.70 floor but z did not reach 3.0 under 200 label permutations. Per R-0.4 the criteria are not adjusted; the negative-result status is the honest conclusion. R1 stays at L2 pending a rerun on a fresh independent topology set (or a stronger signal)."
+      }
+    },
+    "PR2": {
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-2",
+      "claim_id": "R1",
+      "evidence_tier": "L4 causal",
+      "methodology_ref": "Self-Interventional Learning (arXiv:2608.14894) four-tuple",
+      "registered_at": "2026-10-14",
+      "structural_action": "delete_edge(e)",
+      "action_group": "delete_bridge (H1)",
+      "control_group": "delete_nonbridge (H2)",
+      "predict_direction": "increase",
+      "n_topologies": 30,
+      "start_idx": 100,
+      "held_out_from_prereg": "0:60 train, 60:100 held-out",
+      "seed": 42,
+      "success_criteria": {
+        "direction_hit_rate_min": 0.7,
+        "paired_z_min": 1.96
+      },
+      "failure_action": "Report as negative result per R-0.4; do NOT adjust thresholds. Structure-quantile → isolation causality not established; R1 stays at L2/L3-weak.",
+      "verification": {
+        "verified_against": "_f4_intervention/f4_intervention.json",
+        "executed_at": "2026-10-14",
+        "n_pair": 18,
+        "skipped_no_bridge": 12,
+        "h1_hit_rate": 0.3889,
+        "h1_gt_h2_hit_rate": 0.2222,
+        "composite_hit_rate": 0.1111,
+        "paired_mean_delta": -0.0096,
+        "paired_z": -1.73,
+        "verdict": "FAIL",
+        "notes": "Direction hit rate 38.9% well below the preregistered 70%. Under 12/30 topologies no bridge edge existed so the intervention set was smaller than planned. Per R-0.4 this negative result is preserved verbatim; thresholds are NOT adjusted. Interpretation: deleting a single bridge edge does not reliably increase drop_magnitude on this family of tiny (n=10) topologies — the isolation metric saturates below the intervention signal."
+      }
+    },
+    "PR3": {
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-3",
+      "claim_id": "R1",
+      "evidence_tier": "L3 cross-family generalization",
+      "registered_at": "2026-10-14",
+      "families": [
+        "project_synthetic",
+        "erdos_renyi",
+        "barabasi_albert",
+        "watts_strogatz",
+        "malecns_subgraph"
+      ],
+      "n_nodes_set": [10, 20, 50, 100],
+      "fit_on": "project_synthetic",
+      "predict_only_on": "erdos_renyi, barabasi_albert, watts_strogatz, malecns_subgraph",
+      "success_criteria": {
+        "min_families_auc_direction_consistent": 3,
+        "auc_min": 0.65,
+        "must_include_real": true
+      },
+      "failure_action": "Retract generality claim; narrow R1 to 'within project-synthetic topology family'. Record boundary in CHANGELOG.md and research_claims.json. Boundaries themselves are publishable results.",
+      "verification": {
+        "verified_against": "_f3_generalization/f3_generalization.json",
+        "executed_at": "2026-10-14",
+        "verdict": "FAIL",
+        "n_families_passing": 1,
+        "real_family_passing": false,
+        "boundary_cells": 13,
+        "n_nodes_tested": [10, 20, 50],
+        "elapsed_seconds": 0.78,
+        "auc_matrix_summary": {
+          "project_synthetic": {"n=10": 0.500, "n=20": 0.917, "n=50": 1.000},
+          "erdos_renyi": {"n=10": 0.438, "n=20": 0.500, "n=50": 0.500},
+          "barabasi_albert": {"n=10": 0.500, "n=20": 0.500, "n=50": 0.500},
+          "watts_strogatz": {"n=10": 0.500, "n=20": 0.500, "n=50": 0.500},
+          "malecns_subgraph": {"n=10": 0.500, "n=20": 0.500, "n=50": 0.500}
+        },
+        "notes": "Only 1 of 5 families (project_synthetic) passed the AUC >= 0.65 + direction-consistent criteria across any n_nodes; the real-connectome family (malecns_subgraph) FAILED at all three sizes. n=50 was added in v2.72.0 (Tarjan bridge/articulation-point + min-degree edge-connectivity optimization made n=50 feasible at 0.028s/bp vs prior timeout). Per R-0.4 this negative result is preserved verbatim and the generality claim is RETRACTED: R1's mechanism is narrow to 'within project-synthetic topology family at n_nodes in {20, 50}'. Boundary cells (13) are reported as publishable negative results. Gate 44 locks in this outcome."
+      }
+    },
+    "PR4": {
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-4",
+      "claim_id": "R1",
+      "evidence_tier": "L2 measurement-layer fix",
+      "registered_at": "2026-10-14",
+      "target_component": "mean_recovery_steps",
+      "replacement_metrics": ["recovery_AUC", "t_half"],
+      "compensation_mechanisms": {
+        "R_a_path_recruitment": {"tau": 2.0, "ceiling": 0.35},
+        "R_b_weight_reallocation": {"tau": 5.0, "ceiling": 0.40},
+        "R_c_steady_state_gain": {"tau": 8.0, "ceiling": 0.25}
+      },
+      "n_topologies": 50,
+      "n_nodes": 10,
+      "horizon_T": 12,
+      "seed": 42,
+      "success_criteria": {
+        "zero_ratio_max": 0.3,
+        "recovery_auc_variance_min": 1e-6,
+        "ablation_variance_required": true
+      },
+      "failure_action": "Report as negative result; the third component stays degenerate and external claims must drop it (report only drop_magnitude + affected_module_count until reworked).",
+      "verification": {
+        "verified_against": "_f2_recovery/f2_recovery_dynamics.json",
+        "executed_at": "2026-10-14",
+        "recovery_auc_zero_ratio": 0.0,
+        "recovery_auc_variance": 0.01144,
+        "recovery_auc_unique": 21,
+        "ablation_main_effects": {
+          "R_a_path_recruitment": {"mean": 0.2268, "var": 0.00655},
+          "R_b_weight_reallocation": {"mean": 0.0725, "var": 0.00028},
+          "R_c_steady_state_gain": {"mean": 0.1099, "var": 0.00044}
+        },
+        "verdict": "PASS",
+        "notes": "Zero-value fraction fell from 64% (original mean_recovery_steps) to 0%. Recovery_AUC variance 0.01144 well above 1e-6 floor. All three compensation mechanisms show non-zero ablation variance → all three are doing independent work, not just R-a riding on the other two. Third component is no longer degenerate."
+      }
+    }
+  },
   "claims": [
     {
       "id": "R1",

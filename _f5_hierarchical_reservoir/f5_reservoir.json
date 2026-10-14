@@ -1,0 +1,23 @@
+{
+  "protocol": "F5 · hierarchical modular reservoir × memory capacity",
+  "methodology": "Naud (2011) delayed-input memory capacity; Nat Commun 2026-07 hierarchical modular reservoirs",
+  "params": {
+    "n_topologies": 20,
+    "n_nodes": 10,
+    "seed": 42,
+    "n_delays": 10,
+    "spectral_radius": 0.95
+  },
+  "pearson_r_drop_vs_memory": -0.5612,
+  "drop_magnitude_mean": 0.2598,
+  "drop_magnitude_var": 0.018918,
+  "memory_capacity_total_mean": 0.1836,
+  "memory_capacity_total_var": 0.085899,
+  "interpretation": "Isolation-degree (drop_magnitude) vs reservoir memory capacity on Naud delayed-input task. A POSITIVE r suggests isolation supports memory (matches Nat Commun 2026-07 hierarchical-modular result); a NEGATIVE r suggests a tension between isolation and recurrent reuse. The project's unique contribution is to QUANTIFY the sign of this relationship across many topologies and give an analytic bound — not to build a bigger simulator.",
+  "success_criteria": {
+    "pearson_r_abs_min": 0.3,
+    "n_topologies_min": 20
+  },
+  "verdict": "SIGNAL",
+  "elapsed_seconds": 0.198
+}

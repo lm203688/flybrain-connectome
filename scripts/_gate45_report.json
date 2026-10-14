@@ -1,0 +1,31 @@
+{
+  "schema_version": "1.0",
+  "gate_id": 45,
+  "claims_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\research_claims.json",
+  "f4_result_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\_f4_intervention\\f4_intervention.json",
+  "counts": {
+    "fail": 0,
+    "warn": 1,
+    "note": 10
+  },
+  "notes": [
+    "preregistered.PR2 present: action=delete_edge(e)",
+    "action consistent: delete_bridge",
+    "control consistent: delete_nonbridge",
+    "predict_direction consistent: increase",
+    "n_topologies consistent: 30",
+    "seed consistent: 42",
+    "start_idx consistent: 100",
+    "intervention_slice 100:130 disjoint from PR-1 slices",
+    "success_criteria.direction_hit_rate_min consistent: 0.7",
+    "success_criteria.paired_z_min consistent: 1.96"
+  ],
+  "warnings": [
+    "F4 intervention: FAIL — hit rate 0.389 < 0.7 over 18 pairs (12 skipped no bridge). Per R-0.4 the negative result is preserved verbatim; the isolation metric saturates below the intervention signal on tiny (n=10) topologies. Do NOT adjust criteria to force a pass."
+  ],
+  "failures": [],
+  "injections": {
+    "total": 3,
+    "bad": 0
+  }
+}
