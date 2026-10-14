@@ -375,6 +375,16 @@ def main() -> int:
         "Stats are recomputed from all_results so a tampered summary cannot pass",
         [py, str(SCRIPTS / "check_recovery_dynamics.py")])[0]))
 
+    # ---- Gate 47: PR-2b metric-substitution pre-check integrity ----
+    results.append(("gate47 metric substitution", run(
+        "GATE 47 — PR-2b pre-execution REJECTION integrity: research_claims.json "
+        "must record PR2b as a pre_execution_rejection whose thresholds match the "
+        "executed JSON, whose criteria were NOT modified post-hoc (R-0.4), and whose "
+        "REJECT decision is either the rule's verdict or an explicitly declared "
+        "override of it. Artifact rate and pooled coupling corr are recomputed from "
+        "all_results so a tampered summary cannot silently reopen the substitution",
+        [py, str(SCRIPTS / "check_metric_substitution.py")])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:

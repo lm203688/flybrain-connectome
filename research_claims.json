@@ -39,7 +39,7 @@
       "verification": {
         "verified_against": "_r1_mechanism_prereg/f1_preregistered.json",
         "executed_at": "2026-10-14",
-        "held_out_auc": 0.7880,
+        "held_out_auc": 0.788,
         "null_auc_mean": 0.4972,
         "null_auc_std": 0.1902,
         "z_score": 1.53,
@@ -93,6 +93,44 @@
         "paired_z": -1.21,
         "verdict": "FAIL",
         "notes": "n=50 rerun: H1 hit rate improved from 38.9% (n=10) to 71.4% (n=50), crossing the 70% floor for the first time. However composite hit rate (H1>H2) dropped to 42.9%, and paired z=-1.21 remains far below the 1.96 threshold. The verdict stays FAIL per R-0.4. Interpretation: at larger n, bridge deletion reliably increases drop_magnitude (H1) but does NOT dominate non-bridge deletion (H2) — the intervention is not discriminative. The isolation metric variance at n=50 is too small (mean_delta ~ 0.0004) to support a causal claim about bridge→isolation."
+      },
+      "verification_n100": {
+        "verified_against": "_f4_intervention_n100/f4_intervention.json",
+        "executed_at": "2026-10-14",
+        "n_nodes": 100,
+        "n_topologies": 30,
+        "start_idx": 400,
+        "seed": 42,
+        "n_pair": 22,
+        "skipped_no_bridge": 8,
+        "h1_hit_rate": 0.5909,
+        "h1_gt_h2_hit_rate": 0.4091,
+        "composite_hit_rate": 0.4091,
+        "paired_mean_delta": 0.000442,
+        "paired_z": 0.4164,
+        "verdict": "FAIL",
+        "notes": "Third scale point, per the scale expansion that v2.72.0 flagged as now feasible after the Tarjan optimization. Hit rates across the three scales: n=10 H1 38.9% / composite 11.1% (z=-1.73); n=50 H1 71.4% / composite 42.9% (z=-1.21); n=100 H1 59.1% / composite 40.9% (z=+0.42). The H1 direction hit rate is unstable across scales (38.9 -> 71.4 -> 59.1) and the composite hit rate plateaus at ~41% for n>=50, i.e. the effect does not grow with n. Paired mean deltas stay at |d| <= 0.0005 across all three scales, one order of magnitude below the smallest resolvable effect the isolation metric can carry. Verdict remains FAIL per R-0.4; thresholds unchanged. Conclusion: within n_nodes <= 100 the bridge->isolation causal direction is NOT established and the deficit is effect-size, not sample size."
+      },
+      "verification_n100_verdict_summary": {
+        "n_nodes_10": {
+          "h1": 0.3889,
+          "composite": 0.1111,
+          "z": -1.73,
+          "verdict": "FAIL"
+        },
+        "n_nodes_50": {
+          "h1": 0.7143,
+          "composite": 0.4286,
+          "z": -1.21,
+          "verdict": "FAIL"
+        },
+        "n_nodes_100": {
+          "h1": 0.5909,
+          "composite": 0.4091,
+          "z": 0.4164,
+          "verdict": "FAIL"
+        },
+        "note": "Three independent scales, three FAIL verdicts. Effects saturate at |mean_delta| <= 0.0005 regardless of n."
       }
     },
     "PR3": {
@@ -107,7 +145,12 @@
         "watts_strogatz",
         "malecns_subgraph"
       ],
-      "n_nodes_set": [10, 20, 50, 100],
+      "n_nodes_set": [
+        10,
+        20,
+        50,
+        100
+      ],
       "fit_on": "project_synthetic",
       "predict_only_on": "erdos_renyi, barabasi_albert, watts_strogatz, malecns_subgraph",
       "success_criteria": {
@@ -123,16 +166,97 @@
         "n_families_passing": 1,
         "real_family_passing": false,
         "boundary_cells": 13,
-        "n_nodes_tested": [10, 20, 50],
+        "n_nodes_tested": [
+          10,
+          20,
+          50
+        ],
         "elapsed_seconds": 0.78,
         "auc_matrix_summary": {
-          "project_synthetic": {"n=10": 0.500, "n=20": 0.917, "n=50": 1.000},
-          "erdos_renyi": {"n=10": 0.438, "n=20": 0.500, "n=50": 0.500},
-          "barabasi_albert": {"n=10": 0.500, "n=20": 0.500, "n=50": 0.500},
-          "watts_strogatz": {"n=10": 0.500, "n=20": 0.500, "n=50": 0.500},
-          "malecns_subgraph": {"n=10": 0.500, "n=20": 0.500, "n=50": 0.500}
+          "project_synthetic": {
+            "n=10": 0.5,
+            "n=20": 0.917,
+            "n=50": 1.0
+          },
+          "erdos_renyi": {
+            "n=10": 0.438,
+            "n=20": 0.5,
+            "n=50": 0.5
+          },
+          "barabasi_albert": {
+            "n=10": 0.5,
+            "n=20": 0.5,
+            "n=50": 0.5
+          },
+          "watts_strogatz": {
+            "n=10": 0.5,
+            "n=20": 0.5,
+            "n=50": 0.5
+          },
+          "malecns_subgraph": {
+            "n=10": 0.5,
+            "n=20": 0.5,
+            "n=50": 0.5
+          }
         },
         "notes": "Only 1 of 5 families (project_synthetic) passed the AUC >= 0.65 + direction-consistent criteria across any n_nodes; the real-connectome family (malecns_subgraph) FAILED at all three sizes. n=50 was added in v2.72.0 (Tarjan bridge/articulation-point + min-degree edge-connectivity optimization made n=50 feasible at 0.028s/bp vs prior timeout). Per R-0.4 this negative result is preserved verbatim and the generality claim is RETRACTED: R1's mechanism is narrow to 'within project-synthetic topology family at n_nodes in {20, 50}'. Boundary cells (13) are reported as publishable negative results. Gate 44 locks in this outcome."
+      },
+      "verification_n100": {
+        "verified_against": "_gate31_r2/f3_generalization.json",
+        "executed_at": "2026-10-14",
+        "n_nodes_tested": [
+          10,
+          20,
+          50,
+          100
+        ],
+        "n_cells": 20,
+        "n_per_cell": 30,
+        "n_train": 60,
+        "n_families_passing": 2,
+        "real_family_passing": false,
+        "boundary_cells": 15,
+        "elapsed_seconds": 20.313,
+        "auc_matrix_summary": {
+          "project_synthetic": {
+            "n=10": 0.6587,
+            "n=20": 1.0,
+            "n=50": 1.0,
+            "n=100": 1.0
+          },
+          "erdos_renyi": {
+            "n=10": 0.8519,
+            "n=20": 0.5,
+            "n=50": 0.5,
+            "n=100": 0.5
+          },
+          "barabasi_albert": {
+            "n=10": 0.5,
+            "n=20": 0.5,
+            "n=50": 0.5,
+            "n=100": 0.5
+          },
+          "watts_strogatz": {
+            "n=10": 0.5,
+            "n=20": 0.5,
+            "n=50": 0.5,
+            "n=100": 0.5
+          },
+          "malecns_subgraph": {
+            "n=10": 0.5,
+            "n=20": 0.5,
+            "n=50": 0.5,
+            "n=100": 0.5
+          }
+        },
+        "real_family_n_positive_per_scale": {
+          "n=10": 0,
+          "n=20": 0,
+          "n=50": 0,
+          "n=100": 0
+        },
+        "verdict": "FAIL",
+        "notes": "n_nodes=100 added (the last preregistered scale). Matrix 5x4 = 20 cells, 15 boundary cells. Families passing >= 0.65 AUC on >=1 scale: 2 of 5 (project_synthetic all 4 scales; erdos_renyi only at n=10). Verdict stays FAIL: need >= 3 families AND the real-connectome family must be among them; malecns_subgraph has ZERO positive samples at every scale (0/30 at n=10,20,50,100). Root cause is structural, not statistical: the preregistered absolute label threshold drop_magnitude > 0.25 is unreachable on the real-connectome subsample because its drop_magnitude mean falls MONOTONICALLY with n (0.170 -> 0.096 -> 0.048 -> 0.026). The same holds for BA/WS/ER-at-n>=20 (all 0 positives), so the apparent 'generalization failure' is partly a LABEL-RESOLUTION artifact: the fixed absolute cutoff outruns the signal as graphs densify. This is the S7 resolution-precondition discipline applied to the label definition, not a verdict change -- the preregistered threshold is preserved verbatim and the FAIL stands. Publishable boundary: the mechanism is real within project_synthetic at all tested scales, and the cutoff must be rescaled (or replaced by a rank/quantile label) before cross-family comparison is meaningful. Per R-0.1 the threshold is NOT adjusted here."
       }
     },
     "PR4": {
@@ -141,11 +265,23 @@
       "evidence_tier": "L2 measurement-layer fix",
       "registered_at": "2026-10-14",
       "target_component": "mean_recovery_steps",
-      "replacement_metrics": ["recovery_AUC", "t_half"],
+      "replacement_metrics": [
+        "recovery_AUC",
+        "t_half"
+      ],
       "compensation_mechanisms": {
-        "R_a_path_recruitment": {"tau": 2.0, "ceiling": 0.35},
-        "R_b_weight_reallocation": {"tau": 5.0, "ceiling": 0.40},
-        "R_c_steady_state_gain": {"tau": 8.0, "ceiling": 0.25}
+        "R_a_path_recruitment": {
+          "tau": 2.0,
+          "ceiling": 0.35
+        },
+        "R_b_weight_reallocation": {
+          "tau": 5.0,
+          "ceiling": 0.4
+        },
+        "R_c_steady_state_gain": {
+          "tau": 8.0,
+          "ceiling": 0.25
+        }
       },
       "n_topologies": 50,
       "n_nodes": 10,
@@ -153,7 +289,7 @@
       "seed": 42,
       "success_criteria": {
         "zero_ratio_max": 0.3,
-        "recovery_auc_variance_min": 1e-6,
+        "recovery_auc_variance_min": 1e-06,
         "ablation_variance_required": true
       },
       "failure_action": "Report as negative result; the third component stays degenerate and external claims must drop it (report only drop_magnitude + affected_module_count until reworked).",
@@ -164,13 +300,95 @@
         "recovery_auc_variance": 0.01144,
         "recovery_auc_unique": 21,
         "ablation_main_effects": {
-          "R_a_path_recruitment": {"mean": 0.2268, "var": 0.00655},
-          "R_b_weight_reallocation": {"mean": 0.0725, "var": 0.00028},
-          "R_c_steady_state_gain": {"mean": 0.1099, "var": 0.00044}
+          "R_a_path_recruitment": {
+            "mean": 0.2268,
+            "var": 0.00655
+          },
+          "R_b_weight_reallocation": {
+            "mean": 0.0725,
+            "var": 0.00028
+          },
+          "R_c_steady_state_gain": {
+            "mean": 0.1099,
+            "var": 0.00044
+          }
         },
         "verdict": "PASS",
         "notes": "Zero-value fraction fell from 64% (original mean_recovery_steps) to 0%. Recovery_AUC variance 0.01144 well above 1e-6 floor. All three compensation mechanisms show non-zero ablation variance → all three are doing independent work, not just R-a riding on the other two. Third component is no longer degenerate."
       }
+    },
+    "PR2b": {
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-2b",
+      "kind": "pre_execution_rejection",
+      "claim_id": "R1",
+      "evidence_tier": "L4 causal (proposed, then rejected)",
+      "registered_at": "2026-10-14",
+      "proposed_as": "Re-run PR-2 with recovery_AUC substituting drop_magnitude as the consequence variable, motivated by PR-2's own diagnosis that drop_magnitude was saturated at n=10.",
+      "mechanism_under_test": {
+        "modulator_Ra": "1 - bridge_fraction - 0.5 * ap_fraction",
+        "recovery_auc": "mean_t(r(t)) / drop_magnitude",
+        "implication": "recovery_AUC is a monotone function of (1 - bridge_fraction) AND is normalised by the very quantity PR-2 measures, so delete_bridge moves it by construction. Note the counterintuitive direction: deleting a bridge LOWERS bridge_fraction (denominator n_edges shrinks too), which RAISES the R-a modulator and RAISES recovery_AUC -- i.e. it reports 'more recovery' when the system was cut. That is a denominator artifact, not a signal."
+      },
+      "success_criteria": {
+        "reject_if_coupling_corr_abs_min": 0.5,
+        "reject_if_artifact_rate_min": 0.9,
+        "conjunctive": true,
+        "declared_direction_for_recovery_auc": "decrease"
+      },
+      "verification": {
+        "verified_against": "_f4b_metric_substitution/f4b_metric_substitution.json",
+        "executed_at": "2026-10-14",
+        "script": "scripts/f4b_metric_substitution_check.py",
+        "params": {
+          "n_topologies": 30,
+          "n_nodes": 50,
+          "start_idx": 200,
+          "seed": 42,
+          "horizon": 40
+        },
+        "n_paired": 21,
+        "skipped": 9,
+        "mean_d_bridge_fraction": {
+          "bridge_arm": -0.0097,
+          "nonbridge_arm": 0.0124
+        },
+        "mean_d_recovery_auc": {
+          "bridge_arm": 0.0079,
+          "nonbridge_arm": -0.0076
+        },
+        "mean_d_drop_magnitude": {
+          "bridge_arm": -0.0001,
+          "nonbridge_arm": -0.0002
+        },
+        "artifact_rate": 0.9524,
+        "recovery_auc_rises_on_bridge_deletion": "20/21",
+        "recovery_auc_falls_on_nonbridge_deletion": "18/21",
+        "corr_d_bridge_fraction_d_recovery_auc_bridge_arm": -0.3537,
+        "corr_d_recovery_auc_d_drop_magnitude": -0.3425,
+        "counterfactual_pr2b_hit_rate_declared_direction": 0.0476,
+        "coupling_hit": false,
+        "artifact_hit": true,
+        "rule_verdict": "ACCEPT",
+        "decision": "REJECT -- PR-2b NOT run",
+        "rule_underpowered": true,
+        "power_diagnostic": {
+          "corr_bridge_arm_only": -0.3537,
+          "corr_pooled_both_arms": -0.902,
+          "corr_nonbridge_arm_only": -0.9056,
+          "var_d_bridge_fraction_bridge_arm": 4.82e-05,
+          "var_d_bridge_fraction_pooled": 0.0002379,
+          "pooled_to_bridge_variance_ratio": 4.94,
+          "note": "The reject rule tests coupling on the BRIDGE arm only, whose var(d_bridge_fraction) is compressed to 1e-3 by the intervention itself (all bridges deleted), so 'is recovery_AUC monotone in bridge_fraction' is unresolvable on that sample. On both arms pooled (4.94x the variance) the coupling is CONFIRMED at |r| = 0.90-0.91. The rule's ACCEPT is a specification defect, not a clearance."
+        }
+      },
+      "decision_basis": "NOT the rule's verdict. (a) Analytic: modulator_Ra contains bridge_fraction and recovery_AUC is normalised by drop_magnitude -- provable by reading compute_ablation, no empirical estimate needed. (b) Artifact rate 95.2% with 85.7% separation on the control arm -- a metric that splits the two arms at that rate is tracking the intervention, not reading it independently. (c) The rule is documented as underpowered on its own sample.",
+      "criteria_modified_after_results": false,
+      "unexplored_alternatives": {
+        "larger_n": "Not pursued -- n changes effect size, not the denominator artifact.",
+        "t_half": "Not pursued -- derived from the same trajectory, identical coupling.",
+        "required_to_proceed": "A consequence measure that is NOT derived from bridge_fraction, e.g. a functional read-out under real dynamics. That is outside this project's current compute substrate."
+      },
+      "notes": "This block records an experiment that was DECIDED AGAINST before execution. It is the R-0.4 discipline extended from 'failed experiments are reported' to 'not-run experiments are reported with their reason'. Boundary conclusion: with drop_magnitude effect size <= 0.001 at n <= 100 and no independent second read-out in the current metric family, L4 (causal) evidence for the bridge->isolation link is NOT attainable here. That is a substrate limit, not a sample-size limit -- it should be read as a scope boundary, not a failure to try harder."
     }
   },
   "claims": [

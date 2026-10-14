@@ -1,0 +1,30 @@
+{
+  "schema_version": "1.0",
+  "gate_id": 47,
+  "claims_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\research_claims.json",
+  "f4b_result_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\_f4b_metric_substitution\\f4b_metric_substitution.json",
+  "counts": {
+    "fail": 0,
+    "warn": 1,
+    "note": 9
+  },
+  "notes": [
+    "PR2b typed as pre_execution_rejection",
+    "PR2b thresholds: coupling_corr>=0.5 artifact_rate>=0.9 (conjunctive=True)",
+    "reject_if_coupling_corr_abs_min consistent: 0.5",
+    "reject_if_artifact_rate_min consistent: 0.9",
+    "criteria_modified_after_results=false (frozen)",
+    "artifact_rate 0.9524 reproduced from all_results (20/21)",
+    "pooled coupling corr -0.9020 reproduced from all_results",
+    "decision recorded: REJECT -- PR-2b NOT run",
+    "decision overrides rule_verdict=ACCEPT with rule_underpowered=true declared"
+  ],
+  "warnings": [
+    "PR-2b pre-execution REJECTION preserved per R-0.4: artifact rate 95.2% >= 90%, pooled coupling -0.9020 (rule sample underpowered at -0.3537). recovery_AUC is definitionally coupled to delete_bridge via modulator_Ra and must NOT be substituted in as a PR-2 consequence metric. The rejection is a substrate boundary, not a failure to try harder."
+  ],
+  "failures": [],
+  "injections": {
+    "total": 4,
+    "bad": 0
+  }
+}

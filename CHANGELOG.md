@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.73.0` | the toolkit as a whole |
+| package | `2.74.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -36,7 +36,95 @@ The **schema version** is versioned separately from the **package version**:
 
 ---
 
-## [2.73.0] — 2026-10-14
+## [2.74.0] — 2026-10-14
+
+**规模扩样到 n=100（PR-2 / PR-3）+ PR-2b 度量替代预执行拒绝 + Gate 47**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 版本号 8 处 | `2.73.0 → 2.74.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+| 门禁数 | `45 → 46 gates`（README header） |
+| PR-2 n=100 | `_f4_intervention_n100/`：30 拓扑、start_idx=400、n_nodes=100、seed=42，5.6s |
+| PR-3 n=100 | `_f3_generalization/`：5 图族 × 4 规模 = 20 格、15 边界格、20.3s |
+| **PR-2b 新脚本** | `scripts/f4b_metric_substitution_check.py`：度量替代**预执行**合法性检验 |
+| **Gate 47 新增** | `scripts/check_metric_substitution.py`：PR-2b 预执行拒绝固化，4/4 注入报红 |
+| research_claims.json | PR-2 新增 `verification_n100` + `verification_n100_verdict_summary`；PR-3 新增 `verification_n100`；**新增 `PR2b` 块**（`kind: pre_execution_rejection`） |
+| 协议 | `PREREGISTRATION_PROTOCOL_v1.md` 新增 **PR-2b 段** + 验收矩阵刷新（4 项全部填入实测状态） |
+| 门禁 | 47 项注册，`run_gates.py --quick` **42/42 PASS** |
+
+### PR-2 三尺度全 FAIL
+
+| 指标 | n=10 | n=50 | **n=100（新）** | 判据 |
+|---|---|---|---|---|
+| H1 命中率（d_bridge > 0） | 38.9% | 71.4% | **59.1%** | ≥ 70% ❌ |
+| Composite（H1 > H2） | 11.1% | 42.9% | **40.9%** | ≥ 70% ❌ |
+| Paired z | −1.73 | −1.21 | **+0.42** | ≥ 1.96 ❌ |
+| n_pair | 18 | 21 | **22** | — |
+| skipped_no_bridge | 12 | 9 | **8** | — |
+| verdict | FAIL | FAIL | **FAIL** | — |
+
+**结论变化（重要）**：n=100 后 composite 命中率从 42.9% 回落到 40.9%，**不再随 n 增长**。三尺度 |mean_delta| ≤ 0.0005，比隔离度量可分辨的最小效应小一个数量级。缺陷是**效应量**，不是样本量——继续扩 n 不会翻案。
+
+### PR-3 n=100：2/5 图族，真实连接组始终 0 正例
+
+| 图族 | n=10 | n=20 | n=50 | n=100 |
+|---|---|---|---|---|
+| project_synthetic | 0.66 ✅ | 1.00 | 1.00 | 1.00 |
+| erdos_renyi | 0.85 ✅ | 0.50 | 0.50 | 0.50 |
+| barabasi_albert | 0.50 | 0.50 | 0.50 | 0.50 |
+| watts_strogatz | 0.50 | 0.50 | 0.50 | 0.50 |
+| malecns_subgraph（真实） | 0.50 | 0.50 | 0.50 | 0.50 |
+
+`n_families_passing=2`（需 ≥3 且必须含真实连接组）→ **FAIL**。
+**根因是标签分辨率，不是模型**：`malecns_subgraph` 在四个规模上 `n_positive` 全为 0，其 `drop_magnitude` 均值随 n **单调下降**（0.170 → 0.096 → 0.048 → 0.026），预注册的绝对阈值 0.25 在图变稠密后永远够不着。BA/WS/ER-at-n≥20 同样全 0 正例。按 **S7 分辨率预检** 纪律定性：这是**标签定义越过了信号尺度**，阈值按 R-0.1 保持原样、FAIL 保持原判。跨族比较前必须把绝对阈值改为分位标签或按规模重标定。
+
+### PR-2b：拟议的度量替代被**预执行拒绝**（本轮最有价值的产出）
+
+上一轮提议「用 `recovery_AUC` 替代 `drop_magnitude`」，本轮**在跑之前**发现它是同义反复：
+
+- `modulator_Ra = 1 − bridge_fraction − 0.5·ap_fraction` —— 含 `bridge_fraction`
+- `recovery_AUC = mean_t(r(t)) / drop_magnitude` —— **被 PR-2 本身测量的量归一化**
+
+方向反直觉：删一条桥边会**降低** `bridge_fraction`（分母 `n_edges` 同时减少，`(B-1)/(E-1) < B/E`），于是抬高 R-a 调节器、**抬高** `recovery_AUC` —— 在"你切断了系统"时报告"恢复能力上升"。这是**分母伪影**，不是效应。
+
+| 判据 | 实测 | 阈值 | 触发 |
+|---|---|---|---|
+| (i) 解析耦合 \|corr\| | 0.354（桥边臂） | ≥ 0.50 | ❌ |
+| (ii) 伪影率（删桥边后 recovery_AUC 上升） | **95.2%**（20/21） | ≥ 90% | ✅ |
+| 非桥边臂对照（recovery_AUC 下降） | 85.7%（18/21） | — | 方向近乎完全分离 |
+| **规则裁决** | | | **ACCEPT** |
+| **最终决策** | | | **REJECT — PR-2b 不执行** |
+
+**拒绝规则自身欠功率（本轮真正的新发现）**：(i) 未触发不是因为"没有耦合"，而是因为样本方差被干预本身压缩了——
+
+| 样本 | corr(Δbridge_fraction, Δrecovery_AUC) | var(Δbridge_fraction) |
+|---|---|---|
+| 桥边臂（规则指定） | −0.354 | 4.82e-05 |
+| **双臂合并** | **−0.902** | **2.38e-04** |
+| 非桥边臂单臂 | −0.906 | — |
+
+合并样本方差是桥边臂的 **4.9 倍**。解析耦合在具备功率的样本上被**确认**（\|r\| = 0.90–0.91）。**这正是 S7 纪律应用于门禁自身**：先验证检测手段的分辨力是否匹配待检验命题的几何尺度，再读结论。判据阈值**未修改**，`rule_underpowered=true` 如实记录——规则的 ACCEPT 是**规格缺陷的证据，不是放行依据**。
+
+**决策依据不是规则的 verdict**：(a) 解析可查代码即证，无需经验估计；(b) 95.2% 伪影率 + 85.7% 对照臂分离，一个能把两臂分到该比例的度量是在**跟随干预动作**；(c) 规则欠功率已披露。`criteria_modified_after_results=false`。
+
+**未走的路径（披露）**：不扩 n（n 只改变效应量，不改变分母伪影）；不换 `t_half`（同源轨迹派生，耦合性质相同）。要突破需要一个**不由 `bridge_fraction` 派生**的后果量，超出当前计算基底。
+
+**边界结论**：`drop_magnitude` 在 n ≤ 100 的桥边干预下效应量 ≤ |0.001|，且现有度量族内**没有独立的第二读数** → 本项目 L4（因果级）证据**当前不可达**。这是**基底上限**，不是"没努力够"。
+
+### Gate 47 注入电池（4/4 报红）
+
+| # | 注入 | 结果 |
+|---|---|---|
+| 1 | manifest 伪影阈值 0.90 → 0.99（判据漂移） | ✅ FAIL |
+| 2 | decision 翻为 ACCEPT + 抹掉 rule_underpowered（静默推翻） | ✅ FAIL |
+| 3 | `criteria_modified_after_results=true`（R-0.4 违例） | ✅ FAIL |
+| 4 | 抹平 all_results 中所有桥边臂上升（复算不再支撑 REJECT） | ✅ FAIL |
+
+Gate 47 独立复算伪影率（20/21 = 0.9524）与合并样本耦合相关系数（−0.9020）与 `all_results` 一致，摘要块被篡改会被识破。
+
+
 
 **PR-2 干预实验 n=50 扩样重跑 + 版本号收口**
 
