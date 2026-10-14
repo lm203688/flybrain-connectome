@@ -2,12 +2,13 @@
   "protocol": "PR-3 · PREREGISTRATION_PROTOCOL_v1.md",
   "params": {
     "seed": 42,
-    "n_per_cell": 10,
-    "n_train": 30,
+    "n_per_cell": 30,
+    "n_train": 60,
     "n_nodes_set": [
       10,
       20,
-      50
+      50,
+      100
     ],
     "families": [
       "project_synthetic",
@@ -27,9 +28,9 @@
     "min_families": 3
   },
   "training": {
-    "n_rows": 30,
-    "n_positive": 8,
-    "n_negative": 22,
+    "n_rows": 60,
+    "n_positive": 16,
+    "n_negative": 44,
     "features_norm": [
       "n_bridges",
       "bridge_fraction",
@@ -37,41 +38,51 @@
       "edge_connectivity"
     ],
     "coefs": [
-      -0.10613152476192197,
-      -0.7771200851968251,
-      -0.015994781757623092,
-      3.702818446645556
+      -0.8999745053190217,
+      -0.38922632197167306,
+      -0.7594320132428757,
+      2.1683293233689604
     ],
-    "intercept": -3.783878309308649
+    "intercept": -2.7463264084471413
   },
   "matrix": {
     "project_synthetic": {
       "10": {
-        "auc": 0.5,
-        "n": 10,
-        "n_positive": 4,
-        "n_negative": 6,
-        "drop_magnitude_mean": 0.23496271008255057,
+        "auc": 0.6587301587301587,
+        "n": 30,
+        "n_positive": 9,
+        "n_negative": 21,
+        "drop_magnitude_mean": 0.25574978925167113,
         "auc_min": 0.65,
         "direction_consistent": true,
-        "passes_auc_floor": false
+        "passes_auc_floor": true
       },
       "20": {
-        "auc": 0.9166666666666666,
-        "n": 10,
-        "n_positive": 4,
-        "n_negative": 6,
-        "drop_magnitude_mean": 0.28288354962509543,
+        "auc": 1.0,
+        "n": 30,
+        "n_positive": 8,
+        "n_negative": 22,
+        "drop_magnitude_mean": 0.22801290346046227,
         "auc_min": 0.65,
         "direction_consistent": true,
         "passes_auc_floor": true
       },
       "50": {
         "auc": 1.0,
-        "n": 10,
-        "n_positive": 2,
-        "n_negative": 8,
-        "drop_magnitude_mean": 0.1440591510856834,
+        "n": 30,
+        "n_positive": 6,
+        "n_negative": 24,
+        "drop_magnitude_mean": 0.14596193141854116,
+        "auc_min": 0.65,
+        "direction_consistent": true,
+        "passes_auc_floor": true
+      },
+      "100": {
+        "auc": 1.0,
+        "n": 30,
+        "n_positive": 8,
+        "n_negative": 22,
+        "drop_magnitude_mean": 0.1628392157590634,
         "auc_min": 0.65,
         "direction_consistent": true,
         "passes_auc_floor": true
@@ -79,31 +90,41 @@
     },
     "erdos_renyi": {
       "10": {
-        "auc": 0.4375,
-        "n": 10,
-        "n_positive": 2,
-        "n_negative": 8,
-        "drop_magnitude_mean": 0.23059982860167422,
+        "auc": 0.8518518518518519,
+        "n": 30,
+        "n_positive": 3,
+        "n_negative": 27,
+        "drop_magnitude_mean": 0.20336315620058973,
         "auc_min": 0.65,
-        "direction_consistent": false,
-        "passes_auc_floor": false
+        "direction_consistent": true,
+        "passes_auc_floor": true
       },
       "20": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
-        "drop_magnitude_mean": 0.07572062952639781,
+        "n_negative": 30,
+        "drop_magnitude_mean": 0.07581071224975697,
         "auc_min": 0.65,
         "direction_consistent": true,
         "passes_auc_floor": false
       },
       "50": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
-        "drop_magnitude_mean": 0.020568096626405664,
+        "n_negative": 30,
+        "drop_magnitude_mean": 0.02059447452450368,
+        "auc_min": 0.65,
+        "direction_consistent": true,
+        "passes_auc_floor": false
+      },
+      "100": {
+        "auc": 0.5,
+        "n": 30,
+        "n_positive": 0,
+        "n_negative": 30,
+        "drop_magnitude_mean": 0.010101010101010102,
         "auc_min": 0.65,
         "direction_consistent": true,
         "passes_auc_floor": false
@@ -112,9 +133,9 @@
     "barabasi_albert": {
       "10": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
+        "n_negative": 30,
         "drop_magnitude_mean": 0.0,
         "auc_min": 0.65,
         "direction_consistent": true,
@@ -122,9 +143,9 @@
       },
       "20": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
+        "n_negative": 30,
         "drop_magnitude_mean": 0.0,
         "auc_min": 0.65,
         "direction_consistent": true,
@@ -132,9 +153,19 @@
       },
       "50": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
+        "n_negative": 30,
+        "drop_magnitude_mean": 0.0,
+        "auc_min": 0.65,
+        "direction_consistent": true,
+        "passes_auc_floor": false
+      },
+      "100": {
+        "auc": 0.5,
+        "n": 30,
+        "n_positive": 0,
+        "n_negative": 30,
         "drop_magnitude_mean": 0.0,
         "auc_min": 0.65,
         "direction_consistent": true,
@@ -144,9 +175,9 @@
     "watts_strogatz": {
       "10": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
+        "n_negative": 30,
         "drop_magnitude_mean": 0.0,
         "auc_min": 0.65,
         "direction_consistent": true,
@@ -154,9 +185,9 @@
       },
       "20": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
+        "n_negative": 30,
         "drop_magnitude_mean": 0.0,
         "auc_min": 0.65,
         "direction_consistent": true,
@@ -164,9 +195,19 @@
       },
       "50": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
+        "n_negative": 30,
+        "drop_magnitude_mean": 0.0,
+        "auc_min": 0.65,
+        "direction_consistent": true,
+        "passes_auc_floor": false
+      },
+      "100": {
+        "auc": 0.5,
+        "n": 30,
+        "n_positive": 0,
+        "n_negative": 30,
         "drop_magnitude_mean": 0.0,
         "auc_min": 0.65,
         "direction_consistent": true,
@@ -176,77 +217,79 @@
     "malecns_subgraph": {
       "10": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
-        "drop_magnitude_mean": 0.1467223169089663,
+        "n_negative": 30,
+        "drop_magnitude_mean": 0.17035465641832087,
         "auc_min": 0.65,
         "direction_consistent": true,
         "passes_auc_floor": false
       },
       "20": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
-        "drop_magnitude_mean": 0.09585762898680115,
+        "n_negative": 30,
+        "drop_magnitude_mean": 0.0955540920010337,
         "auc_min": 0.65,
         "direction_consistent": true,
         "passes_auc_floor": false
       },
       "50": {
         "auc": 0.5,
-        "n": 10,
+        "n": 30,
         "n_positive": 0,
-        "n_negative": 10,
-        "drop_magnitude_mean": 0.04907095832943096,
+        "n_negative": 30,
+        "drop_magnitude_mean": 0.04797443630011055,
+        "auc_min": 0.65,
+        "direction_consistent": true,
+        "passes_auc_floor": false
+      },
+      "100": {
+        "auc": 0.5,
+        "n": 30,
+        "n_positive": 0,
+        "n_negative": 30,
+        "drop_magnitude_mean": 0.026072491407678023,
         "auc_min": 0.65,
         "direction_consistent": true,
         "passes_auc_floor": false
       }
     }
   },
-  "n_families_passing": 1,
+  "n_families_passing": 2,
   "real_family_passing": false,
   "boundary_cells": [
     {
-      "family": "project_synthetic",
-      "n_nodes": 10,
-      "auc": 0.5,
-      "n_positive": 4,
-      "n_negative": 6,
-      "drop_magnitude_mean": 0.23496271008255057
-    },
-    {
-      "family": "erdos_renyi",
-      "n_nodes": 10,
-      "auc": 0.4375,
-      "n_positive": 2,
-      "n_negative": 8,
-      "drop_magnitude_mean": 0.23059982860167422
-    },
-    {
       "family": "erdos_renyi",
       "n_nodes": 20,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
-      "drop_magnitude_mean": 0.07572062952639781
+      "n_negative": 30,
+      "drop_magnitude_mean": 0.07581071224975697
     },
     {
       "family": "erdos_renyi",
       "n_nodes": 50,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
-      "drop_magnitude_mean": 0.020568096626405664
+      "n_negative": 30,
+      "drop_magnitude_mean": 0.02059447452450368
+    },
+    {
+      "family": "erdos_renyi",
+      "n_nodes": 100,
+      "auc": 0.5,
+      "n_positive": 0,
+      "n_negative": 30,
+      "drop_magnitude_mean": 0.010101010101010102
     },
     {
       "family": "barabasi_albert",
       "n_nodes": 10,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
+      "n_negative": 30,
       "drop_magnitude_mean": 0.0
     },
     {
@@ -254,7 +297,7 @@
       "n_nodes": 20,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
+      "n_negative": 30,
       "drop_magnitude_mean": 0.0
     },
     {
@@ -262,7 +305,15 @@
       "n_nodes": 50,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
+      "n_negative": 30,
+      "drop_magnitude_mean": 0.0
+    },
+    {
+      "family": "barabasi_albert",
+      "n_nodes": 100,
+      "auc": 0.5,
+      "n_positive": 0,
+      "n_negative": 30,
       "drop_magnitude_mean": 0.0
     },
     {
@@ -270,7 +321,7 @@
       "n_nodes": 10,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
+      "n_negative": 30,
       "drop_magnitude_mean": 0.0
     },
     {
@@ -278,7 +329,7 @@
       "n_nodes": 20,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
+      "n_negative": 30,
       "drop_magnitude_mean": 0.0
     },
     {
@@ -286,7 +337,15 @@
       "n_nodes": 50,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
+      "n_negative": 30,
+      "drop_magnitude_mean": 0.0
+    },
+    {
+      "family": "watts_strogatz",
+      "n_nodes": 100,
+      "auc": 0.5,
+      "n_positive": 0,
+      "n_negative": 30,
       "drop_magnitude_mean": 0.0
     },
     {
@@ -294,24 +353,32 @@
       "n_nodes": 10,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
-      "drop_magnitude_mean": 0.1467223169089663
+      "n_negative": 30,
+      "drop_magnitude_mean": 0.17035465641832087
     },
     {
       "family": "malecns_subgraph",
       "n_nodes": 20,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
-      "drop_magnitude_mean": 0.09585762898680115
+      "n_negative": 30,
+      "drop_magnitude_mean": 0.0955540920010337
     },
     {
       "family": "malecns_subgraph",
       "n_nodes": 50,
       "auc": 0.5,
       "n_positive": 0,
-      "n_negative": 10,
-      "drop_magnitude_mean": 0.04907095832943096
+      "n_negative": 30,
+      "drop_magnitude_mean": 0.04797443630011055
+    },
+    {
+      "family": "malecns_subgraph",
+      "n_nodes": 100,
+      "auc": 0.5,
+      "n_positive": 0,
+      "n_negative": 30,
+      "drop_magnitude_mean": 0.026072491407678023
     }
   ],
   "success_criteria": {
@@ -322,5 +389,5 @@
   "verdict": "FAIL",
   "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-3",
   "methodology": "Fit-once-predict-many; AUC on project_synthetic-trained logistic model",
-  "elapsed_seconds": 0.78
+  "elapsed_seconds": 20.682
 }
