@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.66.0` | the toolkit as a whole |
+| package | `2.72.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -35,6 +35,217 @@ The **schema version** is versioned separately from the **package version**:
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
 
 ---
+
+## [2.72.0] — 2026-10-14
+
+**F3 泛化矩阵 n=50 扩展 + Tarjan 算法优化 + PR-3 验证数据更新**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 版本号 8 处 | `2.70.0 → 2.72.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+| PR-3 验证数据 | `n_nodes_tested: [10, 20] → [10, 20, 50]`；`boundary_cells: 9 → 13`；新增 `auc_matrix_summary` |
+| 性能优化 | `isolation_graded.py`: `_find_bridges` / `_find_articulation_points` 改用 Tarjan 算法（O(V+E)）；`_compute_edge_connectivity` 改用 min-degree 近似（O(V+E)），替代 O(2^m) 暴力枚举 |
+| n=50 实测 | ER 图 50 节点 357 边：`compute_graded_isolation` 0.025s / `compute_critical_edge_features` 0.001s / `_measure` 总计 0.028s（原超时 >120s） |
+| F3 完整实验 | 5 图族 × 3 节点规模 = 15 单元格；`elapsed: 0.78s`；verdict FAIL（1/5 families pass） |
+| 门禁 | 46 gates · 41/41 --quick PASS |
+
+### 科学结论
+
+PR-3 泛化矩阵实验（n_nodes={10, 20, 50}）确认 R1 的跨图族泛化失败：
+- **project_synthetic**：n=20 AUC=0.917 ✅, n=50 AUC=1.000 ✅（唯一通过图族）
+- **erdos_renyi / barabasi_albert / watts_strogatz / malecns_subgraph**：全部 AUC=0.500 ❌
+- **真实连接组（malecns_subgraph）**：三个规模均失败
+
+按 R-0.4 失败即发表纪律，R1 的机制范围收缩至 "within project-synthetic topology family at n_nodes in {20, 50}"。
+13 个边界单元格作为可发表的负结果保留。Gate 44 锁定此结论。
+
+### 技术债务修复
+
+原 `isolation_graded.py` 的 `_find_bridges`（O(E²)）和 `_find_articulation_points`（O(V²)）在 n=50 时超时。
+`_compute_edge_connectivity` 使用 `_combinations(edges, k)` 暴力枚举（O(2^m)），357 条边时指数爆炸。
+本次替换为：
+- **Tarjan 桥边算法**：单次 DFS + low/disc 数组，O(V+E)
+- **Tarjan 割点算法**：同一次 DFS 遍历，O(V+E)
+- **边连通度近似**：基于最小度 + 桥边检查，O(V+E)
+
+优化后 n=50 ER 图（357 边）从超时降至 0.028s/bp，为后续 n=100+ 扩展奠定基础。
+
+---
+
+## [2.70.0] — 2026-10-14
+
+**前沿价值增强 V2 全量执行：PR-1..PR-4 预注册四元组 + F1-F8 技术提升清单 + Gate 43-46**
+
+按 `docs/PREREGISTRATION_PROTOCOL_v1.md` 与 `docs/FRONTIER_VALUE_ENHANCEMENT_2026-10-14.md`
+全量执行。本轮把项目的证据等级从 L2（可执行测试）向 L3（前瞻性预测）推进，
+并在三个维度上诚实记录失败：L3 部分达成、L4（干预因果）未达成、跨图族泛化 FAIL。
+
+### 一、预注册四元组（PR-1..PR-4）
+
+| PR | 协议 | 对应门禁 | 当前 | 判据 | 结果 |
+|---|---|---|---|---|---|
+| PR-1 | R1 前瞻性预测（修 median split） | **Gate 43** | 🟡 WEAK | held-out AUC ≥ 0.70，z ≥ 3.0 | AUC=0.788 ≥ 0.70 ✅，z=1.53 < 3.0 ❌（200 置换） |
+| PR-2 | F4 干预实验（因果级证据） | **Gate 45** | 🔴 FAIL | 方向命中率 ≥ 70% | 命中率 38.9% < 70%（18 对/30 拓扑；12 个无桥边） |
+| PR-3 | F3 跨图族泛化（普适性） | **Gate 44** | 🔴 FAIL | ≥3 图族（含真实）AUC ≥ 0.65 | 仅 1/5 图族通过；真实连接组失败 |
+| PR-4 | F2 恢复动力学（修复退化分量） | **Gate 46** | 🟢 PASS | recovery_AUC 零值 < 30%，方差 > 1e-6 | 零值 0%（原 64%）；方差 0.0114；3 代偿机制均非退化 |
+
+**R-0.4 失败即发表纪律**：PR-1/PR-2/PR-3 的负结果全部如实记录在
+`research_claims.json.preregistered.PR-x.verification`，未修改判据使其通过。
+PR-4 达成是因为 F2 把静态 `mean_recovery_steps`（64% 零值）替换为
+动力学恢复曲线（`recovery_AUC` + `t_half`），引入三种代偿机制
+（R-a 旁路募集 / R-b 权重重分配 / R-c 稳态增益）并做消融。
+
+### 二、技术提升清单 F1-F8
+
+| F | 名称 | 产出 | 零依赖 | 结果 |
+|---|---|---|---|---|
+| **F1** | 结构可控性对接（Liu & Barabási 2011 → 2026 Nat Phys Rev） | `scripts/f1_controllability_features.py` → `_f1_controllability/` | ✅ | 可控性特征 AUC=0.5，与桥边特征打平；小图下 bridge = control-critical 特例 |
+| **F2** | 恢复 / 代偿动力学 | `scripts/f2_recovery_dynamics.py` → `_f2_recovery/` | ✅ | 零值 0%（原 64%）；3 代偿消融均非退化 |
+| **F3** | 规模与图族不变性扫描 | `scripts/f3_generalization_matrix.py` → `_f3_generalization/` | ✅ | 1/5 图族通过；9 个边界单元格 |
+| **F4** | 自干预实验协议 | `scripts/f4_intervention_test.py` → `_f4_intervention/` | ✅ | 命中率 38.9% < 70%（负结果） |
+| **F5** | 层级模块储备池 × 记忆容量 | `scripts/f5_hierarchical_reservoir.py` → `_f5_hierarchical_reservoir/` | ✅ | Pearson r(drop, memory) = -0.56（SIGNAL） |
+| **F6** | 子图计数特征消融 | `scripts/f6_motif_ablation.py` → `_f6_motif_ablation/` | ✅ | 系统 motif 计数与手工特征打平（tie） |
+| **F7** | MAS 故障注入基准 | `scripts/f7_mas_benchmark.py` → `_f7_mas_benchmark/` | ✅ | 20 拓扑 + 3 策略 + 外部用例 README |
+| **F8** | 审计披露自评 | `docs/AUDIT_DISCLOSURE.md` | ✅ | 对标 arXiv:2608.05179 15 项清单，披露完整性 55/70 |
+
+### 三、新增门禁（Gate 43-46）
+
+| 门禁 | 脚本 | 校验内容 | 注入数 |
+|---|---|---|---|
+| **Gate 43** | `check_preregistered_claims.py` | PR-1 阈值/特征/切片/置换/label_definition 与 research_claims.json 一致；label 必须绝对阈值 | 2 |
+| **Gate 44** | `check_generalization_matrix.py` | PR-3 五图族含 malecns_subgraph；verdict 与底层计数一致；负结果不得粉饰 | 3 |
+| **Gate 45** | `check_intervention_test.py` | PR-2 action/control/direction 一致；干预切片与 PR-1 切片无重叠；命中率从 all_results 独立复算 | 3 |
+| **Gate 46** | `check_recovery_dynamics.py` | PR-4 参数一致；3 代偿机制均消融；recovery_auc 从 all_results 独立复算 | 3 |
+
+**所有门禁均通过 fail-closed 注入验证**（Gate 43: 2/2，Gate 44: 3/3，Gate 45: 3/3，Gate 46: 3/3）。
+
+### 四、research_claims.json 预注册字段
+
+新增 `preregistered.PR1..PR4` 块，含冻结时间戳、阈值、判据、失败处置、验证结果。
+R-0.2 机器固化规则：预注册阈值写入 JSON 的 `preregistered` 字段，由 Gate 43/45/46 读取比对；
+脚本内硬编码阈值与 JSON 不一致 → 门禁 FAIL。
+
+### 五、五要素科学主张更新
+
+| 主张 | 状态 | 本轮变化 |
+|---|---|---|
+| R1 | `supported_after_metric_fix` → **不变** | PR-1 WEAK_PASS（AUC 达标但 z 不显著）；PR-3 FAIL（泛化收窄） |
+| R2 | `complete` → **不变** | 无新增实验 |
+| R3 | `inconclusive_needs_more_data` → **不变** | 无新增实验 |
+| R4 | `complete` → **不变** | 无新增实验 |
+| R5 | `complete` → **不变** | 无新增实验 |
+| R6 | `needs_evidence_strengthening` → **不变** | 无新增实验 |
+
+**本轮不升级任何主张状态**——PR-1/PR-2/PR-3 均为负结果，按 R-0.4 纪律如实记录。
+**下一步不是加更多门禁，而是扩大 n_nodes 和换用更细粒度的度量，把 PR-2/PR-3 的 FAIL 变成 PASS。**
+
+### 六、审计披露自评（F8）
+
+新增 `docs/AUDIT_DISCLOSURE.md`，对标 arXiv:2608.05179《Autonomous Research Agents …
+and the Verification Gap》的验证信号清单逐项自评。15 项清单中 11 项达标，
+4 项未达成（跨图族泛化 FAIL、干预因果 FAIL、解析理论 WEAK、第三方复现未做）。
+披露完整性评分 **55/70**：L1/L2 已达成（10/10 + 10/10），L3 部分达成（5/10），
+L4/L5 未达成（0/10 + 3/10），负结果诚实性 10/10。
+
+### 七、门禁与版本收口
+
+- `run_gates.py --quick` = **41/41 PASS**（exit 0）
+- README badge gate count 42→45
+- 版本号 7 处 `2.69.0 → 2.70.0`（pyproject / cli / server / api_server / README docker / README header / CHANGELOG）
+- `research_claims.json` 新增 `preregistered.PR1..PR4` 块（含冻结时间戳与验证结果）
+
+---
+
+## [2.69.0] — 2026-10-13
+
+**D5 修正重跑：三个测量学缺陷，头号结论稳健**
+
+R2 的 D5 缺口（n_nodes ≥ 20 重跑）做完后，发现的问题比"样本量不足"更根本。
+
+| # | 发现 | 证据 | 处置 |
+|---|---|---|---|
+| 1 | **密度轴静默钳位** | n_nodes=6 下 3/7 单元格被钳位（requested 0.05 / 0.10 / 0.15 → actual 全为 0.20）。`max(n_nodes, int(d*n*(n-1)))` 把边数钳到至少一条生成树，低密度档坍缩到同一值 | 新增 `check_density_drift()`，漂移机器可见化；n_nodes=20 与 40 均通过 7/7（max abs drift 0.0000） |
+| 2 | **任务评估抄真值** | `_eval_hub_task` / `_eval_reachability_task` / `_eval_motif_task` 三个函数均为 `predicted = gt`，注释写着 "correct by definition in this scan"。正确率由构造恒为 1.0，与拓扑、密度、样本量无关 | 改为独立代理预测器 `_proxy_hub_from_degrees` / `_proxy_reach_hops`，走与 `llm_tasks._pick_hub` / `_bfs_hops` 分离的代码路径，只使用 prompt 暴露的信息 |
+| 3 | **hub / reach 任务平凡可解** | 消除抄真值后 hub_ok 与 reach_ok **仍是 100%**（21/21 单元格）。`_hub_prompt` 把每个节点的出度表交给模型，hub 就是取最大值——答案已在 prompt 里 | 记录为任务设计缺陷：R2 的能力曲线测量的是难度为零的任务 |
+| 4 | **motif 任务不可答** | `build_random_blueprint` 产出 `motif_family='mixed'`（`llm_tasks.py:272`，注释 "label only; not among MOTIF_FAMILY_LABELS"），而 prompt 的 3 个标签是 inhibitory_hub / recurrent_feedback / reservoir_smallworld。交集为空 | 原作者有意设计（随机蓝图不属于任何 motif 家族）；代理随机猜测的 motif_ok=0.000 是正确的负结果，非 bug |
+| 5 | **门禁证据本身基于不可信轴** | `run_gates.py` 的 Gate 31 用 `--n-nodes 6` 重跑并覆写 `_gate31_r2/`，所以门禁证据的密度轴本身就是 3/7 钳位的那一条——门禁一直在给不可信数据背书 | Gate 31 切到 `--n-nodes 20 --strict-axis`；脚本新增 `--strict-axis`，轴不可信时 exit 1（n=6 → 1，n=20 → 0，双向已验证） |
+
+**关键结论**：`d*=null` 在 n_nodes ∈ {6, 20, 40} 且密度轴可信的情况下**依然成立** → "无能力悬崖"不是样本量伪影，是稳健的。但 R2 的三个任务没有一个具备区分力（hub / reachability 因 prompt 泄露答案而平凡可解，motif 因真值不在选项内而不可答），**该能力曲线不能用于支撑"结构增益"主张。扩大 n_nodes 救不了它，任务设计才行。**
+
+**与 R1 的对照**：R1 的饱和源于度量定义（`isolation_effect_size` 恒 1.0），R2 的饱和源于任务设计（prompt 泄露答案）。根因不同，但都是"数字打出来了，语义没打出来"。项目现已记录 **4 个测量学缺陷**。
+
+**证据文件**：`scripts/r2_density_scan.py` 新增 `check_density_drift()`、`--strict-axis`、`_proxy_hub_from_degrees`、`_proxy_reach_hops`；新增 3 个重扫证据目录 `_r2_rescan_n{6,20,40}/r2_density_scan.json`（工作区另含派生 `.csv`，按仓库约定不入 git）；`_gate31_r2/r2_density_scan.json` 切轴重生成。
+
+**注册 + 版本收口**：版本号 6 处 `2.68.0 → 2.69.0`（pyproject / cli / server / api_server / README docker badge / README 表头）；`research_claims.json` 的 R2 新增 `measurement_defects`（3 条）+ `supporting_evidence` + `power_precheck`，status 保持 `complete`（结论确实稳健）。
+
+**门禁**：`run_gates.py --quick` = **37/37 PASS**（exit 0）；Gate 42 中 R2 N=200 ≥ 30 PASS，R3 仍以 acknowledged WARN 追踪。
+
+---
+
+## [2.68.0] — 2026-10-13
+
+**M2 起点：SV-2 双实现交叉校验（Gate 40）**
+
+按 `docs/INNER_STRENGTH_ROADMAP_V2_2026-10-13.md` § 七 M2 #6 落地。Gate 40 把
+"度量算得对不对"（V1 门禁级）升级到"这个度量本身算法路径有没有隐藏假设"
+（V3 对抗级）。
+
+| # | 项 | 交付 |
+|---|---|---|
+| 1 | **SV-2 Gate 40「双实现一致性」** | `scripts/check_dual_implementation.py`。3 组度量对，**两套独立算法**：① `n_components`：BFS（邻接表）vs Union-Find（合并-查找）；② `is_connected`：BFS 从节点 0 vs Kruskal/Union-Find；③ `spectral_radius`：numpy `eigvalsh`（对称矩阵）vs **纯 Python 对 A² 做幂迭代 + Rayleigh 商**（无 numpy）。标准套件 5 拓扑（chain / star / full / disconnected_duo / path_plus_cycle），容差 1e-9。3 pairs 全部通过，max_delta 最大 5.23e-12（`spectral_radius` 对）。 |
+| 2 | **A² 迭代的技术细节** | 纯 Python 幂迭代**不能直接对 A 做**：对二分图（star / chain 等），A 的 ±λ_max 绝对值相同，迭代会在两状态间振荡，Rayleigh 商收敛到 0 而非 λ_max。**解法：对 A² 做迭代**——A² 的特征值 λ_i² 全非负，最大等于 λ_max²，最后取 sqrt 得谱半径。这是**独立算法路径**（numpy 用分块三对角化，纯 Python 用幂法 + Rayleigh 商），双实现价值最大。 |
+| 3 | **2/2 注入全 PASS** | ① monkey-patch Union-Find 加 1e-6 offset（&gt; 容差 1e-9 才能触发红）；② 把 power 迭代替换为常数 1.0。 |
+| 4 | **注册 + 版本收口** | `run_gates.py` 注册 Gate 40；README badge 40→41；版本号 7 处 `2.67.0 → 2.68.0`；CHANGELOG 新增 v2.68.0 条目。 |
+| 5 | **Gate 41 度量判别力 + 饱和统计量修正** | `scripts/check_metric_discrimination.py`。10 条度量注册 + 标准退化输入套件 14 例；含 1 个 **negative control**（R1 legacy 二元量，**必须**保持饱和 variance=0，若有人悄悄改语义导致方差上升则 alarm）。**修正**：affected-modules 度量原先注册 **MAX** 统计量——在小密度套件上 MAX 恒等于模块总数（每次 hub 移除都会孤立每个模块的至少一个节点），方差恒为 0，门禁自己报红。**改用 MEAN**（跨 hub 平均受影响模块数），实测 variance=0.644 / unique=8，语义不变但恢复信息量。`isolation_graded.py` 同步新增 `affected_module_count_mean`，A1 方差验收改用 MEAN（MAX 保留作参考）。 |
+| 6 | **Gate 15 注入缺陷修复** | Gate 15 的"签名非确定性"注入原本用 `time.time_ns()` 加时间戳，但 **Windows 时钟分辨率约 100 ns**，连续两次调用返回**同一个**时间戳，两次签名完全相同——注入永远无法让门禁转红（`1/5 injections did not turn red`）。**改用递增调用计数器**（`_call_%d`），构造上必然唯一，不依赖时钟分辨率。修后 5/5 注入全红。 |
+
+**门禁实测**：`run_gates.py --quick` = **37/37 PASS**（Gate 38–42 全部纳入）；Gate 39 meta-gate
+覆盖全部 `check_*.py`（V3 严格模式达成）；Gate 40 2/2 注入全 PASS；Gate 41 10 度量 +
+1 negative control + 2 注入全 PASS；Gate 42 5 pass + 1 诚实边界 WARN + 2 注入全 PASS。
+
+**M1 完成 + M2 首个核心门禁（SV-2）交付**。
+
+### 教训（本条最重要）
+1. **注入的扰动幅度必须 &gt; 容差**：Gate 40 的注入最初用 `+1e-12` 扰动 Union-Find，
+   但容差是 1e-9，`delta=1e-12 ≤ tol` 被判为 match，门禁没转红。**教训：写注入前先算扰动幅度，
+   保证 delta 显著超过容差**（本条 1000×）。
+2. **幂迭代在二分图上会振荡**：A 的 ±λ_max 绝对值相等，从 v=(1,0,…,0) 开始的迭代
+   会周期性回到原点。**解法：对 A² 迭代**——所有 λ_i² ≥ 0，幂法收敛。
+   这个技巧对**任何谱半径 / 谱间隙分析**都适用。
+3. **双实现的"算法路径"必须是真独立**：numpy `eigvalsh` 用对称矩阵分块三对角化，
+   幂迭代用矩阵-向量乘法 + Rayleigh 商，两条路径无共享代码。若两实现共享了同一个
+   `_bfs_dist` 辅助函数，就不算"独立"——这是设计纪律，不是代码洁癖。
+
+**M2 进度（截至本条）**：
+- ✅ **C1 分级隔离度量产品化**：`isolation_graded.py` 已注册进 Gate 41（见 #5）；N=50 拓扑实测 drop_magnitude variance=0.0242 / unique=37，Verdict=GRADED
+- **C2 二分类机制检验**（A2 已有 AUC=0.775 结果，写入 research_claims 五要素）
+- **R1 五要素更新**（当前 `supported_after_metric_fix`，需要 `power_precheck.min_n` 显式声明）
+
+
+
+## [2.67.0] — 2026-10-13
+
+**内功路线图 M1 收尾：度量分辨力 + 功效预检 + 门禁注入修复**
+
+按 `docs/INNER_STRENGTH_ROADMAP_V2_2026-10-13.md` § 七 M1 落地 SV-3 与 SV-5，
+把"92.6% 饱和量"这类教训固化成门禁，不再依赖人工评审。
+
+| # | 项 | 交付 |
+|---|---|---|
+| 1 | **SV-3 Gate 41「度量分辨力」** | `scripts/check_metric_discrimination.py`。度量注册表 + 标准退化输入套件（chain / star / full / redundant_grid / sparse_random / dense_random / isolated_plus_cluster）；每条度量声明 `min_variance` 下限，方差 &lt; 下限即报红。含 **negative control**：把 R1 旧版 `isolation_effect_size`（二元饱和量）注册进来，**必须**保持饱和（variance=0）；若未来有人悄悄改了语义导致 variance 突然上升，Gate 41 会 **alarm** 而非绿灯——把 R1 的教训变成机器守住的边界。 |
+| 2 | **SV-5 Gate 42「统计功效预检」** | `scripts/check_statistical_power.py`。解析 `research_claims.json`，对每条主张校验 `effective_N ≥ required_N(method)`。方法阈值表：correlation/regression=30, classification/auc/logistic=40, gradient/sweep/threshold=100, assertion/invariant=1, coverage/count=5。已声明 `inconclusive` / `needs_more_data` 的状态不 FAIL 只 WARN（诚实边界）；正向状态（complete/supported）但 N 不足则 FAIL。**R3 N=6** 正确报 WARN（已声明"insufficient"，被 tracked）；注入"正向状态 + N=4"立刻 FAIL，2/2 注入全红。 |
+| 3 | **Gate 38 注入修复** | 依赖自检门禁在 `--quick` 模式下，required-dep 缺失返回 WARN（rc=0），导致"缺 numpy / scipy 低版本"两个注入永远无法让门禁转红。修复：注入 harness 在 `main()` 前临时清空 `sys.argv` 强制严格模式，让 monkey-patched `_check_package` 的 `False` 真正触发 rc=1。修后 3/3 注入全 PASS。 |
+| 4 | **Gate 39 meta-gate 自动纳管** | `KNOWN_MISSING_INJECTIONS` 豁免表已清空。Gate 39 从 33 门禁自动升到 35 门禁扫描，100% 覆盖。**V3 严格模式 PASS**（`--v3` 门槛达成）。 |
+| 5 | **注册 + 版本收口** | `run_gates.py` 注册 Gate 41/42；README badge 38→40；版本号 7 处 `2.66.0 → 2.67.0`（pyproject / cli / server / api_server / README docker / README header / CHANGELOG）。 |
+
+**门禁实测**：`run_gates.py --quick` = **40/40 PASS**；Gate 39 = **35/35 有注入测试**（V3 阈值达成）；
+Gate 41 有 1 negative control（R1 legacy）+ 2 注入；Gate 42 有 2 注入。
+
+**M1 完成度**：SV-1 ✅ · SV-3 ✅ · SV-5 ✅ · 提交 v2.64–v2.66 ✅。**下一步 M2**：C1 分级隔离度量产品化 + SV-2 双实现交叉校验 + Gate 40。
+
+
 
 ## [2.66.0] — 2026-10-12
 
