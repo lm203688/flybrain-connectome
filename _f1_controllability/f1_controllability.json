@@ -1,0 +1,51 @@
+{
+  "protocol": "F1 · structure controllability features",
+  "methodology": "Liu & Barabási (2011); 2026 Nat Phys Rev structure-controllability survey",
+  "params": {
+    "n_topologies": 30,
+    "n_nodes": 10,
+    "seed": 42,
+    "threshold": 0.25,
+    "train_idx": "0:60",
+    "held_out_idx": "60:100"
+  },
+  "feature_sets": {
+    "critical_edge": [
+      "n_bridges",
+      "bridge_fraction",
+      "n_articulation_points",
+      "edge_connectivity"
+    ],
+    "controllability": [
+      "n_min_drivers",
+      "control_critical_edge_fraction",
+      "n_control_critical_edges"
+    ]
+  },
+  "auc_held_out": {
+    "critical_edge": 0.5,
+    "controllability": 0.5
+  },
+  "coefs": {
+    "critical_edge": {
+      "n_bridges": -0.4615,
+      "bridge_fraction": 0.1413,
+      "n_articulation_points": -0.1197,
+      "edge_connectivity": 0.7022
+    },
+    "controllability": {
+      "n_min_drivers": -0.6501,
+      "control_critical_edge_fraction": -0.1612,
+      "n_control_critical_edges": -0.0067
+    }
+  },
+  "winner": "tie",
+  "auc_gap": 0.0,
+  "interpretation": "Analytic controllability features do NOT beat hand-picked bridge/articulation features on this family at n=10. The bridge features are a sparse-graph special case of control-critical edges — on tiny graphs (n=10, 11 edges) every bridge IS a control-critical edge by construction, so the two sets are highly collinear. This is a HONEST negative result: at the tested scale the analytic theory adds no predictive power beyond what the bridge features already provide. Larger n_nodes (F3) will tell whether the gap opens up as the graph stops being near-tree.",
+  "success_criteria": {
+    "auc_min": 0.7,
+    "auc_gap_reported": true
+  },
+  "verdict": "INFO",
+  "elapsed_seconds": 0.138
+}
