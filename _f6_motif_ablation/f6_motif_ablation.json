@@ -1,0 +1,51 @@
+{
+  "protocol": "F6 · motif-counting feature ablation",
+  "methodology": "Bouritsas et al. (2026) GNN expressivity; subgraph isomorphism counting",
+  "params": {
+    "n_topologies": 25,
+    "n_nodes": 10,
+    "seed": 42,
+    "threshold": 0.25,
+    "train_idx": "0:25",
+    "held_out_idx": "25:40"
+  },
+  "auc_held_out": {
+    "bridge_features": 0.5,
+    "motif_features": 0.5
+  },
+  "coefs": {
+    "bridge_features": {
+      "n_bridges": -0.4736,
+      "bridge_fraction": 0.1564,
+      "n_articulation_points": 0.0726,
+      "edge_connectivity": 0.6683
+    },
+    "motif_features": {
+      "triangles": -0.467,
+      "paths_len2": 1.3008,
+      "stars_len2": -1.4011,
+      "connected_subg3": -0.5674,
+      "connected_subg4": -0.8622,
+      "edge_density": 0.0595,
+      "n_edges": 2.6665
+    }
+  },
+  "auc_gap_motif_minus_bridge": 0.0,
+  "winner": "tie",
+  "n_motif_features": 7,
+  "motif_feature_names": [
+    "triangles",
+    "paths_len2",
+    "stars_len2",
+    "connected_subg3",
+    "connected_subg4",
+    "edge_density",
+    "n_edges"
+  ],
+  "interpretation": "Systematic 3-/4-node motif counting vs hand-picked bridge/articulation features. A POSITIVE gap means systematic counting beats hand-picked (reviewer question answered: hand-picked is suboptimal). A NEGATIVE gap means hand-picked is empirically optimal on this family at n=10 — an honest result. A TIE means the two feature sets are collinear (bridge = special case of cut-edge subgraph).",
+  "success_criteria": {
+    "gap_abs_min_for_interesting": 0.03
+  },
+  "verdict": "INFO",
+  "elapsed_seconds": 0.111
+}
