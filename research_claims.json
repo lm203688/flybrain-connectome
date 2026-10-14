@@ -69,6 +69,7 @@
       "verification": {
         "verified_against": "_f4_intervention/f4_intervention.json",
         "executed_at": "2026-10-14",
+        "n_nodes": 10,
         "n_pair": 18,
         "skipped_no_bridge": 12,
         "h1_hit_rate": 0.3889,
@@ -78,6 +79,20 @@
         "paired_z": -1.73,
         "verdict": "FAIL",
         "notes": "Direction hit rate 38.9% well below the preregistered 70%. Under 12/30 topologies no bridge edge existed so the intervention set was smaller than planned. Per R-0.4 this negative result is preserved verbatim; thresholds are NOT adjusted. Interpretation: deleting a single bridge edge does not reliably increase drop_magnitude on this family of tiny (n=10) topologies — the isolation metric saturates below the intervention signal."
+      },
+      "verification_n50": {
+        "verified_against": "_f4_intervention_n50/f4_intervention.json",
+        "executed_at": "2026-10-14",
+        "n_nodes": 50,
+        "n_pair": 21,
+        "skipped_no_bridge": 9,
+        "h1_hit_rate": 0.7143,
+        "h1_gt_h2_hit_rate": 0.4286,
+        "composite_hit_rate": 0.4286,
+        "paired_mean_delta": -0.0004,
+        "paired_z": -1.21,
+        "verdict": "FAIL",
+        "notes": "n=50 rerun: H1 hit rate improved from 38.9% (n=10) to 71.4% (n=50), crossing the 70% floor for the first time. However composite hit rate (H1>H2) dropped to 42.9%, and paired z=-1.21 remains far below the 1.96 threshold. The verdict stays FAIL per R-0.4. Interpretation: at larger n, bridge deletion reliably increases drop_magnitude (H1) but does NOT dominate non-bridge deletion (H2) — the intervention is not discriminative. The isolation metric variance at n=50 is too small (mean_delta ~ 0.0004) to support a causal claim about bridge→isolation."
       }
     },
     "PR3": {

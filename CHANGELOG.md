@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.72.0` | the toolkit as a whole |
+| package | `2.73.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,35 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.73.0] — 2026-10-14
+
+**PR-2 干预实验 n=50 扩样重跑 + 版本号收口**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 版本号 8 处 | `2.72.0 → 2.73.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+| PR-2 n=50 实验 | `_f4_intervention_n50/`：30 拓扑、start_idx=200、n_nodes=50、seed=42 |
+| research_claims.json | PR-2 新增 `verification_n50` 块（n_pair=21, H1=71.4%, composite=42.9%, z=-1.21, FAIL） |
+| 门禁 | 41/41 --quick PASS |
+
+### PR-2 n=50 结果对比
+
+| 指标 | n=10（原） | n=50（新） | 判据 | 结果 |
+|---|---|---|---|---|
+| H1 命中率（d_bridge > 0） | 38.9% | **71.4%** | ≥ 70% | ✅ 首次通过 |
+| Composite（H1 > H2） | 11.1% | **42.9%** | ≥ 70% | ❌ |
+| Paired z | -1.73 | **-1.21** | ≥ 1.96 | ❌ |
+| n_pair | 18 | 21 | — | — |
+| skipped_no_bridge | 12 | 9 | — | — |
+
+**关键发现**：n=50 时 H1 命中率首次突破 70%（桥边删除确实增加 drop_magnitude），但 composite 指标（H1 > H2）仅 42.9%——桥边删除并不能显著优于非桥边删除。Paired z=-1.21 远低于 1.96 阈值。verdict 保持 FAIL，按 R-0.4 纪律如实记录。
+
+**解释**：n=10 时隔离度量饱和（方差被淹没）；n=50 时方差恢复但效应量过小（mean_delta ≈ -0.0004），桥边与非桥边的干预信号不可区分。结构→隔离的因果链在 project-synthetic 家族上未建立。
 
 ---
 
