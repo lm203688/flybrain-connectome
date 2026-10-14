@@ -1,0 +1,32 @@
+{
+  "schema_version": "1.0",
+  "gate_id": 46,
+  "claims_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\research_claims.json",
+  "f2_result_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\_f2_recovery\\f2_recovery_dynamics.json",
+  "counts": {
+    "fail": 0,
+    "warn": 0,
+    "note": 13
+  },
+  "notes": [
+    "preregistered.PR4 present: target=mean_recovery_steps",
+    "params.n_topologies consistent: 50",
+    "params.n_nodes consistent: 10",
+    "params.T consistent: 12",
+    "params.seed consistent: 42",
+    "success_criteria.zero_ratio_max consistent: 0.3",
+    "success_criteria.recovery_auc_variance_min consistent: 1e-06",
+    "all 3 compensation mechanisms present",
+    "independently recomputed recovery_auc: n=50, var=0.011436, zero_ratio=0.000",
+    "ablation[R_a_path_recruitment].var=0.006553 (non-degenerate)",
+    "ablation[R_b_weight_reallocation].var=0.000284 (non-degenerate)",
+    "ablation[R_c_steady_state_gain].var=0.000437 (non-degenerate)",
+    "F2 recovery dynamics: PASS — zero_ratio=0.000 < 0.3, var=0.011436 > 1e-06, all 3 mechanisms ablated"
+  ],
+  "warnings": [],
+  "failures": [],
+  "injections": {
+    "total": 3,
+    "bad": 0
+  }
+}
