@@ -12,11 +12,11 @@
     "preregistered.PR3 present: 5 families, 4 n_nodes",
     "families frozen: 5 matched",
     "real family malecns_subgraph present in matrix",
-    "n_nodes set consistent: [10, 20, 50] ⊆ prereg [10, 20, 50, 100]",
+    "n_nodes set consistent: [10, 20, 50, 100] ⊆ prereg [10, 20, 50, 100]",
     "auc_min consistent: 0.65"
   ],
   "warnings": [
-    "F3 generalization: FAIL — 1 families pass, real family pass=False. Per R-0.4 the negative outcome is preserved verbatim and the claim is NARROWED to the fitted family; do NOT move the criteria to force a pass."
+    "F3 generalization: FAIL — 2 families pass, real family pass=False. Per R-0.4 the negative outcome is preserved verbatim and the claim is NARROWED to the fitted family; do NOT move the criteria to force a pass."
   ],
   "failures": [],
   "injections": {
