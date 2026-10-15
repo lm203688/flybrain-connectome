@@ -1,8 +1,8 @@
-# 公开门槛 G1–G8 实测评估（2026-10-14 · v2.74.0 初评 → v2.75.0 回填 G6/G8）
+# 公开门槛 G1–G8 实测评估（2026-10-14 · v2.74.0 初评 → v2.75.0 回填 G6/G8 → v2.76.0 复测 G4）
 
 > **触发**：`docs/AUDIT_DISCLOSURE.md` 的 P2「启动公开仓评估（G1-G8 门槛检查）」，
 > 原表格写于 **v2.66 时代**（当时 37 门禁、锚定率 31.9%、G7 未提交）。
-> 本轮用 v2.74.0 的实际状态**逐项实测重填**，不沿用旧判定。v2.75.0（2026-10-15）回填了 G6 与 G8 两栏（G6 清零、G8 通过），其余栏次原样保留。
+> 本轮用 v2.74.0 的实际状态**逐项实测重填**，不沿用旧判定。v2.75.0（2026-10-15）回填了 G6 与 G8 两栏（G6 清零、G8 通过）；v2.76.0（2026-10-15）基于论文 v1.2.0 复测 G4 为 ~92%（未翻转，详见 `docs/PAPER_READINESS_RECHECK_2026-10-15.md`）。
 >
 > **战略前提**（用户拍板，2026-10-13，长期有效）：
 > **私仓优先 · 自验证为主 · 论文与公开仓后置；公开不由时间决定，由门槛决定。**
@@ -17,13 +17,13 @@
 | **G1** | 自验证达 V3 | 100% 门禁有注入 + 双实现 + 退化攻击套件全绿 | ❌ | ✅ **通过** | `check_gate_injections.py --v3`：**41/41 注入覆盖**，exit 0，「V3 self-verification threshold met」；Gate 40 双实现 PASS；Gate 41 度量分辨力 PASS；Gate 42 统计功效 PASS。21 个显式注入电池（Gate 40–47）全部报红确认，bad=0 |
 | **G2** | 度量不再退化 | C1 新度量在 30+ 拓扑上方差 > 0 且能排序 | ❌ | ✅ **通过（仅跨拓扑轴）** | `isolation_graded.drop_magnitude` @ n=60 拓扑：**var=2.76e-02 > 0**，44/60 唯一值，**零值 0/60**，range 0.0334–0.5172。原判的「饱和二进制」已消失 |
 | **G3** | ≥1 条主张达 V4（预登记+盲测） | held-out 验证通过 | ❌ | ❌ **未达（原因已被精确定位）** | PR-1 held-out AUC 0.788 ✅ 但 **z=1.53 < 3.0** → WEAK；PR-2 FAIL×3（n=10/50/100）；PR-3 FAIL（2/5 图族）；PR-2b **预执行拒绝**。见下文「G3 为什么不通」 |
-| **G4** | ≥1 篇论文素材 100% 就绪 | 可投中档 SCI | 🟡 ~85% | 🟡 **约 85%（未复测）** | 本轮未重做论文素材清点 |
+| **G4** | ≥1 篇论文素材 100% 就绪 | 可投中档 SCI | 🟡 ~85% | 🟡 **约 92%（v2.76.0 复测）** | 论文 v1.2.0（455 行）新增 §4.7 预注册四元组、§4.8 PR-2b 预执行拒绝、§4.9 S6–S9 纪律；D4 held-out + D6 收窄已 ✅，D1/D2/D5 部分，D3 仓库公开化仍 ❌；详见 `docs/PAPER_READINESS_RECHECK_2026-10-15.md` |
 | **G5** | 锚定率 ≥ 50% | 37/116 → ≥ 58/116 | ❌ 31.9% | ❌ **31.9%（未变）** | Gate 9 实测 `embodied_units=37` / 116 = 31.9%；差 21 个单元。声明边 ledger：149 SUPPORTED / 7 FRAGILE / 1 CONTRADICTED |
 | **G6** | 零未决"已声明未验证" | research_claims 无 `inconclusive` / `needs_evidence` | ❌（R3/R6） | ✅ **清零（v2.75.0 收口）** | R3 status → `boundary_partial_falsification`（monotonic_falsified + threshold_deferred，PR-2b 前例）；R6 status → `boundary_anchor_gap`（anchored_validated + declarative_deferred）；fm[0].verdict → `deferred_scale_limit`；`grep -i inconclusive\|needs_evidence research_claims.json` = 0 匹配 |
 | **G7** | 仓库卫生 | 无密钥、无私有 IP、工作区干净、全部提交 | ❌（v2.64–2.66 未提交） | ✅ **通过** | Gate 1 密钥扫描 PASS；Gate 8 Tier-2 分层 PASS（私有 IP 在 sibling `flybrain-connectome-core/`，不污染 MIT 树）；HEAD `81aa567` 已推送并 API 复核远端一致；工作区仅剩 `_gate31_r2/r2_density_scan.json` 的**纯 JSON key 排序差异**（语义逐字相同，已程序化验证 `new == old`） |
 | **G8** | 对外口径统一 | README / 论文 / 仓库状态一致 | 🟡 | ✅ **通过（v2.75.0）** | README v2.75.0 / 46 gates / 116 units / 66 types 已同步；INNER_STRENGTH_ROADMAP_V2 状态表 + RELEASE_GATE_ASSESSMENT 状态表已同步到 v2.75.0（G6 收口 ✅，G4/G5 保持 🟡/❌）；Gate 2 docs-drift PASS；CHANGELOG 声明 46 vs 注册 47 沿用既有惯例（非本轮引入） |
 
-**结论：8 项中 4 项 ✅（G1/G2/G6/G7）、2 项 🟡（G4/G8）、2 项 ❌（G3/G5）。G6 已于 v2.75.0 清零。**
+**结论：8 项中 4 项 ✅（G1/G2/G6/G7）、2 项 🟡（G4/G8）、2 项 ❌（G3/G5）。G6 已于 v2.75.0 清零，G4 已在 v2.76.0 复测为 ~92%。**
 
 ---
 
@@ -74,7 +74,7 @@ PR-2b 的价值恰恰在于**在没有跑实验的情况下就否掉了这条路
 |---|---|---|---|---|
 | ~~1~~ | ~~清掉 3 条未决声明（G6）~~ | ✅ **G6 已完成（v2.75.0）** | — | R3 → `boundary_partial_falsification`，R6 → `boundary_anchor_gap`，fm[0] → `deferred_scale_limit` |
 | ~~2~~ | ~~回填本评估到路线图表格（G8）~~ | ✅ **G8 已完成（v2.75.0）** | — | 本评估 + INNER_STRENGTH_ROADMAP_V2 状态表已同步到 v2.75.0 |
-| 3 | 论文素材清点复测（G4） | G4 🟡→✅ | 中 | 需重新清点 §十，本轮未做 |
+| ~~3~~ | ~~论文素材清点复测（G4）~~ | **已完成（v2.76.0 复测为 ~92%，未翻转）** | — | 详见 `docs/PAPER_READINESS_RECHECK_2026-10-15.md`：D4/D6 完成、D1/D2/D5 部分、D3 未完成；**G4 判定为 🟡 而非 ✅ 是诚实选择，避免重演 PR-2b 教训** |
 | 4 | 锚定率 37→58（G5） | G5 ❌→✅ | **高** | 差 21 个单元，每个都需要真实的连接组证据支撑，是数据工程不是文书工作 |
 | 5 | 突破 G3（L4） | G3 ❌→✅ | **超出基底** | 需要真实动力学下的功能读出，当前计算基底不支持 |
 
