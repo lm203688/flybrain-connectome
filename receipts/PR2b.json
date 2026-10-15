@@ -1,0 +1,27 @@
+{
+  "schema": "vro_receipt_v1",
+  "claim_id": "PR2b",
+  "statement": "PR-2 替代度量（recovery_AUC）预执行拒绝：与干预变量解析耦合",
+  "protocol_ref": "PR2b",
+  "expected_verdict": "ACCEPT",
+  "raw_sample_sha256": "2c7d1542db4c0f8eb3cfa3bbcb93e0b894423a55d666ee206a872e4f0f6f83cf",
+  "recompute_script_sha256": "e5335115a672b340c353317851ea29b7badee512e06b6473bf6ce03dc78c700c",
+  "artifacts": [
+    {
+      "path": "_f4b_metric_substitution/f4b_metric_substitution.json",
+      "sha256": "157b2309144dd45930457f3af8b1ce8e4b96b51842cc71b5df7c443dd84bea8c",
+      "size": 24668
+    }
+  ],
+  "scripts": [
+    {
+      "path": "scripts/f4b_metric_substitution_check.py",
+      "sha256": "4930084b52e4e1f7b9ce8013c10d842fe86e61e709ac2760011a56a310d22fd1",
+      "size": 19135
+    }
+  ],
+  "env_hash": "068607cf0c693c3748c1be792c7c2747de2bba2191e4ca891749d0be82f88f25",
+  "timestamp": "2026-10-15T13:27:25+00:00",
+  "issued_by": "scripts/issue_receipt.py",
+  "notes": "|corr|=0.902 on merged sample; analytic proof of denominator artifact. Rule_underpowered=true."
+}
