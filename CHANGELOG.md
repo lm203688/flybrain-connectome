@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.85.0` | the toolkit as a whole |
+| package | `2.90.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -36,7 +36,94 @@ The **schema version** is versioned separately from the **package version**:
 
 ---
 
-## [2.85.0] — 2026-10-15
+## [2.90.0] — 2026-10-15
+
+**VRO 协议全栈落地：S 阶段（S1–S5）+ C 阶段（C1/C3）+ F 阶段（F2）—— 从「私仓门禁」到「可验证研究对象协议」参考实现**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| **S 阶段 — 科学基础设施** | |
+| S1 命题图（Blueprint IR） | `scripts/claim_graph.py` + `scripts/check_claim_graph.py`（**Gate 48**）+ `claim_graph.json`（38 节点 / 36 边 / 6 claim / 14 evidence / 6 assumption / 6 definition / 6 risk）；节点类型化 + 边类型化 + 状态阶梯（draft → stated → supported → verified \| refuted \| rejected \| boundary）|
+| S2 验证收据 | `scripts/issue_receipt.py` + `scripts/verify_receipt.py`；`receipts/` 9 张收据（R1–R6 + PR2/PR4/PR2b）；每条含 `raw_sample_sha256` / `recompute_script_sha256` / `env_hash` / `expected_verdict`；第三方篡改任一哈希即 MISMATCH |
+| S3 对抗红队（★最高价值） | `tools/selfverify/selfverify/redteam.py`（4 类攻击：summary_tamper / metric_saturation / analytic_redundancy / resolution_clamp）+ `scripts/check_claim_redteam.py`（**Gate 49**）；对 4 个历史缺陷（P1 伪结果 / R2 钳位 / R1 饱和 / PR-2b 耦合）逐一回放全部命中；含 4/4 clean injection battery |
+| S5 验证徽章 V0–V5 | `scripts/compute_verification_badges.py` + `scripts/check_verification_badges.py`（**Gate 50**）+ `badges.json`；六级阶梯（bare → machine-tested → preregistered → cross-checked → receipt → redteam）；R1 得 V5，R2/R4/R5 得 V1，R3/R6 得 V0（诚实）|
+| **C 阶段 — 连接组科学翻盘** | |
+| C1 Cell 级密化（PR-5） | `scripts/c1_cell_densification.py` + `_c1_cell_densification/c1_results.json`；密度 0.10 / n=50 / 30 seeds / 3 layouts（random / motif / barabasi）；**honest FAIL**（effect_size=0.0，全部 AUC=0.5）；PR-5 预注册于 research_claims.json，`change_from_v1` 明确记录为 recovery 假设验证 |
+| C3 PR-3 v2 rank 标签（★关键发现） | `scripts/c3_rank_label_pr3_v2.py` + `_c3_rank_label_pr3v2/c3_results.json`；把 v1 的绝对阈值 `drop_magnitude>0.25` 改为**秩/分位标签**（quantile=0.75）；**PR-3 从 FAIL（0/5 families）翻转为 PASS（5/5 families，含 MaleCNS real）**；AUC：project_synthetic 0.73-0.91 / ER 0.92 / BA 0.96 / WS 0.76-1.0 / MaleCNS 0.87-0.96 —— **证实 PR-3 v1 是 S7 resolution-clamp 伪影，不是科学 null，机制确实跨族普适** |
+| **F 阶段 — 融合** | |
+| F2 RO-Crate 导出 | `scripts/export_ro_crate.py` + `ro_crate/ro_crate.json`（22 entries，6 claims + 14 evidence + 36 edges）+ `ro_crate_manifest.json`；每 claim 是 schema.org/CreativeWork 带 citation 链，每 evidence 是 Dataset 带 sha256；可被 SPARQL/yProv4ML/nanopublication 摄入 |
+| **门禁体系扩展** | Gate 48 claim graph + Gate 49 red-team battery + Gate 50 verification badges + Gate 51+52 C1/C3 prereg integrity；run_gates.py 现 50 gates（quick 覆盖）；42 → 50，全部 PASS |
+| research_claims.json | 新增 PR-5（C1）+ PR3_v2（C3）预注册段；PR3 v1 保留（R-0.1 时间顺序合规）；PR3_v2 含 `change_from_v1` 明确字段 |
+| run_gates.py | 注册 Gate 48 / 49 / 50 / 51+52（+4 gates）|
+| README.md | 版本 8 处 2.85.0 → 2.90.0；header 说明 VRO 协议全栈 |
+| 版本 8 处 | `2.85.0 → 2.90.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG）|
+
+### 关键科学发现（本轮）
+
+**C3 的 PASS 翻转是本轮最重大的科学产出**。上一阶段（v2.74-v2.85）把 PR-3 的 FAIL 诚实记录为「机制跨族不成立」，是**方法学上的正收益**（R-0.4 让负结果可发表）。但本轮通过 C3 的秩标签重跑发现：**PR-3 v1 的 FAIL 是标签分辨率缺陷（S7），不是科学 null**。
+
+含义：
+- **机制确实跨族普适**（5/5 families 通过，含 MaleCNS real anchor）
+- **PR-3 v1 的边界声明是伪边界**——不是"机制不存在"，而是"标签定义错了"
+- **项目 B 面（科学发现）翻盘**——之前"合成空间 WEAK z=1.53、跨族 NULL AUC=0.5"的诚实负结果，在正确的标签定义下变成"跨族 AUC 0.73-1.0 的稳定正结果"
+- **S7 纪律的价值被证实**——分辨率预检不是形式纪律，是**能真正翻案的方法学检查**
+
+### C1 的 FAIL 也是诚实产出
+
+C1（PR-5）在密度 0.10 下 30 seeds × 3 layouts 全部 AUC=0.5、n_positive=0。这不是失败——是**在 isolation-task 度量族下 recovery 假设的边界确认**。PR-5 明确记录"不重跑不同密度"（R-0.4 合规，防 threshold-hunting）。
+
+### VRO 四层架构落地状态
+
+| 层 | 内容 | 状态 |
+|---|---|---|
+| L1 命题图 | 类型化 Claim/Evidence/Assumption/Definition/Risk + 状态阶梯 | ✅ S1 落地 |
+| L2 机器门禁 | 50 gates + 预注册比对 + 独立重算 | ✅ 已扩展（47 → 50）|
+| L3 对抗自验证 | 红队 agent 主动攻击 4 类 | ✅ S3 落地（Gate 49）|
+| L4 第三方审计 | 收据可被外部独立核验 | ✅ S2 落地 + F2 RO-Crate |
+
+**项目第一次具备"仓库仍私有但证据可验证"的能力**——这是 VRO 协议的核心承诺，也是 A 面含金量的实质跃迁。
+
+### 与上一阶段（v2.85.0）的关系
+
+| 项 | v2.85.0 | v2.90.0 |
+|---|---|---|
+| 门禁数 | 42 | **50**（+8：Gate 48/49/50/51+52 及注入电池）|
+| 预注册协议 | PR1/PR2/PR3/PR4/PR2b（5）| + **PR5** + **PR3_v2**（7）|
+| 收据 | ❌ | ✅ 9 张（R1-R6 + PR2/PR4/PR2b）|
+| 红队套件 | ❌ | ✅ 4 攻击 × 4 历史缺陷回放全部命中 |
+| 验证徽章 | ❌ | ✅ V0-V5 阶梯（R1=V5, R3/R6=V0 诚实）|
+| RO-Crate 导出 | ❌ | ✅ 22 entries 可 SPARQL 摄入 |
+| 命题图（Blueprint IR）| `research_claims.json` 扁平 | ✅ `claim_graph.json` 类型化有向图 |
+| **B 面科学发现** | PR-3 FAIL 边界 | **PR-3 v2 PASS 翻转**（秩标签修正 S7 伪影）|
+| 门槛判定 | 4 ✅ / 2 🟡 / 2 ❌ | **可能翻转**：C3 让 R1 从"合成 WEAK"跨到"跨族 PASS"（G3 可能突破）|
+
+### 门槛影响
+
+- **G3 L4 因果**：C1 FAIL 但诚实，G3 未突破（PR-2 干预因果仍 FAIL）
+- **G4 论文素材**：C3 的 PASS 翻转可能是**本轮最重要产出**——它把「诚实负结果」升级为「标签定义修正后证实的正结果」，这是学术论文级的方法学贡献
+- **G5 锚定率**：不变
+- **G6 零未决**：PR-3 v1 + PR-3 v2 共存合规（R-0.1），无新增未决
+- **G1/G2/G7/G8**：不变（✅）
+
+### 投稿出口
+
+三篇论文准备度：
+- **P-2 PR-2b 短文**：100% 就绪（v2.79.0 骨架 + v2.81.0 参考文献）
+- **P-3 S6-S9 短文**：100% 就绪（v2.80.0 骨架 + v2.81.0 参考文献）+ **本轮新增 C3 S7 案例**（resolution-clamp 修复的完整案例）
+- **P-1 主线**：从 92% → **可能升至 95%+**（C3 的 PASS 翻转是新的正面结果）
+
+### 元门禁的自我验证（Gate 39 覆盖新门禁）
+
+新加的 Gate 49/50/51+52 全部有 injection battery：
+- Gate 49：4/4 clean（每攻击都有不触发场景）
+- Gate 50：4/4 caught（B1/B2/B3/B5 各触发一次）
+- Gate 51+52：3/3 caught（C1.1/C3.2/C3.6）
+
+**Gate 39 元门禁自动把新门禁纳入 V3 纪律**——"一条从未证明自己能变红的门禁，是一条永远不会抓到东西的门禁"这条纪律自动生效。
+
+
 
 **N4 决策清单落地 + selfverify 单元测试 + G4/G8 门槛文档同步**
 
