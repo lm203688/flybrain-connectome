@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.75.0` | the toolkit as a whole |
+| package | `2.76.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,42 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.76.0] — 2026-10-15
+
+**arxiv_paper.md 升级到 v1.2.0：纳入预注册四元组（PR-1/2/3/4）+ PR-2b 预执行拒绝 + Gate 43-47 + S6-S9 纪律 + L4 基底上限**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 论文版本 | arxiv_paper.md v1.1.0 → v1.2.0 |
+| 新增章节 | §4.7 预注册套件（PR-1/2/3/4）· §4.8 PR-2b 预执行拒绝 · §4.9 科研自验证四纪律（S6-S9） |
+| 更新章节 | §5.3 基底上限作为贡献 · §5.4 R-0.4 扩展到"不做的实验也固化" · §5.5 局限新增两条 · §6 结论重写 |
+| 摘要 | 新增 v1.2.0 更新说明，明确 5 条预注册协议（4 FAIL / 1 PASS / 1 WEAK + 1 预执行拒绝）|
+| 关键数字 | AUC 0.788 / z 1.53（PR-1 WEAK）· composite 38.9%→71.4%→59.1%（PR-2 FAIL×3）· artifact 95.2% / control 85.7%（PR-2b 拒绝）· |corr| 0.902 合并 / 0.906 单臂 |
+| Gate 43-47 | 论文显式说明四条预注册门禁的机器强制逻辑（阈值、特征集、干预集、恢复分量）+ Gate 47 预执行拒绝 |
+| 版本号 8 处 | `2.75.0 → 2.76.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+| 论文行数 | 266 → 455（+189 行，新增 3 个二级章节 + 2 个三级章节） |
+
+### 关键决策
+
+**论文写作的核心立场**：**预注册的价值是让负结果能被发表，而不是让实验通过。**
+
+PR-1/2/3 全 FAIL 且原样保留，PR-4 PASS，PR-2b 预执行拒绝——5 条里 4 条是负结果，1 条是"决策不做的实验也固化"。**没有把任何 FAIL 刷成 PASS**，没有修改任何阈值，没有删除任何边界声明。
+
+**PR-2b 的解析性拒绝**：`modulator_Ra` 含 `bridge_fraction`，`recovery_AUC` 又被 `drop_magnitude` 归一化——预写的拒绝规则在合并样本上被证明 |corr|=0.902（远超阈值 0.5），阈值未修改，`rule_underpowered=true` 如实记录。
+
+**基底上限而非样本量不足**：现有度量族内没有独立第二读数 → bridge→isolation 的 L4 因果级证据当前不可达，是**基底上限**（缺一个不由 bridge_fraction 派生的后果量），不是没努力够。
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
 
 ---
 
