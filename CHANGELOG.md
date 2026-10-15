@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.76.0` | the toolkit as a whole |
+| package | `2.77.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,52 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.77.0] — 2026-10-15
+
+**G4 论文素材复测：从 ~85% 升至 ~92%（未翻转）**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| G4 判定 | 🟡 ~85% → 🟡 **~92%**（未翻转）|
+| 新报告 | `docs/PAPER_READINESS_RECHECK_2026-10-15.md`（D1-D6 逐项复测）|
+| D4 held-out 验证 | ✅ 完成：`PR1.held_out_idx = "60:100"`（100 拓扑中留出 40%），Gate 43 强制 |
+| D6 收窄主张 | ✅ 完成：论文标题与摘要从"数字生命"改为"可追溯生物拓扑 + 诚实负结果" |
+| D1 L3 机制 | 🟡 部分：PR-2b 预执行拒绝 + L4 基底上限声明（承认做不到，不是做出正机制）|
+| D2 R3 扩样 | 🟡 部分：`claims[2].status = boundary_partial_falsification`（诚实降级）|
+| D5 R2 修正重跑 | 🟡 部分：PR-3 n=100 已跑（boundary_cells=15），但 PR-3 FAIL |
+| D3 仓库公开化 | ❌ 仍私有：论文声明与仓库状态仍矛盾（SCI 硬门槛）|
+| 版本 8 处 | `2.76.0 → 2.77.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG）|
+| 文档同步 | RELEASE_GATE_ASSESSMENT + AUDIT_DISCLOSURE + INNER_STRENGTH_ROADMAP_V2 三处 G4 状态同步 |
+
+### 关键决策
+
+**G4 为什么不翻成 ✅**：D1（L3 机制）与 D3（仓库公开化）是**结构性缺口**，不是文书工作。
+硬翻成 ✅ 会重演 PR-2b 教训——**用一个不成立的度量（"素材完整"）替代真缺口（"机制未解 + 不可复现"）**。
+
+**独立可发表单元**（新增）：
+1. 主线论文（traceable connectome-derived topology + preregistration suite + honest negatives）
+2. 方法学短文 A：**"Preregistered rejection as a first-class negative result"**（PR-2b 是核心素材）
+3. 方法学短文 B：**"Four disciplines for self-verification in computational experiments"**（S6-S9 每条对应一次踩坑）
+
+### 结论
+
+**公开门槛最终状态：8 项中 4 ✅（G1/G2/G6/G7）· 2 🟡（G4 ~92% / G8）· 2 ❌（G3/G5）**。
+**无低成本可翻转项**——G5（锚定率数据工程，高成本）、G3（L4 基底上限，超出现有计算基底）。
+建议不在门槛上继续推进，改为聚焦：
+1. 论文写作出口（把 PR-2b 与 S6-S9 拆成独立方法学短文）
+2. D3 仓库公开化（需用户拍板 git 历史重写）
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
 
 ---
 
