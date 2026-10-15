@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.83.0` | the toolkit as a whole |
+| package | `2.84.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,64 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.84.0] — 2026-10-15
+
+**N1 产品化：`selfverify` 独立包 — 把预注册机器门禁抽成可 pip 安装的方法学工具**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新增 `tools/selfverify/` | 独立 Python 包，`pip install -e .` 可安装；CLI `selfverify check --protocol ... --results ...` |
+| `selfverify/protocol.py` | `Protocol` dataclass + 4 类判据枚举（SUCCESS / FAILURE / WEAK / **PRE_EXECUTION_REJECTION**） |
+| `selfverify/gate.py` | 独立重算原理：`auc()`（Mann-Whitney U）+ `pearson()` + `independent_recompute()`（从原始样本重算 AUC，忽略 summary 字段）+ `check()` 判据组装 |
+| `selfverify/prerejection.py` | PR-2b 形式化：`evaluate_rejection()` 对每对 arm 独立重算耦合、判定是否达到拒绝阈值 |
+| `selfverify/cli.py` + `__main__.py` | `selfverify check` 子命令 + `python -m selfverify` 支持 |
+| `examples/demo_protocol/` | 完整示例（protocol.json + results.json），可直接跑 |
+| `README.md` | 安装/使用 + **与 AsPredicted / OSF-PREREG 差异表**（记录承诺 vs 机器强制） + 5 条设计不变量 |
+| 版本 8 处 | `2.83.0 → 2.84.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 验证（本地实测）
+
+```bash
+cd tools/selfverify
+"C:/Python314/python.exe" -m pip install -e . --quiet
+"C:/Python314/python.exe" -m selfverify check \
+    --protocol examples/demo_protocol/protocol.json \
+    --results  examples/demo_protocol/results.json --json
+```
+
+**四种判据实测**：
+- ✅ **SUCCESS**：demo_protocol（AUC=1.0 ≥ 0.7, n_pos=3 ≥ 3）
+- ✅ **FAILURE**：随机分数用例（AUC=0.5 < 0.7）
+- ✅ **PRE_EXECUTION_REJECTION**：`results["rejection"]` 非 None 时优先触发（PR-2b 语义）
+- ✅ **rejection_rules**：耦合规则独立重算，`corr=0.9971 ≥ 0.5` → `rejected=true`
+
+### 与 AsPredicted 差异（README 已固化）
+
+| 维度 | AsPredicted / OSF-PREREG | **selfverify** |
+|---|---|---|
+| 核心产物 | 分析师填的**表单** | 冻结记录 + **门禁**（从原始数据重算） |
+| 强制方式 | 基于信任（评审人读表单） | **机器**（摘要 ≠ 原始重算即 FAIL） |
+| 拒绝类别 | 静默（跑或不跑） | **一等** `PRE_EXECUTION_REJECTION` 判据 |
+| 独立性 | 分析师写"我们重算了" | 门禁**就是**重算，无摘要可篡改 |
+| 运行成本 | 免费（云表单） | 零依赖 Python 3.9+，<1s/门禁 |
+
+**一句话**：AsPredicted 记录**承诺**；selfverify **强制执行**承诺。
+
+### 项目意义
+
+- **A 面含金量第一次以独立可引用工具的形式固化**——从「项目私有脚本」→「面向任何计算实验的方法学基础设施」；
+- 与 P-2（预执行拒绝论文）和 P-3（自验证四纪律论文）**形成正交三件套**：论文讲原则 → 工具供执行 → 论文引用工具作为佐证；
+- 42/42 门禁保持不变，包是**新增能力**而非改动主工程。
+
+### 门槛最终状态
+
+**8 项：✅ 4（G1/G2/G6/G7）· 🟡 2（G4 ~92% / G8）· ❌ 2（G3/G5）**——维持不变。
+剩余全部为用户拍板 / 外部账号 / 结构性缺口类阻塞，本轮 Agent 可执行项（N1/N2/N3/N4）**已全部完成**。
 
 ---
 
