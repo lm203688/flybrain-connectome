@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.78.0` | the toolkit as a whole |
+| package | `2.79.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,54 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.79.0] — 2026-10-15
+
+**P-2 方法学短文骨架完成：Preregistered Rejection as a First-Class Negative Result**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新短文 | `docs/PR2B_PREEXECUTION_REJECTION_PAPER.md`（315 行，独立可发表） |
+| 核心贡献 | **预执行拒绝（Preregistered Rejection）作为预注册产出第三类**，与"预注册成功/预注册失败"并列 |
+| 形式化定义 | 元组 $R_E = \langle E, D, J, A, U, T \rangle$（含决策 $D$、独立论证 $J$、未走路径 $U$、可解拒条件 $T$） |
+| 独立论证原理 | 分析独立（读定义即可）+ 实证独立（样本必须预先选定） |
+| 案例研究 | PR-2b：`modulator_Ra` 含 `bridge_fraction` + `recovery_AUC` 被 `drop_magnitude` 归一化 = 解析耦合；合并 |corr|=0.902；artifact 95.2% / 对照 85.7% 反向 |
+| 机器强制 | Gate 47 独立重算原理：从原始样本重算，不采信分析者摘要 |
+| R-0.4 扩展 | 从"失败的实验被报告"扩展为"不做的实验也被报告（含理由）" |
+| PAPER_EXIT_ROADMAP | P-2 状态更新：100% + 骨架完成，指向新短文 |
+| 版本 8 处 | `2.78.0 → 2.79.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 关键决策
+
+**预执行拒绝作为独立产出类别**：这是 R-0.4 纪律的扩展。传统预注册只覆盖"跑了但没发现"（负结果），不覆盖"没跑因为解析证明跑也没意义"（预执行拒绝）。
+
+**基底上限 vs 样本量上限**：PR-2b 揭示的是**基底上限**（缺独立第二读数），不是**样本量上限**（跑更多也一样）。前者要求换仪器，后者要求多跑。两者指导不同后续工作。
+
+**独立重算原理**：Gate 47 从原始样本独立重算 `J`，不采信分析者摘要字段——防止事后篡改。这个原理可推广到所有预注册实验完整性检查。
+
+### 论文出口三分状态
+
+| # | 论文单元 | 状态 |
+|---|---|---|
+| **P-1 主线论文** | 92% 就绪，卡 D1/D3——**慢线** |
+| **P-2 PR-2b 短文** | **100% + 骨架完成**——**快线完成**，可挂 arXiv |
+| **P-3 S6-S9 短文** | 100% 就绪——**快线待启动** |
+
+### 核心立场
+
+预注册的价值是让负结果能被发表，不是让实验通过（R-0.4）；
+**预执行拒绝的价值是让"没做的实验"能被发表，不是让"应该做的实验"被跳过（R-0.4′）**。
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
 
 ---
 
