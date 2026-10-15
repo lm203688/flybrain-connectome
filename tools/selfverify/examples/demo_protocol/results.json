@@ -1,0 +1,21 @@
+{
+  "_note": "Raw per-sample records. The gate recomputes AUC from these and ignores any summary field, so editing a summary cannot pass the gate.",
+  "samples": [
+    {"id": 0, "split": "train", "score": 0.91, "label": 1},
+    {"id": 1, "split": "train", "score": 0.83, "label": 1},
+    {"id": 2, "split": "train", "score": 0.77, "label": 1},
+    {"id": 3, "split": "train", "score": 0.34, "label": 0},
+    {"id": 4, "split": "train", "score": 0.28, "label": 0},
+    {"id": 5, "split": "train", "score": 0.19, "label": 0},
+    {"id": 6, "split": "held_out", "score": 0.88, "label": 1},
+    {"id": 7, "split": "held_out", "score": 0.79, "label": 1},
+    {"id": 8, "split": "held_out", "score": 0.71, "label": 1},
+    {"id": 9, "split": "held_out", "score": 0.31, "label": 0},
+    {"id": 10, "split": "held_out", "score": 0.22, "label": 0},
+    {"id": 11, "split": "held_out", "score": 0.12, "label": 0}
+  ],
+  "arms": [
+    {"name": "A", "values": [1, 2, 3, 4, 5]},
+    {"name": "B", "values": [5, 1, 4, 2, 3]}
+  ]
+}
