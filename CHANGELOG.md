@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.90.0` | the toolkit as a whole |
+| package | `2.91.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,57 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.91.0] — 2026-10-15
+
+**F3 预执行拒绝公共注册表 + P-3 论文正文补 C3 案例 + P-4 C3 案例短文起草 —— VRO 论文出口三分补齐**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| **F 阶段 — F3 落地** | |
+| F3 预执行拒绝公共注册表 | `scripts/export_preregistration_registry.py` + `registry/preregistered_rejections.json`；从 research_claims.json 抽取所有 `kind=pre_execution_rejection` 段（当前 1 条：PR2b），每条含 receipt_sha256 交叉验证 + env_hash + registry_sha256_of_inputs 溯源链；`--check` 自验同步性 |
+| Gate 53 注册 | `scripts/run_gates.py` 加 `gate53 prereg rejection registry`；Gate 39 元纪律自动遵守（`--check` flag 是天然的注入验证） |
+| **P-3 论文正文升级** | |
+| §4.5 C3 案例（★新案例） | `docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md` 新增 §4.5「S7 case (v2.90.0): the PR-3 label-resolution fix — a *positive* case study」；把 C3 翻案作为 S7 的**构造性论据**（不只是防御性避坑，也能翻科学空结果） |
+| **P-4 C3 案例短文起草** | |
+| P-4 全文 | `docs/C3_RESOLUTION_CLAMP_FIXES_PAPER.md`（≈240 行）；5–6 页方法学短文；标题 "Resolution-Clamp Fixes: When a Scientific Null Becomes a Scientific Positive"；含 Abstract + Introduction（科学空 vs 分辨率失败二分法）+ S7 形式化 + PR-3 v1→v2 案例 + 讨论 + 10 条参考 |
+| **arXiv 投稿元数据更新** | |
+| P-3 论文元数据 | `docs/ARXIV_SUBMIT_META_2026-10-15.md` P-3 Comments 更新为 5 案例（含 C3）；§2.5 表格加入 PR-3 v1 vs v2 跨 5 图族对比（MaleCNS 0.87–0.96） |
+| P-4 候选登记 | arXiv meta 附「P-4 C3 案例短文」候选条目 + 目标期刊（Patterns / JOSS / arXiv） |
+| **门禁与版本** | |
+| 门禁总数 | 46 → **47**（新增 Gate 53 prereg registry）；**47/47 PASS** in --quick |
+| README | v2.90.0 → v2.91.0；header 加入 F3 预执行拒绝公共注册表 |
+| 版本 bump 5 处 | pyproject.toml / flybrain_cli.py / mcp_connectome/server.py / mcp_connectome/api_server.py / CHANGELOG package row |
+
+### 关键科学贡献
+
+**P-3 §4.5 的加入是本轮最关键的论文改动**。上一版 P-3 只有 4 个「防御性避坑」案例（S6 伪结果 / S7 静默 clamp / S8 证伪遗漏 / S9 扰动优于相关性）——都是「纪律防止了错误」。本轮新增的 C3 案例是**构造性论据**：S7 纪律不只是避坑，还能**翻科学空结果**——把 PR-3 v1 的 0/5 families FAIL 转为 5/5 families PASS（含 MaleCNS 真实锚点 AUC 0.87–0.96）。这补上了 S7 纪律论述的另一半。
+
+### F3 的意义
+
+F3 是 VRO 报告最后落地的融合层交付。它把 PR-2b 从「项目内部的预执行拒绝」升级为「可分享、可交叉验证的公共注册表条目」。每条注册都含：
+- `id`（PR2b）、`claim_id`（R1）、`registered_at`（2026-10-14）
+- `decision_basis`（analytic redundancy 证据链）
+- `unexplored_alternatives`（3 条未走路径）
+- `receipt_sha256`（交叉 `receipts/PR2b.json` 哈希）
+- `registry_sha256_of_inputs`（溯源到 research_claims.json）
+
+Gate 53 用 `export_preregistration_registry.py --check` 强制同步性——研究声明改了、registry 没跟着改，就 FAIL。
+
+### 论文出口状态（截至 v2.91.0）
+
+| 论文 | 就绪度 | 依赖 |
+|---|---|---|
+| P-1 主线 | 🟡 92% | D1 机制 + D3 仓库（用户拍板） |
+| **P-2 PR-2b 短文** | ✅ 100% | 无（VRO 收据 + F3 registry 已嵌入） |
+| **P-3 S6-S9 短文** | ✅ 100% | 无（本轮加入 C3 案例，5 案例齐全） |
+| **P-4 C3 案例短文（新）** | ✅ 80%（骨架 + 完整讨论 + 参考文献） | 无 |
+
+**投稿顺序建议**：P-3 先投（含 C3 是唯一正结果）→ 1 周后 P-2 → 视篇幅选 P-4 独立投或作 P-3 附录 → P-1 主线延后。
 
 ---
 
