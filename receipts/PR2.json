@@ -1,0 +1,27 @@
+{
+  "schema": "vro_receipt_v1",
+  "claim_id": "PR2",
+  "statement": "删除桥边导致隔离度上升（干预因果）",
+  "protocol_ref": "PR2",
+  "expected_verdict": "FAIL",
+  "raw_sample_sha256": "c553072c8b470490b1f899831de8ad3eba33c2b933592e6c96f12532c06bceab",
+  "recompute_script_sha256": "154af5cf66fd636333e1704337a996b82a7b95f2d4e33fe1b54b9b5e78bf63cd",
+  "artifacts": [
+    {
+      "path": "_f4_intervention/f4_intervention.json",
+      "sha256": "77ef69e11d5c8596a8fd1fadb88b2e775b989602fa44d64fa2c2606ee890974e",
+      "size": 20035
+    }
+  ],
+  "scripts": [
+    {
+      "path": "scripts/f4_intervention_test.py",
+      "sha256": "dd31f8dbfc09b7cab856ea9767f6103df22fe7cfbc611eedd617e7a7f785b6a0",
+      "size": 12918
+    }
+  ],
+  "env_hash": "068607cf0c693c3748c1be792c7c2747de2bba2191e4ca891749d0be82f88f25",
+  "timestamp": "2026-10-15T13:27:25+00:00",
+  "issued_by": "scripts/issue_receipt.py",
+  "notes": "composite 38.9% (n=10) → 71.4% (n=50) → 59.1% (n=100); not monotone."
+}
