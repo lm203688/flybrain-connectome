@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.81.0` | the toolkit as a whole |
+| package | `2.82.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,35 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.82.0] — 2026-10-15
+
+**下一阶段执行方案 + N4 dry-run 公开准备脚本 + N2 arXiv 论文口径收敛验收**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新增 `docs/PHASE_NEXT_EXECUTION_PLAN_2026-10-15.md` | 上一阶段任务完成度判定（执行 100% 落地 / 科学收敛为负弱）+ 科技含金量重判（A 面方法学基础设施高含金量、B 面科学发现偏低）+ N1–N5 具体执行方案（含命令 + 验收）|
+| 新增 `scripts/prep_public_release.py` | N4 dry-run 公开准备脚本；扫描敏感目录/文件/私有声明/git 历史，**零副作用**（只报告不修改），供用户拍板 D3 仓库公开前预检 |
+| N2 验收 | `grep -n "predictable structural theory\|超越生物学\|数字生命" docs/arxiv_paper.md` 已无残留，P-1 主线论文口径收敛完成 |
+| `_gate31_r2/r2_density_scan.json` | 键顺序归一（`inhibitory_hub` → `recurrent_feedback` → `reservoir_smallworld`），仅 cosmetic，无数据变化 |
+| 版本 8 处 | `2.81.0 → 2.82.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+| 门禁 | `run_gates.py --quick` = **42/42 PASS**（复测确认） |
+
+### 关键判定（写入 `PHASE_NEXT_EXECUTION_PLAN_2026-10-15.md`）
+
+**上一阶段完成度**：所有可执行项均已执行（F1–F4 脚本、PR-1~4、PR-2b、Gate 43–47、P-2/P-3 短文、G4/G6/G8 收口），无遗留未做项。但**执行结果整体收敛为负/弱**——R1 合成空间 WEAK（z=1.53），跨真实/通用图族 NULL（AUC=0.5），PR-2 干预 FAIL，PR-3 泛化 FAIL。
+
+**含金量重判**：项目是**方法学 / 元科学硬科技平台**，不是「发现型」硬科技。A 面（预注册机器强制 + 独立重算 + PR-2b 预执行拒绝 + V3 自验证四纪律 + 42/42 门禁）是国际前列；B 面（发现）不构成可发表的科学发现。
+
+**下一阶段原则**：只做能抬升「A 面含金量」且零/低成本的事；停止投喂已证伪的「B 面发现」。N1 产品化 `selfverify` 包（★最高优先，1–2 天）· N2 已收敛 · N3 挂 arXiv（需账号）· N4 dry-run 已落地 · N5 真实连接组动力学（重资产，延后）。
+
+### 门槛最终状态（G1–G8）
+
+**8 项：✅ 4（G1/G2/G6/G7）· 🟡 2（G4 ~92% / G8）· ❌ 2（G3/G5）**。无低成本可翻转项——G3（L4 基底上限）与 G5（21 个锚定单元，高成本数据工程）均为结构性缺口。剩余行动全部落在**论文出口 + 用户拍板**上。
 
 ---
 
