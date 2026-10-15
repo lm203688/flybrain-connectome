@@ -423,6 +423,15 @@ def main() -> int:
         "documented. Results files must match preregistered verdicts",
         [py, str(SCRIPTS / "check_c1_c3.py")])[0]))
 
+    # ---- Gate 53: Preregistered Rejection Registry (F3 deliverable) ----
+    results.append(("gate53 prereg rejection registry", run(
+        "GATE 53 — F3 deliverable: preregistered rejection registry must exist at "
+        "registry/preregistered_rejections.json, contain every PR* segment with "
+        "kind=pre_execution_rejection from research_claims.json, and stay in sync "
+        "with the source claims file (drift = FAIL). Gate 39 meta-discipline "
+        "honored: registry script self-checks via --check flag.",
+        [py, str(SCRIPTS / "export_preregistration_registry.py"), "--check"])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:
