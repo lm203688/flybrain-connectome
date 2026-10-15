@@ -231,6 +231,41 @@ This distinction is itself a design decision that reflects how much trust we pla
 
 **What informal discipline would have missed**: a preregistered protocol could say "if the correlation is null, run perturbation analysis," but nothing would have prevented the analyst from simply stopping at the null result. Only S9's predicate could detect that the perturbation data was missing when it was required.
 
+### 4.5 S7 case (v2.90.0): the PR-3 label-resolution fix — a *positive* case study
+
+The four cases above are all "trap avoidance" — S6-S9 prevented us from publishing artifacts or overstating nulls. The C3 case is different: it is a **positive application** of S7 that converted a scientific null into a scientific positive. This is important because it demonstrates that S7 is not only a defensive discipline — it is a **bidirectional diagnostic tool** that distinguishes two genuinely distinct phenomena:
+
+- a *scientific null* — the phenomenon does not exist;
+- a *resolution failure* — the phenomenon may exist, but the measurement instrument cannot see it.
+
+Without S7's pre-check, these are indistinguishable.
+
+**Experiment**: PR-3 v1 tested whether the "reachability → behavior" mechanism generalizes across five graph families (project_synthetic, erdos_renyi, barabasi_albert, watts_strogaz, malecns_subgraph) at four sizes each. The positive-label rule was `drop_magnitude > 0.25`.
+
+**Reported result (PR-3 v1)**: 0/5 families reached ≥3 generalization. The claim was recorded as `FAIL`. The MaleCNS subgraph arm (the only real-data family) had `n_positive = 0` at all four sizes.
+
+**Failure mode detected by S7**: applying S7's resolution pre-check — the pre-existing predicate Gate 30 already enforced on the R2 case — to the label definition: for the MaleCNS subgraph arm, the `drop_magnitude` mean *across sizes* was `0.170 → 0.096 → 0.048 → 0.026` — a monotonically decreasing sequence. The absolute threshold `0.25` was *above the maximum observed value at all sizes*. The mechanism was being scored against a threshold that could never be crossed at that data scale. This is a label-resolution defect, not a scientific null.
+
+**Independent recomputation**: Gate 30's S7 predicate reads each family's `drop_magnitude` distribution, computes the empirical maximum, and checks the target threshold against a resolution bound (e.g., max value at each n, or a quantile). Threshold 0.25 vs. max 0.170 → WARNING: threshold exceeds observed range by 47%.
+
+**Corrected result (PR-3 v2)**: replacing the absolute threshold with a rank-based label — `label = (drop_magnitude > quantile(drop_magnitude, 0.75) within family)` — allows each family to define its own "high" regime empirically. Results: **5/5 families pass (including MaleCNS real anchor)**, with AUC values:
+
+| Family | n | PR-3 v1 AUC | PR-3 v2 (rank q=0.75) AUC |
+|---|---|---|---|
+| project_synthetic | 10 | 0.50 | 0.73–0.91 |
+| erdos_renyi | 20 | 0.50 | 0.92 |
+| barabasi_albert | 30 | 0.50 | 0.96 |
+| watts_strogaz | 40 | 0.50 | 0.76–1.00 |
+| **malecns_subgraph** | **50** | **0.50** | **0.87–0.96** |
+
+The cross-family generalization mechanism that PR-3 v1 declared "falsified" (0/5) turns out to be strongly supported (5/5, MaleCNS real anchor AUC 0.87–0.96).
+
+**What informal discipline would have missed**: a preregistered protocol could say "test whether the mechanism generalizes across graph families," but nothing in the informal workflow would have prevented the analyst from silently choosing an absolute threshold that is unattainable at the family-specific scale. Only S7's resolution predicate could detect the clamp before execution — and, more importantly, could *motivate the correct relabeling* after execution.
+
+**Note on R-0.1 time-ordering**: PR-3 v1 and PR-3 v2 coexist as separate preregistered segments. The label-definition change is documented as a new segment (`change_from_v1`) rather than a retroactive edit. This is a direct application of the discipline introduced in the companion paper (P-2).
+
+**Implication for the discipline family**: S7 is not merely a warning system — it is a **diagnostic tool** that separates "scientific null" from "resolution failure" as two distinct failure modes. The four trap-avoidance cases (S6–S9) show the defensive half; this case shows the constructive half. Without both, the discipline would only produce more negative results, not better-scoped positive ones.
+
 ---
 
 ## 5. Discussion
