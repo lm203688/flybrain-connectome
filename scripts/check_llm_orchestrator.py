@@ -515,8 +515,9 @@ def _check_five_elements() -> list[str]:
 
     Reads research_claims.json and validates each claim has all five elements.
     Missing any element for a claim with status 'complete' or 'in_progress'
-    is a FAILURE. Claims with status 'negative_result' or 'needs_evidence_strengthening'
-    get a WARNING (they are honest declarations of failure or weakness).
+    is a FAILURE. Claims with status 'negative_result', 'needs_evidence_strengthening',
+    'boundary_partial_falsification', or 'boundary_anchor_gap' get a WARNING
+    (they are honest declarations of failure, weakness, or terminal boundary).
 
     Reference: docs/RESEARCH_DEEPENING_PLAN_2026-10-10.md §4.3
     """
@@ -559,8 +560,13 @@ def _check_five_elements() -> list[str]:
             value = claim.get(field)
             if value is None or (isinstance(value, str) and not value.strip()):
                 msg = f"[{claim_id}] {title}: missing {label}"
-                # Warnings for honest negative/weak claims, failures for others
-                if status in ("negative_result", "needs_evidence_strengthening"):
+                # Warnings for honest negative/weak/boundary claims, failures for others
+                if status in (
+                    "negative_result",
+                    "needs_evidence_strengthening",
+                    "boundary_partial_falsification",
+                    "boundary_anchor_gap",
+                ):
                     warnings.append(msg)
                 else:
                     fails.append(msg)

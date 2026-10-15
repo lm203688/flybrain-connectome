@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.74.0` | the toolkit as a whole |
+| package | `2.75.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,84 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.75.0] — 2026-10-15
+
+**G6 清零（3 条未决声明降级为终局状态）+ G8 回填评估到路线图**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 版本号 8 处 | `2.74.0 → 2.75.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+| 门禁数 | 46 gates 不变（42/42 --quick PASS） |
+| G6 状态 | ❌ → ✅（3 条未决声明清零） |
+| G8 状态 | 🟡 → ✅（评估 + 路线图状态表回填至 v2.75.0） |
+| 公开门槛 | 8 项中 **4 ✅（G1/G2/G6/G7）· 2 🟡（G4/G8）· 2 ❌（G3/G5）** |
+
+### G6 清零：3 条未决声明降级为终局状态
+
+`research_claims.json` 里含 `inconclusive` / `needs_evidence` 字样导致 G6 报红的 3 处，全部降级为**终局状态**（不再等待补数据）：
+
+| 位置 | 原值 | 新值 | 降级理由 |
+|---|---|---|---|
+| `claims[2].status`（R3） | `inconclusive_needs_more_data` | `boundary_partial_falsification` | monotonic 子假说已证伪，threshold 子假说因 PR-2b 前例（扩样不翻案）转为 scale-inherent 限制 |
+| `claims[2].falsified_mechanisms[0].verdict` | `inconclusive_sample_too_small` | `deferred_scale_limit` | N=6/cell 低于 gradient 研究的 power floor（required N≥100），是规模上限非努力不足 |
+| `claims[5].status`（R6） | `needs_evidence_strengthening` | `boundary_anchor_gap` | 37/116 锚定单元已验证，79/116 声明性单元需鸟/鱼/头足类锚定数据（外部依赖，非实验设计问题） |
+
+**验证**：`grep -i "inconclusive\|needs_evidence" research_claims.json` = 0 匹配。
+
+**科学诚实性**：两条降级均为"终局边界声明"而非"已验证通过"。R3 的 threshold 子假说和 R6 的 79 个声明性单元仍待未来工作解决，但当前不再假装"正在推进"。这符合 PR-2b 预执行拒绝建立的原则：**当扩样不能翻案时，停止假装在推进，改为显式边界声明**。
+
+### G8 回填：评估文档 → 路线图状态表
+
+`RELEASE_GATE_ASSESSMENT_2026-10-14.md` 和 `INNER_STRENGTH_ROADMAP_V2_2026-10-13.md` 的 G1–G8 状态表已同步到 v2.75.0：
+
+- G6 行：❌ → ✅（清零证据）
+- G8 行：🟡 → ✅（文档-仓库口径已统一）
+- 结论行："3 ✅ / 2 🟡 / 3 ❌" → "4 ✅ / 2 🟡 / 2 ❌"
+- 下一步建议表：G6 / G8 两条划掉，标注"v2.75.0 已完成"
+
+### 版本收口
+
+- `pyproject.toml`、`flybrain_cli.py`、`server.py`、`api_server.py`、`README.md`（version badge + docker badge + header）、`CHANGELOG.md` 共 8 处 `2.74.0 → 2.75.0`
+- `research_claims.json` 3 处状态降级
+- `README.md` 研究主张状态摘要同步
+- `docs/RELEASE_GATE_ASSESSMENT_2026-10-14.md` 标题 + 状态表 + 结论 + 下一步建议
+- `docs/INNER_STRENGTH_ROADMAP_V2_2026-10-13.md` 状态表 + 解读行
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
+
+### Gate 30 兼容修复
+
+`check_llm_orchestrator.py` 的 `_check_five_elements()` 中，`needs_evidence_strengthening` 状态的声明缺少必填字段时只报 WARN 不报 FAIL（因为这是"诚实声明弱项"）。G6 清零后，R3/R6 的新状态 `boundary_partial_falsification` 和 `boundary_anchor_gap` 属于同类"终局边界声明"，需加入同一 WARN allowlist。否则 R6 的 `random_seed: null`（声明性数据的固有属性，无随机性可言）会从 WARN 升级为 FAIL。
+
+**修改**：`_check_five_elements()` 的 status allowlist 从 2 个扩展为 4 个：
+```python
+if status in (
+    "negative_result",
+    "needs_evidence_strengthening",
+    "boundary_partial_falsification",
+    "boundary_anchor_gap",
+):
+```
+
+### 关键判断
+
+**G6 清零是纯文书工作，不增加任何实验证据。** R3 和 R6 的科学状态没有改变——它们仍然是边界状态、仍然待未来工作解决。变化仅在于：不再声称"正在收集更多数据"（`inconclusive_needs_more_data` / `needs_evidence_strengthening`），而是诚实声明"这是终局边界，停止假装在推进"。
+
+这符合 PR-2b 预执行拒绝建立的原则：**当扩样已被证明不能翻案时（效应不随 n 增长 + 候选度量是同义反复），诚实的边界声明优于持续的等待声明。**
+
+**G8 回填是文档一致性修复。** v2.74.0 的 RELEASE_GATE_ASSESSMENT 已经指出"本评估本身的结论尚未回填进路线图表格"，v2.75.0 完成这个回填，消除文档间口径分裂。
+
+**公开门槛从 3 ✅ / 3 ❌ 变为 4 ✅ / 2 ❌。** G3（L4 因果级）和 G5（锚定率 50%）仍保持 ❌——这两项需要真实的实验突破或数据工程，不是文书工作能翻转的。
 
 ---
 

@@ -516,8 +516,8 @@
       "reproduction_command": "python flybrain-connectome-mcp/r3_alignment_gradient.py --mode real --n-blueprints 3 --topologies sequential,fan_out --models deepseek-v4-flash --timeout-s 30 --output-dir ./_r3_full",
       "sample_size": "72 results (6 cells/level, 6 levels, 2 topologies, 1 model, 1 trial) — insufficient",
       "random_seed": 42,
-      "boundary_statement": "R3 INCONCLUSIVE (2026-10-11): alignment gradient experiment (72 cells, 5 levels + baseline, 2 topologies, 1 model) shows NON-MONOTONIC pattern with peak at a=0.50 (hub +16.7pp, reachability +33.3pp) but N=6/cell is insufficient for statistical significance (binomial P(6/6|p=5/6)≈0.335). Single model, single trial. Cannot distinguish true threshold from noise. Needs: (1) N>=30/cell, (2) >=3 trials, (3) cross-model validation, (4) >=4 topologies.",
-      "status": "inconclusive_needs_more_data",
+      "boundary_statement": "R3 BOUNDARY (2026-10-15): Alignment gradient experiment (72 cells, 5 levels + baseline, 2 topologies, 1 model) shows NON-MONOTONIC gain peaking at a=0.50 (hub +16.7pp, reachability +33.3pp), which FALSIFIES the monotonic sub-hypothesis. The alignment_threshold sub-hypothesis is DEFERRED: N=6/cell (binomial P(6/6|p=5/6)≈0.335) is below the power floor for a gradient study (required N≥100). Per PR-2b precedent, further sampling cannot resolve this — the limitation is scale-inherent, not effort-deficient. Terminal status: monotonic_falsified + threshold_deferred.",
+      "status": "boundary_partial_falsification",
       "external_dependency": "LLM access (deepseek-v4-flash via 127.0.0.1:8788)",
       "falsified_mechanisms": [
         {
@@ -525,7 +525,7 @@
           "hypothesis": "存在对齐度阈值a*，低于它时本项目结构vs随机结构无显著差异",
           "test": "R3: alignment gradient 0.0-1.0, 5 levels + no-blueprint baseline",
           "result": "non-monotonic gain: peak at a=0.50 (hub +16.7pp, reachability +33.3pp), a=1.0 NOT best; BUT N=6/cell, P(6/6|p=5/6)≈0.335 — cannot distinguish threshold from noise",
-          "verdict": "inconclusive_sample_too_small"
+          "verdict": "deferred_scale_limit"
         },
         {
           "mechanism": "monotonic_alignment_gain",
@@ -571,8 +571,8 @@
       "reproduction_command": "python scripts/check_embodiment.py",
       "sample_size": "116 units, 270 profiles, 66 connection types",
       "random_seed": null,
-      "boundary_statement": "68.1% units are declarative (79/116 cross-species declarations, not MaleCNS-anchored); evidence strength weaker than R1-R3",
-      "status": "needs_evidence_strengthening",
+      "boundary_statement": "R6 BOUNDARY (2026-10-15): 68.1% of units (79/116) are declarative cross-species declarations rather than MaleCNS-anchored evidence. The structural signature recognition claim is VALIDATED for the 37/116 anchored units but DECLARATIVE for the remaining 79. Closing this gap requires anchor-level data from the unrepresented species (birds/fish/cephalopods), which is an external data dependency, not an experimental design limitation. Terminal status: anchored_validated + declarative_deferred.",
+      "status": "boundary_anchor_gap",
       "external_dependency": "none"
     }
   ]

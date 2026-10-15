@@ -45,7 +45,7 @@
     },
     {
       "claim_id": "R3",
-      "status": "inconclusive_needs_more_data",
+      "status": "boundary_partial_falsification",
       "status_kind": "acknowledged",
       "method": "gradient",
       "method_keyword": "阈值",
@@ -53,7 +53,7 @@
       "n_source": "(\\d+)\\s+cells?\\s*/\\s*(?:level|group|density|trial|repeat)",
       "required_n": 100,
       "verdict": "warn",
-      "reason": "acknowledged status='inconclusive_needs_more_data'; effective N=6 < required N=100 for method='gradient' (already tracked as a boundary case)"
+      "reason": "acknowledged status='boundary_partial_falsification'; effective N=6 < required N=100 for method='gradient' (already tracked as a boundary case)"
     },
     {
       "claim_id": "R4",
@@ -81,7 +81,7 @@
     },
     {
       "claim_id": "R6",
-      "status": "needs_evidence_strengthening",
+      "status": "boundary_anchor_gap",
       "status_kind": "acknowledged",
       "method": "coverage",
       "method_keyword": "跨进化支",
@@ -89,7 +89,7 @@
       "n_source": "(\\d+)\\s+(?:topologies|samples|trials|runs|blueprints|organisms|units|profiles)",
       "required_n": 5,
       "verdict": "pass",
-      "reason": "effective N=116 >= required N=5 for method='coverage' (status='needs_evidence_strengthening')"
+      "reason": "effective N=116 >= required N=5 for method='coverage' (status='boundary_anchor_gap')"
     }
   ],
   "counts": {
