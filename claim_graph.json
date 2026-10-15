@@ -1,0 +1,491 @@
+{
+  "schema": "claim_graph_v1",
+  "generated_from": "research_claims.json",
+  "node_types": [
+    "assumption",
+    "claim",
+    "definition",
+    "evidence",
+    "risk"
+  ],
+  "edge_types": [
+    "contradicts",
+    "depends_on",
+    "supports",
+    "tests"
+  ],
+  "status_ladder": [
+    "draft",
+    "stated",
+    "supported",
+    "verified",
+    "refuted",
+    "rejected",
+    "boundary"
+  ],
+  "nodes": [
+    {
+      "id": "claim:R1",
+      "type": "claim",
+      "title": "模块化结构的故障隔离：普遍性成立，但程度不可由纯结构预测",
+      "statement": "模块化拓扑普遍提供故障隔离（92.6%），但隔离的程度由「结构×任务对齐度」共同决定；纯结构只能解释其中一小部分（R²≈0.15）",
+      "raw_status": "supported_after_metric_fix",
+      "status": "supported",
+      "external_dependency": "none",
+      "verification_level": "V5",
+      "n_evidence": 2,
+      "n_falsified_mechanisms": 4,
+      "verification_reason": "cross-checked + receipt + redteam (status=supported)"
+    },
+    {
+      "id": "evidence:R1:_r1_mechanism_a/graded_isolation.json",
+      "type": "evidence",
+      "artifact": "_r1_mechanism_a/graded_isolation.json",
+      "claim": "Graded isolation metric has real variance (drop var=0.0242, 37 unique / 50) and discriminates known topologies (chain 0.512 > full 0.333 > redundant 0.275 > star 0.250)",
+      "script": "scripts/isolation_graded.py"
+    },
+    {
+      "id": "evidence:R1:_r1_mechanism_a/mechanism_binary.json",
+      "type": "evidence",
+      "artifact": "_r1_mechanism_a/mechanism_binary.json",
+      "claim": "Critical-edge features discriminate well- vs poorly-isolated topologies (AUC=0.775, z=4.85 vs permutation null 0.589+/-0.038)",
+      "script": "scripts/mechanism_binary.py"
+    },
+    {
+      "id": "assumption:R1:feature_addition",
+      "type": "assumption",
+      "hypothesis": "加入'模块→读出结构可达性'作为第10个特征后，R²显著上升",
+      "verdict": "falsified"
+    },
+    {
+      "id": "assumption:R1:task_alignment",
+      "type": "assumption",
+      "hypothesis": "固定拓扑下仅改变读出模块，隔离效应量应显著变化",
+      "verdict": "falsified"
+    },
+    {
+      "id": "assumption:R1:edge_density_correlation",
+      "type": "assumption",
+      "hypothesis": "隔离效应量与跨模块边密度负相关",
+      "verdict": "falsified"
+    },
+    {
+      "id": "assumption:R1:critical_edge_sparsity",
+      "type": "assumption",
+      "hypothesis": "关键边稀疏性（bridge fraction / edge connectivity）与隔离效应量正相关",
+      "verdict": "supported_after_metric_fix"
+    },
+    {
+      "id": "risk:R1:boundary",
+      "type": "risk",
+      "text": "R1 RESOLVED (2026-10-13, A1+A2): the binary isolation metric was a design flaw (0/1 saturated, no variance), so the earlier 'no mechanism explains isolation' was a methodological artifact, not a real negative result. A1 replaced it with a graded metric (drop_magnitude / affected_module_count / mean_recovery_steps) that has real variance (drop var=0.0242, 37 unique values over 50 topologies). A2 re-ran the mechanism test with the correct tool for a graded/binary outcome - logistic regression + AUC instead of OLS R2 - and found critical-edge features DO discriminate well- vs poorly-isolated topologies (AUC=0.775, z=4.85 vs null 0.589+/-0.038). The 'fourth mechanism falsified' is RETRACTED: critical_edge_sparsity is SUPPORTED once the metric and the statistics are correct."
+    },
+    {
+      "id": "definition:R1:prediction",
+      "type": "definition",
+      "text": "P1: 加入'模块→读出结构可达性'作为第10个特征后，R²显著上升（若仍≈0.15→假说错）。P2: 固定拓扑下仅改变读出模块，隔离效应量应显著变化。P3: 隔离效应量与跨模块边密度负相关"
+    },
+    {
+      "id": "claim:R2",
+      "type": "claim",
+      "title": "结构搜索的可搜索性条件：为什么GA输给随机",
+      "statement": "在稀疏结构空间（密度0.002–0.023）中，适应度景观不存在可搜索的梯度，因此任何基于适应度的搜索（GA）系统性劣于随机采样；存在一个密度阈值d*，超过它之后适应度搜索才开始有效",
+      "raw_status": "complete",
+      "status": "verified",
+      "external_dependency": "none",
+      "verification_level": "V1",
+      "n_evidence": 5,
+      "n_falsified_mechanisms": 0,
+      "verification_reason": "≥1 evidence edge but no preregistered protocol"
+    },
+    {
+      "id": "evidence:R2:0",
+      "type": "evidence",
+      "artifact": "_r2_rescan_n20/r2_density_scan.json (D5 rescan; axis trustworthy; density_drift field)"
+    },
+    {
+      "id": "evidence:R2:1",
+      "type": "evidence",
+      "artifact": "_r2_rescan_n40/r2_density_scan.json (n_nodes=40 control)"
+    },
+    {
+      "id": "evidence:R2:2",
+      "type": "evidence",
+      "artifact": "_r2_rescan_n6/r2_density_scan.json (reproduces the original 3/7 clamping)"
+    },
+    {
+      "id": "evidence:R2:3",
+      "type": "evidence",
+      "artifact": "_gate31_r2/r2_density_scan.json (original v2.63.0 run; untrusted density axis)"
+    },
+    {
+      "id": "evidence:R2:4",
+      "type": "evidence",
+      "artifact": "scripts/r2_density_scan.py: check_density_drift() + _proxy_hub_from_degrees() / _proxy_reach_hops()"
+    },
+    {
+      "id": "risk:R2:boundary",
+      "type": "risk",
+      "text": "D5 RESCAN (2026-10-13): three measurement defects found and recorded; the headline verdict is ROBUST under the fix. (D5a) the original n_nodes=6 run silently clamped 3 of 7 density cells (requested 0.05/0.10/0.15 all realised as 0.20); a density-drift check is now machine-visible and n_nodes=20/40 pass 7/7 with max abs drift 0.0000. (D5b) the task evaluators copied the ground truth (predicted = gt, 'correct by definition'), so success was pinned to 1.0 by construction; replaced with independent proxy predictors reading only the prompt's exposed information, and hub_ok/reach_ok still come out at 100% across 21/21 cells. (D5c) the motif task is unanswerable by design -- motif_family='mixed' is not among the 3 prompt labels, so motif_ok=0.000 is a correct negative result. CONCLUSION: d*=null holds at n_nodes in {6, 20, 40} on a trustworthy density axis, so the no-cliff verdict is not a sample-size artifact. BUT the R2 capability curve measures tasks with zero difficulty (hub/reachability answers exposed in the prompt) or with no answer (motif), so it must not be used to support a 'structural gain' claim. Raising n_nodes does not fix this; the task design does."
+    },
+    {
+      "id": "definition:R2:prediction",
+      "type": "definition",
+      "text": "P1: GA/随机的性能比随密度单调上升，并在某d*处穿越1.0。P2: 景观粗糙度（自相关长度/局部最优数）随密度下降"
+    },
+    {
+      "id": "claim:R3",
+      "type": "claim",
+      "title": "结构价值×基底对齐度：统一解释四个独立观察",
+      "statement": "同一结构的价值不是结构的固有属性，而是「结构-任务对齐度」的函数。对齐度低于阈值时结构增益趋于0（甚至为负）；高于阈值时增益显著",
+      "raw_status": "boundary_partial_falsification",
+      "status": "boundary",
+      "external_dependency": "LLM access (deepseek-v4-flash via 127.0.0.1:8788)",
+      "verification_level": "V0",
+      "n_evidence": 0,
+      "n_falsified_mechanisms": 2,
+      "verification_reason": "bare claim (no supports/tests edges)"
+    },
+    {
+      "id": "assumption:R3:alignment_threshold",
+      "type": "assumption",
+      "hypothesis": "存在对齐度阈值a*，低于它时本项目结构vs随机结构无显著差异",
+      "verdict": "deferred_scale_limit"
+    },
+    {
+      "id": "assumption:R3:monotonic_alignment_gain",
+      "type": "assumption",
+      "hypothesis": "对齐度递增任务族中结构增益单调上升",
+      "verdict": "falsified_non_monotonic"
+    },
+    {
+      "id": "risk:R3:boundary",
+      "type": "risk",
+      "text": "R3 BOUNDARY (2026-10-15): Alignment gradient experiment (72 cells, 5 levels + baseline, 2 topologies, 1 model) shows NON-MONOTONIC gain peaking at a=0.50 (hub +16.7pp, reachability +33.3pp), which FALSIFIES the monotonic sub-hypothesis. The alignment_threshold sub-hypothesis is DEFERRED: N=6/cell (binomial P(6/6|p=5/6)≈0.335) is below the power floor for a gradient study (required N≥100). Per PR-2b precedent, further sampling cannot resolve this — the limitation is scale-inherent, not effort-deficient. Terminal status: monotonic_falsified + threshold_deferred."
+    },
+    {
+      "id": "definition:R3:prediction",
+      "type": "definition",
+      "text": "P1: 构造对齐度递增的任务族，结构增益随对齐度单调上升。P2: 存在对齐度阈值a*，低于它时'本项目结构vs随机结构'无显著差异"
+    },
+    {
+      "id": "claim:R4",
+      "type": "claim",
+      "title": "结构指纹：一种可复算的结构数据处理形式",
+      "statement": "存在一种确定性、可复算、对结构变化敏感的结构指纹（sha256 over 归一化结构），可用于结构等价类划分、同结构去重、版本diff、谱系追踪",
+      "raw_status": "complete",
+      "status": "verified",
+      "external_dependency": "none",
+      "verification_level": "V1",
+      "n_evidence": 1,
+      "n_falsified_mechanisms": 0,
+      "verification_reason": "≥1 evidence edge but no preregistered protocol"
+    },
+    {
+      "id": "evidence:R4:_r4_sensitivity_scan/r4_sensitivity_scan.json",
+      "type": "evidence",
+      "artifact": "_r4_sensitivity_scan/r4_sensitivity_scan.json",
+      "claim": "Structural fingerprint sensitivity boundaries measured over N=50 blueprints x 5 perturbation steps x 4 types = 1000 results; most sensitive remove@0.1 (fp_dist=0.667), most robust node_delete@0.3",
+      "script": "scripts/r4_sensitivity_scan.py"
+    },
+    {
+      "id": "risk:R4:boundary",
+      "type": "risk",
+      "text": "FULL RUN (v2.63.0, N=50): Robustness boundaries — flip@0.2 (fp_dist=0.401, reach_chg=49.0%), add@0.1 (fp_dist=0.301, reach_chg=38.7%), remove@0.1 (fp_dist=0.667, reach_chg=39.6%), node_delete@0.3 (fp_dist=0.277, reach_chg=57.4%). Most sensitive: remove@0.1 (fp_dist=0.667, highest fingerprint distance at lowest strength). Most robust: node_delete@0.3 (requires highest strength to trigger change). At strength=0.8: node_delete most disruptive (reach_chg=97.6%), remove least (reach_chg=48.7%)."
+    },
+    {
+      "id": "definition:R4:prediction",
+      "type": "definition",
+      "text": "敏感性边界：节点重编号不变（应不变）；边权微小变化（应变化）；模体替换（应变化）"
+    },
+    {
+      "id": "claim:R5",
+      "type": "claim",
+      "title": "可复现的结构级数字生命闭环",
+      "statement": "可以构造一个确定性、可复现的结构级生命闭环（出生→存活→受损→自愈→繁殖→选择→死亡），其出生签名在同seed下逐位一致",
+      "raw_status": "complete",
+      "status": "verified",
+      "external_dependency": "none",
+      "verification_level": "V1",
+      "n_evidence": 1,
+      "n_falsified_mechanisms": 0,
+      "verification_reason": "≥1 evidence edge but no preregistered protocol"
+    },
+    {
+      "id": "evidence:R5:flybrain-connectome-mcp/lifecycle.py",
+      "type": "evidence",
+      "artifact": "flybrain-connectome-mcp/lifecycle.py",
+      "claim": "Structure-level lifecycle closed loop (birth -> survive -> damage -> self-heal -> reproduce -> select -> die); same-seed birth signature is bit-identical and --self-test passes 12/12 assertions",
+      "script": "flybrain-connectome-mcp/lifecycle.py"
+    },
+    {
+      "id": "risk:R5:boundary",
+      "type": "risk",
+      "text": "Structure-level only, not biological; 8 features are minimal implementations; no consciousness claims"
+    },
+    {
+      "id": "definition:R5:prediction",
+      "type": "definition",
+      "text": "同seed出生签名sha256:26c767fd…一致；--self-test 12/12断言通过"
+    },
+    {
+      "id": "claim:R6",
+      "type": "claim",
+      "title": "跨进化支的回路模式保守性",
+      "statement": "某些回路模式在4个进化支（昆虫/鸟类/鱼类/头足类）间保守；保守模式的结构签名具有可识别的家族特征",
+      "raw_status": "boundary_anchor_gap",
+      "status": "boundary",
+      "external_dependency": "none",
+      "verification_level": "V0",
+      "n_evidence": 0,
+      "n_falsified_mechanisms": 0,
+      "verification_reason": "bare claim (no supports/tests edges)"
+    },
+    {
+      "id": "risk:R6:boundary",
+      "type": "risk",
+      "text": "R6 BOUNDARY (2026-10-15): 68.1% of units (79/116) are declarative cross-species declarations rather than MaleCNS-anchored evidence. The structural signature recognition claim is VALIDATED for the 37/116 anchored units but DECLARATIVE for the remaining 79. Closing this gap requires anchor-level data from the unrepresented species (birds/fish/cephalopods), which is an external data dependency, not an experimental design limitation. Terminal status: anchored_validated + declarative_deferred."
+    },
+    {
+      "id": "definition:R6:prediction",
+      "type": "definition",
+      "text": "116单元跨4支；45系统；24类function受控词表（116/116映射）"
+    },
+    {
+      "id": "protocol:PR1",
+      "type": "evidence",
+      "subtype": "preregistered_protocol",
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-1",
+      "verdict": "WEAK_PASS",
+      "status": "boundary"
+    },
+    {
+      "id": "protocol:PR2",
+      "type": "evidence",
+      "subtype": "preregistered_protocol",
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-2",
+      "verdict": "FAIL",
+      "status": "refuted"
+    },
+    {
+      "id": "protocol:PR3",
+      "type": "evidence",
+      "subtype": "preregistered_protocol",
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-3",
+      "verdict": "FAIL",
+      "status": "refuted"
+    },
+    {
+      "id": "protocol:PR4",
+      "type": "evidence",
+      "subtype": "preregistered_protocol",
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-4",
+      "verdict": "PASS",
+      "status": "verified"
+    },
+    {
+      "id": "protocol:PR2b",
+      "type": "evidence",
+      "subtype": "preregistered_protocol",
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-2b",
+      "verdict": "ACCEPT",
+      "status": "rejected"
+    }
+  ],
+  "edges": [
+    {
+      "from": "evidence:R1:_r1_mechanism_a/graded_isolation.json",
+      "type": "supports",
+      "to": "claim:R1"
+    },
+    {
+      "from": "evidence:R1:_r1_mechanism_a/mechanism_binary.json",
+      "type": "supports",
+      "to": "claim:R1"
+    },
+    {
+      "from": "claim:R1",
+      "type": "depends_on",
+      "to": "assumption:R1:feature_addition"
+    },
+    {
+      "from": "assumption:R1:feature_addition",
+      "type": "contradicts",
+      "to": "claim:R1"
+    },
+    {
+      "from": "claim:R1",
+      "type": "depends_on",
+      "to": "assumption:R1:task_alignment"
+    },
+    {
+      "from": "assumption:R1:task_alignment",
+      "type": "contradicts",
+      "to": "claim:R1"
+    },
+    {
+      "from": "claim:R1",
+      "type": "depends_on",
+      "to": "assumption:R1:edge_density_correlation"
+    },
+    {
+      "from": "assumption:R1:edge_density_correlation",
+      "type": "contradicts",
+      "to": "claim:R1"
+    },
+    {
+      "from": "claim:R1",
+      "type": "depends_on",
+      "to": "assumption:R1:critical_edge_sparsity"
+    },
+    {
+      "from": "claim:R1",
+      "type": "depends_on",
+      "to": "risk:R1:boundary"
+    },
+    {
+      "from": "claim:R1",
+      "type": "depends_on",
+      "to": "definition:R1:prediction"
+    },
+    {
+      "from": "evidence:R2:0",
+      "type": "supports",
+      "to": "claim:R2"
+    },
+    {
+      "from": "evidence:R2:1",
+      "type": "supports",
+      "to": "claim:R2"
+    },
+    {
+      "from": "evidence:R2:2",
+      "type": "supports",
+      "to": "claim:R2"
+    },
+    {
+      "from": "evidence:R2:3",
+      "type": "supports",
+      "to": "claim:R2"
+    },
+    {
+      "from": "evidence:R2:4",
+      "type": "supports",
+      "to": "claim:R2"
+    },
+    {
+      "from": "claim:R2",
+      "type": "depends_on",
+      "to": "risk:R2:boundary"
+    },
+    {
+      "from": "claim:R2",
+      "type": "depends_on",
+      "to": "definition:R2:prediction"
+    },
+    {
+      "from": "claim:R3",
+      "type": "depends_on",
+      "to": "assumption:R3:alignment_threshold"
+    },
+    {
+      "from": "claim:R3",
+      "type": "depends_on",
+      "to": "assumption:R3:monotonic_alignment_gain"
+    },
+    {
+      "from": "assumption:R3:monotonic_alignment_gain",
+      "type": "contradicts",
+      "to": "claim:R3"
+    },
+    {
+      "from": "claim:R3",
+      "type": "depends_on",
+      "to": "risk:R3:boundary"
+    },
+    {
+      "from": "claim:R3",
+      "type": "depends_on",
+      "to": "definition:R3:prediction"
+    },
+    {
+      "from": "evidence:R4:_r4_sensitivity_scan/r4_sensitivity_scan.json",
+      "type": "supports",
+      "to": "claim:R4"
+    },
+    {
+      "from": "claim:R4",
+      "type": "depends_on",
+      "to": "risk:R4:boundary"
+    },
+    {
+      "from": "claim:R4",
+      "type": "depends_on",
+      "to": "definition:R4:prediction"
+    },
+    {
+      "from": "evidence:R5:flybrain-connectome-mcp/lifecycle.py",
+      "type": "supports",
+      "to": "claim:R5"
+    },
+    {
+      "from": "claim:R5",
+      "type": "depends_on",
+      "to": "risk:R5:boundary"
+    },
+    {
+      "from": "claim:R5",
+      "type": "depends_on",
+      "to": "definition:R5:prediction"
+    },
+    {
+      "from": "claim:R6",
+      "type": "depends_on",
+      "to": "risk:R6:boundary"
+    },
+    {
+      "from": "claim:R6",
+      "type": "depends_on",
+      "to": "definition:R6:prediction"
+    },
+    {
+      "from": "protocol:PR1",
+      "type": "tests",
+      "to": "claim:R1",
+      "verdict": "WEAK_PASS"
+    },
+    {
+      "from": "protocol:PR2",
+      "type": "tests",
+      "to": "claim:R1",
+      "verdict": "FAIL"
+    },
+    {
+      "from": "protocol:PR3",
+      "type": "tests",
+      "to": "claim:R1",
+      "verdict": "FAIL"
+    },
+    {
+      "from": "protocol:PR4",
+      "type": "tests",
+      "to": "claim:R1",
+      "verdict": "PASS"
+    },
+    {
+      "from": "protocol:PR2b",
+      "type": "tests",
+      "to": "claim:R1",
+      "verdict": "ACCEPT"
+    }
+  ],
+  "stats": {
+    "n_nodes": 38,
+    "n_edges": 36,
+    "n_claims": 6,
+    "n_evidence": 14,
+    "n_assumptions": 6,
+    "n_definitions": 6,
+    "n_risks": 6
+  }
+}
