@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.77.0` | the toolkit as a whole |
+| package | `2.78.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,39 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.78.0] — 2026-10-15
+
+**论文写作出口路线图：3 个独立可发表单元（P-1 主线 / P-2 PR-2b 短文 / P-3 S6-S9 短文）**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新报告 | `docs/PAPER_EXIT_ROADMAP_2026-10-15.md`（论文出口三分路线图） |
+| P-1 主线论文 | 92% 就绪，卡 D1（L3 机制）+ D3（仓库公开化）——**慢线** |
+| P-2 PR-2b 短文 | 100% 就绪，零依赖——**快线**，1-2 周可挂 arXiv |
+| P-3 S6-S9 短文 | 100% 就绪，零依赖——**快线**，2-3 周可挂 arXiv |
+| 目标期刊矩阵 | P-1: Sci Rep/PLoS ONE/Nat Comput Sci · P-2: Patterns/JOSS/PeerJ · P-3: Nat Methods/Patterns/arXiv |
+| AUDIT_DISCLOSURE | 下一步建议改为"论文出口三分"，指向 PAPER_EXIT_ROADMAP |
+| 版本 8 处 | `2.77.0 → 2.78.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 关键决策
+
+**门槛已到诚实边界**：8 项中 4 ✅（G1/G2/G6/G7）· 2 🟡（G4 ~92% / G8）· 2 ❌（G3/G5），**无低成本可翻转项**。
+
+**建议行动顺序**：先推 P-2/P-3（1-2 周，零依赖），再攻 D1/D3 解 P-1。这样即使 P-1 卡在结构性缺口，两个方法学短文也能独立发表，让 v2.74-2.78 的核心方法学贡献（预执行拒绝 + 自验证纪律）不被主线节奏拖慢。
+
+**核心立场**：预注册的价值是让负结果能被发表，不是让实验通过；**预执行拒绝的价值是让"没做的实验"能被发表，不是让"应该做的实验"被跳过**。
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
 
 ---
 
