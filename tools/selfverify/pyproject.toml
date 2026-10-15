@@ -1,0 +1,20 @@
+[build-system]
+requires = ["setuptools>=61"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "selfverify"
+version = "0.1.0"
+description = "Turn preregistration into an executable gate for computational experiments."
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Lexing" }]
+keywords = ["preregistration", "reproducibility", "self-verification", "negative-results", "metascience"]
+dependencies = []
+
+[project.scripts]
+selfverify = "selfverify.cli:main"
+
+[tool.setuptools]
+packages = ["selfverify"]
