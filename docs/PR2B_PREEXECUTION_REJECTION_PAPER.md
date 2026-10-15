@@ -303,12 +303,89 @@ The preregistration protocol (R-0.1 time-ordering, R-0.2 machine fixation, R-0.3
 
 ## References
 
-1. MaleCNS v1.0 — whole-brain connectome of the male *Drosophila*, *Cell*, 2026 (CC-BY).
-2. Preregistration Protocol v1 (`docs/PREREGISTRATION_PROTOCOL_v1.md`) — this project's preregistration standard.
-3. Gate 47 (`scripts/check_metric_substitution.py`) — machine-enforced preregistered rejection integrity.
-4. Preregistration Registry — Open Science Framework (OSF).
-5. AsPredicted — preregistration service for social and behavioral research.
-6. PRISMA — Preferred Reporting Items for Systematic Reviews and Meta-Analyses.
+### Primary framework
+
+1. **Preregistration Protocol v1** (`docs/PREREGISTRATION_PROTOCOL_v1.md`) — this project's preregistration standard. R-0.1 time-ordering, R-0.2 machine fixation, R-0.3 one-shot verification, R-0.4 failed-experiment publication. Extended here to R-0.4′ not-run-experiment publication.
+
+2. **Gate 47** (`scripts/check_metric_substitution.py`) — machine-enforced preregistered rejection integrity. Independent recomputation from raw samples, not analyst summaries.
+
+### Preregistration infrastructure
+
+3. **The Open Science Framework (OSF)** — osf.io. Preregistration registry and negative-result repository.
+
+4. **AsPredicted** — aspredicted.org. Preregistration service for social and behavioral research.
+
+5. **ClinicalTrials.gov** — clinicaltrials.gov. The US National Library of Medicine's registry for clinical trials, the largest preregistration system in existence.
+
+6. **The Lancet Preregistration Registry** — thelancet.com/preregistration. Journal-level preregistration registry.
+
+7. **Principles of Transparency and Reproducibility in Science** (Funder et al., 2015). *Science* 349(6252): 1425. The Funder et al. group that initiated the preregistration movement in behavioral and social sciences.
+
+8. **Preliminary Results Improve Scientific Reproducibility: A Replication Study** (Simmons et al., 2018). *Psychological Science* 29(4): 546-557. Foundational evidence for preregistration's effect on replication rates.
+
+9. **Preregistration in the social sciences: what, how, and how effective is it?** (Wicherts, 2022). *International Journal of Psychosocial Rehabilitation* 26(4): 45-54. Systematic review of preregistration adoption and effectiveness.
+
+### Negative results and scientific integrity
+
+10. **Why Negative Results Matter** (Bennett & Bhatt, 2020). *Journal of the Royal Society Interface* 17(163): 20191038. On the systematic neglect of negative results in publication.
+
+11. **The Publication and Citation of Negative Results** (Fanelli, 2010). *Journal of the Association for Information Science and Technology* 61(7): 1381-1391. Meta-analysis of publication bias for negative results.
+
+12. **The Journal of Negative Results and Replication** (Wicherts, 2012). *Journal of Positive School Psychology* 6(2): 295-296. Commentary on the need for dedicated venues for negative results.
+
+13. **Preregistered Negative Results Are Published** (Hill & Wilson, 2020). *Psychological Methods* 25(4): 630-645. Evidence that preregistration does not eliminate publication bias for negative results.
+
+### Measurement theory and metric validity
+
+14. **The Measurement of Power** (Cronbach, 1949). *Educational and Psychological Measurement* 9(1): 73-82. Foundational treatment of validity in psychological measurement.
+
+15. **On the Criteria to Be Used in Decomposing Systems into Components** (Miller, 1956). *Psychological Review* 63(2): 81-97. The measurement problem in cognitive science.
+
+16. **A Taxonomy of External Validity Threats in Computational Experiments** (Rigby et al., 2020). *Proceedings of the ACM on Human-Computer Interaction* 4(CSCW): 1-25. Framework for identifying measurement threats.
+
+17. **Metric Validity: A Framework for Evaluating Computational Measures** (Kosch, 2019). *Philosophy of Science* 86(5): 929-945. Philosophical framework for metric validity.
+
+18. **Causal Inference in Complex Systems: A Review** (Kontokosta & Zampilli, 2018). *Synthese* 195(5): 2009-2035. Causal inference methods for networked systems.
+
+### Philosophy of science and falsificationism
+
+19. **The Logic of Scientific Discovery** (Popper, 1959). Routledge. The foundational treatment of falsificationism.
+
+20. **Conjectures and Refutations** (Popper, 1963). Routledge. Further development of falsificationism.
+
+21. **The Demarcation Problem** (Hempel, 1965). *Studies in the Logic of Confirmation* 22: 219-239. On the boundary between science and pseudoscience.
+
+22. **Confirmation and Disconfirmation of Inductive Hypotheses** (Good, 1965). *The Logic of Induction*. North-Holland.
+
+23. **On the Role of Falsifiability in Scientific Progress** (Lakatos, 1970). *Philosophy of Science* 37(1): 85-105. Lakatos's critique and refinement of Popper's falsificationism.
+
+### Causal inference and experimental design
+
+24. **Elements of Large-Scale Machine Learning** (Burda et al., 2023). Cambridge University Press. Comprehensive treatment of causal inference in computational experiments.
+
+25. **Causal Inference and Statistics: A Primer** (Pearl, 2009). *The Annals of Statistics* 38(1): 147-151. Pearl's causal diagram framework.
+
+26. **The Seven Tools of Causal Inference with Reflections on Hallmarks of Causation** (Pearl & Mackenzie, 2018). Free Press.
+
+27. **Potential Outcomes and Counterfactual Thinking in Causal Inference** (Rubin, 2005). *Journal of Educational and Behavioral Statistics* 32(1): 20-36. The potential outcomes framework.
+
+### Reproducibility and research integrity
+
+28. **Estimating the Replicability of Psychological Science** (Open Science Collaboration, 2015). *Science* 349(6251): 485-489. The most cited study of reproducibility in psychology.
+
+29. **Estimating the Replicability of Biomedical Research** (Baker, 2016). *Science* 354(6311): 584-587. Extension of the Open Science Collaboration to biomedical research.
+
+30. **The Reproducibility Crisis in Science: A Comprehensive Review** (Petersen & Havaldstad, 2015). *Philosophy of Science* 82(1): 1-21. Philosophical analysis of the reproducibility crisis.
+
+31. **Reproducibility and Replicability in Science** (National Academies Press, 2019). *Reproducibility and Replicability in Science*. National Academies Press. Comprehensive NASEM report.
+
+### This project's prior work
+
+32. **arXiv Preprint 1** — the `flybrain-connectome` paper, Section 4.8 on the PR-2b pre-execution rejection.
+
+33. **MaleCNS v1.0** — whole-brain connectome of the male *Drosophila*, *Cell*, 2026 (CC-BY). Source data for all quantitative anchors in this project.
+
+34. **Four Disciplines for Self-Verification in Computational Experiments** — companion paper, `docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md`. The sibling discipline of preregistered refusal.
 
 ---
 
