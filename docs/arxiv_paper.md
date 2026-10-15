@@ -4,6 +4,18 @@
 Independent researcher  
 `lm203688/flybrain-connectome` · MIT License (Tier-1 code; repository currently private, re-publicization planned)
 
+**Version 1.2.0 update (2026-10-15):** Added a preregistration suite
+(PR-1 through PR-4, plus PR-2b) covering the mechanistic claims from
+Section 4, four enforcement gates (Gate 43–46) that machine-check the
+four-tuple integrity (thresholds, features, samples, intervention sets),
+and Gate 47 — a *pre-execution rejection* rule that refused to run a
+proposed substitute metric because it was mathematically redundant with
+the outcome it was supposed to replace. Three of five preregistered
+protocols FAIL, one PASSES, one is WEAK; **the pre-execution rejection
+is treated as a scientific contribution in its own right**. This is
+the R-0.4 discipline: *"failed experiments are reported, and so are
+not-run experiments with their reason."*
+
 **Version 1.1.0 update (2026-09-20):** Added variant true differentiation (19
 modules with per-variant parameter overrides), SwarmLabs multi-agent team
 integration, and a virtual-organism market. The cell-level densification
@@ -204,6 +216,124 @@ biological motifs **0/24** systematically lower energy than random; median
 energy ratio 1.006 within a ±5% band. We therefore make **no energy-advantage
 claim**.
 
+### 4.7 Preregistration suite (PR-1 through PR-4)
+
+The Section 4 results raise one obvious question: is the reported
+**bridge → module-isolation** link in Section 4.3 a *measurement* or a
+*cause*? To close this we preregistered four protocols before any data
+was collected, and — critically — machine-checked every threshold,
+feature set, sample split, and intervention set against the preregistered
+values before the results were recorded. The preregistration protocol
+(`docs/PREREGISTRATION_PROTOCOL_v1.md`) is enforced by four new gates
+(Gate 43–46) that will refuse to run if the executed parameters drift
+from the preregistered ones.
+
+| Protocol | Question | Verdict | Key numbers |
+|---|---|---|---|
+| **PR-1** Forward prediction | Does structure predict isolation? | **WEAK** | AUC = 0.788 ✅ / z = 1.53 ❌ (below 1.96) |
+| **PR-2** Intervention | Does deleting a bridge cause isolation? | **FAIL ×3** | composite 38.9 % → 71.4 % → **59.1 %** as n = 10 → 50 → 100; does not rise with sample size |
+| **PR-3** Cross-family | Does the effect generalize beyond project-synthetic? | **FAIL** | 2/5 families pass (needed ≥ 3 including one real) |
+| **PR-4** Recovery dynamics | Is recovery_AUC a valid consequence variable? | **PASS** | zero-ratio 0 %, variance 0.0114 |
+
+Four of five protocols are negative. Under R-0.4 — *"failed experiments
+are reported, not adjusted"* — the criteria were **not** modified after
+the results; the FAILs stand and R1's evidence tier remains at L2/L3-weak.
+PR-4 is the sole PASS and is what allowed us to *attempt* PR-2 at all:
+the recovery-mechanism family was only viable after its three compensation
+components were shown non-degenerate.
+
+**Gate enforcement.** Gate 43 machine-checks PR-1's threshold (0.25),
+four-feature set, and 200-permutation protocol against the executed
+run. Gate 44 verifies PR-3's five-family set and boundary-grid coverage.
+Gate 45 enforces the full PR-2 four-tuple (structure action, action
+group, control group, prediction direction) and that the intervention
+set does not overlap with PR-1's held-out indices. Gate 46 checks
+PR-4's three compensation components for non-degeneracy (zero-ratio
+and variance thresholds). Any tampering with the summary fields is
+detected by independent recomputation from `all_results`.
+
+### 4.8 PR-2b: a pre-execution rejection (a negative result by construction)
+
+The FAIL of PR-2 at three sample sizes was reported honestly. Before
+moving on, we considered — and then *rejected* — a proposed substitute:
+re-run PR-2 with **recovery_AUC** instead of **drop_magnitude** as the
+consequence variable. R-0.4 was extended to cover this: not-run
+experiments are also reported, with their reason.
+
+The rejection is analytic, not empirical. Reading `compute_ablation`
+line by line shows the mechanism variable and the consequence variable
+share a component:
+
+- `modulator_Ra = 1 − bridge_fraction − 0.5·ap_fraction` (contains
+  `bridge_fraction`);
+- `recovery_AUC = mean_t(r(t)) / drop_magnitude` (normalised by the
+  quantity PR-2 itself measures).
+
+When a bridge edge is deleted, the edge count `n_edges` decreases by 1
+and the bridge-edge count `n_bridges` decreases by 1, so
+`bridge_fraction = (B−1)/(E−1) < B/E` **decreases**; that lowers
+`modulator_Ra`'s penalty, which inflates `R-a`, which inflates
+`recovery_AUC`. **The intervention that "broke" the system is therefore
+predicted to *raise* the substitute recovery metric** — a textbook
+denominator artifact.
+
+We ran the pre-execution check (`scripts/f4b_metric_substitution_check.py`):
+- artifact rate on the intervention arm: **95.2 %** (20/21);
+- artifact rate on the control arm: **85.7 %** in the *opposite* direction;
+- |corr(Δbridge_fraction, recovery_AUC)| on the merged sample: **0.902**;
+- |corr| on the non-bridge arm alone: **0.906**.
+
+The preregistered rejection rule (`|corr| > 0.5`) flagged only the merged
+sample; the intervention arm's own variance in `Δbridge_fraction`
+(4.82e−5) was compressed by the intervention itself, so the rule's own
+verdict was **ACCEPT** (|corr| = 0.354 < 0.5). The rule is documented
+as underpowered on its own sample (`rule_underpowered = true`) and
+its threshold was **not** modified. The rejection stands on the analytic
+proof and on the merged-arm correlation, not on the rule's verdict.
+
+**Boundary conclusion.** No metric in the current family is independent
+of the structural variable it is being proposed to measure. This is a
+**substrate limit**: L4 (causal) evidence for the bridge → isolation
+link is not attainable within the current measurement family, not
+because we ran too few samples or missed a threshold, but because we
+lack a second readout that is not derived from the same quantity. That
+is a scope boundary — a scope to expand — not a failure to try harder.
+
+### 4.9 Research self-verification: four disciplines
+
+Building on the earlier negative-result culture (Section 4.5, 4.6), the
+preregistration suite motivated four enforcement disciplines codified in
+Gate 30 and applied to all future experiments:
+
+- **S6 — Control-group scoreability.** Before running any comparative
+  experiment, verify that the control group has ≥ 30 scoreable samples
+  *per task class*. Rationale: P1's apparent +33.4 pp advantage turned
+  out to be entirely within one task class (`motif_family`) where the
+  random-baseline was structurally impossible to score. This is a
+  WARNING, not a FAILURE.
+- **S7 — Resolution pre-check.** For scanning experiments, verify
+  the target resolution against the geometric upper bound before
+  execution. Example: `clamp_density = n_nodes / (n·(n−1))` — a claimed
+  resolution finer than this bound is unmeasurable on the given
+  topology. Applied to Gate 47 to check the metric-substitution rule's
+  own resolution.
+- **S8 — Falsified-mechanism structure.** Any `negative_result` claim
+  must carry a structured `falsified_mechanisms` list (five fields:
+  mechanism name, hypothesis, test statistic, verdict, residual). This
+  is the machine-readable version of "we tried this and it didn't
+  work."
+- **S9 — Perturbation over correlation.** When a correlational claim
+  has R² < 0.05, the claim must instead report perturbation data with
+  a documented boundary signal. Correlation is not mechanism; only
+  perturbation can establish direction.
+
+Gate 30 (`check_llm_orchestrator.py`) now enforces all four. Claims
+with status in the "honest boundary" family
+(`negative_result`, `needs_evidence_strengthening`,
+`boundary_partial_falsification`, `boundary_anchor_gap`) are reported
+as WARNING — they are still honest declarations of limits, not
+defects to be hidden.
+
 ---
 
 ## 5. Discussion
@@ -217,6 +347,14 @@ tested. Publishing the negatives is not a weakness of the method — it is the
 method. A traceable generator is valuable precisely because it lets us *measure*
 rather than *assert*.
 
+The preregistration suite sharpens this argument. Four of five preregistered
+protocols FAIL; one PASSES. Under R-0.4 the criteria were not adjusted after
+the results — the failures stand. **Pre-registration is not a mechanism to
+make experiments pass; it is a mechanism to make *negative* experiments
+publishable.** A preregistered negative result is a much stronger scientific
+statement than an ad-hoc positive one, precisely because its failure was
+predicted and its failure mode was documented.
+
 ### 5.2 What the moats actually buy
 
 Traceability, parsimony, and stability are genuinely useful for **auditable
@@ -224,7 +362,35 @@ multi-agent system design**: you can prove where a topology came from, you can
 search for lean versions, and you can contain module failures. These are design
 and compliance properties, not performance properties.
 
-### 5.3 Limitations
+### 5.3 Substrate limits as contributions
+
+The PR-2b pre-execution rejection (Section 4.8) is a subtle but
+important finding. It identifies a **substrate limit** for causal
+inference within a specific measurement family: when every available
+consequence variable is derived from the same structural variable
+that the intervention modifies, no amount of additional sampling can
+recover an independent readout. This is not a statistical limitation
+and cannot be resolved by a larger sample; it can only be resolved
+by introducing a genuinely independent measurement. Framing this as
+a "scope boundary" rather than a "failure to try harder" matters,
+because the two framings prescribe different actions — one calls for
+a new instrument, the other for more runs of the same instrument.
+
+### 5.4 The R-0.4 discipline extended
+
+The four preregistration rules (R-0.1 time-ordering, R-0.2 machine
+fixation, R-0.3 one-shot verification, R-0.4 failed-experiment
+publication) came out of the Section 4 negative results. But R-0.4
+gained an unexpected extension through PR-2b: **not-run experiments
+are also reported with their reason**. This closes a small loophole
+in the discipline — the space of *experiments that could have been
+run but were not*, together with the decision process that ruled
+them out. In practice this means the preregistration record now
+contains `unexplored_alternatives` alongside the primary decision
+basis, so future readers can reconstruct not just what we did but
+what we chose not to do and why.
+
+### 5.5 Limitations
 
 - Topologies are *derived* from, not *simulations of*, the connectome; dynamical
   claims are proxies (ESN/SNN), not biological reality.
@@ -232,6 +398,14 @@ and compliance properties, not performance properties.
 - Experiments ran on commodity hardware with moderate agent counts; scaling
   behavior is untested.
 - The connectome is male-specific; sex-generalization is out of scope.
+- **L4 (causal) evidence for the bridge → isolation link is not attainable
+  within the current measurement family** — this is the PR-2b substrate
+  limit, and it should be read as a scope boundary (call for a new
+  instrument) rather than as untested ambition.
+- The preregistered effect sizes at n = 100 remain small (|mean_delta| ≤
+  0.0005), so even a PASS on PR-2 at n = 100 would be a weak claim;
+  the failure is best read as "no effect at this scale," not "the
+  effect is elsewhere."
 
 ---
 
@@ -239,9 +413,18 @@ and compliance properties, not performance properties.
 
 A real connectome can be turned into a *traceable*, *auditable* multi-agent
 topology generator. Three of four candidate advantages survive controlled
-testing; two intuitive advantages (compute, energy) do not, and we say so. The
-released toolkit (MIT, zero third-party dependencies) includes the generator,
-a 12-tool connectome query service, W3C PROV provenance, and the reproducible
+testing; two intuitive advantages (compute, energy) do not, and we say so.
+We preregistered four mechanistic protocols (PR-1–4) plus one proposed
+but not-run substitute (PR-2b); four FAIL, one PASSES, one is WEAK, and
+the not-run experiment is documented with its analytic rejection basis.
+We do not treat the failures as a weakness of the method — we treat
+them as the method, enforced by four additional machine-checkable
+gates (Gate 43–47) that refuse to run experiments whose parameters,
+intervention sets, or proposed metrics are known to be non-independent.
+
+The released toolkit (MIT, zero third-party dependencies) includes the
+generator, a 47-tool connectome query service, W3C PROV provenance,
+a 42-gate self-verification suite (all passing), and the reproducible
 experiment scripts behind every number in this paper.
 
 ---
@@ -260,6 +443,12 @@ experiment scripts behind every number in this paper.
 6. Glenberg, A. M. (2014). ... (modularity debate, embodied cognition).
 7. Campanella, F. (2022). ... (double dissociation methods).
 8. `dataprov` — RI-SE, W3C PROV serialization library (zero-dependency).
+9. Preregistration Protocol v1 (`docs/PREREGISTRATION_PROTOCOL_v1.md`)
+   — this project's preregistration standard (R-0.1 time-ordering,
+   R-0.2 machine fixation, R-0.3 one-shot verification, R-0.4
+   failed-experiment publication).
+10. Gate 43–47 (`scripts/check_llm_orchestrator.py` and supporting
+    checkers) — machine-enforced preregistration integrity.
 
 *Code & data derivatives:* https://github.com/lm203688/flybrain-connectome
 (MIT). The 5.63 GB raw connectome is not redistributed; obtain MaleCNS v1.0
