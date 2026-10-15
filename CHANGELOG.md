@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.79.0` | the toolkit as a whole |
+| package | `2.80.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,57 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.80.0] — 2026-10-15
+
+**P-3 方法学短文骨架完成：Four Disciplines for Self-Verification in Computational Experiments**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新短文 | `docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md`（335 行，独立可发表） |
+| 核心贡献 | **4 条自验证纪律（S6/S7/S8/S9）的形式化 + 机器强制** |
+| 形式化定义 | 三元组 $(D, \Phi, \sigma)$：决策规则 $D$ + 可计算谓词 $\Phi$ + 强制严重度 $\sigma \in \{\text{WARNING}, \text{FAILURE}\}$ |
+| 独立重算原理 | $\Phi$ 必须从原始数据重算，不采信分析者摘要——防止事后篡改 |
+| WARNING vs FAILURE 区分 | S6/S7/S8 = WARNING（观察者可见失败）· S9 = FAILURE（静默失败） |
+| 案例研究 | P1 +33.4pp 伪结果（S6）· R2 密度扫描静默钳位（S7）· R1 三机制证伪（S8）· R4 remove 类扰动（S9） |
+| PAPER_EXIT_ROADMAP | P-3 状态更新：100% + 骨架完成，指向新短文 |
+| 版本 8 处 | `2.79.0 → 2.80.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 关键决策
+
+**自验证纪律是预注册的必要补充，不是替代**：
+- 预注册约束**决策**（做什么、什么时候做）；
+- 自验证约束**执行**（决策是否被完整执行）；
+- 两者构成**防御纵深**（defense-in-depth）：决策端 + 执行端双重把关。
+
+**WARNING vs FAILURE 的区分原则**：
+> 观察者可见的失败应该告警（S6/S7/S8），静默的失败必须阻塞（S9）。
+> 信任预算应该花在观察者可见的失败上，而不是花在可验证的失败上。
+
+**独立重算原理的推广**：Gate 30 和 Gate 47 都采用"从原始数据独立重算，不采信分析者摘要"的原则。这个原理可推广到**所有预注册实验的完整性检查**——不只有预执行拒绝（Gate 47），也有自验证纪律（Gate 30）。
+
+### 论文出口三分最终状态
+
+| # | 论文单元 | 状态 |
+|---|---|---|
+| P-1 主线论文 | 92% 就绪（慢线，卡 D1/D3） |
+| **P-2 PR-2b 短文** | **100% + 骨架完成**（快线完成，v2.79.0） |
+| **P-3 S6-S9 短文** | **100% + 骨架完成**（快线完成，v2.80.0） |
+
+**核心立场**：预注册的价值是让负结果能被发表，不是让实验通过（R-0.4）；
+**预执行拒绝的价值是让"没做的实验"能被发表，不是让"应该做的实验"被跳过（R-0.4′）**；
+**自验证纪律的价值是让"没被执行的决策"能被检测，不是让分析者承担事后解释的责任（S6-S9）**。
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
 
 ---
 
