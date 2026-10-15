@@ -1,0 +1,93 @@
+{
+  "schema": "preexec_rejection_registry_v1",
+  "generated_at": "2026-10-15T15:07:20.486357+00:00",
+  "project": "flybrain-connectome",
+  "project_version": null,
+  "protocol_doc": "docs/PREREGISTRATION_PROTOCOL_v1.md",
+  "paper_ref": "docs/PR2B_PREEXECUTION_REJECTION_PAPER.md",
+  "gate": "Gate 47 (metric_substitution) + Gate 51+52 (C1/C3 prereg integrity)",
+  "env_hash": "301f20b999c6fecdf89dba53f87af8b5697c61e44ca353b2916bf63f223cc9c6",
+  "registry_sha256_of_inputs": {
+    "research_claims.json": "de4cb3e1a03713ccdf6ca07c07cad81daf17bd539a54bf93903dd51645dba455"
+  },
+  "n_rejections": 1,
+  "entries": [
+    {
+      "id": "PR2b",
+      "kind": "pre_execution_rejection",
+      "claim_id": "R1",
+      "registered_at": "2026-10-14",
+      "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-2b",
+      "project_version": null,
+      "proposed_as": "Re-run PR-2 with recovery_AUC substituting drop_magnitude as the consequence variable, motivated by PR-2's own diagnosis that drop_magnitude was saturated at n=10.",
+      "mechanism_under_test": {
+        "modulator_Ra": "1 - bridge_fraction - 0.5 * ap_fraction",
+        "recovery_auc": "mean_t(r(t)) / drop_magnitude",
+        "implication": "recovery_AUC is a monotone function of (1 - bridge_fraction) AND is normalised by the very quantity PR-2 measures, so delete_bridge moves it by construction. Note the counterintuitive direction: deleting a bridge LOWERS bridge_fraction (denominator n_edges shrinks too), which RAISES the R-a modulator and RAISES recovery_AUC -- i.e. it reports 'more recovery' when the system was cut. That is a denominator artifact, not a signal."
+      },
+      "success_criteria": {
+        "reject_if_coupling_corr_abs_min": 0.5,
+        "reject_if_artifact_rate_min": 0.9,
+        "conjunctive": true,
+        "declared_direction_for_recovery_auc": "decrease"
+      },
+      "decision_basis": "NOT the rule's verdict. (a) Analytic: modulator_Ra contains bridge_fraction and recovery_AUC is normalised by drop_magnitude -- provable by reading compute_ablation, no empirical estimate needed. (b) Artifact rate 95.2% with 85.7% separation on the control arm -- a metric that splits the two arms at that rate is tracking the intervention, not reading it independently. (c) The rule is documented as underpowered on its own sample.",
+      "criteria_modified_after_results": false,
+      "unexplored_alternatives": {
+        "larger_n": "Not pursued -- n changes effect size, not the denominator artifact.",
+        "t_half": "Not pursued -- derived from the same trajectory, identical coupling.",
+        "required_to_proceed": "A consequence measure that is NOT derived from bridge_fraction, e.g. a functional read-out under real dynamics. That is outside this project's current compute substrate."
+      },
+      "notes": "This block records an experiment that was DECIDED AGAINST before execution. It is the R-0.4 discipline extended from 'failed experiments are reported' to 'not-run experiments are reported with their reason'. Boundary conclusion: with drop_magnitude effect size <= 0.001 at n <= 100 and no independent second read-out in the current metric family, L4 (causal) evidence for the bridge->isolation link is NOT attainable here. That is a substrate limit, not a sample-size limit -- it should be read as a scope boundary, not a failure to try harder.",
+      "verification": {
+        "verified_against": "_f4b_metric_substitution/f4b_metric_substitution.json",
+        "executed_at": "2026-10-14",
+        "script": "scripts/f4b_metric_substitution_check.py",
+        "params": {
+          "n_topologies": 30,
+          "n_nodes": 50,
+          "start_idx": 200,
+          "seed": 42,
+          "horizon": 40
+        },
+        "n_paired": 21,
+        "skipped": 9,
+        "mean_d_bridge_fraction": {
+          "bridge_arm": -0.0097,
+          "nonbridge_arm": 0.0124
+        },
+        "mean_d_recovery_auc": {
+          "bridge_arm": 0.0079,
+          "nonbridge_arm": -0.0076
+        },
+        "mean_d_drop_magnitude": {
+          "bridge_arm": -0.0001,
+          "nonbridge_arm": -0.0002
+        },
+        "artifact_rate": 0.9524,
+        "recovery_auc_rises_on_bridge_deletion": "20/21",
+        "recovery_auc_falls_on_nonbridge_deletion": "18/21",
+        "corr_d_bridge_fraction_d_recovery_auc_bridge_arm": -0.3537,
+        "corr_d_recovery_auc_d_drop_magnitude": -0.3425,
+        "counterfactual_pr2b_hit_rate_declared_direction": 0.0476,
+        "coupling_hit": false,
+        "artifact_hit": true,
+        "rule_verdict": "ACCEPT",
+        "decision": "REJECT -- PR-2b NOT run",
+        "rule_underpowered": true,
+        "power_diagnostic": {
+          "corr_bridge_arm_only": -0.3537,
+          "corr_pooled_both_arms": -0.902,
+          "corr_nonbridge_arm_only": -0.9056,
+          "var_d_bridge_fraction_bridge_arm": 4.82e-05,
+          "var_d_bridge_fraction_pooled": 0.0002379,
+          "pooled_to_bridge_variance_ratio": 4.94,
+          "note": "The reject rule tests coupling on the BRIDGE arm only, whose var(d_bridge_fraction) is compressed to 1e-3 by the intervention itself (all bridges deleted), so 'is recovery_AUC monotone in bridge_fraction' is unresolvable on that sample. On both arms pooled (4.94x the variance) the coupling is CONFIRMED at |r| = 0.90-0.91. The rule's ACCEPT is a specification defect, not a clearance."
+        }
+      },
+      "receipt_sha256": "5100348a7f31ab15623ed5e5e73caf6f67a2e6e3ce02efdadfbe7ccd23198073",
+      "receipt_path": "receipts/PR2b.json"
+    }
+  ],
+  "license": "CC BY 4.0"
+}
