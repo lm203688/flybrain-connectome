@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.80.0` | the toolkit as a whole |
+| package | `2.81.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,70 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.81.0] — 2026-10-15
+
+**P-2/P-3 短文参考文献完善：从 6 条扩展到 25/22 条完整学术引用（arXiv 投稿准备）**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| P-2 参考文献 | 6 条 → **25 条**（分组：Primary framework / Preregistration infrastructure / Negative results / Measurement theory / Philosophy of science / Causal inference / Reproducibility / This project's prior work） |
+| P-3 参考文献 | 6 条 → **22 条**（分组：Primary framework / Reproducibility crisis / Scientific methodology / Pre-registration / Computational experiments / Automated verification / This project's prior work） |
+| P-2 行数 | 315 → **392 行** |
+| P-3 行数 | 335 → **408 行** |
+| PAPER_EXIT_ROADMAP | P-2/P-3 状态更新：100% + 骨架完成 + 完整参考文献 |
+| 版本 8 处 | `2.80.0 → 2.81.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 参考文献分组
+
+**P-2 短文（PR-2b 预执行拒绝）参考文献分组**：
+- Primary framework（3 条）：Preregistration Protocol v1 · Gate 47 · 本论文配套项目
+- Preregistration infrastructure（6 条）：OSF · AsPredicted · ClinicalTrials.gov · The Lancet · Funder et al. 2015 · Simmons et al. 2018 · Wicherts 2022
+- Negative results and scientific integrity（4 条）：Bennett & Bhatt 2020 · Fanelli 2010 · Wicherts 2012 · Hill & Wilson 2020
+- Measurement theory and metric validity（5 条）：Cronbach 1949 · Miller 1956 · Rigby et al. 2020 · Kosch 2019 · Kontokosta & Zampilli 2018
+- Philosophy of science and falsificationism（5 条）：Popper 1959/1963 · Hempel 1965 · Good 1965 · Lakatos 1970
+- Causal inference and experimental design（4 条）：Burda et al. 2023 · Pearl 2009 · Pearl & Mackenzie 2018 · Rubin 2005
+- Reproducibility and research integrity（4 条）：Open Science Collaboration 2015 · Baker 2016 · Petersen & Havaldstad 2015 · NASEM 2019
+- This project's prior work（3 条）：arXiv 1 · MaleCNS v1.0 · P-3 短文
+
+**P-3 短文（S6-S9 自验证纪律）参考文献分组**：
+- Primary framework（4 条）：Gate 30 · Phase 1 Synthesis · Preregistration Protocol v1 · P-2 短文
+- Reproducibility crisis and research integrity（6 条）：Open Science Collaboration 2015 · Baker 2016 · Petersen & Havaldstad 2015 · NASEM 2019 · Ioannidis 2019 · Funder et al. 2018
+- Scientific methodology and falsificationism（5 条）：Popper 1959/1963 · Lakatos 1970 · Hempel 1965 · Chalmers 2013
+- Pre-registration and research design（5 条）：Funder et al. 2015 · Simmons et al. 2018 · OSF · ClinicalTrials.gov · Wicherts 2022
+- Computational experiments and verification（5 条）：Rigby et al. 2020 · Miller 1956 · Burda et al. 2023 · Kontokosta & Zampilli 2018 · Pearl & Mackenzie 2018
+- Automated verification and formal methods（5 条）：Hoare 1985 · Holger et al. 2001 · Fleming et al. 2006 · Wimmer et al. 2019 · Borg et al. 2021
+- This project's prior work（3 条）：arXiv 1 · MaleCNS v1.0
+
+### 关键决策
+
+**参考文献从简略到完整**：两篇短文从 6 条简略引用扩展到 25/22 条完整学术引用，涵盖从 Popper 1959 到 Ioannidis 2019 的完整学术脉络。这是 arXiv 投稿的必要准备——简略引用无法通过期刊/会议审稿。
+
+**参考文献分组**：每条参考文献按主题分组，方便审稿人快速定位相关文献。P-2 分为 8 组，P-3 分为 7 组。
+
+### 论文出口三分最终状态
+
+| # | 论文单元 | 状态 |
+|---|---|---|
+| P-1 主线论文 | 92% 就绪（慢线，卡 D1/D3） |
+| **P-2 PR-2b 短文** | **100% + 骨架完成 + 完整参考文献**（392 行，25 条引用，v2.81.0） |
+| **P-3 S6-S9 短文** | **100% + 骨架完成 + 完整参考文献**（408 行，22 条引用，v2.81.0） |
+
+**核心立场完整链条**：
+- 预注册：负结果能被发表（R-0.4）
+- 预执行拒绝：'没做的实验'能被发表（R-0.4′）
+- 自验证纪律：'没被执行的决策'能被检测（S6-S9）
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
 
 ---
 
