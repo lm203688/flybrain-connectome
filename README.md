@@ -7,7 +7,7 @@
 [![docker](https://img.shields.io/badge/docker-2.90.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.90.0 · 2026-10-15 · 116 functional units · 270 module profiles · 50 gates · VRO 协议全栈：S1 命题图 + S2 收据 + S3 红队 + S5 徽章 + C1 密化 + C3 rank 标签 + F2 RO-Crate**
+**v2.91.0 · 2026-10-15 · 116 functional units · 270 module profiles · 51 gates · VRO 协议全栈：S1 命题图 + S2 收据 + S3 红队 + S5 徽章 + C1 密化 + C3 rank 标签 + F2 RO-Crate + F3 预执行拒绝公共注册表**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
