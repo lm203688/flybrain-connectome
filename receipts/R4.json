@@ -1,0 +1,27 @@
+{
+  "schema": "vro_receipt_v1",
+  "claim_id": "R4",
+  "statement": "确定性可复算结构指纹（sha256 over 归一化结构）",
+  "protocol_ref": "None",
+  "expected_verdict": "PASS",
+  "raw_sample_sha256": "d22613f88d5815191beddc08ec429e6bac1878a667c06a68cded81a3e8b01e67",
+  "recompute_script_sha256": "62690f22017d7369e7fd7ce6a7bb77dda858792cc78e0b4804e82069e4e9840b",
+  "artifacts": [
+    {
+      "path": "_gate32_r4/r4_sensitivity_scan.json",
+      "sha256": "553688eaedac7049ed4852ecfdd892e2cbfbe0015bf6ba639aad5e48c1028a93",
+      "size": 143388
+    }
+  ],
+  "scripts": [
+    {
+      "path": "scripts/check_topology_signature.py",
+      "sha256": "33ad0e83e0433afe3d8cedf4212be9340a411833de2f956e04d6b62522aabbe3",
+      "size": 11966
+    }
+  ],
+  "env_hash": "068607cf0c693c3748c1be792c7c2747de2bba2191e4ca891749d0be82f88f25",
+  "timestamp": "2026-10-15T13:27:25+00:00",
+  "issued_by": "scripts/issue_receipt.py",
+  "notes": "Structural signature reproducible across seeds; sensitive to non-trivial perturbations."
+}
