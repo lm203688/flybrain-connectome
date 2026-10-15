@@ -1,0 +1,22 @@
+{
+  "schema": "vro_receipt_v1",
+  "claim_id": "R6",
+  "statement": "回路模式跨 4 进化支保守；家族特征可识别",
+  "protocol_ref": "None",
+  "expected_verdict": "BOUNDARY",
+  "raw_sample_sha256": null,
+  "recompute_script_sha256": null,
+  "artifacts": [],
+  "scripts": [
+    {
+      "path": "scripts/build_capability_matrix.py",
+      "sha256": null,
+      "size": null,
+      "status": "missing"
+    }
+  ],
+  "env_hash": "068607cf0c693c3748c1be792c7c2747de2bba2191e4ca891749d0be82f88f25",
+  "timestamp": "2026-10-15T13:27:25+00:00",
+  "issued_by": "scripts/issue_receipt.py",
+  "notes": "Anchored_validated; declarative extension (random_seed=null) declared boundary_anchor_gap."
+}
