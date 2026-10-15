@@ -1,0 +1,17 @@
+{
+  "id": "DEMO-1",
+  "hypothesis": "A structural feature predicts the held-out isolation label.",
+  "metric": "held_out_auc",
+  "features": ["n_bridges", "bridge_fraction"],
+  "success_criteria": {
+    "held_out_auc_min": 0.7,
+    "min_positive_held_out": 3
+  },
+  "train_slice": "0:6",
+  "held_out_slice": "6:12",
+  "label_definition": "y > 0.25",
+  "registered_at": "2026-10-15T00:00:00Z",
+  "reject_rules": [
+    {"type": "coupling", "arm_a": "A", "arm_b": "B", "corr_min": 0.5}
+  ]
+}
