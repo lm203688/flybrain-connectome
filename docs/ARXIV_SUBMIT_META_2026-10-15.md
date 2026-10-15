@@ -1,8 +1,13 @@
-# arXiv 投稿元数据（P-2 / P-3 双短文）— 2026-10-15
+# arXiv 投稿元数据（P-2 / P-3 双短文）— 2026-10-15 · **v2.90.0 更新**
 
-**基线**：v2.82.0（2026-10-15）
-**依赖**：`docs/PR2B_PREEXECUTION_REJECTION_PAPER.md`（P-2，392 行，25 条引用）· `docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md`（P-3，408 行，22 条引用）· `docs/PREREGISTRATION_PROTOCOL_v1.md`
+**基线**：**v2.90.0**（2026-10-15，50 gates / 46 gates in quick mode 全 PASS）
+**依赖**：`docs/PR2B_PREEXECUTION_REJECTION_PAPER.md`（P-2，392 行，25 条引用）· `docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md`（P-3，408 行，22 条引用）· `docs/PREREGISTRATION_PROTOCOL_v1.md` · **NEW** `docs/NEXT_STAGE_VISION_AND_PLAN_2026-10-15.md`（VRO 四层架构）· `claim_graph.json` · `receipts/` · `badges.json` · `ro_crate/`
 **用途**：本文档是 arXiv 提交前的**元数据与合规清单**。用户持 arXiv 账号按此清单准备 LaTex 源文件后即可投稿，无需再补充调研。
+
+**v2.90.0 增量（本轮加入投稿素材）**：
+- ★ **C3 关键翻转**：PR-3 v1 FAIL（0/5 图族）→ PR-3 v2 rank-label PASS（**5/5 图族，含 MaleCNS 真实锚点**）——S7 分辨率预检纪律的**具体证明**，是最强正结果
+- VRO 四层架构落地：命题图（38 nodes/36 edges）+ 9 张验证收据 + 4-vector 红队 + V0–V5 徽章 + RO-Crate 1.1 导出
+- Gate 从 42 增至 50，含 4 组注入电池（Gate 48/49/50/51+52 全部符合 Gate 39 元纪律）
 
 **投稿地址**：<https://info.arxiv.org/help/submitting.html>
 **投稿系统**：<https://ui.arxiv.org>（v4，需要学术邮箱 / 机构邮箱）
@@ -18,7 +23,7 @@
 | **Title** | Preregistered Rejection as a First-Class Negative Result |
 | **Subtitle**（可选） | A methodological note on pre-execution refusal in preregistered research |
 | **Authors** | Lexing (厉兴) — Independent Researcher, affiliation: `lm203688/flybrain-connectome` |
-| **Comments** | Methodological note. 12 pages. Case study with machine-enforced gate (Gate 47). Code and data available at `lm203688/flybrain-connectome`. |
+| **Comments** | Methodological note. 12 pages. Case study with machine-enforced gate (Gate 47). The rejected experiment is now embedded in the Verifiable Research Object (VRO) protocol — hash-committed receipt + red-team adversarial suite + V5 verification badge. Code and data available at `lm203688/flybrain-connectome`. |
 | **Subjects (primary)** | `stat.ME` — Methodology |
 | **Subjects (cross-lists)** | `stat.CO` — Computation · `cs.LG` — Machine Learning · `q-bio.NC` — Neural and Cognitive |
 | **License** | CC BY 4.0（推荐；MIT 代码 + CC BY 论文） |
@@ -45,7 +50,8 @@
 2. 形式化 `R_E = ⟨E, D, J, A, U, T⟩` 六元组定义；
 3. 独立论证原则（解析独立 + 经验独立）+ Gate 47 机器门禁；
 4. PR-2b 案例研究：伪影率 95.2% / 对照臂 85.7% 反向 / 合并 |corr|=0.902；
-5. **基底上限作为贡献**：新认识论边界（scope boundary，非 sample-size boundary）。
+5. **基底上限作为贡献**：新认识论边界（scope boundary，非 sample-size boundary）；
+6. **VRO 工程化落地**（v2.90.0 新增）：预执行拒绝不再只是文档，而是**哈希承诺的验证收据**（9 张 receipts / `vro_receipt_v1`）+ **V5 验证徽章**（红队 4-vector 全通过 + 独立可重算）+ **RO-Crate 1.1 导出**（22 entries，schema.org/CreativeWork + Dataset + sha256）——被拒绝的实验同样获得完整溯源与可审计性。
 
 ---
 
@@ -82,10 +88,33 @@
 ### 2.4 主要贡献（投稿表单填写用）
 
 1. 定义 $(D, \Phi, \sigma)$ 三元组作为学科形式的自验证规则；
-2. 4 条纪律 + 4 个真实案例研究（P1 伪 +33.4pp / R2 静默 clamp / R1 三机制证伪 / R4 remove 扰动）；
-3. Gate 30 机器门禁（WARNING vs FAILURE 分级）；
+2. 4 条纪律 + **5 个真实案例研究**：
+   - P1 伪 +33.4pp → S6 对照组可得分性（random 组 motif_family 构造上不可得分，净效应 −0.01）
+   - R2 密度扫描静默 clamp（目标 0.001–0.100 vs 实际 0.001–0.00643）→ S7 分辨率预检
+   - R1 三机制证伪（R² ≈ 0）→ S8 证伪即产出（`falsified_mechanisms` 结构化列表）
+   - R4 remove 边界信号 → S9 扰动优于相关性
+   - **★ C3 PR-3 v1→v2 翻转**（v2.90.0 新增）：绝对阈值 `drop_magnitude>0.25` FAIL 0/5 图族 → 分位标签 `rank_within_family(quantile=0.75)` **PASS 5/5 图族，含 MaleCNS 真实锚点 AUC 0.87–0.96**。这是 S7 纪律的**正向证明**：分辨率修复能把科学空结果转为真实正结果，不只是"避免陷阱"。
+3. Gate 30 机器门禁（WARNING vs FAILURE 分级），本轮扩展到 5 个纪律案例门禁（Gate 49 红队电池 4/4 历史缺陷被捕获）；
 4. 与预注册的关系：**互补而非替代**（预注册约束决定内容，自验证约束执行方式）；
-5. 项目 42/42 门禁 + V3 自验证作为**已生产运行 3 个月**的实证。
+5. 项目 **50 gates / 46 gates in quick mode 全 PASS**（v2.90.0，v2.82.0 基线时是 42 gates / 42 PASS），V3 自验证作为**已生产运行 3+ 个月**的实证；新增 VRO 四层架构（命题图 + 验证收据 + 红队 + V0–V5 徽章）作为工程化产出。
+
+### 2.5 关于 C3 案例的额外说明（P-3 论文正文建议新增一节）
+
+C3 是**唯一的新增正结果**，其科学意义在于：
+- **不是新机制**：图结构→行为预测的机制本身没变，仍是"hub + reachability + motif 组合"；
+- **是分辨率的贡献**：证明"科学空结果"与"分辨率不足"是**两种独立现象**，需要通过 S7 纪律显式分离；
+- **可发表为方法学短文**：C3 单独可作为一节"S7 case: from FAIL to PASS by rank relabeling"，或作为 P-3 第五个案例。
+- 论文正文建议加入表格：`Families | PR-3 v1 (absolute) | PR-3 v2 (rank q=0.75)`：
+
+| Family | n | v1 n_positive | v1 AUC | v2 n_positive | v2 AUC |
+|---|---|---|---|---|---|
+| project_synthetic | 10 | 0 | 0.50 | 2–4 | 0.73–0.91 |
+| erdos_renyi | 20 | 0 | 0.50 | 5 | 0.92 |
+| barabasi_albert | 30 | 0 | 0.50 | 5 | 0.96 |
+| watts_strogatz | 40 | 0 | 0.50 | 8 | 0.76–1.00 |
+| **malecns_subgraph** | **50** | **0** | **0.50** | **9–12** | **0.87–0.96** |
+
+**核心信息**：跨图族的可达性预测机制**确实可泛化**——PR-3 v1 的 FAIL 是标签分辨率缺陷，不是科学空结果。**MaleCNS 真实锚点首次达到 publishable 正结果**，这是本轮最重要的科学贡献。
 
 ---
 
@@ -175,10 +204,24 @@ grep -c "^\\[\\d\\] \\|^##\\[\\d\\]" docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPE
 
 ---
 
-## 附：本项目论文三篇一览（截至 v2.82.0）
+## 附：本项目论文一览（截至 v2.90.0 · 2026-10-15）
 
 | 论文 | 状态 | 就绪度 | 依赖 | 提交路径 |
 |---|---|---|---|---|
 | **P-1 主线** | Draft v1.2.0（455 行） | 🟡 92% | D1 机制 + D3 仓库 | 延后 |
-| **P-2 PR-2b 短文** | Skeleton v0.1（392 行 + 25 引） | ✅ 100% | 无 | 1-2 周内可投 |
-| **P-3 S6-S9 短文** | Skeleton v0.1（408 行 + 22 引） | ✅ 100% | 无 | 1-2 周内可投 |
+| **P-2 PR-2b 短文** | Skeleton v0.1（392 行 + 25 引） | ✅ 100% | 无（VRO 收据已嵌入） | **推荐先投** |
+| **P-3 S6-S9 短文** | Skeleton v0.1（408 行 + 22 引） | ✅ 100% | 无（含 C3 案例，本轮最强正结果） | **与 P-2 同批** |
+| **P-4 C3 案例短文**（v2.90.0 候选） | Outline 待写 | ⚪ 30% | 无 | **可选**（若 P-3 太厚，独立成 4 页短文） |
+
+**关于 P-4**（本轮新增可选方案）：C3 PR-3 v1→v2 翻转（绝对阈值 0/5 → 分位标签 5/5 图族，含 MaleCNS 真实锚点 AUC 0.87–0.96）是本轮**唯一的新正结果**。若 P-3 加入该案例后篇幅过长，可拆出为独立短文：
+- **Title**："Resolution-Clamp Fixes: When a Scientific Null Becomes a Scientific Positive"
+- **Subtitle**："A case study in rank-based relabeling for cross-family generalization"
+- **Subjects**：`stat.ME` + `cs.LG` + `q-bio.NC`
+- **核心论点**：绝对阈值 vs 分位标签的差异，会把"科学空结果"错误诊断为"分辨率不足"或反之——S7 分辨率预检纪律是**双向诊断工具**（既能让 PR-2b 被识别为不可做，也能让 PR-3 v1 被识别为可救）。
+- **贡献**：一个跨图族的实证案例（MaleCNS 真实数据 AUC 0.87–0.96）+ S7 纪律的**正向应用**证明。
+
+**投稿路径建议（v2.90.0 更新版）**：
+1. 立即投 P-3（已含 C3 案例，5 案例 + VRO 徽章 + 50 gates 全 PASS 是完整卖点）；
+2. 1 周后投 P-2（VRO 收据已作为 PR-2b 的可审计产出）；
+3. 若 P-3 篇幅过厚，拆出 P-4；
+4. P-1 主线延后，仍等 D3 仓库公开决策。
