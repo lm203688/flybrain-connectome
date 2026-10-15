@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.84.0` | the toolkit as a whole |
+| package | `2.85.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,62 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.85.0] — 2026-10-15
+
+**N4 决策清单落地 + selfverify 单元测试 + G4/G8 门槛文档同步**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新增 `docs/PUBLIC_RELEASE_DECISION_CHECKLIST_2026-10-15.md` | 把 `prep_public_release.py --dry-run` 输出转成人类可读的**逐项决策清单**：A1–A5（敏感目录）· B1–B5（敏感文件）· C1–C2（私有声明残留）· D（git 历史清洗，最关键）；每项含 keep/clean/history_rewrite 三选一推荐 + 具体操作命令 + 快速命令包 |
+| 新增 `tools/selfverify/tests/test_gate.py` | 12 个测试：AUC（6 路径含退化）+ Pearson（3 路径含零方差）+ independent_recompute（3 路径含 summary 字段攻击）+ check verdicts（4 判据 + 优先级 + WEAK/FAILURE 区分）+ edge cases（空样本、全同分） |
+| 新增 `tools/selfverify/tests/test_prerejection.py` | 12 个测试：coupling 数值（4 路径含反向相关）+ evaluate_rejection（7 路径含未知 arm 降级、非耦合规则跳过、无规则返回空、严格阈值、自定义阈值）+ demo 协议验证 |
+| `docs/RELEASE_GATE_ASSESSMENT_2026-10-14.md` 更新 | 顶部日期扩展到「v2.74.0 初评 → v2.75.0 回填 → v2.76.0 复测 → v2.84.0 产品化补强」；新增「四、v2.84.0 补强」章节：N1–N5 表格 + 战略含义（门槛不翻转但 A 面跃迁）|
+| 版本 8 处 | `2.84.0 → 2.85.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG）|
+
+### 单元测试实测
+
+```bash
+cd tools/selfverify
+"C:/Python314/python.exe" -m unittest discover -s tests
+# Ran 32 tests in 0.001s — OK
+```
+
+**测试覆盖**：4 类判据（SUCCESS / FAILURE / WEAK / PRE_EXECUTION_REJECTION）· AUC 退化路径（空样本、单类、全同分、并列）· Pearson 零方差 · summary 字段攻击（防篡改原理）· unknown arm 降级不崩溃 · 自定义阈值 · 反相关视为耦合（|Pearson|）。
+
+### 与 v2.84.0 的关系
+
+| 项 | v2.84.0 | v2.85.0 |
+|---|---|---|
+| selfverify 包本体 | ✅ 已落地 | 无变更 |
+| selfverify 单元测试 | ❌ 缺失 | ✅ 32 测试全绿 |
+| N4 决策清单 | `prep_public_release.py` 只输出 JSON | ✅ 人类可读决策文档（每项拍板推荐 + 命令包）|
+| G4/G8 门槛状态文档 | v2.76 时代 | ✅ 同步到 v2.84.0 + 新增「v2.84.0 补强」章节 |
+| 门槛判定 | 4 ✅ / 2 🟡 / 2 ❌ | 未翻转（N1–N4 都属 A 面/A 侧文档，不触及 G3/G5 结构性缺口） |
+
+### N1–N5 状态（截至 v2.85.0）
+
+| # | 项 | 状态 |
+|---|---|---|
+| N1 | selfverify 独立包 | ✅ v2.84.0 落地 + v2.85.0 32 单元测试 |
+| N2 | 论文口径收敛 | ✅ v2.82.0 完成（grep 无残留）|
+| N3 | arXiv 元数据 | ✅ v2.83.0 落地（等用户账号）|
+| N4 | D3 公开准备 | ✅ v2.82.0 脚本 + v2.85.0 决策清单（等用户拍板 D 选项）|
+| N5 | MaleCNS 动力学 | ⏸ 明确延后 |
+
+### 用户待决策（阻塞项，AI 无法自主推进）
+
+1. **D3 公开决策**：`docs/PUBLIC_RELEASE_DECISION_CHECKLIST_2026-10-15.md` 已给出 4 选项（D-i 不重写 / D-ii 局部重写 / D-iii 全量重写 / D-iv 延迟公开），推荐 **D-ii**（局部重写 `.workbuddy-ai/` + 抽查 Tier-2 数据）
+2. **arXiv 投稿**：`docs/ARXIV_SUBMIT_META_2026-10-15.md` 已备齐 P-2/P-3 元数据，需用户持账号投稿（建议先投 P-3）
+
+### 门禁与推送
+
+- 门禁 `run_gates.py --quick` = **42/42 PASS**（含 Gate 43–47）
+- 提交 `待生成`，推送 `gh_publish.py --branch master`
 
 ---
 
