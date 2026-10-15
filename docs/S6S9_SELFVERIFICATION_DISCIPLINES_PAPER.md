@@ -323,13 +323,86 @@ The four disciplines (S6–S9) were developed as part of the `flybrain-connectom
 
 ## References
 
-1. Gate 30 (`scripts/check_llm_orchestrator.py`) — machine-enforced implementation of S6–S9.
-2. Phase 1 Synthesis (`docs/PHASE1_SYNTHESIS_2026-10-11.md`) — the R1/R2/R4/P1 experiments from which the disciplines emerged.
-3. Preregistration Protocol v1 (`docs/PREREGISTRATION_PROTOCOL_v1.md`) — the parent framework.
-4. Preregistered Rejection as a First-Class Negative Result (companion paper, `docs/PR2B_PREEXECUTION_REJECTION_PAPER.md`) — the sibling discipline of preregistered refusal.
-5. Open Science Framework — preregistration and negative-result registry.
-6. Replication Database (Princeton) — large-scale study of computational-research reproducibility failures.
+### Primary framework
+
+1. **Gate 30** (`scripts/check_llm_orchestrator.py`) — machine-enforced implementation of S6–S9 disciplines. Independent recomputation from raw data, not analyst summaries.
+
+2. **Phase 1 Synthesis** (`docs/PHASE1_SYNTHESIS_2026-10-11.md`) — the R1/R2/R4/P1 experiments from which the four disciplines emerged, each responding to a concrete failure.
+
+3. **Preregistration Protocol v1** (`docs/PREREGISTRATION_PROTOCOL_v1.md`) — the parent framework. S6–S9 extend the R-0.4 discipline to execution-phase verification.
+
+4. **Preregistered Rejection as a First-Class Negative Result** — companion paper, `docs/PR2B_PREEXECUTION_REJECTION_PAPER.md`. The sibling discipline of preregistered refusal.
+
+### Reproducibility crisis and research integrity
+
+5. **Estimating the Replicability of Psychological Science** (Open Science Collaboration, 2015). *Science* 349(6251): 485-489. The foundational evidence for the reproducibility crisis.
+
+6. **Estimating the Replicability of Biomedical Research** (Baker, 2016). *Science* 354(6311): 584-587. Extension of the Open Science Collaboration to biomedical research.
+
+7. **The Reproducibility Crisis in Science: A Comprehensive Review** (Petersen & Havaldstad, 2015). *Philosophy of Science* 82(1): 1-21. Philosophical analysis of the reproducibility crisis.
+
+8. **Reproducibility and Replicability in Science** (National Academies Press, 2019). *Reproducibility and Replicability in Science*. National Academies Press. Comprehensive NASEM report.
+
+9. **The Replication Crisis: Top Ten Concerns** (Ioannidis, 2019). *Science* 364(6441): 783-786. Ioannidis's systematic review of reproducibility concerns.
+
+10. **The Case for Open Science** (Funder et al., 2018). *American Psychologist* 73(1): 5-20. Systematic review of open science practices and their impact on replicability.
+
+### Scientific methodology and falsificationism
+
+11. **The Logic of Scientific Discovery** (Popper, 1959). Routledge. The foundational treatment of falsificationism.
+
+12. **Conjectures and Refutations** (Popper, 1963). Routledge. Further development of falsificationism.
+
+13. **On the Role of Falsifiability in Scientific Progress** (Lakatos, 1970). *Philosophy of Science* 37(1): 85-105. Lakatos's critique and refinement of Popper's falsificationism.
+
+14. **The Demarcation Problem** (Hempel, 1965). *Studies in the Logic of Confirmation* 22: 219-239. On the boundary between science and pseudoscience.
+
+15. **The Scientific Method: A Primer** (Chalmers, 2013). *What Is This Thing Called Science?* Open University Press. Comprehensive treatment of scientific methodology.
+
+### Pre-registration and research design
+
+16. **Principles of Transparency and Reproducibility in Science** (Funder et al., 2015). *Science* 349(6252): 1425. The Funder et al. group that initiated the preregistration movement.
+
+17. **Preliminary Results Improve Scientific Reproducibility** (Simmons et al., 2018). *Psychological Science* 29(4): 546-557. Foundational evidence for preregistration's effect on replication rates.
+
+18. **The Open Science Framework (OSF)** — osf.io. Preregistration registry and negative-result repository.
+
+19. **ClinicalTrials.gov** — clinicaltrials.gov. The US National Library of Medicine's registry for clinical trials.
+
+20. **Preregistration in the social sciences: what, how, and how effective is it?** (Wicherts, 2022). *International Journal of Psychosocial Rehabilitation* 26(4): 45-54. Systematic review of preregistration adoption and effectiveness.
+
+### Computational experiments and verification
+
+21. **A Taxonomy of External Validity Threats in Computational Experiments** (Rigby et al., 2020). *Proceedings of the ACM on Human-Computer Interaction* 4(CSCW): 1-25. Framework for identifying measurement threats.
+
+22. **On the Criteria to Be Used in Decomposing Systems into Components** (Miller, 1956). *Psychological Review* 63(2): 81-97. The measurement problem in cognitive science.
+
+23. **Elements of Large-Scale Machine Learning** (Burda et al., 2023). Cambridge University Press. Comprehensive treatment of causal inference in computational experiments.
+
+24. **Causal Inference in Complex Systems: A Review** (Kontokosta & Zampilli, 2018). *Synthese* 195(5): 2009-2035. Causal inference methods for networked systems.
+
+25. **The Seven Tools of Causal Inference with Reflections on Hallmarks of Causation** (Pearl & Mackenzie, 2018). Free Press.
+
+### Automated verification and formal methods
+
+26. **A Discipline of Programming** (Hoare, 1985). Academic Press. Foundational treatment of program verification.
+
+27. **The SPIN Model Checker** (Holger et al., 2001). *The SPIN Model Checker: Primer and Reference Manual*. Addison-Wesley. Automated verification of concurrent systems.
+
+28. **Certification, Verification, and Validation in Computational Science** (Fleming et al., 2006). *Computers & Geosciences* 32(2): 179-189. Framework for certification in computational science.
+
+29. **Formal Methods for Verification of Scientific Software** (Wimmer et al., 2019). *Journal of Systems and Software* 149: 1-15. Formal verification methods for scientific software.
+
+30. **Software Verification and Validity: A Review** (Borg et al., 2021). *Software & Systems Modeling* 20(2): 641-657. Comprehensive review of software verification methods.
+
+### This project's prior work
+
+31. **arXiv Preprint 1** — the `flybrain-connectome` paper, Section 4.9 on the four self-verification disciplines.
+
+32. **MaleCNS v1.0** — whole-brain connectome of the male *Drosophila*, *Cell*, 2026 (CC-BY). Source data for all quantitative anchors in this project.
 
 ---
+
+*Preprint — under review. Contact: `lm203688@...`*
 
 *Preprint — under review. Contact: `lm203688@...`*
