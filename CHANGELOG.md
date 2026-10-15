@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.82.0` | the toolkit as a whole |
+| package | `2.83.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,41 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.83.0] — 2026-10-15
+
+**N3 arXiv 投稿元数据落地 — P-2 / P-3 双短文可直接提交**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新增 `docs/ARXIV_SUBMIT_META_2026-10-15.md` | 双短文 arXiv 提交前元数据与合规清单（v4 UI 字段 + 摘要 + 关键词 + 分类 + 贡献列表 + 14 项合规勾稽） |
+| P-2 元数据 | Title / Subtitle / Primary `stat.ME` / Cross-list `cs.LG` + `q-bio.NC` / License CC BY 4.0 / Abstract 1891 字符 / 5 条主要贡献 |
+| P-3 元数据 | Title / Subtitle / Primary `stat.ME` / Cross-list `cs.SE` + `cs.LG` / License CC BY 4.0 / Abstract 1908 字符 / 5 条主要贡献 |
+| 合规清单 | 5 段 14 项勾稽（元数据 / 摘要 / 内容 / 伦理 / 提交前自检），含 pandoc 转 PDF 命令、摘要字符数校验、参考文献数量校验 |
+| 推荐投稿顺序 | P-3 先投（4 条纪律独立清晰）→ P-2 后投 1 周（更方法论化，交叉引用）；P-1 主线延后 |
+| D3 过渡声明 | 若用户选择"先提交 arXiv 再公开仓库"，Comments 段改为"Code will be made publicly available upon acceptance"（arXiv 常见过渡，不导致拒收） |
+| 版本 8 处 | `2.82.0 → 2.83.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 论文三篇一览（截至 v2.83.0）
+
+| 论文 | 状态 | 就绪度 | 依赖 | 提交路径 |
+|---|---|---|---|---|
+| **P-1 主线** | Draft v1.2.0（455 行） | 🟡 92% | D1 机制 + D3 仓库 | 延后 |
+| **P-2 PR-2b 短文** | Skeleton v0.1（392 行 + 25 引）+ 元数据 | ✅ **100%（含元数据）** | 无 | 1-2 周内可投 |
+| **P-3 S6-S9 短文** | Skeleton v0.1（408 行 + 22 引）+ 元数据 | ✅ **100%（含元数据）** | 无 | 1-2 周内可投 |
+
+### 门槛最终状态
+
+**8 项：✅ 4（G1/G2/G6/G7）· 🟡 2（G4 ~92% / G8）· ❌ 2（G3/G5）**——维持 v2.82.0，本阶段无翻转。
+剩余全部为**用户拍板 + arXiv 账号 + 时间**类阻塞：
+- **D3 公开仓库**（用户拍板 + git 历史重写）
+- **arXiv 账号 + 投稿操作**（用户本人）
+- **G3 基底上限**（结构性，无低成本翻转）
+- **G5 锚定单元**（高成本数据工程）
 
 ---
 
