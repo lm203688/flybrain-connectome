@@ -11,7 +11,7 @@
 | # | 论文单元 | 目标期刊 | 前置条件 | 素材完整度 |
 |---|---|---|---|---|
 | **P-1 主线论文** | *Scientific Reports* / *PLoS ONE* / *Journal of Complex Networks* | D1 机制（正/负皆可）+ D3 仓库公开化 | **92%**（v2.76.0 已就绪，见 `docs/arxiv_paper.md`） |
-| **P-2 方法学短文 A** | *JOSS* / *PeerJ Comput Sci* / *Patterns* | 无（零外部依赖） | **100%**（v2.76.0 §4.8 已就绪） |
+| **P-2 方法学短文 A** | *JOSS* / *PeerJ Comput Sci* / *Patterns* / arXiv | 无（零外部依赖） | **100% + 骨架完成**（`docs/PR2B_PREEXECUTION_REJECTION_PAPER.md`，315 行，v2.79.0） |
 | **P-3 方法学短文 B** | *Patterns* / *Nature Methods* (Comment) / arXiv.org | 无（零外部依赖） | **100%**（v2.76.0 §4.9 已就绪） |
 
 **核心洞察**：P-2 与 P-3 **零外部依赖**——不等 D1/D3，可立即推进；主线论文 P-1 卡在 D1/D3，是慢线。
