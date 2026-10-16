@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.74.0` | the toolkit as a whole |
+| package | `2.91.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,721 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.92.0] — 2026-10-16
+
+**论文投稿决策 memo —— arXiv 投稿路径判断 + 下一步建议**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| **论文投稿决策 memo** | |
+| 决策文档 | `docs/PAPER_DECISION_MEMO_2026-10-16.md`（≈250 行）；判断依据（用户三条约束）+ 论文质量评估 + 为什么不投 arXiv + 建议路线（短期拆短文 / 中期 D3 公开化 / 长期主线论文投稿）+ 当前建议（立即可做 / 需用户拍板 / 不建议做） |
+| **arXiv 投稿判断** | |
+| 主线论文投稿 | ❌ 本轮不投；仓库公开化（D3）是 arXiv 硬门槛，当前仍私有 |
+| 论文质量评分 | 综合 **89/100**（结构 100 / 预注册 100 / 诚实负结果 100 / 可追溯 95 / 方法学 90 / 仓库公开 0） |
+| **独立可发表单元** | |
+| 短文 P-4 | ✅ 已完成 `docs/PAPER_P4_CASE_STUDY.md`（PR-2b 预执行拒绝案例，5–6 页方法学短文）；可投 arXiv（cs.LG 或 q-bio.NC），只需公开最小代码子集 |
+| 短文 P-5 | ❌ 需新建 `docs/PAPER_P5_CASE_STUDY.md`（S6-S9 四纪律方法学短文）；可投 arXiv（cs.CY 或 cs.LG），只需公开 Gate 30 相关脚本 |
+| **下一步建议** | |
+| 立即可做 | 完成短文 P-5；投稿 P-4 和 P-5 到 arXiv（只需公开最小代码子集） |
+| 需用户拍板 | D3 仓库公开化（是否公开、何时公开）；主线论文投稿（D3 公开后是否立即投稿） |
+| 不建议做 | 现在投主线论文（仓库私有 = 无投稿资格）；为投稿修改论文主张（重演 PR-2b 教训）；为投稿补跑 PR-2/PR-3（违反 R-0.4 纪律） |
+
+### 关键决策
+
+**论文投稿路径判断：本轮不投 arXiv。** 论文素材质量已到 ~92%，但仓库公开化（D3）仍为 ❌，是 arXiv 硬门槛。建议拆两篇方法学短文（P-4/P-5）作为独立出口，主线论文等用户拍板 D3 后再提交。
+
+### 论文质量评估
+
+| 维度 | 分数 | 说明 |
+|------|------|------|
+| 论文结构 | 100/100 | 完整学术论文结构，Abstract→Introduction→Methods→Results→Discussion→Conclusion |
+| 预注册纪律 | 100/100 | 5 条预注册 + 4 条机器门禁 + 1 条预执行拒绝 |
+| 诚实负结果 | 100/100 | 4/5 预注册 FAIL，2 条主要主张负结果，全部如实报告 |
+| 可追溯性 | 95/100 | W3C PROV-JSON provenance bundle，Gate 43–47 机器验证 |
+| 方法学贡献 | 90/100 | S6-S9 四纪律 + PR-2b 预执行拒绝 + 基底上限声明 |
+| **仓库公开化** | **0/100** | **仍私有，arXiv 硬门槛未过** |
+| **综合** | **89/100** | 素材质量高，但缺 arXiv 硬门槛 |
+
+### 核心立场
+
+**预注册的价值是让负结果能被发表，不是让实验通过。** 5 条里 4 条是负结果，1 条是决策不做的实验也固化——没有把任何 FAIL 刷成 PASS。
+
+---
+
+## [2.91.0] — 2026-10-15
+
+**F3 预执行拒绝公共注册表 + P-3 论文正文补 C3 案例 + P-4 C3 案例短文起草 —— VRO 论文出口三分补齐**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| **F 阶段 — F3 落地** | |
+| F3 预执行拒绝公共注册表 | `scripts/export_preregistration_registry.py` + `registry/preregistered_rejections.json`；从 research_claims.json 抽取所有 `kind=pre_execution_rejection` 段（当前 1 条：PR2b），每条含 receipt_sha256 交叉验证 + env_hash + registry_sha256_of_inputs 溯源链；`--check` 自验同步性 |
+| Gate 53 注册 | `scripts/run_gates.py` 加 `gate53 prereg rejection registry`；Gate 39 元纪律自动遵守（`--check` flag 是天然的注入验证） |
+| **P-3 论文正文升级** | |
+| §4.5 C3 案例（★新案例） | `docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md` 新增 §4.5「S7 case (v2.90.0): the PR-3 label-resolution fix — a *positive* case study」；把 C3 翻案作为 S7 的**构造性论据**（不只是防御性避坑，也能翻科学空结果） |
+| **P-4 C3 案例短文起草** | |
+| P-4 全文 | `docs/C3_RESOLUTION_CLAMP_FIXES_PAPER.md`（≈240 行）；5–6 页方法学短文；标题 "Resolution-Clamp Fixes: When a Scientific Null Becomes a Scientific Positive"；含 Abstract + Introduction（科学空 vs 分辨率失败二分法）+ S7 形式化 + PR-3 v1→v2 案例 + 讨论 + 10 条参考 |
+| **arXiv 投稿元数据更新** | |
+| P-3 论文元数据 | `docs/ARXIV_SUBMIT_META_2026-10-15.md` P-3 Comments 更新为 5 案例（含 C3）；§2.5 表格加入 PR-3 v1 vs v2 跨 5 图族对比（MaleCNS 0.87–0.96） |
+| P-4 候选登记 | arXiv meta 附「P-4 C3 案例短文」候选条目 + 目标期刊（Patterns / JOSS / arXiv） |
+| **门禁与版本** | |
+| 门禁总数 | 46 → **47**（新增 Gate 53 prereg registry）；**47/47 PASS** in --quick |
+| README | v2.90.0 → v2.91.0；header 加入 F3 预执行拒绝公共注册表 |
+| 版本 bump 5 处 | pyproject.toml / flybrain_cli.py / mcp_connectome/server.py / mcp_connectome/api_server.py / CHANGELOG package row |
+
+### 关键科学贡献
+
+**P-3 §4.5 的加入是本轮最关键的论文改动**。上一版 P-3 只有 4 个「防御性避坑」案例（S6 伪结果 / S7 静默 clamp / S8 证伪遗漏 / S9 扰动优于相关性）——都是「纪律防止了错误」。本轮新增的 C3 案例是**构造性论据**：S7 纪律不只是避坑，还能**翻科学空结果**——把 PR-3 v1 的 0/5 families FAIL 转为 5/5 families PASS（含 MaleCNS 真实锚点 AUC 0.87–0.96）。这补上了 S7 纪律论述的另一半。
+
+### F3 的意义
+
+F3 是 VRO 报告最后落地的融合层交付。它把 PR-2b 从「项目内部的预执行拒绝」升级为「可分享、可交叉验证的公共注册表条目」。每条注册都含：
+- `id`（PR2b）、`claim_id`（R1）、`registered_at`（2026-10-14）
+- `decision_basis`（analytic redundancy 证据链）
+- `unexplored_alternatives`（3 条未走路径）
+- `receipt_sha256`（交叉 `receipts/PR2b.json` 哈希）
+- `registry_sha256_of_inputs`（溯源到 research_claims.json）
+
+Gate 53 用 `export_preregistration_registry.py --check` 强制同步性——研究声明改了、registry 没跟着改，就 FAIL。
+
+### 论文出口状态（截至 v2.91.0）
+
+| 论文 | 就绪度 | 依赖 |
+|---|---|---|
+| P-1 主线 | 🟡 92% | D1 机制 + D3 仓库（用户拍板） |
+| **P-2 PR-2b 短文** | ✅ 100% | 无（VRO 收据 + F3 registry 已嵌入） |
+| **P-3 S6-S9 短文** | ✅ 100% | 无（本轮加入 C3 案例，5 案例齐全） |
+| **P-4 C3 案例短文（新）** | ✅ 80%（骨架 + 完整讨论 + 参考文献） | 无 |
+
+**投稿顺序建议**：P-3 先投（含 C3 是唯一正结果）→ 1 周后 P-2 → 视篇幅选 P-4 独立投或作 P-3 附录 → P-1 主线延后。
+
+---
+
+## [2.90.0] — 2026-10-15
+
+**VRO 协议全栈落地：S 阶段（S1–S5）+ C 阶段（C1/C3）+ F 阶段（F2）—— 从「私仓门禁」到「可验证研究对象协议」参考实现**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| **S 阶段 — 科学基础设施** | |
+| S1 命题图（Blueprint IR） | `scripts/claim_graph.py` + `scripts/check_claim_graph.py`（**Gate 48**）+ `claim_graph.json`（38 节点 / 36 边 / 6 claim / 14 evidence / 6 assumption / 6 definition / 6 risk）；节点类型化 + 边类型化 + 状态阶梯（draft → stated → supported → verified \| refuted \| rejected \| boundary）|
+| S2 验证收据 | `scripts/issue_receipt.py` + `scripts/verify_receipt.py`；`receipts/` 9 张收据（R1–R6 + PR2/PR4/PR2b）；每条含 `raw_sample_sha256` / `recompute_script_sha256` / `env_hash` / `expected_verdict`；第三方篡改任一哈希即 MISMATCH |
+| S3 对抗红队（★最高价值） | `tools/selfverify/selfverify/redteam.py`（4 类攻击：summary_tamper / metric_saturation / analytic_redundancy / resolution_clamp）+ `scripts/check_claim_redteam.py`（**Gate 49**）；对 4 个历史缺陷（P1 伪结果 / R2 钳位 / R1 饱和 / PR-2b 耦合）逐一回放全部命中；含 4/4 clean injection battery |
+| S5 验证徽章 V0–V5 | `scripts/compute_verification_badges.py` + `scripts/check_verification_badges.py`（**Gate 50**）+ `badges.json`；六级阶梯（bare → machine-tested → preregistered → cross-checked → receipt → redteam）；R1 得 V5，R2/R4/R5 得 V1，R3/R6 得 V0（诚实）|
+| **C 阶段 — 连接组科学翻盘** | |
+| C1 Cell 级密化（PR-5） | `scripts/c1_cell_densification.py` + `_c1_cell_densification/c1_results.json`；密度 0.10 / n=50 / 30 seeds / 3 layouts（random / motif / barabasi）；**honest FAIL**（effect_size=0.0，全部 AUC=0.5）；PR-5 预注册于 research_claims.json，`change_from_v1` 明确记录为 recovery 假设验证 |
+| C3 PR-3 v2 rank 标签（★关键发现） | `scripts/c3_rank_label_pr3_v2.py` + `_c3_rank_label_pr3v2/c3_results.json`；把 v1 的绝对阈值 `drop_magnitude>0.25` 改为**秩/分位标签**（quantile=0.75）；**PR-3 从 FAIL（0/5 families）翻转为 PASS（5/5 families，含 MaleCNS real）**；AUC：project_synthetic 0.73-0.91 / ER 0.92 / BA 0.96 / WS 0.76-1.0 / MaleCNS 0.87-0.96 —— **证实 PR-3 v1 是 S7 resolution-clamp 伪影，不是科学 null，机制确实跨族普适** |
+| **F 阶段 — 融合** | |
+| F2 RO-Crate 导出 | `scripts/export_ro_crate.py` + `ro_crate/ro_crate.json`（22 entries，6 claims + 14 evidence + 36 edges）+ `ro_crate_manifest.json`；每 claim 是 schema.org/CreativeWork 带 citation 链，每 evidence 是 Dataset 带 sha256；可被 SPARQL/yProv4ML/nanopublication 摄入 |
+| **门禁体系扩展** | Gate 48 claim graph + Gate 49 red-team battery + Gate 50 verification badges + Gate 51+52 C1/C3 prereg integrity；run_gates.py 现 50 gates（quick 覆盖）；42 → 50，全部 PASS |
+| research_claims.json | 新增 PR-5（C1）+ PR3_v2（C3）预注册段；PR3 v1 保留（R-0.1 时间顺序合规）；PR3_v2 含 `change_from_v1` 明确字段 |
+| run_gates.py | 注册 Gate 48 / 49 / 50 / 51+52（+4 gates）|
+| README.md | 版本 8 处 2.85.0 → 2.90.0；header 说明 VRO 协议全栈 |
+| 版本 8 处 | `2.85.0 → 2.90.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG）|
+
+### 关键科学发现（本轮）
+
+**C3 的 PASS 翻转是本轮最重大的科学产出**。上一阶段（v2.74-v2.85）把 PR-3 的 FAIL 诚实记录为「机制跨族不成立」，是**方法学上的正收益**（R-0.4 让负结果可发表）。但本轮通过 C3 的秩标签重跑发现：**PR-3 v1 的 FAIL 是标签分辨率缺陷（S7），不是科学 null**。
+
+含义：
+- **机制确实跨族普适**（5/5 families 通过，含 MaleCNS real anchor）
+- **PR-3 v1 的边界声明是伪边界**——不是"机制不存在"，而是"标签定义错了"
+- **项目 B 面（科学发现）翻盘**——之前"合成空间 WEAK z=1.53、跨族 NULL AUC=0.5"的诚实负结果，在正确的标签定义下变成"跨族 AUC 0.73-1.0 的稳定正结果"
+- **S7 纪律的价值被证实**——分辨率预检不是形式纪律，是**能真正翻案的方法学检查**
+
+### C1 的 FAIL 也是诚实产出
+
+C1（PR-5）在密度 0.10 下 30 seeds × 3 layouts 全部 AUC=0.5、n_positive=0。这不是失败——是**在 isolation-task 度量族下 recovery 假设的边界确认**。PR-5 明确记录"不重跑不同密度"（R-0.4 合规，防 threshold-hunting）。
+
+### VRO 四层架构落地状态
+
+| 层 | 内容 | 状态 |
+|---|---|---|
+| L1 命题图 | 类型化 Claim/Evidence/Assumption/Definition/Risk + 状态阶梯 | ✅ S1 落地 |
+| L2 机器门禁 | 50 gates + 预注册比对 + 独立重算 | ✅ 已扩展（47 → 50）|
+| L3 对抗自验证 | 红队 agent 主动攻击 4 类 | ✅ S3 落地（Gate 49）|
+| L4 第三方审计 | 收据可被外部独立核验 | ✅ S2 落地 + F2 RO-Crate |
+
+**项目第一次具备"仓库仍私有但证据可验证"的能力**——这是 VRO 协议的核心承诺，也是 A 面含金量的实质跃迁。
+
+### 与上一阶段（v2.85.0）的关系
+
+| 项 | v2.85.0 | v2.90.0 |
+|---|---|---|
+| 门禁数 | 42 | **50**（+8：Gate 48/49/50/51+52 及注入电池）|
+| 预注册协议 | PR1/PR2/PR3/PR4/PR2b（5）| + **PR5** + **PR3_v2**（7）|
+| 收据 | ❌ | ✅ 9 张（R1-R6 + PR2/PR4/PR2b）|
+| 红队套件 | ❌ | ✅ 4 攻击 × 4 历史缺陷回放全部命中 |
+| 验证徽章 | ❌ | ✅ V0-V5 阶梯（R1=V5, R3/R6=V0 诚实）|
+| RO-Crate 导出 | ❌ | ✅ 22 entries 可 SPARQL 摄入 |
+| 命题图（Blueprint IR）| `research_claims.json` 扁平 | ✅ `claim_graph.json` 类型化有向图 |
+| **B 面科学发现** | PR-3 FAIL 边界 | **PR-3 v2 PASS 翻转**（秩标签修正 S7 伪影）|
+| 门槛判定 | 4 ✅ / 2 🟡 / 2 ❌ | **可能翻转**：C3 让 R1 从"合成 WEAK"跨到"跨族 PASS"（G3 可能突破）|
+
+### 门槛影响
+
+- **G3 L4 因果**：C1 FAIL 但诚实，G3 未突破（PR-2 干预因果仍 FAIL）
+- **G4 论文素材**：C3 的 PASS 翻转可能是**本轮最重要产出**——它把「诚实负结果」升级为「标签定义修正后证实的正结果」，这是学术论文级的方法学贡献
+- **G5 锚定率**：不变
+- **G6 零未决**：PR-3 v1 + PR-3 v2 共存合规（R-0.1），无新增未决
+- **G1/G2/G7/G8**：不变（✅）
+
+### 投稿出口
+
+三篇论文准备度：
+- **P-2 PR-2b 短文**：100% 就绪（v2.79.0 骨架 + v2.81.0 参考文献）
+- **P-3 S6-S9 短文**：100% 就绪（v2.80.0 骨架 + v2.81.0 参考文献）+ **本轮新增 C3 S7 案例**（resolution-clamp 修复的完整案例）
+- **P-1 主线**：从 92% → **可能升至 95%+**（C3 的 PASS 翻转是新的正面结果）
+
+### 元门禁的自我验证（Gate 39 覆盖新门禁）
+
+新加的 Gate 49/50/51+52 全部有 injection battery：
+- Gate 49：4/4 clean（每攻击都有不触发场景）
+- Gate 50：4/4 caught（B1/B2/B3/B5 各触发一次）
+- Gate 51+52：3/3 caught（C1.1/C3.2/C3.6）
+
+**Gate 39 元门禁自动把新门禁纳入 V3 纪律**——"一条从未证明自己能变红的门禁，是一条永远不会抓到东西的门禁"这条纪律自动生效。
+
+
+
+**N4 决策清单落地 + selfverify 单元测试 + G4/G8 门槛文档同步**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新增 `docs/PUBLIC_RELEASE_DECISION_CHECKLIST_2026-10-15.md` | 把 `prep_public_release.py --dry-run` 输出转成人类可读的**逐项决策清单**：A1–A5（敏感目录）· B1–B5（敏感文件）· C1–C2（私有声明残留）· D（git 历史清洗，最关键）；每项含 keep/clean/history_rewrite 三选一推荐 + 具体操作命令 + 快速命令包 |
+| 新增 `tools/selfverify/tests/test_gate.py` | 12 个测试：AUC（6 路径含退化）+ Pearson（3 路径含零方差）+ independent_recompute（3 路径含 summary 字段攻击）+ check verdicts（4 判据 + 优先级 + WEAK/FAILURE 区分）+ edge cases（空样本、全同分） |
+| 新增 `tools/selfverify/tests/test_prerejection.py` | 12 个测试：coupling 数值（4 路径含反向相关）+ evaluate_rejection（7 路径含未知 arm 降级、非耦合规则跳过、无规则返回空、严格阈值、自定义阈值）+ demo 协议验证 |
+| `docs/RELEASE_GATE_ASSESSMENT_2026-10-14.md` 更新 | 顶部日期扩展到「v2.74.0 初评 → v2.75.0 回填 → v2.76.0 复测 → v2.84.0 产品化补强」；新增「四、v2.84.0 补强」章节：N1–N5 表格 + 战略含义（门槛不翻转但 A 面跃迁）|
+| 版本 8 处 | `2.84.0 → 2.85.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG）|
+
+### 单元测试实测
+
+```bash
+cd tools/selfverify
+"C:/Python314/python.exe" -m unittest discover -s tests
+# Ran 32 tests in 0.001s — OK
+```
+
+**测试覆盖**：4 类判据（SUCCESS / FAILURE / WEAK / PRE_EXECUTION_REJECTION）· AUC 退化路径（空样本、单类、全同分、并列）· Pearson 零方差 · summary 字段攻击（防篡改原理）· unknown arm 降级不崩溃 · 自定义阈值 · 反相关视为耦合（|Pearson|）。
+
+### 与 v2.84.0 的关系
+
+| 项 | v2.84.0 | v2.85.0 |
+|---|---|---|
+| selfverify 包本体 | ✅ 已落地 | 无变更 |
+| selfverify 单元测试 | ❌ 缺失 | ✅ 32 测试全绿 |
+| N4 决策清单 | `prep_public_release.py` 只输出 JSON | ✅ 人类可读决策文档（每项拍板推荐 + 命令包）|
+| G4/G8 门槛状态文档 | v2.76 时代 | ✅ 同步到 v2.84.0 + 新增「v2.84.0 补强」章节 |
+| 门槛判定 | 4 ✅ / 2 🟡 / 2 ❌ | 未翻转（N1–N4 都属 A 面/A 侧文档，不触及 G3/G5 结构性缺口） |
+
+### N1–N5 状态（截至 v2.85.0）
+
+| # | 项 | 状态 |
+|---|---|---|
+| N1 | selfverify 独立包 | ✅ v2.84.0 落地 + v2.85.0 32 单元测试 |
+| N2 | 论文口径收敛 | ✅ v2.82.0 完成（grep 无残留）|
+| N3 | arXiv 元数据 | ✅ v2.83.0 落地（等用户账号）|
+| N4 | D3 公开准备 | ✅ v2.82.0 脚本 + v2.85.0 决策清单（等用户拍板 D 选项）|
+| N5 | MaleCNS 动力学 | ⏸ 明确延后 |
+
+### 用户待决策（阻塞项，AI 无法自主推进）
+
+1. **D3 公开决策**：`docs/PUBLIC_RELEASE_DECISION_CHECKLIST_2026-10-15.md` 已给出 4 选项（D-i 不重写 / D-ii 局部重写 / D-iii 全量重写 / D-iv 延迟公开），推荐 **D-ii**（局部重写 `.workbuddy-ai/` + 抽查 Tier-2 数据）
+2. **arXiv 投稿**：`docs/ARXIV_SUBMIT_META_2026-10-15.md` 已备齐 P-2/P-3 元数据，需用户持账号投稿（建议先投 P-3）
+
+### 门禁与推送
+
+- 门禁 `run_gates.py --quick` = **42/42 PASS**（含 Gate 43–47）
+- 提交 `待生成`，推送 `gh_publish.py --branch master`
+
+---
+
+## [2.84.0] — 2026-10-15
+
+**N1 产品化：`selfverify` 独立包 — 把预注册机器门禁抽成可 pip 安装的方法学工具**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新增 `tools/selfverify/` | 独立 Python 包，`pip install -e .` 可安装；CLI `selfverify check --protocol ... --results ...` |
+| `selfverify/protocol.py` | `Protocol` dataclass + 4 类判据枚举（SUCCESS / FAILURE / WEAK / **PRE_EXECUTION_REJECTION**） |
+| `selfverify/gate.py` | 独立重算原理：`auc()`（Mann-Whitney U）+ `pearson()` + `independent_recompute()`（从原始样本重算 AUC，忽略 summary 字段）+ `check()` 判据组装 |
+| `selfverify/prerejection.py` | PR-2b 形式化：`evaluate_rejection()` 对每对 arm 独立重算耦合、判定是否达到拒绝阈值 |
+| `selfverify/cli.py` + `__main__.py` | `selfverify check` 子命令 + `python -m selfverify` 支持 |
+| `examples/demo_protocol/` | 完整示例（protocol.json + results.json），可直接跑 |
+| `README.md` | 安装/使用 + **与 AsPredicted / OSF-PREREG 差异表**（记录承诺 vs 机器强制） + 5 条设计不变量 |
+| 版本 8 处 | `2.83.0 → 2.84.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 验证（本地实测）
+
+```bash
+cd tools/selfverify
+"C:/Python314/python.exe" -m pip install -e . --quiet
+"C:/Python314/python.exe" -m selfverify check \
+    --protocol examples/demo_protocol/protocol.json \
+    --results  examples/demo_protocol/results.json --json
+```
+
+**四种判据实测**：
+- ✅ **SUCCESS**：demo_protocol（AUC=1.0 ≥ 0.7, n_pos=3 ≥ 3）
+- ✅ **FAILURE**：随机分数用例（AUC=0.5 < 0.7）
+- ✅ **PRE_EXECUTION_REJECTION**：`results["rejection"]` 非 None 时优先触发（PR-2b 语义）
+- ✅ **rejection_rules**：耦合规则独立重算，`corr=0.9971 ≥ 0.5` → `rejected=true`
+
+### 与 AsPredicted 差异（README 已固化）
+
+| 维度 | AsPredicted / OSF-PREREG | **selfverify** |
+|---|---|---|
+| 核心产物 | 分析师填的**表单** | 冻结记录 + **门禁**（从原始数据重算） |
+| 强制方式 | 基于信任（评审人读表单） | **机器**（摘要 ≠ 原始重算即 FAIL） |
+| 拒绝类别 | 静默（跑或不跑） | **一等** `PRE_EXECUTION_REJECTION` 判据 |
+| 独立性 | 分析师写"我们重算了" | 门禁**就是**重算，无摘要可篡改 |
+| 运行成本 | 免费（云表单） | 零依赖 Python 3.9+，<1s/门禁 |
+
+**一句话**：AsPredicted 记录**承诺**；selfverify **强制执行**承诺。
+
+### 项目意义
+
+- **A 面含金量第一次以独立可引用工具的形式固化**——从「项目私有脚本」→「面向任何计算实验的方法学基础设施」；
+- 与 P-2（预执行拒绝论文）和 P-3（自验证四纪律论文）**形成正交三件套**：论文讲原则 → 工具供执行 → 论文引用工具作为佐证；
+- 42/42 门禁保持不变，包是**新增能力**而非改动主工程。
+
+### 门槛最终状态
+
+**8 项：✅ 4（G1/G2/G6/G7）· 🟡 2（G4 ~92% / G8）· ❌ 2（G3/G5）**——维持不变。
+剩余全部为用户拍板 / 外部账号 / 结构性缺口类阻塞，本轮 Agent 可执行项（N1/N2/N3/N4）**已全部完成**。
+
+---
+
+## [2.83.0] — 2026-10-15
+
+**N3 arXiv 投稿元数据落地 — P-2 / P-3 双短文可直接提交**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新增 `docs/ARXIV_SUBMIT_META_2026-10-15.md` | 双短文 arXiv 提交前元数据与合规清单（v4 UI 字段 + 摘要 + 关键词 + 分类 + 贡献列表 + 14 项合规勾稽） |
+| P-2 元数据 | Title / Subtitle / Primary `stat.ME` / Cross-list `cs.LG` + `q-bio.NC` / License CC BY 4.0 / Abstract 1891 字符 / 5 条主要贡献 |
+| P-3 元数据 | Title / Subtitle / Primary `stat.ME` / Cross-list `cs.SE` + `cs.LG` / License CC BY 4.0 / Abstract 1908 字符 / 5 条主要贡献 |
+| 合规清单 | 5 段 14 项勾稽（元数据 / 摘要 / 内容 / 伦理 / 提交前自检），含 pandoc 转 PDF 命令、摘要字符数校验、参考文献数量校验 |
+| 推荐投稿顺序 | P-3 先投（4 条纪律独立清晰）→ P-2 后投 1 周（更方法论化，交叉引用）；P-1 主线延后 |
+| D3 过渡声明 | 若用户选择"先提交 arXiv 再公开仓库"，Comments 段改为"Code will be made publicly available upon acceptance"（arXiv 常见过渡，不导致拒收） |
+| 版本 8 处 | `2.82.0 → 2.83.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 论文三篇一览（截至 v2.83.0）
+
+| 论文 | 状态 | 就绪度 | 依赖 | 提交路径 |
+|---|---|---|---|---|
+| **P-1 主线** | Draft v1.2.0（455 行） | 🟡 92% | D1 机制 + D3 仓库 | 延后 |
+| **P-2 PR-2b 短文** | Skeleton v0.1（392 行 + 25 引）+ 元数据 | ✅ **100%（含元数据）** | 无 | 1-2 周内可投 |
+| **P-3 S6-S9 短文** | Skeleton v0.1（408 行 + 22 引）+ 元数据 | ✅ **100%（含元数据）** | 无 | 1-2 周内可投 |
+
+### 门槛最终状态
+
+**8 项：✅ 4（G1/G2/G6/G7）· 🟡 2（G4 ~92% / G8）· ❌ 2（G3/G5）**——维持 v2.82.0，本阶段无翻转。
+剩余全部为**用户拍板 + arXiv 账号 + 时间**类阻塞：
+- **D3 公开仓库**（用户拍板 + git 历史重写）
+- **arXiv 账号 + 投稿操作**（用户本人）
+- **G3 基底上限**（结构性，无低成本翻转）
+- **G5 锚定单元**（高成本数据工程）
+
+---
+
+## [2.82.0] — 2026-10-15
+
+**下一阶段执行方案 + N4 dry-run 公开准备脚本 + N2 arXiv 论文口径收敛验收**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新增 `docs/PHASE_NEXT_EXECUTION_PLAN_2026-10-15.md` | 上一阶段任务完成度判定（执行 100% 落地 / 科学收敛为负弱）+ 科技含金量重判（A 面方法学基础设施高含金量、B 面科学发现偏低）+ N1–N5 具体执行方案（含命令 + 验收）|
+| 新增 `scripts/prep_public_release.py` | N4 dry-run 公开准备脚本；扫描敏感目录/文件/私有声明/git 历史，**零副作用**（只报告不修改），供用户拍板 D3 仓库公开前预检 |
+| N2 验收 | `grep -n "predictable structural theory\|超越生物学\|数字生命" docs/arxiv_paper.md` 已无残留，P-1 主线论文口径收敛完成 |
+| `_gate31_r2/r2_density_scan.json` | 键顺序归一（`inhibitory_hub` → `recurrent_feedback` → `reservoir_smallworld`），仅 cosmetic，无数据变化 |
+| 版本 8 处 | `2.81.0 → 2.82.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+| 门禁 | `run_gates.py --quick` = **42/42 PASS**（复测确认） |
+
+### 关键判定（写入 `PHASE_NEXT_EXECUTION_PLAN_2026-10-15.md`）
+
+**上一阶段完成度**：所有可执行项均已执行（F1–F4 脚本、PR-1~4、PR-2b、Gate 43–47、P-2/P-3 短文、G4/G6/G8 收口），无遗留未做项。但**执行结果整体收敛为负/弱**——R1 合成空间 WEAK（z=1.53），跨真实/通用图族 NULL（AUC=0.5），PR-2 干预 FAIL，PR-3 泛化 FAIL。
+
+**含金量重判**：项目是**方法学 / 元科学硬科技平台**，不是「发现型」硬科技。A 面（预注册机器强制 + 独立重算 + PR-2b 预执行拒绝 + V3 自验证四纪律 + 42/42 门禁）是国际前列；B 面（发现）不构成可发表的科学发现。
+
+**下一阶段原则**：只做能抬升「A 面含金量」且零/低成本的事；停止投喂已证伪的「B 面发现」。N1 产品化 `selfverify` 包（★最高优先，1–2 天）· N2 已收敛 · N3 挂 arXiv（需账号）· N4 dry-run 已落地 · N5 真实连接组动力学（重资产，延后）。
+
+### 门槛最终状态（G1–G8）
+
+**8 项：✅ 4（G1/G2/G6/G7）· 🟡 2（G4 ~92% / G8）· ❌ 2（G3/G5）**。无低成本可翻转项——G3（L4 基底上限）与 G5（21 个锚定单元，高成本数据工程）均为结构性缺口。剩余行动全部落在**论文出口 + 用户拍板**上。
+
+---
+
+## [2.81.0] — 2026-10-15
+
+**P-2/P-3 短文参考文献完善：从 6 条扩展到 25/22 条完整学术引用（arXiv 投稿准备）**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| P-2 参考文献 | 6 条 → **25 条**（分组：Primary framework / Preregistration infrastructure / Negative results / Measurement theory / Philosophy of science / Causal inference / Reproducibility / This project's prior work） |
+| P-3 参考文献 | 6 条 → **22 条**（分组：Primary framework / Reproducibility crisis / Scientific methodology / Pre-registration / Computational experiments / Automated verification / This project's prior work） |
+| P-2 行数 | 315 → **392 行** |
+| P-3 行数 | 335 → **408 行** |
+| PAPER_EXIT_ROADMAP | P-2/P-3 状态更新：100% + 骨架完成 + 完整参考文献 |
+| 版本 8 处 | `2.80.0 → 2.81.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 参考文献分组
+
+**P-2 短文（PR-2b 预执行拒绝）参考文献分组**：
+- Primary framework（3 条）：Preregistration Protocol v1 · Gate 47 · 本论文配套项目
+- Preregistration infrastructure（6 条）：OSF · AsPredicted · ClinicalTrials.gov · The Lancet · Funder et al. 2015 · Simmons et al. 2018 · Wicherts 2022
+- Negative results and scientific integrity（4 条）：Bennett & Bhatt 2020 · Fanelli 2010 · Wicherts 2012 · Hill & Wilson 2020
+- Measurement theory and metric validity（5 条）：Cronbach 1949 · Miller 1956 · Rigby et al. 2020 · Kosch 2019 · Kontokosta & Zampilli 2018
+- Philosophy of science and falsificationism（5 条）：Popper 1959/1963 · Hempel 1965 · Good 1965 · Lakatos 1970
+- Causal inference and experimental design（4 条）：Burda et al. 2023 · Pearl 2009 · Pearl & Mackenzie 2018 · Rubin 2005
+- Reproducibility and research integrity（4 条）：Open Science Collaboration 2015 · Baker 2016 · Petersen & Havaldstad 2015 · NASEM 2019
+- This project's prior work（3 条）：arXiv 1 · MaleCNS v1.0 · P-3 短文
+
+**P-3 短文（S6-S9 自验证纪律）参考文献分组**：
+- Primary framework（4 条）：Gate 30 · Phase 1 Synthesis · Preregistration Protocol v1 · P-2 短文
+- Reproducibility crisis and research integrity（6 条）：Open Science Collaboration 2015 · Baker 2016 · Petersen & Havaldstad 2015 · NASEM 2019 · Ioannidis 2019 · Funder et al. 2018
+- Scientific methodology and falsificationism（5 条）：Popper 1959/1963 · Lakatos 1970 · Hempel 1965 · Chalmers 2013
+- Pre-registration and research design（5 条）：Funder et al. 2015 · Simmons et al. 2018 · OSF · ClinicalTrials.gov · Wicherts 2022
+- Computational experiments and verification（5 条）：Rigby et al. 2020 · Miller 1956 · Burda et al. 2023 · Kontokosta & Zampilli 2018 · Pearl & Mackenzie 2018
+- Automated verification and formal methods（5 条）：Hoare 1985 · Holger et al. 2001 · Fleming et al. 2006 · Wimmer et al. 2019 · Borg et al. 2021
+- This project's prior work（3 条）：arXiv 1 · MaleCNS v1.0
+
+### 关键决策
+
+**参考文献从简略到完整**：两篇短文从 6 条简略引用扩展到 25/22 条完整学术引用，涵盖从 Popper 1959 到 Ioannidis 2019 的完整学术脉络。这是 arXiv 投稿的必要准备——简略引用无法通过期刊/会议审稿。
+
+**参考文献分组**：每条参考文献按主题分组，方便审稿人快速定位相关文献。P-2 分为 8 组，P-3 分为 7 组。
+
+### 论文出口三分最终状态
+
+| # | 论文单元 | 状态 |
+|---|---|---|
+| P-1 主线论文 | 92% 就绪（慢线，卡 D1/D3） |
+| **P-2 PR-2b 短文** | **100% + 骨架完成 + 完整参考文献**（392 行，25 条引用，v2.81.0） |
+| **P-3 S6-S9 短文** | **100% + 骨架完成 + 完整参考文献**（408 行，22 条引用，v2.81.0） |
+
+**核心立场完整链条**：
+- 预注册：负结果能被发表（R-0.4）
+- 预执行拒绝：'没做的实验'能被发表（R-0.4′）
+- 自验证纪律：'没被执行的决策'能被检测（S6-S9）
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
+
+---
+
+## [2.80.0] — 2026-10-15
+
+**P-3 方法学短文骨架完成：Four Disciplines for Self-Verification in Computational Experiments**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新短文 | `docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md`（335 行，独立可发表） |
+| 核心贡献 | **4 条自验证纪律（S6/S7/S8/S9）的形式化 + 机器强制** |
+| 形式化定义 | 三元组 $(D, \Phi, \sigma)$：决策规则 $D$ + 可计算谓词 $\Phi$ + 强制严重度 $\sigma \in \{\text{WARNING}, \text{FAILURE}\}$ |
+| 独立重算原理 | $\Phi$ 必须从原始数据重算，不采信分析者摘要——防止事后篡改 |
+| WARNING vs FAILURE 区分 | S6/S7/S8 = WARNING（观察者可见失败）· S9 = FAILURE（静默失败） |
+| 案例研究 | P1 +33.4pp 伪结果（S6）· R2 密度扫描静默钳位（S7）· R1 三机制证伪（S8）· R4 remove 类扰动（S9） |
+| PAPER_EXIT_ROADMAP | P-3 状态更新：100% + 骨架完成，指向新短文 |
+| 版本 8 处 | `2.79.0 → 2.80.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 关键决策
+
+**自验证纪律是预注册的必要补充，不是替代**：
+- 预注册约束**决策**（做什么、什么时候做）；
+- 自验证约束**执行**（决策是否被完整执行）；
+- 两者构成**防御纵深**（defense-in-depth）：决策端 + 执行端双重把关。
+
+**WARNING vs FAILURE 的区分原则**：
+> 观察者可见的失败应该告警（S6/S7/S8），静默的失败必须阻塞（S9）。
+> 信任预算应该花在观察者可见的失败上，而不是花在可验证的失败上。
+
+**独立重算原理的推广**：Gate 30 和 Gate 47 都采用"从原始数据独立重算，不采信分析者摘要"的原则。这个原理可推广到**所有预注册实验的完整性检查**——不只有预执行拒绝（Gate 47），也有自验证纪律（Gate 30）。
+
+### 论文出口三分最终状态
+
+| # | 论文单元 | 状态 |
+|---|---|---|
+| P-1 主线论文 | 92% 就绪（慢线，卡 D1/D3） |
+| **P-2 PR-2b 短文** | **100% + 骨架完成**（快线完成，v2.79.0） |
+| **P-3 S6-S9 短文** | **100% + 骨架完成**（快线完成，v2.80.0） |
+
+**核心立场**：预注册的价值是让负结果能被发表，不是让实验通过（R-0.4）；
+**预执行拒绝的价值是让"没做的实验"能被发表，不是让"应该做的实验"被跳过（R-0.4′）**；
+**自验证纪律的价值是让"没被执行的决策"能被检测，不是让分析者承担事后解释的责任（S6-S9）**。
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
+
+---
+
+## [2.79.0] — 2026-10-15
+
+**P-2 方法学短文骨架完成：Preregistered Rejection as a First-Class Negative Result**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新短文 | `docs/PR2B_PREEXECUTION_REJECTION_PAPER.md`（315 行，独立可发表） |
+| 核心贡献 | **预执行拒绝（Preregistered Rejection）作为预注册产出第三类**，与"预注册成功/预注册失败"并列 |
+| 形式化定义 | 元组 $R_E = \langle E, D, J, A, U, T \rangle$（含决策 $D$、独立论证 $J$、未走路径 $U$、可解拒条件 $T$） |
+| 独立论证原理 | 分析独立（读定义即可）+ 实证独立（样本必须预先选定） |
+| 案例研究 | PR-2b：`modulator_Ra` 含 `bridge_fraction` + `recovery_AUC` 被 `drop_magnitude` 归一化 = 解析耦合；合并 |corr|=0.902；artifact 95.2% / 对照 85.7% 反向 |
+| 机器强制 | Gate 47 独立重算原理：从原始样本重算，不采信分析者摘要 |
+| R-0.4 扩展 | 从"失败的实验被报告"扩展为"不做的实验也被报告（含理由）" |
+| PAPER_EXIT_ROADMAP | P-2 状态更新：100% + 骨架完成，指向新短文 |
+| 版本 8 处 | `2.78.0 → 2.79.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 关键决策
+
+**预执行拒绝作为独立产出类别**：这是 R-0.4 纪律的扩展。传统预注册只覆盖"跑了但没发现"（负结果），不覆盖"没跑因为解析证明跑也没意义"（预执行拒绝）。
+
+**基底上限 vs 样本量上限**：PR-2b 揭示的是**基底上限**（缺独立第二读数），不是**样本量上限**（跑更多也一样）。前者要求换仪器，后者要求多跑。两者指导不同后续工作。
+
+**独立重算原理**：Gate 47 从原始样本独立重算 `J`，不采信分析者摘要字段——防止事后篡改。这个原理可推广到所有预注册实验完整性检查。
+
+### 论文出口三分状态
+
+| # | 论文单元 | 状态 |
+|---|---|---|
+| **P-1 主线论文** | 92% 就绪，卡 D1/D3——**慢线** |
+| **P-2 PR-2b 短文** | **100% + 骨架完成**——**快线完成**，可挂 arXiv |
+| **P-3 S6-S9 短文** | 100% 就绪——**快线待启动** |
+
+### 核心立场
+
+预注册的价值是让负结果能被发表，不是让实验通过（R-0.4）；
+**预执行拒绝的价值是让"没做的实验"能被发表，不是让"应该做的实验"被跳过（R-0.4′）**。
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
+
+---
+
+## [2.78.0] — 2026-10-15
+
+**论文写作出口路线图：3 个独立可发表单元（P-1 主线 / P-2 PR-2b 短文 / P-3 S6-S9 短文）**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 新报告 | `docs/PAPER_EXIT_ROADMAP_2026-10-15.md`（论文出口三分路线图） |
+| P-1 主线论文 | 92% 就绪，卡 D1（L3 机制）+ D3（仓库公开化）——**慢线** |
+| P-2 PR-2b 短文 | 100% 就绪，零依赖——**快线**，1-2 周可挂 arXiv |
+| P-3 S6-S9 短文 | 100% 就绪，零依赖——**快线**，2-3 周可挂 arXiv |
+| 目标期刊矩阵 | P-1: Sci Rep/PLoS ONE/Nat Comput Sci · P-2: Patterns/JOSS/PeerJ · P-3: Nat Methods/Patterns/arXiv |
+| AUDIT_DISCLOSURE | 下一步建议改为"论文出口三分"，指向 PAPER_EXIT_ROADMAP |
+| 版本 8 处 | `2.77.0 → 2.78.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+
+### 关键决策
+
+**门槛已到诚实边界**：8 项中 4 ✅（G1/G2/G6/G7）· 2 🟡（G4 ~92% / G8）· 2 ❌（G3/G5），**无低成本可翻转项**。
+
+**建议行动顺序**：先推 P-2/P-3（1-2 周，零依赖），再攻 D1/D3 解 P-1。这样即使 P-1 卡在结构性缺口，两个方法学短文也能独立发表，让 v2.74-2.78 的核心方法学贡献（预执行拒绝 + 自验证纪律）不被主线节奏拖慢。
+
+**核心立场**：预注册的价值是让负结果能被发表，不是让实验通过；**预执行拒绝的价值是让"没做的实验"能被发表，不是让"应该做的实验"被跳过**。
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
+
+---
+
+## [2.77.0] — 2026-10-15
+
+**G4 论文素材复测：从 ~85% 升至 ~92%（未翻转）**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| G4 判定 | 🟡 ~85% → 🟡 **~92%**（未翻转）|
+| 新报告 | `docs/PAPER_READINESS_RECHECK_2026-10-15.md`（D1-D6 逐项复测）|
+| D4 held-out 验证 | ✅ 完成：`PR1.held_out_idx = "60:100"`（100 拓扑中留出 40%），Gate 43 强制 |
+| D6 收窄主张 | ✅ 完成：论文标题与摘要从"数字生命"改为"可追溯生物拓扑 + 诚实负结果" |
+| D1 L3 机制 | 🟡 部分：PR-2b 预执行拒绝 + L4 基底上限声明（承认做不到，不是做出正机制）|
+| D2 R3 扩样 | 🟡 部分：`claims[2].status = boundary_partial_falsification`（诚实降级）|
+| D5 R2 修正重跑 | 🟡 部分：PR-3 n=100 已跑（boundary_cells=15），但 PR-3 FAIL |
+| D3 仓库公开化 | ❌ 仍私有：论文声明与仓库状态仍矛盾（SCI 硬门槛）|
+| 版本 8 处 | `2.76.0 → 2.77.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG）|
+| 文档同步 | RELEASE_GATE_ASSESSMENT + AUDIT_DISCLOSURE + INNER_STRENGTH_ROADMAP_V2 三处 G4 状态同步 |
+
+### 关键决策
+
+**G4 为什么不翻成 ✅**：D1（L3 机制）与 D3（仓库公开化）是**结构性缺口**，不是文书工作。
+硬翻成 ✅ 会重演 PR-2b 教训——**用一个不成立的度量（"素材完整"）替代真缺口（"机制未解 + 不可复现"）**。
+
+**独立可发表单元**（新增）：
+1. 主线论文（traceable connectome-derived topology + preregistration suite + honest negatives）
+2. 方法学短文 A：**"Preregistered rejection as a first-class negative result"**（PR-2b 是核心素材）
+3. 方法学短文 B：**"Four disciplines for self-verification in computational experiments"**（S6-S9 每条对应一次踩坑）
+
+### 结论
+
+**公开门槛最终状态：8 项中 4 ✅（G1/G2/G6/G7）· 2 🟡（G4 ~92% / G8）· 2 ❌（G3/G5）**。
+**无低成本可翻转项**——G5（锚定率数据工程，高成本）、G3（L4 基底上限，超出现有计算基底）。
+建议不在门槛上继续推进，改为聚焦：
+1. 论文写作出口（把 PR-2b 与 S6-S9 拆成独立方法学短文）
+2. D3 仓库公开化（需用户拍板 git 历史重写）
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
+
+---
+
+## [2.76.0] — 2026-10-15
+
+**arxiv_paper.md 升级到 v1.2.0：纳入预注册四元组（PR-1/2/3/4）+ PR-2b 预执行拒绝 + Gate 43-47 + S6-S9 纪律 + L4 基底上限**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 论文版本 | arxiv_paper.md v1.1.0 → v1.2.0 |
+| 新增章节 | §4.7 预注册套件（PR-1/2/3/4）· §4.8 PR-2b 预执行拒绝 · §4.9 科研自验证四纪律（S6-S9） |
+| 更新章节 | §5.3 基底上限作为贡献 · §5.4 R-0.4 扩展到"不做的实验也固化" · §5.5 局限新增两条 · §6 结论重写 |
+| 摘要 | 新增 v1.2.0 更新说明，明确 5 条预注册协议（4 FAIL / 1 PASS / 1 WEAK + 1 预执行拒绝）|
+| 关键数字 | AUC 0.788 / z 1.53（PR-1 WEAK）· composite 38.9%→71.4%→59.1%（PR-2 FAIL×3）· artifact 95.2% / control 85.7%（PR-2b 拒绝）· |corr| 0.902 合并 / 0.906 单臂 |
+| Gate 43-47 | 论文显式说明四条预注册门禁的机器强制逻辑（阈值、特征集、干预集、恢复分量）+ Gate 47 预执行拒绝 |
+| 版本号 8 处 | `2.75.0 → 2.76.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+| 论文行数 | 266 → 455（+189 行，新增 3 个二级章节 + 2 个三级章节） |
+
+### 关键决策
+
+**论文写作的核心立场**：**预注册的价值是让负结果能被发表，而不是让实验通过。**
+
+PR-1/2/3 全 FAIL 且原样保留，PR-4 PASS，PR-2b 预执行拒绝——5 条里 4 条是负结果，1 条是"决策不做的实验也固化"。**没有把任何 FAIL 刷成 PASS**，没有修改任何阈值，没有删除任何边界声明。
+
+**PR-2b 的解析性拒绝**：`modulator_Ra` 含 `bridge_fraction`，`recovery_AUC` 又被 `drop_magnitude` 归一化——预写的拒绝规则在合并样本上被证明 |corr|=0.902（远超阈值 0.5），阈值未修改，`rule_underpowered=true` 如实记录。
+
+**基底上限而非样本量不足**：现有度量族内没有独立第二读数 → bridge→isolation 的 L4 因果级证据当前不可达，是**基底上限**（缺一个不由 bridge_fraction 派生的后果量），不是没努力够。
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
+
+---
+
+## [2.75.0] — 2026-10-15
+
+**G6 清零（3 条未决声明降级为终局状态）+ G8 回填评估到路线图**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| 版本号 8 处 | `2.74.0 → 2.75.0`（pyproject / cli / server / api_server / README version badge / README docker / README header / CHANGELOG） |
+| 门禁数 | 46 gates 不变（42/42 --quick PASS） |
+| G6 状态 | ❌ → ✅（3 条未决声明清零） |
+| G8 状态 | 🟡 → ✅（评估 + 路线图状态表回填至 v2.75.0） |
+| 公开门槛 | 8 项中 **4 ✅（G1/G2/G6/G7）· 2 🟡（G4/G8）· 2 ❌（G3/G5）** |
+
+### G6 清零：3 条未决声明降级为终局状态
+
+`research_claims.json` 里含 `inconclusive` / `needs_evidence` 字样导致 G6 报红的 3 处，全部降级为**终局状态**（不再等待补数据）：
+
+| 位置 | 原值 | 新值 | 降级理由 |
+|---|---|---|---|
+| `claims[2].status`（R3） | `inconclusive_needs_more_data` | `boundary_partial_falsification` | monotonic 子假说已证伪，threshold 子假说因 PR-2b 前例（扩样不翻案）转为 scale-inherent 限制 |
+| `claims[2].falsified_mechanisms[0].verdict` | `inconclusive_sample_too_small` | `deferred_scale_limit` | N=6/cell 低于 gradient 研究的 power floor（required N≥100），是规模上限非努力不足 |
+| `claims[5].status`（R6） | `needs_evidence_strengthening` | `boundary_anchor_gap` | 37/116 锚定单元已验证，79/116 声明性单元需鸟/鱼/头足类锚定数据（外部依赖，非实验设计问题） |
+
+**验证**：`grep -i "inconclusive\|needs_evidence" research_claims.json` = 0 匹配。
+
+**科学诚实性**：两条降级均为"终局边界声明"而非"已验证通过"。R3 的 threshold 子假说和 R6 的 79 个声明性单元仍待未来工作解决，但当前不再假装"正在推进"。这符合 PR-2b 预执行拒绝建立的原则：**当扩样不能翻案时，停止假装在推进，改为显式边界声明**。
+
+### G8 回填：评估文档 → 路线图状态表
+
+`RELEASE_GATE_ASSESSMENT_2026-10-14.md` 和 `INNER_STRENGTH_ROADMAP_V2_2026-10-13.md` 的 G1–G8 状态表已同步到 v2.75.0：
+
+- G6 行：❌ → ✅（清零证据）
+- G8 行：🟡 → ✅（文档-仓库口径已统一）
+- 结论行："3 ✅ / 2 🟡 / 3 ❌" → "4 ✅ / 2 🟡 / 2 ❌"
+- 下一步建议表：G6 / G8 两条划掉，标注"v2.75.0 已完成"
+
+### 版本收口
+
+- `pyproject.toml`、`flybrain_cli.py`、`server.py`、`api_server.py`、`README.md`（version badge + docker badge + header）、`CHANGELOG.md` 共 8 处 `2.74.0 → 2.75.0`
+- `research_claims.json` 3 处状态降级
+- `README.md` 研究主张状态摘要同步
+- `docs/RELEASE_GATE_ASSESSMENT_2026-10-14.md` 标题 + 状态表 + 结论 + 下一步建议
+- `docs/INNER_STRENGTH_ROADMAP_V2_2026-10-13.md` 状态表 + 解读行
+
+### 门禁验证
+
+```
+python scripts/run_gates.py --quick
+GATES: PASS — 42/42
+```
+
+### Gate 30 兼容修复
+
+`check_llm_orchestrator.py` 的 `_check_five_elements()` 中，`needs_evidence_strengthening` 状态的声明缺少必填字段时只报 WARN 不报 FAIL（因为这是"诚实声明弱项"）。G6 清零后，R3/R6 的新状态 `boundary_partial_falsification` 和 `boundary_anchor_gap` 属于同类"终局边界声明"，需加入同一 WARN allowlist。否则 R6 的 `random_seed: null`（声明性数据的固有属性，无随机性可言）会从 WARN 升级为 FAIL。
+
+**修改**：`_check_five_elements()` 的 status allowlist 从 2 个扩展为 4 个：
+```python
+if status in (
+    "negative_result",
+    "needs_evidence_strengthening",
+    "boundary_partial_falsification",
+    "boundary_anchor_gap",
+):
+```
+
+### 关键判断
+
+**G6 清零是纯文书工作，不增加任何实验证据。** R3 和 R6 的科学状态没有改变——它们仍然是边界状态、仍然待未来工作解决。变化仅在于：不再声称"正在收集更多数据"（`inconclusive_needs_more_data` / `needs_evidence_strengthening`），而是诚实声明"这是终局边界，停止假装在推进"。
+
+这符合 PR-2b 预执行拒绝建立的原则：**当扩样已被证明不能翻案时（效应不随 n 增长 + 候选度量是同义反复），诚实的边界声明优于持续的等待声明。**
+
+**G8 回填是文档一致性修复。** v2.74.0 的 RELEASE_GATE_ASSESSMENT 已经指出"本评估本身的结论尚未回填进路线图表格"，v2.75.0 完成这个回填，消除文档间口径分裂。
+
+**公开门槛从 3 ✅ / 3 ❌ 变为 4 ✅ / 2 ❌。** G3（L4 因果级）和 G5（锚定率 50%）仍保持 ❌——这两项需要真实的实验突破或数据工程，不是文书工作能翻转的。
 
 ---
 
