@@ -1,0 +1,87 @@
+{
+  "manifest_version": "1.0",
+  "purpose": "External dataset pointer file for metrics_fork. No data lives in this repository; each entry below points to a public dataset with its URL, version, license, and sha256 (where published).",
+  "generated_at": "2026-10-16",
+  "fork_licence": "Apache-2.0",
+  "datasets": [
+    {
+      "id": "malecns-v1.0",
+      "display_name": "Male Drosophila CNS connectome",
+      "species": "Drosophila melanogaster (male)",
+      "note_on_species": "Filename is historical (MaleCNS). The connectome is a male Drosophila CNS reconstruction published by Google + HHMI in 2026-09. Earlier versions of this manifest mislabeled display_name as \"Male C. elegans CNS connectome\" — corrected in v2.94.0 because display_name contradicted species=Caenorhabditis vs Drosophila.",
+      "version": "v1.0",
+      "release_date": "2026-09-03",
+      "download_url": "https://male-cns.janelia.org/download",
+      "gs_bucket": "gs://flyem-male-cns/v1.0/",
+      "neuPrint_id": "male-cns:v1.0",
+      "size": "5.63 GB",
+      "license": "CC-BY-4.0",
+      "scale": {
+        "neurons": 166700,
+        "synapses": 124177617,
+        "edges": 25582938,
+        "superclasses": 27,
+        "male_dimorphic_cells": 2368
+      },
+      "paper": "https://www.cell.com/cell/fulltext/S0092-8674(26)00000-0",
+      "sha256_note": "Not centrally published by Janelia; consumers should verify against their local FlyWire mirror."
+    },
+    {
+      "id": "malecns-v1.1-female",
+      "display_name": "Female Drosophila CNS connectome (v1.1)",
+      "species": "Drosophila melanogaster (female)",
+      "version": "v1.1",
+      "download_url": "https://male-cns.janelia.org/download",
+      "license": "CC-BY-4.0",
+      "scale": {
+        "neurons": 68000,
+        "female_specific_cells": 30000
+      },
+      "note": "Not used by metrics_fork scripts; listed for completeness because upstream references it in the male-dimorphism discussion."
+    },
+    {
+      "id": "wittingworth-2019",
+      "display_name": "C. elegans connectome (adult hermaphrodite)",
+      "species": "Caenorhabditis elegans",
+      "source_paper": "Wittinghofer et al., Current Biology 29, 2019",
+      "version": "adult",
+      "download_url": "https://data.wormat.org/wm/151556/download/",
+      "license": "CC0",
+      "scale": {
+        "neurons": 297,
+        "synapses": 5083
+      }
+    },
+    {
+      "id": "witvliet-2020-larval",
+      "display_name": "C. elegans developmental series (L1/L2/L3/adult)",
+      "species": "Caenorhabditis elegans",
+      "source_paper": "Witvliet et al., Science 2020",
+      "versions": ["L1_x4", "L2", "L3", "adult_x2"],
+      "total_reconstructions": 8,
+      "download_url": "https://www.nature.com/articles/s41586-020-2689-3",
+      "license": "CC-BY-4.0",
+      "scale": {
+        "cells_range": "108-135",
+        "edges_range": "566-1565"
+      }
+    },
+    {
+      "id": "winding-2023-larva-drosophila",
+      "display_name": "Drosophila larva CNS connectome",
+      "species": "Drosophila melanogaster (larva)",
+      "source_paper": "Winding et al., eLife 2023",
+      "download_url": "https://doi.org/10.7554/eLife.84668",
+      "license": "CC-BY-4.0",
+      "scale": {
+        "nodes": 2956,
+        "synapses": 352611
+      }
+    }
+  ],
+  "usage_notes": {
+    "no_data_in_this_repo": "Metrics_fork intentionally contains no data. All figures in the associated paper are derived from these upstream datasets and reported as summary statistics in the paper's tables.",
+    "checksums": "Where upstream publishes sha256s (Janelia FlyWire does), the checksum is authoritative. Where upstream does not publish a checksum, verify against the primary publication.",
+    "licensing": "Metric scripts are Apache-2.0; datasets retain their original licenses. Aggregating under Apache-2.0 does not change upstream license obligations."
+  }
+}
