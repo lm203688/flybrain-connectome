@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "gate_id": 56,
+  "source": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\scripts\\compute_verification_badges.py",
+  "mode": "audit",
+  "rungs_total": 6,
+  "rungs_matching": 3,
+  "rungs_degenerate": 3,
+  "ok_rungs": [
+    "V0",
+    "V2",
+    "V5"
+  ],
+  "mismatches": [
+    {
+      "rung": "V1",
+      "name": "reproducible",
+      "claim": "same seed / same code → identical results",
+      "problem": "predicate does not contain any keyword for its own name 'reproducible' — tests a different property",
+      "matched_keywords": [],
+      "branch_preview": "    if not has_prereg: |         return {\"level\": \"V1\", \"reason\": \"≥1 evidence edge but no preregistered protocol\"}"
+    },
+    {
+      "rung": "V3",
+      "name": "preregistered",
+      "claim": "claim's verdict is enforced by a gate (fail-closed)",
+      "problem": "predicate does not contain any keyword for its own name 'preregistered' — tests a different property",
+      "matched_keywords": [],
+      "branch_preview": "    if not has_receipt: |         return {\"level\": \"V3\", \"reason\": \"cross-checked, no receipt\"}"
+    },
+    {
+      "rung": "V4",
+      "name": "cross-checked",
+      "claim": "at least two independent reads of the evidence agree",
+      "problem": "predicate does not contain any keyword for its own name 'cross-checked' — tests a different property",
+      "matched_keywords": [],
+      "branch_preview": "    if not redteam_passed: |         return {\"level\": \"V4\", \"reason\": \"receipt present, redteam not verified\"}"
+    }
+  ],
+  "strict": false,
+  "injections": [
+    {
+      "name": "strip_v1_keyword",
+      "description": "Replace the V1 return branch with a keyword-free stub → the rung now claims 'reproducible' but its predicate contains none of ['reproduc', 're-run', 'rerun'].",
+      "mutated_ok": false
+    },
+    {
+      "name": "strip_v2_keyword",
+      "description": "Replace the V2 return branch with a keyword-free stub → the rung now claims 'machine-tested' but its predicate contains none of ['executed_at', 'verdict', 'prereg'].",
+      "mutated_ok": false
+    },
+    {
+      "name": "strip_v3_keyword",
+      "description": "Replace the V3 return branch with a keyword-free stub → the rung now claims 'preregistered' but its predicate contains none of ['vault', 'payload_hash', 'committed'].",
+      "mutated_ok": false
+    },
+    {
+      "name": "strip_v4_keyword",
+      "description": "Replace the V4 return branch with a keyword-free stub → the rung now claims 'cross-checked' but its predicate contains none of ['cross', 'crosscheck', 'cross-check'].",
+      "mutated_ok": false
+    },
+    {
+      "name": "strip_v5_keyword",
+      "description": "Replace the V5 return branch with a keyword-free stub → the rung now claims 'externally verified' but its predicate contains none of ['external', 'verifier', 'signature'].",
+      "mutated_ok": false
+    }
+  ],
+  "ok": true
+}
