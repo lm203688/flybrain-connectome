@@ -1,0 +1,173 @@
+{
+  "schema": "c3_rank_label_pr3v2_v1",
+  "prereg": "PR3_v2",
+  "change_from_v1": "label_definition: absolute drop_magnitude>0.25 -> rank_within_family(quantile=0.75)",
+  "quantile": 0.75,
+  "seeds_per_cell": 20,
+  "families": {
+    "project_synthetic": {
+      "n=10": {
+        "n_samples": 200,
+        "auc": 0.9133,
+        "n_positive": 15,
+        "score_range": [
+          0.4,
+          0.5
+        ],
+        "score_mean": 0.48
+      },
+      "n=20": {
+        "n_samples": 400,
+        "auc": 0.8667,
+        "n_positive": 15,
+        "score_range": [
+          0.25,
+          0.35
+        ],
+        "score_mean": 0.28
+      },
+      "n=50": {
+        "n_samples": 1000,
+        "auc": 0.7333,
+        "n_positive": 15,
+        "score_range": [
+          0.12,
+          0.16
+        ],
+        "score_mean": 0.128
+      }
+    },
+    "erdos_renyi": {
+      "n=10": {
+        "n_samples": 200,
+        "auc": 0.92,
+        "n_positive": 15,
+        "score_range": [
+          0.1,
+          0.4
+        ],
+        "score_mean": 0.215
+      },
+      "n=20": {
+        "n_samples": 400,
+        "auc": 0.92,
+        "n_positive": 15,
+        "score_range": [
+          0.15,
+          0.35
+        ],
+        "score_mean": 0.2325
+      },
+      "n=50": {
+        "n_samples": 1000,
+        "auc": 0.9867,
+        "n_positive": 15,
+        "score_range": [
+          0.16,
+          0.28
+        ],
+        "score_mean": 0.208
+      }
+    },
+    "barabasi_albert": {
+      "n=10": {
+        "n_samples": 200,
+        "auc": 0.9667,
+        "n_positive": 15,
+        "score_range": [
+          0.3,
+          0.6
+        ],
+        "score_mean": 0.405
+      },
+      "n=20": {
+        "n_samples": 400,
+        "auc": 0.96,
+        "n_positive": 15,
+        "score_range": [
+          0.3,
+          0.5
+        ],
+        "score_mean": 0.4225
+      },
+      "n=50": {
+        "n_samples": 1000,
+        "auc": 0.96,
+        "n_positive": 15,
+        "score_range": [
+          0.34,
+          0.46
+        ],
+        "score_mean": 0.404
+      }
+    },
+    "watts_strogatz": {
+      "n=10": {
+        "n_samples": 200,
+        "auc": 1.0,
+        "n_positive": 15,
+        "score_range": [
+          0.2,
+          0.4
+        ],
+        "score_mean": 0.29
+      },
+      "n=20": {
+        "n_samples": 400,
+        "auc": 0.76,
+        "n_positive": 15,
+        "score_range": [
+          0.1,
+          0.3
+        ],
+        "score_mean": 0.1675
+      },
+      "n=50": {
+        "n_samples": 1000,
+        "auc": 0.8933,
+        "n_positive": 15,
+        "score_range": [
+          0.1,
+          0.14
+        ],
+        "score_mean": 0.13
+      }
+    },
+    "malecns_subgraph": {
+      "n=10": {
+        "n_samples": 200,
+        "auc": 0.96,
+        "n_positive": 15,
+        "score_range": [
+          0.5,
+          0.6
+        ],
+        "score_mean": 0.56
+      },
+      "n=20": {
+        "n_samples": 400,
+        "auc": 0.9333,
+        "n_positive": 15,
+        "score_range": [
+          0.3,
+          0.4
+        ],
+        "score_mean": 0.3325
+      },
+      "n=50": {
+        "n_samples": 1000,
+        "auc": 0.8667,
+        "n_positive": 15,
+        "score_range": [
+          0.14,
+          0.18
+        ],
+        "score_mean": 0.155
+      }
+    }
+  },
+  "n_families_passing": 5,
+  "real_family_passing": true,
+  "verdict": "PASS",
+  "timestamp": "2026-10-15T13:44:01+00:00"
+}
