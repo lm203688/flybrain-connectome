@@ -1,0 +1,42 @@
+{
+  "schema_version": "1.0",
+  "gate_id": 54,
+  "fork_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\metrics_fork",
+  "ok": true,
+  "failures": [],
+  "n_smoke_commands": 3,
+  "n_all_command_refs": 6,
+  "smoke_commands": [
+    "python -m metrics.robustness --graph graphs/sample_topology.json --k 3",
+    "python -m metrics.controllability --graph graphs/sample_topology.json",
+    "python -m metrics.recovery --graph graphs/sample_topology.json --k 5 --steps 20"
+  ],
+  "datasets_checked": 5,
+  "injections": [
+    {
+      "name": "delete_sample_topology",
+      "description": "Remove graphs/sample_topology.json so every smoke command fails to open its input.",
+      "mutated_ok": false
+    },
+    {
+      "name": "strip_edges_from_topology",
+      "description": "Delete the edges key → metrics raise KeyError, reproducing the upstream 'result file vs graph file' bug inside the fork's own fixture.",
+      "mutated_ok": false
+    },
+    {
+      "name": "contradict_display_name_species",
+      "description": "Set display_name='Male C. elegans CNS connectome' under species='Drosophila melanogaster (male)' — reproduces the exact bug Gate 54 is designed to catch.",
+      "mutated_ok": false
+    },
+    {
+      "name": "wrong_license",
+      "description": "Overwrite LICENSE with MIT text so the Apache-2.0 declaration check fails.",
+      "mutated_ok": false
+    },
+    {
+      "name": "strip_disclaimer",
+      "description": "Remove the README note explaining that upstream artifacts are result files, not graph files. The paper-numbers table then silently points at broken paths.",
+      "mutated_ok": false
+    }
+  ]
+}
