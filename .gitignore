@@ -159,8 +159,17 @@ data/worm/raw/*.zip
 
 # Local snapshots of the private Tier-2 repo
 # (lm203688/flybrain-connectome-core) — closed-tier data that must never
-# land in this MIT tree.
+# land in this MIT tree. Local checkouts may live either as a sibling of the
+# public repo (conventional layout) or inside the repo tree (this machine).
 flybrain-tier2-backup-*/
+flybrain-connectome-core/
+
+# P1 experiment working directory (large state.json checkpoints, ~640KB+)
+_p1_full/
+_p1_pilot/
+_p1_warmup/
+_p1_stub_smoke/
+_probe_llm.py
 
 # User-generated organism instances — contain fingerprinted payloads;
 # do NOT commit to public repos.
@@ -171,3 +180,11 @@ male_cns/virtual_organisms/market/
 # Runtime caches for combinator middleware (may hold large lookup tables)
 flybrain-connectome-mcp/__pycache__/
 flybrain-connectome-mcp/module_combinator.cache/
+
+# Fusion benchmark output dirs
+_fusion_a/
+_fusion_b/
+_gate31_r2/
+_evoagentx/
+_r2_full/
+_r4_full/
