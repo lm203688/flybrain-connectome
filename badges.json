@@ -1,0 +1,29 @@
+{
+  "schema": "vro_badges_v1",
+  "badges": {
+    "claim:R1": {
+      "level": "V5",
+      "reason": "cross-checked + receipt + redteam (status=supported)"
+    },
+    "claim:R2": {
+      "level": "V1",
+      "reason": "≥1 evidence edge but no preregistered protocol"
+    },
+    "claim:R3": {
+      "level": "V0",
+      "reason": "bare claim (no supports/tests edges)"
+    },
+    "claim:R4": {
+      "level": "V1",
+      "reason": "≥1 evidence edge but no preregistered protocol"
+    },
+    "claim:R5": {
+      "level": "V1",
+      "reason": "≥1 evidence edge but no preregistered protocol"
+    },
+    "claim:R6": {
+      "level": "V0",
+      "reason": "bare claim (no supports/tests edges)"
+    }
+  }
+}
