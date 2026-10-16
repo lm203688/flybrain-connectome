@@ -1,0 +1,23 @@
+{
+  "_note": "Minimal self-contained example topology for metrics_fork. Three dense modules (m0/m1/m2) joined by two bridge edges. Generated so the three read-only metrics can be re-run with no upstream artifacts and no external data. Shape: {nodes:[...], edges:[{from,to,weight}]}.",
+  "nodes": ["a0", "a1", "a2", "a3", "b0", "b1", "b2", "b3", "c0", "c1", "c2", "c3"],
+  "edges": [
+    {"from": "a0", "to": "a1", "weight": 0.9},
+    {"from": "a1", "to": "a2", "weight": 0.8},
+    {"from": "a2", "to": "a3", "weight": 0.7},
+    {"from": "a3", "to": "a0", "weight": 0.6},
+    {"from": "a0", "to": "a2", "weight": 0.5},
+    {"from": "b0", "to": "b1", "weight": 0.9},
+    {"from": "b1", "to": "b2", "weight": 0.8},
+    {"from": "b2", "to": "b3", "weight": 0.7},
+    {"from": "b3", "to": "b0", "weight": 0.6},
+    {"from": "b0", "to": "b2", "weight": 0.5},
+    {"from": "c0", "to": "c1", "weight": 0.9},
+    {"from": "c1", "to": "c2", "weight": 0.8},
+    {"from": "c2", "to": "c3", "weight": 0.7},
+    {"from": "c3", "to": "c0", "weight": 0.6},
+    {"from": "c0", "to": "c2", "weight": 0.5},
+    {"from": "a1", "to": "b0", "weight": 0.30},
+    {"from": "b2", "to": "c1", "weight": 0.25}
+  ]
+}
