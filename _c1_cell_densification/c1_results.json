@@ -1,0 +1,31 @@
+{
+  "schema": "c1_cell_densification_v1",
+  "prereg": "PR5",
+  "target_density": 0.1,
+  "n_nodes": 50,
+  "n_seeds": 30,
+  "layouts": {
+    "random": {
+      "n_seeds": 30,
+      "mean_score": 0.0,
+      "auc": 0.5,
+      "n_positive": 0
+    },
+    "motif": {
+      "n_seeds": 30,
+      "mean_score": 0.0,
+      "auc": 0.5,
+      "n_positive": 0
+    },
+    "barabasi": {
+      "n_seeds": 30,
+      "mean_score": 0.0,
+      "auc": 0.5,
+      "n_positive": 0
+    }
+  },
+  "effect_size": 0.0,
+  "positive_effect": false,
+  "verdict": "FAIL",
+  "timestamp": "2026-10-15T13:41:45+00:00"
+}
