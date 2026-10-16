@@ -1,0 +1,212 @@
+{
+  "schema": "epistemic_progress_v1",
+  "generated_from": [
+    "claim_graph.json",
+    "badges.json",
+    "research_claims.json",
+    "receipts/*.json"
+  ],
+  "evidence_ladder": {
+    "E0": "E0 none        — no protocol tested the claim",
+    "E1": "E1 reported    — a protocol ran; verdict WEAK / ACCEPT / BOUNDARY (documented, not confirmed)",
+    "E2": "E2 supported   — >=1 protocol PASS at L2 (measurement layer)",
+    "E3": "E3 generalizes — >=1 protocol PASS at L3 (cross-family, held-out)",
+    "E4": "E4 causal      — >=1 protocol PASS at L4 (intervention)",
+    "E5": "E5 external    — third-party reproduction"
+  },
+  "claims": {
+    "R1": {
+      "apparatus": "V5",
+      "evidence": "E3",
+      "gap": 2,
+      "protocols": [
+        {
+          "protocol": "PR1",
+          "tier": "L2",
+          "kind": "protocol",
+          "verdict": "WEAK",
+          "raises_to": "E1"
+        },
+        {
+          "protocol": "PR2",
+          "tier": "L4",
+          "kind": "protocol",
+          "verdict": "FAIL",
+          "raises_to": "E0"
+        },
+        {
+          "protocol": "PR3",
+          "tier": "L3",
+          "kind": "protocol",
+          "verdict": "FAIL",
+          "raises_to": "E0"
+        },
+        {
+          "protocol": "PR4",
+          "tier": "L2",
+          "kind": "protocol",
+          "verdict": "PASS",
+          "raises_to": "E2"
+        },
+        {
+          "protocol": "PR2b",
+          "tier": "L4",
+          "kind": "pre_execution_rejection",
+          "verdict": "ACCEPT",
+          "raises_to": "E1"
+        },
+        {
+          "protocol": "PR3_v2",
+          "tier": "L3",
+          "kind": "protocol",
+          "verdict": "PASS",
+          "raises_to": "E3"
+        }
+      ]
+    },
+    "R2": {
+      "apparatus": "V1",
+      "evidence": "E0",
+      "gap": 1,
+      "protocols": [
+        {
+          "protocol": "PR5",
+          "tier": "L2",
+          "kind": "protocol",
+          "verdict": "FAIL",
+          "raises_to": "E0"
+        }
+      ]
+    },
+    "R3": {
+      "apparatus": "V0",
+      "evidence": "E0",
+      "gap": 0,
+      "protocols": []
+    },
+    "R4": {
+      "apparatus": "V1",
+      "evidence": "E0",
+      "gap": 1,
+      "protocols": []
+    },
+    "R5": {
+      "apparatus": "V1",
+      "evidence": "E0",
+      "gap": 1,
+      "protocols": []
+    },
+    "R6": {
+      "apparatus": "V0",
+      "evidence": "E0",
+      "gap": 0,
+      "protocols": []
+    }
+  },
+  "ladder_semantics_audit": {
+    "V0": {
+      "claimed": "unverified — claim is bare, no machine evidence",
+      "computed_predicate": "supports==0 (no supports/tests edge)",
+      "predicate_tests_claim": true,
+      "note": "predicate matches the named property"
+    },
+    "V1": {
+      "claimed": "reproducible — same seed / same code -> identical results",
+      "computed_predicate": "supports>=1 (at least one evidence edge)",
+      "predicate_tests_claim": false,
+      "note": "predicate measures apparatus presence, not the named property"
+    },
+    "V2": {
+      "claimed": "machine-tested — at least one preregistered protocol ran",
+      "computed_predicate": "a prereg/protocol-named edge exists (does not check it RAN)",
+      "predicate_tests_claim": false,
+      "note": "predicate measures apparatus presence, not the named property"
+    },
+    "V3": {
+      "claimed": "preregistered — verdict is enforced by a Gate (fail-closed)",
+      "computed_predicate": "supports>=2 (two edges, no gate-enforcement check)",
+      "predicate_tests_claim": false,
+      "note": "predicate measures apparatus presence, not the named property"
+    },
+    "V4": {
+      "claimed": "cross-checked — two independent reads of the evidence agree",
+      "computed_predicate": "a receipt file exists (a receipt is a hash commitment, not a 2nd read)",
+      "predicate_tests_claim": false,
+      "note": "predicate measures apparatus presence, not the named property"
+    },
+    "V5": {
+      "claimed": "externally verified — a receipt exists AND red-team passed",
+      "computed_predicate": "receipt + global redteam flag (not per-claim, no external party)",
+      "predicate_tests_claim": false,
+      "note": "predicate measures apparatus presence, not the named property"
+    }
+  },
+  "progress_vector": {
+    "apparatus_coverage_A>=3": 0.1667,
+    "evidence_coverage_E>=2": 0.1667,
+    "evidence_coverage_E>=3": 0.1667,
+    "divergent_claims": [
+      "R1"
+    ],
+    "n_claims": 6,
+    "note": "Reported as a VECTOR on purpose: collapsing to a single scalar before the scalar itself is validated would repeat the unvalidated-metric failure the project has caught 3x."
+  },
+  "boundary_atlas": [
+    {
+      "protocol": "PR1",
+      "claim": "R1",
+      "tier": null,
+      "kind": "protocol",
+      "verdict": "WEAK",
+      "category": "weak"
+    },
+    {
+      "protocol": "PR2",
+      "claim": "R1",
+      "tier": "L4 causal",
+      "kind": "protocol",
+      "verdict": "FAIL",
+      "category": "falsified"
+    },
+    {
+      "protocol": "PR3",
+      "claim": "R1",
+      "tier": "L3 cross-family generalization",
+      "kind": "protocol",
+      "verdict": "FAIL",
+      "category": "falsified"
+    },
+    {
+      "protocol": "PR2b",
+      "claim": "R1",
+      "tier": "L4 causal (proposed, then rejected)",
+      "kind": "pre_execution_rejection",
+      "verdict": "ACCEPT",
+      "category": "pre_execution_rejection"
+    },
+    {
+      "protocol": "PR5",
+      "claim": "R2",
+      "tier": "L2 recovery experiment (cell-level densification)",
+      "kind": "protocol",
+      "verdict": "FAIL",
+      "category": "falsified"
+    },
+    {
+      "protocol": null,
+      "claim": "R3",
+      "tier": "claim_status",
+      "kind": "claim_boundary",
+      "verdict": "boundary_partial_falsification",
+      "category": "boundary"
+    },
+    {
+      "protocol": null,
+      "claim": "R6",
+      "tier": "claim_status",
+      "kind": "claim_boundary",
+      "verdict": "boundary_anchor_gap",
+      "category": "boundary"
+    }
+  ]
+}
