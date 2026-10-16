@@ -1,0 +1,55 @@
+{
+  "protocols": {
+    "PR2b": {
+      "commit_type": "retroactive",
+      "committed_at": "2026-10-16",
+      "expected_verdict": "REJECT",
+      "payload_hash_matches": true
+    },
+    "PR3_v2": {
+      "commit_type": "retroactive",
+      "committed_at": "2026-10-16",
+      "expected_verdict": "PASS",
+      "payload_hash_matches": true
+    },
+    "PR4": {
+      "commit_type": "retroactive",
+      "committed_at": "2026-10-16",
+      "expected_verdict": "PASS",
+      "payload_hash_matches": true,
+      "open_count": 1
+    }
+  },
+  "vault_dir": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\vault",
+  "n_pass_protocols": 2,
+  "pass_protocols": [
+    "PR3_v2",
+    "PR4"
+  ],
+  "n_commits": 3,
+  "n_opens": 1,
+  "ok": true,
+  "failures": [],
+  "injections": [
+    {
+      "name": "delete_pass_commit",
+      "description": "Remove PR4.commit.json; PR4 has verdict=PASS, so the missing commit is an R-0.3 violation.",
+      "mutated_ok": false
+    },
+    {
+      "name": "tamper_criteria_threshold",
+      "description": "Change PR4.success_criteria.recovery_auc_ variance_min → recomputed payload_hash must no longer match the committed hash (MISMATCH).",
+      "mutated_ok": false
+    },
+    {
+      "name": "double_open",
+      "description": "Set PR4.open.open_count=2; the R-0.3 one-time-open discipline must fail.",
+      "mutated_ok": false
+    },
+    {
+      "name": "tamper_expected_verdict",
+      "description": "Change PR4.commit.expected_verdict from PASS to FAIL — the recomputed payload_hash uses the (tampered) expected_verdict, so it no longer matches the stored hash.",
+      "mutated_ok": false
+    }
+  ]
+}

@@ -1,0 +1,61 @@
+{
+  "schema": "boundary_atlas_v1",
+  "entries": [
+    {
+      "protocol": "PR1",
+      "claim": "R1",
+      "tier": null,
+      "kind": "protocol",
+      "verdict": "WEAK",
+      "category": "weak"
+    },
+    {
+      "protocol": "PR2",
+      "claim": "R1",
+      "tier": "L4 causal",
+      "kind": "protocol",
+      "verdict": "FAIL",
+      "category": "falsified"
+    },
+    {
+      "protocol": "PR3",
+      "claim": "R1",
+      "tier": "L3 cross-family generalization",
+      "kind": "protocol",
+      "verdict": "FAIL",
+      "category": "falsified"
+    },
+    {
+      "protocol": "PR2b",
+      "claim": "R1",
+      "tier": "L4 causal (proposed, then rejected)",
+      "kind": "pre_execution_rejection",
+      "verdict": "ACCEPT",
+      "category": "pre_execution_rejection"
+    },
+    {
+      "protocol": "PR5",
+      "claim": "R2",
+      "tier": "L2 recovery experiment (cell-level densification)",
+      "kind": "protocol",
+      "verdict": "FAIL",
+      "category": "falsified"
+    },
+    {
+      "protocol": null,
+      "claim": "R3",
+      "tier": "claim_status",
+      "kind": "claim_boundary",
+      "verdict": "boundary_partial_falsification",
+      "category": "boundary"
+    },
+    {
+      "protocol": null,
+      "claim": "R6",
+      "tier": "claim_status",
+      "kind": "claim_boundary",
+      "verdict": "boundary_anchor_gap",
+      "category": "boundary"
+    }
+  ]
+}

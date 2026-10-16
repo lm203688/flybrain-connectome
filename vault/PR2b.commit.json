@@ -1,0 +1,53 @@
+{
+  "schema": "vault_commit_v1",
+  "protocol_id": "PR2b",
+  "commit_type": "retroactive",
+  "committed_at": "2026-10-16",
+  "claimed_registered_at": "2026-10-14",
+  "salt": "1beec712645c665a1792c7c0ccee351f",
+  "payload_hash": "82beb46dca856cd768897e2bf3638c61924c8f2f2a06a79efaf20c20552fed26",
+  "expected_verdict": "REJECT",
+  "success_criteria": {
+    "reject_if_coupling_corr_abs_min": 0.5,
+    "reject_if_artifact_rate_min": 0.9,
+    "conjunctive": true,
+    "declared_direction_for_recovery_auc": "decrease"
+  },
+  "outcome_metric": null,
+  "note": "retroactive: protocol was registered and executed before this vault existed; the commit records the *original* criteria at the time of execution. Forward-guarantee begins with the next protocol.",
+  "_criteria_snapshot": {
+    "outcome_metric": null,
+    "threshold": null,
+    "label_definition": null,
+    "features": null,
+    "model": null,
+    "n_topologies": null,
+    "n_nodes": null,
+    "n_nodes_set": null,
+    "seed": null,
+    "train_idx": null,
+    "held_out_idx": null,
+    "permutations": null,
+    "start_idx": null,
+    "held_out_from_prereg": null,
+    "families": null,
+    "fit_on": null,
+    "predict_only_on": null,
+    "structural_action": null,
+    "action_group": null,
+    "control_group": null,
+    "predict_direction": null,
+    "compensation_mechanisms": null,
+    "horizon_T": null,
+    "target_component": null,
+    "replacement_metrics": null,
+    "success_criteria": {
+      "reject_if_coupling_corr_abs_min": 0.5,
+      "reject_if_artifact_rate_min": 0.9,
+      "conjunctive": true,
+      "declared_direction_for_recovery_auc": "decrease"
+    },
+    "change_from_v1": null,
+    "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-2b"
+  }
+}

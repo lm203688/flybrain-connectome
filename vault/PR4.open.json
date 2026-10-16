@@ -1,0 +1,12 @@
+{
+  "schema": "vault_open_v1",
+  "protocol_id": "PR4",
+  "opened_at": "2026-10-16",
+  "open_count": 1,
+  "result_path": "_f2_recovery\\f2_recovery_dynamics.json",
+  "result_hash": "ff823fae25bc311f18b6c49a02f2845714a6ef41b2d85e5aced7e391bf5c987e",
+  "observed_verdict": "PASS",
+  "observed_verdict_path": "$.summary.verdict",
+  "commit_payload_hash": "2c763f9cb6bb7af840773e3f8d9bdd85cbb863dcd14c40f9dccd9253a7ae617e",
+  "verdict_matches_commit": true
+}

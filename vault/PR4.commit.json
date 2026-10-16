@@ -1,0 +1,67 @@
+{
+  "schema": "vault_commit_v1",
+  "protocol_id": "PR4",
+  "commit_type": "retroactive",
+  "committed_at": "2026-10-16",
+  "claimed_registered_at": "2026-10-14",
+  "salt": "3e76f51131a9b4515aaea0b82e6b2776",
+  "payload_hash": "2c763f9cb6bb7af840773e3f8d9bdd85cbb863dcd14c40f9dccd9253a7ae617e",
+  "expected_verdict": "PASS",
+  "success_criteria": {
+    "zero_ratio_max": 0.3,
+    "recovery_auc_variance_min": 1e-06,
+    "ablation_variance_required": true
+  },
+  "outcome_metric": null,
+  "note": "retroactive: protocol was registered and executed before this vault existed; the commit records the *original* criteria at the time of execution. Forward-guarantee begins with the next protocol.",
+  "_criteria_snapshot": {
+    "outcome_metric": null,
+    "threshold": null,
+    "label_definition": null,
+    "features": null,
+    "model": null,
+    "n_topologies": 50,
+    "n_nodes": 10,
+    "n_nodes_set": null,
+    "seed": 42,
+    "train_idx": null,
+    "held_out_idx": null,
+    "permutations": null,
+    "start_idx": null,
+    "held_out_from_prereg": null,
+    "families": null,
+    "fit_on": null,
+    "predict_only_on": null,
+    "structural_action": null,
+    "action_group": null,
+    "control_group": null,
+    "predict_direction": null,
+    "compensation_mechanisms": {
+      "R_a_path_recruitment": {
+        "tau": 2.0,
+        "ceiling": 0.35
+      },
+      "R_b_weight_reallocation": {
+        "tau": 5.0,
+        "ceiling": 0.4
+      },
+      "R_c_steady_state_gain": {
+        "tau": 8.0,
+        "ceiling": 0.25
+      }
+    },
+    "horizon_T": 12,
+    "target_component": "mean_recovery_steps",
+    "replacement_metrics": [
+      "recovery_AUC",
+      "t_half"
+    ],
+    "success_criteria": {
+      "zero_ratio_max": 0.3,
+      "recovery_auc_variance_min": 1e-06,
+      "ablation_variance_required": true
+    },
+    "change_from_v1": null,
+    "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-4"
+  }
+}

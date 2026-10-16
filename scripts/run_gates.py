@@ -432,6 +432,44 @@ def main() -> int:
         "honored: registry script self-checks via --check flag.",
         [py, str(SCRIPTS / "export_preregistration_registry.py"), "--check"])[0]))
 
+    # ---- Gate 54: metrics_fork reproducibility self-check ----
+    results.append(("gate54 metrics_fork reproducibility", run(
+        "GATE 54 — metrics_fork must be independently reproducible: tree files "
+        "present, LICENSE declares Apache-2.0, every python -m metrics.* command "
+        "in the README smoke-test block must exit 0 and print valid JSON against "
+        "graphs/sample_topology.json, data_manifest.json display_name/species must "
+        "not contradict each other across genus, and any README reference to "
+        "upstream result artifacts must carry a disclaimer. Gate 39 meta-discipline "
+        "honored: the checker runs a 5-mutation injection battery and fails if any "
+        "mutation does not turn the gate red.",
+        [py, str(SCRIPTS / "check_metrics_fork.py")])[0]))
+
+    # ---- Gate 55: holdout integrity (E3 vault) ----
+    results.append(("gate55 holdout integrity", run(
+        "GATE 55 — holdout integrity (E3 vault discipline): every PASS "
+        "preregistered protocol must have a vault/<protocol>.commit.json "
+        "recording its frozen criteria + expected verdict before execution "
+        "(R-0.3), the stored payload_hash must still match the current "
+        "research_claims.json (drift = FAIL), and every open_count must "
+        "remain <= 1. Retroactive commits are allowed but labelled "
+        "honestly. Gate 39 meta-discipline honored: a 4-mutation injection "
+        "battery (delete commit, tamper criteria, double-open, tamper "
+        "expected_verdict) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_holdout_integrity.py")])[0]))
+
+    # ---- Gate 56: badge ladder semantic consistency (E1b) ----
+    results.append(("gate56 badge semantics", run(
+        "GATE 56 — badge ladder semantic consistency (E1b): every V0-V5 "
+        "rung of compute_verification_badges.py::_claim_badge() must "
+        "contain at least one keyword for its own name (V1 → reproduc*, "
+        "V2 → executed_at/prereg, V3 → vault/payload_hash, V4 → cross/"
+        "independent, V5 → external/verifier). In default AUDIT mode "
+        "the mismatches are reported but not fatal (known backlog per "
+        "EPE §9.3); use --strict to fail. Gate 39 meta-discipline "
+        "honored: 5-mutation injection battery (one per V-rung) must all "
+        "turn the gate red in strict mode.",
+        [py, str(SCRIPTS / "check_badge_semantics.py")])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:

@@ -8,7 +8,7 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---|---|---|
-| package | `2.91.0` | the toolkit as a whole |
+| package | `2.94.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -33,6 +33,49 @@ The **schema version** is versioned separately from the **package version**:
 > biology. **This shift is not announced at the top of the changelog until
 > v2.47.0 — the assessment that discovered it lives in
 > `docs/PROJECT_REALITY_ASSESSMENT.md`.**
+
+---
+
+## [2.94.0] — 2026-10-16
+
+**P0/P1 全面提升：metrics_fork 可复现性 + E3 保险库 + E1b 阶梯语义门禁**
+
+### 变更摘要
+
+| 项目 | 内容 |
+|---|---|
+| **P0-1 metrics_fork 修复** | `metrics_fork/README.md` 的 "Re-running the paper's numbers" 表格已修正：自包含列指向 `graphs/sample_topology.json`（可运行），上游列标注为 result-not-graph（不可直接运行）。移除了指向不存在路径的旧命令（`artifact.json`、`pcv2_5x8.json`）。 |
+| **P0-2 Gate 54** | `scripts/check_metrics_fork.py`：解析 README 中的 smoke-test 命令并执行，验证 exit 0 + 有效 JSON；检查 LICENSE（Apache-2.0）、tree 完整性、manifest 物种一致性、upstream-artifact 免责声明。5 条注入电池全部报红。 |
+| **P0-3 Gate 54 注入** | 注入电池：① 删除 sample_topology.json → RED ② 删除 edges 键 → RED ③ display_name/species 矛盾 → RED ④ 错误 LICENSE → RED ⑤ 删除免责声明 → RED。 |
+| **P0-4 manifest 修复** | `metrics_fork/data_manifest.json` 的 `display_name` 从 "Male C. elegans CNS connectome" 修正为 "Male Drosophila CNS connectome"（物种是 Drosophila，不是 Caenorhabditis）。 |
+| **P1-1 Gate 55 (E3 vault)** | `scripts/vault.py`（commit/open/verify/list）+ `scripts/check_holdout_integrity.py`：每个 PASS 协议必须有 vault commit；payload_hash 漂移 → FAIL；open_count ≤ 1。3 条 retroactive commit（PR4、PR3_v2、PR2b）+ 1 条 open（PR4）。4 条注入电池全部报红。 |
+| **P1-2 Gate 56 (E1b)** | `scripts/check_badge_semantics.py`：静态检查 `compute_verification_badges.py::_claim_badge()` 的谓词是否包含其命名属性的关键词。审计模式（默认）报告 3 条 degenerate rungs（V1/V3/V4），不阻塞工作流；`--strict` 模式 FAIL。5 条注入电池全部报红。 |
+| **注册** | Gate 54/55/56 全部注册进 `scripts/run_gates.py`。 |
+| **新增文件** | `scripts/check_metrics_fork.py`、`scripts/vault.py`、`scripts/check_holdout_integrity.py`、`scripts/check_badge_semantics.py`、`vault/PR4.commit.json`、`vault/PR4.open.json`、`vault/PR3_v2.commit.json`、`vault/PR2b.commit.json` |
+
+### 核心判断
+
+**metrics_fork 的不可复现性是本次修复的最高价值发现**：项目此前声称 metrics_fork 可复现，但 README 指向的三条命令中，两条指向不存在的文件，一条指向的文件存在但格式不匹配（result artifact vs graph file）。没有任何门禁守护 metrics_fork，因此这个缺陷从未被发现。**Gate 54 把"声称可复现"变成"机器证明可复现"**——一周内可完成，零外部依赖，直接解锁 arXiv 短文的可复现性声明。
+
+**E3 vault 把 R-0.3 纪律（"held-out 只允许跑一次"）从声明变成机器检查**。此前无任何机制防止重跑；现在 open_count > 1 或 payload_hash 漂移都会导致 Gate 55 报红。retroactive commit 诚实标记为 "retroactive"，区分前瞻保障与事后补录。
+
+**E1b 阶梯语义门禁（Gate 56）固化了 EPE §9.3 的审计发现**：V1（reproducible）的谓词只检查 "≥1 supports 边"（不检查复现性），V3（preregistered）只检查 "≥2 supports"（不检查门禁强制），V4（cross-checked）只检查 "收据存在"（不检查一致性）。默认审计模式报告但不阻塞，`--strict` 模式 FAIL——先立门禁，再修谓词。
+
+### 门禁状态
+
+| 门禁 | 状态 | 说明 |
+|---|---|---|
+| Gate 54 | ✅ PASS | 3 smoke 命令 exit 0 + 有效 JSON；manifest 一致；免责声明存在；5/5 注入报红 |
+| Gate 55 | ✅ PASS | 3 commits + 1 open；2 PASS 协议覆盖；hash 全部 match；open_count=1；4/4 注入报红 |
+| Gate 56 | ✅ PASS | 审计模式：3/6 rungs matching，3 degenerate（已知 backlog）；5/5 注入报红 |
+| Gate 39 | ✅ PASS | 46/46 门禁有注入测试（100%） |
+
+### 未决事项
+
+1. **Gate 56 strict 模式**：V1/V3/V4 的谓词需要实际修改以测试其命名属性（reproducibility / gate enforcement / cross-checking），这是 E1b 的后续工作。
+2. **上游 result→graph 导出器**：metrics_fork 的 README 表格标注了"上游 artifact 列不可直接运行"，但上游仓库尚未提供 result→graph 导出器，因此论文的数字目前无法从 metrics_fork 完整复现。这是 P2 任务。
+3. **P1-3 G5 锚定率数据工程**：高成本，需更多 MaleCNS 数据，本轮未执行。
+4. **P1-4 RAGWarrant**：需外部 LLM 端点，本轮未执行。
 
 ---
 
