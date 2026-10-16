@@ -1,0 +1,61 @@
+{
+  "schema": "vault_commit_v1",
+  "protocol_id": "PR3_v2",
+  "commit_type": "retroactive",
+  "committed_at": "2026-10-16",
+  "claimed_registered_at": "2026-10-15",
+  "salt": "66d6712966fb0ebeb7b60a4a679880f8",
+  "payload_hash": "a3cec799d69b30bf4ca0b4a6b4680fb6585720be24cb9d369d42417c36dd9cbd",
+  "expected_verdict": "PASS",
+  "success_criteria": {
+    "min_families_auc_direction_consistent": 3,
+    "auc_min": 0.65,
+    "must_include_real": true
+  },
+  "outcome_metric": null,
+  "note": "retroactive: protocol was registered and executed before this vault existed; the commit records the *original* criteria at the time of execution. Forward-guarantee begins with the next protocol.",
+  "_criteria_snapshot": {
+    "outcome_metric": null,
+    "threshold": null,
+    "label_definition": "rank_within_family(quantile=0.75)",
+    "features": null,
+    "model": null,
+    "n_topologies": null,
+    "n_nodes": null,
+    "n_nodes_set": [
+      10,
+      20,
+      50
+    ],
+    "seed": null,
+    "train_idx": null,
+    "held_out_idx": null,
+    "permutations": null,
+    "start_idx": null,
+    "held_out_from_prereg": null,
+    "families": [
+      "project_synthetic",
+      "erdos_renyi",
+      "barabasi_albert",
+      "watts_strogatz",
+      "malecns_subgraph"
+    ],
+    "fit_on": null,
+    "predict_only_on": null,
+    "structural_action": null,
+    "action_group": null,
+    "control_group": null,
+    "predict_direction": null,
+    "compensation_mechanisms": null,
+    "horizon_T": null,
+    "target_component": null,
+    "replacement_metrics": null,
+    "success_criteria": {
+      "min_families_auc_direction_consistent": 3,
+      "auc_min": 0.65,
+      "must_include_real": true
+    },
+    "change_from_v1": "Replace absolute drop_magnitude>0.25 label with rank-based label (top 25% within family). v1 used an absolute threshold that fell below signal range as graphs densified — n_positive=0 for 5/5 non-project families. This is a S7 resolution-clamp defect.",
+    "protocol_ref": "docs/PREREGISTRATION_PROTOCOL_v1.md#PR-3-v2"
+  }
+}
