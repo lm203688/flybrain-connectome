@@ -385,6 +385,53 @@ def main() -> int:
         "all_results so a tampered summary cannot silently reopen the substitution",
         [py, str(SCRIPTS / "check_metric_substitution.py")])[0]))
 
+    # ---- Gate 48: claim graph integrity (Blueprint IR) ----
+    results.append(("gate48 claim graph", run(
+        "GATE 48 — Claim Graph (Blueprint IR) integrity: every claim must either be "
+        "supported by >=1 incoming supports/tests edge or be explicitly terminal "
+        "(boundary / rejected / refuted) with documentation; every evidence node must "
+        "carry an artifact or script pointer; V9 warns when a claim's status outruns "
+        "its preregistered evidence (FAIL/WEAK_PASS/ACCEPT verdicts)",
+        [py, str(SCRIPTS / "check_claim_graph.py"),
+         "--graph", str(ROOT / "claim_graph.json")])[0]))
+
+    # ---- Gate 49: adversarial red-team battery (S3) ----
+    results.append(("gate49 red-team battery", run(
+        "GATE 49 — Adversarial self-verification (S3): four red-team attacks "
+        "(summary_tamper, metric_saturation, analytic_redundancy, resolution_clamp) "
+        "must catch each of the project's four historical defects (P1 false-positive, "
+        "R2 density clamp, R1 mechanism saturation, PR-2b analytic coupling). "
+        "Injection battery proves each attack is not degenerate",
+        [py, str(SCRIPTS / "check_claim_redteam.py")])[0]))
+
+    # ---- Gate 50: verification badge integrity (S5) ----
+    results.append(("gate50 verification badges", run(
+        "GATE 50 — Claim verification badges (V0..V5) must be consistent with the "
+        "claim graph: every claim has a badge on the ladder, node.verification_level "
+        "matches badge.level, V5 claims must have a receipt on disk, and bare claims "
+        "(0 supports) must be V0",
+        [py, str(SCRIPTS / "check_verification_badges.py"),
+         "--graph", str(ROOT / "claim_graph.json"),
+         "--badges", str(ROOT / "badges.json")])[0]))
+
+    # ---- Gate 51+52: C1 (PR-5) + C3 (PR-3 v2) preregistration integrity ----
+    results.append(("gate51_52 c1_c3 prereg", run(
+        "GATE 51+52 — C1 cell-densification (PR-5) and C3 rank-label (PR-3 v2) "
+        "preregistration integrity: PR-5 target_density must be 0.10 (ESN floor), "
+        "PR-3 v2 label_definition must be rank/quantile (not absolute), and R-0.1 "
+        "requires PR3 to remain registered alongside PR3_v2 with change_from_v1 "
+        "documented. Results files must match preregistered verdicts",
+        [py, str(SCRIPTS / "check_c1_c3.py")])[0]))
+
+    # ---- Gate 53: Preregistered Rejection Registry (F3 deliverable) ----
+    results.append(("gate53 prereg rejection registry", run(
+        "GATE 53 — F3 deliverable: preregistered rejection registry must exist at "
+        "registry/preregistered_rejections.json, contain every PR* segment with "
+        "kind=pre_execution_rejection from research_claims.json, and stay in sync "
+        "with the source claims file (drift = FAIL). Gate 39 meta-discipline "
+        "honored: registry script self-checks via --check flag.",
+        [py, str(SCRIPTS / "export_preregistration_registry.py"), "--check"])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:
