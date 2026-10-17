@@ -212,11 +212,16 @@ def main() -> int:
         [py, str(SCRIPTS / "check_llm_orchestrator.py")])[0]))
 
     # ---- Gate 31: R2 density scan — structure-function curves and d* threshold ----
+    # Write to a temp dir (not _gate31_r2/) so we don't overwrite the committed
+    # data file that R2 receipt hashes. The density scan output is non-deterministic
+    # (floating-point accumulation order varies), so overwriting would break Gate 61.
+    import tempfile as _tempfile
+    _gate31_tmp = _tempfile.mkdtemp(prefix="gate31_")
     results.append(("gate31 r2 density scan", run(
         "GATE 31 — R2 density scan: structure-function curves and d* threshold",
         [py, str(SCRIPTS / "r2_density_scan.py"), "--n-samples", "50",
          "--n-nodes", "20", "--strict-axis",
-         "--output-dir", str(ROOT / "_gate31_r2")])[0]))
+         "--output-dir", _gate31_tmp])[0]))
 
     # ---- Gate 32: R4 sensitivity boundary analysis — robustness curves ----
     results.append(("gate32 r4 sensitivity scan", run(
