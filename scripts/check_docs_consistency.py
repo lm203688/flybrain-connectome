@@ -69,7 +69,7 @@ def _module_constants(path: Path, names: tuple[str, ...]) -> dict:
             if tgt.id in names:
                 try:
                     out[tgt.id] = ast.literal_eval(node.value)
-                except Exception:  # noqa: BLE001
+                except Exception:  # noqa: SILENT — AST constant extraction; skip non-literal nodes
                     pass
     return out
 
@@ -385,6 +385,80 @@ def main() -> int:
         return 1
     print("DOCS CONSISTENCY: PASS")
     return 0
+
+
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject a version drift and assert it goes red.
+
+    Each case writes a mutated copy of a version constant to a temp dir,
+    monkey-patches the module-level path constants, re-runs main(), asserts
+    non-zero exit, restores state in a finally block. Apply and restore are
+    structurally separate (tempfile + globals swap + finally), so no injection
+    can leak state into the next one.
+    """
+    import tempfile
+    bad = 0
+    n_inj = 0
+
+    def expect(name: str, apply_fn, restore_fn) -> None:
+        nonlocal bad, n_inj
+        n_inj += 1
+        apply_fn()
+        try:
+            rc = main()
+        finally:
+            restore_fn()
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    # 1. Mutate pyproject version to create drift.
+    real_pyproject = read(PYPROJECT)
+    def _patch_version():
+        d = tempfile.mkdtemp(prefix="gate2_inj_")
+        p = Path(d) / "pyproject.toml"
+        p.write_text(real_pyproject.replace('version = "2.66.0"',
+                                             'version = "9.99.99"'),
+                     encoding="utf-8")
+        globals()["PYPROJECT"] = p
+    def _restore_version():
+        globals()["PYPROJECT"] = Path(str(ROOT / "pyproject.toml"))
+    expect("pyproject version drift (9.99.99 vs 2.66.0)", _patch_version, _restore_version)
+
+    # 2. Mutate CLI version constant.
+    real_cli = read(CLI)
+    def _patch_cli_ver():
+        d = tempfile.mkdtemp(prefix="gate2_inj_")
+        p = Path(d) / "flybrain_cli.py"
+        p.write_text(real_cli.replace('__version__ = "2.66.0"',
+                                       '__version__ = "8.8.8"'),
+                     encoding="utf-8")
+        globals()["CLI"] = p
+    def _restore_cli_ver():
+        globals()["CLI"] = Path(str(ROOT / "flybrain_cli.py"))
+    expect("flybrain_cli version drift (8.8.8 vs 2.66.0)", _patch_cli_ver, _restore_cli_ver)
+
+    # 3. Break README tool count.
+    real_readme = read(README)
+    def _patch_readme():
+        d = tempfile.mkdtemp(prefix="gate2_inj_")
+        p = Path(d) / "README.md"
+        # Replace any stated tool count with a wrong number
+        p.write_text(real_readme.replace("47 tools", "48 tools").replace("47 个工具", "48 个工具"),
+                     encoding="utf-8")
+        globals()["README"] = p
+    def _restore_readme():
+        globals()["README"] = Path(str(ROOT / "README.md"))
+    expect("README tool count drift (48 vs 47)", _patch_readme, _restore_readme)
+
+    print()
+    if bad:
+        print("GATE 2 INJECTIONS: %d/%d FAILED (gate stayed green)" % (bad, n_inj))
+    else:
+        print("GATE 2 INJECTIONS: PASS — %d/%d defects caught" % (n_inj, n_inj))
+    return n_inj, bad
 
 
 if __name__ == "__main__":
