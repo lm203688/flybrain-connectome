@@ -4257,7 +4257,7 @@ def _prov_json(provenance: dict | None, organism_name: str | None = None,
             agent_type="prov:Organization",
             role="dataset_provider",
         )
-    except Exception:  # noqa: BLE001
+    except Exception:  # noqa: SILENT — attribution is best-effort; not blocking PROV-JSON output
         pass  # attribution is best-effort; not blocking PROV-JSON output
 
     # ---- 5. Save to string and return the dict -------------------------- #
