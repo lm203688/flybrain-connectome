@@ -3,11 +3,11 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-2.90.0-orange.svg)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-2.95.0-orange.svg)](CHANGELOG.md)
 [![docker](https://img.shields.io/badge/docker-2.90.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.94.0 · 2026-10-16 · 116 functional units · 270 module profiles · 54 gates · EPE 全栈：E1 自验证引擎 + E1b 阶梯语义门禁 + E3 holdout 保险库 + S6 四纪律 + F1/F4b 度量替代预检 + metrics_fork 可追溯分叉 + Gate 54/55/56/57**
+**v2.95.0 · 2026-10-16 · 116 functional units · 270 module profiles · 57 gates · EPE 全栈：E1 自验证引擎 + E1b 阶梯语义门禁 + E3 holdout 保险库 + S6 四纪律 + F1/F4b 度量替代预检 + metrics_fork 可追溯分叉 + Gate 54/55/56/57/58 + fail-loud 纪律 + 版本单一真源**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
@@ -1147,9 +1147,9 @@ for client configs, the 47-tool reference, and troubleshooting.
 The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
-python scripts/run_gates.py              # 30 gates, no dataset needed
-python scripts/run_gates.py --quick      # the 25 gates that don't need numpy / a server
-python scripts/run_gates.py --with-data  # 30 gates: + `flybrain verify` (70 assertions)
+python scripts/run_gates.py              # 57 gates, no dataset needed
+python scripts/run_gates.py --quick      # the 53 gates that don't need numpy / a server
+python scripts/run_gates.py --with-data  # 57 gates: + `flybrain verify` (70 assertions)
 ```
 
 ### Makefile shortcuts (v2.43.0)
