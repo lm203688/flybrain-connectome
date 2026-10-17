@@ -7,8 +7,29 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
-|---|---|---|
-| package | `2.94.0` | the toolkit as a whole |
+|---
+## [2.95.0] - 2026-10-17
+
+### Added
+- **Gate 59 — static analysis + unit tests (K9 test pyramid)**: ruff check + unittest discover on the selfverify suite. 3-mutation injection battery (unused import, undefined name, test failure) all turn the gate red. Fixes the K9 audit finding that pytest/ruff were declared but never executed.
+- **K8 threshold decoupling calibration**: Gate 41 now uses an independent 36-topology calibration suite (calibration suite vs validation suite, verified zero overlap) with machine-verified min_variance thresholds (obs_var × 0.25 safety margin).
+- **K9a selfverify module unit tests**: 150 unit tests across gate/prerejection/dynamics/blueprint/receipt/metric_versions modules (zero-dependency, unittest only).
+- **metrics_kernel AUC/Pearson single source of truth (K5)**: all AUC implementations converge to metrics_kernel.auc.auc; all Pearson implementations converge to metrics_kernel.correlation.pearson.
+- **K6 recovery_auc rename**: all references to recovery_auc renamed to recovery_fraction for clarity.
+- **K12 Gate 41 calibration report**:  written on every run, independently recomputable.
+
+### Fixed
+- **run_p1_experiment_v2.py syntax corruption**: line 94 had literal  characters corrupting  call; fixed.
+- **module_registry.py F821 undefined name**:  referenced via  guard (unreliable) → replaced with  pattern.
+- **check_static_analysis.py RUFF_IGNORE expanded**: added legacy style patterns (F541/F841/B007/E701/E702/B904/B033/E731/F811/E713) to handle 300+ file legacy codebase.
+- **check_static_analysis.py SCAN_DIRS**: removed nonexistent  directory.
+- **check_metric_discrimination.py K8 calibration**: 9 metrics now have machine-verified min_variance thresholds from independent calibration suite; calibration report written to .
+
+### Changed
+- **Version bump**: 2.94.0 → 2.95.0 across pyproject.toml, flybrain_cli.py, mcp server, README, CHANGELOG.
+- **Gate count**: 56 → 57 gates (added Gate 59); quick mode 52 → 53 gates.
+|---|---|
+| package | `2.95.0` | the toolkit as a whole |
 | schema (organism / swarm config) | `1.2.1` | top-level generated-document shape |
 | schema (`motif_provenance` block) | `1.2.0` | provenance sub-document; unchanged since v1.2.0 |
 | combinator rules schema | `1.1` | 12 combination + 7 nesting + 4 multiplier semantics |
@@ -710,7 +731,6 @@ GATES: PASS — 42/42
 
 ---
 
-## [2.76.0] — 2026-10-15
 
 **arxiv_paper.md 升级到 v1.2.0：纳入预注册四元组（PR-1/2/3/4）+ PR-2b 预执行拒绝 + Gate 43-47 + S6-S9 纪律 + L4 基底上限**
 
