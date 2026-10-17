@@ -224,20 +224,9 @@ def _fit_logistic(X: list[list[float]], y: list[int]) -> list[float]:
 
 
 def _auc(y_true: list[int], y_score: list[float]) -> float:
-    n_pos = sum(1 for y in y_true if y == 1)
-    n_neg = sum(1 for y in y_true if y == 0)
-    if n_pos == 0 or n_neg == 0:
-        return 0.5
-    pos_scores = [y_score[i] for i, y in enumerate(y_true) if y == 1]
-    neg_scores = [y_score[i] for i, y in enumerate(y_true) if y == 0]
-    concordant = 0
-    for p in pos_scores:
-        for n in neg_scores:
-            if p > n:
-                concordant += 1
-            elif p == n:
-                concordant += 0.5
-    return concordant / (n_pos * n_neg)
+    """Non-parametric AUC. Delegates to metrics_kernel (K5)."""
+    from _metrics_compat import auc_score
+    return auc_score(y_true, y_score)
 
 
 # ============================================================ main
