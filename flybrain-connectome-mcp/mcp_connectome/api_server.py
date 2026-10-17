@@ -37,6 +37,8 @@ from pathlib import Path
 from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 
 HERE = Path(__file__).resolve().parent
+# Repo root = two levels up from mcp_connectome/ (mcp_connectome -> flybrain-connectome-mcp -> repo root).
+ROOT = HERE.parent.parent
 
 # ---- load config (config.json next to this file) ----
 _cfg_path = HERE / "config.json"
@@ -123,7 +125,7 @@ class _Handler(BaseHTTPRequestHandler):
             self._send(200, {
                 "status": "ok",
                 "service": "flybrain-connectome",
-                "version": "2.95.0",
+                "version": "2.96.0",
                 "api_keys_configured": len(api_keys),
                 "tools": len(_srv.TOOLS),
             })
@@ -133,6 +135,24 @@ class _Handler(BaseHTTPRequestHandler):
                 return
             self._send(200, {"tools": [
                 {"name": t["name"], "description": t["description"]} for t in _srv.TOOLS]})
+        elif self.path.startswith("/api/v1/export/aibom"):
+            # Phase 3: AI Bill of Materials (AIBOM) export.
+            # No auth required — the AIBOM is a *disclosure* artifact, not
+            # a secret. Its whole purpose is to be publicly readable by
+            # third parties evaluating supply-chain disclosure.
+            aibom_path = _ROOT / "aibom.json"
+            if not aibom_path.exists():
+                self._send(404, {"ok": False,
+                                 "error": "aibom.json not found at repo root; "
+                                          "run scripts/check_supply_chain.py --regenerate"})
+                return
+            try:
+                data = json.loads(aibom_path.read_text(encoding="utf-8"))
+            except Exception as e:  # noqa: BLE001
+                self._send(500, {"ok": False,
+                                 "error": "aibom.json malformed: %s" % e})
+                return
+            self._send(200, {"ok": True, "aibom": data})
         else:
             self._send(404, {"ok": False, "error": "unknown endpoint"})
 

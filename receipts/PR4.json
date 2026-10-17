@@ -5,7 +5,7 @@
   "protocol_ref": "PR4",
   "expected_verdict": "PASS",
   "raw_sample_sha256": "17e2eeefc26795b5718321b475cfb37e0307141e5db2d34f46cd325099031142",
-  "recompute_script_sha256": "308fe9c849d339ad6a692a78130922829baf711a9100cfefd0ef3df5d526dc24",
+  "recompute_script_sha256": "0c23af4b35c60545740070c9164f661b364fd2002eb052d714f1fb6ed891dd53",
   "artifacts": [
     {
       "path": "_f2_recovery/f2_recovery_dynamics.json",
@@ -16,12 +16,12 @@
   "scripts": [
     {
       "path": "scripts/f2_recovery_dynamics.py",
-      "sha256": "88d8c87511a5810a269951cc0c4274821661516cbcb56ebcba6bfbe8101ee2f6",
-      "size": 15790
+      "sha256": "5a11a01821ec9a34a6fe589a95ddc531c55649ee388499e179cc7a654dee6625",
+      "size": 16097
     }
   ],
-  "env_hash": "068607cf0c693c3748c1be792c7c2747de2bba2191e4ca891749d0be82f88f25",
-  "timestamp": "2026-10-15T13:27:25+00:00",
+  "env_hash": "15998ee1677caa1a526ce2f07a19b3f9681a803a6b046dafce6cd4742112a49f",
+  "timestamp": "2026-10-17T12:05:20+00:00",
   "issued_by": "scripts/issue_receipt.py",
   "notes": "zero_ratio=0%, variance=0.0114; three compensation mechanisms R-a/R-b/R-c all non-degenerate."
 }

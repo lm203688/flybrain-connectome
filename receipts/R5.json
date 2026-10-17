@@ -5,18 +5,17 @@
   "protocol_ref": "None",
   "expected_verdict": "PASS",
   "raw_sample_sha256": null,
-  "recompute_script_sha256": null,
+  "recompute_script_sha256": "805694551f5739db1575b457902aa7ca3fe7b47b586b85a592a59b06f7f8a97e",
   "artifacts": [],
   "scripts": [
     {
-      "path": "lifecycle.py",
-      "sha256": null,
-      "size": null,
-      "status": "missing"
+      "path": "flybrain-connectome-mcp/lifecycle.py",
+      "sha256": "7684b4f5d365b73fa89948e5246dc4c54cc693047dad5e8d63fa78f2de00aa9e",
+      "size": 23764
     }
   ],
-  "env_hash": "068607cf0c693c3748c1be792c7c2747de2bba2191e4ca891749d0be82f88f25",
-  "timestamp": "2026-10-15T13:27:25+00:00",
+  "env_hash": "15998ee1677caa1a526ce2f07a19b3f9681a803a6b046dafce6cd4742112a49f",
+  "timestamp": "2026-10-17T12:05:20+00:00",
   "issued_by": "scripts/issue_receipt.py",
   "notes": "8-stage lifecycle: birth->survival->damage->repair->reproduction->selection->death, deterministic under seed."
 }

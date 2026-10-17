@@ -152,8 +152,8 @@
         "mean_transitivity": 0.26283333333333336,
         "mean_diameter": 13.92,
         "motif_distribution": {
-          "inhibitory_hub": 13,
           "reservoir_smallworld": 17,
+          "inhibitory_hub": 13,
           "recurrent_feedback": 20
         }
       },
@@ -173,8 +173,8 @@
         "mean_transitivity": 0.2366666666666667,
         "mean_diameter": 14.6,
         "motif_distribution": {
-          "inhibitory_hub": 11,
           "reservoir_smallworld": 20,
+          "inhibitory_hub": 11,
           "recurrent_feedback": 19
         }
       },
@@ -194,8 +194,8 @@
         "mean_transitivity": 0.31993333333333335,
         "mean_diameter": 13.14,
         "motif_distribution": {
-          "inhibitory_hub": 15,
           "reservoir_smallworld": 23,
+          "inhibitory_hub": 15,
           "recurrent_feedback": 12
         }
       },
@@ -215,8 +215,8 @@
         "mean_transitivity": 0.4275424242424243,
         "mean_diameter": 11.22,
         "motif_distribution": {
-          "inhibitory_hub": 21,
           "reservoir_smallworld": 12,
+          "inhibitory_hub": 21,
           "recurrent_feedback": 17
         }
       },
@@ -236,8 +236,8 @@
         "mean_transitivity": 0.31744242424242425,
         "mean_diameter": 12.98,
         "motif_distribution": {
-          "inhibitory_hub": 16,
           "reservoir_smallworld": 18,
+          "inhibitory_hub": 16,
           "recurrent_feedback": 16
         }
       },

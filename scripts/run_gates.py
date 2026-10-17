@@ -500,6 +500,30 @@ def main() -> int:
         "failure) must all turn the gate red.",
         [py, str(SCRIPTS / "check_static_analysis.py"), "--quiet"])[0]))
 
+    # ---- Gate 60: AIBOM supply-chain disclosure (Phase 3) ----
+    results.append(("gate60 supply chain", run(
+        "GATE 60 — AIBOM supply-chain disclosure (Phase 3): aibom.json must "
+        "exist at repo root, be well-formed, and stay in sync with the live "
+        "tree (workspace fingerprint + direct deps + subpackage versions). "
+        "This forces disclosure of every external component: hidden deps "
+        "cannot hide because the fingerprint would drift. Gate 39 "
+        "meta-discipline honored: 5-mutation injection battery (missing, "
+        "malformed, schema drift, dep drift, fingerprint drift) must all "
+        "turn the gate red.",
+        [py, str(SCRIPTS / "check_supply_chain.py")])[0]))
+
+    # ---- Gate 61: receipt integrity (VRO enforcement) ----
+    results.append(("gate61 receipt integrity", run(
+        "GATE 61 — receipt integrity (VRO enforcement): every receipts/*.json "
+        "must (a) exist, (b) match claim_graph.json entries, (c) carry all "
+        "required fields (claim_id, expected_verdict, artifacts, scripts, "
+        "hashes, env_hash, issued_utc), and (d) pass independent recomputation "
+        "via verify_receipt.py. This closes the G1 gap: tampered receipts or "
+        "code drift without re-issue = FAIL. Gate 39 meta-discipline honored: "
+        "4-mutation injection battery (tamper artifact hash, delete script, "
+        "tamper expected_verdict, drift env_hash) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_receipt_integrity.py")])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:

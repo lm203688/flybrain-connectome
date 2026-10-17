@@ -5,7 +5,7 @@
   "protocol_ref": "PR3",
   "expected_verdict": "FAIL",
   "raw_sample_sha256": "e09b8fe71848e0c9c2ab34f21f774cd97c93fd2e2b4788d177f35ff0bd6020f9",
-  "recompute_script_sha256": "402c2670d8dfc2bfb8be95a74b7a74ca60258d94ee6d685c059797cb8c5a90f0",
+  "recompute_script_sha256": "68a469052908e3e3dca71791a3b6810e0cae54cbf2974a24b021f3e95c625f23",
   "artifacts": [
     {
       "path": "_f3_generalization/f3_generalization.json",
@@ -16,12 +16,12 @@
   "scripts": [
     {
       "path": "scripts/f3_generalization_matrix.py",
-      "sha256": "8e91b3a979a639db8ecc5bb6d3b572a580a424aab6adb8230892320917f6e820",
-      "size": 20381
+      "sha256": "e33d04416a08ff2042647647bb4d6ba704541a27f5e84a65bcff547ab53f9087",
+      "size": 20345
     }
   ],
-  "env_hash": "068607cf0c693c3748c1be792c7c2747de2bba2191e4ca891749d0be82f88f25",
-  "timestamp": "2026-10-15T13:27:25+00:00",
+  "env_hash": "15998ee1677caa1a526ce2f07a19b3f9681a803a6b046dafce6cd4742112a49f",
+  "timestamp": "2026-10-17T12:05:20+00:00",
   "issued_by": "scripts/issue_receipt.py",
   "notes": "Cross-family AUC=0.5, n_positive=0 on 5 non-project-synthetic families. Boundary."
 }

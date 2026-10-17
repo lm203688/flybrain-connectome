@@ -494,5 +494,7 @@ the upstream repository and can be reproduced with three commands.
   repository root, independently re-runnable).
 - **Paper reproduction commands:** see `metrics_fork/README.md`.
 - **Gates (independent verification):** `scripts/run_gates.py`
-  (upstream repository, 51 gates). Gate 43, 44, 45, 46, 47 correspond
-  to PR-1, PR-3, PR-2, PR-4, PR-2b respectively.
+  (upstream repository, 59 gates as of v2.96.0). Gate 43, 44, 45, 46, 47 correspond
+  to PR-1, PR-3, PR-2, PR-4, PR-2b respectively; Gates 54–61 cover metrics_fork,
+  holdout, badge semantics, silent exceptions, version consistency, static analysis,
+  AIBOM supply chain, and receipt integrity.

@@ -1,0 +1,84 @@
+{
+  "aibom_schema_version": "1.0.0",
+  "generated_utc": "2026-10-17T11:30:54+00:00",
+  "package": {
+    "name": "flybrain-connectome",
+    "version": "2.96.0"
+  },
+  "direct_python_deps": [
+    "numpy>=1.24"
+  ],
+  "optional_dep_groups": {
+    "prov": [
+      "dataprov>=3.0.0"
+    ],
+    "data": [
+      "pyarrow>=13.0",
+      "pandas>=2.0",
+      "openpyxl>=3.1"
+    ],
+    "dev": [
+      "ruff>=0.5",
+      "black>=24.0",
+      "mypy>=1.10",
+      "pytest>=8.0",
+      "pytest-cov>=5.0",
+      "pre-commit>=3.7",
+      "build>=1.0",
+      "twine>=5.0",
+      "numpy>=1.24",
+      "pandas>=2.0",
+      "openpyxl>=3.1",
+      "dataprov>=3.0.0"
+    ]
+  },
+  "subpackages": [
+    {
+      "path": "flybrain-connectome-mcp/mcp_connectome",
+      "name": "flybrain-connectome-mcp",
+      "version": "1.3.0",
+      "dependencies": [
+        "numpy",
+        "pyarrow"
+      ],
+      "status": "ok"
+    },
+    {
+      "path": "tools/selfverify",
+      "name": "selfverify",
+      "version": "0.1.0",
+      "dependencies": [],
+      "status": "ok"
+    }
+  ],
+  "dataset_provenance": {
+    "status": "ok",
+    "dataset": "MaleCNS v1.0 (male Drosophila brain connectome), CC-BY",
+    "generated_utc": "2026-09-20T04:36:51.591205+00:00",
+    "file_count": 211604,
+    "total_bytes": 37418478413,
+    "anchor": {
+      "rel": "connectivity_facts.json",
+      "bytes": 40366,
+      "sha256": "d8abe14eac75c86cb836153c7bbda4179968bae996deb5e5802734c96f843e86"
+    }
+  },
+  "workspace_fingerprint": {
+    "pyproject.toml": {
+      "sha256": "39a55b761403029d78d0f5d3de9e795eba55925650833b8ee376df3d0b0821cd",
+      "bytes": 8394
+    },
+    "DATA_MANIFEST.json": {
+      "sha256": "9258e0f959ab1a0c3966b10275ac0103d0729bb5e4256b4b814049dd1a174bd3",
+      "bytes": 34998715
+    },
+    "README.md": {
+      "sha256": "190080c2f9c843eea1a81995b2439b3b728122539e81c8ec7592d471e3b7d787",
+      "bytes": 67730
+    },
+    "CHANGELOG.md": {
+      "sha256": "e391745e3657172f8d2a219456f427ebc56410e141ff9410ba0b455e990eebca",
+      "bytes": 360075
+    }
+  }
+}

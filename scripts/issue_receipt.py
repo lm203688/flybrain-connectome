@@ -103,7 +103,7 @@ CLAIM_SPECS: list[dict] = [
         "statement": "确定性可复现的结构级生命闭环；出生签名同 seed 逐位一致",
         "artifacts": [],
         "scripts": [
-            "lifecycle.py",
+            "flybrain-connectome-mcp/lifecycle.py",
         ],
         "expected_verdict": "PASS",
         "protocol_ref": "None",

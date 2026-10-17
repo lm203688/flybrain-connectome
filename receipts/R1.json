@@ -5,7 +5,7 @@
   "protocol_ref": "PR1",
   "expected_verdict": "WEAK",
   "raw_sample_sha256": "aad26d62dcb35cf8e9f88369b133d6a91e2ac903e6ed5210c0b371b514308aad",
-  "recompute_script_sha256": "6fbc2fcd0da2255c3f9aa87d584e8caf293bbd49c6c3d1f6a03027d69c659739",
+  "recompute_script_sha256": "2f4b6ed26f116cf333a727b3c8b8ffa1057258a7407483a57923bfd7c29f77a9",
   "artifacts": [
     {
       "path": "_r1_mechanism_a/graded_isolation.json",
@@ -26,22 +26,22 @@
   "scripts": [
     {
       "path": "scripts/isolation_graded.py",
-      "sha256": "9bb1db72f8ba3222de4c629427c2bf41a61cbe79b9a178b4940c6d6b2460b798",
-      "size": 22583
+      "sha256": "5df5678cdd0e86a89fc0f4522963cd48230461c45c07c5bc2b85f85de1be31cd",
+      "size": 22588
     },
     {
       "path": "scripts/mechanism_binary.py",
-      "sha256": "36262c9c7c96467e4f12dea691b05e690c7b9430b985198d9213ad1238993995",
-      "size": 9530
+      "sha256": "2a1376e1e57a6ab271c44b54d2042c7193e4cc7fb91da40c262ea3a67a165c5c",
+      "size": 9298
     },
     {
       "path": "scripts/f1_controllability_features.py",
-      "sha256": "80e5604029d0a207a68fb8c1244a430f8a012f7fcffb07eef2e36fcf9d8b9463",
-      "size": 14466
+      "sha256": "65d799cf825be2463856208e00b82a191f6c2235b711f05f2f591d6137268bf9",
+      "size": 14055
     }
   ],
-  "env_hash": "068607cf0c693c3748c1be792c7c2747de2bba2191e4ca891749d0be82f88f25",
-  "timestamp": "2026-10-15T13:27:25+00:00",
+  "env_hash": "15998ee1677caa1a526ce2f07a19b3f9681a803a6b046dafce6cd4742112a49f",
+  "timestamp": "2026-10-17T12:05:20+00:00",
   "issued_by": "scripts/issue_receipt.py",
   "notes": "Preregistered forward prediction: AUC=0.788 ✅ / z=1.53 ❌ (WEAK_PASS)."
 }

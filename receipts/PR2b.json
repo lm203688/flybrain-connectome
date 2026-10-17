@@ -5,7 +5,7 @@
   "protocol_ref": "PR2b",
   "expected_verdict": "ACCEPT",
   "raw_sample_sha256": "2c7d1542db4c0f8eb3cfa3bbcb93e0b894423a55d666ee206a872e4f0f6f83cf",
-  "recompute_script_sha256": "e5335115a672b340c353317851ea29b7badee512e06b6473bf6ce03dc78c700c",
+  "recompute_script_sha256": "a442c8fbc72badeee8b799e88f6a6685719823ffda4483df8a4430636386fa67",
   "artifacts": [
     {
       "path": "_f4b_metric_substitution/f4b_metric_substitution.json",
@@ -16,12 +16,12 @@
   "scripts": [
     {
       "path": "scripts/f4b_metric_substitution_check.py",
-      "sha256": "4930084b52e4e1f7b9ce8013c10d842fe86e61e709ac2760011a56a310d22fd1",
-      "size": 19135
+      "sha256": "97def24e1832eb393665abd0f773f78036e149c4135a49355552066660b416f8",
+      "size": 19238
     }
   ],
-  "env_hash": "068607cf0c693c3748c1be792c7c2747de2bba2191e4ca891749d0be82f88f25",
-  "timestamp": "2026-10-15T13:27:25+00:00",
+  "env_hash": "15998ee1677caa1a526ce2f07a19b3f9681a803a6b046dafce6cd4742112a49f",
+  "timestamp": "2026-10-17T12:05:20+00:00",
   "issued_by": "scripts/issue_receipt.py",
   "notes": "|corr|=0.902 on merged sample; analytic proof of denominator artifact. Rule_underpowered=true."
 }

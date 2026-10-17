@@ -1,6 +1,6 @@
 {
   "schema": "preexec_rejection_registry_v1",
-  "generated_at": "2026-10-15T15:07:20.486357+00:00",
+  "generated_at": "2026-10-17T12:05:20.649781+00:00",
   "project": "flybrain-connectome",
   "project_version": null,
   "protocol_doc": "docs/PREREGISTRATION_PROTOCOL_v1.md",
@@ -85,7 +85,7 @@
           "note": "The reject rule tests coupling on the BRIDGE arm only, whose var(d_bridge_fraction) is compressed to 1e-3 by the intervention itself (all bridges deleted), so 'is recovery_AUC monotone in bridge_fraction' is unresolvable on that sample. On both arms pooled (4.94x the variance) the coupling is CONFIRMED at |r| = 0.90-0.91. The rule's ACCEPT is a specification defect, not a clearance."
         }
       },
-      "receipt_sha256": "5100348a7f31ab15623ed5e5e73caf6f67a2e6e3ce02efdadfbe7ccd23198073",
+      "receipt_sha256": "c7a2f5ee275cc042437aae125b461a8cd23cc62a18b7333b0af24a036200b40a",
       "receipt_path": "receipts/PR2b.json"
     }
   ],
