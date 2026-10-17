@@ -94,7 +94,7 @@ def _classify(name: str, G: nx.DiGraph) -> str:
                             longest_len = len(p)
             if longest_len >= 4 and max(in_deg.values()) >= 1 and max(out_deg.values()) >= 1:
                 return "hierarchical"
-        except Exception:
+        except Exception:  # noqa: SILENT — topology classification probe; fallback to 'other'
             pass
 
     # Default: chain
