@@ -186,7 +186,7 @@ def _malecns_subgraph(rng: random.Random, n_nodes: int) -> Blueprint:
                         motif_family="malecns_subgraph",
                         capability_distribution={"mixed": n_nodes}, origin="malecns",
                     )
-        except Exception:
+        except Exception:  # noqa: SILENT — topology generation fallback; skip on failure
             pass
     # Fallback: scale-free-ish topology that mirrors MaleCNS's power-law degree.
     # We mark origin='malecns_proxy' so Gate 44 can see whether the real
@@ -280,10 +280,9 @@ def _auc_on(X_pred_raw: list[list[float]], y_pred: list[int],
             w: list[float], means: list[float], stds: list[float]) -> float:
     """Predict on a raw feature matrix using a fit model, return AUC.
 
-    Note: `predict_proba` in mechanism_binary.py standardises the input using
-    the train-time means/stds, so we pass the *raw* features back and let
-    it do the transform — the trained weights live in standardised space.
+    Delegates to metrics_kernel (K5). The local predict_proba does standardisation.
     """
+    from _metrics_compat import auc_score
     proba = predict_proba(w, X_pred_raw, means, stds)
     return float(auc_score(y_pred, proba))
 
