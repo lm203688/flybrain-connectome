@@ -4,12 +4,12 @@
   "statement": "稀疏结构空间 (0.002-0.023) 无 GA 可搜索梯度；随机采样胜 GA",
   "protocol_ref": "None",
   "expected_verdict": "PASS",
-  "raw_sample_sha256": "dd7a9b665580772fd0bfbe57a560f4344fb2a053f09dc989f9c2ca3a7f655ac6",
+  "raw_sample_sha256": "c81883f086839cb8af300b239d981ea7751372adb86ef3067cc12ad730de96b0",
   "recompute_script_sha256": "0c23af4b35c60545740070c9164f661b364fd2002eb052d714f1fb6ed891dd53",
   "artifacts": [
     {
       "path": "_gate31_r2/r2_density_scan.json",
-      "sha256": "7b61852803b1d8ada9bb6f8f9a9482bbaa58f6b0e9de2e788afd8f38a44a4821",
+      "sha256": "9d224021409a56558e5172475e52734889e91d2a147894a246bcd62dbcb042a1",
       "size": 152656
     }
   ],
@@ -21,7 +21,7 @@
     }
   ],
   "env_hash": "15998ee1677caa1a526ce2f07a19b3f9681a803a6b046dafce6cd4742112a49f",
-  "timestamp": "2026-10-17T12:05:20+00:00",
+  "timestamp": "2026-10-17T13:32:00+00:00",
   "issued_by": "scripts/issue_receipt.py",
   "notes": "GA underperforms random sampling in the sparse regime — verified across density grid."
 }

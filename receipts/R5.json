@@ -15,7 +15,7 @@
     }
   ],
   "env_hash": "15998ee1677caa1a526ce2f07a19b3f9681a803a6b046dafce6cd4742112a49f",
-  "timestamp": "2026-10-17T12:05:20+00:00",
+  "timestamp": "2026-10-17T13:32:00+00:00",
   "issued_by": "scripts/issue_receipt.py",
   "notes": "8-stage lifecycle: birth->survival->damage->repair->reproduction->selection->death, deterministic under seed."
 }

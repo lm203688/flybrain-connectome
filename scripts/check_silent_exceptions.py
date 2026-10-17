@@ -191,8 +191,9 @@ class SilentExceptionVisitor(ast.NodeVisitor):
 
 def scan_file(path: Path, whitelist: set[str]) -> list[dict]:
     """Scan a single Python file for silent exception swallowing."""
+    import fnmatch
     rel = str(path.relative_to(ROOT))
-    if rel in whitelist:
+    if any(fnmatch.fnmatch(rel, pattern) for pattern in whitelist):
         return []
     if is_excluded(path):
         return []
