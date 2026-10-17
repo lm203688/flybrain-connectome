@@ -1,0 +1,14 @@
+# Gate 57 whitelist — silent exception swallowing
+# Files listed here are excluded from the silent-exception scan.
+# Each entry should be a relative path from the repo root.
+#
+# Rationale for each entry:
+# - archive/*: archived code, not actively maintained
+# - zebrafish_data/paper_data/*: third-party data analysis code
+# - flybrain-tier2-backup-*: backup copies, not in active use
+# - archive/swept-*/tmp/*: temporary directories with third-party dependencies
+
+archive/*
+flybrain-tier2-backup-*/**/*
+zebrafish_data/paper_data/**/*
+archive/swept-*/*
