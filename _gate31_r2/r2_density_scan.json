@@ -131,9 +131,9 @@
         "mean_transitivity": 0.3,
         "mean_diameter": 13.6,
         "motif_distribution": {
-          "recurrent_feedback": 19,
+          "reservoir_smallworld": 16,
           "inhibitory_hub": 15,
-          "reservoir_smallworld": 16
+          "recurrent_feedback": 19
         }
       },
       "random": {
@@ -152,9 +152,9 @@
         "mean_transitivity": 0.26283333333333336,
         "mean_diameter": 13.92,
         "motif_distribution": {
-          "recurrent_feedback": 20,
           "inhibitory_hub": 13,
-          "reservoir_smallworld": 17
+          "reservoir_smallworld": 17,
+          "recurrent_feedback": 20
         }
       },
       "random": {
@@ -195,8 +195,8 @@
         "mean_diameter": 13.14,
         "motif_distribution": {
           "inhibitory_hub": 15,
-          "recurrent_feedback": 12,
-          "reservoir_smallworld": 23
+          "reservoir_smallworld": 23,
+          "recurrent_feedback": 12
         }
       },
       "random": {
@@ -237,8 +237,8 @@
         "mean_diameter": 12.98,
         "motif_distribution": {
           "inhibitory_hub": 16,
-          "recurrent_feedback": 16,
-          "reservoir_smallworld": 18
+          "reservoir_smallworld": 18,
+          "recurrent_feedback": 16
         }
       },
       "random": {
@@ -257,9 +257,9 @@
         "mean_transitivity": 0.24073333333333335,
         "mean_diameter": 14.34,
         "motif_distribution": {
-          "recurrent_feedback": 18,
+          "reservoir_smallworld": 20,
           "inhibitory_hub": 12,
-          "reservoir_smallworld": 20
+          "recurrent_feedback": 18
         }
       },
       "random": {
