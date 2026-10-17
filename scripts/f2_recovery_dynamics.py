@@ -154,11 +154,14 @@ def compute_recovery_trajectory(
     return {"curve": curve, "modulators": mods}
 
 
-def _recovery_auc(curve: list[float], drop_magnitude: float) -> float:
-    """Normalized AUC over t=1..T.
+def _recovery_fraction(curve: list[float], drop_magnitude: float) -> float:
+    """Normalized recovery fraction over t=1..T.
 
-    Divided by drop_magnitude so recovery_AUC in [0,1] represents the
+    Divided by drop_magnitude so recovery_fraction in [0,1] represents the
     fraction of the fault that was compensated, not the raw level.
+
+    K6 改名：原名为 recovery_auc，但实际是"恢复曲线均值 ÷ 跌落幅度"，
+    不是分类 AUC。与 drop_magnitude 存在定义性耦合地板约 0.34。
     """
     T = len(curve) - 1
     if T <= 0 or drop_magnitude <= 0:
@@ -194,9 +197,9 @@ def compute_ablation(struct: "CriticalEdgeFeatures", drop_magnitude: float, T: i
     out: dict[str, dict] = {}
     for name, enabled in configs.items():
         traj = compute_recovery_trajectory(struct, drop_magnitude, T, enabled=enabled)
-        auc = _recovery_auc(traj["curve"], drop_magnitude)
-        th  = _t_half(traj["curve"], drop_magnitude)
-        out[name] = {"recovery_auc": auc, "t_half": th}
+        auc = _recovery_fraction(traj["curve"], drop_magnitude)
+        th = _t_half(traj["curve"], drop_magnitude)
+        out[name] = {"recovery_fraction": auc, "t_half": th}
     return out
 
 
@@ -211,7 +214,7 @@ class RecoveryDynamics:
     n_nodes: int
     n_edges: int
     drop_magnitude: float
-    recovery_auc: float
+    recovery_fraction: float
     t_half: Optional[float]
     auc_no_Ra: float
     auc_no_Rb: float
@@ -274,14 +277,14 @@ def main() -> int:
             n_nodes=struct.n_nodes,
             n_edges=struct.n_edges,
             drop_magnitude=g.drop_magnitude,
-            recovery_auc=ab["all"]["recovery_auc"],
+            recovery_fraction=ab["all"]["recovery_fraction"],
             t_half=ab["all"]["t_half"],
-            auc_no_Ra=ab["ablation_no_Ra"]["recovery_auc"],
-            auc_no_Rb=ab["ablation_no_Rb"]["recovery_auc"],
-            auc_no_Rc=ab["ablation_no_Rc"]["recovery_auc"],
-            contribution_Ra=ab["all"]["recovery_auc"] - ab["ablation_no_Ra"]["recovery_auc"],
-            contribution_Rb=ab["all"]["recovery_auc"] - ab["ablation_no_Rb"]["recovery_auc"],
-            contribution_Rc=ab["all"]["recovery_auc"] - ab["ablation_no_Rc"]["recovery_auc"],
+            auc_no_Ra=ab["ablation_no_Ra"]["recovery_fraction"],
+            auc_no_Rb=ab["ablation_no_Rb"]["recovery_fraction"],
+            auc_no_Rc=ab["ablation_no_Rc"]["recovery_fraction"],
+            contribution_Ra=ab["all"]["recovery_fraction"] - ab["ablation_no_Ra"]["recovery_fraction"],
+            contribution_Rb=ab["all"]["recovery_fraction"] - ab["ablation_no_Rb"]["recovery_fraction"],
+            contribution_Rc=ab["all"]["recovery_fraction"] - ab["ablation_no_Rc"]["recovery_fraction"],
             modulator_Ra=_modulator_a(struct),
             modulator_Rb=_modulator_b(struct),
             modulator_Rc=_modulator_c(struct),
@@ -290,15 +293,15 @@ def main() -> int:
         if not args.quiet and (i % 20 == 0 or i == args.n_topologies - 1):
             print(f"  [{i+1:3d}/{args.n_topologies}] {bp.name[:26]:<26s} "
                   f"drop={rd.drop_magnitude:.3f} "
-                  f"AUC={rd.recovery_auc:.3f} t_half={rd.t_half}")
+                  f"recovery_fraction={rd.recovery_fraction:.3f} t_half={rd.t_half}")
 
     # ------------------------------------------------------- summary stats
-    aucs  = [r.recovery_auc   for r in results]
+    aucs  = [r.recovery_fraction for r in results]
     drops = [r.drop_magnitude for r in results]
     ths   = [r.t_half for r in results if r.t_half is not None]
 
     var_auc = _var(aucs)
-    zero_auc_count = sum(1 for a in aucs if a == 0.0)
+    zero_auc_count = sum(1 for a in aucs if abs(a) < 1e-12)
     zero_ratio = zero_auc_count / len(aucs)
 
     mean_cRa = sum(r.contribution_Ra for r in results) / len(results)
@@ -358,9 +361,9 @@ def main() -> int:
         "summary_stats": {
             "drop_magnitude_mean":   sum(drops)/len(drops),
             "drop_magnitude_var":    _var(drops),
-            "recovery_auc_mean":     sum(aucs)/len(aucs),
-            "recovery_auc_var":      var_auc,
-            "recovery_auc_unique":   len(set(round(x,4) for x in aucs)),
+            "recovery_fraction_mean": sum(aucs)/len(aucs),
+            "recovery_fraction_var":      var_auc,
+            "recovery_fraction_unique":   len(set(round(x,4) for x in aucs)),
             "zero_auc_count":        zero_auc_count,
             "zero_ratio":            zero_ratio,
             "t_half_defined":        len(ths),

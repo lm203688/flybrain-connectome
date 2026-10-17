@@ -284,7 +284,7 @@ def verify(
                                 f"{contract.max_hub_concentration}",
                     value=top1,
                 ))
-    except Exception:
+    except Exception:  # noqa: SILENT — non-critical check, skip on failure
         pass  # non-critical check, skip on failure
 
     # --- Rule 7: feedback requirement ---

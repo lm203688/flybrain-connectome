@@ -65,6 +65,8 @@ def _load_json(path: Path) -> dict:
 
 
 def _pearson(a: list, b: list):
+    """Pearson correlation. Delegates to metrics_kernel (K5)."""
+    from _metrics_compat import pearson
     n = len(a)
     if n < 3 or len(b) != n:
         return None
@@ -74,7 +76,7 @@ def _pearson(a: list, b: list):
     sb = math.sqrt(sum((y - mb) ** 2 for y in b) / n)
     if sa <= 1e-12 or sb <= 1e-12:
         return None
-    return cov / (sa * sb)
+    return pearson(a, b)
 
 
 def _check_pr2b(claims: dict, f4b: dict) -> tuple[list[str], list[str], list[str]]:

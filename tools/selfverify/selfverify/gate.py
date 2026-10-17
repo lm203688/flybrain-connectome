@@ -10,40 +10,14 @@ from .protocol import Protocol, Verdict
 
 
 def auc(scores, labels) -> float:
-    """Rank-based AUC (Mann-Whitney U). Pure Python, no dependencies."""
-    pos = [s for s, l in zip(scores, labels) if int(l) == 1]
-    neg = [s for s, l in zip(scores, labels) if int(l) == 0]
-    if not pos or not neg:
-        return 0.5
-    paired = sorted(zip(scores, [int(l) for l in labels]))
-    n = len(paired)
-    rank_of = [0.0] * n
-    i = 0
-    while i < n:
-        j = i
-        while j + 1 < n and paired[j + 1][0] == paired[i][0]:
-            j += 1
-        avg = (i + j) / 2.0 + 1.0  # average rank (1-based) for ties
-        for k in range(i, j + 1):
-            rank_of[k] = avg
-        i = j + 1
-    r_pos = sum(rank_of[k] for k, (_, l) in enumerate(paired) if l == 1)
-    n_pos, n_neg = len(pos), len(neg)
-    u = r_pos - n_pos * (n_pos + 1) / 2.0
-    return u / (n_pos * n_neg)
+    """Rank-based AUC (Mann-Whitney U). Delegates to metrics_kernel (K5)."""
+    from . import _kernel_bridge
+    return _kernel_bridge.auc(scores, labels)
 
 
 def pearson(a, b) -> float:
-    n = len(a)
-    if n < 2:
-        return 0.0
-    ma, mb = sum(a) / n, sum(b) / n
-    num = sum((x - ma) * (y - mb) for x, y in zip(a, b))
-    da = sum((x - ma) ** 2 for x in a) ** 0.5
-    db = sum((y - mb) ** 2 for y in b) ** 0.5
-    if da == 0 or db == 0:
-        return 0.0
-    return num / (da * db)
+    from . import _kernel_bridge
+    return _kernel_bridge.pearson(a, b)
 
 
 def independent_recompute(protocol: Protocol, results: dict) -> dict:

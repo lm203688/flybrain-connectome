@@ -97,19 +97,9 @@ def predict_proba(w: list[float], X: list[list[float]],
 
 
 def auc_score(y_true: list[int], y_score: list[float]) -> float:
-    """Rank-based AUC (Mann-Whitney U)."""
-    pos = [s for s, t in zip(y_score, y_true) if t == 1]
-    neg = [s for s, t in zip(y_score, y_true) if t == 0]
-    if not pos or not neg:
-        return 0.5
-    wins = 0.0
-    for p in pos:
-        for n in neg:
-            if p > n:
-                wins += 1.0
-            elif p == n:
-                wins += 0.5
-    return wins / (len(pos) * len(neg))
+    """Rank-based AUC. Delegates to metrics_kernel (K5)."""
+    from _metrics_compat import auc_score as _kernel_auc_score
+    return _kernel_auc_score(y_true, y_score)
 
 
 # ============================================================ main

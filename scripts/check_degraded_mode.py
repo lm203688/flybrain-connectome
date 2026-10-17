@@ -91,12 +91,12 @@ def _call_server(python: str, extra_path: str | None) -> dict:
         text = ""
         try:
             text = res["content"][0]["text"]
-        except Exception:  # noqa: BLE001
+        except Exception:  # noqa: SILENT — degraded mode probe; missing content is expected
             pass
         parsed = None
         try:
             parsed = json.loads(text)
-        except Exception:  # noqa: BLE001
+        except Exception:  # noqa: SILENT — degraded mode probe; non-JSON is expected
             pass
         out[tool] = (bool(res.get("isError")), parsed, text)
     if not out:

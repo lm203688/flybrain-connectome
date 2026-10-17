@@ -235,7 +235,7 @@ def run_once(scenario: str, config_name: str, blueprint_name: str | None,
             mp = tdoc.get("motif_provenance", {})
             if mp:
                 is_bio_prior = mp.get("is_bio_prior")
-        except Exception:
+        except Exception:  # noqa: SILENT — bio_prior flag lookup; skip on missing motif provenance
             pass
 
     return {

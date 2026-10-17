@@ -105,7 +105,7 @@ def main() -> int:
     # DAG detection
     chain = {"nodes": [{"id": "1"}, {"id": "2"}, {"id": "3"}],
              "edges": [{"from": "1", "to": "2"}, {"from": "2", "to": "3"}]}
-    check("chain feedback == 0", tp.profile(chain)["feedback_edge_fraction"] == 0.0)
+    check("chain feedback == 0", abs(tp.profile(chain)["feedback_edge_fraction"]) < 1e-12)
 
     # signature: deterministic + change-sensitive
     sig_a = tp.profile(chain)["profile_signature"]

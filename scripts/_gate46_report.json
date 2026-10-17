@@ -17,7 +17,7 @@
     "success_criteria.zero_ratio_max consistent: 0.3",
     "success_criteria.recovery_auc_variance_min consistent: 1e-06",
     "all 3 compensation mechanisms present",
-    "independently recomputed recovery_auc: n=50, var=0.011436, zero_ratio=0.000",
+    "no per-topology recovery_fraction column — skipped independent recompute",
     "ablation[R_a_path_recruitment].var=0.006553 (non-degenerate)",
     "ablation[R_b_weight_reallocation].var=0.000284 (non-degenerate)",
     "ablation[R_c_steady_state_gain].var=0.000437 (non-degenerate)",

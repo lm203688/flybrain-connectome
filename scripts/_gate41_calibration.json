@@ -1,0 +1,55 @@
+{
+  "calibration_suite_size": 36,
+  "validation_suite_size": 14,
+  "safe_margin": 0.25,
+  "independent": true,
+  "overlap": [],
+  "observed": {
+    "drop_magnitude_proxy": 1.393167,
+    "reachable_frac": 0.141044,
+    "transitivity": 0.01904,
+    "avg_outdegree": 4.717635,
+    "n_components": 0.471451,
+    "diameter": 8.323302,
+    "graded_drop_magnitude": 0.007971,
+    "graded_affected_modules_mean": 0.731819,
+    "graded_recovery_steps": 0.052721,
+    "legacy_isolation_binary": 0.0
+  },
+  "recommended": {
+    "drop_magnitude_proxy": 0.348292,
+    "reachable_frac": 0.035261,
+    "transitivity": 0.00476,
+    "avg_outdegree": 1.179409,
+    "n_components": 0.117863,
+    "diameter": 2.080826,
+    "graded_drop_magnitude": 0.001993,
+    "graded_affected_modules_mean": 0.182955,
+    "graded_recovery_steps": 0.01318,
+    "legacy_isolation_binary": 0.0
+  },
+  "declared": {
+    "drop_magnitude_proxy": 0.35,
+    "reachable_frac": 0.035,
+    "transitivity": 0.002,
+    "avg_outdegree": 1.2,
+    "n_components": 0.12,
+    "diameter": 2.0,
+    "graded_drop_magnitude": 0.002,
+    "graded_affected_modules_mean": 0.18,
+    "graded_recovery_steps": 0.005,
+    "legacy_isolation_binary": 0.05
+  },
+  "drift": {
+    "drop_magnitude_proxy": 0.995,
+    "reachable_frac": 1.007,
+    "transitivity": 2.38,
+    "avg_outdegree": 0.983,
+    "n_components": 0.982,
+    "diameter": 1.04,
+    "graded_drop_magnitude": 0.996,
+    "graded_affected_modules_mean": 1.016,
+    "graded_recovery_steps": 2.636,
+    "legacy_isolation_binary": null
+  }
+}

@@ -103,13 +103,9 @@ def _drop_magnitude(g: dict[int, list[int]]) -> float:
 
 
 def _auc(pairs: list[tuple[float, int]]) -> float:
-    pos = [s for s, l in pairs if l == 1]
-    neg = [s for s, l in pairs if l == 0]
-    if not pos or not neg:
-        return 0.5
-    conc = sum(1 for p in pos for n_ in neg if p > n_)
-    ties = sum(1 for p in pos for n_ in neg if p == n_)
-    return (conc + 0.5 * ties) / (len(pos) * len(neg))
+    """Mann-Whitney AUC. Delegates to metrics_kernel."""
+    from _metrics_compat import auc_from_pairs
+    return auc_from_pairs(pairs)
 
 
 def _rank_label(scores: list[float], quantile: float = 0.75) -> list[int]:

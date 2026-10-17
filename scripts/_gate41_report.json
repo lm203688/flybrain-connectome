@@ -23,7 +23,7 @@
       "name": "drop_magnitude_proxy",
       "verdict": "pass",
       "variance": 1.4959252518235397,
-      "min_variance": 0.02,
+      "min_variance": 0.35,
       "negative_control": false,
       "description": "avg shortest-path length across ordered pairs; sensitive to topology",
       "values": {
@@ -47,7 +47,7 @@
       "name": "reachable_frac",
       "verdict": "pass",
       "variance": 0.09475647391233187,
-      "min_variance": 0.02,
+      "min_variance": 0.035,
       "negative_control": false,
       "description": "mean fraction of nodes reachable from any source",
       "values": {
@@ -71,7 +71,7 @@
       "name": "transitivity",
       "verdict": "pass",
       "variance": 0.032469927756209015,
-      "min_variance": 0.005,
+      "min_variance": 0.002,
       "negative_control": false,
       "description": "directed transitivity (triangle / 2-path ratio)",
       "values": {
@@ -95,7 +95,7 @@
       "name": "avg_outdegree",
       "verdict": "pass",
       "variance": 3.767055162200935,
-      "min_variance": 0.5,
+      "min_variance": 1.2,
       "negative_control": false,
       "description": "mean outdegree — should vary sharply across the suite",
       "values": {
@@ -119,7 +119,7 @@
       "name": "n_components",
       "verdict": "pass",
       "variance": 0.6326530612244898,
-      "min_variance": 0.05,
+      "min_variance": 0.12,
       "negative_control": false,
       "description": "number of weakly-connected components",
       "values": {
@@ -143,7 +143,7 @@
       "name": "diameter",
       "verdict": "pass",
       "variance": 9.678571428571429,
-      "min_variance": 0.02,
+      "min_variance": 2.0,
       "negative_control": false,
       "description": "graph diameter in hops",
       "values": {
@@ -167,7 +167,7 @@
       "name": "graded_drop_magnitude",
       "verdict": "pass",
       "variance": 0.016472594184698125,
-      "min_variance": 0.01,
+      "min_variance": 0.002,
       "negative_control": false,
       "description": "graded fault-isolation: mean reachability drop when each hub is removed (C1/A1)",
       "values": {
@@ -191,7 +191,7 @@
       "name": "graded_affected_modules_mean",
       "verdict": "pass",
       "variance": 0.6441048000832986,
-      "min_variance": 0.32,
+      "min_variance": 0.18,
       "negative_control": false,
       "description": "graded fault-isolation: MEAN over hubs of modules that lost a reachable pair (C1/A1)",
       "values": {

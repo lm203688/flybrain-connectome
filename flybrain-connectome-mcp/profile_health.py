@@ -538,7 +538,7 @@ def list_healthy_profiles(min_score: float = 0.5) -> list[dict]:
                             if name:
                                 profile_names.append(name)
                     break
-    except Exception:
+    except Exception:  # noqa: SILENT — profile name extraction; fallback to empty list
         pass
 
     # fallback: scan profiles directory

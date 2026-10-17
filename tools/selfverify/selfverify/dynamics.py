@@ -63,19 +63,21 @@ def recovery_trajectory(
     return curve
 
 
-def recovery_auc(curve: list[float], drop_magnitude: float) -> float:
-    """计算归一化恢复 AUC（面积）。
-    
-    recovery_AUC = (1/T) * sum_t r(t) / drop_magnitude
-    
+def recovery_fraction(curve: list[float], drop_magnitude: float) -> float:
+    """计算归一化恢复分数（原 recovery_auc，K6 改名）。
+
+    recovery_fraction = (1/T) * sum_t r(t) / drop_magnitude
+
     表示故障被补偿的比例，范围 [0, 1]。
-    
+
+    注意：与 drop_magnitude 存在定义性耦合地板约 0.34（K6 审计发现）。
+
     Args:
         curve: 恢复轨迹曲线
         drop_magnitude: 故障幅度
-    
+
     Returns:
-        归一化恢复 AUC
+        归一化恢复分数
     """
     T = len(curve) - 1
     if T <= 0 or drop_magnitude <= 0:
@@ -85,8 +87,8 @@ def recovery_auc(curve: list[float], drop_magnitude: float) -> float:
 
 
 def t_half(curve: list[float], drop_magnitude: float) -> Optional[float]:
-    """计算半恢复时间。
-    
+    """计算半恢复时间.
+
     第一个 t 使得 r(t)/drop_magnitude >= 0.5
     
     Args:
@@ -94,7 +96,7 @@ def t_half(curve: list[float], drop_magnitude: float) -> Optional[float]:
         drop_magnitude: 故障幅度
     
     Returns:
-        半恢复时间（步数），如果未达到 50% 则返回 None
+        半恢复时间(步数), 如果未达到 50% 则返回 None
     """
     if drop_magnitude <= 0:
         return 0.0
@@ -237,7 +239,7 @@ def compute_all(
     
     return {
         "curve": curve,
-        "recovery_auc": recovery_auc(curve, drop_magnitude),
+        "recovery_fraction": recovery_fraction(curve, drop_magnitude),
         "t_half": t_half(curve, drop_magnitude),
         "tau_recovery": tau_recovery(curve, drop_magnitude),
         "oscillation_frequency": oscillation_frequency(curve),
@@ -252,7 +254,7 @@ def compute_all(
 
 def variance_over_trajectories(
     trajectories: list[dict[str, Any]],
-    key: str = "recovery_auc",
+    key: str = "recovery_fraction",
 ) -> float:
     """计算多个轨迹的某个度量的方差。
     

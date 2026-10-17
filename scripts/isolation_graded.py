@@ -556,7 +556,7 @@ def main() -> int:
     # NOTE: the acceptance criterion uses the MEAN statistic, not MAX.  MAX is a
     # saturated statistic (it pins to n_modules on small dense topologies), which
     # is exactly the kind of silent saturation A1 exists to avoid.
-    saturated = var_drop == 0.0 and var_affected_mean == 0.0 and var_recovery == 0.0
+    saturated = (var_drop < 1e-12 and var_affected_mean < 1e-12 and var_recovery < 1e-12)
     verdict = "SATURATED" if saturated else "GRADED"
     print(f"\n  Verdict: {verdict}")
     if saturated:

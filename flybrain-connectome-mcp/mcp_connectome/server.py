@@ -49,7 +49,7 @@ def export_swarm_motifs(refresh: bool = False):
             subprocess.run([sys.executable, EXTRACT_SCRIPT], env=env,
                            stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL,
                            timeout=900, check=False)
-        except Exception:
+        except Exception:  # noqa: SILENT — motif generation subprocess; file check follows
             pass
     if not os.path.exists(MOTIF_FILE):
         raise FileNotFoundError(
@@ -1494,7 +1494,7 @@ def main():
             resp = {"jsonrpc": "2.0", "id": rid, "result": {
                 "protocolVersion": PROTOCOL_VERSION,
                 "capabilities": {"tools": {}},
-                "serverInfo": {"name": "drosophila-connectome", "version": "2.94.0"},
+                "serverInfo": {"name": "drosophila-connectome", "version": "2.95.0"},
             }}
         elif method == "notifications/initialized":
             continue

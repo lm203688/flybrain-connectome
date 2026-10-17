@@ -95,6 +95,8 @@ def _blueprint_minus_edge(bp: Blueprint, edge: tuple[str, str]) -> Blueprint:
 
 
 def _pearson(a: list[float], b: list[float]) -> float | None:
+    """Pearson correlation. Delegates to metrics_kernel (K5)."""
+    from _metrics_compat import pearson
     n = len(a)
     if n < 3 or len(b) != n:
         return None
@@ -104,7 +106,7 @@ def _pearson(a: list[float], b: list[float]) -> float | None:
     sb = math.sqrt(sum((y - mb) ** 2 for y in b) / n)
     if sa <= 1e-12 or sb <= 1e-12:
         return None
-    return cov / (sa * sb)
+    return pearson(a, b)
 
 
 # ============================================================ result row

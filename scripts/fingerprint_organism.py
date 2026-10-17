@@ -83,8 +83,13 @@ def _load_hmac_key() -> str | None:
             k = d.get("organism_signing_key")
             if k:
                 return k
-        except Exception:
-            pass
+        except Exception as e:
+            # K3: fail-loud — silent key read failure would make fingerprints
+            # unsigned without any warning.  Log and return None so callers
+            # know the fingerprint is UNSIGNED, not silently "good".
+            import logging
+            logging.getLogger(__name__).warning(
+                "Fingerprint signing key read failed: %s", e)
     return None
 
 

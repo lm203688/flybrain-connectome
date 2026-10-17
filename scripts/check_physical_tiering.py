@@ -47,7 +47,7 @@ def _token():
             for v in d.values():
                 if isinstance(v, str) and (v.startswith("ghp_") or v.startswith("github_pat_")):
                     return v
-        except Exception:
+        except Exception:  # noqa: SILENT — tier lookup fallback; return None if unknown
             pass
     return None
 

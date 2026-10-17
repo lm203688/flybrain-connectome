@@ -47,7 +47,8 @@ def check() -> dict:
     if not pr5:
         fail("C1.1", "PR-5 not registered in research_claims.json.preregistered")
     else:
-        if pr5.get("target_density") != 0.10:
+        import math
+        if not math.isclose(pr5.get("target_density", 0), 0.10, rel_tol=1e-9):
             fail("C1.2", f"PR-5 target_density={pr5.get('target_density')} != 0.10")
         if pr5.get("n_nodes") != 50:
             fail("C1.3", f"PR-5 n_nodes={pr5.get('n_nodes')} != 50")
@@ -62,7 +63,7 @@ def check() -> dict:
                 c1 = json.load(f)
             if c1.get("verdict") != pr5_verdict:
                 fail("C1.6", f"C1 verdict mismatch: prereg={pr5_verdict} results={c1.get('verdict')}")
-            if c1.get("target_density") != 0.10:
+            if not math.isclose(c1.get("target_density", 0), 0.10, rel_tol=1e-9):
                 fail("C1.7", f"C1 executed target_density={c1.get('target_density')} != 0.10")
 
     # --- Gate 52: PR-3 v2 (C3) ---

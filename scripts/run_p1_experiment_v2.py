@@ -21,7 +21,7 @@ v2 修正:
 用法:
   set FLYBRAIN_DATA_DIR=C:\\Users\\xing\\Desktop\\flybrain-connectome\\male_cns
   set OPENAI_BASE_URL=https://api.sensenova.cn/ai1
-  set OPENAI_API_KEY=***
+  set OPENAI_API_KEY=os.environ.get
   set USE_THINKING=false
   python run_p1_experiment_v2.py
 """
@@ -91,7 +91,7 @@ unit_ids = [u.id for u in units]
 # 检查 LLM 可用性
 # =====================================================================
 OPENAI_BASE_URL = os.environ.get('OPENAI_BASE_URL', '')
-OPENAI_API_KEY = ***'OPENAI_API_KEY', '')
+OPENAI_API_KEY = os.environ.get('OPENAI_API_KEY', '')
 USE_THINKING = os.environ.get('USE_THINKING', 'false').lower() == 'true'
 
 LLM_AVAILABLE = bool(OPENAI_BASE_URL and OPENAI_API_KEY)

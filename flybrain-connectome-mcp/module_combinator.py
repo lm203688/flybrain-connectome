@@ -85,7 +85,7 @@ def _passthrough(fn_name, *args, **kwargs):
     try:
         from core_bridge import core_available
         core_available()
-    except Exception:
+    except Exception:  # noqa: SILENT — core availability probe; fallback if unavailable
         pass
     m = _core()
     if m is not None and hasattr(m, fn_name):

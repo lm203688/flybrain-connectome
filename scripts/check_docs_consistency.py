@@ -69,7 +69,7 @@ def _module_constants(path: Path, names: tuple[str, ...]) -> dict:
             if tgt.id in names:
                 try:
                     out[tgt.id] = ast.literal_eval(node.value)
-                except Exception:  # noqa: BLE001
+                except Exception:  # noqa: SILENT — AST constant extraction; skip non-literal nodes
                     pass
     return out
 

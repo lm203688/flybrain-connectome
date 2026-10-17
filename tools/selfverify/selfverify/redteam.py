@@ -144,17 +144,9 @@ def metric_saturation(
 # Attack 3: analytic_redundancy
 # ---------------------------------------------------------------------------
 def _pearson(xs: list[float], ys: list[float]) -> float:
-    n = len(xs)
-    if n < 2:
-        return 0.0
-    mx = sum(xs) / n
-    my = sum(ys) / n
-    sxx = sum((x - mx) ** 2 for x in xs)
-    syy = sum((y - my) ** 2 for y in ys)
-    sxy = sum((x - mx) * (y - my) for x, y in zip(xs, ys))
-    if sxx <= 0 or syy <= 0:
-        return 0.0
-    return sxy / (sxx * syy) ** 0.5
+    """Pearson correlation. Delegates to metrics_kernel (K5)."""
+    from . import _kernel_bridge
+    return _kernel_bridge.pearson(xs, ys)
 
 
 def analytic_redundancy(

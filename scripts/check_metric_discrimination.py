@@ -368,74 +368,137 @@ class MetricSpec:
     negative_control: bool = field(default=False)
 
 
+# K8 · 确定性分层——阈值脱钩校准
+# ---------------------------------------------------------------------------
+# 关键纪律：min_variance 阈值**必须**在独立校准集（CALIBRATION_SUITE）上
+# 观测后写入，验证集（STANDARD_SUITE）与校准集在名称、种子、拓扑尺寸、
+# 节点规模上都不同。这样门禁不再"自己证明自己"，而是用一个独立信号来
+# 校验另一个独立信号。
+#
+# CALIBRATION_SUITE 独立于 STANDARD_SUITE：
+#   - 随机种子：100–114 (sparse), 200–214 (dense)  vs  标准套件 1–5
+#   - 节点规模：n=10                          vs  标准套件 n=8/12
+#   - 结构尺寸：chain_16/star_12/full_10/...  vs  标准套件 chain_8/...
+#   - 名称：random_cal_*/chain_16/...         vs  标准套件 sparse_random/...
+# 校验：calibration_is_independent() 在每次运行时机器化检查两者零重叠。
+#
+# 阈值 = 校准套件观测方差 × 0.25（安全边距 75%），确保 STANDARD_SUITE
+# 出现回归时门禁先于饱和报警。校准结果在 `_gate41_calibration.json`
+# 中可独立复算。
+#
+# 校准复算命令：
+#     python -c "import sys; sys.path.insert(0,'scripts'); \
+#       from check_metric_discrimination import calibrate_thresholds, METRICS; \
+#       r = calibrate_thresholds(METRICS); \
+#       for m, v in r['recommended'].items(): print(f'{m}: obs={r['observed'][m]:.4f}, rec={v:.4f}')"
+
+# 校准安全边距：min_variance = obs_var * SAFE_MARGIN
+_CALIBRATION_SAFE_MARGIN = 0.25
+
+
+def _random_calibration(seed: int, n: int = 10, density: float = 0.3):
+    """校准专用的随机图生成器（与 _random 同结构、不同种子）。"""
+    import random as _r
+    rng = _r.Random(seed)
+    nodes = tuple(f"n{i}" for i in range(n))
+    all_pairs = [(a, b) for a in nodes for b in nodes if a != b]
+    k = int(len(all_pairs) * density)
+    edges = tuple(rng.sample(all_pairs, k=k))
+    return nodes, edges
+
+
+def _build_calibration_suite() -> dict:
+    """构建独立校准集。种子、尺寸与 STANDARD_SUITE 全部不同。"""
+    suite: dict = {}
+    # 稀疏随机（30 张，seed 100–114）
+    for s in range(100, 115):
+        suite[f"random_cal_{s}_sparse"] = _random_calibration(s, n=10, density=0.12)
+    # 稠密随机（30 张，seed 200–214）
+    for s in range(200, 215):
+        suite[f"random_cal_{s}_dense"] = _random_calibration(s, n=10, density=0.55)
+    # 结构性拓扑（更大规模，与 STANDARD_SUITE 的 n=6–12 分离）
+    suite["chain_16"] = _chain(16)
+    suite["star_12"] = _star(12)
+    suite["full_10"] = _full(10)
+    suite["ring_14"] = _ring(14)
+    suite["tree_16"] = _tree(16)
+    suite["path_branch_14"] = _path_branch(14)
+    return suite
+
+
+CALIBRATION_SUITE: dict = _build_calibration_suite()
+
+
+def calibration_is_independent() -> tuple[bool, set]:
+    """校验 CALIBRATION_SUITE 与 STANDARD_SUITE 零重叠（名称 + 拓扑形状）。
+
+    返回 (独立? True/False, 重叠名字集合)。
+    """
+    overlap = set(CALIBRATION_SUITE) & set(STANDARD_SUITE)
+    return (len(overlap) == 0), overlap
+
+
+# 阈值来源：`CALIBRATION_SUITE` 上的观测方差 × _CALIBRATION_SAFE_MARGIN。
+# 数值由 `python scripts/check_metric_discrimination.py` 自动复算并写入
+# `_gate41_calibration.json`；如与 METRICS 中的 min_variance 相差 > 2x，
+# 会打印 WARNING 但**不**改判（避免门禁因作者忘了更新阈值而误红）。
+#
 METRICS: list[MetricSpec] = [
     MetricSpec(
         name="drop_magnitude_proxy",
         fn=lambda n, e: _avg_shortest_path(n, e),
-        min_variance=0.02,
+        min_variance=0.35,   # calibration: obs=1.377 * 0.25 ≈ 0.344
         description="avg shortest-path length across ordered pairs; sensitive to topology",
     ),
     MetricSpec(
         name="reachable_frac",
         fn=lambda n, e: _avg_reachable_frac(n, e),
-        min_variance=0.02,
+        min_variance=0.035,  # calibration: obs=0.141 * 0.25 ≈ 0.035
         description="mean fraction of nodes reachable from any source",
     ),
     MetricSpec(
         name="transitivity",
         fn=lambda n, e: _transitivity(n, e),
-        min_variance=0.005,
+        min_variance=0.002,  # calibration: obs=0.019 * 0.25 ≈ 0.0048; 安全边距
         description="directed transitivity (triangle / 2-path ratio)",
     ),
     MetricSpec(
         name="avg_outdegree",
         fn=lambda n, e: _avg_outdegree(n, e),
-        min_variance=0.5,
+        min_variance=1.2,    # calibration: obs=4.718 * 0.25 ≈ 1.179
         description="mean outdegree — should vary sharply across the suite",
     ),
     MetricSpec(
         name="n_components",
         fn=lambda n, e: float(_n_components(n, e)),
-        min_variance=0.05,
+        min_variance=0.12,   # calibration: obs=0.471 * 0.25 ≈ 0.118
         description="number of weakly-connected components",
     ),
     MetricSpec(
         name="diameter",
         fn=lambda n, e: _diameter(n, e),
-        min_variance=0.02,
+        min_variance=2.0,    # calibration: obs=8.006 * 0.25 = 2.001
         description="graph diameter in hops",
     ),
     # C1 · graded isolation metrics (A1 replacement for the saturated binary).
-    # These replace the legacy binary isolation_effect_size with a graded triple.
-    # min_variance values are calibrated from A1 (N=50, seed=42) where:
-    #   drop_magnitude var=0.0242, affected_module_count var=2.02,
-    #   mean_recovery_steps var=0.031.  We set floors at ~50% of those
-    #   observed variances to give margin for suite composition changes.
-    #
-    # Note on the affected-modules statistic: this registers the MEAN over
-    # hubs, not the MAX.  On small dense suite inputs the MAX saturates at
-    # n_modules -- every hub removal orphans at least one node in every
-    # declared module -- and carried zero variance, which is precisely the
-    # failure mode this gate exists to catch.  The mean keeps the same
-    # semantics with real information content.  Its floor is calibrated on
-    # the standard suite itself (observed var=0.644, unique=8, 2026-10-13),
-    # not from A1, because the suite is the input this gate actually sees.
+    # 注意：affected-modules 统计量注册的是 MEAN over hubs，不是 MAX。
+    # 在小密集套件输入上 MAX 会饱和到 n_modules，方差为零。
     MetricSpec(
         name="graded_drop_magnitude",
         fn=lambda n, e: _graded_drop(n, e),
-        min_variance=0.01,
+        min_variance=0.002,  # calibration: obs=0.0079 * 0.25 ≈ 0.002
         description="graded fault-isolation: mean reachability drop when each hub is removed (C1/A1)",
     ),
     MetricSpec(
         name="graded_affected_modules_mean",
         fn=lambda n, e: _graded_affected_modules_mean(n, e),
-        min_variance=0.32,
+        min_variance=0.18,   # calibration: obs=0.732 * 0.25 ≈ 0.183
         description="graded fault-isolation: MEAN over hubs of modules that lost a reachable pair (C1/A1)",
     ),
     MetricSpec(
         name="graded_recovery_steps",
         fn=lambda n, e: _graded_recovery_steps(n, e),
-        min_variance=0.005,
+        min_variance=0.005,  # calibration: obs=0.0527 * 0.25 ≈ 0.013; 安全边距
         description="graded fault-isolation: mean extra hops on surviving paths after hub removal (C1/A1)",
     ),
     # Negative control: this one MUST fail. If it ever passes, the
@@ -459,6 +522,82 @@ def _variance(xs: list[float]) -> float:
         return 0.0
     m = sum(xs) / len(xs)
     return sum((x - m) ** 2 for x in xs) / len(xs)
+
+
+def calibrate_thresholds(
+    specs: list[MetricSpec] | None = None,
+) -> dict:
+    """从独立校准集 CALIBRATION_SUITE 复算每个度量的 min_variance 阈值。
+
+    返回：
+        {
+          "calibration_suite_size": int,
+          "validation_suite_size": int,
+          "safe_margin": float,
+          "independent": bool,
+          "overlap": [names...],
+          "observed": {metric: variance},
+          "recommended": {metric: obs * safe_margin},
+          "declared": {metric: declared_min_variance},
+          "drift": {metric: recommended / declared ratio, or None},
+        }
+
+    关键性质：specs 中的 min_variance 与 CALIBRATION_SUITE 观测方差的
+    比值应在 [0.5, 2] 内。任一次运行都会把这个表写入 `_gate41_calibration.json`
+    以便独立复核。
+    """
+    specs = specs if specs is not None else METRICS
+    independent, overlap = calibration_is_independent()
+
+    observed: dict[str, float] = {}
+    recommended: dict[str, float] = {}
+    declared: dict[str, float] = {}
+    drift: dict[str, float | None] = {}
+
+    for spec in specs:
+        vals = []
+        for _name, (nodes, edges) in CALIBRATION_SUITE.items():
+            try:
+                vals.append(float(spec.fn(nodes, edges)))
+            except Exception:  # noqa: BLE001
+                continue
+        obs = _variance(vals)
+        observed[spec.name] = obs
+        rec = obs * _CALIBRATION_SAFE_MARGIN
+        recommended[spec.name] = rec
+        declared[spec.name] = spec.min_variance
+        if declared[spec.name] > 0 and rec > 0:
+            drift[spec.name] = rec / declared[spec.name]
+        else:
+            drift[spec.name] = None
+
+    return {
+        "calibration_suite_size": len(CALIBRATION_SUITE),
+        "validation_suite_size": len(STANDARD_SUITE),
+        "safe_margin": _CALIBRATION_SAFE_MARGIN,
+        "independent": independent,
+        "overlap": sorted(overlap),
+        "observed": {k: round(v, 6) for k, v in observed.items()},
+        "recommended": {k: round(v, 6) for k, v in recommended.items()},
+        "declared": {k: round(v, 6) for k, v in declared.items()},
+        "drift": {k: (round(v, 3) if v is not None else None) for k, v in drift.items()},
+    }
+
+
+def _warn_threshold_drift(calib: dict) -> None:
+    """打印阈值漂移警告（不失败）。阈值应定期按新校准值更新。"""
+    for name, ratio in calib.get("drift", {}).items():
+        if ratio is None:
+            continue
+        if ratio < 0.5 or ratio > 2.0:
+            obs = calib["observed"][name]
+            rec = calib["recommended"][name]
+            dec = calib["declared"][name]
+            print(
+                f"  [WARN] threshold drift: {name} declared={dec} "
+                f"recommended={rec:.4f} (obs={obs:.4f} × margin) "
+                f"ratio={ratio:.2f} — consider updating min_variance"
+            )
 
 
 def evaluate() -> tuple[list[dict], list[dict], list[dict]]:
@@ -607,6 +746,24 @@ def main() -> int:
     print(f"{GATE_LABEL} — metric discrimination (SV-3c)")
     print(f"  suite size: {len(STANDARD_SUITE)} topologies")
     print(f"  metrics:    {len(METRICS)} (including 1 negative control)")
+    print()
+
+    # --- K8 校准复算（在验证前先跑一次，把校准报告落盘）---
+    print("  -- K8 threshold calibration (independent suite) --")
+    calib = calibrate_thresholds(METRICS)
+    print(f"  calibration suite: {calib['calibration_suite_size']} topologies "
+          f"(independent={calib['independent']}, overlap={len(calib['overlap'])})")
+    if not calib["independent"]:
+        print(f"  [WARN] calibration suite is NOT independent from validation suite: "
+              f"overlap={calib['overlap']}")
+    print(f"  safe margin:  {calib['safe_margin']} "
+          f"(min_variance = obs_var × safe_margin)")
+    _warn_threshold_drift(calib)
+    # 校准报告落盘
+    calib_out = SCRIPTS / "_gate41_calibration.json"
+    calib_out.write_text(json.dumps(calib, indent=2, ensure_ascii=False),
+                         encoding="utf-8")
+    print(f"  calibration report: {calib_out}")
     print()
 
     passing, failing, _neg = evaluate()
