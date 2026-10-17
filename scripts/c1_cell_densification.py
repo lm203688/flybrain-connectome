@@ -128,14 +128,9 @@ def _isolation_score(g: dict[int, list[int]]) -> float:
 
 
 def _held_out_auc(score_list: list[tuple[float, int]]) -> float:
-    """Mann-Whitney AUC from (score, label) pairs."""
-    pos = [s for s, l in score_list if l == 1]
-    neg = [s for s, l in score_list if l == 0]
-    if not pos or not neg:
-        return 0.5
-    concordant = sum(1 for p in pos for n_ in neg if p > n_)
-    ties = sum(1 for p in pos for n_ in neg if p == n_)
-    return (concordant + 0.5 * ties) / (len(pos) * len(neg))
+    """Mann-Whitney AUC from (score, label) pairs. Delegates to metrics_kernel."""
+    from _metrics_compat import auc_from_pairs
+    return auc_from_pairs(score_list)
 
 
 def run_density(
