@@ -65,20 +65,20 @@ def _load_json(path: Path) -> dict:
 
 
 def _recompute_stats(all_results: list, mech_key: str = "R_a_path_recruitment") -> dict:
-    """Recompute recovery_auc stats from the per-topology curve table.
+    """Recompute recovery_fraction stats from the per-topology curve table.
 
     all_results is a list of dicts each with keys like:
-        topology_idx, blueprint_name, n_nodes, T, curve, recovery_auc, ...
+        topology_idx, blueprint_name, n_nodes, T, curve, recovery_fraction, ...
     and each curve is a list of dicts with per-t-step recovery values per
     mechanism. This helper is intentionally tolerant: it just extracts the
-    recovery_auc field when present; if it is missing, the checker falls
+    recovery_fraction field when present; if it is missing, the checker falls
     back to the summary stats (and flags the recompute as unavailable).
     """
     aucs: list[float] = []
     for r in all_results or []:
-        if isinstance(r, dict) and "recovery_auc" in r:
+        if isinstance(r, dict) and "recovery_fraction" in r:
             try:
-                aucs.append(float(r["recovery_auc"]))
+                aucs.append(float(r["recovery_fraction"]))
             except (TypeError, ValueError):
                 pass
     if not aucs:
@@ -174,12 +174,18 @@ def _check_f2(claims: dict, f2_result: dict) -> tuple[list[str], list[str], list
     all_results = f2_result.get("all_results", [])
     recomputed = _recompute_stats(all_results)
     if recomputed["recomputed"]:
-        stats_var = stats.get("recovery_auc_var")
+        # Tolerate both pre-rename (recovery_auc_*) and post-rename
+        # (recovery_fraction_*) summary_stats keys during the K6 transition.
+        stats_var = (stats.get("recovery_fraction_var")
+                     if stats.get("recovery_fraction_var") is not None
+                     else stats.get("recovery_auc_var"))
         stats_zero = stats.get("zero_ratio")
-        stats_unique = stats.get("recovery_auc_unique")
+        stats_unique = (stats.get("recovery_fraction_unique")
+                        if stats.get("recovery_fraction_unique") is not None
+                        else stats.get("recovery_auc_unique"))
         if stats_var is not None and abs(stats_var - recomputed["var"]) > 1e-6:
             failures.append(
-                f"recovery_auc_var={stats_var} disagrees with recomputed "
+                f"recovery_fraction_var={stats_var} disagrees with recomputed "
                 f"{recomputed['var']:.9f} (from {recomputed['n']} rows)"
             )
         if stats_zero is not None and abs(stats_zero - recomputed["zero_ratio"]) > 1e-9:
@@ -188,11 +194,11 @@ def _check_f2(claims: dict, f2_result: dict) -> tuple[list[str], list[str], list
                 f"{recomputed['zero_ratio']:.6f}"
             )
         notes.append(
-            f"independently recomputed recovery_auc: n={recomputed['n']}, "
+            f"independently recomputed recovery_fraction: n={recomputed['n']}, "
             f"var={recomputed['var']:.6f}, zero_ratio={recomputed['zero_ratio']:.3f}"
         )
     else:
-        notes.append("no per-topology recovery_auc column — skipped independent recompute")
+        notes.append("no per-topology recovery_fraction column — skipped independent recompute")
 
     # --- 7. Per-mechanism ablation variance (must be non-zero) ---
     for mech in _REQUIRED_MECHANISMS:
@@ -208,7 +214,10 @@ def _check_f2(claims: dict, f2_result: dict) -> tuple[list[str], list[str], list
 
     # --- 8. Outcome honesty ---
     zero_ratio = stats.get("zero_ratio")
-    auc_var = stats.get("recovery_auc_var")
+    # Tolerate pre-rename recovery_auc_var and post-rename recovery_fraction_var.
+    auc_var = (stats.get("recovery_fraction_var")
+               if stats.get("recovery_fraction_var") is not None
+               else stats.get("recovery_auc_var"))
     verdict = summary.get("verdict")
     zero_max = float((pr_crit.get("zero_ratio_max",
                                  ex_crit.get("zero_ratio_max", 0.3))))
@@ -239,9 +248,11 @@ def _check_f2(claims: dict, f2_result: dict) -> tuple[list[str], list[str], list
         )
 
     if verdict == "PASS":
+        _zr = f"{zero_ratio:.3f}" if zero_ratio is not None else "n/a"
+        _av = f"{auc_var:.6f}" if auc_var is not None else "n/a"
         notes.append(
-            f"F2 recovery dynamics: PASS — zero_ratio={zero_ratio:.3f} < {zero_max}, "
-            f"var={auc_var:.6f} > {var_min}, all 3 mechanisms ablated"
+            f"F2 recovery dynamics: PASS — zero_ratio={_zr} < {zero_max}, "
+            f"var={_av} > {var_min}, all 3 mechanisms ablated"
         )
     elif verdict in ("FAIL", "INCONCLUSIVE"):
         warnings.append(
