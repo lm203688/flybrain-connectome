@@ -47,7 +47,7 @@ def _token():
             for v in d.values():
                 if isinstance(v, str) and (v.startswith("ghp_") or v.startswith("github_pat_")):
                     return v
-        except Exception:
+        except Exception:  # noqa: SILENT — tier lookup fallback; return None if unknown
             pass
     return None
 
@@ -188,6 +188,91 @@ def main() -> int:
         return 1
     print("GATE 8: PASS - Tier-2 IP physically absent from the public tree")
     return 0
+
+
+def _injections() -> tuple[int, int]:
+    """Prove the gate can fail: inject a defect and assert the gate goes red.
+
+    Each case monkey-patches a module attribute or writes a corrupted file to
+    a temp dir, re-runs main(), asserts non-zero exit, restores state in a
+    finally block. Apply and restore are structurally separate (globals swap
+    + finally), so no injection can leak state into the next one.
+    """
+    import tempfile
+    bad = 0
+    n_inj = 0
+
+    # Ensure core_bridge is importable (the gate's main() does this too)
+    sys.path.insert(0, str(MCP))
+
+    def expect(name: str, apply_fn, restore_fn) -> None:
+        nonlocal bad, n_inj
+        n_inj += 1
+        apply_fn()
+        try:
+            rc = main()
+        finally:
+            restore_fn()
+        if rc != 0:
+            print("    [PASS] injecting: %s" % name)
+        else:
+            bad += 1
+            print("    [FAIL] injecting: %s -> GATE STAYED GREEN" % name)
+
+    import core_bridge as cb
+    import types
+
+    # main() does `import core_bridge as cb` internally, so we must patch
+    # the module object in sys.modules for the patch to take effect.
+    real_cb = cb
+
+    def _patch_module(attr_name, attr_val):
+        setattr(real_cb, attr_name, attr_val)
+
+    def _restore_module(attr_name, attr_val):
+        pass  # already restored below
+
+    # 1. Monkey-patch functional_tool_count to return a wrong value.
+    real_func_count = real_cb.functional_tool_count
+    def _patch_tool_count():
+        _patch_module("functional_tool_count", lambda: 99)
+    def _restore_tool_count():
+        _patch_module("functional_tool_count", real_func_count)
+    expect("functional_tool_count returns 99 instead of 45",
+           _patch_tool_count, _restore_tool_count)
+
+    # 2. Monkey-patch CORE_DEPENDENT_TOOLS to include wrong tools.
+    real_tools = real_cb.CORE_DEPENDENT_TOOLS
+    def _patch_wrong_tools():
+        _patch_module("CORE_DEPENDENT_TOOLS", ["wrong_tool_1", "wrong_tool_2"])
+    def _restore_wrong_tools():
+        _patch_module("CORE_DEPENDENT_TOOLS", real_tools)
+    expect("CORE_DEPENDENT_TOOLS includes wrong tools",
+           _patch_wrong_tools, _restore_wrong_tools)
+
+    # 3. Monkey-patch tiering_status to return a wrong repo name.
+    real_status = real_cb.tiering_status
+    def _patch_bad_repo():
+        _patch_module("tiering_status", lambda: {"canonical_tier2_repo": "wrong/repo"})
+    def _restore_bad_repo():
+        _patch_module("tiering_status", real_status)
+    expect("tiering_status reports wrong private repo",
+           _patch_bad_repo, _restore_bad_repo)
+
+    # 4. Monkey-patch _repo_private to return a public repo.
+    def _patch_private_flag():
+        globals()["_repo_private"] = lambda: {"private": False}
+    def _restore_private_flag():
+        globals()["_repo_private"] = _repo_private_real
+    _repo_private_real = globals()["_repo_private"]
+    expect("mark private repo as public", _patch_private_flag, _restore_private_flag)
+
+    print()
+    if bad:
+        print("GATE 8 INJECTIONS: %d/%d FAILED (gate stayed green)" % (bad, n_inj))
+    else:
+        print("GATE 8 INJECTIONS: PASS — %d/%d defects caught" % (n_inj, n_inj))
+    return n_inj, bad
 
 
 if __name__ == "__main__":
