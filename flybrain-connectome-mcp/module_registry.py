@@ -2122,7 +2122,8 @@ class ModuleFactory:
         # Tier 3: 生成防抄袭指纹
         try:
             sys_path = __import__("sys").path
-            _scripts_dir = str(_MARKET_ROOT.parents[1] / "scripts") if "_MARKET_ROOT" in dir() else None
+            _mr = globals().get("_MARKET_ROOT")
+            _scripts_dir = str(_mr.parents[1] / "scripts") if _mr is not None else None
             if _scripts_dir and _scripts_dir not in sys_path:
                 sys_path.insert(0, _scripts_dir)
             from fingerprint_organism import compute_fingerprint
