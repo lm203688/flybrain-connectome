@@ -140,7 +140,7 @@ class _Handler(BaseHTTPRequestHandler):
             # No auth required — the AIBOM is a *disclosure* artifact, not
             # a secret. Its whole purpose is to be publicly readable by
             # third parties evaluating supply-chain disclosure.
-            aibom_path = _ROOT / "aibom.json"
+            aibom_path = ROOT / "aibom.json"
             if not aibom_path.exists():
                 self._send(404, {"ok": False,
                                  "error": "aibom.json not found at repo root; "
