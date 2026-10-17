@@ -184,7 +184,8 @@ flybrain-connectome-mcp/module_combinator.cache/
 # Fusion benchmark output dirs
 _fusion_a/
 _fusion_b/
-_gate31_r2/
+_gate31_r2/*
+!_gate31_r2/r2_density_scan.json
 _evoagentx/
 _r2_full/
 _r4_full/
