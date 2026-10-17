@@ -87,7 +87,8 @@ def _check_B1_damage(runtime, damage):
     # source untouched
     assert org.topology_snapshot()["profile_signature"] == rep.before_signature
     # parameters actually zeroed in the new organ
-    assert new.modules[1].parameters["reservoir_density"] == 0.0
+    import math
+    assert math.isclose(new.modules[1].parameters["reservoir_density"], 0.0, rel_tol=1e-9)
 
     # edge_break
     new2, rep2 = inj.edge_break(org, 0)
@@ -180,7 +181,7 @@ def _check_B2_repair(runtime, repair):
         parameters={"reservoir_density": 0.5, "recurrent_pct": 0.3,
                     "has_inhibition": False})
     new5 = p_rp.apply(org)
-    assert new5.modules[1].parameters["reservoir_density"] == 0.5
+    assert math.isclose(new5.modules[1].parameters["reservoir_density"], 0.5, rel_tol=1e-9)
     rev5 = p_rp.reverse(new5)
     assert rev5.topology_snapshot()["profile_signature"] == pre_sig
 
@@ -192,14 +193,14 @@ def _check_B2_repair(runtime, repair):
     assert a == b
 
     # signature_distance + repair_improvement invariants
-    assert repair.signature_distance(pre_sig, pre_sig) == 0.0
+    assert math.isclose(repair.signature_distance(pre_sig, pre_sig), 0.0, rel_tol=1e-9)
     other = "sha256:" + "a" * 64
     assert repair.signature_distance(pre_sig, other) > 0.0
     assert repair.signature_distance(pre_sig, other) == \
         repair.signature_distance(other, pre_sig)
     assert repair.repair_improvement(pre_sig, other, pre_sig) == 1.0
-    assert repair.repair_improvement(pre_sig, other, other) == 0.0
-    assert repair.repair_improvement(pre_sig, pre_sig, pre_sig) == 0.0
+    assert math.isclose(repair.repair_improvement(pre_sig, other, other), 0.0, rel_tol=1e-9)
+    assert math.isclose(repair.repair_improvement(pre_sig, pre_sig, pre_sig), 0.0, rel_tol=1e-9)
 
     print("  B2 repair.py: add_unit / rewire / drop_unit / restore_params "
           "+ reverse invariants + serialization  OK")
