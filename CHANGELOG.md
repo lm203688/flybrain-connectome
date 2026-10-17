@@ -8,6 +8,24 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---
+## [2.96.0] - 2026-10-17
+
+### Added
+- **Gate 60 — AIBOM supply-chain disclosure**: `aibom.json` at repo root must exist, be well-formed, and stay in sync with the live tree (workspace fingerprint + direct deps + subpackage versions). 5-mutation injection battery.
+- **Gate 61 — receipt integrity (VRO enforcement)**: all `receipts/*.json` must exist, match claim-graph, carry required fields, and pass `verify_receipt.py` independent recomputation.
+- **CI integration of `run_gates.py`**: GitHub Actions now runs the full 59-gate suite on every push (not just the 5 smoke checks).
+- **`/api/v1/export/aibom` endpoint**: MCP API exposes the AIBOM for third-party audit.
+
+### Fixed
+- **Paper stale numbers**: `PAPER_P4_CASE_STUDY.md:497` updated from "51 gates" to "59 gates"; `ARXIV_SUBMIT_META_2026-10-15.md` baseline updated from v2.91.0/51 gates to v2.96.0/59 gates.
+- **5 broken receipts re-issued**: R1, R2, R3, PR2b, PR4 all VERIFIED (root cause: v2.95 K5 refactor changed hashed scripts).
+- **Gate 2 / Gate 58 FAIL resolved**: README badge 57→59, version refs 2.95.0→2.96.0 across all 6 sources.
+
+### Changed
+- **Version bump**: 2.95.0 → 2.96.0 across pyproject.toml, flybrain_cli.py, api_server.py, server.py, README, CHANGELOG.
+- **Gate count**: 58 → 60 gates (added Gate 60 supply chain + Gate 61 receipt integrity).
+- **PR-2 / PR-3 arXiv papers**: ready for submission; 59/60 gates PASS (G58 = version drift, expected to pass after full sync).
+
 ## [2.95.0] - 2026-10-17
 
 ### Added
