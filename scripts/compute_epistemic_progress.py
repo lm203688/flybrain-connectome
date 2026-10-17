@@ -125,7 +125,7 @@ def _protocol_verdicts() -> dict[str, str]:
                 d = _load(path)
                 if d.get("verdict"):
                     v[pid] = str(d["verdict"])
-            except Exception:
+            except Exception:  # noqa: SILENT — verdict extraction; skip malformed entries
                 pass
     return v
 
