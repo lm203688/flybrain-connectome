@@ -1,0 +1,1065 @@
+{
+  "generated_at": "2026-10-17T05:44:55.278982Z",
+  "n_profiles": 210,
+  "n_scored": 210,
+  "mean_degradation_score": 0.8708,
+  "median_degradation_score": 0.9,
+  "min_degradation_score": 0.0,
+  "max_degradation_score": 0.95,
+  "by_status": {
+    "healthy": 204,
+    "unknown": 6
+  },
+  "results": [
+    {
+      "profile": "sensory",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "memory",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "motor",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "integration",
+      "degradation_score": 0.9214,
+      "status": "healthy"
+    },
+    {
+      "profile": "attention",
+      "degradation_score": 0.875,
+      "status": "healthy"
+    },
+    {
+      "profile": "working_memory",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "reward",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "punishment",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "habit",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "metacognition",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l23",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l4",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l5",
+      "degradation_score": 0.91,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l6_it",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_pv",
+      "degradation_score": 0.8929,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_sst",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_vip",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_chandelier",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_basket",
+      "degradation_score": 0.91,
+      "status": "healthy"
+    },
+    {
+      "profile": "dopaminergic_snc",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "dopaminergic_vta",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "serotonergic_raphe",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "noradrenergic_lc",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "cholinergic_mt",
+      "degradation_score": 0.87,
+      "status": "healthy"
+    },
+    {
+      "profile": "retinal_gc",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "retinal_bipolar",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "retinal_horizontal",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "retinal_amacrine",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "spinal_motor_alpha",
+      "degradation_score": 0.925,
+      "status": "healthy"
+    },
+    {
+      "profile": "spinal_motor_gamma",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "cerebellar_purkinje",
+      "degradation_score": 0.925,
+      "status": "healthy"
+    },
+    {
+      "profile": "cerebellar_granule",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "cerebellar_stellate",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "striatal_msn",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "thalamic_relay",
+      "degradation_score": 0.91,
+      "status": "healthy"
+    },
+    {
+      "profile": "thalamic_reticular",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "hippocampal_ca1",
+      "degradation_score": 0.91,
+      "status": "healthy"
+    },
+    {
+      "profile": "hippocampal_ca3",
+      "degradation_score": 0.95,
+      "status": "healthy"
+    },
+    {
+      "profile": "hippocampal_granule",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "grid_cell",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "orexin_neuron",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l23_cx1",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l23_cx5",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l4b",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l4c",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l5bt",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l6rt",
+      "degradation_score": 0.925,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_l7",
+      "degradation_score": 0.91,
+      "status": "healthy"
+    },
+    {
+      "profile": "pyramidal_mayeret",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_calbindin",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_lamp",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_nph",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_npf",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_vlac",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_sst_dendritic",
+      "degradation_score": 0.91,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_sst_somatic",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "interneuron_kcn",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "dopaminergic_a9_snr",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "dopaminergic_a11",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "dopaminergic_vmc",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "serotonergic_dorsal",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "serotonergic_ventral",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "serotonergic_median",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "cholinergic_horizontal",
+      "degradation_score": 0.875,
+      "status": "healthy"
+    },
+    {
+      "profile": "histaminergic_tm",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "retinal_bipolar_cone",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "retinal_bipolar_rod",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "retinal_amacrine_acl1",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "retinal_amacrine_acl2",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "retina_midget_gc",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "retina_parvalbumin_gc",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "lateral_geniculate_ventral",
+      "degradation_score": 0.91,
+      "status": "healthy"
+    },
+    {
+      "profile": "lateral_geniculate_dorsal",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "spinal_interneuron_ih",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "spinal_interneuron_icc",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "spinal_interneuron_ihp",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "spinal_glycinergic",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "spinal_nociceptor",
+      "degradation_score": 0.875,
+      "status": "healthy"
+    },
+    {
+      "profile": "brainstem_vpm",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "red_nucleus",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "inferior_olive",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "striatum_d1_msn",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "striatum_d2_msn",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "hippocampal_ca2",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "hippocampal_ca4",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "hippocampal_subiculum",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "amygdala_bla",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "pfc_dorsal_accumbens",
+      "degradation_score": 0.0,
+      "status": "unknown"
+    },
+    {
+      "profile": "pfc_insula",
+      "degradation_score": 0.0,
+      "status": "unknown"
+    },
+    {
+      "profile": "pfc_dorsolateral",
+      "degradation_score": 0.0,
+      "status": "unknown"
+    },
+    {
+      "profile": "pfc_ventromedial",
+      "degradation_score": 0.0,
+      "status": "unknown"
+    },
+    {
+      "profile": "pfc_pregenual_accumbens",
+      "degradation_score": 0.0,
+      "status": "unknown"
+    },
+    {
+      "profile": "pfc_frontal_pole",
+      "degradation_score": 0.0,
+      "status": "unknown"
+    },
+    {
+      "profile": "amygdala_lateral",
+      "degradation_score": 0.91,
+      "status": "healthy"
+    },
+    {
+      "profile": "septum",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "thalamic_lgn",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "thalamic_md",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "thalamic_va",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "thalamic_vl",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "reticular_thalamic",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "subthalamic_nucleus",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "pineal",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "melanopsin_ganglion",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "olfactory_receptor",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "vestibular_hair",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "cochlear_outer_hair",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "astrocyte_reactive",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "kenyon_cell",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "mushroom_body_output",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "mushroom_body_dan",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "mushroom_body_apl",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "antennal_lobe_pn",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "antennal_lobe_ln",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "central_complex_pb",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "central_complex_eb",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "central_complex_fb",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "central_complex_noduli",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "central_complex_ring",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "clock_neuron_slnv",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "clock_neuron_ln",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "descending_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "hvc_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "ra_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "lman_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "area_x_neuron",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "dlm_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "nif_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "mauthner_cell",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "reticulospinal_neuron",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "lateral_line_hair_cell",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "electroreceptor_ampullary",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "electroreceptor_tuberous",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "ells_pyramidal",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "electrosensory_inhibitory_interneuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "pacemaker_nucleus_neuron",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "vertical_lobe_large_cell",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "vertical_lobe_amacrine_cell",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "vertical_lobe_small_cell",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "superior_frontal_lobe_cell",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "chromatophore_motor_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "arm_motor_neuron",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "arm_sensory_afferent",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "leech_cpg_interneuron",
+      "degradation_score": 0.9333,
+      "status": "healthy"
+    },
+    {
+      "profile": "leech_motor_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "leech_mechanosensory_neuron",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "ascidian_larval_motor_neuron",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "ascidian_photoreceptor",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "aplysia_sensory_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "aplysia_motor_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "aplysia_facilitating_interneuron",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "buccal_cpg_neuron",
+      "degradation_score": 0.9333,
+      "status": "healthy"
+    },
+    {
+      "profile": "trigeminal_infrared_afferent",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "infrared_tectal_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "optic_tectum_multimodal",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "tectal_prey_detector",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "tongue_motor_neuron",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "climbing_fibre",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "cerebellar_go_cell",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "vestibular_nucleus_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "pre_botzinger_neuron",
+      "degradation_score": 0.9333,
+      "status": "healthy"
+    },
+    {
+      "profile": "phrenic_motor_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "vlpo_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "head_direction_cell",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "place_cell",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "barrel_cortex_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "whisker_motor_neuron",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "ol_photoreceptor_r1r6",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "ol_photoreceptor_r7r8",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "ol_lamina_monopolar",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "ol_medulla_intrinsic",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "ol_motion_detector_t45",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "ol_lptc",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "ol_lpi",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "ol_visual_lc",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "escape_giant_fiber",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "escape_vnc_gfc",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "escape_psi",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "escape_jump_motor",
+      "degradation_score": 0.925,
+      "status": "healthy"
+    },
+    {
+      "profile": "courtship_pc1",
+      "degradation_score": 0.91,
+      "status": "healthy"
+    },
+    {
+      "profile": "courtship_asp",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "courtship_pip",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "song_vnc_int",
+      "degradation_score": 0.925,
+      "status": "healthy"
+    },
+    {
+      "profile": "song_vpo",
+      "degradation_score": 0.9333,
+      "status": "healthy"
+    },
+    {
+      "profile": "auditory_ammc",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "lateral_horn_ln",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "antennal_orn",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "octopamine_vum",
+      "degradation_score": 0.87,
+      "status": "healthy"
+    },
+    {
+      "profile": "looming_lplc",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "pharyngeal_gustatory",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "vnc_leg_motor_pool",
+      "degradation_score": 0.925,
+      "status": "healthy"
+    },
+    {
+      "profile": "haltere_muscle_pool",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "wing_depressor_pool",
+      "degradation_score": 0.9167,
+      "status": "healthy"
+    },
+    {
+      "profile": "pleural_promotor_pool",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "vnc_flight_power_pool",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "vnc_efferent_pool",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "vnc_sensory_pool",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "oa_visual_centrifugal_pool",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "johnston_organ_mechano",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "proboscis_mechano_pool",
+      "degradation_score": 0.85,
+      "status": "healthy"
+    },
+    {
+      "profile": "vnc_interneuron_pool",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "cb_motor_pool",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "cb_endocrine_pool",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "vnc_endocrine_pool",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "sensory_ascending_pool",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "efferent_ascending_pool",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "ascending_neuron_pool",
+      "degradation_score": 0.89,
+      "status": "healthy"
+    },
+    {
+      "profile": "cb_efferent_pool",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    },
+    {
+      "profile": "visual_projection_tbc_pool",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "efferent_descending_pool",
+      "degradation_score": 0.8833,
+      "status": "healthy"
+    },
+    {
+      "profile": "sensory_descending_pool",
+      "degradation_score": 0.9,
+      "status": "healthy"
+    }
+  ]
+}
