@@ -470,6 +470,36 @@ def main() -> int:
         "turn the gate red in strict mode.",
         [py, str(SCRIPTS / "check_badge_semantics.py")])[0]))
 
+    # ---- Gate 57: silent exception swallowing (fail-loud discipline) ----
+    results.append(("gate57 silent exceptions", run(
+        "GATE 57 — silent exception swallowing (K7 fail-loud discipline): "
+        "AST scan of all Python files for 'except Exception: pass' and bare "
+        "'except:'. Each violation must have EITHER (a) # noqa: SILENT with "
+        "reason, (b) logging.warning/error in block, (c) re-raise, or "
+        "(d) explicit failure return. Whitelist excludes backup/archive "
+        "paths. Gate 39 meta-discipline honored: 4-mutation injection "
+        "battery (bare except, except Exception, noqa: SILENT, logging) "
+        "must all behave correctly.",
+        [py, str(SCRIPTS / "check_silent_exceptions.py")])[0]))
+
+    # ---- Gate 58: version single-source-of-truth ----
+    results.append(("gate58 version consistency", run(
+        "GATE 58 — version single-source-of-truth (K2): pyproject.toml "
+        "version, CHANGELOG.md top entry, README.md badge, flybrain_cli.py "
+        "__version__, api_server.py version, server.py version, and README "
+        "gate count must ALL agree. Any mismatch = FAIL. Gate 39 "
+        "meta-discipline honored: 2-mutation injection battery (pyproject "
+        "drift, CHANGELOG drift) must both turn the gate red.",
+        [py, str(SCRIPTS / "check_version_consistency.py")])[0]))
+
+    # ---- Gate 59: static analysis + unit tests (K9 test pyramid) ----
+    results.append(("gate59 static analysis", run(
+        "GATE 59 — static analysis + unit tests (K9): ruff check + unittest "
+        "discover on the selfverify suite. Gate 39 meta-discipline honored: "
+        "3-mutation injection battery (unused import, undefined name, test "
+        "failure) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_static_analysis.py"), "--quiet"])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:
