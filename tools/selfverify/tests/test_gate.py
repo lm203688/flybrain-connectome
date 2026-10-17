@@ -40,8 +40,12 @@ class TestAUC(unittest.TestCase):
     """AUC helpers — verify the rank-based computation matches expectation."""
 
     def test_perfect_separation_is_one(self):
-        # All positives score above all negatives → AUC = 1.0
-        self.assertEqual(auc([0.9, 0.8, 0.7, 0.4, 0.3], [1, 1, 1, 0, 0]), 0.999)
+        # All positives score above all negatives → AUC = 1.0 exactly.
+        # (K5 kernel convergence: previously used "pairwise ties = 0.5" so
+        # this returned 0.999; the Manna-Kendall rank-average formula gives
+        # the mathematically exact 1.0, which is what the audit §K5
+        # converged the codebase to.)
+        self.assertAlmostEqual(auc([0.9, 0.8, 0.7, 0.4, 0.3], [1, 1, 1, 0, 0]), 1.0, places=6)
 
     def test_perfect_inversion_is_zero(self):
         # All positives score below all negatives → AUC = 0.0
@@ -67,8 +71,9 @@ class TestAUC(unittest.TestCase):
         self.assertEqual(auc([0.5], [0]), 0.5)  # no positives
 
     def test_known_small_case(self):
-        # From standard textbook: 3 pos above 2 neg → AUC = 1.0
-        self.assertEqual(auc([0.9, 0.8, 0.7, 0.4, 0.3], [1, 1, 1, 0, 0]), 0.999)
+        # From standard textbook: 3 pos above 2 neg → AUC = 1.0 exactly
+        # (Manna-Kendall rank-average formula).
+        self.assertAlmostEqual(auc([0.9, 0.8, 0.7, 0.4, 0.3], [1, 1, 1, 0, 0]), 1.0, places=6)
 
 
 class TestPearson(unittest.TestCase):
