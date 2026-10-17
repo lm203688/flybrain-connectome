@@ -96,6 +96,11 @@ jobs:
       - name: "Gate 5 - the generated artifact is real"
         run: python scripts/check_generated_artifact.py --dir /tmp/ci_out --name ci_smoke
 
+      # Run all quality gates (59 gates) to ensure CI and local results match
+      # This is the fix for GAP_AUDIT G2: CI previously only ran 5/59 gates
+      - name: "Gate 59 - run all gates"
+        run: python scripts/run_gates.py --quick
+
       # Phase 4/5/6: variant differentiation, SwarmLabs integration, market CRUD
       - name: "Gate 6 - Phase 4/5/6 features (variants + SwarmLabs + market)"
         run: |
