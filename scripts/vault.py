@@ -97,7 +97,7 @@ def _today() -> str:
         )
         if p.returncode == 0 and p.stdout.strip():
             return p.stdout.strip()
-    except Exception:  # noqa: BLE001
+    except Exception:  # noqa: SILENT — date fallback is benign; return today if date cmd fails
         pass
     return date.today().isoformat()
 
@@ -364,7 +364,7 @@ def cmd_verify(args) -> int:
             if k in ("salt", "payload_hash", "expected_verdict",
                      "claimed_registered_at"):
                 committed_full[k] = v
-    except Exception:  # noqa: BLE001
+    except Exception:  # noqa: SILENT — drift diagnosis only; commit_payload_get handles missing keys
         pass
     drift_fields = []
     for k, v in current_criteria.items():
