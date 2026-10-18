@@ -1,6 +1,6 @@
 {
   "schema": "preexec_rejection_registry_v1",
-  "generated_at": "2026-10-15T15:07:20.486357+00:00",
+  "generated_at": "2026-10-18T08:01:17.409188+00:00",
   "project": "flybrain-connectome",
   "project_version": null,
   "protocol_doc": "docs/PREREGISTRATION_PROTOCOL_v1.md",
@@ -8,7 +8,7 @@
   "gate": "Gate 47 (metric_substitution) + Gate 51+52 (C1/C3 prereg integrity)",
   "env_hash": "301f20b999c6fecdf89dba53f87af8b5697c61e44ca353b2916bf63f223cc9c6",
   "registry_sha256_of_inputs": {
-    "research_claims.json": "de4cb3e1a03713ccdf6ca07c07cad81daf17bd539a54bf93903dd51645dba455"
+    "research_claims.json": "85becec3990ae59be9cba1af6023d2d4b4af12dcab14b8b74d19f322e076a339"
   },
   "n_rejections": 1,
   "entries": [
@@ -85,7 +85,7 @@
           "note": "The reject rule tests coupling on the BRIDGE arm only, whose var(d_bridge_fraction) is compressed to 1e-3 by the intervention itself (all bridges deleted), so 'is recovery_AUC monotone in bridge_fraction' is unresolvable on that sample. On both arms pooled (4.94x the variance) the coupling is CONFIRMED at |r| = 0.90-0.91. The rule's ACCEPT is a specification defect, not a clearance."
         }
       },
-      "receipt_sha256": "5100348a7f31ab15623ed5e5e73caf6f67a2e6e3ce02efdadfbe7ccd23198073",
+      "receipt_sha256": "ff90c4dc39911d27ad3aebdc18aa628699ab58c12a434fecb923dbfd2ab57343",
       "receipt_path": "receipts/PR2b.json"
     }
   ],
