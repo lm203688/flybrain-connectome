@@ -529,6 +529,23 @@ def main() -> int:
         "tamper expected_verdict, drift env_hash) must all turn the gate red.",
         [py, str(SCRIPTS / "check_receipt_integrity.py")])[0]))
 
+    # ---- Gate 62: PR_S1 external-validation integrity (W7 fix) ----
+    results.append(("gate62 PR_S1 external-validation", run(
+        "GATE 62 — PR_S1 external-validation integrity: vault/S1.commit.json "
+        "must be present with protocol_id=S1, a complete success_criteria "
+        "block (7 quantitative criteria), and families including all three "
+        "external public connectomes (c_elegans_witvliet, drosophila_larva, "
+        "zebrafish_petkova). Threshold sanity: AUC floor in [0.50, 0.90) "
+        "strict, kappa floor in [0.30, 0.90], conjunctive locked True, "
+        "p-ceiling <= 0.20. If research_claims.preregistered.PR_S1 exists "
+        "as an override it must match the vault. Cross-consistency: "
+        "claims.S1.ci_enrichment.verdict must echo results.verdict. This "
+        "closes the W7 coverage gap that S3 discipline-effectiveness "
+        "reported at 0% catch-rate. Gate 39 meta-discipline honored: "
+        "3-mutation injection battery (raise_auc_min, remove_conjunctive, "
+        "lower_kappa_min) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_pr_s1.py")])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:
