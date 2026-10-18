@@ -319,6 +319,46 @@ consequence quantity that is not analytically derived from `bridge_fraction`".
 The next preregistration should preregister the discovery of that quantity,
 not the scaling of the current one.
 
+### 6.7 External methodological analogue: Xu et al. 2026
+
+The PR-2b case is not an isolated methodological curiosity. An
+independent line of neuroscientific work — Xu, Li, et al. in *Science*
+(2026-10-16; DOI: 10.1126/science.adz5323) on mouse auditory cortex L5
+pyramidal neurons — reaches the same methodological conclusion by an
+opposite route: instead of refusing a proposed metric *before* running
+it, Xu et al. use optogenetic silencing to *remove* the dendritic
+computation component *after* observation and observe that the somatic
+decision signal collapses. Both are causal-inference moves at the
+measurement base, and both produce the same kind of conclusion — that
+the observed signal is entangled with the intervention itself, so a
+"cleaner" measurement at the same base is unavailable.
+
+|                       | PR-2b (this paper)                  | Xu et al. 2026 (external)                    |
+|-----------------------|--------------------------------------|-----------------------------------------------|
+| Base                  | Structural bridge-fraction metric    | Somatic spiking rate                          |
+| Proposed intervention | Alternative bridge-derived metric    | Optogenetic silencing of apical dendrites     |
+| Rejection / ablation  | Pre-execution, analytical            | Post-hoc, causal (optogenetics)               |
+| Verdict               | PRE_EXECUTION_REJECTION (Gate 47)    | Dendritic component is necessary              |
+| Methodological role   | Refuse to run a redundant probe      | Remove a component to test its necessity      |
+
+The two cases are structurally isomorphic: both show that a *specific
+component* (bridge-fraction in the analytical case, apical-dendrite
+computation in the physiological case) is not independent from the
+quantified outcome, and both therefore rule out the naïve strategy of
+"find a better read-out at the same base". PR-2b is a pre-execution,
+analytic analogue; Xu et al. 2026 is a post-hoc, causal analogue. The
+framework in this paper is the discipline that makes the analytic
+version — where the intervention never even runs — a legitimate
+endpoint of a preregistered study.
+
+We include the Xu et al. citation not to claim neuroscientific identity
+with their mechanism (across-species transfer is not established; the
+project has no electrophysiology capacity) but to situate the PR-2b
+precedent inside the wider causal-inference tradition, and to show
+that the "silent-component / measured-output" separation Xu et al.
+make on the physiological side is exactly the separation a
+pre-execution rejection makes on the analytical side.
+
 ---
 
 ## 7. Self-verification disciplines
@@ -480,6 +520,13 @@ the upstream repository and can be reproduced with three commands.
    psychology: Undisclosed flexibility in data collection and analysis
    allows presenting anything as significant. *Psychological Science*
    22, 1359–1366.
+6. Xu, N., Li, J., et al. (2026). Dendritic computation for abstract
+   rule-based flexible decision-making. *Science* 378, eadz5323.
+   DOI: 10.1126/science.adz5323. Apical dendrites of L5 pyramidal
+   neurons encode abstract rules while soma encodes sensory information;
+   optogenetic silencing of dendrites causally collapses the somatic
+   decision signal. External causal-inference analogue of the PR-2b
+   pre-execution rejection.
 
 ---
 
