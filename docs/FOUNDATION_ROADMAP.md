@@ -2,7 +2,7 @@
 
 **制定日期**：2026-10-08
 **基线**：commit `89a0c4f`（v2.47.0）
-**最近一次全量复验**：2026-10-10，`python scripts/run_gates.py` → **29/29 PASS**（门禁 1–29 编号，Gate 5 含 5a/5b 两步；`--quick` 25/25 PASS。Gate 24 为 T3 中间件条件门禁：core 缺失时跳过、存在时断言 12+7+4 + 4 自检 + 数据复现≥4。Gate 25–28 = Phase A/B/D/C；**Gate 29 = Phase E3 NCA 式局部发育**）
+**最近一次全量复验**：2026-10-17，`python scripts/run_gates.py` → **59/59 PASS**（门禁 1–61 编号，缺 37、52；`--quick` 53/53 PASS。Gate 24 为 T3 中间件条件门禁：core 缺失时跳过。Gate 25–29 = Phase A/B/D/C/E3；Gate 30 = 科研自验证五要素；Gate 31–38 = 科学实验系列（R1/R2/R3/R4 + LLM 编排 + 融合 B）；Gate 39 = 元门禁注入测试；Gate 40–42 = 度量验证（双实现/分辨力/统计功效）；Gate 43–47 = 预注册声明系列（PR-1/2/3/4/2b）；Gate 48–52 = VRO 基础设施（claim graph/red-team/badges/holdout/prereg）；Gate 53–59 = 门禁纪律（registry/fork/vault/badges/silent/version/static）；**Gate 60 = AIBOM 供应链披露；Gate 61 = 收据完整性（VRO 强制执行）**）
 **战略前提**：**本阶段不考虑商业化。** 目标是把硬实力做出来、把技术壁垒做出来、把地基打穿。
 **配套文档**：`docs/PROJECT_ENHANCEMENT_REPORT_2026-10-08.md`（全面扫描与评估）
 **上层定位**：`docs/DIGITAL_LIFE_POSITIONING_2026-10-09.md`（**虚拟生物 = 数字生命** —— 本路线图是"能力地基"，该文档是"这块地基要造出一个什么东西"）。
@@ -281,6 +281,14 @@ edge A.out[p] --ct(from=p, to=q)--> B.in[q]      # 端口类型必须匹配
 | Gate 27 · Phase D combination | T3 规则反应引擎 + 签名单一性 + 8 类模体普查（含 4 注入） | ✅ 已交付（v2.56.0） |
 | Gate 28 · Phase C population | 世系树 + 存活判据 + DGM 档案 + 死亡回收 + 负结果护栏（含 4 注入） | ✅ 已交付（v2.56.0） |
 | **Gate 29 · Phase E3 development** | GrowthRule + NCAGrower.grow + DevelopmentReport；4 收敛原因全可达；5 项 fail-closed；产物兼容 Runtime.step（含 4 注入） | ✅ **已交付（v2.57.0）** |
+| **Gate 54 · metrics_fork reproducibility** | 度量内核分叉可复现性自检（3 smoke 命令 + manifest 一致性 + 注入电池全红） | ✅ **已交付（v2.94.0）** |
+| **Gate 55 · holdout integrity (E3 vault)** | E3 holdout vault 完整性（3 commits + 1 opens + 2 PASS protocols + 注入电池全红） | ✅ **已交付（v2.94.0）** |
+| **Gate 56 · badge ladder semantics (E1b)** | 徽章阶梯语义一致性（S6 四纪律 + F1/F4b 度量替代预检） | ✅ **已交付（v2.94.0）** |
+| **Gate 57 · silent exceptions** | 静默吞异常门禁（281 文件 0 违规，K3/K4 修复生效） | ✅ **已交付（v2.95.0）** |
+| **Gate 58 · version consistency** | 版本单一真源门禁（7 处版本号一致性校验） | ✅ **已交付（v2.95.0）** |
+| **Gate 59 · static analysis** | 静态分析门禁（RUFF + 单测执行） | ✅ **已交付（v2.95.0）** |
+| **Gate 60 · supply chain (AIBOM)** | 供应链披露门禁（aibom.json 存在性 + 指纹一致性 + 5 变异注入电池） | ✅ **已交付（v2.96.0）** |
+| **Gate 61 · receipt integrity (VRO)** | 收据完整性门禁（9 份收据字段完整性 + verify_receipt 独立重算 + 4 变异注入电池） | ✅ **已交付（v2.96.0）** |
 
 **纪律（沿用项目既有）**：
 - 新门禁**先注入缺陷证明会报红**，再合入
