@@ -1,0 +1,2092 @@
+{
+  "schema": "s2_lesion_cascade_v1",
+  "prereg": "PR_S2",
+  "prereg_doc": "docs/PR_S2_LESION_CASCADE_2026-10-18.md",
+  "family": "malecns_subgraph",
+  "k_max_ratio": 0.3,
+  "bootstrap_iterations": 500,
+  "per_n": {
+    "n=20": {
+      "n_seeds": 60,
+      "k_max": 6,
+      "obs_tolerance_mean": 0.8493,
+      "obs_tolerance_sd": 0.0055,
+      "null_tolerance_mean": 0.8263,
+      "null_tolerance_sd": 0.0276,
+      "diff_obs_minus_null": 0.023,
+      "diff_ci_low": 0.0161,
+      "diff_ci_high": 0.0299,
+      "diff_bootstrap_p": 0.0,
+      "cohens_d": 1.153,
+      "obs_bridge_fraction_mean": 0.0,
+      "obs_module_score_mean": 1.0,
+      "lesion_bridge_spearman_rho": 0.9742,
+      "lesion_bridge_spearman_p": 0.0,
+      "traces_sample": [
+        {
+          "seed": 0,
+          "obs_trace": [
+            {
+              "k": 0,
+              "n_remaining": 20,
+              "mcs": 20,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 19,
+              "mcs": 19,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 2,
+              "n_remaining": 18,
+              "mcs": 18,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 3,
+              "n_remaining": 17,
+              "mcs": 17,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 4,
+              "n_remaining": 16,
+              "mcs": 16,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 15,
+              "mcs": 15,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 6,
+              "n_remaining": 14,
+              "mcs": 14,
+              "cascade_reach": 0.30000000000000004
+            }
+          ],
+          "null_trace": [
+            {
+              "k": 0,
+              "n_remaining": 20,
+              "mcs": 20,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 19,
+              "mcs": 19,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 2,
+              "n_remaining": 18,
+              "mcs": 18,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 3,
+              "n_remaining": 17,
+              "mcs": 17,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 4,
+              "n_remaining": 16,
+              "mcs": 16,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 15,
+              "mcs": 15,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 6,
+              "n_remaining": 14,
+              "mcs": 14,
+              "cascade_reach": 0.30000000000000004
+            }
+          ]
+        },
+        {
+          "seed": 1,
+          "obs_trace": [
+            {
+              "k": 0,
+              "n_remaining": 20,
+              "mcs": 20,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 19,
+              "mcs": 19,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 2,
+              "n_remaining": 18,
+              "mcs": 18,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 3,
+              "n_remaining": 17,
+              "mcs": 17,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 4,
+              "n_remaining": 16,
+              "mcs": 16,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 15,
+              "mcs": 15,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 6,
+              "n_remaining": 14,
+              "mcs": 14,
+              "cascade_reach": 0.30000000000000004
+            }
+          ],
+          "null_trace": [
+            {
+              "k": 0,
+              "n_remaining": 20,
+              "mcs": 20,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 19,
+              "mcs": 19,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 2,
+              "n_remaining": 18,
+              "mcs": 18,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 3,
+              "n_remaining": 17,
+              "mcs": 17,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 4,
+              "n_remaining": 16,
+              "mcs": 16,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 15,
+              "mcs": 15,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 6,
+              "n_remaining": 14,
+              "mcs": 14,
+              "cascade_reach": 0.30000000000000004
+            }
+          ]
+        },
+        {
+          "seed": 2,
+          "obs_trace": [
+            {
+              "k": 0,
+              "n_remaining": 20,
+              "mcs": 20,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 19,
+              "mcs": 19,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 2,
+              "n_remaining": 18,
+              "mcs": 18,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 3,
+              "n_remaining": 17,
+              "mcs": 17,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 4,
+              "n_remaining": 16,
+              "mcs": 16,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 15,
+              "mcs": 15,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 6,
+              "n_remaining": 14,
+              "mcs": 14,
+              "cascade_reach": 0.30000000000000004
+            }
+          ],
+          "null_trace": [
+            {
+              "k": 0,
+              "n_remaining": 20,
+              "mcs": 20,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 19,
+              "mcs": 19,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 2,
+              "n_remaining": 18,
+              "mcs": 18,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 3,
+              "n_remaining": 17,
+              "mcs": 17,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 4,
+              "n_remaining": 16,
+              "mcs": 16,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 15,
+              "mcs": 15,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 6,
+              "n_remaining": 14,
+              "mcs": 12,
+              "cascade_reach": 0.4
+            }
+          ]
+        }
+      ]
+    },
+    "n=50": {
+      "n_seeds": 60,
+      "k_max": 15,
+      "obs_tolerance_mean": 0.8363,
+      "obs_tolerance_sd": 0.0199,
+      "null_tolerance_mean": 0.8421,
+      "null_tolerance_sd": 0.0073,
+      "diff_obs_minus_null": -0.0058,
+      "diff_ci_low": -0.0114,
+      "diff_ci_high": -0.0005,
+      "diff_bootstrap_p": 0.984,
+      "cohens_d": -0.3865,
+      "obs_bridge_fraction_mean": 0.0,
+      "obs_module_score_mean": 1.0,
+      "lesion_bridge_spearman_rho": 0.2789,
+      "lesion_bridge_spearman_p": 0.027,
+      "traces_sample": [
+        {
+          "seed": 0,
+          "obs_trace": [
+            {
+              "k": 0,
+              "n_remaining": 50,
+              "mcs": 50,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 49,
+              "mcs": 49,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 2,
+              "n_remaining": 48,
+              "mcs": 48,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 3,
+              "n_remaining": 47,
+              "mcs": 47,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 4,
+              "n_remaining": 46,
+              "mcs": 46,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 45,
+              "mcs": 45,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 6,
+              "n_remaining": 44,
+              "mcs": 44,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 7,
+              "n_remaining": 43,
+              "mcs": 43,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 8,
+              "n_remaining": 42,
+              "mcs": 42,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 9,
+              "n_remaining": 41,
+              "mcs": 41,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 10,
+              "n_remaining": 40,
+              "mcs": 40,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 11,
+              "n_remaining": 39,
+              "mcs": 39,
+              "cascade_reach": 0.21999999999999997
+            },
+            {
+              "k": 12,
+              "n_remaining": 38,
+              "mcs": 38,
+              "cascade_reach": 0.24
+            },
+            {
+              "k": 13,
+              "n_remaining": 37,
+              "mcs": 37,
+              "cascade_reach": 0.26
+            },
+            {
+              "k": 14,
+              "n_remaining": 36,
+              "mcs": 36,
+              "cascade_reach": 0.28
+            },
+            {
+              "k": 15,
+              "n_remaining": 35,
+              "mcs": 35,
+              "cascade_reach": 0.30000000000000004
+            }
+          ],
+          "null_trace": [
+            {
+              "k": 0,
+              "n_remaining": 50,
+              "mcs": 50,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 49,
+              "mcs": 49,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 2,
+              "n_remaining": 48,
+              "mcs": 48,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 3,
+              "n_remaining": 47,
+              "mcs": 47,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 4,
+              "n_remaining": 46,
+              "mcs": 46,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 45,
+              "mcs": 45,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 6,
+              "n_remaining": 44,
+              "mcs": 44,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 7,
+              "n_remaining": 43,
+              "mcs": 43,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 8,
+              "n_remaining": 42,
+              "mcs": 42,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 9,
+              "n_remaining": 41,
+              "mcs": 41,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 10,
+              "n_remaining": 40,
+              "mcs": 40,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 11,
+              "n_remaining": 39,
+              "mcs": 39,
+              "cascade_reach": 0.21999999999999997
+            },
+            {
+              "k": 12,
+              "n_remaining": 38,
+              "mcs": 38,
+              "cascade_reach": 0.24
+            },
+            {
+              "k": 13,
+              "n_remaining": 37,
+              "mcs": 37,
+              "cascade_reach": 0.26
+            },
+            {
+              "k": 14,
+              "n_remaining": 36,
+              "mcs": 34,
+              "cascade_reach": 0.31999999999999995
+            },
+            {
+              "k": 15,
+              "n_remaining": 35,
+              "mcs": 33,
+              "cascade_reach": 0.33999999999999997
+            }
+          ]
+        },
+        {
+          "seed": 1,
+          "obs_trace": [
+            {
+              "k": 0,
+              "n_remaining": 50,
+              "mcs": 50,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 49,
+              "mcs": 49,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 2,
+              "n_remaining": 48,
+              "mcs": 48,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 3,
+              "n_remaining": 47,
+              "mcs": 47,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 4,
+              "n_remaining": 46,
+              "mcs": 46,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 45,
+              "mcs": 45,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 6,
+              "n_remaining": 44,
+              "mcs": 44,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 7,
+              "n_remaining": 43,
+              "mcs": 43,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 8,
+              "n_remaining": 42,
+              "mcs": 42,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 9,
+              "n_remaining": 41,
+              "mcs": 41,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 10,
+              "n_remaining": 40,
+              "mcs": 40,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 11,
+              "n_remaining": 39,
+              "mcs": 39,
+              "cascade_reach": 0.21999999999999997
+            },
+            {
+              "k": 12,
+              "n_remaining": 38,
+              "mcs": 38,
+              "cascade_reach": 0.24
+            },
+            {
+              "k": 13,
+              "n_remaining": 37,
+              "mcs": 37,
+              "cascade_reach": 0.26
+            },
+            {
+              "k": 14,
+              "n_remaining": 36,
+              "mcs": 36,
+              "cascade_reach": 0.28
+            },
+            {
+              "k": 15,
+              "n_remaining": 35,
+              "mcs": 35,
+              "cascade_reach": 0.30000000000000004
+            }
+          ],
+          "null_trace": [
+            {
+              "k": 0,
+              "n_remaining": 50,
+              "mcs": 50,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 49,
+              "mcs": 49,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 2,
+              "n_remaining": 48,
+              "mcs": 48,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 3,
+              "n_remaining": 47,
+              "mcs": 47,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 4,
+              "n_remaining": 46,
+              "mcs": 46,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 45,
+              "mcs": 45,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 6,
+              "n_remaining": 44,
+              "mcs": 44,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 7,
+              "n_remaining": 43,
+              "mcs": 43,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 8,
+              "n_remaining": 42,
+              "mcs": 42,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 9,
+              "n_remaining": 41,
+              "mcs": 41,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 10,
+              "n_remaining": 40,
+              "mcs": 40,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 11,
+              "n_remaining": 39,
+              "mcs": 39,
+              "cascade_reach": 0.21999999999999997
+            },
+            {
+              "k": 12,
+              "n_remaining": 38,
+              "mcs": 38,
+              "cascade_reach": 0.24
+            },
+            {
+              "k": 13,
+              "n_remaining": 37,
+              "mcs": 37,
+              "cascade_reach": 0.26
+            },
+            {
+              "k": 14,
+              "n_remaining": 36,
+              "mcs": 36,
+              "cascade_reach": 0.28
+            },
+            {
+              "k": 15,
+              "n_remaining": 35,
+              "mcs": 35,
+              "cascade_reach": 0.30000000000000004
+            }
+          ]
+        },
+        {
+          "seed": 2,
+          "obs_trace": [
+            {
+              "k": 0,
+              "n_remaining": 50,
+              "mcs": 50,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 49,
+              "mcs": 49,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 2,
+              "n_remaining": 48,
+              "mcs": 48,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 3,
+              "n_remaining": 47,
+              "mcs": 47,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 4,
+              "n_remaining": 46,
+              "mcs": 46,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 45,
+              "mcs": 45,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 6,
+              "n_remaining": 44,
+              "mcs": 44,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 7,
+              "n_remaining": 43,
+              "mcs": 43,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 8,
+              "n_remaining": 42,
+              "mcs": 42,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 9,
+              "n_remaining": 41,
+              "mcs": 41,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 10,
+              "n_remaining": 40,
+              "mcs": 33,
+              "cascade_reach": 0.33999999999999997
+            },
+            {
+              "k": 11,
+              "n_remaining": 39,
+              "mcs": 33,
+              "cascade_reach": 0.33999999999999997
+            },
+            {
+              "k": 12,
+              "n_remaining": 38,
+              "mcs": 32,
+              "cascade_reach": 0.36
+            },
+            {
+              "k": 13,
+              "n_remaining": 37,
+              "mcs": 25,
+              "cascade_reach": 0.5
+            },
+            {
+              "k": 14,
+              "n_remaining": 36,
+              "mcs": 19,
+              "cascade_reach": 0.62
+            },
+            {
+              "k": 15,
+              "n_remaining": 35,
+              "mcs": 18,
+              "cascade_reach": 0.64
+            }
+          ],
+          "null_trace": [
+            {
+              "k": 0,
+              "n_remaining": 50,
+              "mcs": 50,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 49,
+              "mcs": 49,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 2,
+              "n_remaining": 48,
+              "mcs": 48,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 3,
+              "n_remaining": 47,
+              "mcs": 47,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 4,
+              "n_remaining": 46,
+              "mcs": 46,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 5,
+              "n_remaining": 45,
+              "mcs": 45,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 6,
+              "n_remaining": 44,
+              "mcs": 44,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 7,
+              "n_remaining": 43,
+              "mcs": 43,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 8,
+              "n_remaining": 42,
+              "mcs": 42,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 9,
+              "n_remaining": 41,
+              "mcs": 41,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 10,
+              "n_remaining": 40,
+              "mcs": 40,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 11,
+              "n_remaining": 39,
+              "mcs": 39,
+              "cascade_reach": 0.21999999999999997
+            },
+            {
+              "k": 12,
+              "n_remaining": 38,
+              "mcs": 38,
+              "cascade_reach": 0.24
+            },
+            {
+              "k": 13,
+              "n_remaining": 37,
+              "mcs": 37,
+              "cascade_reach": 0.26
+            },
+            {
+              "k": 14,
+              "n_remaining": 36,
+              "mcs": 36,
+              "cascade_reach": 0.28
+            },
+            {
+              "k": 15,
+              "n_remaining": 35,
+              "mcs": 35,
+              "cascade_reach": 0.30000000000000004
+            }
+          ]
+        }
+      ]
+    },
+    "n=100": {
+      "n_seeds": 60,
+      "k_max": 30,
+      "obs_tolerance_mean": 0.8343,
+      "obs_tolerance_sd": 0.0172,
+      "null_tolerance_mean": 0.8442,
+      "null_tolerance_sd": 0.0046,
+      "diff_obs_minus_null": -0.0099,
+      "diff_ci_low": -0.0147,
+      "diff_ci_high": -0.0056,
+      "diff_bootstrap_p": 1.0,
+      "cohens_d": -0.7891,
+      "obs_bridge_fraction_mean": 0.0,
+      "obs_module_score_mean": 1.0,
+      "lesion_bridge_spearman_rho": 0.0368,
+      "lesion_bridge_spearman_p": 0.7792,
+      "traces_sample": [
+        {
+          "seed": 0,
+          "obs_trace": [
+            {
+              "k": 0,
+              "n_remaining": 100,
+              "mcs": 100,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 99,
+              "mcs": 99,
+              "cascade_reach": 0.010000000000000009
+            },
+            {
+              "k": 2,
+              "n_remaining": 98,
+              "mcs": 98,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 3,
+              "n_remaining": 97,
+              "mcs": 97,
+              "cascade_reach": 0.030000000000000027
+            },
+            {
+              "k": 4,
+              "n_remaining": 96,
+              "mcs": 96,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 5,
+              "n_remaining": 95,
+              "mcs": 95,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 6,
+              "n_remaining": 94,
+              "mcs": 94,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 7,
+              "n_remaining": 93,
+              "mcs": 93,
+              "cascade_reach": 0.06999999999999995
+            },
+            {
+              "k": 8,
+              "n_remaining": 92,
+              "mcs": 92,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 9,
+              "n_remaining": 91,
+              "mcs": 91,
+              "cascade_reach": 0.08999999999999997
+            },
+            {
+              "k": 10,
+              "n_remaining": 90,
+              "mcs": 90,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 11,
+              "n_remaining": 89,
+              "mcs": 89,
+              "cascade_reach": 0.10999999999999999
+            },
+            {
+              "k": 12,
+              "n_remaining": 88,
+              "mcs": 88,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 13,
+              "n_remaining": 87,
+              "mcs": 87,
+              "cascade_reach": 0.13
+            },
+            {
+              "k": 14,
+              "n_remaining": 86,
+              "mcs": 86,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 15,
+              "n_remaining": 85,
+              "mcs": 85,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 16,
+              "n_remaining": 84,
+              "mcs": 84,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 17,
+              "n_remaining": 83,
+              "mcs": 83,
+              "cascade_reach": 0.17000000000000004
+            },
+            {
+              "k": 18,
+              "n_remaining": 82,
+              "mcs": 82,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 19,
+              "n_remaining": 81,
+              "mcs": 81,
+              "cascade_reach": 0.18999999999999995
+            },
+            {
+              "k": 20,
+              "n_remaining": 80,
+              "mcs": 80,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 21,
+              "n_remaining": 79,
+              "mcs": 79,
+              "cascade_reach": 0.20999999999999996
+            },
+            {
+              "k": 22,
+              "n_remaining": 78,
+              "mcs": 74,
+              "cascade_reach": 0.26
+            },
+            {
+              "k": 23,
+              "n_remaining": 77,
+              "mcs": 67,
+              "cascade_reach": 0.32999999999999996
+            },
+            {
+              "k": 24,
+              "n_remaining": 76,
+              "mcs": 66,
+              "cascade_reach": 0.33999999999999997
+            },
+            {
+              "k": 25,
+              "n_remaining": 75,
+              "mcs": 65,
+              "cascade_reach": 0.35
+            },
+            {
+              "k": 26,
+              "n_remaining": 74,
+              "mcs": 64,
+              "cascade_reach": 0.36
+            },
+            {
+              "k": 27,
+              "n_remaining": 73,
+              "mcs": 60,
+              "cascade_reach": 0.4
+            },
+            {
+              "k": 28,
+              "n_remaining": 72,
+              "mcs": 59,
+              "cascade_reach": 0.41000000000000003
+            },
+            {
+              "k": 29,
+              "n_remaining": 71,
+              "mcs": 58,
+              "cascade_reach": 0.42000000000000004
+            },
+            {
+              "k": 30,
+              "n_remaining": 70,
+              "mcs": 37,
+              "cascade_reach": 0.63
+            }
+          ],
+          "null_trace": [
+            {
+              "k": 0,
+              "n_remaining": 100,
+              "mcs": 100,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 99,
+              "mcs": 99,
+              "cascade_reach": 0.010000000000000009
+            },
+            {
+              "k": 2,
+              "n_remaining": 98,
+              "mcs": 98,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 3,
+              "n_remaining": 97,
+              "mcs": 97,
+              "cascade_reach": 0.030000000000000027
+            },
+            {
+              "k": 4,
+              "n_remaining": 96,
+              "mcs": 96,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 5,
+              "n_remaining": 95,
+              "mcs": 95,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 6,
+              "n_remaining": 94,
+              "mcs": 94,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 7,
+              "n_remaining": 93,
+              "mcs": 93,
+              "cascade_reach": 0.06999999999999995
+            },
+            {
+              "k": 8,
+              "n_remaining": 92,
+              "mcs": 92,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 9,
+              "n_remaining": 91,
+              "mcs": 91,
+              "cascade_reach": 0.08999999999999997
+            },
+            {
+              "k": 10,
+              "n_remaining": 90,
+              "mcs": 90,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 11,
+              "n_remaining": 89,
+              "mcs": 89,
+              "cascade_reach": 0.10999999999999999
+            },
+            {
+              "k": 12,
+              "n_remaining": 88,
+              "mcs": 88,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 13,
+              "n_remaining": 87,
+              "mcs": 87,
+              "cascade_reach": 0.13
+            },
+            {
+              "k": 14,
+              "n_remaining": 86,
+              "mcs": 86,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 15,
+              "n_remaining": 85,
+              "mcs": 85,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 16,
+              "n_remaining": 84,
+              "mcs": 84,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 17,
+              "n_remaining": 83,
+              "mcs": 83,
+              "cascade_reach": 0.17000000000000004
+            },
+            {
+              "k": 18,
+              "n_remaining": 82,
+              "mcs": 82,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 19,
+              "n_remaining": 81,
+              "mcs": 81,
+              "cascade_reach": 0.18999999999999995
+            },
+            {
+              "k": 20,
+              "n_remaining": 80,
+              "mcs": 80,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 21,
+              "n_remaining": 79,
+              "mcs": 79,
+              "cascade_reach": 0.20999999999999996
+            },
+            {
+              "k": 22,
+              "n_remaining": 78,
+              "mcs": 78,
+              "cascade_reach": 0.21999999999999997
+            },
+            {
+              "k": 23,
+              "n_remaining": 77,
+              "mcs": 77,
+              "cascade_reach": 0.22999999999999998
+            },
+            {
+              "k": 24,
+              "n_remaining": 76,
+              "mcs": 75,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 25,
+              "n_remaining": 75,
+              "mcs": 74,
+              "cascade_reach": 0.26
+            },
+            {
+              "k": 26,
+              "n_remaining": 74,
+              "mcs": 72,
+              "cascade_reach": 0.28
+            },
+            {
+              "k": 27,
+              "n_remaining": 73,
+              "mcs": 71,
+              "cascade_reach": 0.29000000000000004
+            },
+            {
+              "k": 28,
+              "n_remaining": 72,
+              "mcs": 70,
+              "cascade_reach": 0.30000000000000004
+            },
+            {
+              "k": 29,
+              "n_remaining": 71,
+              "mcs": 69,
+              "cascade_reach": 0.31000000000000005
+            },
+            {
+              "k": 30,
+              "n_remaining": 70,
+              "mcs": 66,
+              "cascade_reach": 0.33999999999999997
+            }
+          ]
+        },
+        {
+          "seed": 1,
+          "obs_trace": [
+            {
+              "k": 0,
+              "n_remaining": 100,
+              "mcs": 100,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 99,
+              "mcs": 99,
+              "cascade_reach": 0.010000000000000009
+            },
+            {
+              "k": 2,
+              "n_remaining": 98,
+              "mcs": 98,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 3,
+              "n_remaining": 97,
+              "mcs": 97,
+              "cascade_reach": 0.030000000000000027
+            },
+            {
+              "k": 4,
+              "n_remaining": 96,
+              "mcs": 96,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 5,
+              "n_remaining": 95,
+              "mcs": 95,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 6,
+              "n_remaining": 94,
+              "mcs": 94,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 7,
+              "n_remaining": 93,
+              "mcs": 93,
+              "cascade_reach": 0.06999999999999995
+            },
+            {
+              "k": 8,
+              "n_remaining": 92,
+              "mcs": 92,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 9,
+              "n_remaining": 91,
+              "mcs": 91,
+              "cascade_reach": 0.08999999999999997
+            },
+            {
+              "k": 10,
+              "n_remaining": 90,
+              "mcs": 90,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 11,
+              "n_remaining": 89,
+              "mcs": 89,
+              "cascade_reach": 0.10999999999999999
+            },
+            {
+              "k": 12,
+              "n_remaining": 88,
+              "mcs": 88,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 13,
+              "n_remaining": 87,
+              "mcs": 87,
+              "cascade_reach": 0.13
+            },
+            {
+              "k": 14,
+              "n_remaining": 86,
+              "mcs": 86,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 15,
+              "n_remaining": 85,
+              "mcs": 85,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 16,
+              "n_remaining": 84,
+              "mcs": 84,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 17,
+              "n_remaining": 83,
+              "mcs": 83,
+              "cascade_reach": 0.17000000000000004
+            },
+            {
+              "k": 18,
+              "n_remaining": 82,
+              "mcs": 82,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 19,
+              "n_remaining": 81,
+              "mcs": 81,
+              "cascade_reach": 0.18999999999999995
+            },
+            {
+              "k": 20,
+              "n_remaining": 80,
+              "mcs": 80,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 21,
+              "n_remaining": 79,
+              "mcs": 79,
+              "cascade_reach": 0.20999999999999996
+            },
+            {
+              "k": 22,
+              "n_remaining": 78,
+              "mcs": 78,
+              "cascade_reach": 0.21999999999999997
+            },
+            {
+              "k": 23,
+              "n_remaining": 77,
+              "mcs": 77,
+              "cascade_reach": 0.22999999999999998
+            },
+            {
+              "k": 24,
+              "n_remaining": 76,
+              "mcs": 76,
+              "cascade_reach": 0.24
+            },
+            {
+              "k": 25,
+              "n_remaining": 75,
+              "mcs": 75,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 26,
+              "n_remaining": 74,
+              "mcs": 74,
+              "cascade_reach": 0.26
+            },
+            {
+              "k": 27,
+              "n_remaining": 73,
+              "mcs": 73,
+              "cascade_reach": 0.27
+            },
+            {
+              "k": 28,
+              "n_remaining": 72,
+              "mcs": 72,
+              "cascade_reach": 0.28
+            },
+            {
+              "k": 29,
+              "n_remaining": 71,
+              "mcs": 71,
+              "cascade_reach": 0.29000000000000004
+            },
+            {
+              "k": 30,
+              "n_remaining": 70,
+              "mcs": 70,
+              "cascade_reach": 0.30000000000000004
+            }
+          ],
+          "null_trace": [
+            {
+              "k": 0,
+              "n_remaining": 100,
+              "mcs": 100,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 99,
+              "mcs": 99,
+              "cascade_reach": 0.010000000000000009
+            },
+            {
+              "k": 2,
+              "n_remaining": 98,
+              "mcs": 98,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 3,
+              "n_remaining": 97,
+              "mcs": 97,
+              "cascade_reach": 0.030000000000000027
+            },
+            {
+              "k": 4,
+              "n_remaining": 96,
+              "mcs": 96,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 5,
+              "n_remaining": 95,
+              "mcs": 95,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 6,
+              "n_remaining": 94,
+              "mcs": 94,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 7,
+              "n_remaining": 93,
+              "mcs": 93,
+              "cascade_reach": 0.06999999999999995
+            },
+            {
+              "k": 8,
+              "n_remaining": 92,
+              "mcs": 92,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 9,
+              "n_remaining": 91,
+              "mcs": 91,
+              "cascade_reach": 0.08999999999999997
+            },
+            {
+              "k": 10,
+              "n_remaining": 90,
+              "mcs": 90,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 11,
+              "n_remaining": 89,
+              "mcs": 89,
+              "cascade_reach": 0.10999999999999999
+            },
+            {
+              "k": 12,
+              "n_remaining": 88,
+              "mcs": 88,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 13,
+              "n_remaining": 87,
+              "mcs": 87,
+              "cascade_reach": 0.13
+            },
+            {
+              "k": 14,
+              "n_remaining": 86,
+              "mcs": 86,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 15,
+              "n_remaining": 85,
+              "mcs": 85,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 16,
+              "n_remaining": 84,
+              "mcs": 84,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 17,
+              "n_remaining": 83,
+              "mcs": 83,
+              "cascade_reach": 0.17000000000000004
+            },
+            {
+              "k": 18,
+              "n_remaining": 82,
+              "mcs": 82,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 19,
+              "n_remaining": 81,
+              "mcs": 81,
+              "cascade_reach": 0.18999999999999995
+            },
+            {
+              "k": 20,
+              "n_remaining": 80,
+              "mcs": 80,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 21,
+              "n_remaining": 79,
+              "mcs": 79,
+              "cascade_reach": 0.20999999999999996
+            },
+            {
+              "k": 22,
+              "n_remaining": 78,
+              "mcs": 78,
+              "cascade_reach": 0.21999999999999997
+            },
+            {
+              "k": 23,
+              "n_remaining": 77,
+              "mcs": 77,
+              "cascade_reach": 0.22999999999999998
+            },
+            {
+              "k": 24,
+              "n_remaining": 76,
+              "mcs": 76,
+              "cascade_reach": 0.24
+            },
+            {
+              "k": 25,
+              "n_remaining": 75,
+              "mcs": 75,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 26,
+              "n_remaining": 74,
+              "mcs": 74,
+              "cascade_reach": 0.26
+            },
+            {
+              "k": 27,
+              "n_remaining": 73,
+              "mcs": 73,
+              "cascade_reach": 0.27
+            },
+            {
+              "k": 28,
+              "n_remaining": 72,
+              "mcs": 71,
+              "cascade_reach": 0.29000000000000004
+            },
+            {
+              "k": 29,
+              "n_remaining": 71,
+              "mcs": 69,
+              "cascade_reach": 0.31000000000000005
+            },
+            {
+              "k": 30,
+              "n_remaining": 70,
+              "mcs": 68,
+              "cascade_reach": 0.31999999999999995
+            }
+          ]
+        },
+        {
+          "seed": 2,
+          "obs_trace": [
+            {
+              "k": 0,
+              "n_remaining": 100,
+              "mcs": 100,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 99,
+              "mcs": 99,
+              "cascade_reach": 0.010000000000000009
+            },
+            {
+              "k": 2,
+              "n_remaining": 98,
+              "mcs": 98,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 3,
+              "n_remaining": 97,
+              "mcs": 97,
+              "cascade_reach": 0.030000000000000027
+            },
+            {
+              "k": 4,
+              "n_remaining": 96,
+              "mcs": 96,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 5,
+              "n_remaining": 95,
+              "mcs": 95,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 6,
+              "n_remaining": 94,
+              "mcs": 94,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 7,
+              "n_remaining": 93,
+              "mcs": 93,
+              "cascade_reach": 0.06999999999999995
+            },
+            {
+              "k": 8,
+              "n_remaining": 92,
+              "mcs": 92,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 9,
+              "n_remaining": 91,
+              "mcs": 91,
+              "cascade_reach": 0.08999999999999997
+            },
+            {
+              "k": 10,
+              "n_remaining": 90,
+              "mcs": 90,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 11,
+              "n_remaining": 89,
+              "mcs": 89,
+              "cascade_reach": 0.10999999999999999
+            },
+            {
+              "k": 12,
+              "n_remaining": 88,
+              "mcs": 88,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 13,
+              "n_remaining": 87,
+              "mcs": 87,
+              "cascade_reach": 0.13
+            },
+            {
+              "k": 14,
+              "n_remaining": 86,
+              "mcs": 86,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 15,
+              "n_remaining": 85,
+              "mcs": 85,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 16,
+              "n_remaining": 84,
+              "mcs": 84,
+              "cascade_reach": 0.16000000000000003
+            },
+            {
+              "k": 17,
+              "n_remaining": 83,
+              "mcs": 83,
+              "cascade_reach": 0.17000000000000004
+            },
+            {
+              "k": 18,
+              "n_remaining": 82,
+              "mcs": 82,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 19,
+              "n_remaining": 81,
+              "mcs": 81,
+              "cascade_reach": 0.18999999999999995
+            },
+            {
+              "k": 20,
+              "n_remaining": 80,
+              "mcs": 80,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 21,
+              "n_remaining": 79,
+              "mcs": 79,
+              "cascade_reach": 0.20999999999999996
+            },
+            {
+              "k": 22,
+              "n_remaining": 78,
+              "mcs": 78,
+              "cascade_reach": 0.21999999999999997
+            },
+            {
+              "k": 23,
+              "n_remaining": 77,
+              "mcs": 77,
+              "cascade_reach": 0.22999999999999998
+            },
+            {
+              "k": 24,
+              "n_remaining": 76,
+              "mcs": 76,
+              "cascade_reach": 0.24
+            },
+            {
+              "k": 25,
+              "n_remaining": 75,
+              "mcs": 75,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 26,
+              "n_remaining": 74,
+              "mcs": 74,
+              "cascade_reach": 0.26
+            },
+            {
+              "k": 27,
+              "n_remaining": 73,
+              "mcs": 73,
+              "cascade_reach": 0.27
+            },
+            {
+              "k": 28,
+              "n_remaining": 72,
+              "mcs": 69,
+              "cascade_reach": 0.31000000000000005
+            },
+            {
+              "k": 29,
+              "n_remaining": 71,
+              "mcs": 68,
+              "cascade_reach": 0.31999999999999995
+            },
+            {
+              "k": 30,
+              "n_remaining": 70,
+              "mcs": 67,
+              "cascade_reach": 0.32999999999999996
+            }
+          ],
+          "null_trace": [
+            {
+              "k": 0,
+              "n_remaining": 100,
+              "mcs": 100,
+              "cascade_reach": 0.0
+            },
+            {
+              "k": 1,
+              "n_remaining": 99,
+              "mcs": 99,
+              "cascade_reach": 0.010000000000000009
+            },
+            {
+              "k": 2,
+              "n_remaining": 98,
+              "mcs": 98,
+              "cascade_reach": 0.020000000000000018
+            },
+            {
+              "k": 3,
+              "n_remaining": 97,
+              "mcs": 97,
+              "cascade_reach": 0.030000000000000027
+            },
+            {
+              "k": 4,
+              "n_remaining": 96,
+              "mcs": 96,
+              "cascade_reach": 0.040000000000000036
+            },
+            {
+              "k": 5,
+              "n_remaining": 95,
+              "mcs": 95,
+              "cascade_reach": 0.050000000000000044
+            },
+            {
+              "k": 6,
+              "n_remaining": 94,
+              "mcs": 94,
+              "cascade_reach": 0.06000000000000005
+            },
+            {
+              "k": 7,
+              "n_remaining": 93,
+              "mcs": 93,
+              "cascade_reach": 0.06999999999999995
+            },
+            {
+              "k": 8,
+              "n_remaining": 92,
+              "mcs": 92,
+              "cascade_reach": 0.07999999999999996
+            },
+            {
+              "k": 9,
+              "n_remaining": 91,
+              "mcs": 91,
+              "cascade_reach": 0.08999999999999997
+            },
+            {
+              "k": 10,
+              "n_remaining": 90,
+              "mcs": 90,
+              "cascade_reach": 0.09999999999999998
+            },
+            {
+              "k": 11,
+              "n_remaining": 89,
+              "mcs": 89,
+              "cascade_reach": 0.10999999999999999
+            },
+            {
+              "k": 12,
+              "n_remaining": 88,
+              "mcs": 88,
+              "cascade_reach": 0.12
+            },
+            {
+              "k": 13,
+              "n_remaining": 87,
+              "mcs": 87,
+              "cascade_reach": 0.13
+            },
+            {
+              "k": 14,
+              "n_remaining": 86,
+              "mcs": 86,
+              "cascade_reach": 0.14
+            },
+            {
+              "k": 15,
+              "n_remaining": 85,
+              "mcs": 85,
+              "cascade_reach": 0.15000000000000002
+            },
+            {
+              "k": 16,
+              "n_remaining": 84,
+              "mcs": 83,
+              "cascade_reach": 0.17000000000000004
+            },
+            {
+              "k": 17,
+              "n_remaining": 83,
+              "mcs": 82,
+              "cascade_reach": 0.18000000000000005
+            },
+            {
+              "k": 18,
+              "n_remaining": 82,
+              "mcs": 81,
+              "cascade_reach": 0.18999999999999995
+            },
+            {
+              "k": 19,
+              "n_remaining": 81,
+              "mcs": 80,
+              "cascade_reach": 0.19999999999999996
+            },
+            {
+              "k": 20,
+              "n_remaining": 80,
+              "mcs": 79,
+              "cascade_reach": 0.20999999999999996
+            },
+            {
+              "k": 21,
+              "n_remaining": 79,
+              "mcs": 78,
+              "cascade_reach": 0.21999999999999997
+            },
+            {
+              "k": 22,
+              "n_remaining": 78,
+              "mcs": 77,
+              "cascade_reach": 0.22999999999999998
+            },
+            {
+              "k": 23,
+              "n_remaining": 77,
+              "mcs": 76,
+              "cascade_reach": 0.24
+            },
+            {
+              "k": 24,
+              "n_remaining": 76,
+              "mcs": 75,
+              "cascade_reach": 0.25
+            },
+            {
+              "k": 25,
+              "n_remaining": 75,
+              "mcs": 73,
+              "cascade_reach": 0.27
+            },
+            {
+              "k": 26,
+              "n_remaining": 74,
+              "mcs": 72,
+              "cascade_reach": 0.28
+            },
+            {
+              "k": 27,
+              "n_remaining": 73,
+              "mcs": 71,
+              "cascade_reach": 0.29000000000000004
+            },
+            {
+              "k": 28,
+              "n_remaining": 72,
+              "mcs": 70,
+              "cascade_reach": 0.30000000000000004
+            },
+            {
+              "k": 29,
+              "n_remaining": 71,
+              "mcs": 69,
+              "cascade_reach": 0.31000000000000005
+            },
+            {
+              "k": 30,
+              "n_remaining": 70,
+              "mcs": 67,
+              "cascade_reach": 0.32999999999999996
+            }
+          ]
+        }
+      ]
+    }
+  },
+  "global_lesion_bridge_spearman_rho": -0.1795,
+  "global_lesion_bridge_spearman_p": 0.0149,
+  "h1_pass": false,
+  "h2_pass": true,
+  "h3_pass": false,
+  "verdict": "FAIL",
+  "verdict_reasons": [
+    "H1 FAIL: relative improvement < 0.05 in at least one n",
+    "H3 FAIL: bridge-lesion ρ > -0.3 or p >= 0.05"
+  ],
+  "preregistered_criteria": {
+    "h1_relative_improvement_min": 0.05,
+    "h2_bootstrap_p_max": 0.05,
+    "h2_cohens_d_min": 0.3,
+    "h3_bridge_lesion_spearman_rho_max": -0.3,
+    "h3_p_max": 0.05
+  },
+  "timestamp": "2026-10-18T02:29:28+00:00"
+}
