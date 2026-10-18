@@ -8,6 +8,21 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---
+## [2.98.0] - 2026-10-18
+
+### Added
+- **S1 外部验证队列**（PR-S1）：跨物种 C3/R6 泛化预注册协议 `docs/PR_S1_EXTERNAL_VALIDATION_2026-10-18.md` + 执行脚本 `scripts/s1_external_validation.py` + 报告 `docs/S1_EXTERNAL_VALIDATION_2026-10-18.md`。3/3 外部数据集（C. elegans / Drosophila larva / zebrafish Petkova 2025 TEN+HMI）全部加载，内部 5 族全部 PASS，外部 3 族 AUC 低 → verdict **PARTIAL**（跨物种不一致）。诚实登记跨物种边界。
+- **S2 理论桥预注册**（PR-S2）：`docs/PR_S2_LESION_CASCADE_2026-10-18.md` + 执行脚本 `scripts/s2_lesion_cascade.py` + 报告 `docs/S2_LESION_CASCADE_2026-10-18.md`。MaleCNS 子图节点/模块逐步删除 + 度保持零模型。verdict **FAIL**（H1 相对改善不达标、H3 桥接预测不成立）——预注册协议价值：把"局部改善但整体不成立"的负结果诚实登记。
+- **S3 纪律有效性量化**：`scripts/s3_discipline_effectiveness.py` + 报告 `docs/S3_DISCIPLINE_EFFECTIVENESS_2026-10-18.md`。34 个预注册违规注入 → gate 捕获 16 (47.1%, Wilson 95% CI [31.5%, 63.3%])。7 项具体 gate 漏洞（W1–W7）诚实登记。
+- **S3 统计强化**：`scripts/add_ci.py` + 报告 `docs/S3_STATISTICAL_STRENGTHENING_2026-10-18.md`。R1/R2/R4/C3/S1/S2/S3 全部附加 CI（bootstrap/Wilson/approx-normal AUC）；R2 slope CI 发现"transitivity 随密度变化但 GA≡random 在行为上"的诚实细分。
+- **arXiv 投稿准备包**（不真投）：`docs/ARXIV_SUBMISSION_PACKAGE_2026-10-18.md`。含 `submission_meta.json`（P-2/P-3 元数据 + abstract + 分类理由）、related work 差异化论述（vs `arXiv:2609.17637` RAGWarrant / `arXiv:2608.09855` grey-box fuzzer）、cover letter、提交清单。
+- **P-4 决策 memo 更新**：`docs/PAPER_P4_CASE_STUDY.md` 新增 Xu 2026 参考文献 + 预执行拒绝论据强化段落。
+
+### Changed
+- **版本扩容**：2.97.0 → 2.98.0（文档 + 预注册 + 执行脚本，无代码/门禁改动）。
+- **research_claims.json**：为 7 个预注册协议附加 `ci_enrichment` 字段。
+- **README.md**：v2.98.0 特征列表更新。
+
 ## [2.97.0] - 2026-10-18
 
 ### Added
