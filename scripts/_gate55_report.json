@@ -18,6 +18,18 @@
       "expected_verdict": "PASS",
       "payload_hash_matches": true,
       "open_count": 1
+    },
+    "S1": {
+      "commit_type": "forward",
+      "committed_at": "2026-10-18",
+      "expected_verdict": "TBD_ON_EXECUTION",
+      "payload_hash_matches": true
+    },
+    "S2": {
+      "commit_type": "forward",
+      "committed_at": "2026-10-18",
+      "expected_verdict": "TBD_ON_EXECUTION",
+      "payload_hash_matches": true
     }
   },
   "vault_dir": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\vault",
@@ -26,7 +38,7 @@
     "PR3_v2",
     "PR4"
   ],
-  "n_commits": 3,
+  "n_commits": 5,
   "n_opens": 1,
   "ok": true,
   "failures": [],
