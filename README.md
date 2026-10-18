@@ -3,11 +3,11 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-2.97.0-orange.svg)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-2.98.0-orange.svg)](CHANGELOG.md)
 [![docker](https://img.shields.io/badge/docker-2.90.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.97.0 · 2026-10-18 · 116 functional units · 270 module profiles · 59 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + E4 区室边界**
+**v2.98.0 · 2026-10-18 · 116 functional units · 270 module profiles · 59 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化 + arXiv 投稿准备包**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
