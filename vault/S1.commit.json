@@ -1,0 +1,79 @@
+{
+  "schema": "vault_commit_v1",
+  "protocol_id": "S1",
+  "commit_type": "forward",
+  "committed_at": "2026-10-18",
+  "claimed_registered_at": "2026-10-18",
+  "salt": "9a2c4f7d81b0e6a5c3f4d2b9e1a8c7d3",
+  "payload_hash": "17b11b71d241ebd108998bae27c1f25d8b4a529b325cfa4d9075326bb5ce35de",
+  "expected_verdict": "TBD_ON_EXECUTION",
+  "success_criteria": {
+    "c3_kappa_min": 0.6,
+    "c3_kappa_p_max": 0.05,
+    "c3_min_auc_direction_consistent_families": 4,
+    "c3_auc_min_per_external_family": 0.65,
+    "c3_effect_size_cv_max": 0.4,
+    "r6_spearman_rho_min": 0.6,
+    "r6_bootstrap_p_max": 0.05,
+    "conjunctive": true
+  },
+  "outcome_metric": null,
+  "note": "forward-guarantee: PR-S1 registered BEFORE any external-dataset result was observed. This is the first forward-registered external-validation protocol in this project (PR1–PR4, PR2b, PR3_v2 were all retroactively vaulted).",
+  "_criteria_snapshot": {
+    "outcome_metric": null,
+    "threshold": null,
+    "label_definition": "rank_within_family(quantile=0.75)",
+    "features": [
+      "n_bridges",
+      "bridge_fraction",
+      "n_articulation_points",
+      "edge_connectivity"
+    ],
+    "model": "LogisticRegression + AUC",
+    "n_topologies": null,
+    "n_nodes": null,
+    "n_nodes_set": [
+      10,
+      20,
+      50
+    ],
+    "seed": 42,
+    "train_idx": null,
+    "held_out_idx": null,
+    "permutations": null,
+    "start_idx": null,
+    "held_out_from_prereg": null,
+    "families": [
+      "project_synthetic",
+      "erdos_renyi",
+      "barabasi_albert",
+      "watts_strogatz",
+      "malecns_subgraph",
+      "c_elegans_witvliet",
+      "drosophila_larva",
+      "zebrafish_petkova"
+    ],
+    "fit_on": null,
+    "predict_only_on": null,
+    "structural_action": null,
+    "action_group": null,
+    "control_group": null,
+    "predict_direction": null,
+    "compensation_mechanisms": null,
+    "horizon_T": null,
+    "target_component": null,
+    "replacement_metrics": null,
+    "success_criteria": {
+      "c3_kappa_min": 0.6,
+      "c3_kappa_p_max": 0.05,
+      "c3_min_auc_direction_consistent_families": 4,
+      "c3_auc_min_per_external_family": 0.65,
+      "c3_effect_size_cv_max": 0.4,
+      "r6_spearman_rho_min": 0.6,
+      "r6_bootstrap_p_max": 0.05,
+      "conjunctive": true
+    },
+    "change_from_v1": "New protocol: cross-species external validation of C3/R6. Extends PR-3_v2 by adding three external public connectomes (C. elegans Witvliet 2020, Drosophila larva Winding 2023, zebrafish Petkova 2025).",
+    "protocol_ref": "docs/PR_S1_EXTERNAL_VALIDATION_2026-10-18.md"
+  }
+}
