@@ -8,6 +8,22 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---
+## [2.97.0] - 2026-10-18
+
+### Added
+- **Xu 2026 Science 树突计算论文评估 memo**: `docs/XU2026_DENDRITIC_COMPUTATION_IMPACT_2026-10-18.md` — 评估 Xu Ninglong 团队 2026-10-16 发表于 *Science* 的《Dendritic computation for abstract rule-based flexible decision-making》（DOI: 10.1126/science.adz5323）对本项目的影响。核心发现：顶端树突编码抽象规则、胞体编码感觉信息、非线性整合产出决策输出（光遗传因果证据）。
+- **E4 边界图册新增 B-14 区室边界**（v1.1）：登记神经元内部亚细胞区室（dendrite/soma）功能分区为"已知但当前数据不可表达"的边界。Xu 2026 证实该现象，但项目 116 单元数据模型把神经元当单一节点，无法表达。
+- **EPE 愿景 v0.5 增补**：`docs/NEXT_STAGE_VISION_EPE_2026-10-16_v0.4_ADDENDUM.md` 新增 Xu 2026 前沿对照章节，明确 Xu 2026 是 EPE 的"外部理论支撑"（为 L3 分水岭提供权威背书），与 PR-2b 度量替代形成"沉默组件-检验输出"跨层同构。
+- **data_gaps.json 新增 M3-15-XU2026-COMPARTIMENT**：登记"神经元内部区室标注缺失"为外部阻塞项，fail-closed 策略为"登记为已知但不可表达的边界"。
+
+### Fixed
+- **Gate 59 静态分析修复（v2.96.0 遗留）**：`flybrain-connectome-mcp/mcp_connectome/api_server.py:143` 中 AIBOM export 端点引用未定义的 `_ROOT`，修正为 `ROOT`。F821 undefined name。修复后 ruff clean + 150 unittests OK + 3/3 fail-closed injections red。
+
+### Changed
+- **版本扩容**：2.96.0 → 2.97.0（仅文档，无代码/门禁改动）。
+- **E4 边界图册版本**：v1.0 → v1.1（新增 B-14 区室边界）。
+- **EPE 愿景增补版本**：v0.4 → v0.5（新增 Xu 2026 前沿对照）。
+
 ## [2.96.0] - 2026-10-17
 
 ### Added
