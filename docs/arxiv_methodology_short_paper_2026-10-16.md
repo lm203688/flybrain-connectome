@@ -385,8 +385,9 @@ was hiding.
 
 The preregistration regime is only useful if a reviewer can independently
 reproduce the numbers. For this project, that reproduction cannot mean
-"clone the whole repository" — the repository is private and contains
-secrets. Instead, the paper ships with a minimal fork:
+"clone the whole repository" — the repository is public (Tier-1 code, MIT License)
+but Tier-2 raw data remains local-only for licensing reasons. Instead, the paper
+ships with a minimal fork:
 
 - **`metrics_fork/`** at the root of the repository. Apache-2.0, read-only,
   no data, no engine, no secrets.
@@ -486,10 +487,10 @@ the upstream repository and can be reproduced with three commands.
 ## Data and code availability
 
 - **Preregistration documents:** `docs/PREREGISTRATION_PROTOCOL_v1.md`
-  (upstream repository, private).
+  (upstream repository, public).
 - **Raw artifacts:** `_f1_controllability/`, `_f2_recovery/`,
   `_f4_intervention_n100/`, `_r1_expansion/`, `_r2_full/`, `_r3_full/`,
-  `_p1_full/` (upstream repository, private).
+  `_p1_full/` (upstream repository, public; Tier-2 raw data excluded).
 - **Read-only metrics fork:** `metrics_fork/` (Apache-2.0, upstream
   repository root, independently re-runnable).
 - **Paper reproduction commands:** see `metrics_fork/README.md`.

@@ -2,7 +2,7 @@
 
 **Lexing (厉兴)**  
 Independent researcher  
-`lm203688/flybrain-connectome` · MIT License (Tier-1 code; repository currently private, re-publicization planned)
+`lm203688/flybrain-connectome` · MIT License (Tier-1 code; public)
 
 **Version 1.2.0 update (2026-10-15):** Added a preregistration suite
 (PR-1 through PR-4, plus PR-2b) covering the mechanistic claims from
@@ -30,7 +30,7 @@ densification alone), not motif selection.
 
 ## Abstract
 
-We present a method and a toolkit (currently private, re-publicization planned) that converts a real, published
+We present a method and a toolkit that converts a real, published
 brain wiring diagram — the male *Drosophila* connectome (**MaleCNS v1.0**:
 166,700 neurons, 124,177,617 synapses, CC-BY) — into task-tailored
 multi-agent topologies, while retaining **per-edge provenance** back to the
