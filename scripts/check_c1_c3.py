@@ -74,7 +74,61 @@ def check() -> dict:
         label_def = pr3v2.get("label_definition", "")
         if "rank" not in label_def.lower() and "quantile" not in label_def.lower():
             fail("C3.2", f"PR3_v2 label_definition must be rank/quantile-based, got: {label_def}")
+
+        # --- W4 hardening — S3 gate-effectiveness: `no_real_family` mutation.
+        # PR3_v2's whole scientific claim is "the fix generalizes to a real
+        # connectome family". Removing `malecns_subgraph` from `families`
+        # collapses the study to synthetic-only, which is not what was
+        # preregistered. Enforce family membership.
+        families = pr3v2.get("families")
+        if not isinstance(families, list) or "malecns_subgraph" not in families:
+            fail("C3.7", f"PR3_v2.families must include 'malecns_subgraph' (real-"
+                         f"connectome family); got: {families!r} (W4 fix)")
+
         pr3v2_verdict = pr3v2.get("verification", {}).get("verdict")
+        verification = pr3v2.get("verification", {}) or {}
+
+        # --- W6 hardening — S3 gate-effectiveness: `remove_real_family_passing`
+        # mutation. The preregistered PASS criterion requires that the real
+        # connectome family (malecns_subgraph) itself passes. A PASS verdict
+        # with `real_family_passing=False` is a silent downgrade.
+        rfp = verification.get("real_family_passing")
+        if pr3v2_verdict == "PASS" and rfp is not True:
+            fail("C3.8", f"PR3_v2.verification.verdict=PASS but "
+                         f"real_family_passing={rfp!r} — the real-connectome "
+                         f"family must itself pass (W6 fix)")
+        if rfp is True and pr3v2_verdict != "PASS":
+            fail("C3.9", f"PR3_v2.verification.real_family_passing=True but "
+                         f"verdict={pr3v2_verdict!r} — inconsistent: if the "
+                         f"real family passes, verdict must be PASS")
+
+        # --- W5 hardening — S3 gate-effectiveness: `lower_auc` mutation.
+        # A preregistered C3 PASS rests on the per-cell AUC matrix actually
+        # clearing a floor. Uniformly subtracting 0.2 from every cell is a
+        # silent outcome tamper; enforce a sanity bound on each cell.
+        auc_matrix = verification.get("auc_matrix_summary")
+        if auc_matrix:
+            if pr3v2_verdict == "PASS":
+                for fam, cells in auc_matrix.items():
+                    if not isinstance(cells, dict):
+                        continue
+                    for cell_key, val in cells.items():
+                        try:
+                            v = float(val)
+                        except (TypeError, ValueError):
+                            fail("C3.10", f"PR3_v2.verification.auc_matrix_summary."
+                                          f"{fam}[{cell_key}]={val!r} is not numeric "
+                                          f"(W5 fix)")
+                            continue
+                        if v < 0.5 or v > 1.0:
+                            fail("C3.10", f"PR3_v2.verification.auc_matrix_summary."
+                                          f"{fam}[{cell_key}]={v} outside [0.5, 1.0] "
+                                          f"(W5 sanity bound)")
+                        if pr3v2_verdict == "PASS" and v < 0.7:
+                            fail("C3.11", f"PR3_v2.verification.auc_matrix_summary."
+                                          f"{fam}[{cell_key}]={v} < 0.7 but verdict=PASS "
+                                          f"— the per-cell floor is 0.7 (W5 fix)")
+
         results_path = ROOT / "_c3_rank_label_pr3v2" / "c3_results.json"
         if not results_path.exists():
             fail("C3.3", "C3 results file missing: _c3_rank_label_pr3v2/c3_results.json")
