@@ -189,3 +189,19 @@ _gate31_r2/*
 _evoagentx/
 _r2_full/
 _r4_full/
+
+# === D3 Public Readiness (2026-10-18) ===
+# AI memory (do not commit to public repo)
+.workbuddy-ai/
+.workbuddy/memory/
+.workbuddy/*.json
+
+# Tier-2 data and backups (keep local only)
+flybrain-tier2-backup-*/
+flybrain-connectome-core/
+flybrain-fsbackup-*/
+flybrain-bundle-*.bundle
+
+# Pre-check snapshots (transient)
+.d3_precheck/
+.d3_backup_paths.json
