@@ -106,6 +106,41 @@ def _check_pr2b(claims: dict, f4b: dict) -> tuple[list[str], list[str], list[str
         failures.append("preregistered.PR2b.verification missing or empty")
         return failures, warnings, notes
     criteria = pr2b.get("success_criteria", {}) or {}
+
+    # --- 1b. Reject-rule structure (W2 hardening — S3 gate-effectiveness) ---
+    # S3 showed `remove_reject_rule` injection was not caught. A preregistered
+    # rejection MUST carry both quantitative thresholds — an empty or zero
+    # reject rule cannot be trusted as a pre-execution call.
+    _R2B_REQUIRED_CRITERIA = (
+        "reject_if_coupling_corr_abs_min",
+        "reject_if_artifact_rate_min",
+        "declared_direction_for_recovery_auc",
+    )
+    for _field in _R2B_REQUIRED_CRITERIA:
+        if _field not in criteria or criteria.get(_field) in (None, "", 0, 0.0, []):
+            failures.append(
+                f"preregistered.PR2b.success_criteria.{_field} missing or empty "
+                f"— a pre-execution rejection must record every quantitative "
+                f"threshold it commits to (W2 fix)"
+            )
+
+    # --- 1c. Direction lock (W3 hardening — S3 gate-effectiveness) ---
+    # PR-2b's whole point is that `recovery_AUC` SHOULD decrease under the
+    # proposed substitution (which is why it was rejected as definitionally
+    # coupled). Flipping the direction to "increase" reinterprets the
+    # substitution as a positive-intervention test — a silent semantic
+    # reversal of the preregistration. Lock the value.
+    _direction = criteria.get("declared_direction_for_recovery_auc")
+    if _direction is not None and str(_direction).lower() != "decrease":
+        failures.append(
+            f"preregistered.PR2b.success_criteria.declared_direction_for_recovery_auc="
+            f"{_direction!r} — PR-2b rejection rule requires 'decrease'; a "
+            f"different direction is a semantic reversal of the preregistration "
+            f"(W3 fix)"
+        )
+    elif _direction == "decrease":
+        notes.append("direction locked: recovery_AUC declared 'decrease'")
+
     notes.append(
         f"PR2b thresholds: coupling_corr>={criteria.get('reject_if_coupling_corr_abs_min')} "
         f"artifact_rate>={criteria.get('reject_if_artifact_rate_min')} "
