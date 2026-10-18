@@ -1,177 +1,175 @@
 {
   "schema": "s3_discipline_effectiveness_v1",
-  "n_repeats_per_mutation": 2,
+  "n_repeats_per_mutation": 3,
   "seed": 42,
-  "total_injections": 34,
-  "total_caught": 16,
-  "total_missed": 18,
-  "overall_catch_rate": 0.4706,
+  "total_injections": 51,
+  "total_caught": 51,
+  "total_missed": 0,
+  "overall_catch_rate": 1.0,
   "counterfactual_miss_rate_without_gate": 1.0,
-  "miss_rate_reduction": 0.5294,
+  "miss_rate_reduction": 0.0,
   "gates_tested": {
     "PR1": "check_preregistered_claims.py",
     "PR2b": "check_metric_substitution.py",
     "PR3_v2": "check_c1_c3.py",
     "C3": "check_c1_c3.py",
-    "PR_S1": null
+    "PR_S1": "check_pr_s1.py"
   },
-  "gate_coverage_gaps": [
-    "PR_S1"
-  ],
+  "gate_coverage_gaps": [],
   "per_protocol": {
     "PR1": {
       "n_mutations": 5,
-      "n_repeats": 2,
-      "total_injections": 10,
-      "total_caught": 8,
-      "total_missed": 2,
+      "n_repeats": 3,
+      "total_injections": 15,
+      "total_caught": 15,
+      "total_missed": 0,
       "per_mutation": {
         "threshold_drift": {
-          "n_injections": 2,
-          "n_caught": 2,
+          "n_injections": 3,
+          "n_caught": 3,
           "n_missed": 0,
           "catch_rate": 1.0
         },
         "feature_set_shrink": {
-          "n_injections": 2,
-          "n_caught": 2,
+          "n_injections": 3,
+          "n_caught": 3,
           "n_missed": 0,
           "catch_rate": 1.0
         },
         "slice_overlap": {
-          "n_injections": 2,
-          "n_caught": 2,
+          "n_injections": 3,
+          "n_caught": 3,
           "n_missed": 0,
           "catch_rate": 1.0
         },
         "seed_mismatch": {
-          "n_injections": 2,
-          "n_caught": 0,
-          "n_missed": 2,
-          "catch_rate": 0.0
+          "n_injections": 3,
+          "n_caught": 3,
+          "n_missed": 0,
+          "catch_rate": 1.0
         },
         "n_permutations_low": {
-          "n_injections": 2,
-          "n_caught": 2,
+          "n_injections": 3,
+          "n_caught": 3,
           "n_missed": 0,
           "catch_rate": 1.0
         }
       },
-      "overall_catch_rate": 0.8
+      "overall_catch_rate": 1.0
     },
     "PR2b": {
       "n_mutations": 3,
-      "n_repeats": 2,
-      "total_injections": 6,
-      "total_caught": 2,
-      "total_missed": 4,
+      "n_repeats": 3,
+      "total_injections": 9,
+      "total_caught": 9,
+      "total_missed": 0,
       "per_mutation": {
         "remove_reject_rule": {
-          "n_injections": 2,
-          "n_caught": 0,
-          "n_missed": 2,
-          "catch_rate": 0.0
+          "n_injections": 3,
+          "n_caught": 3,
+          "n_missed": 0,
+          "catch_rate": 1.0
         },
         "lower_reject_threshold": {
-          "n_injections": 2,
-          "n_caught": 2,
+          "n_injections": 3,
+          "n_caught": 3,
           "n_missed": 0,
           "catch_rate": 1.0
         },
         "wrong_direction": {
-          "n_injections": 2,
-          "n_caught": 0,
-          "n_missed": 2,
-          "catch_rate": 0.0
+          "n_injections": 3,
+          "n_caught": 3,
+          "n_missed": 0,
+          "catch_rate": 1.0
         }
       },
-      "overall_catch_rate": 0.3333
+      "overall_catch_rate": 1.0
     },
     "PR3_v2": {
       "n_mutations": 3,
-      "n_repeats": 2,
-      "total_injections": 6,
-      "total_caught": 4,
-      "total_missed": 2,
+      "n_repeats": 3,
+      "total_injections": 9,
+      "total_caught": 9,
+      "total_missed": 0,
       "per_mutation": {
         "absolute_threshold": {
-          "n_injections": 2,
-          "n_caught": 2,
+          "n_injections": 3,
+          "n_caught": 3,
           "n_missed": 0,
           "catch_rate": 1.0
         },
         "remove_change_from_v1": {
-          "n_injections": 2,
-          "n_caught": 2,
+          "n_injections": 3,
+          "n_caught": 3,
           "n_missed": 0,
           "catch_rate": 1.0
         },
         "no_real_family": {
-          "n_injections": 2,
-          "n_caught": 0,
-          "n_missed": 2,
-          "catch_rate": 0.0
-        }
-      },
-      "overall_catch_rate": 0.6667
-    },
-    "C3": {
-      "n_mutations": 3,
-      "n_repeats": 2,
-      "total_injections": 6,
-      "total_caught": 2,
-      "total_missed": 4,
-      "per_mutation": {
-        "lower_auc": {
-          "n_injections": 2,
-          "n_caught": 0,
-          "n_missed": 2,
-          "catch_rate": 0.0
-        },
-        "remove_real_family_passing": {
-          "n_injections": 2,
-          "n_caught": 0,
-          "n_missed": 2,
-          "catch_rate": 0.0
-        },
-        "flip_verdict": {
-          "n_injections": 2,
-          "n_caught": 2,
+          "n_injections": 3,
+          "n_caught": 3,
           "n_missed": 0,
           "catch_rate": 1.0
         }
       },
-      "overall_catch_rate": 0.3333
+      "overall_catch_rate": 1.0
+    },
+    "C3": {
+      "n_mutations": 3,
+      "n_repeats": 3,
+      "total_injections": 9,
+      "total_caught": 9,
+      "total_missed": 0,
+      "per_mutation": {
+        "lower_auc": {
+          "n_injections": 3,
+          "n_caught": 3,
+          "n_missed": 0,
+          "catch_rate": 1.0
+        },
+        "remove_real_family_passing": {
+          "n_injections": 3,
+          "n_caught": 3,
+          "n_missed": 0,
+          "catch_rate": 1.0
+        },
+        "flip_verdict": {
+          "n_injections": 3,
+          "n_caught": 3,
+          "n_missed": 0,
+          "catch_rate": 1.0
+        }
+      },
+      "overall_catch_rate": 1.0
     },
     "PR_S1": {
       "n_mutations": 3,
-      "n_repeats": 2,
-      "total_injections": 6,
-      "total_caught": 0,
-      "total_missed": 6,
+      "n_repeats": 3,
+      "total_injections": 9,
+      "total_caught": 9,
+      "total_missed": 0,
       "per_mutation": {
         "raise_auc_min": {
-          "n_injections": 2,
-          "n_caught": 0,
-          "n_missed": 2,
-          "catch_rate": 0.0
+          "n_injections": 3,
+          "n_caught": 3,
+          "n_missed": 0,
+          "catch_rate": 1.0
         },
         "remove_conjunctive": {
-          "n_injections": 2,
-          "n_caught": 0,
-          "n_missed": 2,
-          "catch_rate": 0.0
+          "n_injections": 3,
+          "n_caught": 3,
+          "n_missed": 0,
+          "catch_rate": 1.0
         },
         "lower_kappa_min": {
-          "n_injections": 2,
-          "n_caught": 0,
-          "n_missed": 2,
-          "catch_rate": 0.0
+          "n_injections": 3,
+          "n_caught": 3,
+          "n_missed": 0,
+          "catch_rate": 1.0
         }
       },
-      "overall_catch_rate": 0.0
+      "overall_catch_rate": 1.0
     }
   },
-  "interpretation": "Across 34 injected preregistration violations, the gates caught 16 (47.1%). Protocols with no dedicated gate: ['PR_S1']. Miss rate drops from 100% (no gates) to 52.9%.",
-  "timestamp": "2026-10-18T02:51:09+00:00"
+  "interpretation": "Across 51 injected preregistration violations, the gates caught 51 (100.0%). Protocols with no dedicated gate: none. Miss rate drops from 100% (no gates) to 0.0%.",
+  "timestamp": "2026-10-18T06:58:22+00:00"
 }

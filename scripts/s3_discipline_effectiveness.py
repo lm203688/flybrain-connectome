@@ -64,7 +64,16 @@ def _inject_pr2b_violation(json_path: Path, mutation: str, rng: random.Random) -
     if not pr:
         return
     if mutation == "remove_reject_rule":
-        pr.pop("reject_rules", None)
+        # PR2b records its reject rule INSIDE success_criteria (there is no
+        # top-level `reject_rules` block). Silently dropping one of the
+        # quantitative reject thresholds is what "remove_reject_rule"
+        # should mean. Prior version popped a non-existent top-level key
+        # and was therefore a no-op — W2 hardening exposed this.
+        sc = pr.get("success_criteria")
+        if isinstance(sc, dict):
+            sc.pop("reject_if_coupling_corr_abs_min", None)
+            sc.pop("reject_if_artifact_rate_min", None)
+            pr["success_criteria"] = sc
     elif mutation == "lower_reject_threshold":
         pr["success_criteria"] = {
             "reject_if_coupling_corr_abs_min": 0.01,
@@ -120,17 +129,33 @@ def _inject_c3_violation(json_path: Path, mutation: str, rng: random.Random) -> 
 
 
 def _inject_pr_s1_violation(json_path: Path, mutation: str, rng: random.Random) -> None:
+    """Inject a PR_S1 mutation into research_claims.preregistered.PR_S1.
+
+    PR_S1 lives canonically in vault/S1.commit.json; the gate reads that
+    as the source of truth. research_claims.preregistered.PR_S1 acts as
+    an *override* the gate cross-checks against the vault. Silently
+    planting an override with a drifted threshold (raise_auc_min), a
+    flipped conjunctive (remove_conjunctive), or a dropped kappa floor
+    (lower_kappa_min) must turn Gate 62 red.
+
+    Prior version early-returned when PR_S1 was absent from claims,
+    so the injection never actually wrote anything — S3 caught 0/9.
+    Fixed in v2.98.1 to plant the override unconditionally.
+    """
     d = json.loads(json_path.read_text(encoding="utf-8"))
-    pr_s1 = d.get("preregistered", {}).get("PR_S1", {})
-    if not pr_s1:
-        return
+    prereg = d.setdefault("preregistered", {})
+    pr_s1 = prereg.get("PR_S1") or {}
+    sc = pr_s1.setdefault("success_criteria", {})
     if mutation == "raise_auc_min":
-        pr_s1.setdefault("success_criteria", {})["c3_auc_min_per_external_family"] = 0.9
+        # 0.9 is the S3-injected value. Gate 62 upper-bounds the AUC
+        # floor strictly below 0.90 — a genuine preregistration would
+        # not commit to a 0.90 floor (PR_S1 actually commits to 0.65).
+        sc["c3_auc_min_per_external_family"] = 0.9
     elif mutation == "remove_conjunctive":
-        pr_s1.setdefault("success_criteria", {})["conjunctive"] = False
+        sc["conjunctive"] = False
     elif mutation == "lower_kappa_min":
-        pr_s1.setdefault("success_criteria", {})["c3_kappa_min"] = 0.01
-    d["preregistered"]["PR_S1"] = pr_s1
+        sc["c3_kappa_min"] = 0.01
+    prereg["PR_S1"] = pr_s1
     json_path.write_text(json.dumps(d, ensure_ascii=False, indent=2), encoding="utf-8")
 
 
@@ -158,7 +183,11 @@ GATE_INVOKER = {
     "PR2b": ("check_metric_substitution.py", ["--claims"]),
     "PR3_v2": ("check_c1_c3.py", []),           # reads ROOT/research_claims.json directly
     "C3": ("check_c1_c3.py", []),
-    "PR_S1": (None, []),                        # gate coverage gap
+    # W7 fix (v2.98.1): PR_S1 now has a dedicated gate. The gate reads
+    # vault/S1.commit.json as the source of truth; the injected PR_S1
+    # block in research_claims.json is treated as an override and
+    # compared against the vault. A drift triggers a fail.
+    "PR_S1": ("check_pr_s1.py", []),
 }
 
 

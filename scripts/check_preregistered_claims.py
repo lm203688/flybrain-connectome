@@ -134,6 +134,28 @@ def _check_pr1(claims: dict, pr1_result: dict) -> tuple[list[str], list[str], li
     else:
         notes.append(f"permutations consistent: {ex_perm}")
 
+    # --- 6b. Seed match (W1 hardening — S3 gate-effectiveness finding) ---
+    # S3 injection battery showed that flipping `preregistered.PR1.seed`
+    # was not caught by the manifest↔execution check. The seed determines
+    # every RNG-driven choice in the pipeline (topology enumeration,
+    # split, permutation order), so a silent seed flip is indistinguishable
+    # from a whole new experiment.  Enforce equality.
+    pr_seed = pr1.get("seed")
+    ex_seed = params.get("seed")
+    if pr_seed is None:
+        failures.append("preregistered.PR1.seed missing — R-0.2 requires the "
+                        "RNG seed to be frozen before execution")
+    elif ex_seed is None:
+        failures.append(f"execution JSON has no summary.params.seed; preregistered "
+                        f"seed={pr_seed} cannot be verified (R-0.2 violation)")
+    elif int(pr_seed) != int(ex_seed):
+        failures.append(
+            f"seed mismatch: preregistered={pr_seed} execution={ex_seed} "
+            f"(R-0.2 violation — silent seed flip)"
+        )
+    else:
+        notes.append(f"seed consistent: {pr_seed}")
+
     # --- 7. Label definition is absolute (not median-split) ---
     label_def = summary.get("label_definition", "")
     for token in _FORBIDDEN_IN_LABEL:

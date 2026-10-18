@@ -624,14 +624,26 @@
     },
     "S3": {
       "ci_enrichment": {
-        "catch_rate": 0.4706,
-        "ci_low": 0.3145,
-        "ci_high": 0.6326,
+        "catch_rate": 1.0,
+        "ci_low": 0.93,
+        "ci_high": 1.0,
         "ci_method": "wilson_score_95",
-        "n_injections": 34,
-        "gate_coverage_gaps": [
-          "PR_S1"
-        ]
+        "n_injections": 51,
+        "n_caught": 51,
+        "n_protocols": 5,
+        "n_mutation_classes": 17,
+        "gate_coverage_gaps": [],
+        "baseline_v2_98_0": {
+          "catch_rate": 0.4706,
+          "ci_low": 0.3145,
+          "ci_high": 0.6326,
+          "n_injections": 34,
+          "n_caught": 16,
+          "gate_coverage_gaps": ["PR_S1"],
+          "residual_holes": ["W1", "W2", "W3", "W4", "W5", "W6", "W7"]
+        },
+        "hardening_commit": "v2.98.1",
+        "hardening_summary": "All 7 W-holes closed: W1 PR1 seed equality (G43), W2 PR2b required-criteria presence (G47), W3 PR2b direction lock (G47), W4 PR3_v2 family membership (G51+52), W5 C3 AUC sanity range (G51+52), W6 C3 real_family_passing consistency (G51+52), W7 new G62 check_pr_s1.py. See docs/S3_DISCIPLINE_EFFECTIVENESS_2026-10-18.md."
       }
     },
     "R1": {
