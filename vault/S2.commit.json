@@ -1,0 +1,70 @@
+{
+  "schema": "vault_commit_v1",
+  "protocol_id": "S2",
+  "commit_type": "forward",
+  "committed_at": "2026-10-18",
+  "claimed_registered_at": "2026-10-18",
+  "salt": "5d1c8f3b92e7a6d0c4f5b2e8a1c9d7e3",
+  "payload_hash": "87774a5b65ac44d06d8b22e80dd72200745c94db92c77172a9b03c82e27315f4",
+  "expected_verdict": "TBD_ON_EXECUTION",
+  "success_criteria": {
+    "h1_relative_improvement_min": 0.05,
+    "h2_bootstrap_p_max": 0.05,
+    "h2_cohens_d_min": 0.3,
+    "h3_bridge_lesion_spearman_rho_max": -0.3,
+    "h3_p_max": 0.05,
+    "bootstrap_iterations": 1000,
+    "conjunctive": true
+  },
+  "outcome_metric": null,
+  "note": "forward-guarantee: PR-S2 registered BEFORE any lesion cascade result was observed. First theoretical-bridge protocol in this project, linking Xu 2026 Science to lesion tolerance.",
+  "_criteria_snapshot": {
+    "outcome_metric": null,
+    "threshold": null,
+    "label_definition": "lesion_tolerance = 1 - cascade_reach / n",
+    "features": [
+      "bridge_fraction",
+      "n_articulation_points",
+      "edge_connectivity",
+      "module_score"
+    ],
+    "model": "Spearman correlation + bootstrap",
+    "n_topologies": 100,
+    "n_nodes": null,
+    "n_nodes_set": [
+      20,
+      50,
+      100
+    ],
+    "seed": 42,
+    "train_idx": null,
+    "held_out_idx": null,
+    "permutations": null,
+    "start_idx": null,
+    "held_out_from_prereg": null,
+    "families": [
+      "malecns_subgraph"
+    ],
+    "fit_on": null,
+    "predict_only_on": null,
+    "structural_action": "progressive_node_removal",
+    "action_group": null,
+    "control_group": "degree_preserving_null",
+    "predict_direction": "lesion_tolerance_decreases_with_bridge_fraction",
+    "compensation_mechanisms": null,
+    "horizon_T": null,
+    "target_component": null,
+    "replacement_metrics": null,
+    "success_criteria": {
+      "h1_relative_improvement_min": 0.05,
+      "h2_bootstrap_p_max": 0.05,
+      "h2_cohens_d_min": 0.3,
+      "h3_bridge_lesion_spearman_rho_max": -0.3,
+      "h3_p_max": 0.05,
+      "bootstrap_iterations": 1000,
+      "conjunctive": true
+    },
+    "change_from_v1": "New protocol: theoretical bridge linking Xu 2026 dendritic compartmentation to lesion tolerance. Predicts negative correlation between bridge_fraction and lesion_tolerance.",
+    "protocol_ref": "docs/PR_S2_LESION_CASCADE_2026-10-18.md"
+  }
+}
