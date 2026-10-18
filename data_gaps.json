@@ -36,6 +36,17 @@
       "missing_data": "完整 Petkova 2025 发布；捆绑子集之外的**侧线系统**与**命名神经调节分子（DA/5-HT/ACh/NE/HA）**不在子集内",
       "policy": "缺口已写进 profiles.json 的 note；不编造。许可：斑马鱼 Petkova 2025 = CC-BY-NC（不可商用），与 MIT 锚点分层隔离。",
       "unblocks_when": "获取完整 Petkova 2025 发布后重跑 build 脚本（非阻塞：当前子集已可用）"
+    },
+    {
+      "id": "M3-15-XU2026-COMPARTIMENT",
+      "task": "神经元内部区室（顶端树突 / 胞体）功能分区标注",
+      "status": "data_blocked",
+      "adapter": "N/A — 需亚细胞级标注能力，当前数据模型不支持",
+      "adapter_status": "not_applicable",
+      "adapter_evidence": "Xu Ninglong 2026 Science 论文（DOI: 10.1126/science.adz5323）证实小鼠听觉皮层 L5 锥体神经元顶端树突编码抽象规则、胞体编码感觉信息；本项目 116 单元当前把神经元当单一节点，无区室标注字段",
+      "missing_data": "亚细胞级神经元分区标注（如顶端树突 / 胞体 / 基树突 / 轴突的功能分工）",
+      "policy": "登记为已知但不可表达的边界（E4 图册 B-14）。不编造、不假装支持。需外部亚细胞级连接组数据（当前无公开获取路径）或本项目开发亚细胞标注能力。",
+      "unblocks_when": "获取亚细胞级连接组数据（如 FlyEM2EM, flywire apical dendrite 层等，非当前公开数据）或本项目开发对应标注工具"
     }
   ],
   "blocked_main_lines": [
