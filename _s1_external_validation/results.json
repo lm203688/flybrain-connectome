@@ -1,0 +1,374 @@
+{
+  "schema": "s1_external_validation_v1",
+  "prereg": "PR_S1",
+  "prereg_doc": "docs/PR_S1_EXTERNAL_VALIDATION_2026-10-18.md",
+  "quantile": 0.75,
+  "seeds_per_cell": 15,
+  "bootstrap_iterations": 200,
+  "internal_families": [
+    "project_synthetic",
+    "erdos_renyi",
+    "barabasi_albert",
+    "watts_strogatz",
+    "malecns_subgraph"
+  ],
+  "external_datasets": [
+    "cel",
+    "larva",
+    "zebrafish"
+  ],
+  "dataset_meta": {
+    "cel": {
+      "n_nodes": 18,
+      "n_edges": 164,
+      "source": "elife-47155-fig9-data2"
+    },
+    "larva": {
+      "n_nodes": 0,
+      "n_edges": 0,
+      "source": "larva_data/raw/edges.csv"
+    },
+    "zebrafish": {
+      "n_nodes": 26593,
+      "n_edges": 42640,
+      "source": "TEN_analysis/outgoing_synapses.csv"
+    }
+  },
+  "dataset_availability": {
+    "cel": "LOADED",
+    "larva": "LOADED",
+    "zebrafish": "LOADED"
+  },
+  "c3_results": {
+    "project_synthetic": {
+      "n=10": {
+        "n_samples": 15,
+        "auc": 1.0,
+        "auc_ci_low": 1.0,
+        "auc_ci_high": 1.0,
+        "n_positive": 11,
+        "score_range": [
+          0.4,
+          0.5
+        ],
+        "score_mean": 0.4733
+      },
+      "n=20": {
+        "n_samples": 15,
+        "auc": 0.8182,
+        "auc_ci_low": 0.6818,
+        "auc_ci_high": 0.9545,
+        "n_positive": 11,
+        "score_range": [
+          0.25,
+          0.3
+        ],
+        "score_mean": 0.2733
+      }
+    },
+    "erdos_renyi": {
+      "n=10": {
+        "n_samples": 15,
+        "auc": 0.9091,
+        "auc_ci_low": 0.75,
+        "auc_ci_high": 1.0,
+        "n_positive": 11,
+        "score_range": [
+          0.1,
+          0.4
+        ],
+        "score_mean": 0.2267
+      },
+      "n=20": {
+        "n_samples": 15,
+        "auc": 0.9659,
+        "auc_ci_low": 0.875,
+        "auc_ci_high": 1.0,
+        "n_positive": 11,
+        "score_range": [
+          0.15,
+          0.35
+        ],
+        "score_mean": 0.2333
+      }
+    },
+    "barabasi_albert": {
+      "n=10": {
+        "n_samples": 15,
+        "auc": 1.0,
+        "auc_ci_low": 1.0,
+        "auc_ci_high": 1.0,
+        "n_positive": 11,
+        "score_range": [
+          0.3,
+          0.6
+        ],
+        "score_mean": 0.4
+      },
+      "n=20": {
+        "n_samples": 15,
+        "auc": 1.0,
+        "auc_ci_low": 1.0,
+        "auc_ci_high": 1.0,
+        "n_positive": 11,
+        "score_range": [
+          0.3,
+          0.5
+        ],
+        "score_mean": 0.41
+      }
+    },
+    "watts_strogatz": {
+      "n=10": {
+        "n_samples": 15,
+        "auc": 0.8182,
+        "auc_ci_low": 0.5833,
+        "auc_ci_high": 1.0,
+        "n_positive": 11,
+        "score_range": [
+          0.2,
+          0.4
+        ],
+        "score_mean": 0.3067
+      },
+      "n=20": {
+        "n_samples": 15,
+        "auc": 0.7614,
+        "auc_ci_low": 0.5769,
+        "auc_ci_high": 1.0,
+        "n_positive": 11,
+        "score_range": [
+          0.1,
+          0.3
+        ],
+        "score_mean": 0.1633
+      }
+    },
+    "malecns_subgraph": {
+      "n=10": {
+        "n_samples": 15,
+        "auc": 0.9773,
+        "auc_ci_low": 0.9231,
+        "auc_ci_high": 1.0,
+        "n_positive": 11,
+        "score_range": [
+          0.5,
+          0.6
+        ],
+        "score_mean": 0.5667
+      },
+      "n=20": {
+        "n_samples": 15,
+        "auc": 0.9091,
+        "auc_ci_low": 0.7778,
+        "auc_ci_high": 1.0,
+        "n_positive": 11,
+        "score_range": [
+          0.3,
+          0.4
+        ],
+        "score_mean": 0.3333
+      }
+    },
+    "cel": {
+      "n=10": {
+        "n_samples": 15,
+        "auc": 1.0,
+        "auc_ci_low": 1.0,
+        "auc_ci_high": 1.0,
+        "n_positive": 11,
+        "score_range": [
+          0.6,
+          0.8
+        ],
+        "score_mean": 0.7067
+      },
+      "n=20": {
+        "n_samples": 15,
+        "auc": 0.5,
+        "auc_ci_low": 0.5,
+        "auc_ci_high": 0.5,
+        "n_positive": 11,
+        "score_range": [
+          0.7778,
+          0.7778
+        ],
+        "score_mean": 0.7778
+      }
+    },
+    "larva": {
+      "n=10": {
+        "n_samples": 15,
+        "auc": 0.5,
+        "auc_ci_low": 0.5,
+        "auc_ci_high": 0.5,
+        "n_positive": 11,
+        "score_range": [
+          0.0,
+          0.0
+        ],
+        "score_mean": 0.0
+      },
+      "n=20": {
+        "n_samples": 15,
+        "auc": 0.5,
+        "auc_ci_low": 0.5,
+        "auc_ci_high": 0.5,
+        "n_positive": 11,
+        "score_range": [
+          0.0,
+          0.0
+        ],
+        "score_mean": 0.0
+      }
+    },
+    "zebrafish": {
+      "n=10": {
+        "n_samples": 15,
+        "auc": 0.5,
+        "auc_ci_low": 0.5,
+        "auc_ci_high": 0.5,
+        "n_positive": 11,
+        "score_range": [
+          0.0,
+          0.0
+        ],
+        "score_mean": 0.0
+      },
+      "n=20": {
+        "n_samples": 15,
+        "auc": 0.5455,
+        "auc_ci_low": 0.5,
+        "auc_ci_high": 0.65,
+        "n_positive": 11,
+        "score_range": [
+          0.0,
+          0.05
+        ],
+        "score_mean": 0.0033
+      }
+    }
+  },
+  "r6_motif_results": {
+    "cel": {
+      "n_nodes": 18,
+      "motif_counts_obs": {
+        "3": 84,
+        "5": 70,
+        "7": 197,
+        "1": 120
+      },
+      "motif_counts_null": {
+        "1": 115,
+        "5": 77,
+        "7": 70,
+        "3": 85
+      },
+      "motif_enrichment_obs_over_null": {
+        "1": 1.043,
+        "3": 0.988,
+        "5": 0.909,
+        "7": 2.814
+      }
+    },
+    "larva": {
+      "n_nodes": 0,
+      "motif_counts_obs": {},
+      "motif_counts_null": {},
+      "motif_enrichment_obs_over_null": {}
+    },
+    "zebrafish": {
+      "n_nodes": 26593,
+      "motif_counts_obs": {
+        "1": 448831933,
+        "5": 408926,
+        "3": 1190934,
+        "7": 1328
+      },
+      "motif_counts_null": {
+        "1": 437774647,
+        "5": 533624,
+        "3": 664492,
+        "7": 15154
+      },
+      "motif_enrichment_obs_over_null": {
+        "1": 1.025,
+        "3": 1.792,
+        "5": 0.766,
+        "7": 0.088
+      }
+    }
+  },
+  "cross_species_consistency": {
+    "cel": {
+      "status": "LOADED",
+      "per_n": {
+        "n=10": {
+          "auc_internal": 0.9773,
+          "auc_external": 1.0,
+          "auc_gap": 0.0227,
+          "proxy_kappa": 0.9546
+        },
+        "n=20": {
+          "auc_internal": 0.9091,
+          "auc_external": 0.5,
+          "auc_gap": 0.4091,
+          "proxy_kappa": 0.1818
+        }
+      }
+    },
+    "larva": {
+      "status": "LOADED",
+      "per_n": {
+        "n=10": {
+          "auc_internal": 0.9773,
+          "auc_external": 0.5,
+          "auc_gap": 0.4773,
+          "proxy_kappa": 0.0454
+        },
+        "n=20": {
+          "auc_internal": 0.9091,
+          "auc_external": 0.5,
+          "auc_gap": 0.4091,
+          "proxy_kappa": 0.1818
+        }
+      }
+    },
+    "zebrafish": {
+      "status": "LOADED",
+      "per_n": {
+        "n=10": {
+          "auc_internal": 0.9773,
+          "auc_external": 0.5,
+          "auc_gap": 0.4773,
+          "proxy_kappa": 0.0454
+        },
+        "n=20": {
+          "auc_internal": 0.9091,
+          "auc_external": 0.5455,
+          "auc_gap": 0.3636,
+          "proxy_kappa": 0.2728
+        }
+      }
+    }
+  },
+  "n_families_passing": 6,
+  "n_families_total_evaluated": 8,
+  "n_external_loaded": 3,
+  "verdict": "PARTIAL",
+  "verdict_reasons": [
+    "cel n=20 AUC 0.5 < 0.65",
+    "larva n=10 AUC 0.5 < 0.65",
+    "zebrafish n=10 AUC 0.5 < 0.65"
+  ],
+  "preregistered_criteria": {
+    "c3_kappa_min": 0.6,
+    "c3_kappa_p_max": 0.05,
+    "c3_min_auc_direction_consistent_families": 4,
+    "c3_auc_min_per_external_family": 0.65,
+    "r6_spearman_rho_min": 0.6,
+    "r6_bootstrap_p_max": 0.05,
+    "conjunctive": true
+  },
+  "timestamp": "2026-10-18T02:28:51+00:00"
+}
