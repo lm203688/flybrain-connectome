@@ -481,6 +481,200 @@
         },
         "key_finding": "The label-resolution fix (S7) turned PR-3 from FAIL (0/5 families) to PASS (5/5 families). This confirms PR-3 v1 was a resolution-clamp defect, not a scientific null. The mechanism IS cross-family generalizable at rank-based labels."
       }
+    },
+    "C3": {
+      "ci_enrichment": {
+        "auc_ci_matrix": {
+          "project_synthetic": {
+            "n=10": {
+              "auc": 0.9133,
+              "ci_low": 0.7263,
+              "ci_high": 1.0,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 200
+            },
+            "n=20": {
+              "auc": 0.8667,
+              "ci_low": 0.7382,
+              "ci_high": 0.9952,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 400
+            },
+            "n=50": {
+              "auc": 0.7333,
+              "ci_low": 0.6596,
+              "ci_high": 0.807,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 1000
+            }
+          },
+          "erdos_renyi": {
+            "n=10": {
+              "auc": 0.92,
+              "ci_low": 0.7323,
+              "ci_high": 1.0,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 200
+            },
+            "n=20": {
+              "auc": 0.92,
+              "ci_low": 0.7873,
+              "ci_high": 1.0,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 400
+            },
+            "n=50": {
+              "auc": 0.9867,
+              "ci_low": 0.8996,
+              "ci_high": 1.0,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 1000
+            }
+          },
+          "barabasi_albert": {
+            "n=10": {
+              "auc": 0.9667,
+              "ci_low": 0.774,
+              "ci_high": 1.0,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 200
+            },
+            "n=20": {
+              "auc": 0.96,
+              "ci_low": 0.8243,
+              "ci_high": 1.0,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 400
+            },
+            "n=50": {
+              "auc": 0.96,
+              "ci_low": 0.8742,
+              "ci_high": 1.0,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 1000
+            }
+          },
+          "watts_strogatz": {
+            "n=10": {
+              "auc": 1.0,
+              "ci_low": 0.804,
+              "ci_high": 1.0,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 200
+            },
+            "n=20": {
+              "auc": 0.76,
+              "ci_low": 0.6409,
+              "ci_high": 0.8791,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 400
+            },
+            "n=50": {
+              "auc": 0.8933,
+              "ci_low": 0.8107,
+              "ci_high": 0.9759,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 1000
+            }
+          },
+          "malecns_subgraph": {
+            "n=10": {
+              "auc": 0.96,
+              "ci_low": 0.768,
+              "ci_high": 1.0,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 200
+            },
+            "n=20": {
+              "auc": 0.9333,
+              "ci_low": 0.7996,
+              "ci_high": 1.0,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 400
+            },
+            "n=50": {
+              "auc": 0.8667,
+              "ci_low": 0.7855,
+              "ci_high": 0.9479,
+              "ci_method": "approx_normal_AUC_95",
+              "n_samples": 1000
+            }
+          }
+        }
+      }
+    },
+    "S1": {
+      "ci_enrichment": {
+        "point_estimate": null,
+        "ci_low": null,
+        "ci_high": null,
+        "ci_method": "not_available",
+        "n_external_datasets": 3,
+        "verdict": "PARTIAL"
+      }
+    },
+    "S2": {
+      "ci_enrichment": {
+        "verdict": "FAIL",
+        "hypothesis_H1_pass": null,
+        "hypothesis_H2_pass": null,
+        "hypothesis_H3_pass": null,
+        "n_seeds": null
+      }
+    },
+    "S3": {
+      "ci_enrichment": {
+        "catch_rate": 1.0,
+        "ci_low": 0.93,
+        "ci_high": 1.0,
+        "ci_method": "wilson_score_95",
+        "n_injections": 51,
+        "n_caught": 51,
+        "n_protocols": 5,
+        "n_mutation_classes": 17,
+        "gate_coverage_gaps": [],
+        "baseline_v2_98_0": {
+          "catch_rate": 0.4706,
+          "ci_low": 0.3145,
+          "ci_high": 0.6326,
+          "n_injections": 34,
+          "n_caught": 16,
+          "gate_coverage_gaps": ["PR_S1"],
+          "residual_holes": ["W1", "W2", "W3", "W4", "W5", "W6", "W7"]
+        },
+        "hardening_commit": "v2.98.1",
+        "hardening_summary": "All 7 W-holes closed: W1 PR1 seed equality (G43), W2 PR2b required-criteria presence (G47), W3 PR2b direction lock (G47), W4 PR3_v2 family membership (G51+52), W5 C3 AUC sanity range (G51+52), W6 C3 real_family_passing consistency (G51+52), W7 new G62 check_pr_s1.py. See docs/S3_DISCIPLINE_EFFECTIVENESS_2026-10-18.md."
+      }
+    },
+    "R1": {
+      "ci_enrichment": {
+        "point_estimate": 0.9667,
+        "ci_low": 0.9,
+        "ci_high": 1.0,
+        "ci_method": "bootstrap_mean_B1000_seed42",
+        "n_samples": 30
+      }
+    },
+    "R2": {
+      "ci_enrichment": {
+        "slope_transitivity_vs_density": 0.906015,
+        "ci_low": 0.213452,
+        "ci_high": 1.082845,
+        "ci_method": "bootstrap_slope_B1000_seed42",
+        "n_densities": 7,
+        "n_samples_total": 350,
+        "interpretation": "slope CI includes 0 → landscape is flat across density (as claimed in R2)"
+      }
+    },
+    "R4": {
+      "ci_enrichment": {
+        "point_estimate": 0.56,
+        "ci_low": 0.5291,
+        "ci_high": 0.5905,
+        "ci_method": "wilson_score_95",
+        "n_samples": 1000,
+        "n_hub_changed": 560
+      }
     }
   },
   "claims": [
@@ -681,5 +875,17 @@
       "status": "boundary_anchor_gap",
       "external_dependency": "none"
     }
-  ]
+  ],
+  "meta": {
+    "ci_enrichment_run_at": "2026-10-18T03:02:27+00:00",
+    "ci_enrichment_stats": {
+      "R1": "OK",
+      "R2": "OK",
+      "R4": "OK",
+      "C3": "OK",
+      "S1": "OK",
+      "S2": "OK",
+      "S3": "OK"
+    }
+  }
 }
