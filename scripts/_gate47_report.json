@@ -6,10 +6,11 @@
   "counts": {
     "fail": 0,
     "warn": 1,
-    "note": 9
+    "note": 10
   },
   "notes": [
     "PR2b typed as pre_execution_rejection",
+    "direction locked: recovery_AUC declared 'decrease'",
     "PR2b thresholds: coupling_corr>=0.5 artifact_rate>=0.9 (conjunctive=True)",
     "reject_if_coupling_corr_abs_min consistent: 0.5",
     "reject_if_artifact_rate_min consistent: 0.9",
