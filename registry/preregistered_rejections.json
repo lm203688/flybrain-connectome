@@ -1,6 +1,6 @@
 {
   "schema": "preexec_rejection_registry_v1",
-  "generated_at": "2026-10-18T03:48:23.781491+00:00",
+  "generated_at": "2026-10-18T08:01:17.409188+00:00",
   "project": "flybrain-connectome",
   "project_version": null,
   "protocol_doc": "docs/PREREGISTRATION_PROTOCOL_v1.md",
@@ -8,7 +8,7 @@
   "gate": "Gate 47 (metric_substitution) + Gate 51+52 (C1/C3 prereg integrity)",
   "env_hash": "301f20b999c6fecdf89dba53f87af8b5697c61e44ca353b2916bf63f223cc9c6",
   "registry_sha256_of_inputs": {
-    "research_claims.json": "3be5e4e4d846cd484f3196c685526052870cfab0b81c36bde4a3f06c9c97de52"
+    "research_claims.json": "85becec3990ae59be9cba1af6023d2d4b4af12dcab14b8b74d19f322e076a339"
   },
   "n_rejections": 1,
   "entries": [
