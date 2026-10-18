@@ -6,7 +6,7 @@
   "counts": {
     "fail": 0,
     "warn": 1,
-    "note": 8
+    "note": 9
   },
   "notes": [
     "preregistered.PR1 present: threshold=0.25 features=4",
@@ -16,6 +16,7 @@
     "train_idx consistent: 0:60",
     "held_out_idx consistent: 60:100",
     "permutations consistent: 200",
+    "seed consistent: 42",
     "label_definition is absolute: 'drop_magnitude > 0.25 (absolute, preregistered)'"
   ],
   "warnings": [
