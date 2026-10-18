@@ -212,11 +212,16 @@ def main() -> int:
         [py, str(SCRIPTS / "check_llm_orchestrator.py")])[0]))
 
     # ---- Gate 31: R2 density scan — structure-function curves and d* threshold ----
+    # Write to a temp dir (not _gate31_r2/) so we don't overwrite the committed
+    # data file that R2 receipt hashes. The density scan output is non-deterministic
+    # (floating-point accumulation order varies), so overwriting would break Gate 61.
+    import tempfile as _tempfile
+    _gate31_tmp = _tempfile.mkdtemp(prefix="gate31_")
     results.append(("gate31 r2 density scan", run(
         "GATE 31 — R2 density scan: structure-function curves and d* threshold",
         [py, str(SCRIPTS / "r2_density_scan.py"), "--n-samples", "50",
          "--n-nodes", "20", "--strict-axis",
-         "--output-dir", str(ROOT / "_gate31_r2")])[0]))
+         "--output-dir", _gate31_tmp])[0]))
 
     # ---- Gate 32: R4 sensitivity boundary analysis — robustness curves ----
     results.append(("gate32 r4 sensitivity scan", run(
@@ -499,6 +504,47 @@ def main() -> int:
         "3-mutation injection battery (unused import, undefined name, test "
         "failure) must all turn the gate red.",
         [py, str(SCRIPTS / "check_static_analysis.py"), "--quiet"])[0]))
+
+    # ---- Gate 60: AIBOM supply-chain disclosure (Phase 3) ----
+    results.append(("gate60 supply chain", run(
+        "GATE 60 — AIBOM supply-chain disclosure (Phase 3): aibom.json must "
+        "exist at repo root, be well-formed, and stay in sync with the live "
+        "tree (workspace fingerprint + direct deps + subpackage versions). "
+        "This forces disclosure of every external component: hidden deps "
+        "cannot hide because the fingerprint would drift. Gate 39 "
+        "meta-discipline honored: 5-mutation injection battery (missing, "
+        "malformed, schema drift, dep drift, fingerprint drift) must all "
+        "turn the gate red.",
+        [py, str(SCRIPTS / "check_supply_chain.py")])[0]))
+
+    # ---- Gate 61: receipt integrity (VRO enforcement) ----
+    results.append(("gate61 receipt integrity", run(
+        "GATE 61 — receipt integrity (VRO enforcement): every receipts/*.json "
+        "must (a) exist, (b) match claim_graph.json entries, (c) carry all "
+        "required fields (claim_id, expected_verdict, artifacts, scripts, "
+        "hashes, env_hash, issued_utc), and (d) pass independent recomputation "
+        "via verify_receipt.py. This closes the G1 gap: tampered receipts or "
+        "code drift without re-issue = FAIL. Gate 39 meta-discipline honored: "
+        "4-mutation injection battery (tamper artifact hash, delete script, "
+        "tamper expected_verdict, drift env_hash) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_receipt_integrity.py")])[0]))
+
+    # ---- Gate 62: PR_S1 external-validation integrity (W7 fix) ----
+    results.append(("gate62 PR_S1 external-validation", run(
+        "GATE 62 — PR_S1 external-validation integrity: vault/S1.commit.json "
+        "must be present with protocol_id=S1, a complete success_criteria "
+        "block (7 quantitative criteria), and families including all three "
+        "external public connectomes (c_elegans_witvliet, drosophila_larva, "
+        "zebrafish_petkova). Threshold sanity: AUC floor in [0.50, 0.90) "
+        "strict, kappa floor in [0.30, 0.90], conjunctive locked True, "
+        "p-ceiling <= 0.20. If research_claims.preregistered.PR_S1 exists "
+        "as an override it must match the vault. Cross-consistency: "
+        "claims.S1.ci_enrichment.verdict must echo results.verdict. This "
+        "closes the W7 coverage gap that S3 discipline-effectiveness "
+        "reported at 0% catch-rate. Gate 39 meta-discipline honored: "
+        "3-mutation injection battery (raise_auc_min, remove_conjunctive, "
+        "lower_kappa_min) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_pr_s1.py")])[0]))
 
     print("=" * 72)
     print("gate summary")
