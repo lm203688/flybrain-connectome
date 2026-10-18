@@ -8,6 +8,42 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---
+## [2.98.1] - 2026-10-18
+
+### Added
+- **Gate 62 — PR_S1 外部验证完整性**（W7 修复）：新增 `scripts/check_pr_s1.py`，关闭 v2.98.0 S3 纪律有效性报告登记为"gate coverage gap"的 PR_S1 漏洞。Vault 存在性 + 7 项 success_criteria 结构完整性 + 3 个外部公共连接组（c_elegans_witvliet / drosophila_larva / zebrafish_petkova）家族成员性 + 阈值范围合理性（AUC 底 [0.50, 0.90) 严格、kappa 底 [0.30, 0.90]、p 顶 ≤ 0.20）+ conjunctive 锁定 True + claims↔results verdict 交叉一致性。Gate 39 元纪律：3-mutation 注入电池（raise_auc_min / remove_conjunctive / lower_kappa_min）全部报红。
+- **S3 catch-rate 从 47.1% → 100.0%**：51/51 注入全部捕获（Wilson 95% CI [93.3%, 100.0%]）。v2.98.0 报告的 7 项 W1–W7 gate 漏洞全部关闭。
+
+### Changed
+- **Gate 43 (PR1)**：新增步骤 6b — manifest↔execution seed 等值检查（W1 修复）。
+- **Gate 47 (PR2b)**：新增步骤 1b（required-criteria 存在性检查，7 个必需字段）+ 1c（direction 锁定为 `"decrease"`）（W2/W3 修复）。
+- **Gate 51+52 (C3/PR3_v2)**：新增 C3.7（families 必须包含 malecns_subgraph，W4 修复）、C3.8/C3.9（real_family_passing 与 verdict 一致性，W6 修复）、C3.10/C3.11（AUC 单元格合理性 [0.5, 1.0] + PASS 时 ≥ 0.7，W5 修复）。
+- **S3 注入脚本 bug 修复**：`_inject_pr2b_violation` 的 `remove_reject_rule` 之前 pop 不存在的顶层 `reject_rules`（PR2b 实际用 `success_criteria`），是 no-op；`_inject_pr_s1_violation` 在 PR_S1 缺失时 early-return，导致注入永远不写任何东西。两处修复后 v2.98.0 的 47.1% 是 under-reported 的诚实基线。
+- **research_claims.json**：S3 ci_enrichment 从 v2.98.0 (47.1%, 34 injections) 更新到 v2.98.1 (100.0%, 51 injections, Wilson 95% CI [93.0%, 100.0%])，保留 baseline_v2_98_0 字段以保留历史诚实数字。
+- **docs/S3_DISCIPLINE_EFFECTIVENESS_2026-10-18.md**：全文重写，保留 v2.98.0 历史数字作为"投稿时状态"，新增 v2.98.1 修复详情表。
+- **run_gates.py**：注册 Gate 62 到主门禁链（56 → 57 quick gates，含 gate62）。
+- **README.md**：gate 计数 59 → 60，特征列表新增 "Gate 62 + catch-rate 100%"。
+- **AIBOM**：fingerprint 重新生成以反映 gate62 与文档漂移。
+
+### Notes
+- v2.98.1 是 v2.98.0 的**补丁发布**：不改变任何预注册 verdict、不改变任何科学结论。唯一变化是"gate 现在真的能捕获我们之前注入的缺陷"——把 v2.98.0 报告中的"7 项诚实漏洞"变成"7 项已关闭漏洞"。
+- arXiv 投稿包（`docs/ARXIV_SUBMISSION_PACKAGE_2026-10-18.md`）中的 P-2/P-3 数字仍以 v2.98.0 的 47.1% 为基线——那是"投稿时状态"，v2.98.1 修复在投稿后落地。
+
+## [2.98.0] - 2026-10-18
+
+### Added
+- **S1 外部验证队列**（PR-S1）：跨物种 C3/R6 泛化预注册协议 `docs/PR_S1_EXTERNAL_VALIDATION_2026-10-18.md` + 执行脚本 `scripts/s1_external_validation.py` + 报告 `docs/S1_EXTERNAL_VALIDATION_2026-10-18.md`。3/3 外部数据集（C. elegans / Drosophila larva / zebrafish Petkova 2025 TEN+HMI）全部加载，内部 5 族全部 PASS，外部 3 族 AUC 低 → verdict **PARTIAL**（跨物种不一致）。诚实登记跨物种边界。
+- **S2 理论桥预注册**（PR-S2）：`docs/PR_S2_LESION_CASCADE_2026-10-18.md` + 执行脚本 `scripts/s2_lesion_cascade.py` + 报告 `docs/S2_LESION_CASCADE_2026-10-18.md`。MaleCNS 子图节点/模块逐步删除 + 度保持零模型。verdict **FAIL**（H1 相对改善不达标、H3 桥接预测不成立）——预注册协议价值：把"局部改善但整体不成立"的负结果诚实登记。
+- **S3 纪律有效性量化**：`scripts/s3_discipline_effectiveness.py` + 报告 `docs/S3_DISCIPLINE_EFFECTIVENESS_2026-10-18.md`。34 个预注册违规注入 → gate 捕获 16 (47.1%, Wilson 95% CI [31.5%, 63.3%])。7 项具体 gate 漏洞（W1–W7）诚实登记。
+- **S3 统计强化**：`scripts/add_ci.py` + 报告 `docs/S3_STATISTICAL_STRENGTHENING_2026-10-18.md`。R1/R2/R4/C3/S1/S2/S3 全部附加 CI（bootstrap/Wilson/approx-normal AUC）；R2 slope CI 发现"transitivity 随密度变化但 GA≡random 在行为上"的诚实细分。
+- **arXiv 投稿准备包**（不真投）：`docs/ARXIV_SUBMISSION_PACKAGE_2026-10-18.md`。含 `submission_meta.json`（P-2/P-3 元数据 + abstract + 分类理由）、related work 差异化论述（vs `arXiv:2609.17637` RAGWarrant / `arXiv:2608.09855` grey-box fuzzer）、cover letter、提交清单。
+- **P-4 决策 memo 更新**：`docs/PAPER_P4_CASE_STUDY.md` 新增 Xu 2026 参考文献 + 预执行拒绝论据强化段落。
+
+### Changed
+- **版本扩容**：2.97.0 → 2.98.0（文档 + 预注册 + 执行脚本，无代码/门禁改动）。
+- **research_claims.json**：为 7 个预注册协议附加 `ci_enrichment` 字段。
+- **README.md**：v2.98.0 特征列表更新。
+
 ## [2.97.0] - 2026-10-18
 
 ### Added
