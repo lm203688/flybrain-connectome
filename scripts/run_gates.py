@@ -546,6 +546,24 @@ def main() -> int:
         "lower_kappa_min) must all turn the gate red.",
         [py, str(SCRIPTS / "check_pr_s1.py")])[0]))
 
+    # ---- Gate 63: research_claims top-level stat completeness ----
+    results.append(("gate63 claim stat completeness", run(
+        "GATE 63 — research_claims.json top-level stat completeness: every "
+        "claim (R1–R6) must carry a top-level statistical block — "
+        "point_estimate, ci_low, ci_high, p_value, test_name, test_detail "
+        "all present as keys. Null values must have a matching *_missing_"
+        "reason. ci_method must be in the recognised vocabulary "
+        "(wilson_score_95 / bootstrap_percentile_slope_B1000_seed42 / "
+        "deterministic_didactic_test / not_available / single-point). "
+        "Numeric point_estimate must lie inside [ci_low, ci_high]. "
+        "This closes the P3 gap that the SCI_READINESS_ACTION_PLAN "
+        "flagged: a reviewer scanning the manifest could not tell a "
+        "tested claim from a hand-waved one. Gate 39 meta-discipline "
+        "honored: 5-mutation injection battery (drop_ci_low, "
+        "drop_p_value_key, corrupt_point_estimate, invert_ci_bounds, "
+        "bogus_ci_method) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_claim_stats.py")])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:
