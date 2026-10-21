@@ -8,6 +8,23 @@ The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---
+## [2.99.0] - 2026-10-21
+
+### Added
+- **Gate 63 — research_claims 顶层统计完整性**：新增 `scripts/check_claim_stats.py`。每条 claim (R1–R6) 必须携带顶层统计块（`point_estimate` / `ci_low` / `ci_high` / `p_value` / `test_name` / `test_detail` 六个 key 均存在）；null 值必须有对应的 `*_missing_reason` 解释；`ci_method` 必须在受控词汇内（wilson_score_95 / bootstrap_percentile_slope_B1000_seed42 / deterministic_didactic_test / not_available / single-point）；数值型 point_estimate 必须落在 [ci_low, ci_high] 内（浮点容差 1e-6）。Gate 39 元纪律：5-mutation 注入电池（drop_ci_low / drop_p_value_key / corrupt_point_estimate / invert_ci_bounds / bogus_ci_method）全部报红。**关闭 P3 gap**（SCI_READINESS_ACTION_PLAN_2026-10-20 记录的"顶层字段缺失"）。
+- **research_claims.json 顶层统计字段**：R1 (AUC=0.788, z=1.5291, p=0.1262) / R2 (slope=0.9060, CI [0.2135, 1.0828]) / R3 (无 CI，诚实登记欠采样) / R4 (560/1000, Wilson CI [0.5291, 0.5905], p<0.001) / R5 (deterministic 12/12) / R6 (37/116, Wilson CI [0.247, 0.402])。所有 null 值都带 `*_missing_reason` 说明为什么"这里没有 CI/p 是正确做法，不是遗漏"。
+- **作者署名规范化**：`docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md`（P-3）和 `docs/PAPER_P4_CASE_STUDY.md`（P-4）替换 `flybrain-connectome contributors` 占位符为 Li Xing（李星）+ ORCID 0000-0002-8747-1969 + email xingli1123@outlook.com + Independent Researcher 署名。补齐 CRediT 贡献声明 / COI / Ethics / Funding / Data / Code 可用性 / Pre-registration 七段合规文本，达到 Scientific Reports / Frontiers 期刊要求。
+
+### Updated
+- **BIORXIV_SUBMISSION_PASTE_READY.md**：Step 1.2 作者元数据填实（Given name Xing, Family name Li, Affiliation Independent Researcher Shenzhen China, Email xingli1123@outlook.com, ORCID 0000-0002-8747-1969）；Step 1.7 Data availability / Ethics / Competing interests / Funding 语句全部对齐期刊合规标准。
+- **README 门禁计数**：徽章与 docs/version consistency 检查器的口径统一为 61（检查器用 `GATE N` 唯一标签计数，Gate 37/52 未独立成标签，历史遗留；本轮归零）。
+- **registry/preregistered_rejections.json**：随 research_claims.json 变更自动重算 `registry_sha256_of_inputs`，Gate 53 归零。
+- **版本扩容 7 处**：pyproject.toml / flybrain_cli.py / CHANGELOG.md / README.md 徽章 + 描述行 + 门禁计数行 / api_server.py / server.py 全部 2.98.1 → 2.99.0。
+
+### Notes
+- 本轮是**投稿前收尾**：不改变任何预注册 verdict、不改变任何科学结论。所有新加的字段都是"把已有数字搬到顶层"或"新增一条 gate 保证以后不被回退"，是纯增量。
+- 门禁状态：Gate 2 / 53 / 58 在本轮修复前分别红（README 计数漂移、registry 哈希漂移、版本号漂移），修复后全部归绿。当前 63/63 gates PASS（不含 --with-data）。
+
 ## [2.98.1] - 2026-10-18
 
 ### Added
