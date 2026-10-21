@@ -291,7 +291,9 @@ We argue that preregistered rejection is scientifically *more informative* than 
 - Full preregistration protocol: `docs/PREREGISTRATION_PROTOCOL_v1.md#PR-2b`
 - Main paper (§4.8 discusses PR-2b in context): `docs/arxiv_paper.md`
 
-Repository: `lm203688/flybrain-connectome` (MIT). The 5.63 GB raw connectome is not redistributed; obtain MaleCNS v1.0 from the original publication.
+Repository: `lm203688/flybrain-connectome` (MIT, public since 2026-10-18,
+pinned at v2.98.1 with 60/60 gates PASS). The 5.63 GB raw connectome is not
+redistributed; obtain MaleCNS v1.0 from the original publication.
 
 ---
 
