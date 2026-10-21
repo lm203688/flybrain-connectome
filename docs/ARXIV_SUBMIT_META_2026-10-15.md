@@ -1,6 +1,6 @@
 # arXiv 投稿元数据（P-2 / P-3 双短文）— 2026-10-17 · **v2.96.0 更新**
 
-**基线**：**v2.96.0**（2026-10-17，59 gates / 57 gates in quick mode 全 PASS；v2.96 加入 AIBOM 供应链披露 + 收据完整性门禁）
+**基线**：**v2.98.1**（2026-10-18，60 gates / 56 gates in quick mode 全 PASS；v2.98.1 加入 Gate 62 PR_S1 外部验证 + S3 纪律有效性 100% catch-rate + Xu 2026 理论锚定）
 **依赖**：`docs/PR2B_PREEXECUTION_REJECTION_PAPER.md`（P-2，392 行，25 条引用）· `docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md`（P-3，408 行 + §4.5 C3 案例 = 475 行，22 条引用）· `docs/C3_RESOLUTION_CLAMP_FIXES_PAPER.md`（**P-4 新**，≈240 行，10 条引用）· `docs/PREREGISTRATION_PROTOCOL_v1.md` · `docs/NEXT_STAGE_VISION_AND_PLAN_2026-10-15.md`（VRO 四层架构）· `claim_graph.json` · `receipts/` · `badges.json` · `ro_crate/` · **NEW** `registry/preregistered_rejections.json`（F3 预执行拒绝公共注册表）
 **用途**：本文档是 arXiv 提交前的**元数据与合规清单**。用户持 arXiv 账号按此清单准备 LaTex 源文件后即可投稿，无需再补充调研。
 
