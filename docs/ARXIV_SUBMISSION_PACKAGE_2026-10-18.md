@@ -49,7 +49,7 @@ Two entries, ready to hand to the arXiv v4 UI form (or `arxiv` submission script
       ],
       "primary_subject": "stat.ME",
       "cross_lists": ["stat.CO", "cs.LG", "q-bio.NC"],
-      "comments": "Methodological note. 12 pages. Case study with machine-enforced gate (Gate 47). Preregistered rejection is now embedded in the Verifiable Research Object (VRO) protocol: hash-committed receipt, red-team adversarial suite, V5 verification badge, RO-Crate 1.1 export. Code and data at lm203688/flybrain-connectome (v2.98.1). 56 gates PASS in quick mode; 59 gates PASS in full mode. Companion submission (P-3, stat.ME) reports the discipline-effectiveness numbers quoted here; both submissions are pinned to v2.98.1.",
+      "comments": "Methodological note. 12 pages. Case study with machine-enforced gate (Gate 47). Preregistered rejection is now embedded in the Verifiable Research Object (VRO) protocol: hash-committed receipt, red-team adversarial suite, V5 verification badge, RO-Crate 1.1 export. Code and data at lm203688/flybrain-connectome (v2.98.1). 56 gates PASS in quick mode; 60 gates PASS in full mode. Companion submission (P-3, stat.ME) reports the discipline-effectiveness numbers quoted here; both submissions are pinned to v2.98.1.",
       "license": "CC-BY-4.0",
       "arxiv_category_justification": {
         "primary_stat_ME": "Primary contribution is methodological: define preregistered rejection as a formal output category.",
@@ -75,7 +75,7 @@ Two entries, ready to hand to the arXiv v4 UI form (or `arxiv` submission script
       ],
       "primary_subject": "stat.ME",
       "cross_lists": ["stat.CO", "cs.LG", "cs.SE"],
-      "comments": "Methodological note. 12 pages. Four disciplines each correspond to a concrete failure in our own project, all machine-enforced by Gate 30. Includes S6-S9 case studies with quantified effectiveness (16/34 injection catch rate at v2.98.0 submission baseline, Wilson 95% CI [31.5%, 63.3%]; 51/51 = 100.0% at v2.98.1 post-submission hardening, Wilson 95% CI [93.0%, 100.0%]). Code and data available at lm203688/flybrain-connectome (v2.98.1). 56 gates PASS in quick mode; 59 in full mode.",
+      "comments": "Methodological note. 12 pages. Four disciplines each correspond to a concrete failure in our own project, all machine-enforced by Gate 30. Includes S6-S9 case studies with quantified effectiveness (16/34 injection catch rate at v2.98.0 submission baseline, Wilson 95% CI [31.5%, 63.3%]; 51/51 = 100.0% at v2.98.1 post-submission hardening, Wilson 95% CI [93.0%, 100.0%]). Code and data available at lm203688/flybrain-connectome (v2.98.1). 56 gates PASS in quick mode; 60 in full mode.",
       "license": "CC-BY-4.0",
       "arxiv_category_justification": {
         "primary_stat_ME": "Contribution is methodological: formalization of self-verification disciplines as (D, Φ, σ) tuples.",
@@ -143,7 +143,7 @@ For both P-2 and P-3:
 >
 > In this submission, we report an honest quantification of gate effectiveness: **16/34 injected preregistration violations were caught (47.1%, Wilson 95% CI [31.5%, 63.3%])** at the v2.98.0 submission baseline, and we enumerate the seven residual gate weaknesses that remain open (all seven closed in v2.98.1 post-submission hardening, 51/51 caught). A preregistered rejection (PR-2b) — an intervention study whose consequence variable was analytically coupled to the structural variable it was supposed to measure independently — is embedded as a hash-committed receipt with a V5 verification badge and RO-Crate 1.1 export.
 >
-> Code and data (including the mutation-injection battery, all preregistration four-tuples, and 63 gates in full mode) are available at `lm203688/flybrain-connectome` (v2.98.0). The external theoretical anchor for the preregistration discipline is Xu et al. (2026), *Science*, whose optical-genetic causal evidence for dendritic computation supports our claim that silent components carry mechanistic information.
+> Code and data (including the mutation-injection battery, all preregistration four-tuples, and 60 gates in full mode) are available at `lm203688/flybrain-connectome` (v2.98.0). The external theoretical anchor for the preregistration discipline is Xu et al. (2026), *Science*, whose optical-genetic causal evidence for dendritic computation supports our claim that silent components carry mechanistic information.
 
 ---
 
@@ -190,14 +190,38 @@ Copy-paste into a ticket / to-do list:
 
 ---
 
-## 5. Do NOT submit these
+## 5. Do NOT submit these (yet)
 
-The following are explicitly excluded from this submission package:
+The following are explicitly excluded from this submission package. **A-leg
+is submitted first (P-3, then P-2); B-leg waits until R6 external
+reproduction is complete.** See `docs/B_LEG_COMPLETION_CHECKLIST_2026-10-19.md`
+for the concrete B-leg task list.
 
-- **P-1 main-line paper** — status 🟡 92%, still blocked on D1 (mechanism claim) and D3 (repo public). Waiting for user decision.
-- **P-4 Xu 2026 methodology short** — 498 lines, ready as draft but not reviewed against S3 statistical strengthening yet. Recommended 1 week delay after P-3 to cross-reference.
-- **P-5 four disciplines** — merged into P-3 in v1.2 of the source document; do not submit separately.
+- **P-1 main-line paper** (B-leg) — currently blocked on R6 external
+  reproduction across 4 evolutionary lineages; cross-species signal
+  verified as PARTIAL (§4.10) but not yet promoted to a positive
+  generalization claim. Estimated 2–3 weeks.
+- **P-4 Xu 2026 methodology short** (B-leg adjacent) — 498 lines, ready as
+  draft; recommend 1 week delay after P-3 to add cross-references.
+- **P-5 four disciplines** — merged into P-3 in v1.2 of the source
+  document; do not submit separately.
 - **S1/S2/S3 appendix** — folded into P-3 §7; do not submit as standalone.
+
+## 6. Submission order (A-leg first, B-leg later)
+
+**A-leg (this round, user presses submit on arXiv)**:
+1. P-3 (S6-S9 four self-verification disciplines, stat.ME) — 475 lines, 22 refs
+2. P-2 (Preregistered Rejection as a First-Class Negative Result, stat.ME) — 392 lines, 25 refs
+
+**B-leg (2–3 weeks later, after R6 external reproduction completes)**:
+3. P-1 main line (q-bio.NC + cs.LG) — arxiv_paper.md
+4. P-4 Xu 2026 methodology short (q-bio.NC)
+
+**Why A-leg first**: A-leg is fully SCI-ready (100% catch-rate, 60/60 gates,
+Xu 2026 as external theoretical anchor), no remaining scientific blockers.
+B-leg still needs R6 external reproduction to convert the PARTIAL
+cross-species verdict into a positive generalization claim suitable for
+top-tier neuroscience journals.
 
 ---
 
