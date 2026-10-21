@@ -3,11 +3,11 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-2.98.1-orange.svg)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-2.99.0-orange.svg)](CHANGELOG.md)
 [![docker](https://img.shields.io/badge/docker-2.90.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v2.98.1 · 2026-10-18 · 116 functional units · 270 module profiles · 60 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ arXiv 投稿准备包**
+**v2.99.0 · 2026-10-21 · 116 functional units · 270 module profiles · 61 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62/63 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ Gate 63 research_claims 顶层统计完整性 + 作者署名规范化（P-3 / P-4 → Li Xing + ORCID）+ bioRxiv 投稿准备包**
 
 > **Traceable synthetic bio-topology generator**, grounded in the real
 > *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
@@ -23,11 +23,14 @@ It is a **developer toolkit and research artifact**, not a trained model and
 not a simulation of a fly. Read the [honest boundaries](#honest-boundaries)
 before you quote it.
 
-> **Repo status:** this repository is currently **private** (2026-09-22). It
-> was made private as an immediate mitigation after Tier-2 IP was found in the
-> public git history (see [CHANGELOG v1.3.0](CHANGELOG.md)). The Tier-1 code
-> remains MIT-licensed; a history rewrite is planned to re-publicize it.
-> Authorized collaborators can request access from the owner.
+> **Repo status:** **PUBLIC** since 2026-10-18. History was audited and cleaned
+> before publicization (see [CHANGELOG v1.3.0](CHANGELOG.md) for the original
+> Tier-2 IP leak and [docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md](docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md)
+> for the 16-step publicization runbook that was executed). The Tier-1 code is
+> MIT-licensed and reachable at https://github.com/lm203688/flybrain-connectome.
+> Tier-2 raw data (MaleCNS 5.63 GB, C. elegans Witvliet 2020, Drosophila larva
+> edges.csv, Petkova 2025 zebrafish) is fetched via the documented data pipeline
+> — see §"Requirements" and the S1 external-validation script.
 
 ---
 
@@ -1147,9 +1150,9 @@ for client configs, the 47-tool reference, and troubleshooting.
 The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
-python scripts/run_gates.py              # 60 gates, no dataset needed
+python scripts/run_gates.py              # 61 gates, no dataset needed
 python scripts/run_gates.py --quick      # the 53 gates that don't need numpy / a server
-python scripts/run_gates.py --with-data  # 60 gates: + `flybrain verify` (70 assertions)
+python scripts/run_gates.py --with-data  # 61 gates: + `flybrain verify` (70 assertions)
 ```
 
 ### Makefile shortcuts (v2.43.0)
