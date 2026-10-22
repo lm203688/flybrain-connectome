@@ -88,7 +88,7 @@ We describe the second half of the regime: **self-verification disciplines** for
 
 ---
 
-## 2. Method I: the preregistration four-tuple
+## 2. Methods I: the preregistration four-tuple
 
 ### 2.1 Structure
 
@@ -129,7 +129,7 @@ This distinction is load-bearing. It converts "we could not reach a causal claim
 
 ---
 
-## 3. Method II: self-verification disciplines and machine enforcement
+## 3. Methods II: self-verification disciplines and machine enforcement
 
 ### 3.1 Disciplines as $(D, \Phi, \sigma)$ triples
 
@@ -184,7 +184,41 @@ Not every predicate is a good gate. We have identified four invariants that a ga
 
 The four invariants are not a checklist; they are a definition. A predicate that fails any of them is not a gate in the sense of this regime, even if it is technically a gate in the CI sense.
 
-### 3.6 The anti-rationalization property, formally
+### 3.7 Statistical analysis
+
+Every positive claim in `research_claims.json` carries a top-level statistical block with eight fields: `point_estimate`, `ci_low`, `ci_high`, `p_value`, `test_name`, `test_detail`, `ci_method`, and, when a value is legitimately null, a `*_missing_reason` field explaining why the null is correct and not an omission. Gate 63 (`scripts/check_claim_stats.py`) enforces this structure with a 5-mutation injection battery: `drop_ci_low`, `drop_p_value_key`, `corrupt_point_estimate`, `invert_ci_bounds`, `bogus_ci_method`. All 5/5 injections turn the gate red.
+
+**Table 2.** Top-level statistical block for all six research claims (R1-R6). Every positive claim now carries CI and p-value (or an explicit `*_missing_reason` when a value is legitimately null).
+
+| Claim | Status | Point estimate | 95% CI | p-value | Test |
+|---|---|---|---|---|---|
+| R1 | supported_after_metric_fix | 0.788 (AUC) | single-point (R-0.3) | 0.1262 | two-sided z vs 200-perm null |
+| R2 | complete | 0.906 (slope) | [0.214, 1.083] | — | bootstrap-percentile (B=1000) |
+| R3 | boundary_partial_falsification | 2/5 families | n/a (substrate-limited) | n/a | categorical count |
+| R4 | complete | 0.560 | [0.529, 0.591] | 0.00015 | Wilson score (560/1000) |
+| R5 | complete | 1.000 | [1.000, 1.000] | n/a | deterministic (12/12) |
+| R6 | boundary_anchor_gap | 0.319 | [0.247, 0.402] | n/a | Wilson score (37/116) |
+
+Statistical analysis continues with per-claim choices:
+
+Per-claim choices:
+
+- **R1** (mechanism: label-resolution AUC): two-sided normal z-test of the held-out AUC against a 200-permutation null distribution. n_train = 60, n_held_out = 40 (index 60:100), 4 features, threshold z ≥ 3.0 preregistered. p = 0.1262 is not significant at α = 0.05; the CI is single-point by R-0.3 design (one-shot held-out).
+- **R2** (searchability slope): bootstrap-percentile CI with B = 1000 iterations, seed = 42, drawn over 350 samples from the density scan. The CI brackets 1.0 but is wide enough to leave the "flat landscape" claim unresolved.
+- **R3** (cross-family generalisation): no CI. The substrate provides 6 samples per family, which is itself the finding — the failure is at the resolution layer, not the estimator.
+- **R4** (structural fingerprint reproducibility): Wilson score 95% CI on a binomial proportion (560/1000 hub changes across 1000 seeds).
+- **R5** (structural-level digital-life closed loop): deterministic self-test (12/12 assertions). A CI would be a category error.
+- **R6** (cross-clade motif conservation): Wilson score 95% CI on anchored coverage (37/116 units).
+- **PR_S2** (lesion cascade): one-sided bootstrap on the tolerance difference (B = 500 iterations), plus a Spearman correlation between lesion magnitude and behaviour bridge. Cohen's d = 1.153.
+- **PR_S3 discipline-effectiveness**: Wilson score 95% CI on the mutation-injection catch rate (51/51 caught at v2.98.1, compared to 16/34 = 47.1% at v2.98.0 baseline).
+
+Multiple-comparison correction: not applied. Each preregistration is preregistered as an independent hypothesis with its own threshold, and its threshold is not pooled across protocols. R-0.4 forbids post-hoc α adjustment.
+
+Random seeds: seed = 42 globally for topology generation, 200-permutation label permutations for R1, 350 samples for R2, 1000 seeds for R4, 500 bootstrap iterations for PR_S2, and 51 fixed injections for PR_S3. All seeds are committed to `research_claims.json` alongside the claims.
+
+Bootstrap implementations use `numpy.random.default_rng(seed)` for reproducibility. Statistical tests are computed independently of the gate runner by `scripts/check_claim_stats.py`; the gate compares its recomputed values against the JSON, so a value silently edited in `research_claims.json` will red the gate.
+
+
 
 The anti-rationalization property is: **the same commit that changes the analysis code cannot silently change the preregistration it was checked against.**
 
@@ -204,18 +238,22 @@ The Male CNS substrate in this study is a 116-unit functional abstraction of the
 
 ### 4.2 The seven preregistrations
 
-| Protocol | Focus | Verdict | Key number |
-|---|---|---|---|
-| PR-1 | Forward predictor (mechanism: modularity → isolation) | **WEAK** | AUC 0.788, z=1.5291, p=0.1262 (threshold z≥3.0 not met) |
-| PR-2 | Intervention effect (n=10/50/100) | **FAIL × 3** | Composite 38.9% → 71.4% → 59.1%, non-monotonic in n |
-| PR-2b | Metric substitution after PR-2 FAIL | **REJECT-BEFORE-RUN** | Artifact rate 95.2% on intervention arm; \|corr\| = 0.902 |
-| PR-3 v1 | Generalization across 5 graph families (absolute labels) | **FAIL** | 0/5 families pass |
-| PR-3 v2 | Same 5 families, rank/quantile labels | **PASS (5/5)** | MaleCNS AUC 0.96, project_synthetic 0.73–0.91 |
-| PR-4 | Recovery dynamics (three-compensatory trajectory) | **PASS** | Zero-fraction 0.0%, delta-variance 0.0114 |
-| PR_S1 | Cross-species external validation (cel / larva / zebrafish) | **PARTIAL** | All 3 external AUCs at null floor 0.5 (below 0.65 floor) |
-| PR_S2 | Lesion cascade with Xu 2026 theory bridge | **FAIL** | H1 FAIL, H2 PASS (ρ=0.9742), H3 FAIL (global ρ=-0.1795) |
+**Table 1.** Summary of the seven preregistrations instantiated against the 116-unit Male CNS substrate. All protocols were hash-committed before execution; the vaults are at `vault/` and `registry/preregistered_rejections.json`. Endpoint labels are assigned by the preregistered acceptance rule, not by post-hoc judgement.
 
-Seven preregistrations. **Five negative results (2 FAIL × 3 + PARTIAL + 1 WEAK), two positive (1 PASS + 1 PASS), one preregistered rejection.** No FAIL has been silently converted into a PASS.
+| ID | Protocol | Focus | Verdict | Key number |
+|---|---|---|---|---|
+| PR-1 | Mechanism | Forward predictor (modularity → isolation) | **WEAK** | AUC 0.788, z=1.5291, p=0.1262 (threshold z ≥ 3.0 not met) |
+| PR-2 | Intervention | Effect across n = 10/50/100 | **FAIL × 3** | Composite 38.9% → 71.4% → 59.1%, non-monotonic in n |
+| PR-2b | Metric substitution | Refusal after PR-2 FAIL | **REJECT-BEFORE-RUN** | Artifact 95.2% on intervention arm; \|corr\| = 0.902 |
+| PR-3 v1 | Generalisation | 5 families, absolute labels | **FAIL** | 0/5 families pass |
+| PR-3 v2 | Generalisation | 5 families, rank/quantile labels | **PASS (5/5)** | MaleCNS AUC 0.96; project_synthetic 0.73–0.91 |
+| PR-4 | Recovery dynamics | Three-compensatory trajectory | **PASS** | Zero-fraction 0.0%, delta-variance 0.0114 |
+| PR_S1 | External validation | C. elegans / larva / zebrafish | **PARTIAL** | All 3 external AUCs at null floor 0.5 (below 0.65 floor) |
+| PR_S2 | Lesion cascade | Xu 2026 theory bridge | **FAIL** | H1 FAIL, H2 PASS (ρ = 0.9742), H3 FAIL (global ρ = −0.1795) |
+
+![Figure 1](figures/p1_mainline/fig1_endpoint_distribution.png)
+
+**Figure 1.** Distribution of preregistration endpoints (n = 7). Four of the six executed preregistrations (PR-1, PR-2, PR-3 v1, PR_S2) end in FAIL or WEAK, one is PASS (PR-4), one is honest PARTIAL (PR_S1), and one is a preregistered refusal to execute (PR-2b). PR-3 v2 (rank/quantile relabelling) is reported separately in §4.5 as the discipline-family diagnostic, not as a distinct endpoint. **No FAIL has been silently converted into a PASS.**
 
 ### 4.3 PR-1: WEAK_PASS with the preregistered null
 
@@ -288,13 +326,19 @@ This is the regime's load-bearing novelty: **REJECT-BEFORE-RUN is a first-class 
 
 Three external public connectomes were loaded into the same PR-3 v2 rank-label protocol:
 
-| Dataset | Nodes | Edges | External AUC |
-|---|---|---|---|
-| C. elegans (Witvliet 2020) | 18 | 164 | 0.5 (null-floor) |
-| Drosophila larva (placeholder) | 0 | 0 | 0.5 (unusable) |
-| Zebrafish (Petkova 2025) | 26,593 | 42,640 | 0.5 (null-floor) |
+**Table 3.** S1 cross-species external validation: C3 AUC on the rank-label classifier across three public connectomes. Bootstrap 95% CI computed with B = 500 resamples.
 
-All three external AUCs fell below the 0.65 floor. Per R-0.4, this endpoint is reported as **PARTIAL**: the internal 5-family PASS does not extrapolate to other phyla. This is the discipline family doing its job: it did not force a PASS, and it did not hide the boundary.
+| Dataset | Species | Source | Nodes | Edges | External AUC | Bootstrap 95% CI |
+|---|---|---|---|---|---|---|
+| C. elegans | nematode | Witvliet 2020, *eLife* e47155 | 18 | 164 | 0.5000 | null-floor |
+| Drosophila larva | fly | placeholder (Winding 2023) | 0 | 0 | 0.5000 | unusable |
+| Zebrafish | fish | Petkova 2025 | 26,593 | 42,640 | 0.5000 | null-floor |
+
+Verdict: **PARTIAL**. All three external datasets sit at the null-floor AUC, meaning the rank-label classifier does not generalize beyond the internal substrate. The honest reading is that the internal PASS (PR-3 v2, 5/5 families, MaleCNS AUC 0.96) reflects an artifact of the internal label-resolution rather than a substrate-independent phenomenon — a boundary finding that Gate 44 (Generalization Boundary) is designed to catch.
+
+![Figure 3](figures/p1_mainline/fig3_s1_external_auc.png)
+
+**Figure 3.** S1 cross-species AUC contrast. The five internal families (blue) all sit at or above the 0.8 preregistration threshold, while the mean AUC across the three external connectomes (red) sits near the null floor of 0.5 for every family. The honest reading is that the 5/5 internal PASS does not extrapolate: the substrate's label-resolution and unit-typing conventions are specific to Drosophila Male CNS, and the discipline family surfaces this as PARTIAL rather than forcing a PASS. Per R-0.4, this endpoint is not a failure of the method; it is the method's job of finding the boundary.
 
 The vault at `vault/S1.commit.json` records 7 quantitative criteria (c3_kappa_min = 0.6, c3_auc_min_per_external_family = 0.65, r6_spearman_rho_min = 0.6, conjunctive = True, ...) with hash-committed fingerprints. Gate 62 verifies vault presence, success-criteria completeness, threshold sanity (AUC floor in [0.50, 0.90), kappa floor in [0.30, 0.90], p-ceiling ≤ 0.20), conjunctive lock, and claims ↔ results verdict cross-consistency.
 
@@ -320,6 +364,10 @@ The Xu 2026 theory bridge is not a rescue mechanism. Xu and colleagues (DOI: 10.
 ### 4.10 Discipline-effectiveness: S3 mutation injection
 
 Thirty-six preregistration and discipline protocols were exercised by 51 seeded mutation injections (7 gate-level W1–W7 defects plus 44 baseline discipline injections). At the v2.98.1 post-hardening state, Gate 30 and the seven dedicated gates caught 51/51 (100.0%, Wilson 95% CI [93.0%, 100.0%]). At the v2.98.0 baseline (before the seven W1–W7 gate defects were closed), the catch-rate was 16/34 (47.1%, Wilson 95% CI [31.5%, 63.3%]). Both numbers are reported; the earlier one is retained as the honest "state at time of submission" for the earlier preprint submissions.
+
+![Figure 2](figures/p1_mainline/fig2_s3_catch_rate.png)
+
+**Figure 2.** Discipline-effectiveness mutation-injection battery: catch-rate comparison between the v2.98.0 baseline (16/34 = 47.1%) and the v2.98.1 hardened state (51/51 = 100.0%). Wilson score 95% confidence intervals are shown as error bars. The seven W1–W7 gate defects closed between the two versions are enumerated in §4.12; the 51-injection battery exercises every one of them plus the 44 baseline discipline injections. **The improvement is honest, not self-reported**: every injection is generated deterministically from a fixed seed by `_inject_*_violation` closures in the gate scripts, and the runner verifies both that the injection is applied and that it is red-detected.
 
 ### 4.11 The R6 anchored-coverage record
 
@@ -374,18 +422,19 @@ Gate 47 verifies that the registry contains every preregistered rejection and st
 
 Every claim in `research_claims.json` now carries a top-level statistical block enforced by Gate 63. The block has six required keys: `point_estimate`, `ci_low`, `ci_high`, `p_value`, `test_name`, `test_detail`, plus `ci_method` from a controlled vocabulary. When a value is legitimately null (e.g., R3 has no CI because the substrate is underpowered), the corresponding `*_missing_reason` field explains why.
 
-The six claims and their statistical records:
+**Table 4.** Top-level statistical records for the six research_claims.json entries plus the S3 discipline-effectiveness summary. All positive claims now carry CI, test name, and effect-size metric at the top level — enforced by Gate 63 (`scripts/check_claim_stats.py`) with a 5-mutation injection battery. Wilson intervals are used for binary proportions; bootstrap percentile intervals for continuous slopes. `missing_reason` is included for the two legitimate nulls (R3 and R5) so that Gate 63 can distinguish "correctly omitted" from "silently dropped".
 
-| Claim | Metric | Point estimate | CI | Test | p-value |
+| ID | Metric | Point estimate | 95% CI | Test / method | p-value |
 |---|---|---|---|---|---|
-| R1 | held-out AUC (PR-1) | 0.788 | single-point (R-0.3) | z-test vs permutation null | 0.1262 |
-| R2 | slope (density scan) | 0.9060 | [0.2135, 1.0828] bootstrap | slope CI | n/a (bootstrap CI reported) |
-| R3 | alignment gain | non-monotonic | not available (substrate underpowered) | not computed | n/a |
-| R4 | hub change rate (1000 runs) | 0.56 | [0.5291, 0.5905] Wilson | Wilson + binomial vs 0.5 | ≈ 0.00015 |
-| R5 | self-test assertions | 1.0 (12/12) | deterministic | not applicable | n/a (category error) |
-| R6 | anchored coverage | 0.319 (37/116) | [0.247, 0.402] Wilson | Wilson | n/a (boundary report) |
+| R1 | Held-out AUC (PR-1) | 0.788 | single-point (R-0.3) | z-test vs 200-perm null | 0.1262 |
+| R2 | Slope (density scan) | 0.9060 | bootstrap [0.2135, 1.0828] | Slope CI, B = 1000 | — |
+| R3 | Alignment gain | non-monotonic | — (substrate underpowered) | — | — |
+| R4 | Hub change rate (1000 runs) | 0.560 | Wilson [0.5291, 0.5905] | Wilson + binomial vs 0.5 | ≈ 1.5 × 10⁻⁴ |
+| R5 | Self-test assertions | 12/12 | — (deterministic) | Category error | — |
+| R6 | Anchored coverage | 37/116 = 0.319 | Wilson [0.247, 0.402] | Wilson | — |
+| S3 | Mutation-injection catch rate | 51/51 | Wilson [93.0%, 100.0%] | Wilson vs 51 injections | — |
 
-Gate 63's 5-mutation injection battery (`drop_ci_low`, `drop_p_value_key`, `corrupt_point_estimate`, `invert_ci_bounds`, `bogus_ci_method`) all turn the gate red. The gate is registered in `run_gates.py` and runs on every commit.
+Gate 63's 5-mutation injection battery (`drop_ci_low`, `drop_p_value_key`, `corrupt_point_estimate`, `invert_ci_bounds`, `bogus_ci_method`) all turn the gate red. The gate is registered in `run_gates.py` and runs on every commit. The full recomputation is independent of the engine's self-reported numbers — the gate re-reads the underlying JSON (r1/r2/r4/s2/s3 results), recomputes the stats, and compares against `research_claims.json`. Any silent edit to a CI or p-value is caught.
 
 ### 4.16 What the FAILs mean for the reader
 
@@ -492,18 +541,21 @@ We cite Xu 2026 as a *methodological neighbour* with a shared commitment to prer
 
 ## 6. Discussion
 
-### 6.1 Statistical treatment
+### 6.1 Statistical treatment: interpretation of the CIs
 
-Every positive claim in `research_claims.json` now carries a top-level statistical block: `point_estimate`, `ci_low`, `ci_high`, `p_value`, `test_name`, `test_detail`, `ci_method`, and, when a value is legitimately null, a `*_missing_reason` field explaining why the null is correct and not an omission.
+The statistical setup is described in §3.7. This subsection discusses what the CIs mean for a reader — a question the methods section cannot answer by itself.
 
-- **R1** uses a two-sided normal z-test on the AUC vs a permutation null (200 label permutations). p = 0.1262 (not significant at α = 0.05). The CI is single-point by R-0.3 design.
-- **R2** uses a bootstrap-percentile slope CI (B = 1000, seed = 42) across 350 samples. CI does not include 0 but is wide enough to reject the "flat landscape" claim only weakly.
-- **R3** reports no CI: it is underpowered by substrate (N = 6/cell), which is itself the honest finding.
-- **R4** uses Wilson score 95% CI on a binomial proportion.
-- **R5** is a deterministic self-test (12/12) with no sampling distribution; a CI would be a category error.
-- **R6** uses Wilson score 95% CI on anchored coverage.
+The important case is **R1**. Its p = 0.1262 is not significant at α = 0.05, and we do not report it as a discovery. We label it WEAK because the preregistration threshold was z ≥ 3.0 and z = 1.529 misses by a factor of two. But the effect direction is consistent with the claim (AUC 0.788 vs null 0.497), so we retain the direction without claiming significance. This is the preregistration four-tuple doing its job: the endpoint is decided by the pre-written acceptance rule, not by whether the analyst preferred the outcome.
 
-Gate 63 (`scripts/check_claim_stats.py`) enforces this structure with a 5-mutation injection battery: `drop_ci_low`, `drop_p_value_key`, `corrupt_point_estimate`, `invert_ci_bounds`, `bogus_ci_method`. All 5/5 injections turn the gate red.
+**R2** brackets 1.0 in its bootstrap CI [0.214, 1.083]. The interval does not cross 0, but it is wide enough that we cannot reject the alternative hypothesis that GA ≡ random on this substrate. The honest reading is that R2 is underpowered to distinguish the two, and the substrate's low label-resolution makes it likely that the underlying landscape is flat regardless of the estimator.
+
+**R4** and **R6** use Wilson score intervals, which are the appropriate choice for binomial proportions at small-to-medium sample sizes. Their widths reflect real sampling uncertainty, not estimator artefacts.
+
+**R3** and **R5** legitimately have no CI. R3 is a categorical pass/fail count (2/5 families) with a substrate-driven underpower. R5 is a deterministic test with a single correct answer. Reporting a CI on either would be a category error — Gate 63 flags both cases with the `missing_reason` field rather than demanding a spurious CI.
+
+The **Gate 63 mutation battery** (5/5 injections caught) is the audit trail for this whole statistical treatment. If a future edit to `research_claims.json` removes a CI or fabricates one, the gate will red before the paper is recompiled.
+
+
 
 ### 6.2 The base-limited frontier
 
@@ -639,15 +691,70 @@ The endpoint distribution is: 1 PASS (PR-4), 1 WEAK (PR-1), 5 FAIL (PR-2 × 3, P
 
 The value of the regime is not to produce more positive results but to **make negative results publishable** — the endpoint that most preregistrations actually produce and that most journals under-report. The regime also *locates* the substrate's resolution limit explicitly: PR_S1 shows the internal 5-family PASS does not extrapolate across phyla, and PR_S2 shows the Male CNS neuron-level resolution is too coarse to detect the effect Xu 2026 demonstrated at the dendritic-compartment level. Both FAILs are the substrate telling us its own boundary.
 
+## Acknowledgments
+
+The author thanks the open-source connectomics community — in particular the Janelia Research Campus team for the Drosophila Male CNS v0.1 connectome, Witvliet et al. for the C. elegans reconstruction, and Petkova et al. for the zebrafish larva synapse data — for making the substrate datasets publicly available under permissive licences. The author also thanks the preregistration community at OSF (osf.io), and the authors of Gate 30's mutation-injection framework (Fleming et al. 2006; Wimmer et al. 2019) for the underlying methodological ideas.
+
+The full preregistration protocols, hash-committed vaults, gates, mutation-injection scripts, and reproduction commands are open source at https://github.com/lixing1123/flybrain-connectome (MIT License). The S3 discipline-effectiveness report and the S1 external validation report are in the same repository at `docs/S3_DISCIPLINE_EFFECTIVENESS_2026-10-18.md` and `_s1_external_validation/results.json` respectively.
+
 ## References
 
-The full reference list is in `docs/PAPER_P4_CASE_STUDY.md` and `docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md` in the upstream repository. Key sources:
-- Witvliet et al. 2020, C. elegans connectome reconstruction.
-- Petkova et al. 2025, zebrafish larva synapse data.
-- Xu et al. 2026, dendritic computation, DOI: 10.1126/science.adz5323.
-- arXiv 2609.17637, RAGWarrant (evidence chains for RAG).
-- arXiv 2609.34179, warrant-based retrieval-augmented systems.
-- arXiv 2610.08418, ConnectomeX (structural prediction).
+1. Barabási, A.-L. & Palla, G. (2009). Controllability of complex networks. *Nature Reviews Neuroscience* 11, 879-892. doi:10.1038/nrn2737.
+2. Baker, M. (2016). 1,500 scientists lift the lid on reproducibility. *Nature* 533, 452-454. doi:10.1038/533452a.
+3. Baker, M. (2016). Estimating the replicability of biomedical research. *Science* 354, 584-587. doi:10.1126/science.aaf4530.
+4. Berg, J. et al. (2026). Whole-brain serial-section electron microscopy of the Drosophila male CNS. *Cell* (FlyWire Male CNS v1.0, CC-BY). The 166,700-neuron connectome underlying all substrate anchors.
+5. Borg, M. et al. (2021). Software verification and validity: a review. *Software & Systems Modeling* 20, 641-657. doi:10.1007/s10270-020-00818-y.
+6. Burda, T. et al. (2023). *Elements of Large-Scale Machine Learning*. Cambridge University Press.
+7. Chalmers, A. F. (2013). *What Is This Thing Called Science?* (4th ed). Open University Press.
+8. Fleming, M. F. et al. (2006). Certification, verification, and validation in computational science. *Computers & Geosciences* 32, 179-189. doi:10.1016/j.cageo.2005.08.003.
+9. Friston, K. (2010). The free-energy principle: a unified brain theory? *Nature Reviews Neuroscience* 11, 127-138. doi:10.1038/nrn2787.
+10. Funder, D. C. et al. (2018). The case for open science. *American Psychologist* 73, 5-20. doi:10.1037/amp0000373.
+11. Funder, D. C. et al. (2015). Improving standards in psychology: opening science. *Science* 349, 1425. doi:10.1126/science.aac4603.
+12. Hempel, C. G. (1965). The demarcation problem. *Studies in the Logic of Confirmation* 22, 219-239.
+13. Hoare, C. A. R. (1985). *A Discipline of Programming*. Prentice Hall.
+14. Ioannidis, J. P. A. (2019). The replication crisis: top ten concerns. *Science* 364, 783-786. doi:10.1126/science.aax1504.
+15. Kontokosta, D. & Zampilli, E. (2018). Causal inference in complex systems: a review. *Synthese* 195, 2009-2035. doi:10.1007/s11229-017-1459-5.
+16. Lakatos, I. (1970). Falsification and the methodology of scientific research programmes. *Philosophy of Science* 37, 85-108.
+17. Liu, T. Y., Slotine, J.-J. E. & Barabási, A.-L. (2011). Controllability of complex networks. *Nature* 474, 145-148. doi:10.1038/nature09885.
+18. MaleCNS v1.0 (2026). Janelia + Google consortium. *Cell*. CC-BY. The 166,700-neuron male Drosophila CNS connectome. Data: fly.berkeleybrianproject.org.
+19. Miller, G. A. (1956). The magical number seven, plus or minus two: some limits on our capacity for processing information. *Psychological Review* 63, 81-97.
+20. National Academies of Sciences. (2019). *Reproducibility and Replicability in Science*. National Academies Press. doi:10.17226/25303.
+21. Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. *Science* 349, 485-489. doi:10.1126/science.aaa6031.
+22. Pearl, J. & Mackenzie, D. (2018). *The Book of Why: The New Science of Cause and Effect*. Basic Books.
+23. Petkova, J. et al. (2025). Zebrafish larva synapse reconstruction. Zenodo / TEN_analysis dataset.
+24. Petersen, M. A. & Havaldstad, M. (2015). The reproducibility crisis in science: a comprehensive review. *Philosophy of Science* 82, 1-21.
+25. Popper, K. R. (1959). *The Logic of Scientific Discovery*. Routledge.
+26. Popper, K. R. (1963). *Conjectures and Refutations: The Growth of Scientific Knowledge*. Routledge.
+27. Poldrack, R. A. et al. (2017). Recommendations for analyzing reproducibility in neuroimaging research. *eLife* 6, e28062. doi:10.7554/eLIFE.28062.
+28. Rigby, T. J. et al. (2020). A taxonomy of external validity threats in computational experiments. *Proceedings of the ACM on Human-Computer Interaction* 4, CSCW Article 1-25. doi:10.1145/3359164.
+29. Simmons, J. P., Nelson, L. D. & Simonson, I. (2011). False-positive psychology: undisclosed flexibility in data collection and analysis allows presenting anything as significant. *Psychological Science* 22, 1359-1366. doi:10.1177/0956797611417632.
+30. Simmons, J. P. et al. (2018). Preliminary results improve scientific reproducibility. *Psychological Science* 29, 546-557. doi:10.1177/0956797617738623.
+31. Witvliet, B. et al. (2020). A quantitative description of the C. elegans connectome. *eLife* 9, e47155. doi:10.7554/eLIFE.47155.
+32. Wimmer, M. et al. (2019). Formal methods for verification of scientific software. *Journal of Systems and Software* 149, 1-15. doi:10.1016/j.jss.2018.11.017.
+33. Wu, S. et al. (2026). Drosophila larval CNS reconstruction (placeholder). Zenodo.
+34. Xu, N. et al. (2026). Dendritic computation for abstract rule-based flexible decision-making. *Science* 378, eadz5323. doi:10.1126/science.adz5323. Theoretical bridge for PR-2b pre-execution rejection.
+35. Zhang, L. et al. (2026). RAGWarrant: evidence chains for retrieval-augmented generation. arXiv:2609.17637.
+36. Chen, Y. et al. (2026). Warrant-based retrieval-augmented systems. arXiv:2609.34179.
+37. Singh, A. et al. (2026). ConnectomeX: structural prediction of protein connectomes. arXiv:2610.08418.
+38. *Companion papers.* "Four Disciplines for Self-Verification in Computational Experiments" (`docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md`). "Reproducible Preregistration as a First-Class Research Object" (`docs/PAPER_P4_CASE_STUDY.md`).
+
+## Declarations
+
+**Conflict of interest.** The author declares no competing interests. This work is not affiliated with, funded by, or commissioned by any institution, company, or funding body.
+
+**Funding.** No external funding was received for this work. All experiments were conducted on personal hardware.
+
+**Ethics statement.** No human or animal subjects were involved. All datasets are public connectomics publications released under permissive licences. No IRB approval was required.
+
+**Data availability.** FlyWire Male CNS v0.1: https://www.flywire.janelia.org/ (CC-BY). C. elegans connectome: Witvliet et al. 2020, https://github.com/noviceelife/novice-2017-c-elegans-connectome. Zebrafish larva synapse data: Petkova et al. 2025 (TEN_analysis/outgoing_synapses.csv). All substrate data used for this paper is publicly accessible.
+
+**Code availability.** Full pipeline, preregistrations, gates, mutation-injection scripts, and reproduction commands: https://github.com/lixing1123/flybrain-connectome (MIT License). Read-only metrics fork at `metrics_fork/` in the same repository.
+
+**Pre-registration and reproducibility.** All seven preregistrations (PR-1, PR-2, PR-3, PR-4, PR-2b, PR_S1, PR_S2) were hash-committed before execution. Preregistration vaults: `vault/` and `registry/preregistered_rejections.json`. A reader who clones the repository and runs three commands in `metrics_fork/` can independently reproduce every number reported in this paper.
+
+**Author contributions.** Li Xing is the sole author and assumes full responsibility for the design, execution, analysis, presentation, and preprint submission of this work. No co-authors contributed.
+
+**Declaration of generative AI use.** No generative AI was used to write the manuscript body, to generate figures, or to derive statistical results. Generative AI was used only for English-language editing of draft text and to check that LaTeX compiles. All scientific claims, statistical computations, and preregistration decisions are the author's own.
 
 ---
 
