@@ -7,11 +7,28 @@
 [![docker](https://img.shields.io/badge/docker-2.90.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 
-**v3.00.0 · 2026-10-21 · 116 functional units · 270 module profiles · 61 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62/63 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ Gate 63 research_claims 顶层统计完整性 + 作者署名规范化（P-3 / P-4 → Li Xing + ORCID）+ bioRxiv 投稿准备包**
+**v3.00.0 · 2026-10-23 · 116 functional units · 270 module profiles · 61 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62/63 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ Gate 63 research_claims 顶层统计完整性 + 作者署名规范化（P-3 / P-4 → Li Xing + ORCID）+ bioRxiv 投稿准备包 + flybrain demo 一条命令 + 5 分钟上手**
 
-> **Traceable synthetic bio-topology generator**, grounded in the real
-> *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
-> 124,177,617 synapses, CC-BY).
+> ### The 89% problem
+>
+> Deloitte's 2026 agent-pilot survey found **89% of enterprise agent pilots
+> never reach production**. Teradata: 78% have pilots, only 14% scaled. The
+> failure pattern repeats across industries in three words:
+>
+> **"跑不稳、管不住、查不清"** — unstable, ungovernable, unauditable.
+>
+> `flybrain-connectome` addresses the third word. Every agent edge in a
+> generated topology traces back to a real neuron or synapse class in the
+> *Drosophila* male brain connectome, serialized as **W3C PROV-JSON** — the
+> same format EU AI Act auditors expect. Your agent swarm isn't a black box;
+> it's a verifiable structure with biological provenance.
+>
+> **[5-minute quickstart](docs/QUICKSTART_5MIN.md)** — from zero to an
+> interactive D3 topology graph in five minutes, no data download.
+
+> **Auditable Agent Topology — 可审计的 Agent 拓扑生成与溯源**, grounded in
+> the real *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700
+> neurons / 124,177,617 synapses, CC-BY).
 
 `flybrain-connectome` turns a real, published brain wiring diagram into
 **task-tailored multi-agent topologies** you can instantiate as agent swarms —
@@ -1153,9 +1170,9 @@ for client configs, the 47-tool reference, and troubleshooting.
 The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
-python scripts/run_gates.py              # 63 gates, no dataset needed
+python scripts/run_gates.py              # 61 gates, no dataset needed
 python scripts/run_gates.py --quick      # the 53 gates that don't need numpy / a server
-python scripts/run_gates.py --with-data  # 63 gates: + `flybrain verify` (70 assertions)
+python scripts/run_gates.py --with-data  # 61 gates: + `flybrain verify` (70 assertions)
 ```
 
 ### Makefile shortcuts (v2.43.0)
