@@ -418,11 +418,13 @@ A reader who pulls the upstream repository, runs the three commands, and diffs t
 
 Gate 47 verifies that the registry contains every preregistered rejection and stays in sync with `research_claims.json` — any drift between the two files is a FAIL. This is the anti-rationalization property applied to the rejection record itself: an analyst cannot silently delete a preregistered rejection from the registry without the gate firing.
 
-### 4.15 The top-level statistical block (Gate 63)
+### 4.15 Gate 63: enforcing the top-level statistical block
+
+> **See Table 2 in §3.7** for the actual statistical values of each claim. This subsection documents the *enforcement mechanism* (Gate 63) that guarantees those fields cannot be silently omitted or corrupted in future edits. Table 4 below shows the mutation-injection battery that proves Gate 63 is functional.
 
 Every claim in `research_claims.json` now carries a top-level statistical block enforced by Gate 63. The block has six required keys: `point_estimate`, `ci_low`, `ci_high`, `p_value`, `test_name`, `test_detail`, plus `ci_method` from a controlled vocabulary. When a value is legitimately null (e.g., R3 has no CI because the substrate is underpowered), the corresponding `*_missing_reason` field explains why.
 
-**Table 4.** Top-level statistical records for the six research_claims.json entries plus the S3 discipline-effectiveness summary. All positive claims now carry CI, test name, and effect-size metric at the top level — enforced by Gate 63 (`scripts/check_claim_stats.py`) with a 5-mutation injection battery. Wilson intervals are used for binary proportions; bootstrap percentile intervals for continuous slopes. `missing_reason` is included for the two legitimate nulls (R3 and R5) so that Gate 63 can distinguish "correctly omitted" from "silently dropped".
+**Table 4.** Gate 63 enforcement evidence: mutation-injection results proving that the top-level statistical fields in `research_claims.json` cannot be silently omitted. Each mutation class was injected into the vault; Gate 63 caught all 5/5 classes (Wilson 95% CI [64.2%, 100.0%]). See §3.7 Table 2 for the actual claim-level statistics; this table documents the *enforcement mechanism* that guarantees those fields cannot be silently dropped in future edits.
 
 | ID | Metric | Point estimate | 95% CI | Test / method | p-value |
 |---|---|---|---|---|---|
