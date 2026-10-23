@@ -205,3 +205,9 @@ flybrain-bundle-*.bundle
 # Pre-check snapshots (transient)
 .d3_precheck/
 .d3_backup_paths.json
+
+# Experiment output directories (v2.99.0+ cleanup)
+_*/*
+!_verify.py
+!_audit_p1_task_effect.py
+!_probe_llm.py
