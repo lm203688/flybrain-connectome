@@ -131,10 +131,11 @@ The toolkit needs one runtime dependency (`numpy`, because the connectome
 engine imports it at module level) plus optional extras for provenance and
 columnar IO. No other third-party code is required. Pick either setup:
 
-> **Note (2026-09-22):** this repo is **private** until the git-history
-> rewrite is complete. You need a GitHub account with access to
-> `lm203688/flybrain-connectome`; the clone commands below still work once
-> you're authenticated (`gh auth login` or SSH keys).
+> **Repo status:** **PUBLIC** since 2026-10-18. No authentication required —
+> the clone commands below work directly. History was audited and cleaned
+> before publicization (see [CHANGELOG v1.3.0](CHANGELOG.md) for the original
+> Tier-2 IP leak and [docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md](docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md)
+> for the 16-step publicization runbook).
 
 ### A. Clone and run (recommended, verified end-to-end)
 
@@ -176,7 +177,7 @@ recorded. The *standardized* W3C PROV-JSON bundle (`prov_json`) is serialized
 by the optional [`dataprov`](https://github.com/RI-SE/dataprov) package:
 
 ```bash
-pip install "flybrain-connectome[prov]"   # or simply: pip install dataprov
+pip install dataprov                     # or: pip install "flybrain-connectome[prov]" (once on PyPI)
 ```
 
 Without it the toolkit still runs: `prov_json` becomes `null` and
@@ -249,7 +250,7 @@ flybrain motifs --out motifs.json      # live pull from the service
 
 ```bash
 flybrain generate --blueprint predictive_coding_v2 --modules 5 --agents-per-module 8
-# -> generated_organisms/<name>.{json,html} + swarmlabs/<name>.swarm.{json,yaml}
+# -> flybrain-connectome-mcp/generated_organisms/<name>.{json,html} + flybrain-connectome-mcp/swarmlabs/<name>.swarm.{json,yaml}
 ```
 
 ### 5. Read the C. elegans developmental axis
@@ -320,7 +321,9 @@ flybrain-connectome/
 │   ├── motifs/                     drop-in client + derived motif snapshot
 │   ├── synthetic_bio_topology.py   ★ C1 generator (motif → agent graph + config + PROV)
 │   ├── _verify.py                  end-to-end smoke test (70/70)
-│   └── generated_organisms/        example artifacts (json/html + swarm configs)
+│   └── flybrain-connectome-mcp/
+│       ├── generated_organisms/     example artifacts (json/html + swarm configs)
+│       └── swarmlabs/               swarm config exports
 ├── integrations/swarmlabs/         consistency checkers + diagnostics (reproducible experiments)
 ├── scripts/                        run_gates.py · check_no_secrets.py · check_docs_consistency.py
 │                                   check_mcp_tools.py · check_degraded_mode.py
@@ -1150,9 +1153,9 @@ for client configs, the 47-tool reference, and troubleshooting.
 The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
-python scripts/run_gates.py              # 61 gates, no dataset needed
+python scripts/run_gates.py              # 63 gates, no dataset needed
 python scripts/run_gates.py --quick      # the 53 gates that don't need numpy / a server
-python scripts/run_gates.py --with-data  # 61 gates: + `flybrain verify` (70 assertions)
+python scripts/run_gates.py --with-data  # 63 gates: + `flybrain verify` (70 assertions)
 ```
 
 ### Makefile shortcuts (v2.43.0)
@@ -1283,9 +1286,9 @@ generator surface and the packaging, while the data path is proved by
 
 ## License & data provenance
 
-- **Code:** MIT — see [LICENSE](LICENSE). The repo is currently **private**
-  (2026-09-22); see [LICENSE-CLAUSE.md](LICENSE-CLAUSE.md) for the 3-tier
-  split and the re-publicization plan.
+- **Code:** MIT — see [LICENSE](LICENSE). Repo is **PUBLIC** since 2026-10-18.
+  See [LICENSE-CLAUSE.md](LICENSE-CLAUSE.md) for the 3-tier split and the
+  re-publicization history.
 - **Connectome data:** MaleCNS v1.0, CC-BY. The 5.63 GB dataset is **not**
   included in this repository. Obtain it from the original publication and set
   `FLYBRAIN_DATA_DIR`. All numbers in this project are derived from that real
