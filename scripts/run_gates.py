@@ -564,6 +564,22 @@ def main() -> int:
         "bogus_ci_method) must all turn the gate red.",
         [py, str(SCRIPTS / "check_claim_stats.py")])[0]))
 
+    # ---- Gate 64: flybrain audit CLI integrity (P2-4) ----
+    results.append(("gate64 audit CLI", run(
+        "GATE 64 — flybrain audit CLI integrity (P2-4): the 'audit' "
+        "subcommand must be registered in flybrain_cli.py (parser + "
+        "handler + dispatch), must exit 0 on a valid organism JSON, "
+        "must exit 1 on a broken organism (catches edge.target not in "
+        "nodes, edge.module not in module_profiles, topology_profile "
+        "drift), must exit 1 on a nonexistent file, and must actually "
+        "produce an ERROR section (not a stub). Gate 39 meta-discipline "
+        "honored: 3-mutation injection battery (drop_edge_target, "
+        "corrupt_module_id, drift_topology_profile) must all turn the "
+        "gate red. This packages the project's most valuable capability "
+        "— PROV-JSON + structural integrity checking — as a standalone "
+        "command any user can run on any artifact.",
+        [py, str(SCRIPTS / "check_audit_cli.py"), "--quiet"])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:
