@@ -4,6 +4,44 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.00.0] - 2026-10-23
+
+### Added
+- `flybrain demo` CLI command (P0-3): one-command showcase that generates a
+  predictive_coding_v2 topology (5 modules x 8 agents), writes JSON + HTML +
+  SwarmLabs config, and optionally opens the HTML in the default browser.
+  Fully offline — no data download required.
+
+### Fixed
+- **B1: 7 DOIs added to `references.bib`** (Friston 2010, Funder 2018, etc.)
+  Header now warns that entries without confirmed DOI must be looked up in
+  Zotero/JabRef before submission.
+- **B2: Table 4 re-differentiated from Table 2** in PAPER_P1_MAINLINE_MERGED.md.
+  Table 4 now documents Gate 63 mutation-injection enforcement evidence
+  (5/5 classes caught, Wilson 95% CI [64.2%, 100.0%]) rather than repeating
+  the claim-level statistics from Table 2. §4.15 explicitly points readers
+  back to Table 2 in §3.7 for the actual statistics.
+- **B3: 5 `table*.md` intermediate files deleted** from `docs/figures/p1_mainline/`.
+  LaTeX directory retains canonical copies.
+- **P0-1: README 5 contradictions fixed:**
+  - Install section "private until 2026-09-22" → "PUBLIC since 2026-10-18"
+  - Output path `generated_organisms/` → `flybrain-connectome-mcp/generated_organisms/`
+  - Gate count `61 gates` → `63 gates` (both quick and full)
+  - License section "private (2026-09-22)" → "PUBLIC since 2026-10-18"
+  - pip install clarified: `flybrain-connectome[prov]` not yet on PyPI
+
+### Changed
+- `.gitignore`: added `_*/*` pattern for experiment output directories
+  (P0-4) — keeps `_*` dirs in git but ignores their contents. Exceptions
+  for `_verify.py`, `_audit_p1_task_effect.py`, `_probe_llm.py` which are
+  real scripts, not experiment output.
+
+### Notes
+- P0-2 (PyPI publish) requires user credentials — not automated.
+- P0-5 (README GIF/screenshot) requires screenshot tooling — deferred.
+- P1-1 to P2-4 (examples, hosted demo, narrative reposition, community infra)
+  are 2-8 week items — tracked in `docs/FIVE_DIMENSION_UPGRADE_2026-10-22.md`.
+
 The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
