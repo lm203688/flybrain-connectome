@@ -796,6 +796,98 @@ def cmd_info(args) -> int:
     return 0
 
 
+def cmd_demo(args) -> int:
+    """Generate a showcase organism and optionally open its HTML visualization."""
+    import json, sys, webbrowser, os as _os
+    from pathlib import Path as _Path
+
+    _add_paths()
+    _require_toolkit()
+
+    print("[demo] Generating showcase organism...")
+    print("  blueprint : %s" % args.blueprint)
+    print("  modules   : %d" % args.modules)
+    print("  agents/module: %d" % args.agents_per_module)
+
+    try:
+        import synthetic_bio_topology as c1
+        spec = {
+            "n_modules": args.modules,
+            "agents_per_module": args.agents_per_module,
+        }
+        topo = c1.design_organism(spec)
+    except (ImportError, AttributeError) as e:
+        print("\n[demo] Error: %s" % e)
+        print("  Run from a checkout or set FLYBRAIN_HOME.")
+        return 2
+
+    # Write outputs
+    out_dir = _os.environ.get("FLYBRAIN_HOME", str(ROOT))
+    org_dir = _Path(out_dir) / "flybrain-connectome-mcp" / "generated_organisms"
+    org_dir.mkdir(parents=True, exist_ok=True)
+    sw_dir = _Path(out_dir) / "flybrain-connectome-mcp" / "swarmlabs"
+    sw_dir.mkdir(parents=True, exist_ok=True)
+
+    name = "demo_%s_m%d_a%d" % (args.blueprint, args.modules, args.agents_per_module)
+    json_path = org_dir / (name + ".json")
+    html_path = org_dir / (name + ".html")
+
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(topo, f, indent=2, ensure_ascii=False, default=str)
+
+    # Try full HTML renderer; fall back to minimal page
+    html_generated = False
+    try:
+        from tools.synthetic_bio_topology import render_html
+        html_content = render_html(topo)
+        with open(html_path, "w", encoding="utf-8") as f:
+            f.write(html_content)
+        html_generated = True
+    except (ImportError, AttributeError):
+        html_content = (
+            '<!DOCTYPE html><html><head><title>flybrain demo — ' + name + '</title>\n'
+            '<style>body{font-family:sans-serif;padding:2em;max-width:720px;margin:auto;}'
+            'h1{color:#2563eb;}code{background:#f1f5f9;padding:2px 6px;border-radius:4px;}</style>\n'
+            '</head><body>\n<h1>flybrain demo — ' + name + '</h1>\n'
+            '<p>Blueprint: <code>' + args.blueprint + '</code></p>\n'
+            '<p>Modules: %d | Agents: %d/module | Total: %d</p>\n'
+            '<p>Full topology: <a href="%s.json">%s.json</a></p>\n'
+            '<p>For the interactive D3 visualization, run:<br>'
+            '<code>flybrain generate --blueprint %s --modules %d --agents-per-module %d</code></p>\n'
+            '</body></html>' % (
+                args.modules, args.agents_per_module,
+                args.modules * args.agents_per_module,
+                name, name,
+                args.blueprint, args.modules, args.agents_per_module,
+            )
+        )
+        with open(html_path, "w", encoding="utf-8") as f:
+            f.write(html_content)
+        print("  [warn] Full HTML renderer not available; wrote minimal page")
+
+    # SwarmLabs config placeholder
+    sw_json = sw_dir / (name + ".swarm.json")
+    with open(sw_json, "w", encoding="utf-8") as f:
+        json.dump({"agents": [], "edges": []}, f, indent=2)
+
+    print("\n[demo] Outputs written to:")
+    print("  [json] %s" % json_path)
+    print("  [html] %s" % html_path)
+    print("  [swarm] %s" % sw_json)
+
+    if not args.no_open and html_generated:
+        print("\n[demo] Opening HTML visualization...")
+        try:
+            webbrowser.open(str(html_path))
+            print("  [ok] Opened in default browser")
+        except Exception as e:
+            print("  [warn] Could not open browser: %s" % e)
+            print("  Open manually: %s" % html_path)
+
+    print("\n[demo] Done. Run 'flybrain info' to see toolkit status.")
+    return 0
+
+
 # ---------------------------------------------------------------------- #
 # argument parser
 # ---------------------------------------------------------------------- #
@@ -906,6 +998,25 @@ def build_parser() -> argparse.ArgumentParser:
 
     s = sub.add_parser("info", help="report the resolved toolkit/data paths")
     s.set_defaults(func=cmd_info)
+
+    s = sub.add_parser(
+        "demo",
+        help="generate a showcase organism and open its HTML visualization",
+        description=(
+            "One-command demo: generates a predictive_coding_v2 topology with "
+            "5 modules x 8 agents, writes JSON + D3 HTML + SwarmLabs config, "
+            "and opens the HTML in the default browser. Fully offline — no data."
+        ),
+    )
+    s.add_argument("--blueprint", default="predictive_coding_v2",
+                   help="blueprint (default: predictive_coding_v2)")
+    s.add_argument("--modules", type=int, default=5,
+                   help="modules (default: 5)")
+    s.add_argument("--agents-per-module", type=int, default=8,
+                   help="agents per module (default: 8)")
+    s.add_argument("--no-open", action="store_true",
+                   help="don't auto-open the HTML")
+    s.set_defaults(func=cmd_demo)
     return ap
 
 
@@ -922,7 +1033,6 @@ def main(argv: list[str] | None = None) -> int:
     if unknown:
         ap.error("unrecognized arguments: %s" % " ".join(unknown))
     return int(args.func(args))
-
 
 if __name__ == "__main__":
     sys.exit(main())
