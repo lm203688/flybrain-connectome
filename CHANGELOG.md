@@ -4,6 +4,34 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.00.1] - 2026-10-24
+
+### Added
+- **P2-4: `flybrain audit` CLI subcommand** — packages the project's most
+  valuable capability (PROV-JSON + structural integrity checking) as a
+  standalone command any user can run on any organism or swarmlabs JSON
+  artifact. Checks: schema_version compatibility, node/edge referential
+  integrity (both node-level `source/target` and module-level `from/to`
+  conventions), module_id consistency, role binding, PROV-JSON presence
+  (W3C `@context` validation), metrics completeness, topology_profile
+  sanity. Exit code 0 on PASS, 1 on ERRORs. Designed for CI integration
+  and pre-submission sanity checks.
+- **Gate 64: audit CLI integrity** (`scripts/check_audit_cli.py`) — 5 checks
+  (CLI registered, valid organism exits 0, broken organism exits 1 and
+  catches 3 specific errors, nonexistent file exits 1, handler not stub)
+  + 3-mutation injection battery (drop_edge_target, corrupt_module_id,
+  drift_topology_profile) all red on tamper.
+
+### Changed
+- README gate count: 61 → 62 gates (after adding Gate 64).
+- README header updated to v3.00.1.
+
+### Notes
+- The audit command catches real data quality issues found in demo output:
+  the "Full HTML renderer not available" fallback path produces organisms
+  with module-level edges (`from`/`to`/`module`/`kind`) rather than
+  node-level edges (`source`/`target`). Both conventions are now accepted.
+
 ## [3.00.0] - 2026-10-23
 
 ### Added
