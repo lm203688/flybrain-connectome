@@ -36,6 +36,11 @@ and it can prove, for every edge, *which real neuron / synapse class it came
 from*. The motif provenance is serialized as **W3C PROV-JSON**, the same
 standard EU AI Act auditors expect.
 
+![flybrain-connectome topology preview](docs/README_showcase.gif)
+
+*5-module × 8-agent topology (predictive_coding_v2 blueprint) — the same graph
+you get from `flybrain demo`. [Try it live →](docs/demo/index.html)*
+
 It is a **developer toolkit and research artifact**, not a trained model and
 not a simulation of a fly. Read the [honest boundaries](#honest-boundaries)
 before you quote it.
