@@ -1,6 +1,6 @@
 # bioRxiv Submission — Paste-Ready Metadata
 
-**Prepared for user manual submission on 2026-10-20**
+**Prepared for user manual submission on 2026-10-20 (updated 2026-10-24)**
 
 Two papers to submit in order: **P-3 first**, then P-2.
 
@@ -8,6 +8,40 @@ Two papers to submit in order: **P-3 first**, then P-2.
 - P-2 PDF: `P2_submit.pdf` (434 KB, 16 pages)
 
 Instructions in `docs/A_LEG_ARXIV_SUBMISSION_GUIDE_2026-10-19.md` (§ adapted below).
+
+---
+
+## Pre-submission 5-Step Checklist
+
+**Tick all 5 before clicking "Submit".** Estimated total: 20 minutes.
+
+- [ ] **1. Compile the PDFs locally**
+  - Install Tectonic: `winget install tactiq.Tectonic`
+  - Build P-3: `cd outputs/SCI_SUBMISSION_PACKAGE_2026-10-20/06_latex_manuscript/p3_selfverification && tectonic p3_selfverification.tex`
+  - Build P-2 (P4 in our internal naming): `cd .../p4_prereject && tectonic p4_prereject.tex`
+  - Verify PDFs look correct (open both, check figures render, references list is populated)
+  - Copy the resulting `.pdf` files to `P3_submit.pdf` and `P2_submit.pdf` at the repo root
+- [ ] **2. Verify author identity consistency**
+  - ORCID: `0000-0002-8747-1969` (Li Xing / 李星)
+  - Given name: `Xing` · Family name: `Li`
+  - Email: `xingli1123@outlook.com`
+  - Affiliation: `Independent Researcher, Shenzhen, China`
+  - Confirm PDF front matter matches (open the PDFs, first page)
+- [ ] **3. Verify repository URL is public**
+  - Visit https://github.com/lm203688/flybrain-connectome
+  - Should load without login (verify by opening in incognito)
+  - The README should show "PUBLIC since 2026-10-18"
+- [ ] **4. Log into bioRxiv**
+  - Homepage https://www.biorxiv.org/ → click `SIGN UP` in top-right
+  - (Or SIGN IN if you already have an account)
+  - Confirm you see your profile name after login
+- [ ] **5. Sanity check the PDFs one more time**
+  - Open P3_submit.pdf → verify title, author, abstract all correct
+  - Open P2_submit.pdf → verify title, author, abstract all correct
+  - Verify no placeholder text like `TODO`, `<insert>`, `XXX`
+  - Verify all citations resolve (no `[?]` or empty reference numbers)
+
+**If any checkbox fails, fix it before proceeding. bioRxiv keeps ALL versions public — you can only mark as "withdrawn", not delete.**
 
 ---
 
@@ -179,10 +213,14 @@ bioRxiv's moderation is 24-72 hours. You will receive an email with:
 
 **Immediately after receiving both DOIs, tell me and I will:**
 1. Update `docs/arxiv_paper.md` References with bioRxiv DOIs
-2. Bump project version to v2.99.0
-3. Update CHANGELOG.md
-4. Push via `gh_publish.py`
-5. Run gates to verify 56/56 quick + 60/60 full still PASS
+2. Update `docs/PAPER_P1_MAINLINE_MERGED.md` with bioRxiv citations
+3. Update the 3 LaTeX `references.bib` files in `06_latex_manuscript/`
+4. Bump project version (currently v3.00.1)
+5. Update CHANGELOG.md
+6. Rebuild dist/ (sdist + wheel) if version changed
+7. Push via `gh_publish.py`
+8. Run gates to verify 58/58 quick PASS
+9. Add `data_availability` and `code_availability` fields to CITATION.cff with bioRxiv URLs
 
 ---
 
