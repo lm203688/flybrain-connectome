@@ -1,9 +1,149 @@
-<!DOCTYPE html><html><head><title>flybrain demo — demo_predictive_coding_v2_m5_a8</title>
-<style>body{font-family:sans-serif;padding:2em;max-width:720px;margin:auto;}h1{color:#2563eb;}code{background:#f1f5f9;padding:2px 6px;border-radius:4px;}</style>
-</head><body>
-<h1>flybrain demo — demo_predictive_coding_v2_m5_a8</h1>
-<p>Blueprint: <code>predictive_coding_v2</code></p>
-<p>Modules: 5 | Agents: 8/module | Total: 40</p>
-<p>Full topology: <a href="demo_predictive_coding_v2_m5_a8.json">demo_predictive_coding_v2_m5_a8.json</a></p>
-<p>For the interactive D3 visualization, run:<br><code>flybrain generate --blueprint predictive_coding_v2 --modules 5 --agents-per-module 8</code></p>
-</body></html>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>flybrain-connectome · Auditable Agent Topology Demo</title>
+<style>
+  *{box-sizing:border-box;}
+  body{margin:0;font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif;background:#0f1117;color:#e6e6e6;}
+  header{padding:16px 24px;background:linear-gradient(90deg,#171a23,#0f1117);border-bottom:1px solid #2a2f3a;display:flex;align-items:center;justify-content:space-between;}
+  header h1{margin:0;font-size:18px;color:#fff;font-weight:600;}
+  header h1 span{color:#7c5cff;}
+  header .meta{font-size:12px;color:#8a94a6;}
+  header .meta code{background:#1f2430;padding:2px 8px;border-radius:4px;color:#8ab4ff;font-size:11px;}
+  #wrap{display:flex;height:calc(100vh - 65px);}
+  #stage{flex:1;position:relative;overflow:hidden;}
+  svg{width:100%;height:100%;display:block;background:radial-gradient(circle at 50% 45%,#161b26,#0f1117 70%);}
+  #panel{width:290px;background:#171a23;padding:16px;box-sizing:border-box;overflow:auto;border-left:1px solid #2a2f3a;}
+  #panel h2{font-size:14px;margin:0 0 12px;color:#fff;font-weight:600;}
+  .metric{display:flex;justify-content:space-between;font-size:12px;padding:5px 0;border-bottom:1px solid #232833;}
+  .metric span:last-child{color:#8ab4ff;font-variant-numeric:tabular-nums;font-weight:600;}
+  .legend{font-size:11px;margin-top:16px;line-height:1.9;color:#b8bfc9;}
+  .sw{display:inline-block;width:11px;height:11px;border-radius:2px;margin-right:6px;vertical-align:middle;}
+  .sw-line{display:inline-block;width:14px;height:2px;margin-right:6px;vertical-align:middle;}
+  #tip{position:absolute;pointer-events:none;background:rgba(0,0,0,0.85);color:#fff;padding:8px 12px;border-radius:6px;font-size:11px;max-width:260px;display:none;z-index:5;line-height:1.6;border:1px solid #2a2f3a;}
+  .node{cursor:grab;}
+  .node:active{cursor:grabbing;}
+  text{font-size:10px;fill:#cfd6e4;pointer-events:none;user-select:none;}
+  .cta{margin-top:20px;padding:12px;background:#1a1f2b;border:1px solid #2a2f3a;border-radius:6px;font-size:11px;line-height:1.6;}
+  .cta a{color:#8ab4ff;text-decoration:none;}
+  .cta a:hover{text-decoration:underline;}
+  footer{position:absolute;bottom:8px;left:12px;font-size:10px;color:#5a6373;}
+  footer a{color:#7a8290;text-decoration:none;}
+</style>
+</head>
+<body>
+<header>
+  <h1>flybrain-connectome · <span>Auditable Agent Topology</span></h1>
+  <div class="meta">
+    blueprint <code>predictive_coding_v2</code> · 5 modules × 8 agents · 46 nodes · 25 edges
+  </div>
+</header>
+<div id="wrap">
+  <div id="stage"><svg id="svg"></svg><div id="tip"></div>
+    <footer>Powered by flybrain-connectome v3.00.1 · <a href="../README.md">README</a> · <a href="topology.json">topology.json</a></footer>
+  </div>
+  <div id="panel">
+    <h2>Topology Stats</h2>
+    <div id="metrics"></div>
+    <div class="legend">
+      <b style="color:#e6e6e6">Nodes</b>
+      <div><span class="sw" style="background:#e5484d"></span>Guardrail hub (inhibitory)</div>
+      <div><span class="sw" style="background:#f5a623"></span>Tissue representative</div>
+      <div><span class="sw" style="background:#7c5cff"></span>Cell (module-colored)</div>
+      <div><span class="sw" style="background:#4cc9f0"></span>Reservoir buffer</div>
+      <b style="color:#e6e6e6;margin-top:12px;display:block">Edges</b>
+      <div><span class="sw-line" style="background:#e5484d;border-top:2px dashed #e5484d"></span>Inhibitory (negative weight)</div>
+      <div><span class="sw-line" style="background:#4361ee"></span>Reservoir cross-module</div>
+      <div><span class="sw-line" style="background:#2ec4b6"></span>Recurrent memory</div>
+    </div>
+    <div class="cta">
+      <b style="color:#e6e6e6">Try it yourself</b><br>
+      <code style="color:#8ab4ff">flybrain demo</code> — one command<br>
+      Full source: <a href="https://github.com/lm203688/flybrain-connectome">GitHub</a>
+    </div>
+  </div>
+</div>
+<script>
+const org = {"schema_version": "1.2.1", "kind": "virtual_organism", "generated_utc": "2026-10-24T00:08:21.600673+00:00", "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)", "spec": {"n_modules": 5, "agents_per_module": 8}, "blueprint": null, "blueprint_edges_added": 0, "motif_provenance": null, "module_profiles": {"0": {"name": "sensory", "description": "High-density input buffer (ol_intrinsic analog)"}, "1": {"name": "memory", "description": "Recurrent working memory (cb_intrinsic analog)"}, "2": {"name": "motor", "description": "Motor output with local inhibition (vnc_intrinsic)"}, "3": {"name": "integration", "description": "Cross-module integration with inhibition"}, "4": {"name": "attention", "description": "Attention allocation with selective inhibition"}}, "organism": {"nodes": [{"id": "m0_a0", "role": "cell", "module": 0, "profile": "sensory", "task_hint": "data_ingest"}, {"id": "m0_a1", "role": "cell", "module": 0, "profile": "sensory", "task_hint": "signal_preprocess"}, {"id": "m0_a2", "role": "cell", "module": 0, "profile": "sensory", "task_hint": "stream_buffer"}, {"id": "m0_a3", "role": "cell", "module": 0, "profile": "sensory", "task_hint": "sensor_noise_filter"}, {"id": "m0_a4", "role": "cell", "module": 0, "profile": "sensory", "task_hint": "data_ingest"}, {"id": "m0_a5", "role": "cell", "module": 0, "profile": "sensory", "task_hint": "signal_preprocess"}, {"id": "m0_a6", "role": "cell", "module": 0, "profile": "sensory", "task_hint": "stream_buffer"}, {"id": "m0_a7", "role": "cell", "module": 0, "profile": "sensory", "task_hint": "sensor_noise_filter"}, {"id": "m0_rep", "role": "tissue_rep", "module": 0, "profile": "sensory", "task_hint": "input_triage"}, {"id": "m1_a0", "role": "cell", "module": 1, "profile": "memory", "task_hint": "gp_surrogate_fit"}, {"id": "m1_a1", "role": "cell", "module": 1, "profile": "memory", "task_hint": "prior_recall"}, {"id": "m1_a2", "role": "cell", "module": 1, "profile": "memory", "task_hint": "state_carry"}, {"id": "m1_a3", "role": "cell", "module": 1, "profile": "memory", "task_hint": "history_replay"}, {"id": "m1_a4", "role": "cell", "module": 1, "profile": "memory", "task_hint": "gp_surrogate_fit"}, {"id": "m1_a5", "role": "cell", "module": 1, "profile": "memory", "task_hint": "prior_recall"}, {"id": "m1_a6", "role": "cell", "module": 1, "profile": "memory", "task_hint": "state_carry"}, {"id": "m1_a7", "role": "cell", "module": 1, "profile": "memory", "task_hint": "history_replay"}, {"id": "m1_rep", "role": "tissue_rep", "module": 1, "profile": "memory", "task_hint": "memory_synthesis"}, {"id": "m2_a0", "role": "cell", "module": 2, "profile": "motor", "task_hint": "experiment_run"}, {"id": "m2_a1", "role": "cell", "module": 2, "profile": "motor", "task_hint": "numeric_integration"}, {"id": "m2_a2", "role": "cell", "module": 2, "profile": "motor", "task_hint": "output_check"}, {"id": "m2_a3", "role": "cell", "module": 2, "profile": "motor", "task_hint": "actuation_dispatch"}, {"id": "m2_a4", "role": "cell", "module": 2, "profile": "motor", "task_hint": "experiment_run"}, {"id": "m2_a5", "role": "cell", "module": 2, "profile": "motor", "task_hint": "numeric_integration"}, {"id": "m2_a6", "role": "cell", "module": 2, "profile": "motor", "task_hint": "output_check"}, {"id": "m2_a7", "role": "cell", "module": 2, "profile": "motor", "task_hint": "actuation_dispatch"}, {"id": "m2_rep", "role": "tissue_rep", "module": 2, "profile": "motor", "task_hint": "output_coordination"}, {"id": "m3_a0", "role": "cell", "module": 3, "profile": "integration", "task_hint": "candidate_rank"}, {"id": "m3_a1", "role": "cell", "module": 3, "profile": "integration", "task_hint": "cross_domain_bridge"}, {"id": "m3_a2", "role": "cell", "module": 3, "profile": "integration", "task_hint": "elo_scoring"}, {"id": "m3_a3", "role": "cell", "module": 3, "profile": "integration", "task_hint": "arbitrate_conflict"}, {"id": "m3_a4", "role": "cell", "module": 3, "profile": "integration", "task_hint": "candidate_rank"}, {"id": "m3_a5", "role": "cell", "module": 3, "profile": "integration", "task_hint": "cross_domain_bridge"}, {"id": "m3_a6", "role": "cell", "module": 3, "profile": "integration", "task_hint": "elo_scoring"}, {"id": "m3_a7", "role": "cell", "module": 3, "profile": "integration", "task_hint": "arbitrate_conflict"}, {"id": "m3_rep", "role": "tissue_rep", "module": 3, "profile": "integration", "task_hint": "cross_module_arbitration"}, {"id": "m4_a0", "role": "cell", "module": 4, "profile": "attention", "task_hint": "attention_focus"}, {"id": "m4_a1", "role": "cell", "module": 4, "profile": "attention", "task_hint": "salience_detection"}, {"id": "m4_a2", "role": "cell", "module": 4, "profile": "attention", "task_hint": "filter_irrelevant"}, {"id": "m4_a3", "role": "cell", "module": 4, "profile": "attention", "task_hint": "prioritize_signal"}, {"id": "m4_a4", "role": "cell", "module": 4, "profile": "attention", "task_hint": "attention_focus"}, {"id": "m4_a5", "role": "cell", "module": 4, "profile": "attention", "task_hint": "salience_detection"}, {"id": "m4_a6", "role": "cell", "module": 4, "profile": "attention", "task_hint": "filter_irrelevant"}, {"id": "m4_a7", "role": "cell", "module": 4, "profile": "attention", "task_hint": "prioritize_signal"}, {"id": "m4_rep", "role": "tissue_rep", "module": 4, "profile": "attention", "task_hint": "attention_allocation"}, {"id": "coordinator", "role": "guardrail", "source": "APL(body 10540)", "task_hint": "global_guardrail"}], "edges": [{"from": "m0_rep", "to": "m0_rep", "weight": 0.1, "kind": "recurrent", "module": 0}, {"from": "m1_rep", "to": "m1_rep", "weight": 0.4, "kind": "recurrent", "module": 1}, {"from": "m2_rep", "to": "m2_rep", "weight": 0.1, "kind": "recurrent", "module": 2}, {"from": "m3_rep", "to": "m3_rep", "weight": 0.25, "kind": "recurrent", "module": 3}, {"from": "m4_rep", "to": "m4_rep", "weight": 0.2, "kind": "recurrent", "module": 4}, {"from": "m0_a2", "to": "m0_rep", "weight": 0.405, "kind": "reservoir", "module": 0}, {"from": "m0_a4", "to": "m0_a3", "weight": 0.505, "kind": "reservoir", "module": 0}, {"from": "m0_a5", "to": "m4_a4", "weight": 0.799, "kind": "reservoir", "module": 0}, {"from": "m1_a1", "to": "m1_a2", "weight": 0.899, "kind": "reservoir", "module": 1}, {"from": "m1_a4", "to": "m1_a3", "weight": 0.967, "kind": "reservoir", "module": 1}, {"from": "m2_a1", "to": "m2_rep", "weight": 0.71, "kind": "reservoir", "module": 2}, {"from": "m3_a0", "to": "m1_a5", "weight": 0.239, "kind": "reservoir", "module": 3}, {"from": "m3_a4", "to": "m3_rep", "weight": 0.109, "kind": "reservoir", "module": 3}, {"from": "m2_rep", "to": "m2_a2", "weight": -0.445, "kind": "inhibitory", "module": 2}, {"from": "m2_rep", "to": "m2_a0", "weight": -0.463, "kind": "inhibitory", "module": 2}, {"from": "m3_rep", "to": "m3_a1", "weight": -0.503, "kind": "inhibitory", "module": 3}, {"from": "m3_rep", "to": "m3_a0", "weight": -0.551, "kind": "inhibitory", "module": 3}, {"from": "m3_rep", "to": "m3_a5", "weight": -0.569, "kind": "inhibitory", "module": 3}, {"from": "m4_rep", "to": "m4_a6", "weight": -0.482, "kind": "inhibitory", "module": 4}, {"from": "m4_rep", "to": "m4_a7", "weight": -0.31, "kind": "inhibitory", "module": 4}, {"from": "coordinator", "to": "m0_rep", "weight": -1.0, "kind": "inhibitory", "module": 0}, {"from": "coordinator", "to": "m1_rep", "weight": -0.8, "kind": "inhibitory", "module": 1}, {"from": "coordinator", "to": "m2_rep", "weight": -0.6, "kind": "inhibitory", "module": 2}, {"from": "coordinator", "to": "m3_rep", "weight": -0.4, "kind": "inhibitory", "module": 3}, {"from": "coordinator", "to": "m4_rep", "weight": -0.2, "kind": "inhibitory", "module": 4}]}, "metrics": {"n_nodes": 46, "n_edges": 25, "avg_degree": 1.087, "inhibition_ratio": 0.48, "n_modules": 5, "intra_module_edges": 18, "inter_module_edges": 7, "modularity_est": 0.72, "profile_breakdown": {"sensory": {"nodes": 9, "edges": 4}, "memory": {"nodes": 9, "edges": 3}, "motor": {"nodes": 9, "edges": 4}, "integration": {"nodes": 9, "edges": 6}, "attention": {"nodes": 9, "edges": 3}, "uniform": {"nodes": 1, "edges": 5}}}, "topology_profile": {"status": "ok", "signature": "sha256:4dc1f273025e116ecda516aeed351c7d08c806311fdd66a00d2459ef47d04d7c", "size": {"n_nodes": 46, "n_edges": 25, "density": 0.012077, "self_loops": 5, "n_modules": 5}, "spectral_radius": 0.4, "modularity_q": 0.4584, "reciprocity": 0.0, "feedback_edge_fraction": 0.2, "not_measured": ["dynamics", "energy", "task_performance", "biological_validity"]}, "role_binding": {"status": "ok", "rule_id": "cross_species_role_binding", "multiplier_semantic": "cross_species_invariance", "binding_key": ["wiring_role", "topology_position"], "ignore_fields": ["cell_type_label", "species", "lineage"], "tiers": ["sensory", "relay", "motor"], "n_groups": 5, "n_cross_species_groups": 0, "groups": [{"wiring_role": "execute", "topology_position": "relay", "n_profiles": 1, "profiles": ["motor"], "species": [], "n_species": 0, "cross_species_substitutable": false, "modules": ["2"]}, {"wiring_role": "focus", "topology_position": "relay", "n_profiles": 1, "profiles": ["attention"], "species": [], "n_species": 0, "cross_species_substitutable": false, "modules": ["4"]}, {"wiring_role": "gp_surrogate", "topology_position": "relay", "n_profiles": 1, "profiles": ["memory"], "species": [], "n_species": 0, "cross_species_substitutable": false, "modules": ["1"]}, {"wiring_role": "perceive", "topology_position": "sensory", "n_profiles": 1, "profiles": ["sensory"], "species": [], "n_species": 0, "cross_species_substitutable": false, "modules": ["0"]}, {"wiring_role": "rank", "topology_position": "relay", "n_profiles": 1, "profiles": ["integration"], "species": [], "n_species": 0, "cross_species_substitutable": false, "modules": ["3"]}]}, "prov_json": null};
+const svg = document.getElementById('svg');
+const tip = document.getElementById('tip');
+const NS = 'http://www.w3.org/2000/svg';
+const W = ()=>svg.clientWidth, H = ()=>svg.clientHeight;
+
+const m = org.metrics || {};
+let mhtml = '';
+for (const k in m){ mhtml += '<div class="metric"><span>'+k+'</span><span>'+m[k]+'</span></div>'; }
+document.getElementById('metrics').innerHTML = mhtml;
+
+const nodes = (org.organism.nodes||[]).map(n=>({...n, x:0,y:0,vx:0,vy:0, fx:null,fy:null}));
+const idToIdx = {}; nodes.forEach((n,i)=>idToIdx[n.id]=i);
+const N = nodes.length;
+const edges = (org.organism.edges||[]).map(e=>({...e, s:idToIdx[e.from], t:idToIdx[e.to]})).filter(e=>e.s!==undefined && e.t!==undefined);
+
+const palette = ['#7c5cff','#3a86ff','#06d6a0','#ffd166','#ef476f','#ff9f1c','#118ab2','#8338ec'];
+function nodeColor(n){
+  if(n.role==='guardrail') return '#e5484d';
+  if(n.role==='tissue_rep') return '#f5a623';
+  if(n.role==='cell') return palette[(n.module||0)%palette.length];
+  if(n.role==='reservoir') return '#4cc9f0';
+  return '#9aa3b2';
+}
+function nodeR(n){ if(n.role==='guardrail') return 15; if(n.role==='tissue_rep') return 11; if(n.role==='reservoir') return 7; return 6; }
+
+const gE = document.createElementNS(NS,'g'); svg.appendChild(gE);
+const gN = document.createElementNS(NS,'g'); svg.appendChild(gN);
+const edgeEls = edges.map(e=>{ const l=document.createElementNS(NS,'line');
+  l.setAttribute('stroke', e.kind==='inhibitory'?'#e5484d':(e.kind==='recurrent'?'#2ec4b6':'#4361ee'));
+  l.setAttribute('stroke-width', Math.max(0.6, 2.4*Math.abs(e.weight||0.5)));
+  if(e.kind==='inhibitory') l.setAttribute('stroke-dasharray','5 4');
+  l.setAttribute('opacity','0.55'); gE.appendChild(l); return l; });
+const nodeEls = nodes.map(n=>{ const g=document.createElementNS(NS,'g'); g.setAttribute('class','node');
+  const c=document.createElementNS(NS,'circle'); c.setAttribute('r', nodeR(n)); c.setAttribute('fill', nodeColor(n));
+  c.setAttribute('stroke','#0f1117'); c.setAttribute('stroke-width','1.5'); g.appendChild(c);
+  const t=document.createElementNS(NS,'text'); t.setAttribute('text-anchor','middle'); t.setAttribute('dy','3');
+  t.textContent=(n.id.length>11?n.id.slice(0,10)+'…':n.id); g.appendChild(t); gN.appendChild(g); return {g,c,t}; });
+
+const R = ()=>svg.getBoundingClientRect();
+let drag=null;
+gN.querySelectorAll('.node').forEach((g,i)=>{
+  g.addEventListener('mousedown', ev=>{ drag=nodes[i]; drag.fx=drag.x; drag.fy=drag.y; ev.preventDefault(); });
+  g.addEventListener('mouseenter', ()=>{ const n=nodes[i]; tip.style.display='block';
+    tip.innerHTML='<b>'+n.id+'</b><br>role: '+n.role+(n.module!==undefined?'<br>module: '+n.module:'')+(n.profile?'<br>profile: '+n.profile:''); });
+  g.addEventListener('mousemove', ev=>{ const r=R(); tip.style.left=(ev.clientX-r.left+12)+'px'; tip.style.top=(ev.clientY-r.top+12)+'px'; });
+  g.addEventListener('mouseleave', ()=>{ tip.style.display='none'; });
+});
+window.addEventListener('mousemove', ev=>{ if(drag){ const r=R(); drag.fx=ev.clientX-r.left; drag.fy=ev.clientY-r.top; } });
+window.addEventListener('mouseup', ()=>{ if(drag){ drag.fx=null; drag.fy=null; drag=null; } });
+edgeEls.forEach((l,i)=>{ l.style.pointerEvents='stroke';
+  l.addEventListener('mouseenter', ()=>{ const e=edges[i]; tip.style.display='block';
+    tip.innerHTML=(e.from||'?')+' → '+(e.to||'?')+'<br>weight: '+(e.weight||0)+'<br>kind: '+(e.kind||'?'); });
+  l.addEventListener('mousemove', ev=>{ const r=R(); tip.style.left=(ev.clientX-r.left+12)+'px'; tip.style.top=(ev.clientY-r.top+12)+'px'; });
+  l.addEventListener('mouseleave', ()=>{ tip.style.display='none'; }); });
+
+let alpha=1;
+function tick(){
+  const cx=W()/2, cy=H()/2;
+  for(let i=0;i<N;i++){ const a=nodes[i];
+    if(a.fx!==null){ a.x=a.fx; a.y=a.fy; a.vx=0; a.vy=0; continue; }
+    for(let j=0;j<N;j++){ if(i===j) continue; const b=nodes[j]; let dx=a.x-b.x, dy=a.y-b.y;
+      let d2=dx*dx+dy*dy+0.01; let f=9000/d2; let d=Math.sqrt(d2); a.vx+=dx/d*f*alpha; a.vy+=dy/d*f*alpha; }
+    a.vx+=(cx-a.x)*0.012*alpha; a.vy+=(cy-a.y)*0.012*alpha;
+  }
+  for(const e of edges){ const a=nodes[e.s], b=nodes[e.t]; let dx=b.x-a.x, dy=b.y-a.y;
+    let d=Math.sqrt(dx*dx+dy*dy)+0.01; const L=72; const k=0.03*(1-Math.abs(e.weight||0.5)*0.6);
+    const f=(d-L)*k; const fx=dx/d*f, fy=dy/d*f; a.vx+=fx; a.vy+=fy; b.vx-=fx; b.vy-=fy; }
+  for(let i=0;i<N;i++){ const a=nodes[i]; if(a.fx!==null) continue;
+    a.vx*=0.86; a.vy*=0.86; a.x+=a.vx; a.y+=a.vy; }
+  alpha=Math.max(alpha*0.992, 0.02);
+  edgeEls.forEach((l,i)=>{ const e=edges[i]; l.setAttribute('x1',nodes[e.s].x); l.setAttribute('y1',nodes[e.s].y);
+    l.setAttribute('x2',nodes[e.t].x); l.setAttribute('y2',nodes[e.t].y); });
+  nodeEls.forEach((el,i)=>{ const n=nodes[i]; el.g.setAttribute('transform','translate('+n.x+','+n.y+')'); });
+  requestAnimationFrame(tick);
+}
+nodes.forEach((n,i)=>{ const a=2*Math.PI*i/N; n.x=W()/2+Math.min(W(),H())*0.32*Math.cos(a); n.y=H()/2+Math.min(W(),H())*0.32*Math.sin(a); });
+tick();
+</script>
+</body>
+</html>
