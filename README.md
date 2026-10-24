@@ -6,8 +6,11 @@
 [![version](https://img.shields.io/badge/version-3.00.2-orange.svg)](CHANGELOG.md)
 [![docker](https://img.shields.io/badge/docker-2.90.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
+<!-- JOSS badge — activate when PAPER_P3 is accepted:
+[![JOSS](https://joss.theoj.org/papers/YYYY/xx.xx.bbb/badge.svg)](https://doi.org/10.21105/joss.YYYY.XXX)
+-->
 
-**v3.00.2 · 2026-10-23 · 116 functional units · 270 module profiles · 62 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62/63 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ Gate 63 research_claims 顶层统计完整性 + 作者署名规范化（P-3 / P-4 → Li Xing + ORCID）+ bioRxiv 投稿准备包 + flybrain demo 一条命令 + 5 分钟上手**
+**v3.00.2 · 2026-10-24 · 116 functional units · 270 module profiles · 62 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62/63/64 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ Gate 63 research_claims 顶层统计完整性 + 作者署名规范化（P-3 / P-4 → Li Xing + ORCID）+ bioRxiv 投稿准备包 + flybrain demo 一条命令 + 5 分钟上手 + flybrain audit CLI + JOSS 投稿包 + MCP 生态提交包 + 9 篇论文 DOI 补齐**
 
 > ### The 89% problem
 >
