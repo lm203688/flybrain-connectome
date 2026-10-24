@@ -1,6 +1,6 @@
 # Traceable Synthetic Bio-Topology Generation from a Real Brain Connectome
 
-**Lexing (厉兴)**  
+**Li Xing (李星)**  
 Independent researcher  
 `lm203688/flybrain-connectome` · MIT License (Tier-1 code; public)
 
