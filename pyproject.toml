@@ -10,10 +10,10 @@ readme = "README.md"
 requires-python = ">=3.10"
 license = { text = "MIT" }
 authors = [
-    { name = "Lexing (厉兴)", email = "lm203688@users.noreply.github.com" },
+    { name = "Li Xing (李星)", email = "lm203688@users.noreply.github.com" },
 ]
 maintainers = [
-    { name = "Lexing (厉兴)" },
+    { name = "Li Xing (李星)" },
 ]
 keywords = [
     "connectome", "multi-agent", "topology", "provenance", "drosophila",
