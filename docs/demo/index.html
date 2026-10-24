@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>flybrain-connectome — Interactive Demo</title>
+<style>
+:root {
+  --bg: #0f172a;
+  --panel: #1e293b;
+  --border: #334155;
+  --text: #e2e8f0;
+  --muted: #94a3b8;
+  --accent: #3b82f6;
+  --accent2: #10b981;
+  --warn: #f59e0b;
+}
+* { margin: 0; padding: 0; box-sizing: border-box; }
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  min-height: 100vh;
+}
+.header {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border-bottom: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+}
+.header h1 {
+  font-size: 2rem;
+  margin-bottom: 0.5rem;
+  background: linear-gradient(135deg, #3b82f6, #10b981);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+.header .subtitle {
+  color: var(--muted);
+  font-size: 1.1rem;
+  margin-bottom: 1rem;
+}
+.header .badges {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  flex-wrap: wrap;
+}
+.badge {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 6px;
+  padding: 0.4rem 0.8rem;
+  font-size: 0.85rem;
+  color: var(--muted);
+}
+.badge strong { color: var(--text); }
+.demo-section {
+  max-width: 1200px;
+  margin: 2rem auto;
+  padding: 0 2rem;
+}
+.demo-frame {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+}
+.demo-frame-header {
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  padding: 1rem 1.5rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.demo-frame-title {
+  font-size: 1rem;
+  font-weight: 600;
+}
+.demo-frame-actions {
+  display: flex;
+  gap: 0.5rem;
+}
+.demo-frame-btn {
+  background: var(--accent);
+  color: white;
+  border: none;
+  border-radius: 6px;
+  padding: 0.4rem 1rem;
+  font-size: 0.85rem;
+  cursor: pointer;
+  text-decoration: none;
+  transition: opacity 0.2s;
+}
+.demo-frame-btn:hover { opacity: 0.8; }
+.demo-frame-btn.secondary {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  color: var(--text);
+}
+.demo-iframe {
+  width: 100%;
+  height: 700px;
+  border: none;
+  display: block;
+}
+.info-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 1.5rem;
+  margin: 2rem 0;
+}
+.info-card {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+}
+.info-card h3 {
+  color: var(--accent);
+  margin-bottom: 0.5rem;
+  font-size: 1.1rem;
+}
+.info-card p {
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-bottom: 0.5rem;
+}
+.info-card code {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 4px;
+  padding: 0.2rem 0.5rem;
+  font-size: 0.85rem;
+  color: var(--accent2);
+}
+.footer {
+  background: var(--panel);
+  border-top: 1px solid var(--border);
+  padding: 2rem;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.9rem;
+  margin-top: 3rem;
+}
+.footer a {
+  color: var(--accent);
+  text-decoration: none;
+}
+.footer a:hover { text-decoration: underline; }
+.quickstart {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin: 2rem 0;
+}
+.quickstart h3 {
+  margin-bottom: 1rem;
+  color: var(--accent);
+}
+.quickstart pre {
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 1rem;
+  overflow-x: auto;
+  font-size: 0.85rem;
+  color: var(--accent2);
+}
+.stats {
+  display: flex;
+  gap: 2rem;
+  justify-content: center;
+  flex-wrap: wrap;
+  margin: 1rem 0;
+}
+.stat {
+  text-align: center;
+}
+.stat-value {
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: var(--accent);
+}
+.stat-label {
+  font-size: 0.8rem;
+  color: var(--muted);
+}
+</style>
+</head>
+<body>
+
+<div class="header">
+  <h1>flybrain-connectome</h1>
+  <p class="subtitle">Auditable Agent Topology — 可审计的 Agent 拓扑生成与溯源</p>
+  <div class="badges">
+    <span class="badge">v<strong>3.00.1</strong></span>
+    <span class="badge"><strong>116</strong> functional units</span>
+    <span class="badge"><strong>270</strong> module profiles</span>
+    <span class="badge"><strong>58</strong>/58 gates PASS</span>
+    <span class="badge"><strong>36</strong> MCP tools</span>
+  </div>
+</div>
+
+<div class="demo-section">
+
+  <div class="info-grid">
+    <div class="info-card">
+      <h3>🧠 Real Connectome Anchor</h3>
+      <p>Grounded in the real <em>Drosophila</em> MaleCNS connectome: 166,700 neurons / 124,177,617 synapses (Xu et al. 2020, <em>Neuron</em>).</p>
+    </div>
+    <div class="info-card">
+      <h3>🔍 PROV-JSON Provenance</h3>
+      <p>Every edge carries W3C PROV-JSON provenance — the same standard EU AI Act auditors expect. Audit any topology with <code>flybrain audit</code>.</p>
+    </div>
+    <div class="info-card">
+      <h3>🛠️ MCP-Native</h3>
+      <p>36 tools callable from Claude, Cursor, or any MCP client. Drop-in for agent workflows.</p>
+    </div>
+  </div>
+
+  <div class="stats">
+    <div class="stat"><div class="stat-value">5</div><div class="stat-label">Modules</div></div>
+    <div class="stat"><div class="stat-value">40</div><div class="stat-label">Agents</div></div>
+    <div class="stat"><div class="stat-value">46</div><div class="stat-label">Nodes</div></div>
+    <div class="stat"><div class="stat-value">25</div><div class="stat-label">Edges</div></div>
+    <div class="stat"><div class="stat-value">predictive_coding_v2</div><div class="stat-label">Blueprint</div></div>
+  </div>
+
+  <div class="demo-frame">
+    <div class="demo-frame-header">
+      <div class="demo-frame-title">📊 Interactive Topology — predictive_coding_v2 (5 modules × 8 agents)</div>
+      <div class="demo-frame-actions">
+        <a href="topology.html" target="_blank" class="demo-frame-btn">Open Fullscreen</a>
+        <a href="topology.json" target="_blank" class="demo-frame-btn secondary">View JSON</a>
+      </div>
+    </div>
+    <iframe src="topology.html" class="demo-iframe" title="Interactive topology visualization"></iframe>
+  </div>
+
+  <div class="quickstart">
+    <h3>⚡ 5-Minute Quickstart</h3>
+    <pre><code># 1. Clone &amp; install
+git clone https://github.com/lm203688/flybrain-connectome.git
+cd flybrain-connectome
+pip install -e ".[dev]"
+
+# 2. Generate a showcase organism (one command)
+flybrain demo
+
+# 3. Audit any topology for structural integrity
+flybrain audit flybrain-connectome-mcp/generated_organisms/demo_predictive_coding_v2_m5_a8.json</code></pre>
+  </div>
+
+</div>
+
+<div class="footer">
+  <p>flybrain-connectome · v3.00.1 · 2026-10-24</p>
+  <p>
+    <a href="https://github.com/lm203688/flybrain-connectome">GitHub</a> ·
+    <a href="https://github.com/lm203688/flybrain-connectome/blob/main/docs/QUICKSTART_5MIN.md">5-Minute Quickstart</a> ·
+    <a href="https://github.com/lm203688/flybrain-connectome/tree/main/examples">Examples</a>
+  </p>
+  <p style="margin-top:1rem; font-size:0.8rem;">
+    This demo page is hosted on GitHub Pages. Enable it via: Settings → Pages → Source: main branch, /docs directory.
+  </p>
+</div>
+
+</body>
+</html>
