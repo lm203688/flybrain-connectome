@@ -44,7 +44,7 @@ Two entries, ready to hand to the arXiv v4 UI form (or `arxiv` submission script
       "paper_title": "Preregistered Rejection as a First-Class Negative Result",
       "subtitle": "A methodological note on pre-execution refusal in preregistered research",
       "authors": [
-        {"name": "Lexing (厉兴)", "affiliation": "Independent Researcher",
+        {"name": "Li Xing (李星)", "affiliation": "Independent Researcher",
          "institution": "lm203688/flybrain-connectome", "orcid": null, "email": null}
       ],
       "primary_subject": "stat.ME",
@@ -70,7 +70,7 @@ Two entries, ready to hand to the arXiv v4 UI form (or `arxiv` submission script
       "paper_title": "Four Disciplines for Self-Verification in Computational Experiments",
       "subtitle": "Turning research discipline into machine-enforced gates",
       "authors": [
-        {"name": "Lexing (厉兴)", "affiliation": "Independent Researcher",
+        {"name": "Li Xing (李星)", "affiliation": "Independent Researcher",
          "institution": "lm203688/flybrain-connectome", "orcid": null, "email": null}
       ],
       "primary_subject": "stat.ME",
