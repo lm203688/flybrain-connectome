@@ -2,7 +2,7 @@
 
 **A methodological note on turning research discipline into machine-enforced gates**
 
-Lexing (厉兴)  
+Li Xing (李星)  
 Independent researcher  
 `lm203688/flybrain-connectome` · MIT License
 
