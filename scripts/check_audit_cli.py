@@ -3,7 +3,7 @@
 
 Why this exists
 ---------------
-v3.00.1 added the ``flybrain audit`` CLI subcommand (P2-4 from the
+v3.00.2 added the ``flybrain audit`` CLI subcommand (P2-4 from the
 FIVE_DIMENSION_UPGRADE report). It packages the project's most valuable
 capability — PROV-JSON + structural integrity checking — as a standalone
 command any user can run on any organism or swarmlabs JSON artifact.
