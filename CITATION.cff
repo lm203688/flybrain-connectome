@@ -14,8 +14,8 @@ abstract: >-
   stability) are reported alongside two negative results (no compute advantage,
   no energy advantage) under matched controls.
 authors:
-  - family-names: "Lexing"
-    given-names: "厉兴"
+  - family-names: "Li"
+    given-names: "Xing"
     alias: "lm203688"
 repository-code: "https://github.com/lm203688/flybrain-connectome"
 url: "https://github.com/lm203688/flybrain-connectome"
@@ -33,8 +33,8 @@ preferred-citation:
   type: article
   title: "Traceable Synthetic Bio-Topology Generation from a Real Brain Connectome"
   authors:
-    - family-names: "Lexing"
-      given-names: "厉兴"
+    - family-names: "Li"
+      given-names: "Xing"
       alias: "lm203688"
   year: 2026
   month: 9
