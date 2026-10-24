@@ -2,7 +2,7 @@
 
 **A methodological note on pre-execution refusal in preregistered research**
 
-Lexing (厉兴)  
+Li Xing (李星)  
 Independent researcher  
 `lm203688/flybrain-connectome` · MIT License
 
