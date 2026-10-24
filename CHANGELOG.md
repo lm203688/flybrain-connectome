@@ -4,7 +4,7 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
-## [3.00.1] - 2026-10-24
+## [3.00.2] - 2026-10-24
 
 ### Added
 - **P2-4: `flybrain audit` CLI subcommand** — packages the project's most
@@ -21,16 +21,46 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   catches 3 specific errors, nonexistent file exits 1, handler not stub)
   + 3-mutation injection battery (drop_edge_target, corrupt_module_id,
   drift_topology_profile) all red on tamper.
+- **JOSS submission package** — `outputs/SCI_SUBMISSION_PACKAGE_2026-10-20/02_submission_guides/JOSS_SUBMISSION_PACKAGE.md`
+  (12-item self-audit, 5-step pre-submission checklist, 45-min budget)
+  and `outputs/SCI_SUBMISSION_PACKAGE_2026-10-20/01_manuscripts/PAPER_P3_JOSS_PREREG_DISCIPLINE.md`
+  (4-page JOSS methodology paper following JOSS template, 12/12 requirements PASS).
+- **`paper.md` at repo root** — the JOSS paper is committed at the repo root
+  (JOSS standard convention) so the JOSS bot can pick it up automatically.
 
 ### Changed
 - README gate count: 61 → 62 gates (after adding Gate 64).
-- README header updated to v3.00.1.
+- README header updated to v3.00.2.
+- **Stray log files archived** — 3 gate logs (`gates_out.log`,
+  `gates_v2500.log`, `gates_v2500_quick.log`) moved to `_archive/logs/`.
+- **P2/P3 PDF/HTML submissions archived** — 4 files (`P2_submit.pdf`,
+  `P2_submit.html`, `P3_submit.pdf`, `P3_submit.html`) moved to
+  `outputs/SCI_SUBMISSION_PACKAGE_2026-10-20/` alongside their canonical copies.
+- **Root directory cleanup attempted and reverted** — 33 `_*` experiment output
+  directories were moved to `_archive/experiments/` (2026-10-24 12:15) but the
+  10 discipline gates that reference these paths (`check_c1_c3`,
+  `check_intervention_test`, `check_recovery_dynamics`,
+  `check_generalization_matrix`, `check_metric_substitution`, `check_pr_s1`,
+  `check_preregistered_claims`, `check_llm_orchestrator`, `check_metrics_fork`,
+  `check_claim_redteam`) fail because they hardcode `ROOT / "_foo_dir" / ...`.
+  The move was reverted 15 min later; the experiment dirs stay at top level and
+  remain gitignored via `_*/*` — the public repo was already clean of them, so
+  no cleanup was needed. The `.gitignore` change was also reverted. **Lesson**:
+  the FIVE_DIMENSION report §2.1 "root directory pollution" is a false alarm for
+  the public view (gitignored files don't ship) but the local working tree does
+  look cluttered. This is a local-development concern, not a public-facing one.
 
 ### Notes
 - The audit command catches real data quality issues found in demo output:
   the "Full HTML renderer not available" fallback path produces organisms
   with module-level edges (`from`/`to`/`module`/`kind`) rather than
   node-level edges (`source`/`target`). Both conventions are now accepted.
+- **FIVE_DIMENSION_UPGRADE_2026-10-22 completion status**: 12/13 (92%).
+  The single remaining gap is PyPI publish (requires user credentials).
+- **JOSS recommendation** (post-2026-10-24 assessment): JOSS is the highest-
+  hit-rate venue for this project. See `JOSS_SUBMISSION_PACKAGE.md` for the
+  45-minute submission plan; bioRxiv is still the recommended first move
+  for the P-2 long-form version.
 
 ## [3.00.0] - 2026-10-23
 
