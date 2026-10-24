@@ -6,56 +6,19 @@ blueprint (MaleCNS v1.0 derived motifs).
 
 ## Live demo
 
-Once GitHub Pages is enabled (see below), the demo is available at:
+GitHub Pages is enabled. The demo is live at:
 
-```
-https://lm203688.github.io/flybrain-connectome/demo/
-```
+- **Root landing page**: https://lm203688.github.io/flybrain-connectome/
+- **Interactive demo**: https://lm203688.github.io/flybrain-connectome/demo/
+- **Standalone visualization**: https://lm203688.github.io/flybrain-connectome/demo/topology.html
 
-## Enabling GitHub Pages (one-time setup — 5 minutes)
+## Pages configuration
 
-Follow these steps **in order** in your GitHub account (log in as `lm203688`):
-
-### 1. Open the repo's Pages settings
-
-Go to: **https://github.com/lm203688/flybrain-connectome/settings/pages**
-
-You should land on the "GitHub Pages" settings page.
-
-### 2. Set Source
-
-- Under **Build and deployment** → **Source**
-- Select **"Deploy from a branch"**
-- (Do NOT pick "Use GitHub Actions" unless you want to add a workflow later)
-
-### 3. Set Branch and Folder
-
+- **Source**: Deploy from a branch
 - **Branch**: `main`
 - **Folder**: `/docs`
-
-### 4. Click Save
-
-The page will show "There isn't a GitHub Pages site here" for 2–5 minutes
-while GitHub builds and deploys.
-
-### 5. Verify
-
-Once ready, visit:
-
-```
-https://lm203688.github.io/flybrain-connectome/demo/
-```
-
-You should see the interactive D3 topology visualization.
-
-### Troubleshooting
-
-| Symptom | Cause | Fix |
-|---|---|---|
-| "There isn't a GitHub Pages site here" after 10 min | Build in progress | Check **Actions** tab for the `pages-build-deployment` workflow status |
-| 404 at `/demo/` | Folder set to `/` instead of `/docs` | Go back to Pages settings, set Folder to `/docs` |
-| Blank page | Missing `.nojekyll` | Already in the repo — verify by refreshing |
-| Broken layout | Browser cache | Hard-refresh (Ctrl+F5) |
+- **Build type**: Legacy
+- **Enabled**: 2026-10-24
 
 ## Files in this directory
 
