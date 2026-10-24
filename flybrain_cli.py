@@ -37,6 +37,17 @@ __version__ = "3.00.1"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
+# Lazy-import the export module (has optional yaml dependency)
+def cmd_export(args) -> int:
+    """Convert topology JSON to mainstream agent framework format."""
+    try:
+        from flybrain_export import cmd_export as _cmd_export
+        return _cmd_export(args)
+    except ImportError as e:
+        print(f"[export] ERROR: cannot import flybrain_export: {e}")
+        print("[export] Make sure flybrain_export.py is in the same directory as flybrain_cli.py")
+        return 1
+
 
 def resolve_layout():
     """Locate the flybrain-connectome checkout that holds the toolkit.
@@ -1189,6 +1200,26 @@ def build_parser() -> argparse.ArgumentParser:
     )
     s.add_argument("file", help="path to .json file to audit")
     s.set_defaults(func=cmd_audit)
+
+    # export — convert topology to mainstream agent framework formats
+    s = sub.add_parser(
+        "export",
+        help="convert topology JSON to mainstream agent framework format",
+        description=(
+            "Convert a flybrain topology JSON to LangGraph, CrewAI, or AutoGen "
+            "config format. This is a lightweight adapter — it converts the "
+            "topology structure (nodes, edges, roles, modules) into the "
+            "framework's config format, but does NOT include the full "
+            "framework runtime."
+        ),
+    )
+    s.add_argument("input", help="path to topology JSON file")
+    s.add_argument("--format", required=True,
+                   choices=["langgraph", "crewai", "autogen"],
+                   help="target framework format")
+    s.add_argument("--output", default=None,
+                   help="output file path (default: <input_stem>.<format>)")
+    s.set_defaults(func=cmd_export)
     return ap
 
 
