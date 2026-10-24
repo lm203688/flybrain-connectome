@@ -22,7 +22,7 @@
 |---|---|
 | **Title** | Preregistered Rejection as a First-Class Negative Result |
 | **Subtitle**（可选） | A methodological note on pre-execution refusal in preregistered research |
-| **Authors** | Lexing (厉兴) — Independent Researcher, affiliation: `lm203688/flybrain-connectome` |
+| **Authors** | Li Xing (李星) — Independent Researcher, affiliation: `lm203688/flybrain-connectome` |
 | **Comments** | Methodological note. 12 pages. Case study with machine-enforced gate (Gate 47). The rejected experiment is now embedded in the Verifiable Research Object (VRO) protocol — hash-committed receipt + red-team adversarial suite + V5 verification badge. Code and data available at `lm203688/flybrain-connectome`. |
 | **Subjects (primary)** | `stat.ME` — Methodology |
 | **Subjects (cross-lists)** | `stat.CO` — Computation · `cs.LG` — Machine Learning · `q-bio.NC` — Neural and Cognitive |
@@ -63,7 +63,7 @@
 |---|---|
 | **Title** | Four Disciplines for Self-Verification in Computational Experiments |
 | **Subtitle**（可选） | Turning research discipline into machine-enforced gates |
-| **Authors** | Lexing (厉兴) — Independent Researcher, affiliation: `lm203688/flybrain-connectome` |
+| **Authors** | Li Xing (李星) — Independent Researcher, affiliation: `lm203688/flybrain-connectome` |
 | **Comments** | Methodological note. 12 pages. Four disciplines each correspond to a concrete failure in our own project, all machine-enforced by Gate 30. Code and data available at `lm203688/flybrain-connectome`. |
 | **Subjects (primary)** | `stat.ME` — Methodology |
 | **Subjects (cross-lists)** | `stat.CO` — Computation · `cs.LG` — Machine Learning · `cs.SE` — Software Engineering |
