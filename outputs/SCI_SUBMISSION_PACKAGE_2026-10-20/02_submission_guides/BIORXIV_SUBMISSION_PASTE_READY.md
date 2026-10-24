@@ -215,7 +215,7 @@ bioRxiv's moderation is 24-72 hours. You will receive an email with:
 1. Update `docs/arxiv_paper.md` References with bioRxiv DOIs
 2. Update `docs/PAPER_P1_MAINLINE_MERGED.md` with bioRxiv citations
 3. Update the 3 LaTeX `references.bib` files in `06_latex_manuscript/`
-4. Bump project version (currently v3.00.1)
+4. Bump project version (currently v3.00.2)
 5. Update CHANGELOG.md
 6. Rebuild dist/ (sdist + wheel) if version changed
 7. Push via `gh_publish.py`
