@@ -99,7 +99,7 @@ pandoc docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md `
   -o P3_submit.html `
   --standalone --toc --toc-depth=3 --number-sections `
   --metadata title="Four Disciplines for Self-Verification in Computational Experiments" `
-  --metadata author="Lexing" --metadata date="2026-10-19" --metadata lang=en `
+  --metadata author="Li Xing" --metadata date="2026-10-19" --metadata lang=en `
   --syntax-highlighting=none -c styles_arxiv.css
 
 # P-2
@@ -107,7 +107,7 @@ pandoc docs/PR2B_PREEXECUTION_REJECTION_PAPER.md `
   -o P2_submit.html `
   --standalone --toc --toc-depth=3 --number-sections `
   --metadata title="Preregistered Rejection as a First-Class Negative Result" `
-  --metadata author="Lexing" --metadata date="2026-10-19" --metadata lang=en `
+  --metadata author="Li Xing" --metadata date="2026-10-19" --metadata lang=en `
   --syntax-highlighting=none -c styles_arxiv.css
 ```
 
@@ -152,7 +152,7 @@ pandoc docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md `
   --toc --toc-depth=3 `
   --number-sections `
   --metadata title="Four Disciplines for Self-Verification in Computational Experiments" `
-  --metadata author="Lexing" `
+  --metadata author="Li Xing" `
   --metadata lang=zh `
   --standalone `
   --mathjax
@@ -167,7 +167,7 @@ pandoc docs/PR2B_PREEXECUTION_REJECTION_PAPER.md `
   --toc --toc-depth=3 `
   --number-sections `
   --metadata title="Preregistered Rejection as a First-Class Negative Result" `
-  --metadata author="Lexing" `
+  --metadata author="Li Xing" `
   --metadata lang=zh `
   --standalone `
   --mathjax
@@ -235,7 +235,7 @@ Turning research discipline into machine-enforced gates
 
 **Authors**:
 ```
-Lexing
+Li Xing
 ```
 机构：`Independent Researcher` / 邮箱：`lm203688@users.noreply.github.com`
 
@@ -399,9 +399,9 @@ submissions pinned to v2.98.1.
 
 编辑 `docs/arxiv_paper.md` References 段，添加：
 ```
-15. Lexing. Four Disciplines for Self-Verification in Computational
+15. Li Xing. Four Disciplines for Self-Verification in Computational
     Experiments. arXiv:2610.XXXXX [stat.ME], 2026.
-16. Lexing. Preregistered Rejection as a First-Class Negative Result.
+16. Li Xing. Preregistered Rejection as a First-Class Negative Result.
     arXiv:2610.YYYYY [stat.ME], 2026.
 ```
 
