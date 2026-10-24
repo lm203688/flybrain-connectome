@@ -10,12 +10,131 @@
 
 ## 0. Target List (priority order)
 
-| # | Directory | URL | Acceptance | Time |
-|---|---|---|---|---|
-| 1 | **awesome-mcp-servers** | https://github.com/purpleailab/awesome-mcp-servers | PR + review | 15 min |
-| 2 | **mcp-servers** (official list) | https://github.com/modelcontextprotocol/servers | PR + admin review | 15 min |
-| 3 | **awesome-mcp-servers** (alt) | https://github.com/garybrail/awesome-mcp-servers | PR | 5 min |
-| 4 | **MCP Registry** (if open) | https://registry.modelcontextprotocol.io/ | Submit form | 10 min |
+| # | Directory | URL | Stars | Acceptance | Time |
+|---|---|---|---|---|---|
+| 1 | **punkpeye/awesome-mcp-servers** | https://github.com/punkpeye/awesome-mcp-servers | 86k+ | PR + review | 15 min |
+| 2 | **modelcontextprotocol/servers** | https://github.com/modelcontextprotocol/servers | 85k+ | PR + admin review | 15 min |
+| 3 | **MobinX/awesome-mcp-list** | https://github.com/MobinX/awesome-mcp-list | 893 | PR | 5 min |
+| 4 | **MCP Registry** | https://registry.modelcontextprotocol.io/ | — | Submit form | 10 min |
+| 5 | **ceesem/awesome-connectomics** | https://github.com/ceesem/awesome-connectomics | new | PR (perfect fit) | 10 min |
+| 6 | **cobanov/awesome-fly** | https://github.com/cobanov/awesome-fly | 684 | PR (fruit fly focus) | 10 min |
+
+---
+
+## 7. awesome-connectomics PR (target #5, best fit)
+
+### 7.1 Fork + branch
+
+```bash
+git clone https://github.com/ceesem/awesome-connectomics.git
+cd awesome-connectomics
+git checkout -b add-flybrain-connectome
+```
+
+### 7.2 Add to readme.md
+
+Under "Network Analysis and Statistics" section:
+
+```markdown
+- **[flybrain-connectome](https://github.com/lm203688/flybrain-connectome)** —
+  Preregistered discipline gate framework for connectome-derived structural motifs.
+  Extracts motifs from MaleCNS v1.0, WormWiring, Drosophila larva, and zebrafish.
+  62-gate verification battery with 100% catch-rate. 36 MCP tools. Exports to
+  LangGraph / CrewAI / AutoGen. EU AI Act PROV-JSON provenance. MIT license.
+```
+
+### 7.3 PR title
+
+```
+Add flybrain-connectome to Network Analysis and Statistics section
+```
+
+### 7.4 PR description
+
+```markdown
+## What is flybrain-connectome?
+
+An open-source framework for extracting, verifying, and preregistering structural
+motifs from published connectomes. It's the first tool that enforces preregistration
+discipline via machine-enforced gate scripts.
+
+## Why it fits this list
+
+- **Connectomics tool**: extracts structural motifs from EM connectome datasets
+- **Network analysis**: performs graph-theoretic motif analysis on connectome data
+- **Reproducibility**: 62-gate verification battery ensures results are reproducible
+- **Multi-organism**: supports Drosophila, C. elegans, and zebrafish datasets
+- **MCP-native**: 36 MCP tools for AI agent integration
+
+## Key features
+
+- 4 organism datasets: MaleCNS v1.0 (166,700 neurons), WormWiring 2020, Drosophila larva 2023, zebrafish 2025
+- 62 independent gate scripts for preregistration verification
+- 100% catch-rate (Wilson 95% CI [93.0%, 100.0%])
+- EU AI Act PROV-JSON provenance
+- Agent framework exports: LangGraph, CrewAI, AutoGen
+
+## Repository
+
+https://github.com/lm203688/flybrain-connectome
+```
+
+---
+
+## 8. awesome-fly PR (target #6)
+
+### 8.1 Fork + branch
+
+```bash
+git clone https://github.com/cobanov/awesome-fly.git
+cd awesome-fly
+git checkout -b add-flybrain-connectome
+```
+
+### 8.2 Add to README.md
+
+Under "Analysis Tools" or create a new section:
+
+```markdown
+- **[flybrain-connectome](https://github.com/lm203688/flybrain-connectome)** —
+  Preregistered discipline gate framework for connectome-derived structural motifs.
+  Uses MaleCNS v1.0 (Drosophila male brain, 166,700 neurons, 124M synapses).
+  62-gate verification. 36 MCP tools. Exports to agent frameworks.
+```
+
+### 8.3 PR title
+
+```
+Add flybrain-connectome to Analysis Tools section
+```
+
+### 8.4 PR description
+
+```markdown
+## What is flybrain-connectome?
+
+An open-source framework for extracting structural motifs from the MaleCNS v1.0
+Drosophila connectome and verifying them with a 62-gate preregistration battery.
+
+## Why it fits this list
+
+- **Drosophila focus**: primary dataset is MaleCNS v1.0 (Drosophila male brain)
+- **Analysis tool**: extracts and verifies structural motifs from connectome data
+- **Reproducibility**: machine-enforced preregistration discipline
+- **Active development**: v3.00.2, 62 gates, JOSS submission candidate
+
+## Key stats
+
+- Dataset: MaleCNS v1.0 (166,700 neurons, 124,177,617 synapses)
+- Gates: 62 (58 quick + 4 full), 100% catch-rate
+- Tools: 36 MCP tools, 17 CLI commands
+- License: MIT
+- Python: 3.10+
+
+## Repository
+
+https://github.com/lm203688/flybrain-connectome
+```
 
 ---
 
