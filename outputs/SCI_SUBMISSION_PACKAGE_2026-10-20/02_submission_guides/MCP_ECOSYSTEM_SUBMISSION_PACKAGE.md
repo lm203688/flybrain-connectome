@@ -18,6 +18,86 @@
 | 4 | **MCP Registry** | https://registry.modelcontextprotocol.io/ | — | Submit form | 10 min |
 | 5 | **ceesem/awesome-connectomics** | https://github.com/ceesem/awesome-connectomics | new | PR (perfect fit) | 10 min |
 | 6 | **cobanov/awesome-fly** | https://github.com/cobanov/awesome-fly | 684 | PR (fruit fly focus) | 10 min |
+| 7 | **cryptotaxi247/awesome-mcp-servers** | https://github.com/cryptotaxi247/awesome-mcp-servers | large | PR (biology section) | 10 min |
+| 8 | **LobeHub MCP Marketplace** | https://lobehub.com/mcp | — | Submit form (Science & Education) | 10 min |
+
+---
+
+## 9. cryptotaxi247/awesome-mcp-servers PR (target #7, biology section)
+
+### 9.1 Fork + branch
+
+```bash
+git clone https://github.com/cryptotaxi247/awesome-mcp-servers.git
+cd awesome-mcp-servers
+git checkout -b add-flybrain-connectome
+```
+
+### 9.2 Add to README.md
+
+Under "Biology, Medicine and Bioinformatics" section:
+
+```markdown
+- **[flybrain-connectome](https://github.com/lm203688/flybrain-connectome)** 🧠 🐍 🏠 —
+  Preregistered discipline gate framework for connectome-derived structural motifs.
+  36 MCP tools. 62-gate verification battery. 4 organism datasets (Drosophila,
+  C. elegans, zebrafish). EU AI Act PROV-JSON provenance. Exports to LangGraph /
+  CrewAI / AutoGen. MIT license.
+```
+
+### 9.3 PR title
+
+```
+Add flybrain-connectome to Biology, Medicine and Bioinformatics section
+```
+
+### 9.4 PR description
+
+```markdown
+## What is flybrain-connectome?
+
+An open-source MCP server for extracting, verifying, and preregistering structural
+motifs from published connectomes. It's the first tool that enforces preregistration
+discipline via machine-enforced gate scripts.
+
+## Why it fits this section
+
+- **Biology**: uses real connectome datasets (Drosophila, C. elegans, zebrafish)
+- **Bioinformatics**: performs graph-theoretic motif analysis on biological data
+- **MCP server**: 36 MCP tools for AI assistant integration
+- **Reproducibility**: 62-gate verification battery with 100% catch-rate
+
+## Key features
+
+- 4 organism datasets: MaleCNS v1.0 (166,700 neurons), WormWiring 2020, Drosophila larva 2023, zebrafish 2025
+- 36 MCP tools over stdio
+- 62-gate verification battery (58 quick + 4 full)
+- 100% catch-rate (Wilson 95% CI [93.0%, 100.0%])
+- EU AI Act PROV-JSON provenance
+- Agent framework exports: LangGraph, CrewAI, AutoGen
+
+## Repository
+
+https://github.com/lm203688/flybrain-connectome
+```
+
+---
+
+## 10. LobeHub MCP Marketplace submission (target #8)
+
+### 10.1 Submit at https://lobehub.com/mcp
+
+Fill in the submission form:
+
+- **Name**: flybrain-connectome
+- **Description**: Preregistered discipline gate framework for connectome-derived structural motifs. 36 MCP tools. 62-gate verification battery. 4 organism datasets. EU AI Act PROV-JSON provenance.
+- **Category**: Science & Education
+- **Type**: Local Service
+- **Repository**: https://github.com/lm203688/flybrain-connectome
+- **Language**: Python
+- **Installation**: `pip install flybrain-connectome` or `git clone https://github.com/lm203688/flybrain-connectome.git && cd flybrain-connectome && pip install -e .`
+- **Configuration**: No API key required. Uses local connectome data files.
+- **License**: MIT
 
 ---
 
