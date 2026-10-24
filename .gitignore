@@ -207,6 +207,9 @@ flybrain-bundle-*.bundle
 .d3_backup_paths.json
 
 # Experiment output directories (v2.99.0+ cleanup)
+# The _c1_/_f*/_r*/_s*/_gate*/_probe*/_audit* scratch outputs are kept
+# locally for gate scripts to read; their contents are gitignored so the
+# public repo shows a clean root. New top-level _foo_ outputs are forbidden.
 _*/*
 !_verify.py
 !_audit_p1_task_effect.py
