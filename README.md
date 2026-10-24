@@ -6,6 +6,8 @@
 [![version](https://img.shields.io/badge/version-3.00.2-orange.svg)](CHANGELOG.md)
 [![docker](https://img.shields.io/badge/docker-2.90.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
+[![pages](https://img.shields.io/badge/pages-live-58A6FF.svg)](https://lm203688.github.io/flybrain-connectome/)
+[![demo](https://img.shields.io/badge/demo-interactive-3FB950.svg)](https://lm203688.github.io/flybrain-connectome/demo/)
 <!-- JOSS badge — activate when PAPER_P3 is accepted:
 [![JOSS](https://joss.theoj.org/papers/YYYY/xx.xx.bbb/badge.svg)](https://doi.org/10.21105/joss.YYYY.XXX)
 -->
