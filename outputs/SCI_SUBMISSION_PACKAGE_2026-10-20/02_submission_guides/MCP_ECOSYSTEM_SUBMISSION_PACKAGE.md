@@ -5,21 +5,26 @@
 > standard tool-calling protocol.
 > **Estimated time**: 60 min active work across 4 targets.
 > **Cost**: $0 (all open-source directories).
+>
+> **🎉 2026-10-25 UPDATE**: MCP Registry publication COMPLETE. Published at
+> https://registry.modelcontextprotocol.io/v0.1/servers/io.github.lm203688%2Fflybrain-connectome/versions/3.0.2
+> Status: active, isLatest: true. This is the official MCP server registry (7.4k stars).
 
 ---
 
 ## 0. Target List (priority order)
 
-| # | Directory | URL | Stars | Acceptance | Time |
+| # | Directory | URL | Stars | Acceptance | Status |
 |---|---|---|---|---|---|
-| 1 | **punkpeye/awesome-mcp-servers** | https://github.com/punkpeye/awesome-mcp-servers | 86k+ | PR + review | 15 min |
-| 2 | **modelcontextprotocol/servers** | https://github.com/modelcontextprotocol/servers | 85k+ | PR + admin review | 15 min |
-| 3 | **MobinX/awesome-mcp-list** | https://github.com/MobinX/awesome-mcp-list | 893 | PR | 5 min |
-| 4 | **MCP Registry** | https://registry.modelcontextprotocol.io/ | — | Submit form | 10 min |
-| 5 | **ceesem/awesome-connectomics** | https://github.com/ceesem/awesome-connectomics | new | PR (perfect fit) | 10 min |
-| 6 | **cobanov/awesome-fly** | https://github.com/cobanov/awesome-fly | 684 | PR (fruit fly focus) | 10 min |
-| 7 | **cryptotaxi247/awesome-mcp-servers** | https://github.com/cryptotaxi247/awesome-mcp-servers | large | PR (biology section) | 10 min |
-| 8 | **LobeHub MCP Marketplace** | https://lobehub.com/mcp | — | Submit form (Science & Education) | 10 min |
+| 1 | **punkpeye/awesome-mcp-servers** | https://github.com/punkpeye/awesome-mcp-servers | 86k+ | PR #17478 | 🟡 open (needs Glama badge) |
+| 2 | **MCP Registry** | https://registry.modelcontextprotocol.io/ | 7.4k | `mcp-publisher publish` | ✅ **PUBLISHED** |
+| 3 | **MobinX/awesome-mcp-list** | https://github.com/MobinX/awesome-mcp-list | 893 | PR #928 | 🟡 open |
+| 4 | **ceesem/awesome-connectomics** | https://github.com/ceesem/awesome-connectomics | new | PR #1 | 🟡 open |
+| 5 | **cobanov/awesome-fly** | https://github.com/cobanov/awesome-fly | 684 | PR #26 | 🟡 open |
+| 6 | **cryptotaxi247/awesome-mcp-servers** | https://github.com/CryptoTaxi247/awesome-mcp-servers | large | PR #1 | 🟡 open |
+| 7 | **yzfly/Awesome-MCP-ZH** | https://github.com/yzfly/Awesome-MCP-ZH | 7.7k | PR #834 | 🟡 open |
+| 8 | **rohitg00/awesome-devops-mcp-servers** | https://github.com/rohitg00/awesome-devops-mcp-servers | 1k | PR #380 | 🟡 open (CodeRabbit 4 fixes applied) |
+| 9 | **punkpeye/awesome-remote-mcp-servers** | https://github.com/punkpeye/awesome-remote-mcp-servers | 1.8k | PR #2801 | ⚫ **Closed** (no hosted endpoint) |
 
 ---
 
