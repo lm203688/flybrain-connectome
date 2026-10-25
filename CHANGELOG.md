@@ -4,6 +4,56 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.00.3] - 2026-10-25
+
+### Added
+- **Xu 2026 dendritic-computation reference pattern** — a minimal, runnable
+  code reference implementing Xu, N., et al. (*Science*, 2026-10-16,
+  DOI: `10.1126/science.adz5323`) as a two-compartment rule-cache model:
+  - `tools/dendritic_rule_engine.py` — ~200-line reference implementation.
+    Four public classes: `Rule` (dataclass), `RuleCache` (apical dendrite,
+    Wilson-score confidence), `SensoryStream` (soma encoder),
+    `NonlinearIntegrator` (multiplicative sigmoid gate), plus the
+    `DendriticAgent` facade. Runnable self-demo included.
+  - `examples/07_dendritic_rule_cache_demo.ipynb` — 11-cell notebook walking
+    through rule authoring, a rule-switching observation stream,
+    consolidation inspection, and the abstain path.
+  - `docs/XU2026_DENDRITIC_PATTERN_MAPPING.md` — one-page mapping of Xu 2026
+    concepts onto EPE L1/L2/L4 layers, plus explicit "what maps cleanly vs.
+    what does NOT" list.
+- **README Xu 2026 pattern reference section** — short reference block after
+  S6–S9 pointing to the new code, notebook, and mapping doc; explicitly
+  marks the pattern as reference-only (not architecture change).
+
+### Changed
+- Version bump 3.00.2 → 3.00.3 in 6 files (`pyproject.toml`, `flybrain_cli.py`,
+  `mcp_connectome/api_server.py`, `mcp_connectome/server.py`, `aibom.json`,
+  `README.md` badge).
+- README banner updated to v3.00.3 · 2026-10-25, listing the new Xu 2026
+  pattern reference implementation.
+
+### Explicitly NOT changed (honest boundary)
+- **Core combinatorial algebra unchanged.** Xu 2026 is a subcellular pattern;
+  the 116-unit core remains neuron-level. No compartments introduced.
+- **No new gates.** Xu 2026 does not provide quantitative metrics suitable for
+  gate enforcement; adding a gate around a pattern reference would be noise.
+- **No new CLI command.** Pattern reference is discoverable via
+  `docs/XU2026_DENDRITIC_PATTERN_MAPPING.md` and the notebook, not a
+  first-class subcommand.
+- **No cross-species transfer claim.** Xu 2026 is mouse auditory cortex L5
+  pyramidal neurons; our substrate is Drosophila MaleCNS. Independent
+  experimental work would be required for any transfer claim.
+
+### Reference
+- Xu, N., et al. (2026). Dendritic computation for abstract rule-based
+  flexible decision-making. *Science* 378, eadz5323.
+  DOI: 10.1126/science.adz5323.
+- Prior project integration: `docs/XU2026_DENDRITIC_COMPUTATION_IMPACT_2026-10-18.md`
+  (2026-10-18 impact memo), `docs/E4_BOUNDARY_ATLAS.md` B-14
+  (compartment boundary), `docs/PAPER_P4_CASE_STUDY.md` §6.7
+  (methodological neighbour of PR-2b).
+
+
 ## [3.00.2] - 2026-10-24
 
 ### Added
