@@ -3,7 +3,7 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-3.00.2-orange.svg)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-3.00.3-orange.svg)](CHANGELOG.md)
 [![docker](https://img.shields.io/badge/docker-2.90.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 [![pages](https://img.shields.io/badge/pages-live-58A6FF.svg)](https://lm203688.github.io/flybrain-connectome/)
@@ -12,7 +12,7 @@
 [![JOSS](https://joss.theoj.org/papers/YYYY/xx.xx.bbb/badge.svg)](https://doi.org/10.21105/joss.YYYY.XXX)
 -->
 
-**v3.00.2 · 2026-10-24 · 116 functional units · 270 module profiles · 62 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62/63/64 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ Gate 63 research_claims 顶层统计完整性 + 作者署名规范化（P-3 / P-4 → Li Xing + ORCID）+ bioRxiv 投稿准备包 + flybrain demo 一条命令 + 5 分钟上手 + flybrain audit CLI + JOSS 投稿包 + MCP 生态提交包 + 9 篇论文 DOI 补齐**
+**v3.00.3 · 2026-10-25 · 116 functional units · 270 module profiles · 62 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62/63/64 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + Xu 2026 双层认知计算参考实现（`tools/dendritic_rule_engine.py` + `examples/07_dendritic_rule_cache_demo.ipynb`）+ E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ Gate 63 research_claims 顶层统计完整性 + 作者署名规范化（P-3 / P-4 → Li Xing + ORCID）+ bioRxiv 投稿准备包 + flybrain demo 一条命令 + 5 分钟上手 + flybrain audit CLI + JOSS 投稿包 + MCP 生态提交包 + 9 篇论文 DOI 补齐**
 
 > ### The 89% problem
 >
@@ -1136,6 +1136,28 @@ uncommon in open-source tooling but essential for research integrity:
   perturbation data must exist and contain boundary signals. Correlation alone
   is insufficient for mechanism claims.
 
+
+### Xu 2026 dendritic computation — pattern reference (v3.00.3)
+
+Xu, N., et al. (*Science*, 2026-10-16, DOI: `10.1126/science.adz5323`)
+demonstrated with optogenetic causal evidence that **apical dendrites encode
+abstract rules, cell bodies encode sensory input, and their nonlinear
+integration produces decision output**. This is external theoretical support
+for our L3 boundary — it does not change the project's architecture.
+
+Reference-only implementation (does NOT alter core combinatorial algebra):
+
+| Path | Content |
+|---|---|
+| `tools/dendritic_rule_engine.py` | ~200-line minimal reference: `RuleCache` (dendrite) + `SensoryStream` (soma) + `NonlinearIntegrator` (multiplicative gate) + `DendriticAgent` facade |
+| `examples/07_dendritic_rule_cache_demo.ipynb` | Rule-switching stream demo showing confidence-gated consolidation |
+| `docs/XU2026_DENDRITIC_PATTERN_MAPPING.md` | One-page mapping to EPE L1/L2/L4 + what maps cleanly vs. what doesn't |
+| `docs/XU2026_DENDRITIC_COMPUTATION_IMPACT_2026-10-18.md` | Full impact memo (100 lines, published 2026-10-18) |
+
+**Explicitly not done** (see memo §2.3): no subcellular compartments in the
+116-unit core, no cross-species transfer claim from mouse auditory cortex to
+Drosophila MaleCNS, no neuromorphic implementation. Xu 2026 is a *pattern
+reference* for few-shot hypothesis caching, not a new architecture.
 These disciplines are enforced by **Gate 30** (`scripts/check_llm_orchestrator.py`),
 which independently recomputes claim metadata from experiment data and refuses
 to let an unverified claim pass.
