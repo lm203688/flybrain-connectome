@@ -3,7 +3,7 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-3.01.0-orange.svg)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-3.01.1-orange.svg)](CHANGELOG.md)
 [![docker](https://img.shields.io/badge/docker-2.90.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
 [![pages](https://img.shields.io/badge/pages-live-58A6FF.svg)](https://lm203688.github.io/flybrain-connectome/)
@@ -12,7 +12,7 @@
 [![JOSS](https://joss.theoj.org/papers/YYYY/xx.xx.bbb/badge.svg)](https://doi.org/10.21105/joss.YYYY.XXX)
 -->
 
-**v3.01.0 · 2026-10-26 · 116 functional units · 270 module profiles · 63 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62/63/64 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + Xu 2026 双层认知计算参考实现（`tools/dendritic_rule_engine.py` + `examples/07_dendritic_rule_cache_demo.ipynb`）+ E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ Gate 63 research_claims 顶层统计完整性 + 作者署名规范化（P-3 / P-4 → Li Xing + ORCID）+ bioRxiv 投稿准备包 + flybrain demo 一条命令 + 5 分钟上手 + flybrain audit CLI + JOSS 投稿包 + MCP 生态提交包 + 9 篇论文 DOI 补齐**
+**v3.01.1 · 2026-10-26 · 116 functional units · 270 module profiles · 64 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62/63/64/65/66 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + Xu 2026 双层认知计算参考实现（`tools/dendritic_rule_engine.py` + `examples/07_dendritic_rule_cache_demo.ipynb`）+ E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ Gate 63 research_claims 顶层统计完整性 + 作者署名规范化（P-3 / P-4 → Li Xing + ORCID）+ bioRxiv 投稿准备包 + flybrain demo 一条命令 + 5 分钟上手 + flybrain audit CLI + JOSS 投稿包 + MCP 生态提交包 + 9 篇论文 DOI 补齐 + P1-3 HTTP/MCP 契约统一（Gate 66 · HTTP DISPATCH 从 12→47 全覆盖 MCP）**
 
 > ### The 89% problem
 >
@@ -1202,9 +1202,9 @@ for client configs, the 47-tool reference, and troubleshooting.
 The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
-python scripts/run_gates.py              # 63 gates, no dataset needed
+python scripts/run_gates.py              # 64 gates, no dataset needed
 python scripts/run_gates.py --quick      # the 53 gates that don't need numpy / a server
-python scripts/run_gates.py --with-data  # 63 gates: + `flybrain verify` (70 assertions)
+python scripts/run_gates.py --with-data  # 64 gates: + `flybrain verify` (70 assertions)
 ```
 
 ### Makefile shortcuts (v2.43.0)
