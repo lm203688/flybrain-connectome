@@ -1,9 +1,9 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-26T09:48:58Z",
+  "generated_utc": "2026-10-26T13:22:54Z",
   "project": {
     "name": "flybrain-connectome",
-    "version": "3.01.1",
+    "version": "3.01.2",
     "github": "https://github.com/lm203688/flybrain-connectome",
     "pypi": "https://pypi.org/project/flybrain-connectome/"
   },
