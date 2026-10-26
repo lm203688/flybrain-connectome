@@ -32,10 +32,12 @@ Exit codes
 import argparse
 import json
 import os
-import subprocess
 import sys
 import tempfile
 from pathlib import Path
+
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _subprocess_util import run_capture  # noqa: E402
 
 GATE_LABEL = "GATE 64"
 ROOT = Path(__file__).resolve().parents[1]
@@ -44,17 +46,16 @@ PY = sys.executable
 
 
 def _run(args, timeout=30):
-    """Run a command, return (exit_code, stdout, stderr)."""
-    try:
-        r = subprocess.run(
-            args, capture_output=True, text=True, timeout=timeout,
-            cwd=str(ROOT),
-        )
-        return r.returncode, r.stdout, r.stderr
-    except subprocess.TimeoutExpired:
-        return 99, "", "TIMEOUT"
-    except Exception as e:
-        return 99, "", str(e)
+    """Run a command, return (exit_code, stdout, stderr).
+
+    P0-1 fix (2026-10-26): route through the shared helper so stdout/
+    stderr are always decoded as UTF-8 with errors='replace'. Previously
+    this used subprocess.run(text=True) with no explicit encoding, which
+    fell back to the caller's locale — GBK on Chinese Windows could
+    crash the audit CLI gate on any non-ASCII byte in the child output.
+    """
+    r = run_capture(args, cwd=str(ROOT), timeout=timeout)
+    return r.returncode, r.stdout, r.stderr
 
 
 def check_cli_registered():
