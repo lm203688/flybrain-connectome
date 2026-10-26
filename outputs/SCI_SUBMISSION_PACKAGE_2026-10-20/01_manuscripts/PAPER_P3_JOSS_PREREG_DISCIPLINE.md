@@ -131,7 +131,7 @@ under the MIT license (with a Tier-2 anti-plagiarism clause in `LICENSE-CLAUSE.m
 does not affect the OSI-approved MIT core). Requirements: Python 3.10+, no GPU required.
 The framework has been tested on macOS (Apple Silicon) and Windows 11 with WSL.
 
-Install via pip (once v3.00.2 is published to PyPI, currently a `git clone` fallback):
+Install via pip (once v3.01.2 is published to PyPI, currently a `git clone` fallback):
 
 ```bash
 pip install flybrain-connectome        # preferred once on PyPI
