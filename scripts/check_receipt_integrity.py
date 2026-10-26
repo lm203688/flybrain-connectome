@@ -31,6 +31,9 @@ import sys
 import tempfile
 from pathlib import Path
 
+sys.path.insert(0, str(Path(__file__).resolve().parent))
+from _subprocess_util import run_capture  # noqa: E402
+
 ROOT = Path(__file__).resolve().parent.parent
 SCRIPTS = ROOT / "scripts"
 RECEIPTS = ROOT / "receipts"
@@ -242,13 +245,26 @@ def main(argv: list[str] | None = None) -> int:
 
     graph_ids = _load_claim_graph_ids()
     graph = {}
+    claim_graph_parseable = True
     if CLAIM_GRAPH.exists():
         try:
             graph = json.loads(CLAIM_GRAPH.read_text(encoding="utf-8"))
-        except (json.JSONDecodeError, OSError):
-            pass
+        except (json.JSONDecodeError, OSError) as _e:
+            # P0-1b fix (2026-10-26 upgrade report): previously this
+            # swallowed the exception and silently returned an empty
+            # set of graph_ids, which would make the receipt↔claim
+            # cross-check below a no-op. Fail closed instead.
+            claim_graph_parseable = False
+            problems.append(f"claim_graph.json not parseable: {_e}")
+            print(f"  FAIL  claim_graph.json not parseable: {_e}")
+    elif receipt_files:
+        # If we have receipts but no claim_graph.json at all, we cannot
+        # verify receipt↔claim sync — that is a structural regression.
+        claim_graph_parseable = False
+        problems.append("claim_graph.json missing but receipts exist; cannot cross-check")
+        print("  FAIL  claim_graph.json missing but receipts exist; cannot cross-check")
 
-    if graph_ids:
+    if claim_graph_parseable and graph_ids:
         expected = {str(x) for x in graph_ids}
         expected.discard("")
         unexpected = {p.stem for p in receipt_files} - expected
@@ -262,8 +278,6 @@ def main(argv: list[str] | None = None) -> int:
             print(f"  FAIL  missing receipts               {sorted(missing_receipts)}")
         else:
             print(f"  PASS  receipt↔claim graph sync        {len(expected)} receipts = {len(expected)} claims")
-    else:
-        print(f"  WARN  claim_graph.json not parseable; skipping cross-check")
 
     print()
     for rp in receipt_files:
@@ -308,11 +322,11 @@ def main(argv: list[str] | None = None) -> int:
     verified = 0
     failed_v = 0
     for rp in receipt_files:
-        proc = subprocess.run(
+        proc = run_capture(
             [py, str(SCRIPTS / "verify_receipt.py"), "--receipt", str(rp)],
-            capture_output=True, text=True, timeout=60, cwd=str(ROOT),
+            timeout=60, cwd=str(ROOT),
         )
-        if proc.returncode == 0 and "VERIFIED" in (proc.stdout + proc.stderr):
+        if proc.ok and "VERIFIED" in (proc.stdout + proc.stderr):
             verified += 1
         else:
             failed_v += 1

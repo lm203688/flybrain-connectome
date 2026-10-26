@@ -3,15 +3,37 @@
 [![ci](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml/badge.svg)](https://github.com/lm203688/flybrain-connectome/actions/workflows/ci.yml)
 [![license: MIT](https://img.shields.io/badge/license-MIT-blue.svg)](LICENSE)
 [![python](https://img.shields.io/badge/python-3.10%2B-blue.svg)](#requirements)
-[![version](https://img.shields.io/badge/version-2.98.1-orange.svg)](CHANGELOG.md)
+[![version](https://img.shields.io/badge/version-3.01.1-orange.svg)](CHANGELOG.md)
 [![docker](https://img.shields.io/badge/docker-2.90.0-2496ED.svg)](#docker)
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen.svg)](.pre-commit-config.yaml)
+[![pages](https://img.shields.io/badge/pages-live-58A6FF.svg)](https://lm203688.github.io/flybrain-connectome/)
+[![demo](https://img.shields.io/badge/demo-interactive-3FB950.svg)](https://lm203688.github.io/flybrain-connectome/demo/)
+<!-- JOSS badge — activate when PAPER_P3 is accepted:
+[![JOSS](https://joss.theoj.org/papers/YYYY/xx.xx.bbb/badge.svg)](https://doi.org/10.21105/joss.YYYY.XXX)
+-->
 
-**v2.98.1 · 2026-10-18 · 116 functional units · 270 module profiles · 60 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ arXiv 投稿准备包**
+**v3.01.1 · 2026-10-26 · 116 functional units · 270 module profiles · 64 gates · EPE 全栈 + AIBOM 供应链披露 + 收据完整性门禁 + Gate 60/61/62/63/64/65/66 + fail-loud 纪律 + 版本单一真源 + Xu 2026 树突计算前沿对照 + Xu 2026 双层认知计算参考实现（`tools/dendritic_rule_engine.py` + `examples/07_dendritic_rule_cache_demo.ipynb`）+ E4 区室边界 + S1 外部验证 + S2 lesion cascade + S3 统计强化 + 纪律有效性量化（catch-rate 100%，W1–W7 全部关闭）+ Gate 63 research_claims 顶层统计完整性 + 作者署名规范化（P-3 / P-4 → Li Xing + ORCID）+ bioRxiv 投稿准备包 + flybrain demo 一条命令 + 5 分钟上手 + flybrain audit CLI + JOSS 投稿包 + MCP 生态提交包 + 9 篇论文 DOI 补齐 + P1-3 HTTP/MCP 契约统一（Gate 66 · HTTP DISPATCH 从 12→47 全覆盖 MCP）**
 
-> **Traceable synthetic bio-topology generator**, grounded in the real
-> *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700 neurons /
-> 124,177,617 synapses, CC-BY).
+> ### The 89% problem
+>
+> Deloitte's 2026 agent-pilot survey found **89% of enterprise agent pilots
+> never reach production**. Teradata: 78% have pilots, only 14% scaled. The
+> failure pattern repeats across industries in three words:
+>
+> **"跑不稳、管不住、查不清"** — unstable, ungovernable, unauditable.
+>
+> `flybrain-connectome` addresses the third word. Every agent edge in a
+> generated topology traces back to a real neuron or synapse class in the
+> *Drosophila* male brain connectome, serialized as **W3C PROV-JSON** — the
+> same format EU AI Act auditors expect. Your agent swarm isn't a black box;
+> it's a verifiable structure with biological provenance.
+>
+> **[5-minute quickstart](docs/QUICKSTART_5MIN.md)** — from zero to an
+> interactive D3 topology graph in five minutes, no data download.
+
+> **Auditable Agent Topology — 可审计的 Agent 拓扑生成与溯源**, grounded in
+> the real *Drosophila* male-brain connectome (**MaleCNS v1.0** — 166,700
+> neurons / 124,177,617 synapses, CC-BY).
 
 `flybrain-connectome` turns a real, published brain wiring diagram into
 **task-tailored multi-agent topologies** you can instantiate as agent swarms —
@@ -19,15 +41,23 @@ and it can prove, for every edge, *which real neuron / synapse class it came
 from*. The motif provenance is serialized as **W3C PROV-JSON**, the same
 standard EU AI Act auditors expect.
 
+![flybrain-connectome topology preview](docs/README_showcase.gif)
+
+*5-module × 8-agent topology (predictive_coding_v2 blueprint) — the same graph
+you get from `flybrain demo`. [Try it live →](docs/demo/index.html)*
+
 It is a **developer toolkit and research artifact**, not a trained model and
 not a simulation of a fly. Read the [honest boundaries](#honest-boundaries)
 before you quote it.
 
-> **Repo status:** this repository is currently **private** (2026-09-22). It
-> was made private as an immediate mitigation after Tier-2 IP was found in the
-> public git history (see [CHANGELOG v1.3.0](CHANGELOG.md)). The Tier-1 code
-> remains MIT-licensed; a history rewrite is planned to re-publicize it.
-> Authorized collaborators can request access from the owner.
+> **Repo status:** **PUBLIC** since 2026-10-18. History was audited and cleaned
+> before publicization (see [CHANGELOG v1.3.0](CHANGELOG.md) for the original
+> Tier-2 IP leak and [docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md](docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md)
+> for the 16-step publicization runbook that was executed). The Tier-1 code is
+> MIT-licensed and reachable at https://github.com/lm203688/flybrain-connectome.
+> Tier-2 raw data (MaleCNS 5.63 GB, C. elegans Witvliet 2020, Drosophila larva
+> edges.csv, Petkova 2025 zebrafish) is fetched via the documented data pipeline
+> — see §"Requirements" and the S1 external-validation script.
 
 ---
 
@@ -128,10 +158,11 @@ The toolkit needs one runtime dependency (`numpy`, because the connectome
 engine imports it at module level) plus optional extras for provenance and
 columnar IO. No other third-party code is required. Pick either setup:
 
-> **Note (2026-09-22):** this repo is **private** until the git-history
-> rewrite is complete. You need a GitHub account with access to
-> `lm203688/flybrain-connectome`; the clone commands below still work once
-> you're authenticated (`gh auth login` or SSH keys).
+> **Repo status:** **PUBLIC** since 2026-10-18. No authentication required —
+> the clone commands below work directly. History was audited and cleaned
+> before publicization (see [CHANGELOG v1.3.0](CHANGELOG.md) for the original
+> Tier-2 IP leak and [docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md](docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md)
+> for the 16-step publicization runbook).
 
 ### A. Clone and run (recommended, verified end-to-end)
 
@@ -173,7 +204,7 @@ recorded. The *standardized* W3C PROV-JSON bundle (`prov_json`) is serialized
 by the optional [`dataprov`](https://github.com/RI-SE/dataprov) package:
 
 ```bash
-pip install "flybrain-connectome[prov]"   # or simply: pip install dataprov
+pip install dataprov                     # or: pip install "flybrain-connectome[prov]" (once on PyPI)
 ```
 
 Without it the toolkit still runs: `prov_json` becomes `null` and
@@ -246,7 +277,7 @@ flybrain motifs --out motifs.json      # live pull from the service
 
 ```bash
 flybrain generate --blueprint predictive_coding_v2 --modules 5 --agents-per-module 8
-# -> generated_organisms/<name>.{json,html} + swarmlabs/<name>.swarm.{json,yaml}
+# -> flybrain-connectome-mcp/generated_organisms/<name>.{json,html} + flybrain-connectome-mcp/swarmlabs/<name>.swarm.{json,yaml}
 ```
 
 ### 5. Read the C. elegans developmental axis
@@ -317,7 +348,9 @@ flybrain-connectome/
 │   ├── motifs/                     drop-in client + derived motif snapshot
 │   ├── synthetic_bio_topology.py   ★ C1 generator (motif → agent graph + config + PROV)
 │   ├── _verify.py                  end-to-end smoke test (70/70)
-│   └── generated_organisms/        example artifacts (json/html + swarm configs)
+│   └── flybrain-connectome-mcp/
+│       ├── generated_organisms/     example artifacts (json/html + swarm configs)
+│       └── swarmlabs/               swarm config exports
 ├── integrations/swarmlabs/         consistency checkers + diagnostics (reproducible experiments)
 ├── scripts/                        run_gates.py · check_no_secrets.py · check_docs_consistency.py
 │                                   check_mcp_tools.py · check_degraded_mode.py
@@ -1103,6 +1136,28 @@ uncommon in open-source tooling but essential for research integrity:
   perturbation data must exist and contain boundary signals. Correlation alone
   is insufficient for mechanism claims.
 
+
+### Xu 2026 dendritic computation — pattern reference (v3.00.3)
+
+Xu, N., et al. (*Science*, 2026-10-16, DOI: `10.1126/science.adz5323`)
+demonstrated with optogenetic causal evidence that **apical dendrites encode
+abstract rules, cell bodies encode sensory input, and their nonlinear
+integration produces decision output**. This is external theoretical support
+for our L3 boundary — it does not change the project's architecture.
+
+Reference-only implementation (does NOT alter core combinatorial algebra):
+
+| Path | Content |
+|---|---|
+| `tools/dendritic_rule_engine.py` | ~200-line minimal reference: `RuleCache` (dendrite) + `SensoryStream` (soma) + `NonlinearIntegrator` (multiplicative gate) + `DendriticAgent` facade |
+| `examples/07_dendritic_rule_cache_demo.ipynb` | Rule-switching stream demo showing confidence-gated consolidation |
+| `docs/XU2026_DENDRITIC_PATTERN_MAPPING.md` | One-page mapping to EPE L1/L2/L4 + what maps cleanly vs. what doesn't |
+| `docs/XU2026_DENDRITIC_COMPUTATION_IMPACT_2026-10-18.md` | Full impact memo (100 lines, published 2026-10-18) |
+
+**Explicitly not done** (see memo §2.3): no subcellular compartments in the
+116-unit core, no cross-species transfer claim from mouse auditory cortex to
+Drosophila MaleCNS, no neuromorphic implementation. Xu 2026 is a *pattern
+reference* for few-shot hypothesis caching, not a new architecture.
 These disciplines are enforced by **Gate 30** (`scripts/check_llm_orchestrator.py`),
 which independently recomputes claim metadata from experiment data and refuses
 to let an unverified claim pass.
@@ -1147,9 +1202,9 @@ for client configs, the 47-tool reference, and troubleshooting.
 The same set CI runs, so "green locally" and "green in CI" cannot diverge:
 
 ```bash
-python scripts/run_gates.py              # 60 gates, no dataset needed
+python scripts/run_gates.py              # 64 gates, no dataset needed
 python scripts/run_gates.py --quick      # the 53 gates that don't need numpy / a server
-python scripts/run_gates.py --with-data  # 60 gates: + `flybrain verify` (70 assertions)
+python scripts/run_gates.py --with-data  # 64 gates: + `flybrain verify` (70 assertions)
 ```
 
 ### Makefile shortcuts (v2.43.0)
@@ -1280,9 +1335,9 @@ generator surface and the packaging, while the data path is proved by
 
 ## License & data provenance
 
-- **Code:** MIT — see [LICENSE](LICENSE). The repo is currently **private**
-  (2026-09-22); see [LICENSE-CLAUSE.md](LICENSE-CLAUSE.md) for the 3-tier
-  split and the re-publicization plan.
+- **Code:** MIT — see [LICENSE](LICENSE). Repo is **PUBLIC** since 2026-10-18.
+  See [LICENSE-CLAUSE.md](LICENSE-CLAUSE.md) for the 3-tier split and the
+  re-publicization history.
 - **Connectome data:** MaleCNS v1.0, CC-BY. The 5.63 GB dataset is **not**
   included in this repository. Obtain it from the original publication and set
   `FLYBRAIN_DATA_DIR`. All numbers in this project are derived from that real

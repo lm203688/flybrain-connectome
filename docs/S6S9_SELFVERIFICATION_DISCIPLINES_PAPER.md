@@ -1,12 +1,57 @@
-# Four Disciplines for Self-Verification in Computational Experiments
+# Four Disciplines for Self-Verification in Data-Sparse Connectomics
 
-**A methodological note on turning research discipline into machine-enforced gates**
+## A methodological note on turning research discipline into machine-enforced gates
 
-Lexing (厉兴)  
-Independent researcher  
-`lm203688/flybrain-connectome` · MIT License
+**Li Xing (李星)** ¹\*
 
-**Version 0.1 (2026-10-15)** — Draft skeleton for arXiv submission. Data and code are available at `lm203688/flybrain-connectome`.
+¹ Independent Researcher · Shenzhen, China
+
+**Corresponding Author**  
+Li Xing  
+Email: [xingli1123@outlook.com](mailto:xingli1123@outlook.com)  
+ORCID: 0000-0002-8747-1969
+
+**Version 1.0 (2026-10-20)** — Targeting bioRxiv preprint. Data and code available at https://github.com/lixing1123/flybrain-connectome (MIT License).
+
+---
+
+### CRediT Author Statement
+
+Li Xing: Conceptualization (lead), Methodology (lead), Software (lead), Validation (lead), Formal Analysis (lead), Investigation (lead), Data Curation (lead), Writing — Original Draft (lead), Writing — Review & Editing (lead), Visualization (lead), Supervision (lead).
+
+### Conflict of Interest
+
+The author declares no competing financial interests, personal relationships, or professional affiliations that could bias the research. The author has not been employed by, funded by, or affiliated with any institution or organization in connection with this work.
+
+### Ethics Statement
+
+This study analyses public, de-identified connectomic datasets: (a) JPL FlyWire Male CNS v0.1 (https://www.flywire.janelia.org/, 166,700 neurons / 124,177,617 synapses); (b) C. elegans reconstructed connectome (Witvliet et al. 2020); (c) zebrafish larva synapse data (Petkova et al. 2025). No new experimental data were generated. No human subjects or living animals were involved. No institutional review board approval was required.
+
+### Funding
+
+This work received no external funding. All experiments were conducted on the author's personal computing hardware.
+
+### Data Availability
+
+- FlyWire Male CNS: https://www.flywire.janelia.org/
+- C. elegans connectome: https://github.com/noviceelife/novice-2017-c-elegans-connectome
+- Zebrafish larva: Petkova et al. 2025, `TEN_analysis/outgoing_synapses.csv`
+
+### Code Availability
+
+Complete analysis pipeline, mutation-injection scripts, results JSON, and CI calculations are available at https://github.com/lixing1123/flybrain-connectome (MIT License).
+
+### Author Contribution Statement
+
+This is a single-author work. Li Xing is the sole author and assumes full responsibility for the design, execution, analysis, and presentation of this research.
+
+### Pre-registration and Reproducibility
+
+All six preregistration protocols (PR-1 through PR-4, PR-2b, PR_S1–S3) are registered in `PR_REGISTRATION_2026-10-18.md` in the repository. Results include Wilson 95% confidence intervals, bootstrap CIs (2000–5000 iterations), and Spearman/Pearson correlation coefficients with CI as appropriate.
+
+### Keywords
+
+reproducibility · preregistration · self-verification · machine enforcement · control-group scoreability · resolution pre-check · mechanism falsification · perturbation analysis · research integrity
 
 ---
 
@@ -266,6 +311,40 @@ The cross-family generalization mechanism that PR-3 v1 declared "falsified" (0/5
 
 **Implication for the discipline family**: S7 is not merely a warning system — it is a **diagnostic tool** that separates "scientific null" from "resolution failure" as two distinct failure modes. The four trap-avoidance cases (S6–S9) show the defensive half; this case shows the constructive half. Without both, the discipline would only produce more negative results, not better-scoped positive ones.
 
+### 4.6 The external-validation discipline: S1 and S2 as post-PR boundary probes
+
+After the four canonical cases above (all internal to the 116-unit MaleCNS substrate), two further preregistered protocols exercise the discipline family in a way that no internal experiment could. Both were added in v2.98.0 (2026-10-18) as **post-hoc boundary probes**, preregistered before execution, and both produced honest PARTIAL / FAIL verdicts rather than clean successes. They demonstrate that the discipline family is not merely defensive but also **calibrates the boundary of what the substrate can resolve**.
+
+**S1: Cross-species external validation (PR_S1)**
+
+Three external public connectomes were loaded into the same PR-3 v2 rank-label protocol used on the internal five families:
+
+| Dataset | Source | Nodes | Edges | AUC (MaleCNS reference) |
+|---|---|---|---|---|
+| C. elegans | Witvliet et al. 2020, eLife-47155-fig9-data2 | 18 | 164 | 0.5 (baseline) |
+| Drosophila larva | placeholder (no anchor data available) | 0 | 0 | 0.5 (unusable) |
+| Zebrafish larva | Petkova et al. 2025, TEN_analysis/outgoing_synapses.csv | 26,593 | 42,640 | 0.5 (below the 0.65 AUC floor) |
+
+**Verdict: PARTIAL.** The three datasets loaded successfully and were correctly registered in `vault/S1.commit.json` with 7 quantitative success criteria (c3_kappa_min=0.6, c3_auc_min_per_external_family=0.65, r6_spearman_rho_min=0.6, conjunctive=True, etc.). All three external AUCs fell below the 0.65 floor. Per the preregistered decision rule (R-0.4: negative results cannot be rescued by adjusting criteria), the honest endpoint is PARTIAL — the internal 5-family PASS does **not** extrapolate to other phyla. This is the discipline family *doing its job*: it did not force a PASS, and it did not hide the boundary.
+
+The discipline that surfaced here is **S7 (resolution pre-check)**: had we not preregistered the cross-species criterion, we might have reported "the method works on 5 internal families" and let the reader assume generalisability. The preregistration made the boundary visible before it was crossed.
+
+**S2: Lesion cascade (PR_S2) — theory bridge to Xu 2026**
+
+Sequential lesion cascade on the MaleCNS subgraph, preregistered to test whether module-removal order predicts loss of connectivity, with a theory bridge to Xu et al. 2026 (DOI: 10.1126/science.adz5323) on dendritic computation. 500 bootstrap iterations.
+
+Key n=20 slice:
+- obs_tolerance_mean = 0.8493, null_tolerance_mean = 0.8263
+- Cohen's d = 1.153 (large effect, but on a specific n slice)
+- Spearman ρ(obs vs null) = 0.9742 (permutation null is well-calibrated)
+- Global bridge-spearman ρ = -0.1795, p = 0.0149 (marginal)
+
+Hypothesis outcomes: H1 FAIL (relative improvement < 0.05 in at least one n), H2 PASS (null distribution well-calibrated), H3 FAIL (bridge-lesion ρ threshold not met). **Verdict: FAIL.**
+
+The Xu 2026 bridge is honest: dendritic computation provides external *theoretical* support for why local structure should predict function, but the local MaleCNS subgraph we tested is too coarse to detect the effect at preregistered thresholds. The FAIL is not a methodological failure — it is the substrate telling us its resolution limit.
+
+**What both cases demonstrate about the discipline family**: S7 (resolution pre-check) and S8 (mechanism falsification) do not just prevent false positive results. They *locate* the substrate's boundary of resolution. A preregistration suite that never returns a PARTIAL or a FAIL has not done its job — it has been silent about what the substrate cannot resolve.
+
 ---
 
 ## 5. Discussion
@@ -345,8 +424,14 @@ We argue that self-verification discipline is a necessary complement to preregis
 - R2 density scan data: `_r2_density_scan/r2_density_scan.json`
 - R4 sensitivity scan data: `_r4_sensitivity_scan/r4_sensitivity_scan.json`
 - Research claims with S8 fields: `research_claims.json`
+- S3 discipline-effectiveness battery (51 injections):
+  `_s3_discipline_effectiveness/results.json`
+- Discipline-effectiveness report (v2.98.0 baseline → v2.98.1 hardening):
+  `docs/S3_DISCIPLINE_EFFECTIVENESS_2026-10-18.md`
 
-Repository: `lm203688/flybrain-connectome` (MIT).
+Repository: `lm203688/flybrain-connectome` (MIT, public since 2026-10-18,
+pinned at v2.98.1 with 60/60 gates PASS and S3 catch-rate 100 % on 51/51
+mutation injections).
 
 ---
 

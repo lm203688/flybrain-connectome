@@ -1,0 +1,17 @@
+{
+  "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
+  "name": "io.github.lm203688/flybrain-connectome",
+  "title": "flybrain-connectome",
+  "description": "Auditable multi-agent topology generator from Drosophila MaleCNS connectome motifs.",
+  "repository": {
+    "url": "https://github.com/lm203688/flybrain-connectome",
+    "source": "github"
+  },
+  "version": "3.0.2",
+  "remotes": [
+    {
+      "type": "streamable-http",
+      "url": "https://lm203688.github.io/flybrain-connectome/"
+    }
+  ]
+}

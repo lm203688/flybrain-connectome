@@ -33,9 +33,20 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "2.98.1"
+__version__ = "3.01.1"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
+
+# Lazy-import the export module (has optional yaml dependency)
+def cmd_export(args) -> int:
+    """Convert topology JSON to mainstream agent framework format."""
+    try:
+        from flybrain_export import cmd_export as _cmd_export
+        return _cmd_export(args)
+    except ImportError as e:
+        print(f"[export] ERROR: cannot import flybrain_export: {e}")
+        print("[export] Make sure flybrain_export.py is in the same directory as flybrain_cli.py")
+        return 1
 
 
 def resolve_layout():
@@ -796,6 +807,257 @@ def cmd_info(args) -> int:
     return 0
 
 
+def cmd_audit(args) -> int:
+    """Audit a generated organism / swarmlabs config for structural integrity.
+
+    Checks (all machine-enforced, exit 1 on any ERROR):
+      - schema_version present and v1-compatible
+      - nodes/edges referential integrity (edge.source/target exist in nodes)
+      - module_id consistency (every node's module_id is declared in module_profiles)
+      - role binding (every node has a role; swarm_role derivable)
+      - PROV-JSON presence (warning if degraded — dataprov not installed is OK)
+      - metrics completeness (key fields non-null)
+      - topology_profile sanity (n_nodes / n_edges match)
+
+    Exit codes: 0 = all checks pass (may have WARNs); 1 = ERRORs found.
+    """
+    import json, sys
+    from pathlib import Path as _Path
+
+    path = _Path(args.file)
+    if not path.exists():
+        print("[audit] ERROR: file not found: %s" % path)
+        return 1
+    try:
+        data = json.loads(path.read_text(encoding="utf-8"))
+    except Exception as e:
+        print("[audit] ERROR: cannot parse JSON: %s" % e)
+        return 1
+
+    errors = []
+    warnings = []
+
+    # ── schema_version ──────────────────────────────────────────────
+    sv = data.get("schema_version")
+    if sv is None:
+        warnings.append("schema_version missing (assume v1)")
+    elif not isinstance(sv, str) or not sv.startswith("1."):
+        errors.append("schema_version=%r is not v1-compatible" % (sv,))
+
+    # ── determine document kind ─────────────────────────────────────
+    kind = data.get("kind", "")
+    is_organism = "organism" in data and isinstance(data["organism"], dict)
+    is_swarmlabs = bool(data.get("agents")) or bool(data.get("edges"))
+
+    # ── nodes / edges (organism shape) ──────────────────────────────
+    org = data.get("organism", {}) if is_organism else {}
+    nodes = org.get("nodes", []) or []
+    edges = org.get("edges", []) or []
+    node_ids = set()
+    for n in nodes:
+        nid = n.get("id") if isinstance(n, dict) else None
+        if nid is None:
+            errors.append("node without 'id' field")
+            continue
+        node_ids.add(str(nid))
+
+    # ── module_profiles (needed for edge validation) ────────────────
+    mod_profiles = data.get("module_profiles", {}) or {}
+    declared_modules = set(mod_profiles.keys())
+
+    # Edges may use two conventions:
+    #   (a) node-level: {"source": <node_id>, "target": <node_id>}
+    #   (b) module-level: {"from": "mN_rep", "to": "mN_rep", "module": N, "kind": "recurrent"}
+    # Both are valid. We check whichever convention the edge uses.
+    module_edge_count = 0
+    node_edge_count = 0
+    for i, e in enumerate(edges):
+        if not isinstance(e, dict):
+            errors.append("edge[%d] is not a dict" % i)
+            continue
+        src = e.get("source")
+        tgt = e.get("target")
+        frm = e.get("from")
+        to = e.get("to")
+        if src is not None or tgt is not None:
+            # node-level convention
+            node_edge_count += 1
+            if src is not None and str(src) not in node_ids:
+                errors.append("edge[%d].source=%r not in nodes" % (i, src))
+            if tgt is not None and str(tgt) not in node_ids:
+                errors.append("edge[%d].target=%r not in nodes" % (i, tgt))
+        elif frm is not None or to is not None:
+            # module-level convention (recurrent / cross-module)
+            module_edge_count += 1
+            # validate module field if present
+            mod = e.get("module")
+            if mod is not None and str(mod) not in declared_modules:
+                errors.append("edge[%d].module=%r not in module_profiles" % (i, mod))
+        else:
+            errors.append("edge[%d] has neither source/target nor from/to" % i)
+
+    # ── node module consistency ─────────────────────────────────────
+    for n in nodes:
+        if not isinstance(n, dict):
+            continue
+        mid = n.get("module")
+        if mid is not None and str(mid) not in declared_modules:
+            errors.append("node %r module=%r not in module_profiles" % (n.get("id"), mid))
+            break  # one report is enough
+
+    # ── role binding ────────────────────────────────────────────────
+    for n in nodes:
+        if not isinstance(n, dict):
+            continue
+        if not n.get("role"):
+            errors.append("node %r missing 'role'" % n.get("id"))
+            break
+
+    # ── PROV-JSON ───────────────────────────────────────────────────
+    prov = data.get("prov_json")
+    if prov is None:
+        warnings.append(
+            "prov_json is None — PROV-JSON bundle not produced "
+            "(dataprov optional package may be missing; install with "
+            "`pip install dataprov` to enable W3C PROV-JSON emission)"
+        )
+    elif isinstance(prov, dict):
+        # W3C PROV-JSON requires @context
+        if "@context" not in prov:
+            errors.append("prov_json missing '@context' (not W3C PROV-JSON compliant)")
+
+    # ── metrics completeness ────────────────────────────────────────
+    metrics = data.get("metrics", {}) or {}
+    for k in ("n_nodes", "n_edges", "module_count"):
+        if metrics.get(k) is None and nodes:
+            warnings.append("metrics.%s is None" % k)
+
+    # ── topology_profile sanity ─────────────────────────────────────
+    tp = data.get("topology_profile", {}) or {}
+    tp_nn = tp.get("n_nodes")
+    tp_ne = tp.get("n_edges")
+    if tp_nn is not None and tp_nn != len(nodes):
+        errors.append("topology_profile.n_nodes=%r != actual %d" % (tp_nn, len(nodes)))
+    if tp_ne is not None and tp_ne != len(edges):
+        errors.append("topology_profile.n_edges=%r != actual %d" % (tp_ne, len(edges)))
+
+    # ── report ──────────────────────────────────────────────────────
+    print("[audit] %s" % path.name)
+    print("  kind          : %s" % (kind or ("organism" if is_organism else "swarmlabs" if is_swarmlabs else "unknown")))
+    print("  schema_version: %s" % sv)
+    print("  nodes         : %d" % len(nodes))
+    print("  edges         : %d" % len(edges))
+    print("  modules       : %d" % len(declared_modules))
+    print("  prov_json     : %s" % ("present" if prov else "None"))
+
+    if warnings:
+        print("\n[audit] WARNINGS (%d):" % len(warnings))
+        for w in warnings:
+            print("  ! %s" % w)
+    if errors:
+        print("\n[audit] ERRORS (%d):" % len(errors))
+        for e in errors:
+            print("  x %s" % e)
+
+    if errors:
+        print("\n[audit] FAIL — %d error(s), %d warning(s)" % (len(errors), len(warnings)))
+        return 1
+    print("\n[audit] PASS — 0 error(s), %d warning(s)" % len(warnings))
+    return 0
+
+
+def cmd_demo(args) -> int:
+    """Generate a showcase organism and optionally open its HTML visualization."""
+    import json, sys, webbrowser, os as _os
+    from pathlib import Path as _Path
+
+    _add_paths()
+    _require_toolkit()
+
+    print("[demo] Generating showcase organism...")
+    print("  blueprint : %s" % args.blueprint)
+    print("  modules   : %d" % args.modules)
+    print("  agents/module: %d" % args.agents_per_module)
+
+    try:
+        import synthetic_bio_topology as c1
+        spec = {
+            "n_modules": args.modules,
+            "agents_per_module": args.agents_per_module,
+        }
+        topo = c1.design_organism(spec)
+    except (ImportError, AttributeError) as e:
+        print("\n[demo] Error: %s" % e)
+        print("  Run from a checkout or set FLYBRAIN_HOME.")
+        return 2
+
+    # Write outputs
+    out_dir = _os.environ.get("FLYBRAIN_HOME", str(ROOT))
+    org_dir = _Path(out_dir) / "flybrain-connectome-mcp" / "generated_organisms"
+    org_dir.mkdir(parents=True, exist_ok=True)
+    sw_dir = _Path(out_dir) / "flybrain-connectome-mcp" / "swarmlabs"
+    sw_dir.mkdir(parents=True, exist_ok=True)
+
+    name = "demo_%s_m%d_a%d" % (args.blueprint, args.modules, args.agents_per_module)
+    json_path = org_dir / (name + ".json")
+    html_path = org_dir / (name + ".html")
+
+    with open(json_path, "w", encoding="utf-8") as f:
+        json.dump(topo, f, indent=2, ensure_ascii=False, default=str)
+
+    # Try full HTML renderer; fall back to minimal page
+    html_generated = False
+    try:
+        from tools.synthetic_bio_topology import render_html
+        html_content = render_html(topo)
+        with open(html_path, "w", encoding="utf-8") as f:
+            f.write(html_content)
+        html_generated = True
+    except (ImportError, AttributeError):
+        html_content = (
+            '<!DOCTYPE html><html><head><title>flybrain demo — ' + name + '</title>\n'
+            '<style>body{font-family:sans-serif;padding:2em;max-width:720px;margin:auto;}'
+            'h1{color:#2563eb;}code{background:#f1f5f9;padding:2px 6px;border-radius:4px;}</style>\n'
+            '</head><body>\n<h1>flybrain demo — ' + name + '</h1>\n'
+            '<p>Blueprint: <code>' + args.blueprint + '</code></p>\n'
+            '<p>Modules: %d | Agents: %d/module | Total: %d</p>\n'
+            '<p>Full topology: <a href="%s.json">%s.json</a></p>\n'
+            '<p>For the interactive D3 visualization, run:<br>'
+            '<code>flybrain generate --blueprint %s --modules %d --agents-per-module %d</code></p>\n'
+            '</body></html>' % (
+                args.modules, args.agents_per_module,
+                args.modules * args.agents_per_module,
+                name, name,
+                args.blueprint, args.modules, args.agents_per_module,
+            )
+        )
+        with open(html_path, "w", encoding="utf-8") as f:
+            f.write(html_content)
+        print("  [warn] Full HTML renderer not available; wrote minimal page")
+
+    # SwarmLabs config placeholder
+    sw_json = sw_dir / (name + ".swarm.json")
+    with open(sw_json, "w", encoding="utf-8") as f:
+        json.dump({"agents": [], "edges": []}, f, indent=2)
+
+    print("\n[demo] Outputs written to:")
+    print("  [json] %s" % json_path)
+    print("  [html] %s" % html_path)
+    print("  [swarm] %s" % sw_json)
+
+    if not args.no_open and html_generated:
+        print("\n[demo] Opening HTML visualization...")
+        try:
+            webbrowser.open(str(html_path))
+            print("  [ok] Opened in default browser")
+        except Exception as e:
+            print("  [warn] Could not open browser: %s" % e)
+            print("  Open manually: %s" % html_path)
+
+    print("\n[demo] Done. Run 'flybrain info' to see toolkit status.")
+    return 0
+
+
 # ---------------------------------------------------------------------- #
 # argument parser
 # ---------------------------------------------------------------------- #
@@ -906,6 +1168,58 @@ def build_parser() -> argparse.ArgumentParser:
 
     s = sub.add_parser("info", help="report the resolved toolkit/data paths")
     s.set_defaults(func=cmd_info)
+
+    s = sub.add_parser(
+        "demo",
+        help="generate a showcase organism and open its HTML visualization",
+        description=(
+            "One-command demo: generates a predictive_coding_v2 topology with "
+            "5 modules x 8 agents, writes JSON + D3 HTML + SwarmLabs config, "
+            "and opens the HTML in the default browser. Fully offline — no data."
+        ),
+    )
+    s.add_argument("--blueprint", default="predictive_coding_v2",
+                   help="blueprint (default: predictive_coding_v2)")
+    s.add_argument("--modules", type=int, default=5,
+                   help="modules (default: 5)")
+    s.add_argument("--agents-per-module", type=int, default=8,
+                   help="agents per module (default: 8)")
+    s.add_argument("--no-open", action="store_true",
+                   help="don't auto-open the HTML")
+    s.set_defaults(func=cmd_demo)
+
+    s = sub.add_parser(
+        "audit",
+        help="audit a generated organism or swarmlabs JSON for structural integrity",
+        description=(
+            "Audit a .json artifact (organism or swarmlabs export) for "
+            "structural integrity: referential consistency, module/role binding, "
+            "PROV-JSON compliance, and metrics completeness. Exits 1 on ERRORs. "
+            "Designed for CI and pre-submission sanity checks."
+        ),
+    )
+    s.add_argument("file", help="path to .json file to audit")
+    s.set_defaults(func=cmd_audit)
+
+    # export — convert topology to mainstream agent framework formats
+    s = sub.add_parser(
+        "export",
+        help="convert topology JSON to mainstream agent framework format",
+        description=(
+            "Convert a flybrain topology JSON to LangGraph, CrewAI, or AutoGen "
+            "config format. This is a lightweight adapter — it converts the "
+            "topology structure (nodes, edges, roles, modules) into the "
+            "framework's config format, but does NOT include the full "
+            "framework runtime."
+        ),
+    )
+    s.add_argument("input", help="path to topology JSON file")
+    s.add_argument("--format", required=True,
+                   choices=["langgraph", "crewai", "autogen"],
+                   help="target framework format")
+    s.add_argument("--output", default=None,
+                   help="output file path (default: <input_stem>.<format>)")
+    s.set_defaults(func=cmd_export)
     return ap
 
 
@@ -922,7 +1236,6 @@ def main(argv: list[str] | None = None) -> int:
     if unknown:
         ap.error("unrecognized arguments: %s" % " ".join(unknown))
     return int(args.func(args))
-
 
 if __name__ == "__main__":
     sys.exit(main())

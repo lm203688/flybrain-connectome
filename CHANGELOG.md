@@ -4,10 +4,280 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.01.1] - 2026-10-26
+
+### Added
+- **P1-3 MCP/HTTP transport contract unified (Gate 66)** — HTTP `/query`
+  now dispatches all 47 MCP tools instead of the previous 12-tool subset.
+  New `flybrain-connectome-mcp/mcp_connectome/tool_registry.py` derives
+  `DISPATCH` directly from `server.TOOLS`, so any MCP tool added in the
+  future is automatically reachable via HTTP with no manual wiring.
+- **P1-3 Gate 66 (transport contract)** — new
+  `scripts/check_transport_contract.py` enforces the invariant that the
+  set of HTTP-dispatchable tools equals the set of MCP-declared tools,
+  and that every entry in `server.TOOLS` has `name`, `description`, and
+  `inputSchema.type == "object"`. Registered in `run_gates.py`. 3-injection
+  battery (drop_one_dispatch / add_phantom_tool / strip_inputSchema) all
+  verified to turn the gate red.
+- **P1-3 `project_status.json` transport gap closed** — the
+  `transport_gap.mcp_only_tools` field now reports 0 instead of 35, and
+  `note` reflects that MCP and HTTP expose the identical tool set.
+
+### Changed
+- `api_server.py` DISPATCH now delegates to
+  `tool_registry.build_http_dispatch()`; the 12 hardcoded lambda entries
+  are removed. All error handling / auth / rate limiting still happens at
+  the HTTP handler level, unchanged.
+- Version bump 3.01.0 → 3.01.1 in 6 files (`pyproject.toml`,
+  `flybrain_cli.py`, `mcp_connectome/api_server.py`, `mcp_connectome/server.py`,
+  `aibom.json`, `README.md` badge).
+- README gate count updated 64 → 65 (new Gate 66).
+- `scripts/gen_project_status.py` `_count_http_dispatch()` now
+  AST-parses `tool_registry.py`'s `DISPATCH` dict and falls back to
+  importing the module; the old regex that only matched hardcoded lambdas
+  no longer applies.
+- `aibom.json` regenerated with fresh workspace fingerprint and v3.01.1.
+- `project_status.json` regenerated: `mcp_tools: 47`,
+  `http_dispatch: 47`, `transport_gap.mcp_only_tools: 0`.
+
+### Explicitly NOT changed (honest boundary)
+- **No new MCP tools.** The 47 existing tools are unchanged; only the
+  HTTP-side dispatch was widened to match. `server.py` TOOLS list is a
+  byte-for-byte no-op.
+- **No CLI changes.** This sprint is transport-only.
+- **P1-1 (LangGraph runnable backend)** — the `flybrain export` command
+  still emits static JSON/YAML config, not a compiled LangGraph
+  `StateGraph`. Making the export actually runnable behind a mock LLM is
+  the next work package.
+- **P2-2 (FlyGym embodiment loop)** — deferred to the P2 sprint.
+- **P2-3 (data CSR refactor + memory benchmark)** — deferred; this
+  release stays focused on transport contract correctness.
+
+## [3.01.0] - 2026-10-26
+
+### Added
+- **P0-1 Windows GBK encoding fix (subprocess hardening)** — new
+  `scripts/_subprocess_util.py` provides a single `run_capture()` helper
+  that guarantees `text=True, encoding='utf-8', errors='replace'` on every
+  `subprocess.run` call in the codebase. Previously gate 61/64 crashed on
+  Chinese Windows (GBK locale) when a child process emitted any non-ASCII
+  byte. Fixed the 3 hot sites: `run_gates.py`, `check_audit_cli.py`,
+  `check_receipt_integrity.py`.
+- **P0-1b Gate 61 fail-closed** — `check_receipt_integrity.py` previously
+  swallowed `json.JSONDecodeError` on `claim_graph.json` and silently
+  skipped the receipt↔claim cross-check (WARN). Now any parse error or
+  missing graph when receipts exist is a FAIL. This closes a fail-open
+  gap that let tampered receipts pass silently.
+- **P0-4 `project_status.json` — single source of truth for public counts** —
+  new `scripts/gen_project_status.py` computes version, gate count, MCP
+  tool count, HTTP dispatch count, CLI subcommand count, notebook count,
+  and quick-gate pass rate from source files, writing the canonical JSON.
+  New `scripts/check_project_status.py` (Gate 65) enforces that the file
+  stays in sync and that the MCP↔HTTP transport gap is declared openly.
+- **P0-4 Gate 65 (project status)** — added to `run_gates.py`. 3-injection
+  battery (tamper_mcp_tools_count / tamper_version_string /
+  delete_project_key) all verified to turn the gate red.
+- **P0-6 HTML tooltip XSS fix** — `docs/demo/topology.html` and
+  `flybrain-connectome-mcp/synthetic_bio_topology.py` both added an
+  `escapeHtml()` helper and now escape every dynamic value (node id, role,
+  module, source, edge from/to/weight/kind, metric key/value) before
+  writing into `innerHTML`. Prior versions would let a payload like
+  `<img src=x onerror=alert(1)>` in a node id execute on hover.
+
+### Changed
+- Version bump 3.00.3 → 3.01.0 in 6 files (`pyproject.toml`,
+  `flybrain_cli.py`, `mcp_connectome/api_server.py`, `mcp_connectome/server.py`,
+  `aibom.json`, `README.md` badge).
+- README gate count updated 62 → 63 (new Gate 65).
+- `scripts/gen_project_status.py` and `scripts/check_project_status.py`
+  support `--skip-gates` / `--injection-battery` flags so the meta-gate
+  battery runs in <5s instead of recursing into a full gate run.
+- `check_project_status.py --quiet` for cleaner run_gates.py output.
+- `aibom.json` regenerated with fresh workspace fingerprint and v3.01.0.
+
+### Explicitly NOT changed (honest boundary)
+- **No new CLI subcommand.** P0-1/1b/4/6 are all infrastructure; they
+  don't add user-facing commands.
+- **P0-3 (single MCP/HTTP registry) deferred to P1.** The 47-MCP-vs-12-HTTP
+  transport gap is now declared openly in `project_status.json`
+  `transport_gap.note`, but full parity (every MCP tool reachable via HTTP)
+  requires a bigger refactor of `api_server.py` DISPATCH and is out of
+  scope for the P0 reliability sprint. Tracked as `P1-3` in the
+  comprehensive upgrade report.
+- **P0-5 (tests/ pytest tree) deferred.** `pyproject.toml` still declares
+  `testpaths = ["tests"]` and that directory does not exist yet. Building
+  the tree is a P0-5 work package, not a P0 blocker; the current
+  `scripts/run_gates.py --quick` remains the primary test entry.
+- **Xu 2026 dendritic reference unchanged.** Reference pattern is stable;
+  this release is a reliability/infrastructure sprint, not a science one.
+
+## [3.00.3] - 2026-10-25
+
+### Added
+- **Xu 2026 dendritic-computation reference pattern** — a minimal, runnable
+  code reference implementing Xu, N., et al. (*Science*, 2026-10-16,
+  DOI: `10.1126/science.adz5323`) as a two-compartment rule-cache model:
+  - `tools/dendritic_rule_engine.py` — ~200-line reference implementation.
+    Four public classes: `Rule` (dataclass), `RuleCache` (apical dendrite,
+    Wilson-score confidence), `SensoryStream` (soma encoder),
+    `NonlinearIntegrator` (multiplicative sigmoid gate), plus the
+    `DendriticAgent` facade. Runnable self-demo included.
+  - `examples/07_dendritic_rule_cache_demo.ipynb` — 11-cell notebook walking
+    through rule authoring, a rule-switching observation stream,
+    consolidation inspection, and the abstain path.
+  - `docs/XU2026_DENDRITIC_PATTERN_MAPPING.md` — one-page mapping of Xu 2026
+    concepts onto EPE L1/L2/L4 layers, plus explicit "what maps cleanly vs.
+    what does NOT" list.
+- **README Xu 2026 pattern reference section** — short reference block after
+  S6–S9 pointing to the new code, notebook, and mapping doc; explicitly
+  marks the pattern as reference-only (not architecture change).
+
+### Changed
+- Version bump 3.00.2 → 3.00.3 in 6 files (`pyproject.toml`, `flybrain_cli.py`,
+  `mcp_connectome/api_server.py`, `mcp_connectome/server.py`, `aibom.json`,
+  `README.md` badge).
+- README banner updated to v3.00.3 · 2026-10-25, listing the new Xu 2026
+  pattern reference implementation.
+
+### Explicitly NOT changed (honest boundary)
+- **Core combinatorial algebra unchanged.** Xu 2026 is a subcellular pattern;
+  the 116-unit core remains neuron-level. No compartments introduced.
+- **No new gates.** Xu 2026 does not provide quantitative metrics suitable for
+  gate enforcement; adding a gate around a pattern reference would be noise.
+- **No new CLI command.** Pattern reference is discoverable via
+  `docs/XU2026_DENDRITIC_PATTERN_MAPPING.md` and the notebook, not a
+  first-class subcommand.
+- **No cross-species transfer claim.** Xu 2026 is mouse auditory cortex L5
+  pyramidal neurons; our substrate is Drosophila MaleCNS. Independent
+  experimental work would be required for any transfer claim.
+
+### Reference
+- Xu, N., et al. (2026). Dendritic computation for abstract rule-based
+  flexible decision-making. *Science* 378, eadz5323.
+  DOI: 10.1126/science.adz5323.
+- Prior project integration: `docs/XU2026_DENDRITIC_COMPUTATION_IMPACT_2026-10-18.md`
+  (2026-10-18 impact memo), `docs/E4_BOUNDARY_ATLAS.md` B-14
+  (compartment boundary), `docs/PAPER_P4_CASE_STUDY.md` §6.7
+  (methodological neighbour of PR-2b).
+
+
+## [3.00.2] - 2026-10-24
+
+### Added
+- **P2-4: `flybrain audit` CLI subcommand** — packages the project's most
+  valuable capability (PROV-JSON + structural integrity checking) as a
+  standalone command any user can run on any organism or swarmlabs JSON
+  artifact. Checks: schema_version compatibility, node/edge referential
+  integrity (both node-level `source/target` and module-level `from/to`
+  conventions), module_id consistency, role binding, PROV-JSON presence
+  (W3C `@context` validation), metrics completeness, topology_profile
+  sanity. Exit code 0 on PASS, 1 on ERRORs. Designed for CI integration
+  and pre-submission sanity checks.
+- **Gate 64: audit CLI integrity** (`scripts/check_audit_cli.py`) — 5 checks
+  (CLI registered, valid organism exits 0, broken organism exits 1 and
+  catches 3 specific errors, nonexistent file exits 1, handler not stub)
+  + 3-mutation injection battery (drop_edge_target, corrupt_module_id,
+  drift_topology_profile) all red on tamper.
+- **JOSS submission package** — `outputs/SCI_SUBMISSION_PACKAGE_2026-10-20/02_submission_guides/JOSS_SUBMISSION_PACKAGE.md`
+  (12-item self-audit, 5-step pre-submission checklist, 45-min budget)
+  and `outputs/SCI_SUBMISSION_PACKAGE_2026-10-20/01_manuscripts/PAPER_P3_JOSS_PREREG_DISCIPLINE.md`
+  (4-page JOSS methodology paper following JOSS template, 12/12 requirements PASS).
+- **`paper.md` at repo root** — the JOSS paper is committed at the repo root
+  (JOSS standard convention) so the JOSS bot can pick it up automatically.
+
+### Changed
+- README gate count: 61 → 62 gates (after adding Gate 64).
+- README header updated to v3.00.2.
+- **Stray log files archived** — 3 gate logs (`gates_out.log`,
+  `gates_v2500.log`, `gates_v2500_quick.log`) moved to `_archive/logs/`.
+- **P2/P3 PDF/HTML submissions archived** — 4 files (`P2_submit.pdf`,
+  `P2_submit.html`, `P3_submit.pdf`, `P3_submit.html`) moved to
+  `outputs/SCI_SUBMISSION_PACKAGE_2026-10-20/` alongside their canonical copies.
+- **Root directory cleanup attempted and reverted** — 33 `_*` experiment output
+  directories were moved to `_archive/experiments/` (2026-10-24 12:15) but the
+  10 discipline gates that reference these paths (`check_c1_c3`,
+  `check_intervention_test`, `check_recovery_dynamics`,
+  `check_generalization_matrix`, `check_metric_substitution`, `check_pr_s1`,
+  `check_preregistered_claims`, `check_llm_orchestrator`, `check_metrics_fork`,
+  `check_claim_redteam`) fail because they hardcode `ROOT / "_foo_dir" / ...`.
+  The move was reverted 15 min later; the experiment dirs stay at top level and
+  remain gitignored via `_*/*` — the public repo was already clean of them, so
+  no cleanup was needed. The `.gitignore` change was also reverted. **Lesson**:
+  the FIVE_DIMENSION report §2.1 "root directory pollution" is a false alarm for
+  the public view (gitignored files don't ship) but the local working tree does
+  look cluttered. This is a local-development concern, not a public-facing one.
+
+### Notes
+- The audit command catches real data quality issues found in demo output:
+  the "Full HTML renderer not available" fallback path produces organisms
+  with module-level edges (`from`/`to`/`module`/`kind`) rather than
+  node-level edges (`source`/`target`). Both conventions are now accepted.
+- **FIVE_DIMENSION_UPGRADE_2026-10-22 completion status**: 12/13 (92%).
+  The single remaining gap is PyPI publish (requires user credentials).
+- **JOSS recommendation** (post-2026-10-24 assessment): JOSS is the highest-
+  hit-rate venue for this project. See `JOSS_SUBMISSION_PACKAGE.md` for the
+  45-minute submission plan; bioRxiv is still the recommended first move
+  for the P-2 long-form version.
+
+## [3.00.0] - 2026-10-23
+
+### Added
+- `flybrain demo` CLI command (P0-3): one-command showcase that generates a
+  predictive_coding_v2 topology (5 modules x 8 agents), writes JSON + HTML +
+  SwarmLabs config, and optionally opens the HTML in the default browser.
+  Fully offline — no data download required.
+
+### Fixed
+- **B1: 7 DOIs added to `references.bib`** (Friston 2010, Funder 2018, etc.)
+  Header now warns that entries without confirmed DOI must be looked up in
+  Zotero/JabRef before submission.
+- **B2: Table 4 re-differentiated from Table 2** in PAPER_P1_MAINLINE_MERGED.md.
+  Table 4 now documents Gate 63 mutation-injection enforcement evidence
+  (5/5 classes caught, Wilson 95% CI [64.2%, 100.0%]) rather than repeating
+  the claim-level statistics from Table 2. §4.15 explicitly points readers
+  back to Table 2 in §3.7 for the actual statistics.
+- **B3: 5 `table*.md` intermediate files deleted** from `docs/figures/p1_mainline/`.
+  LaTeX directory retains canonical copies.
+- **P0-1: README 5 contradictions fixed:**
+  - Install section "private until 2026-09-22" → "PUBLIC since 2026-10-18"
+  - Output path `generated_organisms/` → `flybrain-connectome-mcp/generated_organisms/`
+  - Gate count `61 gates` → `63 gates` (both quick and full)
+  - License section "private (2026-09-22)" → "PUBLIC since 2026-10-18"
+  - pip install clarified: `flybrain-connectome[prov]` not yet on PyPI
+
+### Changed
+- `.gitignore`: added `_*/*` pattern for experiment output directories
+  (P0-4) — keeps `_*` dirs in git but ignores their contents. Exceptions
+  for `_verify.py`, `_audit_p1_task_effect.py`, `_probe_llm.py` which are
+  real scripts, not experiment output.
+
+### Notes
+- P0-2 (PyPI publish) requires user credentials — not automated.
+- P0-5 (README GIF/screenshot) requires screenshot tooling — deferred.
+- P1-1 to P2-4 (examples, hosted demo, narrative reposition, community infra)
+  are 2-8 week items — tracked in `docs/FIVE_DIMENSION_UPGRADE_2026-10-22.md`.
+
 The **schema version** is versioned separately from the **package version**:
 
 | | value | meaning |
 |---
+## [2.99.0] - 2026-10-21
+
+### Added
+- **Gate 63 — research_claims 顶层统计完整性**：新增 `scripts/check_claim_stats.py`。每条 claim (R1–R6) 必须携带顶层统计块（`point_estimate` / `ci_low` / `ci_high` / `p_value` / `test_name` / `test_detail` 六个 key 均存在）；null 值必须有对应的 `*_missing_reason` 解释；`ci_method` 必须在受控词汇内（wilson_score_95 / bootstrap_percentile_slope_B1000_seed42 / deterministic_didactic_test / not_available / single-point）；数值型 point_estimate 必须落在 [ci_low, ci_high] 内（浮点容差 1e-6）。Gate 39 元纪律：5-mutation 注入电池（drop_ci_low / drop_p_value_key / corrupt_point_estimate / invert_ci_bounds / bogus_ci_method）全部报红。**关闭 P3 gap**（SCI_READINESS_ACTION_PLAN_2026-10-20 记录的"顶层字段缺失"）。
+- **research_claims.json 顶层统计字段**：R1 (AUC=0.788, z=1.5291, p=0.1262) / R2 (slope=0.9060, CI [0.2135, 1.0828]) / R3 (无 CI，诚实登记欠采样) / R4 (560/1000, Wilson CI [0.5291, 0.5905], p<0.001) / R5 (deterministic 12/12) / R6 (37/116, Wilson CI [0.247, 0.402])。所有 null 值都带 `*_missing_reason` 说明为什么"这里没有 CI/p 是正确做法，不是遗漏"。
+- **作者署名规范化**：`docs/S6S9_SELFVERIFICATION_DISCIPLINES_PAPER.md`（P-3）和 `docs/PAPER_P4_CASE_STUDY.md`（P-4）替换 `flybrain-connectome contributors` 占位符为 Li Xing（李星）+ ORCID 0000-0002-8747-1969 + email xingli1123@outlook.com + Independent Researcher 署名。补齐 CRediT 贡献声明 / COI / Ethics / Funding / Data / Code 可用性 / Pre-registration 七段合规文本，达到 Scientific Reports / Frontiers 期刊要求。
+
+### Updated
+- **BIORXIV_SUBMISSION_PASTE_READY.md**：Step 1.2 作者元数据填实（Given name Xing, Family name Li, Affiliation Independent Researcher Shenzhen China, Email xingli1123@outlook.com, ORCID 0000-0002-8747-1969）；Step 1.7 Data availability / Ethics / Competing interests / Funding 语句全部对齐期刊合规标准。
+- **README 门禁计数**：徽章与 docs/version consistency 检查器的口径统一为 61（检查器用 `GATE N` 唯一标签计数，Gate 37/52 未独立成标签，历史遗留；本轮归零）。
+- **registry/preregistered_rejections.json**：随 research_claims.json 变更自动重算 `registry_sha256_of_inputs`，Gate 53 归零。
+- **版本扩容 7 处**：pyproject.toml / flybrain_cli.py / CHANGELOG.md / README.md 徽章 + 描述行 + 门禁计数行 / api_server.py / server.py 全部 2.98.1 → 2.99.0。
+
+### Notes
+- 本轮是**投稿前收尾**：不改变任何预注册 verdict、不改变任何科学结论。所有新加的字段都是"把已有数字搬到顶层"或"新增一条 gate 保证以后不被回退"，是纯增量。
+- 门禁状态：Gate 2 / 53 / 58 在本轮修复前分别红（README 计数漂移、registry 哈希漂移、版本号漂移），修复后全部归绿。当前 63/63 gates PASS（不含 --with-data）。
+
 ## [2.98.1] - 2026-10-18
 
 ### Added

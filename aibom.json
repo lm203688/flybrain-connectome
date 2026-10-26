@@ -1,9 +1,9 @@
 {
   "aibom_schema_version": "1.0.0",
-  "generated_utc": "2026-10-18T07:53:32+00:00",
+  "generated_utc": "2026-10-26T09:46:05+00:00",
   "package": {
     "name": "flybrain-connectome",
-    "version": "2.98.1"
+    "version": "3.01.1"
   },
   "direct_python_deps": [
     "numpy>=1.24"
@@ -65,20 +65,20 @@
   },
   "workspace_fingerprint": {
     "pyproject.toml": {
-      "sha256": "36477f3be1259fa94ca07d4e8be1c0b7c813a76c63973fe4b1fbbca62f17f6e9",
-      "bytes": 8394
+      "sha256": "3ce25bb4702314b2456b896e877be99a64ad48303bf9f314a9a6af510539fce5",
+      "bytes": 8176
     },
     "DATA_MANIFEST.json": {
       "sha256": "9258e0f959ab1a0c3966b10275ac0103d0729bb5e4256b4b814049dd1a174bd3",
       "bytes": 34998715
     },
     "README.md": {
-      "sha256": "10b0c5b4511dad01f15166af329a85788058a542edb26a00bab0e4cec2429c6e",
-      "bytes": 67933
+      "sha256": "06833432f5444b955800f06f1c8be97a7569ad8c30eaf3299689f44627011ed4",
+      "bytes": 70565
     },
     "CHANGELOG.md": {
-      "sha256": "4aabab505798c28329c4a913d95c21ece4e4e2cda788f7b54207b3818198eb7c",
-      "bytes": 366869
+      "sha256": "22e70667ba829653ff76c1ad06753b097528d1aa90c755961c314d259f9c02a4",
+      "bytes": 378298
     }
   }
 }

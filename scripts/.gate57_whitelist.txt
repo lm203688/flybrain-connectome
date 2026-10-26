@@ -12,3 +12,12 @@ archive/*
 flybrain-tier2-backup-*/**/*
 zebrafish_data/paper_data/**/*
 archive/swept-*/*
+
+# Session scaffolding: AI-generated one-off helper scripts used to
+# drive GitHub API calls, cross-repo PRs, and other operational tasks.
+# Not project code; kept in _tmp/ for audit trail but not subject to
+# project code quality gates. Note: fnmatch treats `**` as `*`, so
+# `_tmp/*` covers all files one level deep (all session scripts live
+# directly under _tmp/, not nested).
+_tmp/*
+

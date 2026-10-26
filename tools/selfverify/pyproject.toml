@@ -9,7 +9,7 @@ description = "Turn preregistration into an executable gate for computational ex
 readme = "README.md"
 requires-python = ">=3.9"
 license = { text = "MIT" }
-authors = [{ name = "Lexing" }]
+authors = [{ name = "Li Xing" }]
 keywords = ["preregistration", "reproducibility", "self-verification", "negative-results", "metascience"]
 dependencies = []
 

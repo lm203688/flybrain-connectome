@@ -546,6 +546,69 @@ def main() -> int:
         "lower_kappa_min) must all turn the gate red.",
         [py, str(SCRIPTS / "check_pr_s1.py")])[0]))
 
+    # ---- Gate 63: research_claims top-level stat completeness ----
+    results.append(("gate63 claim stat completeness", run(
+        "GATE 63 — research_claims.json top-level stat completeness: every "
+        "claim (R1–R6) must carry a top-level statistical block — "
+        "point_estimate, ci_low, ci_high, p_value, test_name, test_detail "
+        "all present as keys. Null values must have a matching *_missing_"
+        "reason. ci_method must be in the recognised vocabulary "
+        "(wilson_score_95 / bootstrap_percentile_slope_B1000_seed42 / "
+        "deterministic_didactic_test / not_available / single-point). "
+        "Numeric point_estimate must lie inside [ci_low, ci_high]. "
+        "This closes the P3 gap that the SCI_READINESS_ACTION_PLAN "
+        "flagged: a reviewer scanning the manifest could not tell a "
+        "tested claim from a hand-waved one. Gate 39 meta-discipline "
+        "honored: 5-mutation injection battery (drop_ci_low, "
+        "drop_p_value_key, corrupt_point_estimate, invert_ci_bounds, "
+        "bogus_ci_method) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_claim_stats.py")])[0]))
+
+    # ---- Gate 64: flybrain audit CLI integrity (P2-4) ----
+    results.append(("gate64 audit CLI", run(
+        "GATE 64 — flybrain audit CLI integrity (P2-4): the 'audit' "
+        "subcommand must be registered in flybrain_cli.py (parser + "
+        "handler + dispatch), must exit 0 on a valid organism JSON, "
+        "must exit 1 on a broken organism (catches edge.target not in "
+        "nodes, edge.module not in module_profiles, topology_profile "
+        "drift), must exit 1 on a nonexistent file, and must actually "
+        "produce an ERROR section (not a stub). Gate 39 meta-discipline "
+        "honored: 3-mutation injection battery (drop_edge_target, "
+        "corrupt_module_id, drift_topology_profile) must all turn the "
+        "gate red. This packages the project's most valuable capability "
+        "— PROV-JSON + structural integrity checking — as a standalone "
+        "command any user can run on any artifact.",
+        [py, str(SCRIPTS / "check_audit_cli.py"), "--quiet"])[0]))
+
+    # ---- Gate 65: project_status.json consistency (P0-4) ----
+    results.append(("gate65 project status", run(
+        "GATE 65 — project_status.json consistency (P0-4): the JSON "
+        "status file must be up-to-date with the actual source of truth "
+        "(version, gate count, tool counts, HTTP dispatch, notebook "
+        "count) so that README, Pages, papers and mcp server can all "
+        "read from one canonical status file instead of hand-maintained "
+        "drifting numbers. Transport gap between MCP and HTTP is declared "
+        "openly. Gate 39 meta-discipline honored: 3-injection battery "
+        "(tamper_mcp_tools_count, tamper_version_string, "
+        "delete_project_key) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_project_status.py"), "--quiet"])[0]))
+
+    # ---- Gate 66: MCP/HTTP transport contract consistency (P1-3) ----
+    results.append(("gate66 transport contract", run(
+        "GATE 66 — MCP / HTTP transport contract consistency (P1-3): "
+        "HTTP /query must expose exactly the same tool surface as "
+        "MCP tools/list. Before this gate, api_server.py hand-wrote "
+        "a 12-entry DISPATCH dict while server.TOOLS declared 47 "
+        "tools — users could see a tool in /tools but hit 400 on "
+        "/query. Now tool_registry.py derives DISPATCH from "
+        "server.TOOLS and this gate enforces that parity forever. "
+        "Also verifies every TOOLS entry has a valid inputSchema "
+        "(type=object) and every dispatch handler is callable. "
+        "Gate 39 meta-discipline honored: 3-mutation injection "
+        "battery (drop_one_dispatch, add_phantom_tool, "
+        "truncate_tool_schema) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_transport_contract.py"), "--quiet"])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:

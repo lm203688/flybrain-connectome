@@ -487,7 +487,7 @@ the upstream repository and can be reproduced with three commands.
 ## Data and code availability
 
 - **Preregistration documents:** `docs/PREREGISTRATION_PROTOCOL_v1.md`
-  (upstream repository, public).
+  (upstream repository, public; 60 gates as of v2.98.1, all PASS).
 - **Raw artifacts:** `_f1_controllability/`, `_f2_recovery/`,
   `_f4_intervention_n100/`, `_r1_expansion/`, `_r2_full/`, `_r3_full/`,
   `_p1_full/` (upstream repository, public; Tier-2 raw data excluded).

@@ -1,10 +1,59 @@
 # Reproducible Preregistration as a First-Class Research Object: A Methodology for Computing Experiments Where Negative Results Are the Point
 
-**arXiv preprint · 2026-10-16 · v1.0**
+**Preprint · 2026-10-20 · v1.0**
 
-*Authors.* flybrain-connectome contributors (independent methodological short paper, decoupled from the main project paper `arxiv_paper.md`).
+---
 
-*License.* CC-BY-4.0. Code for the traceability evidence chain lives in `metrics_fork/` at the root of the upstream repository.
+**Li Xing (李星)** ¹\*
+
+¹ Independent Researcher · Shenzhen, China
+
+**Corresponding Author**  
+Li Xing  
+Email: [xingli1123@outlook.com](mailto:xingli1123@outlook.com)  
+ORCID: 0000-0002-8747-1969
+
+**License.** CC-BY-4.0. Code for the traceability evidence chain lives in `metrics_fork/` at the root of the upstream repository. Repository: https://github.com/lixing1123/flybrain-connectome.
+
+---
+
+### CRediT Author Statement
+
+Li Xing: Conceptualization (lead), Methodology (lead), Software (lead), Validation (lead), Formal Analysis (lead), Investigation (lead), Data Curation (lead), Writing — Original Draft (lead), Writing — Review & Editing (lead), Visualization (lead), Supervision (lead).
+
+### Conflict of Interest
+
+The author declares no competing financial interests, personal relationships, or professional affiliations that could bias the research. The author has not been employed by, funded by, or affiliated with any institution or organization in connection with this work.
+
+### Ethics Statement
+
+This study analyses public, de-identified connectomic datasets: (a) JPL FlyWire Male CNS v0.1 (https://www.flywire.janelia.org/, 166,700 neurons / 124,177,617 synapses); (b) C. elegans reconstructed connectome (Witvliet et al. 2020); (c) zebrafish larva synapse data (Petkova et al. 2025). No new experimental data were generated. No human subjects or living animals were involved. No institutional review board approval was required.
+
+### Funding
+
+This work received no external funding. All experiments were conducted on the author's personal computing hardware.
+
+### Data Availability
+
+- FlyWire Male CNS: https://www.flywire.janelia.org/
+- C. elegans connectome: https://github.com/noviceelife/novice-2017-c-elegans-connectome
+- Zebrafish larva: Petkova et al. 2025, `TEN_analysis/outgoing_synapses.csv`
+
+### Code Availability
+
+Complete preregistration document, mutation-injection scripts, results JSON, and CI calculations are available at https://github.com/lixing1123/flybrain-connectome (MIT License).
+
+### Author Contribution Statement
+
+This is a single-author work. Li Xing is the sole author and assumes full responsibility for the design, execution, analysis, and presentation of this research.
+
+### Pre-registration and Reproducibility
+
+The paper's core artifact — the preregistration document itself — is `PR_REGISTRATION_2026-10-18.md` in the repository. All six preregistration protocols (PR-1 through PR-4, PR-2b, PR_S1–S3) are registered with time-ordered versions, byte-for-byte hash verification, and machine-enforced acceptance rules.
+
+### Keywords
+
+preregistration · negative results · first-class research object · falsification · research integrity · base-limited experiment · mutation injection · computational reproducibility
 
 ---
 
@@ -227,6 +276,60 @@ of trajectory steps) and variance of the delta.
 Five preregistrations. Four negative results. One preregistered rejection
 of an experiment that never ran. Zero PASS results were manufactured from
 FAIL by silent modification. This is the point of the regime.
+
+### 5.6 Post-suite extensions: PR_S1 (external) and PR_S2 (theory bridge)
+
+Two further preregistrations were added in v2.98.0 (2026-10-18) that
+extend the five-suite in orthogonal directions: **outward** (beyond the
+MaleCNS substrate to three external connectomes) and **upward** (from
+structural manipulation to a theory bridge with Xu et al. 2026 dendritic
+computation, DOI: 10.1126/science.adz5323).
+
+**PR_S1: Cross-species external validation (verdict PARTIAL)**
+
+Three public connectomes from other phyla were loaded and run through
+the same rank-label protocol used in PR-3 v2. All three loaded with
+bootstrap 95% CIs. All three external AUCs came back at the null floor
+(0.5), which is *below* the preregistered floor of 0.65. Per the R-0.4
+discipline, this endpoint is reported as PARTIAL:
+
+| External dataset | Nodes | Edges | External AUC | AUC 95% CI | Verdict |
+|---|---|---|---|---|---|
+| C. elegans (Witvliet 2020) | 18 | 164 | 0.5 | null-floor | below floor |
+| Drosophila larva (placeholder) | 0 | 0 | 0.5 | n/a | unusable |
+| Zebrafish (Petkova 2025) | 26,593 | 42,640 | 0.5 | null-floor | below floor |
+
+The internal 5-family PASS in PR-3 v2 does **not** extrapolate. This
+is exactly the honest boundary the preregistration is designed to
+expose: the method generalises within the substrate, not across phyla.
+The R-0.4 rule ("no rescuing a FAIL by adjusting criteria") is what
+prevents us from claiming generalisability where the data does not
+support it.
+
+**PR_S2: Lesion cascade with theory bridge to Xu 2026 (verdict FAIL)**
+
+Sequential removal of nodes / modules from the MaleCNS subgraph, with
+degree-preserving zero-model, 500 bootstrap iterations per n. The
+preregistered hypotheses:
+
+- **H1**: observed tolerance exceeds null by ≥ 0.05 at all n → **FAIL** (relative improvement < 0.05 in at least one n)
+- **H2**: null distribution well-calibrated (|ρ(obs, null)| > 0.9) → **PASS** (per-n ρ = 0.9742 at n=20, large but local)
+- **H3**: bridge-lesion rank correlation |ρ| ≥ 0.3, p < 0.05 → **FAIL** (global ρ = -0.1795, p = 0.0149)
+
+Point estimates: obs_tolerance_mean = 0.8493, null_tolerance_mean = 0.8263, Cohen's d = 1.153 (at n=20). Effect size is large at the specific slice tested but does not meet the preregistered H1 floor.
+
+The Xu 2026 theory bridge is *not* a rescue mechanism. Xu and colleagues
+demonstrated with optogenetic causal evidence that dendritic compartments
+encode abstract rules — a strong theoretical case for why local structure
+should predict function. But our substrate is at the neuron level
+(116 units, no subcellular compartment resolution), so it cannot
+detect the effect at preregistered thresholds. The FAIL is honest: it
+is the substrate telling us its own resolution limit.
+
+**The regime as a whole, v2.98.0**: seven preregistrations (PR-1
+through PR-4, PR-2b, PR_S1, PR_S2). Five FAILs, one WEAK, one PASS.
+The negative-results ratio is 6/7. **No FAIL has been silently
+converted into a PASS.**
 
 ---
 
@@ -542,7 +645,7 @@ the upstream repository and can be reproduced with three commands.
   repository root, independently re-runnable).
 - **Paper reproduction commands:** see `metrics_fork/README.md`.
 - **Gates (independent verification):** `scripts/run_gates.py`
-  (upstream repository, 59 gates as of v2.96.0). Gate 43, 44, 45, 46, 47 correspond
+  (upstream repository, 60 gates as of v2.98.1; 56 quick + 60 full all PASS). Gate 43, 44, 45, 46, 47 correspond
   to PR-1, PR-3, PR-2, PR-4, PR-2b respectively; Gates 54–61 cover metrics_fork,
   holdout, badge semantics, silent exceptions, version consistency, static analysis,
   AIBOM supply chain, and receipt integrity.
