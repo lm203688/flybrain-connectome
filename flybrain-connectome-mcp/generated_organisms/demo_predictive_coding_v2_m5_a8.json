@@ -1,0 +1,688 @@
+{
+  "schema_version": "1.2.1",
+  "kind": "virtual_organism",
+  "generated_utc": "2026-10-24T00:08:21.600673+00:00",
+  "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
+  "spec": {
+    "n_modules": 5,
+    "agents_per_module": 8
+  },
+  "blueprint": null,
+  "blueprint_edges_added": 0,
+  "motif_provenance": null,
+  "module_profiles": {
+    "0": {
+      "name": "sensory",
+      "description": "High-density input buffer (ol_intrinsic analog)"
+    },
+    "1": {
+      "name": "memory",
+      "description": "Recurrent working memory (cb_intrinsic analog)"
+    },
+    "2": {
+      "name": "motor",
+      "description": "Motor output with local inhibition (vnc_intrinsic)"
+    },
+    "3": {
+      "name": "integration",
+      "description": "Cross-module integration with inhibition"
+    },
+    "4": {
+      "name": "attention",
+      "description": "Attention allocation with selective inhibition"
+    }
+  },
+  "organism": {
+    "nodes": [
+      {
+        "id": "m0_a0",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m0_a1",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m0_a2",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m0_a3",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m0_a4",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "data_ingest"
+      },
+      {
+        "id": "m0_a5",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "signal_preprocess"
+      },
+      {
+        "id": "m0_a6",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "stream_buffer"
+      },
+      {
+        "id": "m0_a7",
+        "role": "cell",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "sensor_noise_filter"
+      },
+      {
+        "id": "m0_rep",
+        "role": "tissue_rep",
+        "module": 0,
+        "profile": "sensory",
+        "task_hint": "input_triage"
+      },
+      {
+        "id": "m1_a0",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m1_a1",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m1_a2",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m1_a3",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m1_a4",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "gp_surrogate_fit"
+      },
+      {
+        "id": "m1_a5",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "prior_recall"
+      },
+      {
+        "id": "m1_a6",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "state_carry"
+      },
+      {
+        "id": "m1_a7",
+        "role": "cell",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "history_replay"
+      },
+      {
+        "id": "m1_rep",
+        "role": "tissue_rep",
+        "module": 1,
+        "profile": "memory",
+        "task_hint": "memory_synthesis"
+      },
+      {
+        "id": "m2_a0",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m2_a1",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m2_a2",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m2_a3",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m2_a4",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "experiment_run"
+      },
+      {
+        "id": "m2_a5",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "numeric_integration"
+      },
+      {
+        "id": "m2_a6",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "output_check"
+      },
+      {
+        "id": "m2_a7",
+        "role": "cell",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "actuation_dispatch"
+      },
+      {
+        "id": "m2_rep",
+        "role": "tissue_rep",
+        "module": 2,
+        "profile": "motor",
+        "task_hint": "output_coordination"
+      },
+      {
+        "id": "m3_a0",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m3_a1",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m3_a2",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m3_a3",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m3_a4",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "candidate_rank"
+      },
+      {
+        "id": "m3_a5",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "cross_domain_bridge"
+      },
+      {
+        "id": "m3_a6",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "elo_scoring"
+      },
+      {
+        "id": "m3_a7",
+        "role": "cell",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "arbitrate_conflict"
+      },
+      {
+        "id": "m3_rep",
+        "role": "tissue_rep",
+        "module": 3,
+        "profile": "integration",
+        "task_hint": "cross_module_arbitration"
+      },
+      {
+        "id": "m4_a0",
+        "role": "cell",
+        "module": 4,
+        "profile": "attention",
+        "task_hint": "attention_focus"
+      },
+      {
+        "id": "m4_a1",
+        "role": "cell",
+        "module": 4,
+        "profile": "attention",
+        "task_hint": "salience_detection"
+      },
+      {
+        "id": "m4_a2",
+        "role": "cell",
+        "module": 4,
+        "profile": "attention",
+        "task_hint": "filter_irrelevant"
+      },
+      {
+        "id": "m4_a3",
+        "role": "cell",
+        "module": 4,
+        "profile": "attention",
+        "task_hint": "prioritize_signal"
+      },
+      {
+        "id": "m4_a4",
+        "role": "cell",
+        "module": 4,
+        "profile": "attention",
+        "task_hint": "attention_focus"
+      },
+      {
+        "id": "m4_a5",
+        "role": "cell",
+        "module": 4,
+        "profile": "attention",
+        "task_hint": "salience_detection"
+      },
+      {
+        "id": "m4_a6",
+        "role": "cell",
+        "module": 4,
+        "profile": "attention",
+        "task_hint": "filter_irrelevant"
+      },
+      {
+        "id": "m4_a7",
+        "role": "cell",
+        "module": 4,
+        "profile": "attention",
+        "task_hint": "prioritize_signal"
+      },
+      {
+        "id": "m4_rep",
+        "role": "tissue_rep",
+        "module": 4,
+        "profile": "attention",
+        "task_hint": "attention_allocation"
+      },
+      {
+        "id": "coordinator",
+        "role": "guardrail",
+        "source": "APL(body 10540)",
+        "task_hint": "global_guardrail"
+      }
+    ],
+    "edges": [
+      {
+        "from": "m0_rep",
+        "to": "m0_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "module": 0
+      },
+      {
+        "from": "m1_rep",
+        "to": "m1_rep",
+        "weight": 0.4,
+        "kind": "recurrent",
+        "module": 1
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_rep",
+        "weight": 0.1,
+        "kind": "recurrent",
+        "module": 2
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_rep",
+        "weight": 0.25,
+        "kind": "recurrent",
+        "module": 3
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_rep",
+        "weight": 0.2,
+        "kind": "recurrent",
+        "module": 4
+      },
+      {
+        "from": "m0_a2",
+        "to": "m0_rep",
+        "weight": 0.405,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a4",
+        "to": "m0_a3",
+        "weight": 0.505,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_a5",
+        "to": "m4_a4",
+        "weight": 0.799,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m1_a1",
+        "to": "m1_a2",
+        "weight": 0.899,
+        "kind": "reservoir",
+        "module": 1
+      },
+      {
+        "from": "m1_a4",
+        "to": "m1_a3",
+        "weight": 0.967,
+        "kind": "reservoir",
+        "module": 1
+      },
+      {
+        "from": "m2_a1",
+        "to": "m2_rep",
+        "weight": 0.71,
+        "kind": "reservoir",
+        "module": 2
+      },
+      {
+        "from": "m3_a0",
+        "to": "m1_a5",
+        "weight": 0.239,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m3_a4",
+        "to": "m3_rep",
+        "weight": 0.109,
+        "kind": "reservoir",
+        "module": 3
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_a2",
+        "weight": -0.445,
+        "kind": "inhibitory",
+        "module": 2
+      },
+      {
+        "from": "m2_rep",
+        "to": "m2_a0",
+        "weight": -0.463,
+        "kind": "inhibitory",
+        "module": 2
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a1",
+        "weight": -0.503,
+        "kind": "inhibitory",
+        "module": 3
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a0",
+        "weight": -0.551,
+        "kind": "inhibitory",
+        "module": 3
+      },
+      {
+        "from": "m3_rep",
+        "to": "m3_a5",
+        "weight": -0.569,
+        "kind": "inhibitory",
+        "module": 3
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_a6",
+        "weight": -0.482,
+        "kind": "inhibitory",
+        "module": 4
+      },
+      {
+        "from": "m4_rep",
+        "to": "m4_a7",
+        "weight": -0.31,
+        "kind": "inhibitory",
+        "module": 4
+      },
+      {
+        "from": "coordinator",
+        "to": "m0_rep",
+        "weight": -1.0,
+        "kind": "inhibitory",
+        "module": 0
+      },
+      {
+        "from": "coordinator",
+        "to": "m1_rep",
+        "weight": -0.8,
+        "kind": "inhibitory",
+        "module": 1
+      },
+      {
+        "from": "coordinator",
+        "to": "m2_rep",
+        "weight": -0.6,
+        "kind": "inhibitory",
+        "module": 2
+      },
+      {
+        "from": "coordinator",
+        "to": "m3_rep",
+        "weight": -0.4,
+        "kind": "inhibitory",
+        "module": 3
+      },
+      {
+        "from": "coordinator",
+        "to": "m4_rep",
+        "weight": -0.2,
+        "kind": "inhibitory",
+        "module": 4
+      }
+    ]
+  },
+  "metrics": {
+    "n_nodes": 46,
+    "n_edges": 25,
+    "avg_degree": 1.087,
+    "inhibition_ratio": 0.48,
+    "n_modules": 5,
+    "intra_module_edges": 18,
+    "inter_module_edges": 7,
+    "modularity_est": 0.72,
+    "profile_breakdown": {
+      "sensory": {
+        "nodes": 9,
+        "edges": 4
+      },
+      "memory": {
+        "nodes": 9,
+        "edges": 3
+      },
+      "motor": {
+        "nodes": 9,
+        "edges": 4
+      },
+      "integration": {
+        "nodes": 9,
+        "edges": 6
+      },
+      "attention": {
+        "nodes": 9,
+        "edges": 3
+      },
+      "uniform": {
+        "nodes": 1,
+        "edges": 5
+      }
+    }
+  },
+  "topology_profile": {
+    "status": "ok",
+    "signature": "sha256:4dc1f273025e116ecda516aeed351c7d08c806311fdd66a00d2459ef47d04d7c",
+    "size": {
+      "n_nodes": 46,
+      "n_edges": 25,
+      "density": 0.012077,
+      "self_loops": 5,
+      "n_modules": 5
+    },
+    "spectral_radius": 0.4,
+    "modularity_q": 0.4584,
+    "reciprocity": 0.0,
+    "feedback_edge_fraction": 0.2,
+    "not_measured": [
+      "dynamics",
+      "energy",
+      "task_performance",
+      "biological_validity"
+    ]
+  },
+  "role_binding": {
+    "status": "ok",
+    "rule_id": "cross_species_role_binding",
+    "multiplier_semantic": "cross_species_invariance",
+    "binding_key": [
+      "wiring_role",
+      "topology_position"
+    ],
+    "ignore_fields": [
+      "cell_type_label",
+      "species",
+      "lineage"
+    ],
+    "tiers": [
+      "sensory",
+      "relay",
+      "motor"
+    ],
+    "n_groups": 5,
+    "n_cross_species_groups": 0,
+    "groups": [
+      {
+        "wiring_role": "execute",
+        "topology_position": "relay",
+        "n_profiles": 1,
+        "profiles": [
+          "motor"
+        ],
+        "species": [],
+        "n_species": 0,
+        "cross_species_substitutable": false,
+        "modules": [
+          "2"
+        ]
+      },
+      {
+        "wiring_role": "focus",
+        "topology_position": "relay",
+        "n_profiles": 1,
+        "profiles": [
+          "attention"
+        ],
+        "species": [],
+        "n_species": 0,
+        "cross_species_substitutable": false,
+        "modules": [
+          "4"
+        ]
+      },
+      {
+        "wiring_role": "gp_surrogate",
+        "topology_position": "relay",
+        "n_profiles": 1,
+        "profiles": [
+          "memory"
+        ],
+        "species": [],
+        "n_species": 0,
+        "cross_species_substitutable": false,
+        "modules": [
+          "1"
+        ]
+      },
+      {
+        "wiring_role": "perceive",
+        "topology_position": "sensory",
+        "n_profiles": 1,
+        "profiles": [
+          "sensory"
+        ],
+        "species": [],
+        "n_species": 0,
+        "cross_species_substitutable": false,
+        "modules": [
+          "0"
+        ]
+      },
+      {
+        "wiring_role": "rank",
+        "topology_position": "relay",
+        "n_profiles": 1,
+        "profiles": [
+          "integration"
+        ],
+        "species": [],
+        "n_species": 0,
+        "cross_species_substitutable": false,
+        "modules": [
+          "3"
+        ]
+      }
+    ]
+  },
+  "prov_json": null
+}
