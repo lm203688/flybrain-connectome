@@ -580,6 +580,19 @@ def main() -> int:
         "command any user can run on any artifact.",
         [py, str(SCRIPTS / "check_audit_cli.py"), "--quiet"])[0]))
 
+    # ---- Gate 65: project_status.json consistency (P0-4) ----
+    results.append(("gate65 project status", run(
+        "GATE 65 — project_status.json consistency (P0-4): the JSON "
+        "status file must be up-to-date with the actual source of truth "
+        "(version, gate count, tool counts, HTTP dispatch, notebook "
+        "count) so that README, Pages, papers and mcp server can all "
+        "read from one canonical status file instead of hand-maintained "
+        "drifting numbers. Transport gap between MCP and HTTP is declared "
+        "openly. Gate 39 meta-discipline honored: 3-injection battery "
+        "(tamper_mcp_tools_count, tamper_version_string, "
+        "delete_project_key) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_project_status.py"), "--quiet"])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:
