@@ -35,6 +35,15 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - `flybrain_export.py` docstring updated to document both YAML and runnable modes.
 - `aibom.json` regenerated with fresh workspace fingerprint and v3.01.2.
 
+### Added (paper exit)
+- **PAPER_TRIGGER_CONDITIONS_REPORT_2026-10-26.md** — T1-T5 trigger
+  conditions recheck. Result: **5/5 达标**（base was 1.5/5 in v2.58.0,
+  2026-10-10）. All five trigger conditions met, threshold ≥4/5 passed with
+  both hard gates (T1 + T5) satisfied. Three manuscripts (P1 mainline /
+  P2 PR-2b short / P4 reproducible prereg short) reach submission-ready
+  state; recommended submission order: arXiv preprints first → JOSS (P4,
+  zero APC) → Scientific Reports (P1, APC $2,300 needs user sign-off).
+
 ### Explicitly NOT changed (honest boundary)
 - **No LangGraph dependency added.** The generated script imports `langgraph`
   at runtime; users must `pip install langgraph` to actually execute the graph.
