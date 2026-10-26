@@ -4,6 +4,55 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.01.1] - 2026-10-26
+
+### Added
+- **P1-3 MCP/HTTP transport contract unified (Gate 66)** — HTTP `/query`
+  now dispatches all 47 MCP tools instead of the previous 12-tool subset.
+  New `flybrain-connectome-mcp/mcp_connectome/tool_registry.py` derives
+  `DISPATCH` directly from `server.TOOLS`, so any MCP tool added in the
+  future is automatically reachable via HTTP with no manual wiring.
+- **P1-3 Gate 66 (transport contract)** — new
+  `scripts/check_transport_contract.py` enforces the invariant that the
+  set of HTTP-dispatchable tools equals the set of MCP-declared tools,
+  and that every entry in `server.TOOLS` has `name`, `description`, and
+  `inputSchema.type == "object"`. Registered in `run_gates.py`. 3-injection
+  battery (drop_one_dispatch / add_phantom_tool / strip_inputSchema) all
+  verified to turn the gate red.
+- **P1-3 `project_status.json` transport gap closed** — the
+  `transport_gap.mcp_only_tools` field now reports 0 instead of 35, and
+  `note` reflects that MCP and HTTP expose the identical tool set.
+
+### Changed
+- `api_server.py` DISPATCH now delegates to
+  `tool_registry.build_http_dispatch()`; the 12 hardcoded lambda entries
+  are removed. All error handling / auth / rate limiting still happens at
+  the HTTP handler level, unchanged.
+- Version bump 3.01.0 → 3.01.1 in 6 files (`pyproject.toml`,
+  `flybrain_cli.py`, `mcp_connectome/api_server.py`, `mcp_connectome/server.py`,
+  `aibom.json`, `README.md` badge).
+- README gate count updated 64 → 65 (new Gate 66).
+- `scripts/gen_project_status.py` `_count_http_dispatch()` now
+  AST-parses `tool_registry.py`'s `DISPATCH` dict and falls back to
+  importing the module; the old regex that only matched hardcoded lambdas
+  no longer applies.
+- `aibom.json` regenerated with fresh workspace fingerprint and v3.01.1.
+- `project_status.json` regenerated: `mcp_tools: 47`,
+  `http_dispatch: 47`, `transport_gap.mcp_only_tools: 0`.
+
+### Explicitly NOT changed (honest boundary)
+- **No new MCP tools.** The 47 existing tools are unchanged; only the
+  HTTP-side dispatch was widened to match. `server.py` TOOLS list is a
+  byte-for-byte no-op.
+- **No CLI changes.** This sprint is transport-only.
+- **P1-1 (LangGraph runnable backend)** — the `flybrain export` command
+  still emits static JSON/YAML config, not a compiled LangGraph
+  `StateGraph`. Making the export actually runnable behind a mock LLM is
+  the next work package.
+- **P2-2 (FlyGym embodiment loop)** — deferred to the P2 sprint.
+- **P2-3 (data CSR refactor + memory benchmark)** — deferred; this
+  release stays focused on transport contract correctness.
+
 ## [3.01.0] - 2026-10-26
 
 ### Added
