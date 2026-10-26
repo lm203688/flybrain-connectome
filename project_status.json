@@ -1,0 +1,28 @@
+{
+  "schema_version": 1,
+  "generated_utc": "2026-10-26T09:08:21Z",
+  "project": {
+    "name": "flybrain-connectome",
+    "version": "3.01.0",
+    "github": "https://github.com/lm203688/flybrain-connectome",
+    "pypi": "https://pypi.org/project/flybrain-connectome/"
+  },
+  "capabilities": {
+    "mcp_tools": 47,
+    "http_dispatch": 12,
+    "cli_subcommands": 16,
+    "gate_count": 64,
+    "example_notebooks": 7
+  },
+  "gates_quick": {
+    "total": 0,
+    "passed": 0,
+    "failed": 0,
+    "failing": [],
+    "healthy": false
+  },
+  "transport_gap": {
+    "mcp_only_tools": 35,
+    "note": "Tools declared in MCP but not reachable via HTTP /query."
+  }
+}
