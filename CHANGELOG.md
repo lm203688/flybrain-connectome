@@ -44,6 +44,46 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   state; recommended submission order: arXiv preprints first → JOSS (P4,
   zero APC) → Scientific Reports (P1, APC $2,300 needs user sign-off).
 
+### Added (D-1 closing experiment, v1 pilot + v2 extended)
+- **D1_P1_CLOSING_EXPERIMENT_2026-10-26.md** — D-1 P1 closing
+  experiment (Task #62). LLM orchestration comparison:
+  25 blueprints (13 evidence + 12 random) × 4 topologies
+  (sequential / fan_out / hierarchical / router) × 3 task types
+  (motif_family / hub / reachability), SenseNova proxy backend.
+  Two runs (same seed=20261026, same 25 blueprints):
+  - **v1 pilot** (30 calls, `deepseek-v4-flash`): 14 success / 16
+    timeout, overall accuracy 21.4%. 2/4 topologies show evidence <
+    random (weakly consistent with 0/7).
+  - **v2 extended** (120 calls, `deepseek-flash`): 19 success / 101
+    errors (85 timeout + 16 HTTP), overall accuracy 84.2%. 2/4
+    topologies show evidence < random (hierarchical −80pp, router tie;
+    sequential reversed to +25pp). All 4 topologies and all 3 task
+    types covered. Wall clock 73 min.
+  - **v2 exposed a task-design flaw**: `hub` and `reachability`
+    tasks hit 100% accuracy — they're structural-agnostic (solvable
+    by degree-count / BFS without motif understanding). Only
+    `motif_family` (57.1%) is a true structural-reasoning task.
+    The 84% headline accuracy masks this: LLMs are solving
+    structure-irrelevant problems, not the 0/7 signal.
+  **Verdict: 0/7 not closed** — 150 calls total, 117 errors, 33
+  valid samples, per-cell n ≤ 5, no statistical test possible.
+  Neither confirmed nor refuted. Honest boundary registered per
+  S6-S9 discipline: pilot + task-design flaw + engineering bottleneck.
+- **`scripts/run_d1_closing_experiment.py`** — ~445-line experiment
+  script with configurable n-blueprints, task types, topologies,
+  worker count, timeout, retries, model, base-url, and --skip-llm
+  debug mode. Stdlib-only ThreadPoolExecutor + urllib HTTP client,
+  no new dependencies. Sampling strategy shuffles the full
+  (task, topology) grid before capping to ensure even coverage of
+  evidence/random origins and all 4 topologies in the work[:N] slice.
+- **`scripts/d1_closing_experiment/results.json`** — raw v2
+  results with per-call metadata (task_id, topology, task_type,
+  correct, latency_ms, agent_calls, errors) plus analysis
+  (per-topology-origin accuracy, Wilson CI, MC permutation p-values).
+- **`scripts/d1_closing_experiment/run.log`** — execution log with
+  timestamps, blueprint distribution, sample coverage diagnostics,
+  progress at 50-call intervals, and final analysis table.
+
 ### Explicitly NOT changed (honest boundary)
 - **No LangGraph dependency added.** The generated script imports `langgraph`
   at runtime; users must `pip install langgraph` to actually execute the graph.
