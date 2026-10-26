@@ -5467,9 +5467,20 @@ const tip = document.getElementById('tip');
 const NS = 'http://www.w3.org/2000/svg';
 const W = ()=>svg.clientWidth, H = ()=>svg.clientHeight;
 
+// P0-6 fix (2026-10-26): HTML-escape every dynamic value before it goes
+// into innerHTML. Node/edge fields can come from user-supplied JSON;
+// without escaping, a payload like <img src=x onerror=alert(1)> in
+// n.id would execute as soon as the tooltip opens.
+function escapeHtml(v){
+  if (v === null || v === undefined) return '';
+  return String(v)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/"/g,'&quot;').replace(/'/g,'&#39;');
+}
+
 const m = org.metrics || {};
 let mhtml = '';
-for (const k in m){ mhtml += '<div class="metric"><span>'+k+'</span><span>'+m[k]+'</span></div>'; }
+for (const k in m){ mhtml += '<div class="metric"><span>'+escapeHtml(k)+'</span><span>'+escapeHtml(m[k])+'</span></div>'; }
 document.getElementById('metrics').innerHTML = mhtml;
 
 const nodes = org.organism.nodes.map(n=>({...n, x:0,y:0,vx:0,vy:0, fx:null,fy:null}));
@@ -5505,7 +5516,7 @@ let drag=null;
 gN.querySelectorAll('.node').forEach((g,i)=>{
   g.addEventListener('mousedown', ev=>{ drag=nodes[i]; drag.fx=drag.x; drag.fy=drag.y; ev.preventDefault(); });
   g.addEventListener('mouseenter', ()=>{ const n=nodes[i]; tip.style.display='block';
-    tip.innerHTML='<b>'+n.id+'</b><br>role: '+n.role+(n.module!==undefined?'<br>module: '+n.module:'')+(n.source?'<br>src: '+n.source:''); });
+    tip.innerHTML='<b>'+escapeHtml(n.id)+'</b><br>role: '+escapeHtml(n.role)+(n.module!==undefined?'<br>module: '+escapeHtml(n.module):'')+(n.source?'<br>src: '+escapeHtml(n.source):''); });
   g.addEventListener('mousemove', ev=>{ const r=R(); tip.style.left=(ev.clientX-r.left+12)+'px'; tip.style.top=(ev.clientY-r.top+12)+'px'; });
   g.addEventListener('mouseleave', ()=>{ tip.style.display='none'; });
 });
@@ -5513,7 +5524,7 @@ window.addEventListener('mousemove', ev=>{ if(drag){ const r=R(); drag.fx=ev.cli
 window.addEventListener('mouseup', ()=>{ if(drag){ drag.fx=null; drag.fy=null; drag=null; } });
 edgeEls.forEach((l,i)=>{ l.style.pointerEvents='stroke';
   l.addEventListener('mouseenter', ()=>{ const e=edges[i]; tip.style.display='block';
-    tip.innerHTML=e.from+' → '+e.to+'<br>weight: '+e.weight+'<br>kind: '+e.kind; });
+    tip.innerHTML=escapeHtml(e.from)+' → '+escapeHtml(e.to)+'<br>weight: '+escapeHtml(e.weight)+'<br>kind: '+escapeHtml(e.kind); });
   l.addEventListener('mousemove', ev=>{ const r=R(); tip.style.left=(ev.clientX-r.left+12)+'px'; tip.style.top=(ev.clientY-r.top+12)+'px'; });
   l.addEventListener('mouseleave', ()=>{ tip.style.display='none'; }); });
 
