@@ -4,6 +4,50 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.01.2] - 2026-10-26
+
+### Added
+- **P1-1 LangGraph runnable backend (`--runnable` mode)** — `flybrain export`
+  now generates a self-contained Python script instead of a YAML config when
+  `--runnable` is specified. The generated script includes:
+  - A `TypedDict` State with one field per topology node plus shared context
+    (input/output/history).
+  - `MockLLMBackend` — a deterministic mock that echoes input with role+node
+    prefix, so the graph runs with zero API keys and no external services.
+  - Per-node wrapper functions with optional OpenTelemetry `start_as_current_span`
+    for each node invocation (enabled via `--trace` flag in the generated script).
+  - A `build_graph()` function that constructs a `StateGraph`, wires all edges
+    from the topology, adds START/END anchors, and compiles with `MemorySaver`
+    checkpointing.
+  - A `main()` entry point with `--input`, `--thread`, and `--trace` CLI args.
+- **`export_langgraph_runnable()` function** — new function in
+  `flybrain_export.py` that generates the full Python source code as a string.
+  Syntax-validated via `compile()` in the unit test suite.
+- **`--runnable` CLI flag** — added to both `flybrain_cli.py` (inline parser)
+  and `flybrain_export.py` (`add_export_parser`). Rejects non-LangGraph formats
+  with a clear error message.
+
+### Changed
+- Version bump 3.01.1 → 3.01.2 in 6 files (`pyproject.toml`,
+  `flybrain_cli.py`, `mcp_connectome/api_server.py`, `mcp_connectome/server.py`,
+  `aibom.json`, `README.md` badge).
+- README feature banner updated to reflect P1-1 delivery.
+- `flybrain_export.py` docstring updated to document both YAML and runnable modes.
+- `aibom.json` regenerated with fresh workspace fingerprint and v3.01.2.
+
+### Explicitly NOT changed (honest boundary)
+- **No LangGraph dependency added.** The generated script imports `langgraph`
+  at runtime; users must `pip install langgraph` to actually execute the graph.
+  The generation step itself has zero new dependencies.
+- **No new MCP tools or HTTP endpoints.** This sprint is export-only.
+- **CrewAI / AutoGen still config-only.** The `--runnable` flag only works
+  with `--format langgraph`. Making CrewAI or AutoGen exports runnable is
+  future work.
+- **No OTel dependency in pyproject.** OpenTelemetry is optional; the
+  generated script degrades gracefully if `opentelemetry-api` is not installed.
+- **P2-2 (FlyGym embodiment loop)** — deferred.
+- **P2-3 (data CSR refactor + memory benchmark)** — deferred.
+
 ## [3.01.1] - 2026-10-26
 
 ### Added
