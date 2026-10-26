@@ -63,7 +63,7 @@ def test_status_json_capabilities_present(status_json: dict) -> None:
 
 
 def test_status_json_mcp_tools_at_least_40(status_json: dict) -> None:
-    """Sanity: 47 MCP tools expected as of v3.01.0."""
+    """Sanity: 47 MCP tools expected as of v3.01.2."""
     assert status_json["capabilities"]["mcp_tools"] >= 40
 
 
