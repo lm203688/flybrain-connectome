@@ -4,6 +4,64 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.01.0] - 2026-10-26
+
+### Added
+- **P0-1 Windows GBK encoding fix (subprocess hardening)** — new
+  `scripts/_subprocess_util.py` provides a single `run_capture()` helper
+  that guarantees `text=True, encoding='utf-8', errors='replace'` on every
+  `subprocess.run` call in the codebase. Previously gate 61/64 crashed on
+  Chinese Windows (GBK locale) when a child process emitted any non-ASCII
+  byte. Fixed the 3 hot sites: `run_gates.py`, `check_audit_cli.py`,
+  `check_receipt_integrity.py`.
+- **P0-1b Gate 61 fail-closed** — `check_receipt_integrity.py` previously
+  swallowed `json.JSONDecodeError` on `claim_graph.json` and silently
+  skipped the receipt↔claim cross-check (WARN). Now any parse error or
+  missing graph when receipts exist is a FAIL. This closes a fail-open
+  gap that let tampered receipts pass silently.
+- **P0-4 `project_status.json` — single source of truth for public counts** —
+  new `scripts/gen_project_status.py` computes version, gate count, MCP
+  tool count, HTTP dispatch count, CLI subcommand count, notebook count,
+  and quick-gate pass rate from source files, writing the canonical JSON.
+  New `scripts/check_project_status.py` (Gate 65) enforces that the file
+  stays in sync and that the MCP↔HTTP transport gap is declared openly.
+- **P0-4 Gate 65 (project status)** — added to `run_gates.py`. 3-injection
+  battery (tamper_mcp_tools_count / tamper_version_string /
+  delete_project_key) all verified to turn the gate red.
+- **P0-6 HTML tooltip XSS fix** — `docs/demo/topology.html` and
+  `flybrain-connectome-mcp/synthetic_bio_topology.py` both added an
+  `escapeHtml()` helper and now escape every dynamic value (node id, role,
+  module, source, edge from/to/weight/kind, metric key/value) before
+  writing into `innerHTML`. Prior versions would let a payload like
+  `<img src=x onerror=alert(1)>` in a node id execute on hover.
+
+### Changed
+- Version bump 3.00.3 → 3.01.0 in 6 files (`pyproject.toml`,
+  `flybrain_cli.py`, `mcp_connectome/api_server.py`, `mcp_connectome/server.py`,
+  `aibom.json`, `README.md` badge).
+- README gate count updated 62 → 63 (new Gate 65).
+- `scripts/gen_project_status.py` and `scripts/check_project_status.py`
+  support `--skip-gates` / `--injection-battery` flags so the meta-gate
+  battery runs in <5s instead of recursing into a full gate run.
+- `check_project_status.py --quiet` for cleaner run_gates.py output.
+- `aibom.json` regenerated with fresh workspace fingerprint and v3.01.0.
+
+### Explicitly NOT changed (honest boundary)
+- **No new CLI subcommand.** P0-1/1b/4/6 are all infrastructure; they
+  don't add user-facing commands.
+- **P0-3 (single MCP/HTTP registry) deferred to P1.** The 47-MCP-vs-12-HTTP
+  transport gap is now declared openly in `project_status.json`
+  `transport_gap.note`, but full parity (every MCP tool reachable via HTTP)
+  requires a bigger refactor of `api_server.py` DISPATCH and is out of
+  scope for the P0 reliability sprint. Tracked as `P1-3` in the
+  comprehensive upgrade report.
+- **P0-5 (tests/ pytest tree) deferred.** `pyproject.toml` still declares
+  `testpaths = ["tests"]` and that directory does not exist yet. Building
+  the tree is a P0-5 work package, not a P0 blocker; the current
+  `scripts/run_gates.py --quick` remains the primary test entry.
+- **Xu 2026 dendritic reference unchanged.** Reference pattern is stable;
+  this release is a reliability/infrastructure sprint, not a science one.
+
 ## [3.00.3] - 2026-10-25
 
 ### Added
