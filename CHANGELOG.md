@@ -83,6 +83,17 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 - **`scripts/d1_closing_experiment/run.log`** — execution log with
   timestamps, blueprint distribution, sample coverage diagnostics,
   progress at 50-call intervals, and final analysis table.
+- **Task-design fix in `llm_tasks.py`** — v2 extended run exposed
+  that `hub` and `reachability` tasks hit 100% accuracy because they
+  are structural-agnostic (solvable by degree-count or plain BFS
+  without motif understanding). Fixed:
+  - `_hub_prompt`: removed out-degree leakage; now forces LLM to
+    infer hub from edge topology only.
+  - `_reachability_prompt`: added forward-only constraint (source
+    index < target index), forcing motif-aware structural reasoning.
+  - `_node_index`: supports both numeric (`n3`→3) and alphabetic
+    (`a`→0) node naming conventions.
+  Gate 30 re-verified PASS (60/60 quick battery).
 
 ### Explicitly NOT changed (honest boundary)
 - **No LangGraph dependency added.** The generated script imports `langgraph`

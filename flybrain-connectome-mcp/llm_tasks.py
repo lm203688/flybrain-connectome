@@ -91,17 +91,45 @@ class Blueprint:
 # -------------------------------------------------------------- ground truth
 
 
+def _node_index(n: str) -> int:
+    """Extract an ordering index from a node id.
+
+    Supports two conventions:
+    - Numeric suffix ('n3' -> 3, 'node_5' -> 5)
+    - Alphabetic fallback ('a' -> 0, 'b' -> 1, ..., 'z' -> 25)
+
+    Used by forward-only reachability to compare source vs target index.
+    """
+    import re
+    m = re.search(r"(\d+)", n)
+    if m:
+        return int(m.group(1))
+    last = n[-1].lower() if n else 'a'
+    if 'a' <= last <= 'z':
+        return ord(last) - ord('a')
+    return 0
+
+
 def _bfs_hops(
     nodes: Iterable[str],
     edges: Iterable[tuple[str, str]],
     src: str,
     dst: str,
+    forward_only: bool = False,
 ) -> int:
-    """BFS shortest hop count between src and dst, -1 if unreachable."""
+    """BFS shortest hop count between src and dst, -1 if unreachable.
+
+    D-1 task-design fix (2026-10-27): added `forward_only` mode that
+    constrains traversal to edges where source index < target index,
+    forcing structural reasoning about motif topology.
+    """
     if src == dst:
         return 0
     adj: dict[str, list[str]] = {n: [] for n in nodes}
     for a, b in edges:
+        if forward_only:
+            if _node_index(a) >= _node_index(b):
+                continue
         adj.setdefault(a, []).append(b)
     seen: set[str] = {src}
     frontier = [src]
@@ -133,6 +161,13 @@ def compute_ground_truth(blueprint: Blueprint, task_type: str, **kwargs: Any) ->
     """Return the exact ground-truth value for a task over `blueprint`.
 
     `task_type` in {'motif_family', 'hub', 'reachability'}.
+
+    D-1 task-design fix (2026-10-27):
+    - `hub`: ground truth unchanged (max out-degree), but the PROMPT
+      no longer leaks degree numbers, forcing LLM to reason structurally.
+    - `reachability`: now uses `forward_only=True`, computing shortest
+      path under the constraint that only edges with src_index < dst_index
+      are traversable. This forces motif-aware structural reasoning.
     """
     if task_type == "motif_family":
         return blueprint.motif_family
@@ -144,6 +179,7 @@ def compute_ground_truth(blueprint: Blueprint, task_type: str, **kwargs: Any) ->
             blueprint.edges,
             src=kwargs["src"],
             dst=kwargs["dst"],
+            forward_only=True,
         )
     raise ValueError(f"unknown task_type: {task_type!r}")
 
@@ -163,24 +199,43 @@ def _motif_prompt(bp: Blueprint) -> str:
 
 
 def _hub_prompt(bp: Blueprint) -> str:
-    deg = bp.out_degree
-    lines = [f"  {n}: out_degree={deg[n]}" for n in bp.nodes]
-    return (
-        f"Here is a directed graph with these nodes and out-degrees:\n"
-        + "\n".join(lines)
-        + "\n\n"
-        "Which single node is the hub (maximum out-degree; ties broken by "
-        "first alphabetically)?\nAnswer with EXACTLY ONE node id and nothing else."
-    )
+    """Motif-aware hub prompt: force LLM to reason from edge structure only.
 
-
-def _reachability_prompt(bp: Blueprint, src: str, dst: str) -> str:
+    D-1 task-design fix (2026-10-27): previous version leaked out-degree
+    numbers, making hub identification trivially solvable by degree-count
+    without any motif understanding. New version removes the degree hint
+    and asks LLM to infer the hub from the edge topology itself, forcing
+    structural reasoning rather than counting.
+    """
     return (
         f"Directed graph:\n"
         f"Nodes: {', '.join(bp.nodes)}\n"
         f"Edges:\n{bp.edge_list_str}\n\n"
-        f"What is the shortest hop count from '{src}' to '{dst}'?\n"
-        f"Return a single integer (0 if src==dst, -1 if unreachable), "
+        "Identify the hub node — the one that other nodes most depend on "
+        "for signal propagation in this motif.\n"
+        "Reason about the topology structure, not just degree counts.\n"
+        "Answer with EXACTLY ONE node id and nothing else."
+    )
+
+
+def _reachability_prompt(bp: Blueprint, src: str, dst: str) -> str:
+    """Motif-constrained reachability prompt.
+
+    D-1 task-design fix (2026-10-27): previous version asked plain BFS
+    shortest-hop, solvable without motif understanding. New version
+    constrains traversal to edges whose source has a LOWER index than
+    its target (forward-only in node ordering), forcing the LLM to
+    reason about motif structure rather than doing generic BFS.
+    """
+    return (
+        f"Directed graph:\n"
+        f"Nodes: {', '.join(bp.nodes)}\n"
+        f"Edges:\n{bp.edge_list_str}\n\n"
+        f"Consider ONLY edges where the source node index is strictly less "
+        f"than the target node index (e.g. n0->n2 is allowed, n3->n1 is NOT).\n"
+        f"Under this forward-only constraint, what is the shortest hop count "
+        f"from '{src}' to '{dst}'?\n"
+        f"Return a single integer (-1 if unreachable under the constraint), "
         f"nothing else."
     )
 
