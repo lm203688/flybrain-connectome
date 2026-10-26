@@ -56,13 +56,55 @@ def _count_mcp_tools() -> int:
 
 
 def _count_http_dispatch() -> int:
-    """Count HTTP DISPATCH entries."""
-    p = ROOT / "flybrain-connectome-mcp" / "mcp_connectome" / "api_server.py"
-    if not p.exists():
-        return 0
-    txt = p.read_text(encoding="utf-8")
-    # Match "tool_name": lambda patterns
-    return len(re.findall(r'^\s+"[a-z_]+"[:=]\s*lambda', txt, re.MULTILINE))
+    """Count HTTP DISPATCH entries.
+
+    Prior to P1-3 (2026-10-26), api_server.py hand-wrote a 12-entry
+    DISPATCH dict of lambda handlers, and we regex-counted the lambda
+    assignments. After P1-3, api_server.DISPATCH is re-exported from
+    tool_registry.build_http_dispatch(), which derives the dispatch
+    table from server.TOOLS at import time. So the true source of
+    truth is the DISPATCH dict itself — regex on lambdas no longer
+    works. We AST-parse tool_registry.py to get the DISPATCH dict
+    keys, and fall back to importing the module when AST fails.
+    """
+    registry = ROOT / "flybrain-connectome-mcp" / "mcp_connectome" / "tool_registry.py"
+    api = ROOT / "flybrain-connectome-mcp" / "mcp_connectome" / "api_server.py"
+
+    # Preferred: AST-parse the registry source and pull DISPATCH keys.
+    if registry.exists():
+        try:
+            import ast
+            tree = ast.parse(registry.read_text(encoding="utf-8"))
+            for node in tree.body:
+                if isinstance(node, ast.Assign):
+                    for tgt in node.targets:
+                        if isinstance(tgt, ast.Name) and tgt.id == "DISPATCH":
+                            if isinstance(node.value, ast.Dict):
+                                keys = 0
+                                for k in node.value.keys:
+                                    if isinstance(k, ast.Constant):
+                                        keys += 1
+                                return keys
+        except Exception:  # noqa: SILENT — fallback chain: AST parse failed, import below
+            pass
+
+    # Preferred: import the module and count DISPATCH keys directly.
+    try:
+        sys.path.insert(0, str(ROOT / "flybrain-connectome-mcp" / "mcp_connectome"))
+        import importlib
+        if "tool_registry" in sys.modules:
+            m = importlib.reload(sys.modules["tool_registry"])
+        else:
+            m = importlib.import_module("tool_registry")
+        return len(m.DISPATCH)
+    except Exception:  # noqa: SILENT — fallback chain: import failed, legacy regex below
+        pass
+
+    # Legacy fallback (pre-P1-3 api_server.py with hand-written lambdas).
+    if api.exists():
+        txt = api.read_text(encoding="utf-8")
+        return len(re.findall(r'^\s+"[a-z_]+"[:=]\s*lambda', txt, re.MULTILINE))
+    return 0
 
 
 def _count_cli_subcommands() -> int:
