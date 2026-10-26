@@ -1,12 +1,79 @@
 {
-  "schema_version": "1.1",
+  "schema_version": "1.2.1",
   "kind": "virtual_organism",
-  "generated_utc": "2026-09-17T05:43:42.005507+00:00",
+  "generated_utc": "2026-10-22T07:31:59.839573+00:00",
   "source_motifs": "MaleCNS v1.0 derived (inhibitory_hub / reservoir_smallworld / recurrent_feedback)",
   "spec": {
-    "n_modules": 4,
-    "agents_per_module": 6,
-    "recurrent_pct": 0.287
+    "n_modules": 3,
+    "agents_per_module": 4,
+    "use_inhibitory_coordinator": true,
+    "use_reservoir_buffer": true,
+    "use_recurrent_memory": true,
+    "recurrent_pct": 0.287,
+    "module_profiles": "cycled",
+    "blueprint": "predictive_coding_v2"
+  },
+  "blueprint": "predictive_coding_v2",
+  "blueprint_edges_added": 0,
+  "motif_provenance": {
+    "requested_source": "auto",
+    "mode": "api",
+    "transport": "http",
+    "api_url": "http://127.0.0.1:8799",
+    "api_tool": "export_swarm_motifs",
+    "api_refresh_requested": false,
+    "api_key_source": "env",
+    "resolved_utc": "2026-10-22T07:31:59.683965+00:00",
+    "motif_generated_utc": "2026-09-22T14:51:02Z",
+    "motifs": [
+      "astrocyte_neuron_tripartite",
+      "axo_axonic",
+      "axo_dendrite_reciprocal",
+      "axo_dendritic",
+      "axo_somatic",
+      "contrast_inhibition",
+      "dendritic_computation",
+      "dendritic_excitatory_synapse",
+      "dendritic_inhibitory_synapse",
+      "dendro_dendritic",
+      "disinhibition",
+      "ephaptic_coupling",
+      "feedback_excitatory",
+      "feedback_inhibitory",
+      "feedforward_excitatory",
+      "feedforward_gating",
+      "feedforward_inhibitory",
+      "gap_junction_inhibitory",
+      "gap_junction_sync",
+      "inhibitory_hub",
+      "lateral_feedback",
+      "lateral_inhibitory",
+      "ltp_ltd",
+      "modulatory_diffuse",
+      "mutual_inhibitory",
+      "neuromodulatory_axon",
+      "pre_presynaptic_excitation",
+      "pre_presynaptic_inhibition",
+      "recurrent_excitatory",
+      "recurrent_feedback",
+      "recurrent_inhibitory",
+      "reservoir_smallworld",
+      "retrograde_messenger",
+      "short_range_volume",
+      "short_term_plasticity",
+      "shunting_inhibition",
+      "stdp_rule",
+      "temporal_coherence",
+      "topographic_mapping",
+      "volume_transmission"
+    ],
+    "doc_sha256": "cbbac77198d16887e4ad2f2514d79249155529b9ec1a7ddd0823cd3afb1ca8e0",
+    "served_from": "service:http://127.0.0.1:8799",
+    "fallback_reason": null,
+    "snapshot_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
+    "snapshot_sha256": null,
+    "api_cache_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\.motif_api_cache.json",
+    "snapshot_refreshed": false
   },
   "module_profiles": {
     "0": {
@@ -20,10 +87,6 @@
     "2": {
       "name": "motor",
       "description": "Motor output with local inhibition (vnc_intrinsic)"
-    },
-    "3": {
-      "name": "integration",
-      "description": "Cross-module integration with inhibition"
     }
   },
   "organism": {
@@ -55,20 +118,6 @@
         "module": 0,
         "profile": "sensory",
         "task_hint": "sensor_noise_filter"
-      },
-      {
-        "id": "m0_a4",
-        "role": "cell",
-        "module": 0,
-        "profile": "sensory",
-        "task_hint": "data_ingest"
-      },
-      {
-        "id": "m0_a5",
-        "role": "cell",
-        "module": 0,
-        "profile": "sensory",
-        "task_hint": "signal_preprocess"
       },
       {
         "id": "m0_rep",
@@ -106,20 +155,6 @@
         "task_hint": "history_replay"
       },
       {
-        "id": "m1_a4",
-        "role": "cell",
-        "module": 1,
-        "profile": "memory",
-        "task_hint": "gp_surrogate_fit"
-      },
-      {
-        "id": "m1_a5",
-        "role": "cell",
-        "module": 1,
-        "profile": "memory",
-        "task_hint": "prior_recall"
-      },
-      {
         "id": "m1_rep",
         "role": "tissue_rep",
         "module": 1,
@@ -155,74 +190,11 @@
         "task_hint": "actuation_dispatch"
       },
       {
-        "id": "m2_a4",
-        "role": "cell",
-        "module": 2,
-        "profile": "motor",
-        "task_hint": "experiment_run"
-      },
-      {
-        "id": "m2_a5",
-        "role": "cell",
-        "module": 2,
-        "profile": "motor",
-        "task_hint": "numeric_integration"
-      },
-      {
         "id": "m2_rep",
         "role": "tissue_rep",
         "module": 2,
         "profile": "motor",
         "task_hint": "output_coordination"
-      },
-      {
-        "id": "m3_a0",
-        "role": "cell",
-        "module": 3,
-        "profile": "integration",
-        "task_hint": "candidate_rank"
-      },
-      {
-        "id": "m3_a1",
-        "role": "cell",
-        "module": 3,
-        "profile": "integration",
-        "task_hint": "cross_domain_bridge"
-      },
-      {
-        "id": "m3_a2",
-        "role": "cell",
-        "module": 3,
-        "profile": "integration",
-        "task_hint": "elo_scoring"
-      },
-      {
-        "id": "m3_a3",
-        "role": "cell",
-        "module": 3,
-        "profile": "integration",
-        "task_hint": "arbitrate_conflict"
-      },
-      {
-        "id": "m3_a4",
-        "role": "cell",
-        "module": 3,
-        "profile": "integration",
-        "task_hint": "candidate_rank"
-      },
-      {
-        "id": "m3_a5",
-        "role": "cell",
-        "module": 3,
-        "profile": "integration",
-        "task_hint": "cross_domain_bridge"
-      },
-      {
-        "id": "m3_rep",
-        "role": "tissue_rep",
-        "module": 3,
-        "profile": "integration",
-        "task_hint": "cross_module_arbitration"
       },
       {
         "id": "coordinator",
@@ -254,116 +226,60 @@
         "module": 2
       },
       {
-        "from": "m3_rep",
-        "to": "m3_rep",
-        "weight": 0.25,
-        "kind": "recurrent",
-        "module": 3
-      },
-      {
         "from": "m0_a0",
-        "to": "m0_rep",
-        "weight": 0.048,
+        "to": "m0_a1",
+        "weight": 0.072,
         "kind": "reservoir",
         "module": 0
       },
       {
         "from": "m0_a2",
-        "to": "m0_a5",
-        "weight": 0.215,
+        "to": "m0_a1",
+        "weight": 0.037,
         "kind": "reservoir",
         "module": 0
       },
       {
         "from": "m0_a3",
+        "to": "m0_a0",
+        "weight": 0.551,
+        "kind": "reservoir",
+        "module": 0
+      },
+      {
+        "from": "m0_rep",
         "to": "m0_a1",
-        "weight": 0.091,
+        "weight": 0.631,
         "kind": "reservoir",
         "module": 0
       },
       {
-        "from": "m0_a4",
-        "to": "m0_a3",
-        "weight": 0.947,
-        "kind": "reservoir",
-        "module": 0
-      },
-      {
-        "from": "m1_a0",
-        "to": "m1_a1",
+        "from": "m1_a1",
+        "to": "m1_a0",
         "weight": 0.976,
         "kind": "reservoir",
         "module": 1
       },
       {
-        "from": "m1_a1",
-        "to": "m1_a3",
+        "from": "m1_a2",
+        "to": "m0_rep",
         "weight": 0.419,
         "kind": "reservoir",
         "module": 1
       },
       {
-        "from": "m1_rep",
-        "to": "m1_a1",
-        "weight": 0.372,
-        "kind": "reservoir",
-        "module": 1
+        "from": "m2_rep",
+        "to": "m2_a0",
+        "weight": -0.224,
+        "kind": "inhibitory",
+        "module": 2
       },
       {
-        "from": "m2_a1",
+        "from": "m2_rep",
         "to": "m2_a2",
-        "weight": 0.496,
-        "kind": "reservoir",
-        "module": 2
-      },
-      {
-        "from": "m3_a0",
-        "to": "m3_a2",
-        "weight": 0.082,
-        "kind": "reservoir",
-        "module": 3
-      },
-      {
-        "from": "m3_rep",
-        "to": "m3_a1",
-        "weight": 0.757,
-        "kind": "reservoir",
-        "module": 3
-      },
-      {
-        "from": "m2_rep",
-        "to": "m2_a3",
-        "weight": -0.216,
+        "weight": -0.282,
         "kind": "inhibitory",
         "module": 2
-      },
-      {
-        "from": "m2_rep",
-        "to": "m2_a5",
-        "weight": -0.467,
-        "kind": "inhibitory",
-        "module": 2
-      },
-      {
-        "from": "m3_rep",
-        "to": "m3_a2",
-        "weight": -0.432,
-        "kind": "inhibitory",
-        "module": 3
-      },
-      {
-        "from": "m3_rep",
-        "to": "m3_a5",
-        "weight": -0.382,
-        "kind": "inhibitory",
-        "module": 3
-      },
-      {
-        "from": "m3_rep",
-        "to": "m3_a3",
-        "weight": -0.536,
-        "kind": "inhibitory",
-        "module": 3
       },
       {
         "from": "coordinator",
@@ -375,79 +291,132 @@
       {
         "from": "coordinator",
         "to": "m1_rep",
-        "weight": -0.75,
+        "weight": -0.667,
         "kind": "inhibitory",
         "module": 1
       },
       {
         "from": "coordinator",
         "to": "m2_rep",
-        "weight": -0.5,
+        "weight": -0.333,
         "kind": "inhibitory",
         "module": 2
-      },
-      {
-        "from": "coordinator",
-        "to": "m3_rep",
-        "weight": -0.25,
-        "kind": "inhibitory",
-        "module": 3
       }
     ]
   },
   "metrics": {
-    "n_nodes": 29,
-    "n_edges": 23,
-    "avg_degree": 1.586,
-    "inhibition_ratio": 0.391,
-    "n_modules": 4,
-    "intra_module_edges": 19,
+    "n_nodes": 16,
+    "n_edges": 14,
+    "avg_degree": 1.75,
+    "inhibition_ratio": 0.357,
+    "n_modules": 3,
+    "intra_module_edges": 10,
     "inter_module_edges": 4,
-    "modularity_est": 0.826,
+    "modularity_est": 0.714,
     "profile_breakdown": {
       "sensory": {
-        "nodes": 7,
+        "nodes": 5,
         "edges": 5
       },
       "memory": {
-        "nodes": 7,
-        "edges": 4
+        "nodes": 5,
+        "edges": 3
       },
       "motor": {
-        "nodes": 7,
-        "edges": 4
-      },
-      "integration": {
-        "nodes": 7,
-        "edges": 6
+        "nodes": 5,
+        "edges": 3
       },
       "uniform": {
         "nodes": 1,
-        "edges": 4
+        "edges": 3
       }
     }
   },
-  "motif_provenance": {
-    "requested_source": "local",
-    "mode": "local_snapshot",
-    "transport": "file",
-    "api_url": "http://127.0.0.1:8799",
-    "api_tool": "export_swarm_motifs",
-    "api_refresh_requested": false,
-    "api_key_source": "local_config",
-    "resolved_utc": "2026-09-17T05:43:42.004088+00:00",
-    "motif_generated_utc": "2026-09-16T22:29:57.040787+00:00",
-    "motifs": [
-      "inhibitory_hub",
-      "recurrent_feedback",
-      "reservoir_smallworld"
+  "topology_profile": {
+    "status": "ok",
+    "signature": "sha256:b2eaae54375cf88a842f9ca2263e7ba8e2e901645684eef44e4960393871905c",
+    "size": {
+      "n_nodes": 16,
+      "n_edges": 14,
+      "density": 0.058333,
+      "self_loops": 3,
+      "n_modules": 3
+    },
+    "spectral_radius": 0.4,
+    "modularity_q": 0.2462,
+    "reciprocity": 0.0,
+    "feedback_edge_fraction": 0.2143,
+    "not_measured": [
+      "dynamics",
+      "energy",
+      "task_performance",
+      "biological_validity"
+    ]
+  },
+  "role_binding": {
+    "status": "ok",
+    "rule_id": "cross_species_role_binding",
+    "multiplier_semantic": "cross_species_invariance",
+    "binding_key": [
+      "wiring_role",
+      "topology_position"
     ],
-    "doc_sha256": "b9755a4519bee13a4782199302e254a3298919d2a66f902aa668e94109e70514",
-    "served_from": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
-    "fallback_reason": null,
-    "snapshot_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\swarm_agent_topology_motifs.json",
-    "snapshot_sha256": "89c0790eb8d66fdb7eda569b82caf35aa46aa98c1ae2672cecb09885c5e828ed",
-    "api_cache_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\flybrain-connectome-mcp\\motifs\\.motif_api_cache.json",
-    "snapshot_refreshed": false
-  }
+    "ignore_fields": [
+      "cell_type_label",
+      "species",
+      "lineage"
+    ],
+    "tiers": [
+      "sensory",
+      "relay",
+      "motor"
+    ],
+    "n_groups": 3,
+    "n_cross_species_groups": 0,
+    "groups": [
+      {
+        "wiring_role": "execute",
+        "topology_position": "relay",
+        "n_profiles": 1,
+        "profiles": [
+          "motor"
+        ],
+        "species": [],
+        "n_species": 0,
+        "cross_species_substitutable": false,
+        "modules": [
+          "2"
+        ]
+      },
+      {
+        "wiring_role": "gp_surrogate",
+        "topology_position": "relay",
+        "n_profiles": 1,
+        "profiles": [
+          "memory"
+        ],
+        "species": [],
+        "n_species": 0,
+        "cross_species_substitutable": false,
+        "modules": [
+          "1"
+        ]
+      },
+      {
+        "wiring_role": "perceive",
+        "topology_position": "sensory",
+        "n_profiles": 1,
+        "profiles": [
+          "sensory"
+        ],
+        "species": [],
+        "n_species": 0,
+        "cross_species_substitutable": false,
+        "modules": [
+          "0"
+        ]
+      }
+    ]
+  },
+  "prov_json": null
 }
