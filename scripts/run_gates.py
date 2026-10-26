@@ -593,6 +593,22 @@ def main() -> int:
         "delete_project_key) must all turn the gate red.",
         [py, str(SCRIPTS / "check_project_status.py"), "--quiet"])[0]))
 
+    # ---- Gate 66: MCP/HTTP transport contract consistency (P1-3) ----
+    results.append(("gate66 transport contract", run(
+        "GATE 66 — MCP / HTTP transport contract consistency (P1-3): "
+        "HTTP /query must expose exactly the same tool surface as "
+        "MCP tools/list. Before this gate, api_server.py hand-wrote "
+        "a 12-entry DISPATCH dict while server.TOOLS declared 47 "
+        "tools — users could see a tool in /tools but hit 400 on "
+        "/query. Now tool_registry.py derives DISPATCH from "
+        "server.TOOLS and this gate enforces that parity forever. "
+        "Also verifies every TOOLS entry has a valid inputSchema "
+        "(type=object) and every dispatch handler is callable. "
+        "Gate 39 meta-discipline honored: 3-mutation injection "
+        "battery (drop_one_dispatch, add_phantom_tool, "
+        "truncate_tool_schema) must all turn the gate red.",
+        [py, str(SCRIPTS / "check_transport_contract.py"), "--quiet"])[0]))
+
     print("=" * 72)
     print("gate summary")
     for name, ok in results:
