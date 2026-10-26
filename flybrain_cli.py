@@ -33,7 +33,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "3.01.1"
+__version__ = "3.01.2"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 
@@ -1206,17 +1206,19 @@ def build_parser() -> argparse.ArgumentParser:
         "export",
         help="convert topology JSON to mainstream agent framework format",
         description=(
-            "Convert a flybrain topology JSON to LangGraph, CrewAI, or AutoGen "
-            "config format. This is a lightweight adapter — it converts the "
-            "topology structure (nodes, edges, roles, modules) into the "
-            "framework's config format, but does NOT include the full "
-            "framework runtime."
+            "Convert a flybrain topology JSON to LangGraph, CrewAI, or AutoGen. "
+            "For LangGraph, use --runnable to generate a real Python script with "
+            "StateGraph, mock LLM backend, checkpointing, and OpenTelemetry tracing."
         ),
     )
     s.add_argument("input", help="path to topology JSON file")
     s.add_argument("--format", required=True,
                    choices=["langgraph", "crewai", "autogen"],
                    help="target framework format")
+    s.add_argument("--runnable", action="store_true",
+                   help="LangGraph only: generate a real Python script (not YAML config). "
+                        "Includes MockLLMBackend (no API keys), MemorySaver checkpointing, "
+                        "and optional --trace OTel tracing.")
     s.add_argument("--output", default=None,
                    help="output file path (default: <input_stem>.<format>)")
     s.set_defaults(func=cmd_export)
