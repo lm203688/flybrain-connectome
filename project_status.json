@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-10-26T09:08:21Z",
+  "generated_utc": "2026-10-26T09:13:01Z",
   "project": {
     "name": "flybrain-connectome",
     "version": "3.01.0",
@@ -15,11 +15,11 @@
     "example_notebooks": 7
   },
   "gates_quick": {
-    "total": 0,
-    "passed": 0,
+    "total": 59,
+    "passed": 59,
     "failed": 0,
     "failing": [],
-    "healthy": false
+    "healthy": true
   },
   "transport_gap": {
     "mcp_only_tools": 35,
