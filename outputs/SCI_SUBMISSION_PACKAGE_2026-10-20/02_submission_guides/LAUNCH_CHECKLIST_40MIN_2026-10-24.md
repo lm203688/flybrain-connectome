@@ -1,6 +1,6 @@
 # 🚀 最终 Launch 清单（40 分钟版）
 
-**项目状态**：v3.00.2 · 58/58 gates PASS · GitHub Pages 已上线 · **MCP Registry 已发布** · 8/8 MCP PRs 提交 · PyPI 名称可用
+**项目状态**：v3.01.2 · 58/58 gates PASS · GitHub Pages 已上线 · **MCP Registry 已发布** · 8/8 MCP PRs 提交 · PyPI 名称可用
 
 ---
 
@@ -120,4 +120,4 @@
 
 ---
 
-*更新：2026-10-25 09:20 · v3.00.2 · 58/58 gates PASS · MCP Registry 已发布*
+*更新：2026-10-25 09:20 · v3.01.2 · 58/58 gates PASS · MCP Registry 已发布*

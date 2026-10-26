@@ -1,4 +1,4 @@
-# MCP Ecosystem Submission Package — flybrain-connectome v3.00.2
+# MCP Ecosystem Submission Package — flybrain-connectome v3.01.2
 
 > **Goal**: Get flybrain-connectome listed in MCP ecosystem directories, enabling
 > discovery by the 2026 AI developer community that is migrating to MCP as the
@@ -206,7 +206,7 @@ Drosophila connectome and verifying them with a 62-gate preregistration battery.
 - **Drosophila focus**: primary dataset is MaleCNS v1.0 (Drosophila male brain)
 - **Analysis tool**: extracts and verifies structural motifs from connectome data
 - **Reproducibility**: machine-enforced preregistration discipline
-- **Active development**: v3.00.2, 62 gates, JOSS submission candidate
+- **Active development**: v3.01.2, 62 gates, JOSS submission candidate
 
 ## Key stats
 
@@ -384,7 +384,7 @@ If the registry at https://registry.modelcontextprotocol.io/ is open:
 - [ ] **Fork** modelcontextprotocol/servers and add entry
 - [ ] **Submit** to MCP Registry (if open)
 - [ ] **Search** for 2-3 more ecosystem directories and add entries
-- [ ] **Tag** the repo with `v3.00.2` (or latest) so listings show a version
+- [ ] **Tag** the repo with `v3.01.2` (or latest) so listings show a version
 - [ ] **Wait** for PR reviews (typically 1-7 days for each)
 
 ---

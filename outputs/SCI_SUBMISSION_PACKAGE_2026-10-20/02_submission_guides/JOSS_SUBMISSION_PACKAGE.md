@@ -1,4 +1,4 @@
-# JOSS Submission Package — flybrain-connectome (v3.00.2)
+# JOSS Submission Package — flybrain-connectome (v3.01.2)
 
 > **Target**: [Journal of Open Source Software (JOSS)](https://joss.theoj.org/)
 > **Target paper**: **P-3** — the methodology short paper (4 pages, single-author acceptable).
@@ -35,8 +35,8 @@ either PASS or have an explicit documented exception** in `paper.md`.
 | 1 | **Source code available** at a public URL | ✅ PUBLIC since 2026-10-18 | `https://github.com/lm203688/flybrain-connectome` |
 | 2 | **License** recognised by JOSS | ✅ MIT (with Tier-2 anti-plagiarism clause in `LICENSE-CLAUSE.md`) | `LICENSE` file |
 | 3 | **Repository contains README** with install, usage, examples | ✅ ~70 KB README with quickstart, 6 notebooks, GIF, demo | `README.md` |
-| 4 | **A version tag** exists in the repo (e.g. `v3.00.2`) | ✅ Tagged releases on GitHub since v2.0 | Tag `v3.00.2` on commit |
-| 5 | **Tests / gate battery** that pass | ✅ **58/58 quick gates + 62 total gates PASS** (v3.00.2) | `scripts/run_gates.py --quick` |
+| 4 | **A version tag** exists in the repo (e.g. `v3.01.2`) | ✅ Tagged releases on GitHub since v2.0 | Tag `v3.01.2` on commit |
+| 5 | **Tests / gate battery** that pass | ✅ **58/58 quick gates + 62 total gates PASS** (v3.01.2) | `scripts/run_gates.py --quick` |
 | 6 | **Documentation** — beyond README | ✅ 40+ files in `docs/`, `docs/demo/`, `examples/` with 6 notebooks | See §4 |
 | 7 | **Paper.md** follows JOSS template | ✅ **This package provides it** — see `JOSS_SUBMISSION_PACKAGE/paper.md` | — |
 | 8 | **Citation file** (`CITATION.cff`, `CODIMETADATA.json`, etc.) | ✅ `CITATION.cff` present | Root of repo |
@@ -45,7 +45,7 @@ either PASS or have an explicit documented exception** in `paper.md`.
 | 11 | **Security policy** (recommended) | ✅ `SECURITY.md` at root | — |
 | 12 | **Continuous integration** runs on PRs | ✅ `.github/workflows/ci.yml` | `.github/workflows/ci.yml` |
 
-**Exception items**: None. All 12 pass as of v3.00.2.
+**Exception items**: None. All 12 pass as of v3.01.2.
 
 ---
 
@@ -130,7 +130,7 @@ as the applied anchor.]
 
 Do these **in order** before hitting "Submit":
 
-- [ ] **1. Tag the current commit** `git tag -a v3.00.2 -m "JOSS submission tag" && git push origin v3.00.2`
+- [ ] **1. Tag the current commit** `git tag -a v3.01.2 -m "JOSS submission tag" && git push origin v3.01.2`
 - [ ] **2. Push latest state** — all files in this package should be in the repo.
 - [ ] **3. Run the gate battery one more time** — `python scripts/run_gates.py --quick`. Must be 58/58.
 - [ ] **4. Copy PAPER_P3_JOSS_PREREG_DISCIPLINE.md** into the repo root as `paper.md`.
