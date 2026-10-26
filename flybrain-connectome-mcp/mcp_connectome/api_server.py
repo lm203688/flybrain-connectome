@@ -81,21 +81,12 @@ if not api_keys:
 sys.path.insert(0, str(HERE))
 import core                                                  # noqa: E402
 import server as _srv                                        # noqa: E402  (for TOOLS docs)
+import tool_registry as _tr                                  # noqa: E402
 
-DISPATCH = {
-    "connectome_overview":    lambda a: core.connectome_overview(),
-    "neuron_info":            lambda a: core.neuron_info(int(a["body"])),
-    "pair_synapses":          lambda a: core.pair_synapses(int(a["pre"]), int(a["post"])),
-    "neuron_outputs":         lambda a: core.neuron_outputs(int(a["body"]), int(a.get("top", 20))),
-    "neuron_inputs":          lambda a: core.neuron_inputs(int(a["body"]), int(a.get("top", 20))),
-    "degree":                 lambda a: core.degree(int(a["body"])),
-    "search_neurons":         lambda a: core.search_neurons(a.get("query", ""), a.get("field", "type"), int(a.get("limit", 20))),
-    "superclass_projection":  lambda a: core.superclass_projection(a["superclass"]),
-    "hub_targets":            lambda a: core.hub_targets(str(a.get("name", ""))),
-    "list_superclasses":      lambda a: core.list_superclasses(),
-    "pathway":                lambda a: core.pathway(int(a["source"]), int(a["target"]), int(a.get("max_via", 1))),
-    "export_swarm_motifs":  lambda a: _srv.export_swarm_motifs(bool(a.get("refresh", False))),
-}
+# P1-3 (2026-10-26 upgrade report): single-source-of-truth HTTP dispatch.
+# DISPATCH is now derived from server.TOOLS so every MCP tool is
+# reachable via HTTP /query — no manual duplication, no silent drift.
+DISPATCH = _tr.DISPATCH
 
 
 def _check_auth(headers) -> bool:
@@ -125,7 +116,7 @@ class _Handler(BaseHTTPRequestHandler):
             self._send(200, {
                 "status": "ok",
                 "service": "flybrain-connectome",
-                "version": "3.01.0",
+                "version": "3.01.1",
                 "api_keys_configured": len(api_keys),
                 "tools": len(_srv.TOOLS),
             })
