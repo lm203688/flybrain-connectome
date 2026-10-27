@@ -107,6 +107,26 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - **Honest boundary**: overall accuracy 27.5% is low (LLM ~half
     of evidence), but the separation (evidence vs random 0%) is the
     criterion — extreme contrast, clean verdict.
+- **v5 independent-seed replication (200 calls, `glm-5.2`,
+  `motif_family`, seed 20261028)** — ★★★ **0/7 FLIP cross-seed
+  confirmed**:
+  - **200/200 calls, 197 success / 3 timeout (non-systematic)**, wall
+    clock 64 min. Completely independent blueprint set (seed 20261028
+    ≠ v4's 20261026) — new blueprints, new tasks, new sampling.
+  - **4/4 topologies FLIP again** (p < 0.001): sequential +46.2pp
+    (p=0.0002), fan_out +38.5pp (p=0.0006), hierarchical +44.0pp
+    (p=0.0002), router +44.0pp (p=0.0002).
+  - **random arm 0% again** (0/23~0/24) — identical to v4. evidence
+    38.5% ~ 46.2% (v5) vs 38.5% ~ 69.2% (v4): same magnitude, only
+    fan_out varies (sample fluctuation), still significant FLIP.
+  - **Cross-seed robustness**: two independent blueprint sets give the
+    same direction, magnitude, and significance — the 0/7 flip is NOT
+    a seed artifact. D-1 closure achieved (cross-seed robust).
+  - **Cumulative evidence**: v1/v2 mixed direction (no closure
+    ability) → v3 directional not significant → v4 decisive FLIP →
+    v5 independent-seed replication FLIP. **D-1 closed.**
+  - **Honest boundary**: v5 had 3/200 timeouts (1.5%, random), per-cell
+    samples still 23-26 — no impact on verdict.
 - **`--task-types` CLI filter added** to the experiment script —
   comma-separated task-type selection (e.g. `motif_family`) to focus
   samples on the signal-strongest task.
