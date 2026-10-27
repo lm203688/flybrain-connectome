@@ -1,0 +1,206 @@
+{
+  "schema": "next_experiment_v1",
+  "generated_at_utc": "2026-10-27T22:23:32Z",
+  "input_files": {
+    "progress.json": "749fef1604b80eac",
+    "boundary_atlas.json": "d74996d028a451e1"
+  },
+  "model": "coverage_guided_gain = step x (1+gap) + 3.0 if divergent",
+  "divergent_claims": [
+    "R1"
+  ],
+  "n_candidates": 6,
+  "experiments": [
+    {
+      "claim": "R1",
+      "experiment_id": "X_R1_cross_family_threshold_recalib",
+      "description": "跨族绝对阈值重标定（PR3_v2 已在 5 族通过后）",
+      "current_evidence": "E3",
+      "target_evidence": "E4",
+      "apparatus": "V5",
+      "gap": 2,
+      "divergent": true,
+      "info_gain": 6.0,
+      "rationale": "PR3_v2 PASS on 5 families raised R1 to E3. The next informative step is a cross-family absolute-threshold recalibration (is the family-relative effect a stable absolute effect?), NOT another same-family expansion. This is the E2 acceptance example verbatim.",
+      "basis": "PR3_v2 PASS (L3 cross-family) + R1 divergent (gap=2)",
+      "atlas_boundary_entries": [
+        {
+          "protocol": "PR1",
+          "claim": "R1",
+          "tier": null,
+          "kind": "protocol",
+          "verdict": "WEAK",
+          "category": "weak"
+        },
+        {
+          "protocol": "PR2",
+          "claim": "R1",
+          "tier": "L4 causal",
+          "kind": "protocol",
+          "verdict": "FAIL",
+          "category": "falsified"
+        },
+        {
+          "protocol": "PR3",
+          "claim": "R1",
+          "tier": "L3 cross-family generalization",
+          "kind": "protocol",
+          "verdict": "FAIL",
+          "category": "falsified"
+        },
+        {
+          "protocol": "PR2b",
+          "claim": "R1",
+          "tier": "L4 causal (proposed, then rejected)",
+          "kind": "pre_execution_rejection",
+          "verdict": "ACCEPT",
+          "category": "pre_execution_rejection"
+        }
+      ]
+    },
+    {
+      "claim": "R2",
+      "experiment_id": "X_R2_recovery_cross_n_recalib",
+      "description": "恢复动力学跨 n 阈值重标定（PR5 FAIL 后）",
+      "current_evidence": "E0",
+      "target_evidence": "E2",
+      "apparatus": "V1",
+      "gap": 1,
+      "divergent": false,
+      "info_gain": 4.0,
+      "rationale": "PR5 FAIL (cell densification) left R2 at E0. The recovery-fraction metric needs a cross-n threshold recalibration to separate a real recovery signal from the 64% zero-value floor already documented. Raising R2 to E2 requires a PASS at the measurement layer.",
+      "basis": "PR5 FAIL (L2 recovery) + R2 gap=1",
+      "atlas_boundary_entries": [
+        {
+          "protocol": "PR5",
+          "claim": "R2",
+          "tier": "L2 recovery experiment (cell-level densification)",
+          "kind": "protocol",
+          "verdict": "FAIL",
+          "category": "falsified"
+        }
+      ]
+    },
+    {
+      "claim": "R4",
+      "experiment_id": "X_R4_sensitivity_robustness",
+      "description": "敏感性鲁棒性边界补测（R4 已有 sensitivity scan）",
+      "current_evidence": "E0",
+      "target_evidence": "E2",
+      "apparatus": "V1",
+      "gap": 1,
+      "divergent": false,
+      "info_gain": 4.0,
+      "rationale": "R4 sensitivity scan exists but no protocol PASS. A robustness boundary rerun with a preregistered PASS threshold would raise R4 from E0 to E2.",
+      "basis": "R4 sensitivity scan + R4 gap=1",
+      "atlas_boundary_entries": []
+    },
+    {
+      "claim": "R5",
+      "experiment_id": "X_R5_reservoir_capacity",
+      "description": "层级储备池容量复测（F5 已有数据）",
+      "current_evidence": "E0",
+      "target_evidence": "E2",
+      "apparatus": "V1",
+      "gap": 1,
+      "divergent": false,
+      "info_gain": 4.0,
+      "rationale": "F5 hierarchical reservoir data exists but no protocol PASS. A capacity rerun with a preregistered PASS threshold would raise R5 from E0 to E2.",
+      "basis": "F5 hierarchical reservoir + R5 gap=1",
+      "atlas_boundary_entries": []
+    },
+    {
+      "claim": "R3",
+      "experiment_id": "X_R3_cross_species_external",
+      "description": "跨物种外部验证（PR-S1 PARTIAL 边界后）",
+      "current_evidence": "E0",
+      "target_evidence": "E1",
+      "apparatus": "V0",
+      "gap": 0,
+      "divergent": false,
+      "info_gain": 1.0,
+      "rationale": "R3 carries a boundary_partial_falsification (cross-species PARTIAL in PR-S1). The next step is an external validation pass on the families where the boundary was PARTIAL, raising R3 to E1 as a documented (non-confirmed) boundary refinement.",
+      "basis": "R3 claim_boundary (boundary_partial_falsification)",
+      "atlas_boundary_entries": [
+        {
+          "protocol": null,
+          "claim": "R3",
+          "tier": "claim_status",
+          "kind": "claim_boundary",
+          "verdict": "boundary_partial_falsification",
+          "category": "boundary"
+        }
+      ]
+    },
+    {
+      "claim": "R6",
+      "experiment_id": "X_R6_cross_species_role",
+      "description": "跨物种 role 绑定扩展（T5#4 已 141 组跨 ≥2 物种）",
+      "current_evidence": "E0",
+      "target_evidence": "E1",
+      "apparatus": "V0",
+      "gap": 0,
+      "divergent": false,
+      "info_gain": 1.0,
+      "rationale": "R6 carries a boundary_anchor_gap (cross-species role binding partial). Extending the T5#4 role-binding across the remaining families would refine the boundary to E1.",
+      "basis": "R6 claim_boundary (boundary_anchor_gap) + T5#4 141 组跨物种",
+      "atlas_boundary_entries": [
+        {
+          "protocol": null,
+          "claim": "R6",
+          "tier": "claim_status",
+          "kind": "claim_boundary",
+          "verdict": "boundary_anchor_gap",
+          "category": "boundary"
+        }
+      ]
+    }
+  ],
+  "top_recommendation": {
+    "claim": "R1",
+    "experiment_id": "X_R1_cross_family_threshold_recalib",
+    "description": "跨族绝对阈值重标定（PR3_v2 已在 5 族通过后）",
+    "current_evidence": "E3",
+    "target_evidence": "E4",
+    "apparatus": "V5",
+    "gap": 2,
+    "divergent": true,
+    "info_gain": 6.0,
+    "rationale": "PR3_v2 PASS on 5 families raised R1 to E3. The next informative step is a cross-family absolute-threshold recalibration (is the family-relative effect a stable absolute effect?), NOT another same-family expansion. This is the E2 acceptance example verbatim.",
+    "basis": "PR3_v2 PASS (L3 cross-family) + R1 divergent (gap=2)",
+    "atlas_boundary_entries": [
+      {
+        "protocol": "PR1",
+        "claim": "R1",
+        "tier": null,
+        "kind": "protocol",
+        "verdict": "WEAK",
+        "category": "weak"
+      },
+      {
+        "protocol": "PR2",
+        "claim": "R1",
+        "tier": "L4 causal",
+        "kind": "protocol",
+        "verdict": "FAIL",
+        "category": "falsified"
+      },
+      {
+        "protocol": "PR3",
+        "claim": "R1",
+        "tier": "L3 cross-family generalization",
+        "kind": "protocol",
+        "verdict": "FAIL",
+        "category": "falsified"
+      },
+      {
+        "protocol": "PR2b",
+        "claim": "R1",
+        "tier": "L4 causal (proposed, then rejected)",
+        "kind": "pre_execution_rejection",
+        "verdict": "ACCEPT",
+        "category": "pre_execution_rejection"
+      }
+    ]
+  }
+}
