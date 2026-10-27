@@ -1,0 +1,117 @@
+{
+  "schema": "boundary_atlas_products_v1",
+  "generated_at_utc": "2026-10-27T22:28:48Z",
+  "n_entries": 7,
+  "validation_issues": [],
+  "entries": [
+    {
+      "protocol": "PR1",
+      "claim": "R1",
+      "tier": null,
+      "kind": "protocol",
+      "verdict": "WEAK",
+      "category": "weak",
+      "evidence_file": "_r1_mechanism_prereg/f1_preregistered.json",
+      "evidence_sha256": "551a30b72c2102081487deaa2e0edbe43bffb24764b9098dbc616fd716849ede",
+      "recompute_command": "python scripts/f1_mechanism_preregistered.py",
+      "unexplored_alternatives": [
+        "前瞻性 z 阈值重估（更大样本量）",
+        "独立外部数据集前瞻复验"
+      ],
+      "@id": "boundary:PR1"
+    },
+    {
+      "protocol": "PR2",
+      "claim": "R1",
+      "tier": "L4 causal",
+      "kind": "protocol",
+      "verdict": "FAIL",
+      "category": "falsified",
+      "evidence_file": "_f4_intervention/f4_intervention.json",
+      "evidence_sha256": "77ef69e11d5c8596a8fd1fadb88b2e775b989602fa44d64fa2c2606ee890974e",
+      "recompute_command": "python scripts/f4_intervention_test.py",
+      "unexplored_alternatives": [
+        "因果级 L4 基底上限——当前数据不可达（非样本量不足）",
+        "跨物种干预实验"
+      ],
+      "@id": "boundary:PR2"
+    },
+    {
+      "protocol": "PR3",
+      "claim": "R1",
+      "tier": "L3 cross-family generalization",
+      "kind": "protocol",
+      "verdict": "FAIL",
+      "category": "falsified",
+      "evidence_file": "_f3_generalization/f3_generalization.json",
+      "evidence_sha256": "0b73a0adb0e164333cbf94824dd8997078c90c0cb4a645fe5ec085ec1edde6e7",
+      "recompute_command": "python scripts/f3_generalization_matrix.py",
+      "unexplored_alternatives": [
+        "跨族绝对阈值重标定（N8 E2 的 top 推荐）",
+        "更大节点规模跨族验证"
+      ],
+      "@id": "boundary:PR3"
+    },
+    {
+      "protocol": "PR2b",
+      "claim": "R1",
+      "tier": "L4 causal (proposed, then rejected)",
+      "kind": "pre_execution_rejection",
+      "verdict": "ACCEPT",
+      "category": "pre_execution_rejection",
+      "evidence_file": "_f4b_metric_substitution/f4b_metric_substitution.json",
+      "evidence_sha256": "157b2309144dd45930457f3af8b1ce8e4b96b51842cc71b5df7c443dd84bea8c",
+      "recompute_command": "python scripts/f4b_metric_substitution_check.py",
+      "unexplored_alternatives": [
+        "解析解耦替代度量（重新设计 outcome 变量）"
+      ],
+      "@id": "boundary:PR2b"
+    },
+    {
+      "protocol": "PR5",
+      "claim": "R2",
+      "tier": "L2 recovery experiment (cell-level densification)",
+      "kind": "protocol",
+      "verdict": "FAIL",
+      "category": "falsified",
+      "evidence_file": "_c1_cell_densification/c1_results.json",
+      "evidence_sha256": "8cf4551ef596451ae96b7a29ca7b0a8a755d482de6802c2f34d670825d28cf18",
+      "recompute_command": "python scripts/c1_cell_densification.py",
+      "unexplored_alternatives": [
+        "恢复动力学跨 n 阈值重标定（N8 推荐）",
+        "非度量依赖的恢复信号"
+      ],
+      "@id": "boundary:PR5"
+    },
+    {
+      "protocol": null,
+      "claim": "R3",
+      "tier": "claim_status",
+      "kind": "claim_boundary",
+      "verdict": "boundary_partial_falsification",
+      "category": "boundary",
+      "evidence_file": "_s1_external_validation/results.json",
+      "evidence_sha256": "3872823fd910afc6be10e62a554c6caea9c20b5b257f26545cf10fe94f877e94",
+      "recompute_command": "python scripts/s1_external_validation.py",
+      "unexplored_alternatives": [
+        "外部数据集扩展（跨物种 PARTIAL 边界细化）"
+      ],
+      "@id": "boundary:R3"
+    },
+    {
+      "protocol": null,
+      "claim": "R6",
+      "tier": "claim_status",
+      "kind": "claim_boundary",
+      "verdict": "boundary_anchor_gap",
+      "category": "boundary",
+      "evidence_file": "research_claims.json",
+      "evidence_sha256": "077e89f4ff50fc19b1b85eb3e7e59a6ce70e0686b9f7f7e6168f0247a52653d5",
+      "recompute_command": "python scripts/compute_epistemic_progress.py",
+      "unexplored_alternatives": [
+        "跨物种 role 绑定扩展（T5#4 已 141 组，余下族未覆盖）"
+      ],
+      "@id": "boundary:R6"
+    }
+  ]
+}

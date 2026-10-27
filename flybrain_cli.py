@@ -33,7 +33,7 @@ import sys
 from pathlib import Path
 
 HERE = Path(__file__).resolve().parent
-__version__ = "3.01.2"
+__version__ = "3.01.3"
 _TOOLKIT_DIRNAME = "flybrain-connectome-mcp"
 _TOOLKIT_MARKER = "synthetic_bio_topology.py"
 

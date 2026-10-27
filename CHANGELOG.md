@@ -4,6 +4,38 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.01.3] - 2026-10-28
+
+### Added (EPE 主线 · 项目内零外部依赖)
+- **N8 · E2 反馈导向实验调度** — `scripts/next_experiment.py`：读
+  `progress.json` + `boundary_atlas.json`，按**信息增益**排序候选实验，
+  输出 `next_experiment.json`（候选 + 预估信息增益 + 依据的边界条目）。
+  类比 fuzzer 的 coverage-guided mutation（coverage = 边界图册覆盖）。
+  - **信息增益模型**：`gain = evidence_step × (1 + gap) + 3.0 若 divergent`。
+    divergent claim（装置≠证据的病灶）优先闭合——搜索而非重复采样。
+  - **top 推荐**：`X_R1_cross_family_threshold_recalib`（R1 divergent，
+    gap=2，跨族绝对阈值重标定）——正是 E2 验收示例要求（"PR-3 v2 已在
+    5 族通过 → 下一步做跨族绝对阈值重标定，而非再跑同族扩样"）。
+  - 6 个候选（R1/R2/R3/R4/R5/R6），各带显式 rationale + basis。
+- **N9 · E4 边界图册产品化（durable negative knowledge）** —
+  `scripts/export_boundary_atlas.py`：把 `boundary_atlas.json` 升级为**可引用
+  负知识资产**。每条 entry 获得 `evidence_file` + `evidence_sha256` +
+  `recompute_command` + `unexplored_alternatives`（未走路径）+
+  `@id`（稳定引用标识）。
+  - 产出：`boundary_atlas_products.json`（7 条增强 entry）+
+    `boundary_crate.json`（RO-Crate 1.1，8 graph 节点）+
+    `boundary_nanopub.json`（nanopublication：assertion + provenance +
+    pubinfo）。
+  - **E4 验收通过**：7/7 条可引用（evidence_sha256 完整 + recompute 命令）
+    + crate 结构有效（`@graph` 非空）。
+  - 对接 Negative Knowledge 前沿：失败成为持久、可共享、机器可读的知识资产。
+
+### Changed
+- Version bump 3.01.2 → 3.01.3 in 6 files (`pyproject.toml`,
+  `flybrain_cli.py`, `mcp_connectome/api_server.py`,
+  `mcp_connectome/server.py`, `aibom.json`, `README.md` badge).
+- README feature banner updated for E2/E4 delivery.
+
 ## [3.01.2] - 2026-10-26
 
 ### Added
