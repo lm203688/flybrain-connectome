@@ -29,6 +29,18 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   - **E4 验收通过**：7/7 条可引用（evidence_sha256 完整 + recompute 命令）
     + crate 结构有效（`@graph` 非空）。
   - 对接 Negative Knowledge 前沿：失败成为持久、可共享、机器可读的知识资产。
+- **M4/M5/M6 零成本机制调查**（L3 §5.4）—
+  `docs/M456_MECHANISM_INVESTIGATION_2026-10-28.md`：
+  - **M4（完成）**：reachability 按查询距离分桶（`_p1_full/state.json`
+    508 条）。**局部拓扑优势方向性支持**——evidence 优势近距最大
+    （+17.8pp，83.8% vs 66.0%），随距离衰减（中距 +7.5pp → 远距
+    +4.2pp）。远距反超**未观察到**（远距样本 n=24/4 太小，sequential
+    反转 -66.7pp）。固化 `_m4_reachability_bucket.json`。
+  - **M5/M6（数据不可表达 · 诚实登记）**：92.6% = 25/27 拓扑隔离的
+    逐拓扑原始数据**未保留在仓库**（仅论文 §4.3 汇总文本），27 单元
+    隔离系统逐单元数据缺失。登记 `DATA_NOT_EXPRESSIBLE`，不编造。
+  - **教训**：汇总统计（92.6%）不可追溯——机制分析需要逐单元原始数据
+    持久化。M4 可执行正是因为 `_p1_full/state.json` 被持久化保留。
 
 ### Changed
 - Version bump 3.01.2 → 3.01.3 in 6 files (`pyproject.toml`,
