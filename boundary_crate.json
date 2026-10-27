@@ -1,0 +1,128 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/",
+    "ro": "https://w3id.org/ro/",
+    "prov": "http://www.w3.org/ns/prov#",
+    "sha256": "https://w3id.org/ro/crate-1.1#sha256"
+  },
+  "@graph": [
+    {
+      "@id": "boundary_atlas.json",
+      "@type": "Dataset",
+      "name": "Flybrain boundary atlas — durable negative knowledge",
+      "description": "Every documented non-confirmation (FAIL/WEAK/ACCEPT/BOUNDARY) as a citable, machine-readable negative-knowledge record with evidence checksum and reproduction command.",
+      "dateModified": "2026-10-27T22:28:48Z",
+      "hasPart": [
+        "boundary:PR1",
+        "boundary:PR2",
+        "boundary:PR3",
+        "boundary:PR2b",
+        "boundary:PR5",
+        "boundary:R3",
+        "boundary:R6"
+      ]
+    },
+    {
+      "@id": "boundary:PR1",
+      "@type": "CreativeWork",
+      "name": "Boundary PR1 — WEAK",
+      "about": "R1",
+      "identifier": "PR1",
+      "description": "verdict=WEAK category=weak tier=None",
+      "sha256": "551a30b72c2102081487deaa2e0edbe43bffb24764b9098dbc616fd716849ede",
+      "url": "https://github.com/lm203688/flybrain-connectome/blob/main/_r1_mechanism_prereg/f1_preregistered.json",
+      "unexploredAlternatives": [
+        "前瞻性 z 阈值重估（更大样本量）",
+        "独立外部数据集前瞻复验"
+      ],
+      "recomputeCommand": "python scripts/f1_mechanism_preregistered.py"
+    },
+    {
+      "@id": "boundary:PR2",
+      "@type": "CreativeWork",
+      "name": "Boundary PR2 — FAIL",
+      "about": "R1",
+      "identifier": "PR2",
+      "description": "verdict=FAIL category=falsified tier=L4 causal",
+      "sha256": "77ef69e11d5c8596a8fd1fadb88b2e775b989602fa44d64fa2c2606ee890974e",
+      "url": "https://github.com/lm203688/flybrain-connectome/blob/main/_f4_intervention/f4_intervention.json",
+      "unexploredAlternatives": [
+        "因果级 L4 基底上限——当前数据不可达（非样本量不足）",
+        "跨物种干预实验"
+      ],
+      "recomputeCommand": "python scripts/f4_intervention_test.py"
+    },
+    {
+      "@id": "boundary:PR3",
+      "@type": "CreativeWork",
+      "name": "Boundary PR3 — FAIL",
+      "about": "R1",
+      "identifier": "PR3",
+      "description": "verdict=FAIL category=falsified tier=L3 cross-family generalization",
+      "sha256": "0b73a0adb0e164333cbf94824dd8997078c90c0cb4a645fe5ec085ec1edde6e7",
+      "url": "https://github.com/lm203688/flybrain-connectome/blob/main/_f3_generalization/f3_generalization.json",
+      "unexploredAlternatives": [
+        "跨族绝对阈值重标定（N8 E2 的 top 推荐）",
+        "更大节点规模跨族验证"
+      ],
+      "recomputeCommand": "python scripts/f3_generalization_matrix.py"
+    },
+    {
+      "@id": "boundary:PR2b",
+      "@type": "CreativeWork",
+      "name": "Boundary PR2b — ACCEPT",
+      "about": "R1",
+      "identifier": "PR2b",
+      "description": "verdict=ACCEPT category=pre_execution_rejection tier=L4 causal (proposed, then rejected)",
+      "sha256": "157b2309144dd45930457f3af8b1ce8e4b96b51842cc71b5df7c443dd84bea8c",
+      "url": "https://github.com/lm203688/flybrain-connectome/blob/main/_f4b_metric_substitution/f4b_metric_substitution.json",
+      "unexploredAlternatives": [
+        "解析解耦替代度量（重新设计 outcome 变量）"
+      ],
+      "recomputeCommand": "python scripts/f4b_metric_substitution_check.py"
+    },
+    {
+      "@id": "boundary:PR5",
+      "@type": "CreativeWork",
+      "name": "Boundary PR5 — FAIL",
+      "about": "R2",
+      "identifier": "PR5",
+      "description": "verdict=FAIL category=falsified tier=L2 recovery experiment (cell-level densification)",
+      "sha256": "8cf4551ef596451ae96b7a29ca7b0a8a755d482de6802c2f34d670825d28cf18",
+      "url": "https://github.com/lm203688/flybrain-connectome/blob/main/_c1_cell_densification/c1_results.json",
+      "unexploredAlternatives": [
+        "恢复动力学跨 n 阈值重标定（N8 推荐）",
+        "非度量依赖的恢复信号"
+      ],
+      "recomputeCommand": "python scripts/c1_cell_densification.py"
+    },
+    {
+      "@id": "boundary:R3",
+      "@type": "CreativeWork",
+      "name": "Boundary R3 — boundary_partial_falsification",
+      "about": "R3",
+      "identifier": null,
+      "description": "verdict=boundary_partial_falsification category=boundary tier=claim_status",
+      "sha256": "3872823fd910afc6be10e62a554c6caea9c20b5b257f26545cf10fe94f877e94",
+      "url": "https://github.com/lm203688/flybrain-connectome/blob/main/_s1_external_validation/results.json",
+      "unexploredAlternatives": [
+        "外部数据集扩展（跨物种 PARTIAL 边界细化）"
+      ],
+      "recomputeCommand": "python scripts/s1_external_validation.py"
+    },
+    {
+      "@id": "boundary:R6",
+      "@type": "CreativeWork",
+      "name": "Boundary R6 — boundary_anchor_gap",
+      "about": "R6",
+      "identifier": null,
+      "description": "verdict=boundary_anchor_gap category=boundary tier=claim_status",
+      "sha256": "077e89f4ff50fc19b1b85eb3e7e59a6ce70e0686b9f7f7e6168f0247a52653d5",
+      "url": "https://github.com/lm203688/flybrain-connectome/blob/main/research_claims.json",
+      "unexploredAlternatives": [
+        "跨物种 role 绑定扩展（T5#4 已 141 组，余下族未覆盖）"
+      ],
+      "recomputeCommand": "python scripts/compute_epistemic_progress.py"
+    }
+  ]
+}
