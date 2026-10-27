@@ -41,6 +41,15 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     隔离系统逐单元数据缺失。登记 `DATA_NOT_EXPRESSIBLE`，不编造。
   - **教训**：汇总统计（92.6%）不可追溯——机制分析需要逐单元原始数据
     持久化。M4 可执行正是因为 `_p1_full/state.json` 被持久化保留。
+- **N10 · selfverify PyPI 准备（可自主部分）**：
+  - **版本单一真源修正**：`tools/selfverify/pyproject.toml` version
+    `0.1.0` → `0.4.0`（对齐 `selfverify/__init__.py.__version__`）。
+  - **单测 150/150 PASS**（6 个 test 文件，6.18s）。
+  - **构建产物验证**：`selfverify-0.4.0.tar.gz`（37KB）+ 
+    `selfverify-0.4.0-py3-none-any.whl`（27KB）；wheel 含 `cli.py` /
+    `receipt.py` / `entry_points`（console script `selfverify`）。
+  - **实际 PyPI 上传需用户凭据**（硬阻塞留给用户）——本轮完成准备与
+    验证，不上传。
 
 ### Changed
 - Version bump 3.01.2 → 3.01.3 in 6 files (`pyproject.toml`,
