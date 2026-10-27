@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "selfverify"
-version = "0.1.0"
+version = "0.4.0"
 description = "Turn preregistration into an executable gate for computational experiments."
 readme = "README.md"
 requires-python = ">=3.9"
