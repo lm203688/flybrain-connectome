@@ -1,0 +1,82 @@
+{
+  "@context": {
+    "@vocab": "https://schema.org/"
+  },
+  "@id": "boundary_atlas_nanopub",
+  "@type": "Nanopublication",
+  "assertion": {
+    "@id": "boundary_atlas_assertion",
+    "@type": "Assertion",
+    "hasSubject": [
+      {
+        "@id": "boundary:PR1",
+        "verdict": "WEAK",
+        "category": "weak",
+        "claim": "R1",
+        "protocol": "PR1",
+        "tier": null
+      },
+      {
+        "@id": "boundary:PR2",
+        "verdict": "FAIL",
+        "category": "falsified",
+        "claim": "R1",
+        "protocol": "PR2",
+        "tier": "L4 causal"
+      },
+      {
+        "@id": "boundary:PR3",
+        "verdict": "FAIL",
+        "category": "falsified",
+        "claim": "R1",
+        "protocol": "PR3",
+        "tier": "L3 cross-family generalization"
+      },
+      {
+        "@id": "boundary:PR2b",
+        "verdict": "ACCEPT",
+        "category": "pre_execution_rejection",
+        "claim": "R1",
+        "protocol": "PR2b",
+        "tier": "L4 causal (proposed, then rejected)"
+      },
+      {
+        "@id": "boundary:PR5",
+        "verdict": "FAIL",
+        "category": "falsified",
+        "claim": "R2",
+        "protocol": "PR5",
+        "tier": "L2 recovery experiment (cell-level densification)"
+      },
+      {
+        "@id": "boundary:R3",
+        "verdict": "boundary_partial_falsification",
+        "category": "boundary",
+        "claim": "R3",
+        "protocol": null,
+        "tier": "claim_status"
+      },
+      {
+        "@id": "boundary:R6",
+        "verdict": "boundary_anchor_gap",
+        "category": "boundary",
+        "claim": "R6",
+        "protocol": null,
+        "tier": "claim_status"
+      }
+    ]
+  },
+  "provenance": {
+    "@id": "boundary_atlas_provenance",
+    "wasGeneratedBy": {
+      "@type": "CreateAction",
+      "agent": "flybrain-connectome E4 exporter",
+      "startTime": "2026-10-27T22:28:48Z"
+    }
+  },
+  "publicationInfo": {
+    "@id": "boundary_atlas_pubinfo",
+    "type": "NegativeKnowledge",
+    "source": "https://github.com/lm203688/flybrain-connectome"
+  }
+}
