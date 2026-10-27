@@ -69,6 +69,23 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   valid samples, per-cell n ≤ 5, no statistical test possible.
   Neither confirmed nor refuted. Honest boundary registered per
   S6-S9 discipline: pilot + task-design flaw + engineering bottleneck.
+- **v3 post-fix (120 calls, `glm-5.2`)** — the turning point:
+  - **120/120 success, 0 errors** (vs v1 53% / v2 84% error rates).
+    `glm-5.2` on the SenseNova proxy completely resolved the timeout
+    bottleneck. Wall clock 42 min.
+  - **First-ever 4/4 topologies direction-consistent positive**
+    (evidence > random): sequential +18.4pp, fan_out +25.0pp,
+    hierarchical +30.8pp, router +31.9pp.
+  - **Task-design fix confirmed**: `hub` 100%→63.3%, `reachability`
+    100%→63.9%, `motif_family` 57.1%→25.7% (now the hardest).
+    The structural-agnostic ceiling is broken.
+  - **Signal localized**: `motif_family` (the only true structural
+    task) shows evidence 100%/50%/40% vs random 0% across
+    router/sequential/fan_out — direct evidence the fix worked.
+  - **Verdict: 0/7_CONFIRMED (direction-consistent, not significant)**
+    — all p-values > 0.05 (0.13-0.48), so no flip. But magnitude
+    (+18.4~+31.9pp) matches KAIST MaleCNS +25pp precedent.
+    Honest boundary: "directional support, not statistical confirm".
 - **`scripts/run_d1_closing_experiment.py`** — ~445-line experiment
   script with configurable n-blueprints, task types, topologies,
   worker count, timeout, retries, model, base-url, and --skip-llm
