@@ -1,0 +1,217 @@
+{
+  "schema": "m4_reachability_bucket_v1",
+  "source": "_p1_full/state.json",
+  "n_reachability": 508,
+  "by_bucket_origin": [
+    {
+      "bucket": "near(0-1)",
+      "origin": "evidence",
+      "n": 160,
+      "acc": 0.8375,
+      "ci_lo": 0.773,
+      "ci_hi": 0.887
+    },
+    {
+      "bucket": "near(0-1)",
+      "origin": "random",
+      "n": 100,
+      "acc": 0.66,
+      "ci_lo": 0.563,
+      "ci_hi": 0.745
+    },
+    {
+      "bucket": "mid(2-3)",
+      "origin": "evidence",
+      "n": 60,
+      "acc": 0.55,
+      "ci_lo": 0.425,
+      "ci_hi": 0.669
+    },
+    {
+      "bucket": "mid(2-3)",
+      "origin": "random",
+      "n": 40,
+      "acc": 0.475,
+      "ci_lo": 0.329,
+      "ci_hi": 0.625
+    },
+    {
+      "bucket": "far(4-5)",
+      "origin": "evidence",
+      "n": 24,
+      "acc": 0.2917,
+      "ci_lo": 0.149,
+      "ci_hi": 0.492
+    },
+    {
+      "bucket": "far(4-5)",
+      "origin": "random",
+      "n": 4,
+      "acc": 0.25,
+      "ci_lo": 0.046,
+      "ci_hi": 0.699
+    },
+    {
+      "bucket": "unreachable",
+      "origin": "evidence",
+      "n": 56,
+      "acc": 0.9821,
+      "ci_lo": 0.906,
+      "ci_hi": 0.997
+    },
+    {
+      "bucket": "unreachable",
+      "origin": "random",
+      "n": 64,
+      "acc": 0.9531,
+      "ci_lo": 0.871,
+      "ci_hi": 0.984
+    }
+  ],
+  "topology_margin": {
+    "mid(2-3)|sequential": {
+      "ev_n": 15,
+      "ev_c": 10,
+      "rd_n": 10,
+      "rd_c": 4,
+      "ev_acc": 0.667,
+      "rd_acc": 0.4,
+      "margin_pp": 26.7
+    },
+    "mid(2-3)|fan_out": {
+      "ev_n": 15,
+      "ev_c": 8,
+      "rd_n": 10,
+      "rd_c": 5,
+      "ev_acc": 0.533,
+      "rd_acc": 0.5,
+      "margin_pp": 3.3
+    },
+    "mid(2-3)|hierarchical": {
+      "ev_n": 15,
+      "ev_c": 7,
+      "rd_n": 10,
+      "rd_c": 3,
+      "ev_acc": 0.467,
+      "rd_acc": 0.3,
+      "margin_pp": 16.7
+    },
+    "mid(2-3)|router": {
+      "ev_n": 15,
+      "ev_c": 8,
+      "rd_n": 10,
+      "rd_c": 7,
+      "ev_acc": 0.533,
+      "rd_acc": 0.7,
+      "margin_pp": -16.7
+    },
+    "near(0-1)|sequential": {
+      "ev_n": 40,
+      "ev_c": 39,
+      "rd_n": 25,
+      "rd_c": 19,
+      "ev_acc": 0.975,
+      "rd_acc": 0.76,
+      "margin_pp": 21.5
+    },
+    "near(0-1)|fan_out": {
+      "ev_n": 40,
+      "ev_c": 36,
+      "rd_n": 25,
+      "rd_c": 19,
+      "ev_acc": 0.9,
+      "rd_acc": 0.76,
+      "margin_pp": 14.0
+    },
+    "near(0-1)|hierarchical": {
+      "ev_n": 40,
+      "ev_c": 23,
+      "rd_n": 25,
+      "rd_c": 10,
+      "ev_acc": 0.575,
+      "rd_acc": 0.4,
+      "margin_pp": 17.5
+    },
+    "near(0-1)|router": {
+      "ev_n": 40,
+      "ev_c": 36,
+      "rd_n": 25,
+      "rd_c": 18,
+      "ev_acc": 0.9,
+      "rd_acc": 0.72,
+      "margin_pp": 18.0
+    },
+    "unreachable|sequential": {
+      "ev_n": 14,
+      "ev_c": 14,
+      "rd_n": 16,
+      "rd_c": 16,
+      "ev_acc": 1.0,
+      "rd_acc": 1.0,
+      "margin_pp": 0.0
+    },
+    "unreachable|fan_out": {
+      "ev_n": 14,
+      "ev_c": 13,
+      "rd_n": 16,
+      "rd_c": 15,
+      "ev_acc": 0.929,
+      "rd_acc": 0.938,
+      "margin_pp": -0.9
+    },
+    "unreachable|hierarchical": {
+      "ev_n": 14,
+      "ev_c": 14,
+      "rd_n": 16,
+      "rd_c": 16,
+      "ev_acc": 1.0,
+      "rd_acc": 1.0,
+      "margin_pp": 0.0
+    },
+    "unreachable|router": {
+      "ev_n": 14,
+      "ev_c": 14,
+      "rd_n": 16,
+      "rd_c": 14,
+      "ev_acc": 1.0,
+      "rd_acc": 0.875,
+      "margin_pp": 12.5
+    },
+    "far(4-5)|sequential": {
+      "ev_n": 6,
+      "ev_c": 2,
+      "rd_n": 1,
+      "rd_c": 1,
+      "ev_acc": 0.333,
+      "rd_acc": 1.0,
+      "margin_pp": -66.7
+    },
+    "far(4-5)|fan_out": {
+      "ev_n": 6,
+      "ev_c": 1,
+      "rd_n": 1,
+      "rd_c": 0,
+      "ev_acc": 0.167,
+      "rd_acc": 0.0,
+      "margin_pp": 16.7
+    },
+    "far(4-5)|hierarchical": {
+      "ev_n": 6,
+      "ev_c": 2,
+      "rd_n": 1,
+      "rd_c": 0,
+      "ev_acc": 0.333,
+      "rd_acc": 0.0,
+      "margin_pp": 33.3
+    },
+    "far(4-5)|router": {
+      "ev_n": 6,
+      "ev_c": 2,
+      "rd_n": 1,
+      "rd_c": 0,
+      "ev_acc": 0.333,
+      "rd_acc": 0.0,
+      "margin_pp": 33.3
+    }
+  }
+}
