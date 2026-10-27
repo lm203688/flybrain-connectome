@@ -279,6 +279,8 @@ def main() -> int:
     ap = argparse.ArgumentParser(description="D-1 P1 结案实验 · LLM 编排对照")
     ap.add_argument("--n-blueprints", type=int, default=N_BLUEPRINTS)
     ap.add_argument("--n-per-type", type=int, default=N_PER_TYPE)
+    ap.add_argument("--task-types", default=None,
+                    help="逗号分隔任务类型过滤（默认全部 3 种：motif_family,hub,reachability）")
     ap.add_argument("--max-calls", type=int, default=500)
     ap.add_argument("--base-url", default=DEFAULT_BASE_URL)
     ap.add_argument("--model", default=DEFAULT_MODEL)
@@ -293,6 +295,16 @@ def main() -> int:
                     help="单个 chat 失败重试次数（默认 1）")
     args = ap.parse_args()
 
+    # 任务类型过滤：默认全部 3 种，或逗号分隔子集
+    if args.task_types:
+        tt = tuple(t.strip() for t in args.task_types.split(",") if t.strip())
+        invalid = [t for t in tt if t not in TASK_TYPES]
+        if invalid:
+            ap.error(f"unknown task_type(s): {invalid}; valid: {TASK_TYPES}")
+        active_task_types = tt
+    else:
+        active_task_types = TASK_TYPES
+
     log("=" * 72)
     log("D-1 P1 结案实验 · LLM 编排基底对照")
     log("=" * 72)
@@ -301,7 +313,7 @@ def main() -> int:
     log(f"n_blueprints = {args.n_blueprints}")
     log(f"n_per_type   = {args.n_per_type}")
     log(f"topologies   = {TOPOLOGIES}")
-    log(f"task_types   = {TASK_TYPES}")
+    log(f"task_types   = {active_task_types}")
     log(f"seed         = {args.seed}")
     log(f"workers      = {args.workers}")
     log("")
@@ -322,14 +334,14 @@ def main() -> int:
     for bp in blueprints:
         tasks = generate_tasks(
             bp,
-            task_types=TASK_TYPES,
+            task_types=active_task_types,
             n_per_type=args.n_per_type,
             rng=random.Random(args.seed + (hash(bp.name) % 10000)),
         )
         for t in tasks:
             all_tasks.append(t)
     log(f"tasks generated: {len(all_tasks)}  "
-        f"(= {len(blueprints)} bp × {args.n_per_type} × {len(TASK_TYPES)})")
+        f"(= {len(blueprints)} bp × {args.n_per_type} × {len(active_task_types)})")
 
     # ---------------------------------------------------------- 后端
     if args.skip_llm:
@@ -443,7 +455,7 @@ def main() -> int:
             "n_ev": n_ev,
             "n_rn": n_rn,
             "n_per_type": args.n_per_type,
-            "task_types": list(TASK_TYPES),
+            "task_types": list(active_task_types),
             "topologies": list(TOPOLOGIES),
             "margin_pp": MARGIN_PP,
             "significance_alpha": SIGNIFICANCE_ALPHA,
