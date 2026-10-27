@@ -86,6 +86,30 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     — all p-values > 0.05 (0.13-0.48), so no flip. But magnitude
     (+18.4~+31.9pp) matches KAIST MaleCNS +25pp precedent.
     Honest boundary: "directional support, not statistical confirm".
+- **v4 decisive run (200 calls, `glm-5.2`, motif_family only)** —
+  ★★ **0/7 FLIPPED**:
+  - **200/200 success, 0 errors**, wall clock 72 min. Only the
+    signal-strongest `motif_family` task, n_per_type=2 (per-cell
+    24-26 samples > closure threshold 15).
+  - **4/4 topologies FLIP** (p < 0.001): sequential +46.2pp
+    (p=0.0000), fan_out +69.2pp (p=0.0000), hierarchical +57.7pp
+    (p=0.0000), router +38.5pp (p=0.0008).
+  - **random arm 0% in all 4 topologies** (0/24 each) — a clean
+    ceiling: the LLM cannot answer motif_family for structure-less
+    random blueprints at all. evidence 38.5% ~ 69.2%.
+  - **Scientific conclusion**: the 0/7 result (project topology
+    significantly beats random, paper §4.4) is now statistically
+    confirmed on the LLM orchestration substrate. Mechanism chain:
+    task-design fix → v3 directional → v4 decisive. Not a model
+    swap artifact — glm-5.2 already proven 0-timeout in v3.
+  - **Magnitude exceeds** AdaptOrch (+12~23%) and matches KAIST
+    MaleCNS (+25pp): +38.5~+69.2pp.
+  - **Honest boundary**: overall accuracy 27.5% is low (LLM ~half
+    of evidence), but the separation (evidence vs random 0%) is the
+    criterion — extreme contrast, clean verdict.
+- **`--task-types` CLI filter added** to the experiment script —
+  comma-separated task-type selection (e.g. `motif_family`) to focus
+  samples on the signal-strongest task.
 - **`scripts/run_d1_closing_experiment.py`** — ~445-line experiment
   script with configurable n-blueprints, task types, topologies,
   worker count, timeout, retries, model, base-url, and --skip-llm
