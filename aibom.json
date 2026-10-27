@@ -1,6 +1,6 @@
 {
   "aibom_schema_version": "1.0.0",
-  "generated_utc": "2026-10-27T22:52:17+00:00",
+  "generated_utc": "2026-10-27T23:08:03+00:00",
   "package": {
     "name": "flybrain-connectome",
     "version": "3.01.3"
@@ -46,7 +46,7 @@
     {
       "path": "tools/selfverify",
       "name": "selfverify",
-      "version": "0.1.0",
+      "version": "0.4.0",
       "dependencies": [],
       "status": "ok"
     }
@@ -77,8 +77,8 @@
       "bytes": 72049
     },
     "CHANGELOG.md": {
-      "sha256": "eb9cd08723247c892ca674a5d10ff1af3f08f9b0f292d1f27e88459e757f7077",
-      "bytes": 391076
+      "sha256": "0462f3cbab18a70a93e14db56a3de5d5e81a491d430000210a79d5269a961a27",
+      "bytes": 391683
     }
   }
 }
