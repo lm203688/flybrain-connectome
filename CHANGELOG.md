@@ -50,6 +50,12 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
     `receipt.py` / `entry_points`（console script `selfverify`）。
   - **实际 PyPI 上传需用户凭据**（硬阻塞留给用户）——本轮完成准备与
     验证，不上传。
+- **MS-Human-700 外部前沿信号评估（2026-10-28）** —
+  `docs/MSHUMAN700_REFERENCE_2026-10-28.md`：清华 LNS Group 全身肌肉
+  骨骼数字人体（90 骨段/206 关节/700 MTU，MuJoCo，TSHT 降维；ICRA 2024 +
+  IROS 2026 + MS-Emulator）。定位**方法学邻居**（同 Carbon-A），非直接
+  支撑；佐证"高维生物系统降维量化"规律，但系统层级不同（运动 vs 拓扑），
+  不改变项目路线、不推进 B-1/N7。
 
 ### Changed
 - Version bump 3.01.2 → 3.01.3 in 6 files (`pyproject.toml`,
