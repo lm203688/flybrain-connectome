@@ -68,10 +68,19 @@ def test_status_json_mcp_tools_at_least_40(status_json: dict) -> None:
 
 
 def test_status_json_transport_gap_declared(status_json: dict) -> None:
-    """P0-3 partial: transport gap must be openly declared."""
+    """The transport gap must be openly declared.
+
+    After P1-3 (tool_registry.build_http_dispatch), HTTP /query derives
+    its dispatch table from server.TOOLS, so MCP and HTTP expose an
+    identical tool surface (47 == 47). A gap of 0 is the *correct*
+    closed-loop state — the design deliberately makes every MCP tool
+    reachable over HTTP. The test therefore asserts the field is
+    declared (present, non-negative, with a note), not that a gap
+    necessarily exists.
+    """
     tg = status_json["transport_gap"]
     assert "mcp_only_tools" in tg
-    assert tg["mcp_only_tools"] > 0, "MCP tools should exceed HTTP dispatch"
+    assert tg["mcp_only_tools"] >= 0, "mcp_only_tools must be non-negative"
     assert tg.get("note"), "transport_gap.note must not be empty"
 
 

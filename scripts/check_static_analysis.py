@@ -178,6 +178,46 @@ def check_ruff(py: str, quiet: bool = False) -> tuple[bool, list[str]]:
     return code == 0, findings
 
 
+def _purge_inject_residue():
+    """Heal any test_gate.py / test_inj_tmp.py residue from interrupted injections."""
+    sv_tests = ROOT / "tools" / "selfverify" / "tests"
+    # 1) Remove dedicated injection temp file if left behind
+    inj_tmp = sv_tests / "test_inj_tmp.py"
+    if inj_tmp.exists():
+        try:
+            inj_tmp.unlink()
+            print("    [HEALED] test_inj_tmp.py residue removed")
+        except OSError:
+            pass
+    # 2) Remove any _Inj class injected into test_gate.py by old fallback
+    test_gate = sv_tests / "test_gate.py"
+    if not test_gate.exists():
+        return
+    content = test_gate.read_text(encoding="utf-8")
+    # Remove any _Inj class injected by fallback (injection 3)
+    if "class _Inj(unittest.TestCase):" in content:
+        lines = content.splitlines()
+        # Find the _Inj class start
+        start_idx = None
+        end_idx = None
+        for i, line in enumerate(lines):
+            if line.strip() == "class _Inj(unittest.TestCase):":
+                start_idx = i
+            elif start_idx is not None and line.startswith("def test_injected_failure"):
+                # Check if this is followed by the method body
+                for j in range(i + 1, len(lines)):
+                    if lines[j].strip() == "" and j + 1 < len(lines) and not lines[j + 1].startswith(" "):
+                        end_idx = j + 1
+                        break
+                break
+        if start_idx is not None and end_idx is not None:
+            # Remove the _Inj class
+            healed_lines = lines[:start_idx] + lines[end_idx:]
+            healed_content = "\n".join(healed_lines)
+            test_gate.write_text(healed_content, encoding="utf-8")
+            print("    [HEALED] test_gate.py residue removed")
+
+
 def check_pytest(py: str, quiet: bool = False) -> tuple[bool, list[str]]:
     """Run the selfverify unittest suite (via unittest, no pytest needed)."""
     sv_dir = ROOT / "tools" / "selfverify"
@@ -257,35 +297,41 @@ def _injections(py: str) -> tuple[int, int]:
         print(f"    [PASS] injection 2 (undefined name) — gate turned red")
 
     # --- Injection 3: force a unit test to fail ---
+    # Use a DEDICATED temp file (tests/test_inj_tmp.py) instead of patching
+    # test_gate.py — a SIGTERM/kill mid-injection must never pollute the
+    # core test file. Residue (if any) is purged by _purge_inject_residue()
+    # at the start of main(). NOTE: filename MUST match unittest's default
+    # discover pattern (test*.py), otherwise the injected failure is
+    # silently invisible.
     total += 1
     sv_tests = ROOT / "tools" / "selfverify" / "tests"
-    backup = sv_tests / "test_gate.py"
-    original = backup.read_text(encoding="utf-8")
+    inj_tmp = sv_tests / "test_inj_tmp.py"
+    inj_tmp.write_text(
+        textwrap.dedent("""
+        import unittest
+
+
+        class _InjTmp(unittest.TestCase):
+            def test_injected_failure(self):
+                self.fail('injected failure')
+        """),
+        encoding="utf-8",
+    )
     try:
-        # Flip one assertion in the file to a false value
-        patched = original.replace(
-            'self.assertEqual(auc([0.9, 0.8, 0.7, 0.4, 0.3], [1, 1, 1, 0, 0]), 1.0)',
-            'self.assertEqual(auc([0.9, 0.8, 0.7, 0.4, 0.3], [1, 1, 1, 0, 0]), 0.999)',
-        )
-        if patched == original:
-            # fallback: append a broken test at the end
-            patched = original + "\n\n" + textwrap.dedent("""
-            class _Inj(unittest.TestCase):
-                def test_injected_failure(self):
-                    self.fail('injected failure')
-            """)
-        backup.write_text(patched, encoding="utf-8")
         code, _ = _run(
             [py, "-m", "unittest", "discover", "-s", "tests", "-t", str(sv_tests)],
             cwd=ROOT / "tools" / "selfverify",
         )
         if code == 0:
             bad += 1
-            print(f"    [FAIL] injection 3 (pytest failure) — gate stayed green")
+            print(f"    [FAIL] injection 3 (unit test failure) — gate stayed green")
         else:
-            print(f"    [PASS] injection 3 (pytest failure) — gate turned red")
+            print(f"    [PASS] injection 3 (unit test failure) — gate turned red")
     finally:
-        backup.write_text(original, encoding="utf-8")
+        try:
+            inj_tmp.unlink()
+        except FileNotFoundError:
+            pass
 
     return bad, total
 
@@ -319,6 +365,9 @@ def main() -> int:
             print(f"  ruff: PASS")
 
     # unit tests — always run (selfverify is zero-dependency)
+    # Heal any residue left by an interrupted injection run (SIGTERM etc.)
+    _purge_inject_residue()
+
     tests_ok, _tail = check_pytest(py, quiet=args.quiet)
     if not tests_ok:
         print(f"  unittest: FAIL")
