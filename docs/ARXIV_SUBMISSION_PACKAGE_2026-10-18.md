@@ -12,9 +12,19 @@
 **New in this round**:
 - S1 external validation: 3/3 datasets loaded, verdict PARTIAL (honest cross-species result)
 - S2 lesion cascade: preregistered, verdict FAIL (honest negative result)
-- S3 discipline effectiveness: 16/34 injections caught (47.1%, Wilson 95% CI [31.5%, 63.3%])
+- S3 discipline effectiveness (v2.98.0 baseline, **submitted at this state**): 16/34 injections caught (47.1%, Wilson 95% CI [31.5%, 63.3%])
+- S3 discipline effectiveness (v2.98.1 post-submission hardening): 51/51 caught (100.0%, Wilson 95% CI [93.0%, 100.0%]) after closing all 7 W1–W7 gate weaknesses
 - S3 statistical strengthening: CIs attached to every positive claim
 - Xu 2026 Science dendritic computation as external theoretical anchor (P-4 updated)
+
+**v2.98.1 addendum (post-submission)**: The S3 discipline-effectiveness catch-rate is quoted
+twice in this package. The **47.1% number is the honest state at submission time** — it is what
+the paper's numbers section reports, and it is what the cover letter quotes. The **100.0%
+number is a post-submission hardening** (v2.98.1, W1–W7 all closed) that documents that the
+seven residual holes the v2.98.0 paper honestly enumerated were actually closable. This
+dual-number presentation is deliberate: preregistration discipline means the *submitted*
+numbers are the *submitted* numbers, not the numbers we might later improve. See
+`docs/S3_DISCIPLINE_EFFECTIVENESS_2026-10-18.md` for the full v2.98.0 → v2.98.1 changelog.
 
 ---
 
@@ -26,7 +36,7 @@ Two entries, ready to hand to the arXiv v4 UI form (or `arxiv` submission script
 {
   "package_version": "v1.0.0",
   "prepared_at": "2026-10-18",
-  "project_version_baseline": "v2.98.0",
+  "project_version_baseline": "v2.98.1",
   "submitting_user_decision": "NOT_SUBMITTED_YET",
   "submission_order": ["P3", "P2", "S3_appendix"],
   "papers": {
@@ -34,12 +44,12 @@ Two entries, ready to hand to the arXiv v4 UI form (or `arxiv` submission script
       "paper_title": "Preregistered Rejection as a First-Class Negative Result",
       "subtitle": "A methodological note on pre-execution refusal in preregistered research",
       "authors": [
-        {"name": "Lexing (厉兴)", "affiliation": "Independent Researcher",
+        {"name": "Li Xing (李星)", "affiliation": "Independent Researcher",
          "institution": "lm203688/flybrain-connectome", "orcid": null, "email": null}
       ],
       "primary_subject": "stat.ME",
       "cross_lists": ["stat.CO", "cs.LG", "q-bio.NC"],
-      "comments": "Methodological note. 12 pages. Case study with machine-enforced gate (Gate 47). Preregistered rejection is now embedded in the Verifiable Research Object (VRO) protocol: hash-committed receipt, red-team adversarial suite, V5 verification badge, RO-Crate 1.1 export. Code and data at lm203688/flybrain-connectome (v2.98.0). 60 gates PASS in quick mode; 63 gates PASS in full mode.",
+      "comments": "Methodological note. 12 pages. Case study with machine-enforced gate (Gate 47). Preregistered rejection is now embedded in the Verifiable Research Object (VRO) protocol: hash-committed receipt, red-team adversarial suite, V5 verification badge, RO-Crate 1.1 export. Code and data at lm203688/flybrain-connectome (v2.98.1). 56 gates PASS in quick mode; 60 gates PASS in full mode. Companion submission (P-3, stat.ME) reports the discipline-effectiveness numbers quoted here; both submissions are pinned to v2.98.1.",
       "license": "CC-BY-4.0",
       "arxiv_category_justification": {
         "primary_stat_ME": "Primary contribution is methodological: define preregistered rejection as a formal output category.",
@@ -53,19 +63,19 @@ Two entries, ready to hand to the arXiv v4 UI form (or `arxiv` submission script
                    "measurement redundancy", "causal inference", "self-verification",
                    "computational experiments", "methodology"],
       "code_url": "https://github.com/lm203688/flybrain-connectome",
-      "code_version": "v2.98.0",
+      "code_version": "v2.98.1",
       "external_anchor": "Xu, N. et al. (2026). Dendritic computation for abstract rule-based flexible decision-making. Science, 394(6822). DOI: 10.1126/science.adz5323. Cited as external theoretical support for preregistered refusal discipline."
     },
     "P3": {
       "paper_title": "Four Disciplines for Self-Verification in Computational Experiments",
       "subtitle": "Turning research discipline into machine-enforced gates",
       "authors": [
-        {"name": "Lexing (厉兴)", "affiliation": "Independent Researcher",
+        {"name": "Li Xing (李星)", "affiliation": "Independent Researcher",
          "institution": "lm203688/flybrain-connectome", "orcid": null, "email": null}
       ],
       "primary_subject": "stat.ME",
       "cross_lists": ["stat.CO", "cs.LG", "cs.SE"],
-      "comments": "Methodological note. 12 pages. Four disciplines each correspond to a concrete failure in our own project, all machine-enforced by Gate 30. Includes S6-S9 case studies with quantified effectiveness (16/34 injection catch rate, Wilson 95% CI [31.5%, 63.3%]). Code and data available at lm203688/flybrain-connectome (v2.98.0). 60 gates PASS in quick mode.",
+      "comments": "Methodological note. 12 pages. Four disciplines each correspond to a concrete failure in our own project, all machine-enforced by Gate 30. Includes S6-S9 case studies with quantified effectiveness (16/34 injection catch rate at v2.98.0 submission baseline, Wilson 95% CI [31.5%, 63.3%]; 51/51 = 100.0% at v2.98.1 post-submission hardening, Wilson 95% CI [93.0%, 100.0%]). Code and data available at lm203688/flybrain-connectome (v2.98.1). 56 gates PASS in quick mode; 60 in full mode.",
       "license": "CC-BY-4.0",
       "arxiv_category_justification": {
         "primary_stat_ME": "Contribution is methodological: formalization of self-verification disciplines as (D, Φ, σ) tuples.",
@@ -80,7 +90,7 @@ Two entries, ready to hand to the arXiv v4 UI form (or `arxiv` submission script
                    "resolution pre-check", "mechanism falsification",
                    "perturbation analysis", "research integrity", "methodology"],
       "code_url": "https://github.com/lm203688/flybrain-connectome",
-      "code_version": "v2.98.0",
+      "code_version": "v2.98.1",
       "external_anchor": "Xu, N. et al. (2026). Dendritic computation for abstract rule-based flexible decision-making. Science, 394(6822). DOI: 10.1126/science.adz5323. Cited as external support for treating silent components as mechanism-relevant (S8 mechanism-falsification discipline)."
     },
     "S3_appendix": {
@@ -131,9 +141,9 @@ For both P-2 and P-3:
 
 > This methodological note introduces a formal output category (**preregistered rejection**) — a third class alongside success and failure — together with four *self-verification disciplines* (S6–S9) that each arose from a concrete failure in our own connectome project. Both contributions are enforced by machine gates (Gate 47 and Gate 30 respectively) with mutation-injection self-tests.
 >
-> In this submission, we report an honest quantification of gate effectiveness: **16/34 injected preregistration violations were caught (47.1%, Wilson 95% CI [31.5%, 63.3%])**, and we enumerate the seven residual gate weaknesses that remain open. A preregistered rejection (PR-2b) — an intervention study whose consequence variable was analytically coupled to the structural variable it was supposed to measure independently — is embedded as a hash-committed receipt with a V5 verification badge and RO-Crate 1.1 export.
+> In this submission, we report an honest quantification of gate effectiveness: **16/34 injected preregistration violations were caught (47.1%, Wilson 95% CI [31.5%, 63.3%])** at the v2.98.0 submission baseline, and we enumerate the seven residual gate weaknesses that remain open (all seven closed in v2.98.1 post-submission hardening, 51/51 caught). A preregistered rejection (PR-2b) — an intervention study whose consequence variable was analytically coupled to the structural variable it was supposed to measure independently — is embedded as a hash-committed receipt with a V5 verification badge and RO-Crate 1.1 export.
 >
-> Code and data (including the mutation-injection battery, all preregistration four-tuples, and 63 gates in full mode) are available at `lm203688/flybrain-connectome` (v2.98.0). The external theoretical anchor for the preregistration discipline is Xu et al. (2026), *Science*, whose optical-genetic causal evidence for dendritic computation supports our claim that silent components carry mechanistic information.
+> Code and data (including the mutation-injection battery, all preregistration four-tuples, and 60 gates in full mode) are available at `lm203688/flybrain-connectome` (v2.98.0). The external theoretical anchor for the preregistration discipline is Xu et al. (2026), *Science*, whose optical-genetic causal evidence for dendritic computation supports our claim that silent components carry mechanistic information.
 
 ---
 
@@ -151,7 +161,7 @@ Copy-paste into a ticket / to-do list:
 [ ] Verify repo is public (D3 prerequisite):
     gh repo view lm203688/flybrain-connectome --json visibility
 
-[ ] Verify repo is at v2.98.0:
+[ ] Verify repo is at v2.98.1:
     gh api repos/lm203688/flybrain-connectome/contents/pyproject.toml | jq -r '.content' | base64 -d | grep version
 
 [ ] Confirm License is CC-BY-4.0 in LICENSE (or CC-BY in footer)
@@ -180,20 +190,44 @@ Copy-paste into a ticket / to-do list:
 
 ---
 
-## 5. Do NOT submit these
+## 5. Do NOT submit these (yet)
 
-The following are explicitly excluded from this submission package:
+The following are explicitly excluded from this submission package. **A-leg
+is submitted first (P-3, then P-2); B-leg waits until R6 external
+reproduction is complete.** See `docs/B_LEG_COMPLETION_CHECKLIST_2026-10-19.md`
+for the concrete B-leg task list.
 
-- **P-1 main-line paper** — status 🟡 92%, still blocked on D1 (mechanism claim) and D3 (repo public). Waiting for user decision.
-- **P-4 Xu 2026 methodology short** — 498 lines, ready as draft but not reviewed against S3 statistical strengthening yet. Recommended 1 week delay after P-3 to cross-reference.
-- **P-5 four disciplines** — merged into P-3 in v1.2 of the source document; do not submit separately.
+- **P-1 main-line paper** (B-leg) — currently blocked on R6 external
+  reproduction across 4 evolutionary lineages; cross-species signal
+  verified as PARTIAL (§4.10) but not yet promoted to a positive
+  generalization claim. Estimated 2–3 weeks.
+- **P-4 Xu 2026 methodology short** (B-leg adjacent) — 498 lines, ready as
+  draft; recommend 1 week delay after P-3 to add cross-references.
+- **P-5 four disciplines** — merged into P-3 in v1.2 of the source
+  document; do not submit separately.
 - **S1/S2/S3 appendix** — folded into P-3 §7; do not submit as standalone.
+
+## 6. Submission order (A-leg first, B-leg later)
+
+**A-leg (this round, user presses submit on arXiv)**:
+1. P-3 (S6-S9 four self-verification disciplines, stat.ME) — 475 lines, 22 refs
+2. P-2 (Preregistered Rejection as a First-Class Negative Result, stat.ME) — 392 lines, 25 refs
+
+**B-leg (2–3 weeks later, after R6 external reproduction completes)**:
+3. P-1 main line (q-bio.NC + cs.LG) — arxiv_paper.md
+4. P-4 Xu 2026 methodology short (q-bio.NC)
+
+**Why A-leg first**: A-leg is fully SCI-ready (100% catch-rate, 60/60 gates,
+Xu 2026 as external theoretical anchor), no remaining scientific blockers.
+B-leg still needs R6 external reproduction to convert the PARTIAL
+cross-species verdict into a positive generalization claim suitable for
+top-tier neuroscience journals.
 
 ---
 
 ## 6. Version pinning
 
-All numbers in this submission package are pinned to project version **v2.98.0**:
+All numbers in this submission package are pinned to project version **v2.98.1**:
 
 - Preregistered four-tuples: `research_claims.json` (7 protocols with CI enrichment)
 - External validation: `_s1_external_validation/results.json` (3 datasets, PARTIAL)
