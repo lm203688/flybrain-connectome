@@ -470,6 +470,124 @@ CONNECTION_TYPES = [
 ]
 
 
+# ---------------------------------------------------------------------- #
+# 1b. measurable_properties on every connection type.
+#
+# GATE 9 requires the generator output to be byte-identical to the committed
+# artifact. `bd9b397` added measurable_properties to the artifact via
+# `add_efficiency_throughput_axes.py` but did NOT sync this generator, so the
+# drift gate failed. We reproduce the SAME derivation here (throughput from
+# latency midpoint, efficiency from delay_class+energy ordinal) so the
+# generator output matches the artifact exactly. The derivation lives in
+# `add_efficiency_throughput_axes.py` (P0 parallel item 1, user-approved);
+# this block is the generator-side mirror so `scripts/gen_functional_units.py`
+# remains the single reproducible source of the artifact.
+#
+# Honesty rule (inherited from connection_costs.json `purpose`): "adds the
+# numbers where a citation exists and `unknown` where one does not." No new
+# physiology is invented here; both axes are DERIVED from axes that already
+# carry evidence.
+# ---------------------------------------------------------------------- #
+_DELAY_ORD = {"immediate": 3, "short": 2, "long": 1}
+_ENERGY_ORD = {
+    "cheap": 5,
+    "cheap_per_target": 4,
+    "typical": 3,
+    "scales_with_span": 2,
+    "expensive": 1,
+    "emergent": 0,
+}
+
+
+def _conn_mid(latency):
+    """Midpoint of a {low, high} latency dict, or None."""
+    if not isinstance(latency, dict):
+        return None
+    lo = latency.get("low")
+    hi = latency.get("high")
+    if lo is None or hi is None:
+        return None
+    return (lo + hi) / 2.0
+
+
+def _conn_throughput(latency):
+    """Derived throughput (signals/ms) from latency midpoint, or None."""
+    mid = _conn_mid(latency)
+    if mid is None or mid <= 0:
+        return None
+    return round(1.0 / mid, 4)
+
+
+def _conn_efficiency(delay_class, energy_level):
+    """Derived qualitative efficiency ordinal 0-5, or None if latency unknown."""
+    d = _DELAY_ORD.get(delay_class)
+    e = _ENERGY_ORD.get(energy_level)
+    if d is None or e is None:
+        return None
+    return max(1, min(5, d + (e - 3)))
+
+
+def _load_cost_axes():
+    """Load the cost axis list from connection_costs.json (if present).
+
+    The generator writes connection_types.json only; the cost axes live in the
+    sibling connection_costs.json produced by the cost-axes script. When the
+    costs file is absent (fresh checkout before the costs script ran) we return
+    an empty list and every type gets grade=unknown measurable_properties --
+    the honest default under the 'no citation -> unknown' rule.
+    """
+    costs_path = OUT_DIR / "connection_costs.json"
+    if not costs_path.exists():
+        return []
+    with open(costs_path, "r", encoding="utf-8") as f:
+        return json.load(f).get("cost_axis", [])
+
+
+def _attach_measurable_properties(conn_types, cost_axes):
+    """Mirror of add_efficiency_throughput_axes.py: cross-reference each
+    connection type with its cost axis and derive measurable_properties.
+
+    The committed artifact stores `throughput`/`efficiency` as the grade STRING
+    ('derived'|'unknown') exactly as add_efficiency_throughput_axes.py writes
+    it (see its `t["measurable_properties"]` block). We reproduce that exact
+    shape so GATE 9's byte-identical comparison passes.
+    """
+    axis_by_name = {a["name"]: a for a in cost_axes}
+    for t in conn_types:
+        axis = axis_by_name.get(t["name"])
+        if axis is None:
+            t["measurable_properties"] = {
+                "cost_axis": t["name"],
+                "latency_ms": {"grade": "unknown"},
+                "throughput": "unknown",
+                "efficiency": "unknown",
+                "energy": {"level": "unknown", "grade": "unknown"},
+                "reliability": "unknown",
+            }
+            continue
+        latency = axis.get("latency_ms")
+        delay_class = axis.get("delay_class")
+        energy = axis.get("energy")
+        energy_level = energy.get("level") if isinstance(energy, dict) else None
+        reliability = axis.get("reliability")
+        tp = _conn_throughput(latency)
+        eff = _conn_efficiency(delay_class, energy_level)
+        t["measurable_properties"] = {
+            "cost_axis": t["name"],
+            "latency_ms": {
+                "grade": latency.get("grade", "unknown") if isinstance(latency, dict) else "unknown",
+            },
+            "throughput": "derived" if tp is not None else "unknown",
+            "efficiency": "derived" if eff is not None else "unknown",
+            "energy": {
+                "level": energy_level if energy_level else "unknown",
+                "grade": energy.get("grade", "unknown") if isinstance(energy, dict) else "unknown",
+            },
+            "reliability": reliability.get("level", "unknown") if isinstance(reliability, dict) else "unknown",
+        }
+    return conn_types
+
+
 # ====================================================================== #
 # 2. FUNCTIONAL UNITS -- 56 units, each = one function, N neuron populations
 # ====================================================================== #
@@ -1707,6 +1825,26 @@ def main() -> int:
         ],
         "units": FUNCTIONAL_UNITS,
     }
+    # Preserve license_registry added by P0/P2 (bd9b397). The generator does
+    # not author it -- it is maintained alongside docs/COMPLIANCE_REGISTRY and
+    # must survive a regenerate. Insert before "units" to keep the committed
+    # key order (units_doc is assembled with license_registry first in HEAD).
+    existing_units = OUT_DIR / "functional_units.json"
+    if existing_units.exists():
+        try:
+            prev = json.loads(existing_units.read_text(encoding="utf-8"))
+            if isinstance(prev, dict) and "license_registry" in prev:
+                reg = prev["license_registry"]
+                new_doc = {}
+                for k, v in units_doc.items():
+                    if k == "units":
+                        new_doc["license_registry"] = reg
+                    new_doc[k] = v
+                if "license_registry" not in new_doc:
+                    new_doc["license_registry"] = reg
+                units_doc = new_doc
+        except Exception:
+            pass  # unreadable artifact -> write without registry (honest)
     conn_doc = {
         "schema_version": "1.0",
         "source": "%d of the %d connection forms map onto the curated motif "
@@ -1730,6 +1868,16 @@ def main() -> int:
     }
     (OUT_DIR / "functional_units.json").write_text(
         json.dumps(units_doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
+    # GATE 9 no-drift: reproduce measurable_properties (mirror of
+    # add_efficiency_throughput_axes.py) so the written artifact matches what
+    # the generator itself produces. `conn_types` is a fresh list built from
+    # CONNECTION_TYPES so we do not mutate the module-level constant in a way
+    # that would surprise repeated in-process loads.
+    conn_types = _attach_measurable_properties(list(CONNECTION_TYPES), _load_cost_axes())
+    conn_doc["connection_types"] = conn_types
+    conn_doc["stats"] = dict(stats)
+    conn_doc["stats"]["connection_types_with_measurable_properties"] = len(conn_types)
+    conn_doc["schema_version"] = "1.1"
     (OUT_DIR / "connection_types.json").write_text(
         json.dumps(conn_doc, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
 
@@ -4063,6 +4211,13 @@ def _load_function_axis():
 
 _load_function_axis()
 
+
+# Attach measurable_properties at module load so the in-process `CONNECTION_TYPES`
+# (what GATE 9's `_load()` sees) matches the committed artifact byte-for-byte.
+# This MUST run after every CONNECTION_TYPES += / append (the v1.4.x forms are
+# appended at module level above), otherwise the later forms have no
+# measurable_properties and the drift gate reports them as mismatched.
+_attach_measurable_properties(CONNECTION_TYPES, _load_cost_axes())
 
 if __name__ == "__main__":
     raise SystemExit(main())
