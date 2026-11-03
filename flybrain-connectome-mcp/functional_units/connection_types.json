@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0",
+  "schema_version": "1.1",
   "source": "45 of the 66 connection forms map onto the curated motif document (motifs/swarm_agent_topology_motifs.json); the other 21 are new forms introduced by this library.",
   "caveat": "Connection forms are qualitative taxonomies. `parameters` are literature-scale defaults for simulation, not fitted values.",
   "families": {
@@ -80,7 +80,8 @@
     "structural_support_edges_fragile": 7,
     "structural_support_edges_supported": 149,
     "support_resolution": "type-pair",
-    "contradictions_acknowledged": 1
+    "contradictions_acknowledged": 1,
+    "connection_types_with_measurable_properties": 66
   },
   "connection_types": [
     {
@@ -110,6 +111,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "axo_dendritic",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "typical",
+          "grade": "bounded"
+        },
+        "reliability": "stochastic"
       }
     },
     {
@@ -138,6 +152,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "axo_somatic",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "typical",
+          "grade": "bounded"
+        },
+        "reliability": "stochastic"
       }
     },
     {
@@ -166,6 +193,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "axo_axonic",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "typical",
+          "grade": "bounded"
+        },
+        "reliability": "stochastic"
       }
     },
     {
@@ -194,6 +234,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "dendro_dendritic",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "typical",
+          "grade": "bounded"
+        },
+        "reliability": "stochastic"
       }
     },
     {
@@ -223,6 +276,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "axo_dendrite_reciprocal",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "typical",
+          "grade": "bounded"
+        },
+        "reliability": "stochastic"
       }
     },
     {
@@ -251,6 +317,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "pre_presynaptic_inhibition",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "typical",
+          "grade": "bounded"
+        },
+        "reliability": "stochastic"
       }
     },
     {
@@ -279,6 +358,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "pre_presynaptic_excitation",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "typical",
+          "grade": "bounded"
+        },
+        "reliability": "stochastic"
       }
     },
     {
@@ -307,6 +399,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "dendritic_excitatory_synapse",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "typical",
+          "grade": "bounded"
+        },
+        "reliability": "stochastic"
       }
     },
     {
@@ -335,6 +440,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "dendritic_inhibitory_synapse",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "typical",
+          "grade": "bounded"
+        },
+        "reliability": "stochastic"
       }
     },
     {
@@ -363,6 +481,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "autapse_recurrent",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -391,6 +522,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "feedforward_excitatory",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -419,6 +563,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "feedforward_inhibitory",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -448,6 +605,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "feedforward_gating",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -476,6 +646,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "feedback_excitatory",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -504,6 +687,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "feedback_inhibitory",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -532,6 +728,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "lateral_inhibitory",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -560,6 +769,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "lateral_feedback",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -588,6 +810,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "mutual_inhibitory",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -616,6 +851,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "recurrent_excitatory",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -644,6 +892,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "recurrent_inhibitory",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -672,6 +933,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "disinhibition",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -700,6 +974,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "shunting_inhibition",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -728,6 +1015,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "contrast_inhibition",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -757,6 +1057,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "winner_take_all",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -786,6 +1099,19 @@
         "evidence_label": "speculative",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "loop_relay_chain",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -817,6 +1143,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "modulatory_diffuse",
+        "latency_ms": {
+          "grade": "bounded"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "cheap_per_target",
+          "grade": "bounded"
+        },
+        "reliability": "graded"
       }
     },
     {
@@ -845,6 +1184,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "neuromodulatory_axon",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "all_or_nothing"
       }
     },
     {
@@ -874,6 +1226,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "volume_transmission",
+        "latency_ms": {
+          "grade": "bounded"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "cheap_per_target",
+          "grade": "bounded"
+        },
+        "reliability": "graded"
       }
     },
     {
@@ -902,6 +1267,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "short_range_volume",
+        "latency_ms": {
+          "grade": "bounded"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "cheap_per_target",
+          "grade": "bounded"
+        },
+        "reliability": "graded"
       }
     },
     {
@@ -931,6 +1309,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "retrograde_messenger",
+        "latency_ms": {
+          "grade": "bounded"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "graded"
       }
     },
     {
@@ -959,6 +1350,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "state_gating_modulation",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "all_or_nothing"
       }
     },
     {
@@ -987,6 +1391,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "gap_junction_sync",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "cheap",
+          "grade": "bounded"
+        },
+        "reliability": "faithful"
       }
     },
     {
@@ -1015,6 +1432,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "gap_junction_inhibitory",
+        "latency_ms": {
+          "grade": "measured"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "cheap",
+          "grade": "bounded"
+        },
+        "reliability": "faithful"
       }
     },
     {
@@ -1043,6 +1473,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "ephaptic_coupling",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1071,6 +1514,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "astrocyte_neuron_tripartite",
+        "latency_ms": {
+          "grade": "bounded"
+        },
+        "throughput": "derived",
+        "efficiency": "derived",
+        "energy": {
+          "level": "cheap_per_target",
+          "grade": "bounded"
+        },
+        "reliability": "graded"
       }
     },
     {
@@ -1099,6 +1555,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "gliotransmission_calcium_wave",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -1130,6 +1599,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "stdp_rule",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1159,6 +1641,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "ltp_ltd",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1188,6 +1683,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "short_term_plasticity",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1217,6 +1725,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "dendritic_computation",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1246,6 +1767,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "homeostatic_scaling",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1275,6 +1809,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "topographic_mapping",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1306,6 +1853,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "temporal_coherence",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1334,6 +1894,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "inhibitory_hub",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1363,6 +1936,19 @@
         "evidence_label": "speculative",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "reservoir_smallworld",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1391,6 +1977,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "recurrent_feedback",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1419,6 +2018,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "divergent_fanout",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1447,6 +2059,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "convergent_fanin",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1475,6 +2100,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "corollary_discharge",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1503,6 +2141,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "global_broadcast",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1532,6 +2183,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "sparse_expansion_projection",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1560,6 +2224,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "global_inhibitory_gain_control",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -1589,6 +2266,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "neural_chain_sequence",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -1617,6 +2307,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "efference_copy_cancellation",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -1645,6 +2348,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "mixed_electrical_chemical_synapse",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -1674,6 +2390,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "modulatory_gated_plasticity",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1703,6 +2432,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "repetitive_activation_lts",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1732,6 +2474,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "command_neuron_recruitment",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1761,6 +2516,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "half_center_oscillation",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -1790,6 +2558,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "plateau_potential_bistability",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1819,6 +2600,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "serotonergic_presynaptic_facilitation",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1848,6 +2642,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "short_term_habituation",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1877,6 +2684,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "coincidence_detection",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "expensive",
+          "grade": "bounded"
+        },
+        "reliability": "irreversible_over_window"
       }
     },
     {
@@ -1906,6 +2726,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "state_switch_bistable",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     },
     {
@@ -1935,6 +2768,19 @@
         "evidence_label": "well_supported",
         "validated_at": "2026-09-29T15:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "grid_phase_precession",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "emergent",
+          "grade": "derived"
+        },
+        "reliability": "emergent"
       }
     },
     {
@@ -1964,6 +2810,19 @@
         "evidence_label": "preliminary",
         "validated_at": "2026-09-30T22:40:00+08:00",
         "model_version": "jev-1.13.0"
+      },
+      "measurable_properties": {
+        "cost_axis": "thermal_cross_modal_convergence",
+        "latency_ms": {
+          "grade": "unknown"
+        },
+        "throughput": "unknown",
+        "efficiency": "derived",
+        "energy": {
+          "level": "scales_with_span",
+          "grade": "bounded"
+        },
+        "reliability": "population_statistic"
       }
     }
   ]

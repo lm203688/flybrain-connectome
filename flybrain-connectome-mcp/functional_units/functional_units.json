@@ -522,6 +522,55 @@
     "2. join an out-port to an in-port whose `type` matches (or via a connection type whose from_port/to_port constraints admit both);",
     "3. validate with compose_from_units(); it checks port type compatibility, required-port satisfaction and acyclicity policy."
   ],
+  "license_registry": {
+    "schema_version": "1.0",
+    "note": "Data-source level license registry for functional-unit provenance derivation. Units are curated-cross-species literature composites (see `source`); a unit's license is DERIVED from its `species_source` via this registry, never hard-written per unit -- this avoids conflating data-source license with literature-citation license. Registry facts verified 2026-11-03 against upstream sources; see docs/COMPLIANCE_REGISTRY_2026-11-03.md.",
+    "registry": {
+      "MaleCNS_v1_0": {
+        "license": "CC-BY",
+        "commercial": true,
+        "source": "male-cns.janelia.org (2026-06-08 official, Cell 2026-09-03)",
+        "evidence": "DATA_MANIFEST.json dataset field"
+      },
+      "C_elegans_Witvliet_2020": {
+        "license": "CC-BY-4.0",
+        "commercial": true,
+        "source": "eLife 2020, DOI 10.7554/eLife.47155",
+        "evidence": "eLife default CC-BY"
+      },
+      "Drosophila_larva_Winding_2023": {
+        "license": "CC-BY",
+        "commercial": true,
+        "source": "Science 2023, DOI 10.1126/science.add9330",
+        "evidence": "Europe PMC license cc by"
+      },
+      "zebrafish_Petkova_2025": {
+        "license": "CC-BY-NC-4.0",
+        "commercial": false,
+        "source": "bioRxiv 2025, DOI 10.1101/2025.06.10.658982",
+        "evidence": "Crossref license by-nc/4.0; NON-COMMERCIAL"
+      },
+      "mouse_V1_MICrONS": {
+        "license": "CC-BY-4.0",
+        "commercial": true,
+        "source": "Zenodo DOI 10.5281/zenodo.3710459",
+        "evidence": "Zenodo status=open, embargo none"
+      },
+      "H01_official": {
+        "license": "CC-BY-4.0",
+        "commercial": true,
+        "ethical_gate": true,
+        "source": "h01-release.storage.googleapis.com",
+        "evidence": "Official GCS; HUMAN DATA - ethics layer independent of license"
+      },
+      "FlyBrain_code": {
+        "license": "MIT",
+        "commercial": true,
+        "source": "LICENSE file",
+        "evidence": "MIT License (Tier 1)"
+      }
+    }
+  },
   "units": [
     {
       "name": "prefrontal_metacognitive_unit",

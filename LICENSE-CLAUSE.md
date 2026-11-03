@@ -1,11 +1,13 @@
 # License & Anti-Plagiarism Tiering
 
-> **Current status (2026-09-22):** this repository is **private**. It was
-> made private as an immediate mitigation after Tier-2 IP was found in the
-> public git history (v1.2.0 / v1.2.1). The Tier-1 MIT license below is
-> still in force for anyone who receives access; a history rewrite is
-> planned to re-publicize the Tier-1 layer. See [CHANGELOG v1.3.0](CHANGELOG.md)
-> for details.
+> **Current status (2026-10-18):** this repository is **PUBLIC**. Publicization
+> (D3) was executed on 2026-10-18 after the 16-step audit & history-clean
+> runbook (see [docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md](docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md)).
+> The earlier Tier-2 IP leak (v1.2.0 / v1.2.1) was mitigated by a history
+> rewrite before publicization; the Tier-1 MIT license below applies to the
+> public tree, while Tier-2 (closed thick layer) stays isolated behind the
+> 5.5 KB public seam. See [CHANGELOG v1.3.0](CHANGELOG.md) for the original
+> leak details.
 
 This repository uses a **three-tier license split** to maximize open-source reach while
 protecting the data-driven intellectual property that is the actual moat.

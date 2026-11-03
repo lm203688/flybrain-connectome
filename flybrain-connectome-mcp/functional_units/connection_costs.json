@@ -1,6 +1,6 @@
 {
-  "schema_version": "1.0",
-  "generated_utc": "2026-10-05T02:22:32Z",
+  "schema_version": "1.1",
+  "generated_utc": "2026-11-03T05:20:00Z",
   "purpose": "Latency and energy per connection type, graded by what is actually known. The connection library had `delay_class` with three symbolic values and `parameters` with no unit attached, so an optimiser could only trade one axis -- structure -- and the Phase 3 computation result measured negative for a reason that was in the vocabulary all along. This artifact adds the numbers where a citation exists and `unknown` where one does not.",
   "grades": {
     "measured": "a published physiological value, cited",
@@ -31,7 +31,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 0.4444,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 3,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "axo_somatic",
@@ -55,7 +66,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 0.4444,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 3,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "axo_axonic",
@@ -79,7 +101,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 0.4444,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 3,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "dendro_dendritic",
@@ -103,7 +136,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 0.4444,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "axo_dendrite_reciprocal",
@@ -127,7 +171,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 0.4444,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "pre_presynaptic_inhibition",
@@ -151,7 +206,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 0.4444,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "pre_presynaptic_excitation",
@@ -175,7 +241,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 0.4444,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "dendritic_excitatory_synapse",
@@ -199,7 +276,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 0.4444,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 3,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "dendritic_inhibitory_synapse",
@@ -223,7 +311,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall, Textbook of Medical Physiology, 2008, p.570 (synaptic delay); Kandel et al. 2000 for vesicle cycling cost",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 0.4444,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 3,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "autapse_recurrent",
@@ -247,6 +346,16 @@
       "designed_cost": {
         "latency_class": "immediate",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -267,7 +376,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "feedforward_inhibitory",
@@ -287,7 +406,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "feedforward_gating",
@@ -307,7 +436,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "feedback_excitatory",
@@ -327,7 +466,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "feedback_inhibitory",
@@ -347,7 +496,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "lateral_inhibitory",
@@ -367,7 +526,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "lateral_feedback",
@@ -387,7 +556,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "mutual_inhibitory",
@@ -407,7 +586,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "recurrent_excitatory",
@@ -427,7 +616,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "recurrent_inhibitory",
@@ -447,7 +646,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "disinhibition",
@@ -467,7 +676,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "shunting_inhibition",
@@ -487,7 +706,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "contrast_inhibition",
@@ -507,7 +736,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "winner_take_all",
@@ -531,6 +770,16 @@
       "designed_cost": {
         "latency_class": "short",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -555,6 +804,16 @@
       "designed_cost": {
         "latency_class": "long",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -579,7 +838,18 @@
         "grade": "measured"
       },
       "citation": "Herkenham & Substance 1990 on volume transmission; Bargmann 2012, Current Opinion in Neurobiology",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "signal_per_ms": 0.002,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "neuromodulatory_axon",
@@ -599,7 +869,17 @@
         "grade": "measured"
       },
       "citation": "T-buron et al.; standard invertebrate conduction textbooks -- deliberately not quoted as a number because the range is too wide to be useful",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "volume_transmission",
@@ -623,7 +903,18 @@
         "grade": "measured"
       },
       "citation": "Herkenham & Substance 1990 on volume transmission; Bargmann 2012, Current Opinion in Neurobiology",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "signal_per_ms": 0.002,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "short_range_volume",
@@ -647,7 +938,18 @@
         "grade": "measured"
       },
       "citation": "Herkenham & Substance 1990 on volume transmission; Bargmann 2012, Current Opinion in Neurobiology",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "signal_per_ms": 0.002,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 3,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "retrograde_messenger",
@@ -671,7 +973,18 @@
         "grade": "bounded"
       },
       "citation": "Alger & Koob 2002, Brain Research Reviews on endocannabinoid retrograde signalling",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "signal_per_ms": 0.0328,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "state_gating_modulation",
@@ -695,6 +1008,16 @@
       "designed_cost": {
         "latency_class": "long",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -719,7 +1042,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall 2008, Ch. 46 (electrical synapses); Bloom & O'Boyle 2013 review of connexin transmission",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 8.0,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 5,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "gap_junction_inhibitory",
@@ -743,7 +1077,18 @@
         "grade": "measured"
       },
       "citation": "Guyton & Hall 2008, Ch. 46 (electrical synapses); Bloom & O'Boyle 2013 review of connexin transmission",
-      "grade": "measured"
+      "grade": "measured",
+      "throughput": {
+        "signal_per_ms": 8.0,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 5,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "ephaptic_coupling",
@@ -763,7 +1108,17 @@
         "grade": "bounded"
       },
       "citation": "structural, derived from the library's own edge counts",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "astrocyte_neuron_tripartite",
@@ -787,7 +1142,18 @@
         "grade": "measured"
       },
       "citation": "Herkenham & Substance 1990 on volume transmission; Bargmann 2012, Current Opinion in Neurobiology",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "signal_per_ms": 0.002,
+        "basis": "derived_from_latency_midpoint",
+        "grade": "derived"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "gliotransmission_calcium_wave",
@@ -811,6 +1177,16 @@
       "designed_cost": {
         "latency_class": "long",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -831,7 +1207,17 @@
         "grade": "measured"
       },
       "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "ltp_ltd",
@@ -851,7 +1237,17 @@
         "grade": "measured"
       },
       "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "short_term_plasticity",
@@ -871,7 +1267,17 @@
         "grade": "measured"
       },
       "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "dendritic_computation",
@@ -891,7 +1297,17 @@
         "grade": "measured"
       },
       "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "homeostatic_scaling",
@@ -915,6 +1331,16 @@
       "designed_cost": {
         "latency_class": "long",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -935,7 +1361,17 @@
         "grade": "bounded"
       },
       "citation": "structural, derived from the library's own edge counts",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "temporal_coherence",
@@ -955,7 +1391,17 @@
         "grade": "bounded"
       },
       "citation": "structural, derived from the library's own edge counts",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "inhibitory_hub",
@@ -975,7 +1421,17 @@
         "grade": "bounded"
       },
       "citation": "structural, derived from the library's own edge counts",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "reservoir_smallworld",
@@ -995,7 +1451,17 @@
         "grade": "bounded"
       },
       "citation": "structural, derived from the library's own edge counts",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "recurrent_feedback",
@@ -1015,7 +1481,17 @@
         "grade": "bounded"
       },
       "citation": "structural, derived from the library's own edge counts",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "divergent_fanout",
@@ -1039,6 +1515,16 @@
       "designed_cost": {
         "latency_class": "short",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1063,6 +1549,16 @@
       "designed_cost": {
         "latency_class": "short",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1087,6 +1583,16 @@
       "designed_cost": {
         "latency_class": "immediate",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1111,6 +1617,16 @@
       "designed_cost": {
         "latency_class": "immediate",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1135,6 +1651,16 @@
       "designed_cost": {
         "latency_class": "immediate",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1155,7 +1681,17 @@
         "grade": "derived"
       },
       "citation": "derived by composition; no independent measurement",
-      "grade": "derived"
+      "grade": "derived",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "neural_chain_sequence",
@@ -1179,6 +1715,16 @@
       "designed_cost": {
         "latency_class": "short",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1203,6 +1749,16 @@
       "designed_cost": {
         "latency_class": "immediate",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1227,6 +1783,16 @@
       "designed_cost": {
         "latency_class": "immediate",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1251,6 +1817,16 @@
       "designed_cost": {
         "latency_class": "short",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1271,7 +1847,17 @@
         "grade": "measured"
       },
       "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "command_neuron_recruitment",
@@ -1295,6 +1881,16 @@
       "designed_cost": {
         "latency_class": "immediate",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1319,6 +1915,16 @@
       "designed_cost": {
         "latency_class": "short",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1343,6 +1949,16 @@
       "designed_cost": {
         "latency_class": "long",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1363,7 +1979,17 @@
         "grade": "measured"
       },
       "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "short_term_habituation",
@@ -1383,7 +2009,17 @@
         "grade": "measured"
       },
       "citation": "Kandel 2001, Nature 410 minutes-scale persistence of LTP; Markram & Lisman 1997 for STDP timing",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     },
     {
       "name": "coincidence_detection",
@@ -1407,6 +2043,16 @@
       "designed_cost": {
         "latency_class": "immediate",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1431,6 +2077,16 @@
       "designed_cost": {
         "latency_class": "long",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1455,6 +2111,16 @@
       "designed_cost": {
         "latency_class": "immediate",
         "note": "This type is a design abstraction (flagged `abstraction_only` in connection_types.json). Its delay class is a design intent, not a physiological measurement, and it is kept under `designed_cost` so it is never summed with the measured values."
+      },
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 1,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
       }
     },
     {
@@ -1475,7 +2141,17 @@
         "grade": "bounded"
       },
       "citation": "structural, derived from the library's own edge counts",
-      "grade": "bounded"
+      "grade": "bounded",
+      "throughput": {
+        "grade": "unknown",
+        "note": "no latency measurement; throughput not derivable"
+      },
+      "efficiency": {
+        "relative_rank": 2,
+        "basis": "delay_class+energy_level ordinal",
+        "grade": "derived",
+        "scale": "1-5 (5=fastest+cheapest per unit time)"
+      }
     }
   ],
   "summary": {
@@ -1642,5 +2318,6 @@
     "21 of the 66 types are `abstraction_only` design patterns. They get no physiological number by construction; their `delay_class` is kept under `designed_cost` so an assumption is never summed with a measurement.",
     "The fastest electrical synapse is asserted to be strictly faster than the slowest chemical one and the script refuses to write if that stops holding -- the whole trade the axis exists to express depends on it.",
     "These values characterise biology. They do not say what a generated topology should cost: choosing a fast, faithful, cheap electrical link everywhere would be a design decision, and the library's own Phase 3 evidence is that a compute advantage does not follow from the biological prior."
-  ]
+  ],
+  "purpose_note": "v1.1 adds derived efficiency/throughput axes per Chief P0 parallel item 1; derived only where latency is known, unknown elsewhere."
 }

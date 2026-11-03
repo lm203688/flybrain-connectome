@@ -4,6 +4,44 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - 2026-11-03
+
+### Added (P2-7 · 合规许可矩阵落地 + Petkova 纠错)
+- **P2-7 合规许可登记表** — `docs/COMPLIANCE_REGISTRY_2026-11-03.md`：
+  - 逐数据源许可登记（来源/许可/归因/再分发/商用限制）：MaleCNS CC-BY、
+    C.elegans CC-BY-4.0、果蝇幼虫 CC-BY、斑马鱼 Petkova **CC-BY-NC-4.0（禁止商用）**、
+    小鼠 V1 MICrONS CC-BY-4.0、H01 官方 CC-BY-4.0（伦理层独立约束）、FlyBrain 代码 MIT。
+  - 人类数据合规闸门预设（IRB/知情同意/GDPR-PIPL/去标识化/合规登记），
+    当前项目无人类数据源入账，仅预设未触发。
+  - `functional_units.json` 顶层新增 `license_registry` 字段（数据源级许可映射，
+    非逐单元硬写——单元为 curated-cross-species 文献组合，避免数据源许可与文献引用许可混淆）。
+- **Petkova 2025 文档纠错（5 处完成）** — 全部改为 bioRxiv preprint +
+  CC-BY-NC-4.0 + DOI 10.1101/2025.06.10.658982：
+  1. `docs/arxiv_paper.md:373`（表）
+  2. `docs/arxiv_paper.md:534-535`（参考文献）
+  3. `docs/SCI_VERDICT_2026-10-19.md:35`
+  4. `docs/PAPER_P1_MAINLINE_MERGED.md:724`
+  5. `docs/PAPER_P1_MAINLINE_MERGED.pandoc_input.md:736`
+
+## [Unreleased] - 2026-11-02
+
+### Added (P0 · 功能放大最小验证 + VISION 对齐)
+- **P0-1 功能放大量化框架** — `flybrain-connectome-mcp/capability_quantification.py`：
+  - functional_capacity = 可达 (in_port_type, out_port_type) 能力对数量（有向图 BFS）
+  - amplification = 涌现跨域闭环（组合出现单体 baseline 没有的 sensory.*→motor.* 对）
+  - **最小验证成立**：retinal_phototransduction + efferent_command_bus 组合后
+    functional_capacity=3，跨域对=3（sensory.visual→motor.escape/leg/wing）；
+    两单体 baseline 跨域均为 0。
+  - 证据：`_p0_amplification/p0_evidence.json`
+  - ⚠️ 诚实边界：仅证明"组合可产生跨域能力对"机制存在，不代表全部 116 单元
+    组合空间已验证，也不代表任何具体任务性能收益。
+- **P0-2 VISION 对齐用户定义** — `PROJECT_VISION.md` v1.1：
+  - 定位改为"模块组合→硅基虚拟生物→无限放大功能"（撤销"可审计 Agent 平台"本体叙事）
+  - 补"功能放大未验证"声明（设计目标/能力假设，非已验证结论）
+  - 新增 Phase 0 段（功能放大最小验证）
+- **P0-3 最小单位模块定义** — "最小单位模块 = 功能单元（116 个）"写入 VISION，
+  依据 functional_units.py / functional_units.json（37 锚定 / 79 未锚定）。
+
 ## [3.01.3] - 2026-10-28
 
 ### Added (EPE 主线 · 项目内零外部依赖)
@@ -56,6 +94,26 @@ versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
   IROS 2026 + MS-Emulator）。定位**方法学邻居**（同 Carbon-A），非直接
   支撑；佐证"高维生物系统降维量化"规律，但系统层级不同（运动 vs 拓扑），
   不改变项目路线、不推进 B-1/N7。
+- **B-1 · R6 跨 4 支 motif 保守性外部复现（哺乳动物支补齐）** —
+  `docs/B1_MAMMAL_VALIDATION_2026-10-28.md`：
+  - **哺乳动物支接入**：锁定 MICrONS Layer 2/3 v185.1（Mus musculus V1，
+    Dorkenwald 2019 复现最小文件），**CC-BY-4.0**（Zenodo 3710459），
+    已下载 `mammal_data/mouse_v1_l23/`（soma subgraph 274KB + soma valence
+    31KB，334 节点/1,959 边）。这是 B-1 唯一缺失的第 4 支。
+  - **修复真 bug**：`s1_external_validation.py::load_drosophila_larva` 按
+    空白 `split()` 但 edges.csv 是**逗号分隔**（`0,1,1,da`）→ 每行成单
+    token 被跳过 → **PR-S1 的果蝇幼虫是空图（n_nodes=0）但标记 LOADED**。
+    B-1 用 `csv.reader` 修复，加载 2,952 节点/116,356 边。
+  - **新脚本**：`scripts/b1_mammal_validation.py`（4 支 C3 管线，复用
+    PR-S1 同度量）+ `scripts/b1_r6_crossclade.py`（PR-S1 §1.2 跨支 ρ）。
+  - **H_R6 判定 = PARTIAL（2/4 稳健）**：仅 larva + mouse_v1 多规模稳健
+    PASS（AUC 0.91-1.0）；cel 18 节点小图伪信号（n=20/50 采样退化到
+    0.5，排除）；zebrafish 真无信号（AUC 0.50-0.57）。
+  - **跨支 ρ 统计力不足（诚实登记）**：仅 4 种无向 3-节点 motif，
+    Spearman 基于 n=4 点，CI 宽 [-0.8, 1.0]——PR-S1 §1.2 口径**设计上
+    无法判定**，不作依据；H_R6 以 C3 AUC 为准。
+  - **B 腿影响**：按预注册，主线维持 **PARTIAL 边界 → 投 SCIE 而非主刊**；
+    S1 **不升格**（PARTIAL 是真实的 scale/lineage-dependent 边界）。
 
 ### Changed
 - Version bump 3.01.2 → 3.01.3 in 6 files (`pyproject.toml`,

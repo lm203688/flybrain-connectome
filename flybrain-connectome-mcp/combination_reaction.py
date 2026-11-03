@@ -103,9 +103,16 @@ class Reaction:
     rule_id: str
     connection_type: str
     description: str
+    # Middleware dimension (Chief P0 parallel item 2). Derived, not invented:
+    # it re-states the connection type's existing measurable properties
+    # (family/sign/span/fanout/delay_class) as the orchestration/communication/
+    # dataflow contract that the reaction wire realises. Default None keeps
+    # backwards compatibility with callers that construct a Reaction by
+    # position without it.
+    middleware: dict | None = None
 
     def as_dict(self) -> dict:
-        return {
+        d = {
             "kind": self.kind,
             "from_module": self.from_module,
             "to_module": self.to_module,
@@ -115,6 +122,9 @@ class Reaction:
             "connection_type": self.connection_type,
             "description": self.description,
         }
+        if self.middleware is not None:
+            d["middleware"] = self.middleware
+        return d
 
 
 @dataclass(frozen=True)
@@ -489,6 +499,9 @@ class ReactionEngine:
                                 rule_id=rid,
                                 connection_type=cname,
                                 description=f"{fn_b}->{fn_a} via {cname} ({rid})",
+                                middleware=self._middleware_of(cname, rid,
+                                                              from_fn=fn_b,
+                                                              to_fn=fn_a),
                             ))
                             if len(reactions) >= max_reactions:
                                 return reactions
@@ -505,10 +518,54 @@ class ReactionEngine:
                             rule_id=rid,
                             connection_type=cname,
                             description=f"{fn_a}->{fn_b} via {cname} ({rid})",
+                            middleware=self._middleware_of(cname, rid,
+                                                          from_fn=fn_a,
+                                                          to_fn=fn_b),
                         ))
                         if len(reactions) >= max_reactions:
                             return reactions
         return reactions
+
+    def _middleware_of(self, cname: str, rule_id: str,
+                       from_fn: str, to_fn: str) -> dict:
+        """Derive the middleware contract for a reaction wire.
+
+        Chief P0 parallel item 2: extend the reaction with a middleware
+        dimension (orchestration inheritance / communication protocol /
+        dataflow contract). Everything here is DERIVED from the connection
+        type's existing measurable properties and the T3 rule — nothing new
+        is invented. Missing values degrade to 'untyped' rather than being
+        guessed, consistent with the connection_costs honesty policy.
+        """
+        ct = self._ct.get(cname, {})
+        family = ct.get("family", "untyped")
+        sign = ct.get("sign", "untyped")
+        span = ct.get("span", "untyped")
+        fanout = ct.get("fanout", "untyped")
+        delay = ct.get("delay_class", "untyped")
+        # Orchestration inheritance: the parent whose output feeds the other
+        # is the orchestrator for this wire; the receiving parent inherits.
+        return {
+            "orchestration_inheritance": {
+                "from_parent": from_fn,
+                "to_parent": to_fn,
+                "rule_id": rule_id,
+                "inheritance": "wire carries signal from %s into %s" % (from_fn, to_fn),
+                "grade": "derived",
+            },
+            "communication_protocol": {
+                "family": family,
+                "delay_class": delay,
+                "medium": family,  # physical medium semantics from family
+                "grade": "derived",
+            },
+            "dataflow_contract": {
+                "sign": sign,
+                "span": span,
+                "fanout": fanout,
+                "grade": "derived",
+            },
+        }
 
     # -- reaction execution
 

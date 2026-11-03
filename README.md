@@ -59,6 +59,20 @@ before you quote it.
 > edges.csv, Petkova 2025 zebrafish) is fetched via the documented data pipeline
 > — see §"Requirements" and the S1 external-validation script.
 
+> **2026 standard alignment.** This project sits on the three building blocks
+> the agentic-AI ecosystem converged on in 2026 — and it is one of very few
+> projects on all three at once:
+>
+> | 2026 standard | This project |
+> |---|---|
+> | **MCP** (Model Context Protocol) | ✅ 47 tools over MCP + 47 over HTTP, fully dispatched (Gate 66) |
+> | **W3C PROV-JSON** (EU AI Act auditing) | ✅ every generated artifact carries provenance to a real neuron/synapse class |
+> | **Agent Skills** (`SKILL.md`, Agentic AI Foundation) | ✅ [`skills/flybrain-connectome/SKILL.md`](skills/flybrain-connectome/SKILL.md) — loadable by Claude Code / Codex / Cursor / Gemini CLI and 70+ platforms |
+>
+> This is the concrete "**查不清**" fix for the 89%-of-pilots-fail problem: an
+> agent swarm whose wiring is verifiable to biological provenance, packaged the
+> way 2026 agents actually read.
+
 ---
 
 ## What it is / what it is NOT
