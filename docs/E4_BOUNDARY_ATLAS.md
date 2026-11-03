@@ -1,10 +1,12 @@
 # E4 边界图册（Boundary Atlas）
 
-> **版本**：v1.1 · 2026-10-18
+> **版本**：v1.2 · 2026-10-31
 > **定位**：系统化刻画 flybrain-connectome 项目的全部边界条件——包括基底上限、样本量边界、度量族边界、时间边界、资源边界、区室边界等。
 > **核心价值**：把分散在各处的"做不到"统一注册为可追溯的 scope boundary，为后续突破提供精确靶点。
 >
 > **v1.1 新增**：B-14 区室边界（compartiment boundary）——Xu 2026 *Science* 论文揭示神经元内部 dendrite/soma 功能分区，登记为"已知但当前数据不可表达"的边界。详见 `docs/XU2026_DENDRITIC_COMPUTATION_IMPACT_2026-10-18.md`。
+>
+> **v1.2 新增**：临界拓扑（2026-10-07 *Nature*）方法学参考——登记为 **B-03 度量族边界 / B-09 机制边界**的突破路径参考（方法学邻居，非新边界条目）。详见 `docs/L3_CRITICAL_TOPOLOGY_ANALOGY_2026-10-31.md`。
 
 ---
 

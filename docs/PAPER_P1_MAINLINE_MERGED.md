@@ -721,7 +721,7 @@ The full preregistration protocols, hash-committed vaults, gates, mutation-injec
 20. National Academies of Sciences. (2019). *Reproducibility and Replicability in Science*. National Academies Press. doi:10.17226/25303.
 21. Open Science Collaboration. (2015). Estimating the reproducibility of psychological science. *Science* 349, 485-489. doi:10.1126/science.aaa6031.
 22. Pearl, J. & Mackenzie, D. (2018). *The Book of Why: The New Science of Cause and Effect*. Basic Books.
-23. Petkova, J. et al. (2025). Zebrafish larva synapse reconstruction. Zenodo / TEN_analysis dataset.
+23. Petkova, M. D. et al. (2025). A connectomic resource for neural cataloguing and circuit dissection of the larval zebrafish brain. bioRxiv preprint, DOI 10.1101/2025.06.10.658982. CC-BY-NC-4.0.
 24. Petersen, M. A. & Havaldstad, M. (2015). The reproducibility crisis in science: a comprehensive review. *Philosophy of Science* 82, 1-21.
 25. Popper, K. R. (1959). *The Logic of Scientific Discovery*. Routledge.
 26. Popper, K. R. (1963). *Conjectures and Refutations: The Growth of Scientific Knowledge*. Routledge.

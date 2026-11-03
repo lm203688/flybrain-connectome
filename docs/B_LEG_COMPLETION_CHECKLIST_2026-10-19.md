@@ -10,10 +10,10 @@
 
 | # | 任务 | 预期工时 | 状态 |
 |---|---|---|---|
-| B-1 | **R6 跨 4 支 motif 保守性外部复现** | 10-15h | 🔴 TODO |
-| B-2 | **R6 结果接入主线论文 §4.10** | 2h | 🔴 BLOCKED on B-1 |
-| B-3 | **R6 结果接入 research_claims.json 预注册** | 1h | 🔴 BLOCKED on B-1 |
-| B-4 | **S1 跨物种 PARTIAL → POSITIVE 升格判定** | 2h | 🔴 BLOCKED on B-1 |
+| B-1 | **R6 跨 4 支 motif 保守性外部复现** | 10-15h | 🟡 PARTIAL（哺乳动物支已接入 MICrONS CC-BY-4.0 + C3 判定 **2/4 稳健 → PARTIAL**；跨支 ρ 后台计算中） |
+| B-2 | **R6 结果接入主线论文 §4.10** | 2h | 🔴 BLOCKED on B-1（跨支 ρ 未出） |
+| B-3 | **R6 结果接入 research_claims.json 预注册** | 1h | 🔴 BLOCKED on B-1（跨支 ρ 未出） |
+| B-4 | **S1 跨物种 PARTIAL → POSITIVE 升格判定** | 2h | 🟡 已可判定（B-1 C3=PARTIAL → **不升格**，S1 维持 PARTIAL；待 B-1 完全确认后写入） |
 | B-5 | **主线 §5.5 Limitations 收敛**（把"scale/lineage-dependent"边界写死） | 1h | 🟡 PARTIAL（已入 §5.5，等 B-1 后收敛） |
 | B-6 | **P-4 Xu 2026 短文交叉引用 P-3** | 1h | 🟡 PARTIAL（等 P-3 arXiv ID） |
 | B-7 | **B 腿全部数据/代码/引用跑 60/60 门禁** | 0.5h | 🟡 PARTIAL（等 B-1 数据） |

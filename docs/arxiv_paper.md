@@ -370,7 +370,7 @@ against three *independent, published* connectomes:
 |---|---|---:|---:|:---:|
 | *C. elegans* (Hermaphrodite) | Witvliet et al. 2020, eLife | 302 | 19,608 | **PASS** (AUC 1.00, kappa 0.95) |
 | *Drosophila* (larva CNS) | Winding et al. 2023, edges.csv | 2,956 | 352,611 | **PARTIAL** (AUC 0.50) |
-| *Danio rerio* (zebrafish optic tectum) | Petkova et al. 2025, eLife | 10,976 | 32,854,580 | **PARTIAL** (AUC 0.50) |
+| *Danio rerio* (zebrafish larva brain) | Petkova et al. 2025, bioRxiv (preprint) | 10,976 | 32,854,580 | **PARTIAL** (AUC 0.50) |
 
 The internal 5-family control suite (Section 4.7 PR-3 v2) still passes
 5/5; the external signal **degrades with taxonomic distance and graph
@@ -531,8 +531,9 @@ https://github.com/lm203688/flybrain-connectome.
     *C. elegans* nervous system at whole-animal resolution. *eLife*.
 12. Winding, M. A., *et al.* (2023). A connectomic map of the larval
     *Drosophila* central nervous system.
-13. Petkova, M. A., *et al.* (2025). A connectomic atlas of the zebrafish
-    optic tectum. *eLife*.
+13. Petkova, M. D., *et al.* (2025). A connectomic resource for neural
+    cataloguing and circuit dissection of the larval zebrafish brain.
+    *bioRxiv* (preprint), DOI 10.1101/2025.06.10.658982. CC-BY-NC-4.0.
 14. Xu, N., *et al.* (2026). Dendritic computation for abstract
     rule-based flexible decision-making. *Science*, DOI 10.1126/science.adz5323.
 

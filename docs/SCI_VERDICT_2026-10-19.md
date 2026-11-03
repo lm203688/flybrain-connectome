@@ -32,7 +32,7 @@
 | CI | 已接入 `run_gates.py --quick`（ci.yml:102） | 上轮 P0 修复生效 |
 | 版本单一真源 | README=60 gate 与实际 60 号（缺 37/52 幽灵）**一致** | 实测门禁号集 |
 | S1 外部验证 | **PARTIAL**：内部 5/5 PASS；外部 3 族 AUC 0.50–1.0 | `_s1_external_validation/results.json` |
-| S1 数据真伪 | **真加载已发表连接组**：Witvliet 2020 *C. elegans*（eLife xlsx）、*Drosophila larva* edges.csv（1.7MB）、Petkova 2025 *zebrafish*（eLife csv）均在盘 | `ls cel_data/ larva_data/raw/edges.csv` |
+| S1 数据真伪 | **真加载已发表连接组**：Witvliet 2020 *C. elegans*（eLife xlsx）、*Drosophila larva* edges.csv（1.7MB）、Petkova 2025 *zebrafish*（bioRxiv preprint，CC-BY-NC-4.0，DOI 10.1101/2025.06.10.658982）均在盘 | `ls cel_data/ larva_data/raw/edges.csv` |
 | S3 纪律有效性 | **51/51 注入捕获，0 漏，catch-rate 1.0** | `_s3_discipline_effectiveness/results.json`（真文件） |
 | 主线论文 | 23KB、10-18 更新，含 S1/S2/S3，跨物种诚实框定 PARTIAL | `docs/arxiv_paper.md` |
 | 仓库公开 D3 | **未执行**（决策准备包就绪，不可逆操作待你手工做） | `D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md` |
