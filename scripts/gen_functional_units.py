@@ -76,7 +76,9 @@ import json
 import sys
 from pathlib import Path
 
-ROOT = Path("C:/Users/xing/Desktop/flybrain-connectome")
+# Project root resolved relative to this file so the generator stays portable
+# after a workspace move (was hardcoded to the old Desktop path).
+ROOT = Path(__file__).resolve().parents[1]
 MCP = ROOT / "flybrain-connectome-mcp"
 OUT_DIR = MCP / "functional_units"
 ANCHORS_FILE = OUT_DIR / "malecns_anchors.json"
@@ -1825,26 +1827,35 @@ def main() -> int:
         ],
         "units": FUNCTIONAL_UNITS,
     }
-    # Preserve license_registry added by P0/P2 (bd9b397). The generator does
-    # not author it -- it is maintained alongside docs/COMPLIANCE_REGISTRY and
-    # must survive a regenerate. Insert before "units" to keep the committed
-    # key order (units_doc is assembled with license_registry first in HEAD).
+    # Preserve non-author top-level fields that must survive a regenerate:
+    #   * license_registry  (P0/P2 bd9b397, maintained alongside
+    #                        docs/COMPLIANCE_REGISTRY)
+    #   * connectome_build  (F2 pinning, user m00070 / Chief m00061; the
+    #                        generator does not author the connectome build
+    #                        identity, it must survive a regenerate)
+    # Insert before "units" to keep the committed key order stable.
     existing_units = OUT_DIR / "functional_units.json"
     if existing_units.exists():
         try:
             prev = json.loads(existing_units.read_text(encoding="utf-8"))
-            if isinstance(prev, dict) and "license_registry" in prev:
-                reg = prev["license_registry"]
+            preserve = {}
+            if isinstance(prev, dict):
+                for key in ("license_registry", "connectome_build"):
+                    if key in prev:
+                        preserve[key] = prev[key]
+            if preserve:
                 new_doc = {}
                 for k, v in units_doc.items():
                     if k == "units":
-                        new_doc["license_registry"] = reg
+                        for pkey, pval in preserve.items():
+                            new_doc[pkey] = pval
                     new_doc[k] = v
-                if "license_registry" not in new_doc:
-                    new_doc["license_registry"] = reg
+                for pkey, pval in preserve.items():
+                    if pkey not in new_doc:
+                        new_doc[pkey] = pval
                 units_doc = new_doc
         except Exception:
-            pass  # unreadable artifact -> write without registry (honest)
+            pass  # unreadable artifact -> write without preserved fields (honest)
     conn_doc = {
         "schema_version": "1.0",
         "source": "%d of the %d connection forms map onto the curated motif "

@@ -571,6 +571,20 @@
       }
     }
   },
+  "connectome_build": {
+    "dataset": "MaleCNS v1.0 (male Drosophila brain connectome), CC-BY",
+    "manifest_generated_utc": "2026-09-20T04:36:51.591205+00:00",
+    "manifest_file_count": 211604,
+    "manifest_total_bytes": 37418478413,
+    "anchors_file": "malecns_anchors.json",
+    "anchors_sha256": "6d3a2325ca310de4b3f70fddd1d009335138c635b125593c475e492cda1472c5",
+    "anchored_profiles": 58,
+    "anchored_real_cells": 107558,
+    "measured_edges_neuron_subgraph": 25582938,
+    "measured_synapses_neuron_subgraph": 124177617,
+    "scope": "This functional-unit library is embodied on the MaleCNS v1.0 connectome build. The build fingerprint (anchors sha256 + measured edges) is declared here so any validation/simulation result is traceable to a specific connectome build. If the library is regenerated against a different build, this field MUST be updated (F2: which connectome build determines what the model can do).",
+    "pinned": true
+  },
   "units": [
     {
       "name": "prefrontal_metacognitive_unit",

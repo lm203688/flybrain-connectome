@@ -113,16 +113,6 @@ def expand_organism(spec, **kwargs):
     return _passthrough("expand_organism", spec, **kwargs)
 
 
-def get_multiplier_metrics(spec=None, **kwargs):
-    """Multiplier semantics with honest measured / unmeasured flags."""
-    return _passthrough("get_multiplier_metrics", spec, **kwargs)
-
-
-def audit_rules_against_data():
-    """Reconcile curated rules against the data-driven candidate rules."""
-    return _passthrough("audit_rules_against_data")
-
-
 def suggest_combinations(max_suggestions=10, **kwargs):
     """Suggest module combinations from observed downstream targets."""
     return _passthrough("suggest_combinations", max_suggestions=max_suggestions, **kwargs)
@@ -149,9 +139,146 @@ def tier2_status():
     return tiering_status()
 
 
+# --- F2 connectome-build pinning (user m00070 / Chief m00061) -----------------
+# "Which connectome build determines what the model can do" (flybench, F2).
+# The functional-unit library now declares its embodied connectome build in
+# functional_units.json -> connectome_build. Every validation/simulation result
+# is traceable to a pinned build; if the declared build disagrees with the
+# DATA_MANIFEST the engine WARNs instead of silently assuming consistency.
+
+_CONNECTOME_BUILD_FIELDS = (
+    "dataset", "manifest_generated_utc", "anchors_sha256",
+    "measured_edges_neuron_subgraph", "pinned",
+)
+
+
+def check_connectome_build() -> dict:
+    """Verify the functional-unit library's pinned connectome build.
+
+    Returns a structured report:
+      {ok, consistent, build, manifest, warning, checks}
+    Never raises; a missing file or field degrades to ``ok: False, warning``
+    rather than crashing the combinator seam.
+    """
+    report = {
+        "ok": False,
+        "consistent": False,
+        "build": None,
+        "manifest": None,
+        "warning": None,
+        "checks": {},
+    }
+    import json
+    fu_path = ROOT / "flybrain-connectome-mcp" / "functional_units" / "functional_units.json"
+    manifest_path = ROOT / "DATA_MANIFEST.json"
+    if not fu_path.exists():
+        report["warning"] = f"functional_units.json not found: {fu_path}"
+        return report
+    if not manifest_path.exists():
+        report["warning"] = f"DATA_MANIFEST.json not found: {manifest_path}"
+        return report
+    try:
+        fu = json.loads(fu_path.read_text(encoding="utf-8"))
+        manifest = json.loads(manifest_path.read_text(encoding="utf-8"))
+    except Exception as exc:  # noqa: BLE001 - honest degrade
+        report["warning"] = f"unreadable build/manifest: {exc}"
+        return report
+
+    build = fu.get("connectome_build")
+    if not isinstance(build, dict):
+        report["warning"] = (
+            "functional_units.json has no connectome_build declaration; "
+            "the library is not pinned to a connectome build (F2)."
+        )
+        return report
+
+    # Extract the declared build identity and the manifest identity.
+    declared_dataset = build.get("dataset", "")
+    manifest_dataset = manifest.get("dataset", "")
+    declared_utc = build.get("manifest_generated_utc")
+    manifest_utc = manifest.get("generated_utc")
+    declared_sha = build.get("anchors_sha256")
+    emb = fu.get("embodiment_source", {})
+    manifest_sha = emb.get("sha256") if isinstance(emb, dict) else None
+
+    checks = {
+        "dataset_match": bool(declared_dataset) and declared_dataset == manifest_dataset,
+        "generated_utc_match": bool(declared_utc) and declared_utc == manifest_utc,
+        "anchors_sha256_present": bool(declared_sha),
+        "anchors_sha256_match": bool(declared_sha) and declared_sha == manifest_sha,
+        "pinned": bool(build.get("pinned", False)),
+        "measured_edges_declared": bool(build.get("measured_edges_neuron_subgraph")),
+    }
+    consistent = (
+        checks["dataset_match"]
+        and checks["generated_utc_match"]
+        and checks["anchors_sha256_match"]
+        and checks["pinned"]
+    )
+
+    warnings = []
+    if not checks["dataset_match"]:
+        warnings.append(
+            f"dataset mismatch: library='{declared_dataset}' manifest='{manifest_dataset}'"
+        )
+    if not checks["generated_utc_match"]:
+        warnings.append(
+            f"manifest generated_utc mismatch: library='{declared_utc}' manifest='{manifest_utc}'"
+        )
+    if not checks["anchors_sha256_match"]:
+        warnings.append(
+            f"anchors sha256 mismatch: library='{declared_sha}' manifest='{manifest_sha}'"
+        )
+    if not checks["pinned"]:
+        warnings.append("connectome_build.pinned is not True; the build is not pinned (F2).")
+
+    report.update({
+        "ok": True,
+        "consistent": consistent,
+        "build": {k: build.get(k) for k in _CONNECTOME_BUILD_FIELDS},
+        "manifest": {
+            "dataset": manifest_dataset,
+            "generated_utc": manifest_utc,
+            "file_count": manifest.get("file_count"),
+        },
+        "warning": "; ".join(warnings) if warnings else None,
+        "checks": checks,
+    })
+    return report
+
+
+def _attach_build_check(result, fn_name):
+    """Attach the F2 build check to a result, merging into a dict result."""
+    check = check_connectome_build()
+    if isinstance(result, dict):
+        result = dict(result)
+        result["connectome_build_check"] = check
+        if not check.get("consistent") and check.get("warning"):
+            # Surface as a non-blocking warning alongside the payload.
+            result.setdefault("warnings", [])
+            if isinstance(result["warnings"], list):
+                result["warnings"].append(
+                    {"code": "connectome_build_mismatch", "detail": check["warning"]}
+                )
+    return result
+
+
+def get_multiplier_metrics(spec=None, **kwargs):
+    """Multiplier semantics with honest measured / unmeasured flags."""
+    return _attach_build_check(_passthrough("get_multiplier_metrics", spec, **kwargs),
+                               "get_multiplier_metrics")
+
+
+def audit_rules_against_data():
+    """Reconcile curated rules against the data-driven candidate rules."""
+    return _attach_build_check(_passthrough("audit_rules_against_data"),
+                               "audit_rules_against_data")
+
+
 __all__ = [
     "SCHEMA_VERSION", "ROOT",
     "list_rules", "validate_combination", "validate_nesting", "expand_organism",
     "get_multiplier_metrics", "audit_rules_against_data", "suggest_combinations",
     "cross_species_consistency", "find_rule", "find_all_rules", "tier2_status",
+    "check_connectome_build",
 ]
