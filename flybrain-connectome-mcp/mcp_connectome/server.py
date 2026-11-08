@@ -239,6 +239,51 @@ TOOLS = [
             },
         },
     },
+    # ---- Functional-unit CRUD tools (P1-5) ----
+    {
+        "name": "list_crud_units",
+        "description": "列出所有功能单元（通过 CRUD 层，支持增删改查）。返回单元列表及库统计信息。",
+        "inputSchema": {"type": "object", "properties": {}},
+    },
+    {
+        "name": "get_crud_unit",
+        "description": "获取单个功能单元的完整定义（通过 CRUD 层）。若不存在则返回错误和已知单元列表。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {"name": {"type": "string", "description": "单元名，如 retinal_phototransduction_unit"}},
+            "required": ["name"],
+        },
+    },
+    {
+        "name": "add_crud_unit",
+        "description": "添加一个功能单元（通过 CRUD 层）。要求 JSON 内容符合 functional_units.json 格式，字段齐备且 name 唯一。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {"json_content": {"type": "string", "description": "功能单元的 JSON 内容"}},
+            "required": ["json_content"],
+        },
+    },
+    {
+        "name": "update_crud_unit",
+        "description": "更新一个功能单元（通过 CRUD 层，合并 JSON 内容）。name 不可改，其他字段按合并规则更新。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {
+                "name": {"type": "string", "description": "要更新的单元名"},
+                "json_content": {"type": "string", "description": "更新内容的 JSON 字符串"},
+            },
+            "required": ["name", "json_content"],
+        },
+    },
+    {
+        "name": "delete_crud_unit",
+        "description": "删除一个功能单元（通过 CRUD 屔）。若单元不存在则报错。",
+        "inputSchema": {
+            "type": "object",
+            "properties": {"name": {"type": "string", "description": "要删除的单元名"}},
+            "required": ["name"],
+        },
+    },
     {
         "name": "compose_from_units",
         "description": "用「功能单元 + 连接件」组装一个虚拟生物，并做机械校验：端口类型兼容性、必需端口满足、是否可被外部驱动/读出、回路闭环报告。返回 nodes/edges/interface/validation/provenance（sha256 可复现）。边界上未绑定的必需输入端口即生物体的外部输入，不算错误。",
@@ -1360,6 +1405,102 @@ def _get_multiplier_metrics(args):
 
 
 # --------------------------------------------------------------------------- #
+# Functional-unit CRUD tools (P1-5)
+# --------------------------------------------------------------------------- #
+def _list_crud_units():
+    """List all functional units via CRUD layer."""
+    from functional_unit_crud import list_units as crud_list
+    units = crud_list()
+    return {"unit_count": len(units), "units": units}
+
+
+def _get_crud_unit(args):
+    """Get a single functional unit via CRUD layer."""
+    from functional_unit_crud import get_unit as crud_get, list_units as crud_list
+    name = str(args["name"])
+    unit = crud_get(name)
+    if unit is None:
+        return {"status": "error", "error": f"no such functional unit: {name}",
+                "known": [u.get("name") for u in crud_list()]}
+    return unit
+
+
+def _add_crud_unit(args):
+    """Add a functional unit via CRUD layer."""
+    from functional_unit_crud import add_unit as crud_add
+    import json
+    unit = json.loads(args["json_content"])
+    result = crud_add(unit)
+    return result
+
+
+def _update_crud_unit(args):
+    """Update a functional unit via CRUD layer."""
+    from functional_unit_crud import update_unit as crud_update
+    import json
+    name = str(args["name"])
+    patch = json.loads(args["json_content"])
+    result = crud_update(name, patch)
+    return result
+
+
+def _delete_crud_unit(args):
+    """Delete a functional unit via CRUD layer."""
+    from functional_unit_crud import delete_unit as crud_delete
+    name = str(args["name"])
+    result = crud_delete(name)
+    return result
+
+
+# --------------------------------------------------------------------------- #
+# Functional-unit CRUD tools (P1-5)
+# --------------------------------------------------------------------------- #
+def _list_crud_units():
+    """List all functional units via CRUD layer."""
+    from functional_unit_crud import list_units as crud_list
+    units = crud_list()
+    return {"unit_count": len(units), "units": units}
+
+
+def _get_crud_unit(args):
+    """Get a single functional unit via CRUD layer."""
+    from functional_unit_crud import get_unit as crud_get, list_units as crud_list
+    name = str(args["name"])
+    unit = crud_get(name)
+    if unit is None:
+        return {"status": "error", "error": f"no such functional unit: {name}",
+                "known": [u.get("name") for u in crud_list()]}
+    return unit
+
+
+def _add_crud_unit(args):
+    """Add a functional unit via CRUD layer."""
+    from functional_unit_crud import add_unit as crud_add
+    import json
+    unit = json.loads(args["json_content"])
+    result = crud_add(unit)
+    return result
+
+
+def _update_crud_unit(args):
+    """Update a functional unit via CRUD layer."""
+    from functional_unit_crud import update_unit as crud_update
+    import json
+    name = str(args["name"])
+    patch = json.loads(args["json_content"])
+    result = crud_update(name, patch)
+    return result
+
+
+def _delete_crud_unit(args):
+    """Delete a functional unit via CRUD layer."""
+    from functional_unit_crud import delete_unit as crud_delete
+    name = str(args["name"])
+    result = crud_delete(name)
+    return result
+
+
+# --------------------------------------------------------------------------- #
 # Dispatch
 # --------------------------------------------------------------------------- #
 def handle_call(name, args):
@@ -1409,6 +1550,17 @@ def handle_call(name, args):
         return json.dumps(_list_evidence_ledger(args), ensure_ascii=False)
     if name == "list_connection_types":
         return json.dumps(_list_connection_types(args), ensure_ascii=False)
+    # ---- Functional-unit CRUD tools (P1-5) ----
+    if name == "list_crud_units":
+        return json.dumps(_list_crud_units(), ensure_ascii=False)
+    if name == "get_crud_unit":
+        return json.dumps(_get_crud_unit(args), ensure_ascii=False)
+    if name == "add_crud_unit":
+        return json.dumps(_add_crud_unit(args), ensure_ascii=False)
+    if name == "update_crud_unit":
+        return json.dumps(_update_crud_unit(args), ensure_ascii=False)
+    if name == "delete_crud_unit":
+        return json.dumps(_delete_crud_unit(args), ensure_ascii=False)
     if name == "compose_from_units":
         return json.dumps(_compose_from_units(args), ensure_ascii=False)
     if name == "list_bio_motifs":

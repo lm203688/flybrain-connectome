@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "gate_id": 43,
-  "claims_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\research_claims.json",
-  "pr1_result_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\_r1_mechanism_prereg\\f1_preregistered.json",
+  "claims_path": "C:\\Users\\xing\\Desktop\\所有项目\\3.flybrain-connectome\\research_claims.json",
+  "pr1_result_path": "C:\\Users\\xing\\Desktop\\所有项目\\3.flybrain-connectome\\_r1_mechanism_prereg\\f1_preregistered.json",
   "counts": {
     "fail": 0,
     "warn": 1,

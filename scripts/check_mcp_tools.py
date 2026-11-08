@@ -115,6 +115,12 @@ ARGS = {
     "get_multiplier_metrics": {},
     # T4 拓扑感知层
     "profile_topology": {"name": "cognitive_animal"},
+    # Functional-unit CRUD tools (P1-5)
+    "list_crud_units": {},
+    "get_crud_unit": {"name": "retinal_phototransduction_unit"},
+    "add_crud_unit": {"json_content": '{"name": "test_unit", "display": "Test", "function": "test", "system": "test", "description": "test", "members": [], "internal_wiring": [], "ports": {"in": [], "out": []}, "size_range": [1, 10], "motif_source": "test", "capability": "test", "task_hint_pool": []}'},
+    "update_crud_unit": {"name": "retinal_phototransduction_unit", "json_content": '{"display": "Updated Test Unit"}'},
+    "delete_crud_unit": {"name": "test_unit"},
 }
 
 DATA_TOOLS = {
@@ -139,7 +145,10 @@ JSON_TOOLS = {"export_swarm_motifs", "list_blueprints", "list_modules",
               "search_market_organisms", "delete_market_organism",
               # Phase 8: 组合规则 middleware
               "list_combination_rules", "validate_combination",
-              "expand_organism", "get_multiplier_metrics", "profile_topology"}
+              "expand_organism", "get_multiplier_metrics", "profile_topology",
+              # Functional-unit CRUD tools (P1-5)
+              "list_crud_units", "get_crud_unit", "add_crud_unit",
+              "update_crud_unit", "delete_crud_unit"}
 
 
 def _speak(python: str, env: dict, reqs: list[dict], timeout: int):

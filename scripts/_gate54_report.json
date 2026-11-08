@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "gate_id": 54,
-  "fork_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\metrics_fork",
+  "fork_path": "C:\\Users\\xing\\Desktop\\所有项目\\3.flybrain-connectome\\metrics_fork",
   "ok": true,
   "failures": [],
   "n_smoke_commands": 3,

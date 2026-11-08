@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "gate_id": 47,
-  "claims_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\research_claims.json",
-  "f4b_result_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\_f4b_metric_substitution\\f4b_metric_substitution.json",
+  "claims_path": "C:\\Users\\xing\\Desktop\\所有项目\\3.flybrain-connectome\\research_claims.json",
+  "f4b_result_path": "C:\\Users\\xing\\Desktop\\所有项目\\3.flybrain-connectome\\_f4b_metric_substitution\\f4b_metric_substitution.json",
   "counts": {
     "fail": 0,
     "warn": 1,

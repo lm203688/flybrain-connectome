@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "gate_id": 42,
-  "claims_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\research_claims.json",
+  "claims_path": "C:\\Users\\xing\\Desktop\\所有项目\\3.flybrain-connectome\\research_claims.json",
   "thresholds": {
     "correlation": 30,
     "regression": 30,

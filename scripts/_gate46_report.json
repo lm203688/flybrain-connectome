@@ -1,8 +1,8 @@
 {
   "schema_version": "1.0",
   "gate_id": 46,
-  "claims_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\research_claims.json",
-  "f2_result_path": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\_f2_recovery\\f2_recovery_dynamics.json",
+  "claims_path": "C:\\Users\\xing\\Desktop\\所有项目\\3.flybrain-connectome\\research_claims.json",
+  "f2_result_path": "C:\\Users\\xing\\Desktop\\所有项目\\3.flybrain-connectome\\_f2_recovery\\f2_recovery_dynamics.json",
   "counts": {
     "fail": 0,
     "warn": 0,

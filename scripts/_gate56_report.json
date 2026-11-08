@@ -1,7 +1,7 @@
 {
   "schema_version": "1.0",
   "gate_id": 56,
-  "source": "C:\\Users\\xing\\Desktop\\flybrain-connectome\\scripts\\compute_verification_badges.py",
+  "source": "C:\\Users\\xing\\Desktop\\所有项目\\3.flybrain-connectome\\scripts\\compute_verification_badges.py",
   "mode": "audit",
   "rungs_total": 6,
   "rungs_matching": 3,

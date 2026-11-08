@@ -55,8 +55,8 @@ before you quote it.
 > Tier-2 IP leak and [docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md](docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md)
 > for the 16-step publicization runbook that was executed). The Tier-1 code is
 > MIT-licensed and reachable at https://github.com/lm203688/flybrain-connectome.
-> Tier-2 raw data (MaleCNS 5.63 GB, C. elegans Witvliet 2020, Drosophila larva
-> edges.csv, Petkova 2025 zebrafish) is fetched via the documented data pipeline
+> Tier-2 raw data (MaleCNS 37.42 GB/211,604 files, C. elegans Witvliet 2020, Drosophila larva
+> edges.csv, Petkova 2025 zebrafish (CC-BY-NC-4.0, non-commercial; commercial use requires alternative sources or re-licensing)) is fetched via the documented data pipeline
 > — see §"Requirements" and the S1 external-validation script.
 
 > **2026 standard alignment.** This project sits on the three building blocks
@@ -80,7 +80,7 @@ before you quote it.
 | ✅ This project | ❌ Not this project |
 |---|---|
 | A connectome **query service** (47 tools over HTTP + MCP) | A spiking-neuron simulator |
-| A **motif-extraction** pipeline (real fly → derived motif doc) | A repository of the raw 5.63 GB data |
+| A **motif-extraction** pipeline (real fly → derived motif doc) | A repository of the raw 37.42 GB/211,604 files data |
 | A **synthetic topology generator** (bio-motifs → agent graphs) | A trained / fine-tuned model with weights |
 | **W3C PROV** provenance on every generated artifact | A claim that the "virtual organism" is alive |
 
@@ -99,6 +99,7 @@ claim:
 | Bucket | Count | Meaning |
 |---|---|---|
 | Anchored to real *Drosophila* male-brain cells | **37 / 116 (31.9 %)** | `embodiment.real_cells_anchored > 0` — each edge traces to actual MaleCNS v1.0 neurons |
+| Directly anchored to *Drosophila* connectome | **12 / 116 (10.3 %)** | `embodiment.direct_connectome_anchor > 0` — directly measured in real fly brain connectome (MaleCNS) |
 | Cross-species declarations, unanchored | **79 / 116 (68.1 %)** | `provenance.unanchored_reason` = `identity_not_in_drosophila` or `taxon_no_malecns_data` — the circuit exists in the literature for another species, not in the MaleCNS connectome |
 
 The 68.1 % bucket is not a defect and not a hidden error. It is a
@@ -239,7 +240,7 @@ wrong — it turns "ImportError" into a named, fixable problem.
 
 ### To query the real connectome you also need the data
 
-MaleCNS v1.0 is CC-BY, ~5.63 GB, and deliberately **not** in this repo:
+MaleCNS v1.0 is CC-BY, ~37.42 GB/211,604 files, and deliberately **not** in this repo:
 
 ```bash
 export FLYBRAIN_DATA_DIR=/path/to/your/male_cns
@@ -1352,7 +1353,7 @@ generator surface and the packaging, while the data path is proved by
 - **Code:** MIT — see [LICENSE](LICENSE). Repo is **PUBLIC** since 2026-10-18.
   See [LICENSE-CLAUSE.md](LICENSE-CLAUSE.md) for the 3-tier split and the
   re-publicization history.
-- **Connectome data:** MaleCNS v1.0, CC-BY. The 5.63 GB dataset is **not**
+- **Connectome data:** MaleCNS v1.0, CC-BY. The 37.42 GB/211,604 files dataset is **not**
   included in this repository. Obtain it from the original publication and set
   `FLYBRAIN_DATA_DIR`. All numbers in this project are derived from that real
   dataset; nothing is synthetically fabricated to look impressive.
