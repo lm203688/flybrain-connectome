@@ -1,6 +1,6 @@
 {
   "schema_version": 1,
-  "generated_utc": "2026-11-06T06:35:20Z",
+  "generated_utc": "2026-11-11T23:43:44Z",
   "project": {
     "name": "flybrain-connectome",
     "version": "3.01.3",
@@ -8,8 +8,8 @@
     "pypi": "https://pypi.org/project/flybrain-connectome/"
   },
   "capabilities": {
-    "mcp_tools": 47,
-    "http_dispatch": 47,
+    "mcp_tools": 52,
+    "http_dispatch": 52,
     "cli_subcommands": 16,
     "gate_count": 65,
     "example_notebooks": 7

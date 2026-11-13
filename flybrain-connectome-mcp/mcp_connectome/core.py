@@ -17,7 +17,7 @@ Design
   read from the precomputed connectivity_facts.json so they never need a full scan.
 
 All numbers are real and traceable to the published MaleCNS v1.0 dataset
-(Schlegel et al., 2026, CC-BY). No values are synthesized.
+(Berg et al., 2026, CC-BY). No values are synthesized.
 """
 
 from __future__ import annotations

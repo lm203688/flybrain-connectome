@@ -91,7 +91,7 @@ self-verification, preregistration, machine enforcement, research integrity, com
 bioRxiv will ask:
 - **Data availability statement** → paste:
   ```
-  All code and data are available at https://github.com/lixing1123/flybrain-connectome (v2.98.1). License: MIT. The 5.63 GB Drosophila Male CNS connectome is not redistributed; obtain v1.0 from the original publication (Xu et al. 2020, Neuron; https://www.flywire.janelia.org/).
+  All code and data are available at https://github.com/lixing1123/flybrain-connectome (v2.98.1). License: MIT. The 5.63 GB Drosophila Male CNS connectome is not redistributed; obtain v1.0 from the original publication (Berg et al. 2026, Cell; https://www.flywire.janelia.org/).
   ```
 - **Ethics statement** → paste:
   ```

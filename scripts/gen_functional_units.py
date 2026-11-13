@@ -1854,7 +1854,7 @@ def main() -> int:
                     if pkey not in new_doc:
                         new_doc[pkey] = pval
                 units_doc = new_doc
-        except Exception:
+        except Exception:  # noqa: SILENT — unreadable artifact -> write without preserved fields (honest)
             pass  # unreadable artifact -> write without preserved fields (honest)
     conn_doc = {
         "schema_version": "1.0",

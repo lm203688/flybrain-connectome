@@ -76,7 +76,7 @@
 
 | 工作 | 时间 | 要点 |
 |---|---|---|
-| **完整雄性果蝇中枢神经系统连接组**（Google Research + HHMI Janelia） | **2026-09-03** | 论文 *Sexual dimorphism in the complete connectome of the Drosophila male central nervous system*；**首个完整雄性果蝇 CNS 图谱**，约 **16.6 万神经元**；发现 **262 个雄性专有细胞类型** + **114 个两性差异型细胞类型**（约占中枢脑 4.8%） |
+| **完整雄性果蝇中枢神经系统连接组**（Google Research + HHMI Janelia） | **2026-09-03** | 论文 *Sexual dimorphism in the complete Drosophila male central nervous system connectome*；**首个完整雄性果蝇 CNS 图谱**，约 **16.6 万神经元**；发现 **262 个雄性专有细胞类型** + **114 个两性差异型细胞类型**（约占中枢脑 4.8%） |
 | RNA 条码映射神经连接 | 2026-04 | 用 RNA "barcodes" 映射神经元连接的新技术 |
 | Connectome 2026–2027 研究竞赛 | 2026-08 起 | 5000 万+ 突触规模数据集 |
 

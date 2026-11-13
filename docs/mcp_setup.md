@@ -66,7 +66,7 @@ has `numpy` and `pyarrow`; the toolkit itself has no dependencies.
 
 ---
 
-## 2. The 47 tools
+## 2. The 52 tools
 
 **Real-connectome queries** — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`;
 `export_swarm_motifs` works from the bundled snapshot (only `refresh=true`
@@ -190,7 +190,8 @@ pass. `extracted_from_malecns` stays false everywhere: presence and non-contradi
 are checked, the declared microcircuit and connection form are not.
 
 `list_functional_units` · `get_functional_unit` ·
-`list_connection_types` · `list_evidence_ledger` · `compose_from_units`
+`list_connection_types` · `list_evidence_ledger` · `compose_from_units` ·
+`list_crud_units` · `get_crud_unit` · `add_crud_unit` · `update_crud_unit` · `delete_crud_unit`
 
 Tool schemas are authoritative in source: `TOOLS` in
 `flybrain-connectome-mcp/mcp_connectome/server.py`. Do not invent tool names —

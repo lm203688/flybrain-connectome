@@ -43,14 +43,15 @@ are sufficient for which computations".[^xu2026]
 decision-making. *Science*, 387(6735), adz5323. doi:10.1126/science.adz5323.
 
 This reframing creates a reproducibility problem unique to connectomics: candidate motifs are
-extracted from a fixed data set (MaleCNS v1.0: 166,700 neurons, 124,177,617 synapses[^xu2020])
+extracted from a fixed data set (MaleCNS v1.0: 166,700 neurons, 124,177,617 synapses[^berg2026])
 and evaluated against an experimental protocol that is written and run simultaneously. The
 result is a well-documented failure mode: motifs that "pass" in the author's hands do not pass
 on independent runs, and negative results are suppressed because preregistration would have
 forced them to be declared upfront.
 
-[^xu2020]: Xu, T. et al. (2020). The connectome of the adult Drosophila male brain.
-*Neuron*, 168(13), 2470–2492.e18. doi:10.1016/j.neuron.2020.09.006.
+[^berg2026]: Berg, S. et al. (2026). Sexual dimorphism in the complete Drosophila male
+central nervous system connectome. *Cell*, 189(18), 5504–5526.e15.
+doi:10.1016/j.cell.2026.08.015 (bioRxiv preprint: doi:10.1101/2025.10.09.680999).
 
 In the software-tools ecosystem, this failure mode has direct parallel: agent systems ship
 with claims about reliability and safety that are not machine-checkable, contributing to the
@@ -154,7 +155,7 @@ exits non-zero on any FAIL. The current committed state is 58/58 PASS.
 # Acknowledgements
 
 This work uses four open connectome datasets under their respective licenses: MaleCNS v1.0
-(Xu et al. 2020, CC-BY 4.0), WormWiring (Witvliet et al. 2020, CC0), Drosophila larva
+(Berg et al. 2026, CC-BY 4.0), WormWiring (Witvliet et al. 2020, CC0), Drosophila larva
 (Winding et al. 2023, CC-BY 4.0), and Petkova 2025 zebrafish HMI (CC-BY-NC 4.0). The
 theoretical framing for the L3 layer draws on Xu 2026 *Science* adz5323. No funding
 bodies were involved.
@@ -162,5 +163,5 @@ bodies were involved.
 # References
 
 The bibliography is maintained as `outputs/SCI_SUBMISSION_PACKAGE_2026-10-20/01_manuscripts/references.bib`
-in the submission package. Key citations: Xu 2020 (MaleCNS), Xu 2026 (dendritic computation),
+in the submission package. Key citations: Berg 2026 (MaleCNS), Xu 2026 (dendritic computation),
 Witvliet 2020, Winding 2023, Petkova 2025, Deloitte 2026 State of AI.

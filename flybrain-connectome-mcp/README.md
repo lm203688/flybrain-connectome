@@ -1,6 +1,6 @@
 # flybrain-connectome-mcp
 
-把 **果蝇雄性脑连接组 (MaleCNS v1.0, Schlegel et al. 2026, CC-BY)** 变成可被
+把 **果蝇雄性脑连接组 (MaleCNS v1.0, Berg et al. 2026, CC-BY)** 变成可被
 程序直接查询/分析的独立服务。两种接入方式共享同一套内存索引查询引擎：
 
 1. **MCP stdio 服务器** — 给 WorkBuddy / Claude / Cursor 等 MCP 客户端当工具用

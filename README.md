@@ -55,7 +55,7 @@ before you quote it.
 > Tier-2 IP leak and [docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md](docs/D3_REPOSITORY_PUBLICITY_DECISION_2026-10-18.md)
 > for the 16-step publicization runbook that was executed). The Tier-1 code is
 > MIT-licensed and reachable at https://github.com/lm203688/flybrain-connectome.
-> Tier-2 raw data (MaleCNS 37.42 GB/211,604 files, C. elegans Witvliet 2020, Drosophila larva
+> Tier-2 raw data (MaleCNS ~5.63 GB compressed / ~34.85 GB expanded, 211,604 files, C. elegans Witvliet 2020, Drosophila larva
 > edges.csv, Petkova 2025 zebrafish (CC-BY-NC-4.0, non-commercial; commercial use requires alternative sources or re-licensing)) is fetched via the documented data pipeline
 > — see §"Requirements" and the S1 external-validation script.
 
@@ -65,7 +65,7 @@ before you quote it.
 >
 > | 2026 standard | This project |
 > |---|---|
-> | **MCP** (Model Context Protocol) | ✅ 47 tools over MCP + 47 over HTTP, fully dispatched (Gate 66) |
+> | **MCP** (Model Context Protocol) | ✅ 52 tools over MCP + 52 over HTTP, fully dispatched (Gate 66) |
 > | **W3C PROV-JSON** (EU AI Act auditing) | ✅ every generated artifact carries provenance to a real neuron/synapse class |
 > | **Agent Skills** (`SKILL.md`, Agentic AI Foundation) | ✅ [`skills/flybrain-connectome/SKILL.md`](skills/flybrain-connectome/SKILL.md) — loadable by Claude Code / Codex / Cursor / Gemini CLI and 70+ platforms |
 >
@@ -79,8 +79,8 @@ before you quote it.
 
 | ✅ This project | ❌ Not this project |
 |---|---|
-| A connectome **query service** (47 tools over HTTP + MCP) | A spiking-neuron simulator |
-| A **motif-extraction** pipeline (real fly → derived motif doc) | A repository of the raw 37.42 GB/211,604 files data |
+| A connectome **query service** (52 tools over HTTP + MCP) | A spiking-neuron simulator |
+| A **motif-extraction** pipeline (real fly → derived motif doc) | A repository of the raw ~5.63 GB compressed / ~34.85 GB expanded, 211,604 files data |
 | A **synthetic topology generator** (bio-motifs → agent graphs) | A trained / fine-tuned model with weights |
 | **W3C PROV** provenance on every generated artifact | A claim that the "virtual organism" is alive |
 
@@ -240,7 +240,7 @@ wrong — it turns "ImportError" into a named, fixable problem.
 
 ### To query the real connectome you also need the data
 
-MaleCNS v1.0 is CC-BY, ~37.42 GB/211,604 files, and deliberately **not** in this repo:
+MaleCNS v1.0 is CC-BY, ~5.63 GB compressed / ~34.85 GB expanded, 211,604 files, and deliberately **not** in this repo:
 
 ```bash
 export FLYBRAIN_DATA_DIR=/path/to/your/male_cns
@@ -359,7 +359,7 @@ flybrain-connectome/
 ├── pyproject.toml                  zero deps, `flybrain` console script
 ├── LICENSE · CITATION.cff · CHANGELOG.md
 ├── flybrain-connectome-mcp/
-│   ├── mcp_connectome/             query engine (core) + 47-tool MCP + HTTP API (:8799)
+│   ├── mcp_connectome/             query engine (core) + 52-tool MCP + HTTP API (:8799)
 │   ├── motifs/                     drop-in client + derived motif snapshot
 │   ├── synthetic_bio_topology.py   ★ C1 generator (motif → agent graph + config + PROV)
 │   ├── _verify.py                  end-to-end smoke test (70/70)
@@ -383,7 +383,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 | Endpoint | Auth | Purpose |
 |---|---|---|
 | `GET  /health` | none | liveness + version |
-| `GET  /tools`  | key  | list the 47 tools + descriptions |
+| `GET  /tools`  | key  | list the 52 tools + descriptions |
 | `POST /query`  | key  | `{"tool": <name>, "args": {...}}` → `{"ok": true, "result": ...}` |
 
 **Auth:** `Authorization: Bearer <key>` or `X-API-Key: <key>`. Keys come from
@@ -391,7 +391,7 @@ Service: `flybrain-connectome-mcp/mcp_connectome/api_server.py`.
 server generates a temporary per-boot key and warns loudly — it never falls
 back to a key committed to source.
 
-**The 47 tools** (real names, do not invent — verified against `GET /tools`
+**The 52 tools** (real names, do not invent — verified against `GET /tools`
 by `scripts/check_docs_consistency.py`):
 
 *Real-connectome queries — the 11 marked ⚠ need `FLYBRAIN_DATA_DIR`:*
@@ -417,7 +417,8 @@ by `scripts/check_docs_consistency.py`):
 *Functional-unit composition library — the composable layer above neuron types:*
 
 `list_functional_units` · `get_functional_unit` ·
-`list_connection_types` · `list_evidence_ledger` · `compose_from_units`
+`list_connection_types` · `list_evidence_ledger` · `compose_from_units` ·
+`list_crud_units` · `get_crud_unit` · `add_crud_unit` · `update_crud_unit` · `delete_crud_unit`
 
 ---
 
@@ -1206,7 +1207,7 @@ which claims were retracted, are in [`CHANGELOG.md`](CHANGELOG.md).
 **Using it from an MCP client:** see [`docs/mcp_setup.md`](docs/mcp_setup.md).
 **Module variants, SwarmLabs integration, and the organism market (v1.1.0):**
 see [`docs/module_factory.md`](docs/module_factory.md).
-for client configs, the 47-tool reference, and troubleshooting.
+for client configs, the 52-tool reference, and troubleshooting.
 
 ---
 
@@ -1353,7 +1354,7 @@ generator surface and the packaging, while the data path is proved by
 - **Code:** MIT — see [LICENSE](LICENSE). Repo is **PUBLIC** since 2026-10-18.
   See [LICENSE-CLAUSE.md](LICENSE-CLAUSE.md) for the 3-tier split and the
   re-publicization history.
-- **Connectome data:** MaleCNS v1.0, CC-BY. The 37.42 GB/211,604 files dataset is **not**
+- **Connectome data:** MaleCNS v1.0, CC-BY. The ~5.63 GB compressed / ~34.85 GB expanded, 211,604 files dataset is **not**
   included in this repository. Obtain it from the original publication and set
   `FLYBRAIN_DATA_DIR`. All numbers in this project are derived from that real
   dataset; nothing is synthetically fabricated to look impressive.

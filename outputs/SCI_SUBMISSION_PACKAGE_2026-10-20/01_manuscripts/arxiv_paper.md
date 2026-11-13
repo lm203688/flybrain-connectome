@@ -95,7 +95,7 @@ claims directly and find them unsupported.
 ## 2. Related work
 
 - **Connectomics.** The complete male *Drosophila* brain connectome
-  (MaleCNS v1.0 (Xu et al. 2020, *Neuron* 168, 3007-3019.e18); CC-BY) provides, for the first time, a
+  (MaleCNS v1.0 (Berg et al. 2026, *Cell*); CC-BY) provides, for the first time, a
   whole-brain wiring diagram at cellular resolution that is freely reusable. We
   build directly on its derived statistics.
 - **Massive modularity.** Fodor's *The Modularity of Mind* (1983) argued for
