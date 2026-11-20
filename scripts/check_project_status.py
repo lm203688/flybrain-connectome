@@ -44,8 +44,8 @@ def _regen(skip_gates: bool = False) -> int:
 
     With skip_gates=True the regen skips invoking run_gates.py --quick,
     which is ~30s per call. The injection battery calls this 3 times, so
-    the fast path matters. The gate totals are recorded as 0/0 during
-    that call; the happy path (no mutation) uses the full pipeline.
+    the fast path matters. In that mode gen_project_status.py records the
+    gate totals as 0/0; check_fresh() makes that write non-destructive.
     """
     import subprocess
     cmd = [PY, str(GEN)]
@@ -66,8 +66,8 @@ def check_fresh(skip_gates: bool = False) -> dict:
     wrapper (when check_project_status.py is invoked from run_gates.py,
     we must not recurse into another full gate run). The gate totals
     section is excluded from the diff in that case — the gate wrapper
-    itself owns the run_gates.py truth, and project_status.json's
-    gates_quick is populated only on the happy path (direct call).
+    itself owns the run_gates.py truth, and _regen() must never let its
+    0/0 placeholder clobber the totals the slow path last recorded.
     """
     disk = _load_status()
     # Snapshot current disk content, regenerate, diff.
@@ -89,6 +89,22 @@ def check_fresh(skip_gates: bool = False) -> dict:
             if before_cmp.get(k) != after_cmp.get(k):
                 drift.append(f"{k}: disk={before_cmp.get(k)!r} truth={after_cmp.get(k)!r}")
         return {"ok": False, "failures": ["stale project_status.json"] + drift}
+    if skip_gates:
+        # check_fresh() is a *read-only* freshness probe, but _regen()
+        # writes through gen_project_status.py unconditionally, and in
+        # skip mode that script records the gate totals as 0/0. gates_quick
+        # is excluded from the diff above, so the zeroing never reads as
+        # drift: every happy-path call through the gate65 wrapper
+        # (run_gates.py) replaced the real totals with 0/0, left
+        # healthy=false on disk, and still printed PASS.
+        # Restore the last totals the slow path recorded, serialised the
+        # same way gen_project_status.py._write() does, so the file stays
+        # byte-stable for the next probe.
+        recorded = disk.get("gates_quick") or {}
+        if recorded.get("total"):
+            after["gates_quick"] = recorded
+            STATUS.write_text(json.dumps(after, indent=2, ensure_ascii=False),
+                              encoding="utf-8")
     return {"ok": True, "failures": []}
 
 

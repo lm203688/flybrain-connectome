@@ -4,6 +4,34 @@ All notable changes to this project are documented here.
 Format follows [Keep a Changelog](https://keepachangelog.com/en/1.1.0/);
 versioning follows [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [Unreleased] - 2026-11-20
+
+### Fixed (gate65 · gates_quick 归零污染根因)
+- **gate65 skip 路径污染修复** — `scripts/check_project_status.py`：
+  - **根因**：`check_fresh(skip_gates=True)`（gate65 包装器经 `run_gates.py`
+    调用时的必走分支）会经 `gen_project_status.py --skip-gates` 重新生成
+    `project_status.json`，而该脚本在 skip 模式下按设计把门禁总数记录为 `0/0`；
+    因 skip 模式的 freshness 差异判定把 `gates_quick` 排除在比对之外，
+    这次归零永远不构成「漂移」，于是每次快乐路径调用都把真实 `60/60` 静默
+    替换为 `0/0`、磁盘留下 `healthy=false`，却照样打印 `PASS`。
+  - **修复**：skip 模式重生成后，用 slow path 最后一次记录的真值回填
+    `gates_quick`（仅当 `total > 0`，避免用 0/0 覆盖），序列化方式与
+    `gen_project_status.py` 一致，快路径由此变成非破坏性的 freshness 探测。
+  - **回归**：注入电池 3/3 仍能把门禁打红（故障可被发现）；
+    `run_gates.py --quick` = 60/60 PASS；`project_status.json` 恢复 `60/60 healthy=true`。
+  - **附带**：`run_gates.py --quick` 在 Windows GBK 控制台抛
+    `UnicodeEncodeError` 属环境假红（AGENTS.md：只登记不修），
+    以 `PYTHONUTF8=1` 运行即可；`gen_project_status.py` 慢路径内嵌的
+    `run_gates.py` 子进程同样受此影响，会把门禁解析成 `0/0` 并覆盖真值。
+
+### Changed (分叉合并)
+- **合并 `origin/master`（`90cb19d`）入 `master`** — 真实内容分歧仅 2 文件；
+  13 个文件（README / aibom.json / paper.md / 各 references.bib 等）经
+  `--ignore-cr-at-eol` 核实为**纯 EOL 抖动**（`core.autocrlf=true` 且无
+  `.gitattributes`），取 origin 侧无内容损失；`scripts/check_project_status.py`
+  保留本地 gate65 修复（origin 未改此文件，git 自动合并）。
+  版本单一真源核对通过：README 徽标 = `pyproject.toml` = `3.01.3`。
+
 ## [Unreleased] - 2026-11-03
 
 ### Added (P2-7 · 合规许可矩阵落地 + Petkova 纠错)
